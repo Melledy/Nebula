@@ -2,6 +2,7 @@ package emu.nebula.server.routes;
 
 import org.jetbrains.annotations.NotNull;
 
+import emu.nebula.GameConstants;
 import emu.nebula.proto.Pb.ServerAgent;
 import emu.nebula.proto.Pb.ServerListMeta;
 import emu.nebula.server.HttpServer;
@@ -23,7 +24,7 @@ public class MetaServerlistHandler implements Handler {
         
         // Create server list
         this.list = ServerListMeta.newInstance()
-                .setVersion(22)
+                .setVersion(GameConstants.DATA_VERSION)
                 .setReportEndpoint(server.getServerConfig().getDisplayAddress() + "/report");
         
         var agent = ServerAgent.newInstance()
