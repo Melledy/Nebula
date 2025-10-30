@@ -16,19 +16,19 @@ public class HandlerDailyInstanceApplyReq extends NetHandler {
         var req = DailyInstanceApplyReq.parseFrom(message);
         
         var data = GameData.getDailyInstanceDataTable().get(req.getId());
-        if (data == null) {
+        if (data == null || !data.hasEnergy(session.getPlayer())) {
             return this.encodeMsg(NetMsgId.daily_instance_apply_failed_ack);
         }
         
-        // Check player energy
-        if (data.getEnergyConsume() > session.getPlayer().getEnergy()) {
+        // Check reward group
+        if (data.getRewardGroup(req.getRewardType()) == null) {
             return this.encodeMsg(NetMsgId.daily_instance_apply_failed_ack);
         }
         
         // Set player
-        session.getPlayer().getInstanceManager().setCurInstanceId(req.getId());
+        session.getPlayer().getInstanceManager().setCurInstanceId(req.getId(), req.getRewardType());
         
-        // Template
+        // Send response
         return this.encodeMsg(NetMsgId.daily_instance_apply_succeed_ack);
     }
 

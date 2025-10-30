@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import emu.nebula.proto.Public.Item;
 import emu.nebula.proto.Public.ItemInfo;
 import emu.nebula.proto.Public.ItemTpl;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
@@ -60,6 +61,8 @@ public class ItemParamMap extends Int2IntOpenHashMap {
         return this.int2IntEntrySet();
     }
     
+    // Converters (lists/streams)
+    
     public List<ItemParam> toList() {
         List<ItemParam> list = new ArrayList<>();
         
@@ -74,6 +77,12 @@ public class ItemParamMap extends Int2IntOpenHashMap {
         return getEntrySet()
                 .stream()
                 .map(e -> ItemTpl.newInstance().setTid(e.getIntKey()).setQty(e.getIntValue()));
+    }
+    
+    public Stream<Item> toItemProtoStream() {
+        return getEntrySet()
+                .stream()
+                .map(e -> Item.newInstance().setTid(e.getIntKey()).setQty(e.getIntValue()));
     }
     
     // Helpers

@@ -15,6 +15,14 @@ public interface InstanceData {
     
     public ItemParamMap getRewards();
     
+    public default ItemParamMap getFirstRewards(int rewardType) {
+        return this.getFirstRewards();
+    }
+    
+    public default ItemParamMap getRewards(int rewardType) {
+        return this.getRewards();
+    }
+    
     /**
      * Checks if the player has enough energy to complete this instance
      * @return true if the player has enough energy

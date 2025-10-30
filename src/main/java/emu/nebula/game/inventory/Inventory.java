@@ -197,6 +197,12 @@ public class Inventory extends PlayerManager {
             changes = new PlayerChangeInfo();
         }
         
+        // Sanity
+        if (params == null || params.isEmpty()) {
+            return changes;
+        }
+        
+        // Add items
         for (var param : params.getEntrySet()) {
             this.addItem(param.getIntKey(), param.getIntValue(), changes);
         }
@@ -222,6 +228,12 @@ public class Inventory extends PlayerManager {
             changes = new PlayerChangeInfo();
         }
         
+        // Sanity
+        if (params == null || params.isEmpty()) {
+            return changes;
+        }
+        
+        // Remove items
         for (var param : params.getEntrySet()) {
             this.removeItem(param.getIntKey(), param.getIntValue(), changes);
         }

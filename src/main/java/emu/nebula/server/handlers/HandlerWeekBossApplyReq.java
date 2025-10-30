@@ -16,14 +16,14 @@ public class HandlerWeekBossApplyReq extends NetHandler {
         var req = WeekBossApplyReq.parseFrom(message);
         
         var data = GameData.getWeekBossLevelDataTable().get(req.getId());
-        if (data == null) {
+        if (data == null || !data.hasEnergy(session.getPlayer())) {
             return this.encodeMsg(NetMsgId.week_boss_apply_failed_ack);
         }
         
-        // Set player
+        // Set player instance id
         session.getPlayer().getInstanceManager().setCurInstanceId(req.getId());
         
-        // Template
+        // Send response
         return this.encodeMsg(NetMsgId.week_boss_apply_succeed_ack);
     }
 

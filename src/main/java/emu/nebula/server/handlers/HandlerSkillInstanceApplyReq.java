@@ -16,19 +16,14 @@ public class HandlerSkillInstanceApplyReq extends NetHandler {
         var req = SkillInstanceApplyReq.parseFrom(message);
         
         var data = GameData.getSkillInstanceDataTable().get(req.getId());
-        if (data == null) {
+        if (data == null || !data.hasEnergy(session.getPlayer())) {
             return this.encodeMsg(NetMsgId.skill_instance_apply_failed_ack);
         }
         
-        // Check player energy
-        if (data.getEnergyConsume() > session.getPlayer().getEnergy()) {
-            return this.encodeMsg(NetMsgId.skill_instance_apply_failed_ack);
-        }
-        
-        // Set player
+        // Set player instance id
         session.getPlayer().getInstanceManager().setCurInstanceId(req.getId());
         
-        // Template
+        // Send response
         return this.encodeMsg(NetMsgId.skill_instance_apply_succeed_ack);
     }
 

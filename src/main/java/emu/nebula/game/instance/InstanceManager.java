@@ -19,7 +19,6 @@ import emu.nebula.proto.Public.WeekBossLevel;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 @Entity(value = "instances", useDiscriminator = false)
@@ -33,8 +32,8 @@ public class InstanceManager extends PlayerManager implements GameDatabaseObject
     private Int2IntMap charGemLog;
     private Int2IntMap weekBossLog;
     
-    @Setter
     private transient int curInstanceId;
+    private transient int rewardType;
     
     @Deprecated // Morphia
     public InstanceManager() {
@@ -52,6 +51,15 @@ public class InstanceManager extends PlayerManager implements GameDatabaseObject
         this.weekBossLog = new Int2IntOpenHashMap();
         
         this.save();
+    }
+    
+    public void setCurInstanceId(int id) {
+        this.setCurInstanceId(id, 0);
+    }
+
+    public void setCurInstanceId(int id, int rewardType) {
+        this.curInstanceId = id;
+        this.rewardType = rewardType;
     }
     
     public void saveInstanceLog(Int2IntMap log, String logName, int id, int newStar) {

@@ -41,6 +41,7 @@ public class GameData {
     @Getter private static DataTable<DictionaryEntryDef> DictionaryEntryDataTable = new DataTable<>();
     
     @Getter private static DataTable<DailyInstanceDef> DailyInstanceDataTable = new DataTable<>();
+    @Getter private static DataTable<DailyInstanceRewardGroupDef> DailyInstanceRewardGroupDataTable = new DataTable<>();
     @Getter private static DataTable<RegionBossLevelDef> RegionBossLevelDataTable = new DataTable<>();
     @Getter private static DataTable<SkillInstanceDef> SkillInstanceDataTable = new DataTable<>();
     @Getter private static DataTable<CharGemInstanceDef> CharGemInstanceDataTable = new DataTable<>();

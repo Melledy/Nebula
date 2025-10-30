@@ -41,6 +41,17 @@ public class HandlerDailyInstanceSettleReq extends NetHandler {
                 .setExp(settleData.getExp())
                 .setChange(changes.toProto());
         
+        // Add reward items
+        if (settleData.isWin()) {
+            int rewardType = player.getInstanceManager().getRewardType();
+            
+            data.getRewards(rewardType).toItemProtoStream().forEach(rsp::addSelect);
+            
+            if (settleData.isFirst()) {
+                data.getFirstRewards(rewardType).toItemProtoStream().forEach(rsp::addFirst);
+            }
+        }
+        
         // Send response
         return this.encodeMsg(NetMsgId.daily_instance_settle_succeed_ack, rsp);
     }
