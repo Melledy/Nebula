@@ -51,7 +51,7 @@ public class StarTowerBuild implements GameDatabaseObject {
         this.subNoteSkills = new Int2IntOpenHashMap();
         
         // Characters
-        this.charIds = game.getDiscs().stream()
+        this.charIds = game.getChars().stream()
                 .filter(d -> d.getId() > 0)
                 .mapToInt(d -> d.getId())
                 .toArray();
