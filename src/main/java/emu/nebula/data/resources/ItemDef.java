@@ -6,6 +6,7 @@ import emu.nebula.game.inventory.ItemParamMap;
 import emu.nebula.game.inventory.ItemSubType;
 import emu.nebula.game.inventory.ItemType;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @ResourceType(name = "Item.json")
@@ -24,6 +25,9 @@ public class ItemDef extends BaseDef {
     private transient ItemParamMap useParams;
     private transient ItemType itemType;
     private transient ItemSubType itemSubType;
+    
+    @Setter
+    private transient TitleDef titleData;
     
     @Override
     public int getId() {

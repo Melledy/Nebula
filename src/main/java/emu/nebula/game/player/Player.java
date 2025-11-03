@@ -199,6 +199,27 @@ public class Player implements GameDatabaseObject {
         return true;
     }
     
+    public boolean editHeadIcon(int id) {
+        // Skip if we are not changing head icon
+        if (this.headIcon == id) {
+            return true;
+        }
+        
+        // Make sure we own the head icon
+        if (!getInventory().hasHeadIcon(id)) {
+            return false;
+        }
+        
+        // Set
+        this.headIcon = id;
+        
+        // Update in database
+        Nebula.getGameDatabase().update(this, this.getUid(), "headIcon", this.getHeadIcon());
+        
+        // Success
+        return true;
+    }
+    
     public boolean editSignature(String signature) {
         // Sanity check
         if (signature == null) {

@@ -11,8 +11,16 @@ public class HandlerPlayerHeadIconInfoReq extends NetHandler {
 
     @Override
     public byte[] handle(GameSession session, byte[] message) throws Exception {
+        // Build response
         var rsp = PlayerHeadIconInfoResp.newInstance();
-                
+        
+        var icons = session.getPlayer().getInventory().getAllHeadIcons();
+        
+        for (int id : icons) {
+            rsp.addList(id);
+        }
+        
+        // Encode and send
         return session.encodeMsg(NetMsgId.player_head_icon_info_succeed_ack, rsp);
     }
 

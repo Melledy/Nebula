@@ -82,6 +82,125 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
         return skins;
     }
     
+    public boolean hasSkin(int id) {
+        // Get skin data
+        var skinData = GameData.getCharacterSkinDataTable().get(id);
+        if (skinData == null) {
+            return false;
+        }
+        
+        // Get character
+        var character = getPlayer().getCharacters().getCharacterById(skinData.getCharId());
+        if (character == null) {
+            return false;
+        }
+        
+        // Check
+        switch (skinData.getType()) {
+            case 1:
+                // Default skin, always allow
+                break;
+            case 2:
+                // Ascension skin, only allow if the character has the right ascension level
+                if (character.getAdvance() < character.getData().getAdvanceSkinUnlockLevel()) {
+                    return false;
+                }
+                break;
+            default:
+                // Extra skin, only allow if we have the skin unlocked
+                if (!getPlayer().getInventory().getExtraSkins().contains(id)) {
+                    return false;
+                }
+                break;
+        }
+        
+        // Unknown
+        return true;
+    }
+    
+    public void addSkin(int id) {
+        // Make sure we are not adding duplicates
+        if (this.getExtraSkins().contains(id)) {
+            return;
+        }
+        
+        // Add
+        this.getExtraSkins().add(id);
+        
+        // Save to database
+        Nebula.getGameDatabase().addToList(this, this.getUid(), "extraSkins", id);
+    }
+    
+    public IntCollection getAllHeadIcons() {
+        // Setup int collection
+        var icons = new IntOpenHashSet();
+        
+        // Add character skins
+        for (var character : getPlayer().getCharacters().getCharacterCollection()) {
+            // Add default skin id
+            icons.add(character.getData().getDefaultSkinId());
+            
+            // Add advance skin
+            if (character.getAdvance() >= character.getData().getAdvanceSkinUnlockLevel()) {
+                icons.add(character.getData().getAdvanceSkinId());
+            }
+        }
+        
+        // Finally, add extra skins
+        icons.addAll(this.getHeadIcons());
+        
+        // Complete and return
+        return icons;
+    }
+    
+    public boolean hasHeadIcon(int id) {
+        // Get head icon data
+        var data = GameData.getPlayerHeadDataTable().get(id);
+        if (data == null) {
+            return false;
+        }
+        
+        // Check to make sure we own this head icon
+        if (data.getHeadType() == 3) {
+            // Character skin icon
+            return this.hasSkin(id);
+        } else {
+            // Extra head icon
+            if (!this.getHeadIcons().contains(id)) {
+                return false;
+            }
+        }
+        
+        // Unknown
+        return true;
+    }
+    
+    public void addHeadIcon(int id) {
+        // Make sure we are not adding duplicates
+        if (this.getHeadIcons().contains(id)) {
+            return;
+        }
+        
+        // Add
+        this.getHeadIcons().add(id);
+        
+        // Save to database
+        Nebula.getGameDatabase().addToList(this, this.getUid(), "headIcons", id);
+    }
+    
+    public void addTitle(int id) {
+        // Make sure we are not adding duplicates
+        if (this.getTitles().contains(id)) {
+            return;
+        }
+        
+        // Add
+        this.getTitles().add(id);
+        
+        // Save to database
+        Nebula.getGameDatabase().addToList(this, this.getUid(), "titles", id);
+    }
+    
     // Resources
     
     public synchronized int getResourceCount(int id) {
@@ -227,6 +346,23 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
             }
             case WorldRankExp -> {
                 this.getPlayer().addExp(amount, change);
+            }
+            case CharacterSkin -> {
+                // Cannot remove skins
+                if (amount <= 0) {
+                    break;
+                }
+                
+                // Get skin data
+                var skinData = GameData.getCharacterSkinDataTable().get(id);
+                if (skinData == null) {
+                    break;
+                }
+                
+                // Check
+                if (skinData.getType() >= 3) {
+                    this.addSkin(id);
+                }
             }
             default -> {
                 // Not implemented
