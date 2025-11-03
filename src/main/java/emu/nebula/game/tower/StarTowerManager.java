@@ -77,19 +77,19 @@ public class StarTowerManager extends PlayerManager implements GameDatabaseObjec
         return this.game;
     }
 
-    public StarTowerGame giveUp() {
+    public StarTowerGame endGame() {
         // Cache instance
-        var instance = this.game;
+        var game = this.game;
         
-        if (instance != null) {
+        if (game != null) {
             // Set last build
-            this.lastBuild = instance.getBuild();
+            this.lastBuild = game.getBuild();
             
             // Clear instance
             this.game = null;
         }
         
-        return instance;
+        return game;
     }
     
     public boolean saveBuild(boolean delete, String name, boolean lock) {

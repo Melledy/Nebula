@@ -35,7 +35,8 @@ public class StarTowerGame {
     private int id;
     
     // Room
-    private int stage;
+    private int stageNum;
+    private int stageFloor;
     private int floor;
     private int mapId;
     private int mapTableId;
@@ -93,7 +94,8 @@ public class StarTowerGame {
         this.formationId = req.getFormationId();
         this.buildId = Snowflake.newUid();
         this.teamLevel = 1;
-        this.stage = 1;
+        this.stageNum = 1;
+        this.stageFloor = 1;
         this.floor = 1;
         this.charHp = -1;
         this.chars = new ArrayList<>();
@@ -145,7 +147,7 @@ public class StarTowerGame {
         
         // Debug
         var doorCase = this.addCase(new StarTowerCase(CaseType.OpenDoor));
-        doorCase.setFloorId(this.getFloor() + 1);
+        doorCase.setFloorId(this.getStageFloor() + 1);
         
         var nextStage = this.getNextStageData();
         if (nextStage != null) {
@@ -171,10 +173,10 @@ public class StarTowerGame {
     }
     
     public StarTowerStageDef getNextStageData() {
-        int stage = this.stage;
-        int floor = this.floor + 1;
+        int stage = this.stageNum;
+        int floor = this.stageFloor + 1;
         
-        if (floor >= this.getData().getMaxFloor(this.getStage())) {
+        if (floor >= this.getData().getMaxFloor(this.getStageNum())) {
             floor = 1;
             stage++;
         }
@@ -353,6 +355,7 @@ public class StarTowerGame {
         
         // Add any items
         var data = rsp.getMutableData();
+        
         if (this.getNewInfos().size() > 0) {
             // Add item protos
             for (var entry : this.getNewInfos()) {
@@ -451,17 +454,25 @@ public class StarTowerGame {
         this.mapTableId = proto.getMapTableId();
         this.mapParam = proto.getMapParam();
         this.paramId = proto.getParamId();
-        
-        // Next floor
         this.floor++;
         
-        if (this.floor >= this.getData().getMaxFloor(this.getStage())) {
-            this.floor = 1;
-            this.stage++;
+        // Check if we need to settle
+        if (this.floor > this.getData().getMaxFloors()) {
+            return this.settle(rsp);
+        }
+        
+        // Next floor
+        int nextFloor = this.stageFloor + 1;
+        
+        if (this.stageFloor >= this.getData().getMaxFloor(this.getStageNum())) {
+            this.stageFloor = 1;
+            this.stageNum++;
+        } else {
+            this.stageFloor = nextFloor;
         }
         
         // Calculate stage
-        var stageData = this.getStageData(this.getStage(), this.getFloor());
+        var stageData = this.getStageData(this.getStageNum(), this.getStageFloor());
         
         if (stageData != null) {
             this.roomType = stageData.getRoomType();
@@ -491,7 +502,7 @@ public class StarTowerGame {
         room.setData(this.toRoomDataProto());
         
         // Handle room type TODO
-        if (this.roomType <= StarTowerRoomType.EliteBattleRoom.getValue()) {
+        if (this.roomType <= StarTowerRoomType.FinalBossRoom.getValue()) {
             var battleCase = new StarTowerCase(CaseType.Battle);
             battleCase.setSubNoteSkillNum(Utils.randomRange(1, 3));
             
@@ -514,6 +525,22 @@ public class StarTowerGame {
         // Add case
         this.addCase(rsp, new StarTowerCase(CaseType.RecoveryHP));
         
+        return rsp;
+    }
+    
+    public StarTowerInteractResp settle(StarTowerInteractResp rsp) {
+        // End game
+        this.getManager().endGame();
+        
+        // Settle info
+        var settle = rsp.getMutableSettle()
+                .setTotalTime(this.getBattleTime())
+                .setBuild(this.getBuild().toProto());
+        
+        // Mark change info
+        settle.getMutableChange();
+        
+        // Complete
         return rsp;
     }
     
@@ -563,7 +590,7 @@ public class StarTowerGame {
     
     public StarTowerRoomData toRoomDataProto() {
         var proto = StarTowerRoomData.newInstance()
-                .setFloor(this.getFloor())
+                .setFloor(this.getStageFloor())
                 .setMapId(this.getMapId())
                 .setRoomType(this.getRoomType())
                 .setMapTableId(this.getMapTableId());

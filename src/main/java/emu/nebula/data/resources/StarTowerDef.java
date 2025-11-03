@@ -1,5 +1,7 @@
 package emu.nebula.data.resources;
 
+import java.util.Arrays;
+
 import emu.nebula.data.BaseDef;
 import emu.nebula.data.ResourceType;
 import lombok.Getter;
@@ -9,6 +11,8 @@ import lombok.Getter;
 public class StarTowerDef extends BaseDef {
     private int Id;
     private int[] FloorNum;
+    
+    private transient int maxFloors;
     
     @Override
     public int getId() {
@@ -23,5 +27,10 @@ public class StarTowerDef extends BaseDef {
         }
         
         return this.FloorNum[index];
+    }
+    
+    @Override
+    public void onLoad() {
+        this.maxFloors = Arrays.stream(this.FloorNum).reduce(0, Integer::sum);
     }
 }
