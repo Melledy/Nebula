@@ -42,6 +42,7 @@ public class GameData {
     @Getter private static DataTable<ProductionDef> ProductionDataTable = new DataTable<>();
     @Getter private static DataTable<PlayerHeadDef> PlayerHeadDataTable = new DataTable<>();
     @Getter private static DataTable<TitleDef> titleDataTable = new DataTable<>();
+    @Getter private static DataTable<HonorDef> honorDataTable = new DataTable<>();
     
     // Shops
     @Getter private static DataTable<MallMonthlyCardDef> MallMonthlyCardDataTable = new DataTable<>();

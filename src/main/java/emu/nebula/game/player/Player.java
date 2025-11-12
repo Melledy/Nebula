@@ -33,6 +33,7 @@ import emu.nebula.proto.PlayerData.DictionaryTab;
 import emu.nebula.proto.PlayerData.PlayerInfo;
 import emu.nebula.proto.Public.CharShow;
 import emu.nebula.proto.Public.Energy;
+import emu.nebula.proto.Public.HonorInfo;
 import emu.nebula.proto.Public.NewbieInfo;
 import emu.nebula.proto.Public.QuestType;
 import emu.nebula.proto.Public.Story;
@@ -61,11 +62,12 @@ public class Player implements GameDatabaseObject {
     private int skinId;
     private int titlePrefix;
     private int titleSuffix;
-    private int level;
-    private int exp;
+    private int[] honor;
     private int[] showChars;
     private int[] boards;
     
+    private int level;
+    private int exp;
     private int energy;
     private long energyLastUpdate;
    
@@ -128,11 +130,13 @@ public class Player implements GameDatabaseObject {
         this.skinId = 10301;
         this.titlePrefix = 1;
         this.titleSuffix = 2;
+        this.honor = new int[3];
+        this.showChars = new int[3];
+        this.boards = new int[] {410301};
+        
         this.level = 1;
         this.energy = 240;
         this.energyLastUpdate = this.createTime;
-        this.showChars = new int[3];
-        this.boards = new int[] {410301};
         
         // Setup inventory
         this.inventory = new Inventory(this);
@@ -218,6 +222,8 @@ public class Player implements GameDatabaseObject {
             return true;
         }
         
+        // TODO check if title is prefix or suffix
+        
         // Set
         this.titlePrefix = prefix;
         this.titleSuffix = suffix;
@@ -278,10 +284,12 @@ public class Player implements GameDatabaseObject {
         
         // Verify that we have the correct characters
         for (int id : charIds) {
-            if (id != 0 && !this.getCharacters().hasCharacter(id)) {
+            if (id != 0 && !getCharacters().hasCharacter(id)) {
                 return false;
             }
         }
+        
+        // TODO check duplicates
         
         // Clear
         this.showChars[0] = 0;
@@ -295,6 +303,39 @@ public class Player implements GameDatabaseObject {
         
         // Update in database
         Nebula.getGameDatabase().update(this, this.getUid(), "showChars", this.getShowChars());
+        
+        // Success
+        return true;
+    }
+    
+    public boolean setHonor(RepeatedInt honorIds) {
+        // Sanity check
+        if (honorIds.length() > this.getHonor().length) {
+            return false;
+        }
+        
+        // Verify that we have the honor titles
+        for (int id : honorIds) {
+            if (id != 0 && !getInventory().getHonorList().contains(id)) {
+                System.out.println(id);
+                return false;
+            }
+        }
+        
+        // TODO check duplicates
+        
+        // Clear
+        this.honor[0] = 0;
+        this.honor[1] = 0;
+        this.honor[2] = 0;
+        
+        // Set
+        for (int i = 0; i < honorIds.length(); i++) {
+            this.honor[i] = honorIds.get(i);
+        }
+        
+        // Update in database
+        Nebula.getGameDatabase().update(this, this.getUid(), "honor", this.getHonor());
         
         // Success
         return true;
@@ -593,6 +634,19 @@ public class Player implements GameDatabaseObject {
             
             acc.addChars(info);
         }
+        
+        // Set honor
+        for (int honorId : this.getHonor()) {
+            var info = HonorInfo.newInstance();
+            
+            if (honorId != 0) {
+                info.setId(honorId);
+            }
+            
+            proto.addHonors(info);
+        }
+        
+        this.getInventory().getHonorList().forEach(proto::addHonorList);
         
         // Set world class
         proto.getMutableWorldClass()

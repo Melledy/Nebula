@@ -11,6 +11,7 @@ import emu.nebula.database.GameDatabaseObject;
 import emu.nebula.game.player.PlayerManager;
 import emu.nebula.net.NetMsgId;
 import emu.nebula.proto.Notify.Skin;
+import emu.nebula.proto.Public.Honor;
 import emu.nebula.proto.Public.Item;
 import emu.nebula.proto.Public.Res;
 import emu.nebula.proto.Public.Title;
@@ -34,6 +35,7 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
     private IntSet extraSkins;
     private IntSet headIcons;
     private IntSet titles;
+    private IntSet honorList;
     
     // Items/resources
     private transient Int2ObjectMap<GameResource> resources;
@@ -53,6 +55,7 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
         this.extraSkins = new IntOpenHashSet();
         this.headIcons = new IntOpenHashSet();
         this.titles = new IntOpenHashSet();
+        this.honorList = new IntOpenHashSet();
         
         // Add titles directly
         this.getTitles().add(player.getTitlePrefix());
@@ -122,10 +125,10 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
         return true;
     }
     
-    public void addSkin(int id) {
+    public boolean addSkin(int id) {
         // Make sure we are not adding duplicates
         if (this.getExtraSkins().contains(id)) {
-            return;
+            return false;
         }
         
         // Add
@@ -139,6 +142,9 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
             NetMsgId.character_skin_gain_notify, 
             Skin.newInstance().setNew(UI32.newInstance().setValue(id))
         );
+        
+        // Success
+        return true;
     }
     
     public IntCollection getAllHeadIcons() {
@@ -185,10 +191,10 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
         return true;
     }
     
-    public void addHeadIcon(int id) {
+    public boolean addHeadIcon(int id) {
         // Make sure we are not adding duplicates
         if (this.getHeadIcons().contains(id)) {
-            return;
+            return false;
         }
         
         // Add
@@ -196,12 +202,15 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
         
         // Save to database
         Nebula.getGameDatabase().addToList(this, this.getUid(), "headIcons", id);
+        
+        // Success
+        return true;
     }
     
-    public void addTitle(int id) {
+    public boolean addTitle(int id) {
         // Make sure we are not adding duplicates
         if (this.getTitles().contains(id)) {
-            return;
+            return false;
         }
         
         // Add
@@ -209,6 +218,25 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
         
         // Save to database
         Nebula.getGameDatabase().addToList(this, this.getUid(), "titles", id);
+        
+        // Success
+        return true;
+    }
+    
+    public boolean addHonor(int id) {
+        // Make sure we are not adding duplicates
+        if (this.getHonorList().contains(id)) {
+            return false;
+        }
+        
+        // Add
+        this.getHonorList().add(id);
+        
+        // Save to database
+        Nebula.getGameDatabase().addToList(this, this.getUid(), "honorList", id);
+        
+        // Success
+        return true;
     }
     
     // Resources
@@ -387,14 +415,26 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
                 
                 int titleId = data.getTitleData().getId();
                 
-                // Make sure we don't already have this title
-                if (!this.getTitles().contains(titleId)) {
-                    // Add title
-                    this.addTitle(titleId);
-                    
+                // Add title
+                if (this.addTitle(titleId)) {
                     // Add to change info
                     var proto = Title.newInstance()
                             .setTitleId(titleId);
+                    
+                    change.add(proto);
+                }
+            }
+            case Honor -> {
+                // Cannot remove honor title
+                if (amount <= 0) {
+                    break;
+                }
+                
+                // Add honor title
+                if (this.addHonor(id)) {
+                    // Add to change info
+                    var proto = Honor.newInstance()
+                            .setNewId(id);
                     
                     change.add(proto);
                 }
