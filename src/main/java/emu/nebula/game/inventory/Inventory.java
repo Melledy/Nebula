@@ -790,6 +790,23 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
         return change.setSuccess(true);
     }
     
+    public PlayerChangeInfo convertGems(int amount) {
+        // Verify that we have the gems
+        if (!this.hasItem(GameConstants.PREM_GEM_ITEM_ID, amount)) {
+            return null;
+        }
+        
+        // Create change info
+        var change = new PlayerChangeInfo();
+        
+        // Convert gems
+        this.removeItem(GameConstants.PREM_GEM_ITEM_ID, amount, change);
+        this.addItem(GameConstants.GEM_ITEM_ID, amount, change);
+        
+        // Success
+        return change.setSuccess(true);
+    }
+    
     // Database
     
     public void loadFromDatabase() {
