@@ -22,12 +22,12 @@ public class GachaModule extends GameContextModule {
         int amount = mode == 2 ? 10 : 1;
         
         // Get banner data
-        var banner = GameData.getGachaDataTable().get(bannerId);
-        if (banner == null) {
+        var data = GameData.getGachaDataTable().get(bannerId);
+        if (data == null) {
             return null;
         }
         
-        var bannerStorage = banner.getStorageData();
+        var bannerStorage = data.getStorageData();
         if (bannerStorage == null) {
             return null;
         }
@@ -57,13 +57,13 @@ public class GachaModule extends GameContextModule {
         player.getInventory().removeItem(bannerStorage.getDefaultId(), Math.min(costReq, costQty), change);
         
         // Get gacha banner info
-        var info = player.getGachaManager().getBannerInfo(banner);
+        var info = player.getGachaManager().getBannerInfo(data);
         
         // Do gacha
         var results = new IntArrayList();
         
         for (int i = 0; i < amount; i++) {
-            int id = info.doPull(banner);
+            int id = info.doPull(data);
             if (id <= 0) continue;
             
             results.add(id);
@@ -158,7 +158,11 @@ public class GachaModule extends GameContextModule {
         change.add(transform);
         
         // Save banner info to database
-        info.save();
+        player.getGachaManager().saveBanner(info);
+        
+        // Add history
+        var log = new GachaHistoryLog(data.getGachaType(), results);
+        player.getGachaManager().addGachaHistory(log);
         
         // Complete
         return new GachaResult(info, change, results);

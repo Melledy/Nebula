@@ -16,7 +16,7 @@ import emu.nebula.game.character.Character;
 import emu.nebula.game.character.GameDisc;
 import emu.nebula.game.formation.FormationManager;
 import emu.nebula.game.friends.Friendship;
-import emu.nebula.game.gacha.GachaBannerInfo;
+import emu.nebula.game.gacha.GachaManager;
 import emu.nebula.game.inventory.GameItem;
 import emu.nebula.game.inventory.GameResource;
 import emu.nebula.game.inventory.Inventory;
@@ -172,12 +172,12 @@ public class PlayerModule extends GameContextModule {
         datastore.getCollection(GameItem.class).deleteMany(multiFilter);
         datastore.getCollection(GameResource.class).deleteMany(multiFilter);
         datastore.getCollection(StarTowerBuild.class).deleteMany(multiFilter);
-        datastore.getCollection(GachaBannerInfo.class).deleteMany(multiFilter);
 
         datastore.getCollection(Inventory.class).deleteOne(idFilter);
         datastore.getCollection(FormationManager.class).deleteOne(idFilter);
         datastore.getCollection(Mailbox.class).deleteOne(idFilter);
         datastore.getCollection(PlayerProgress.class).deleteOne(idFilter);
+        datastore.getCollection(GachaManager.class).deleteOne(idFilter);
         datastore.getCollection(StoryManager.class).deleteOne(idFilter);
         datastore.getCollection(QuestManager.class).deleteOne(idFilter);
         datastore.getCollection(AgentManager.class).deleteOne(idFilter);

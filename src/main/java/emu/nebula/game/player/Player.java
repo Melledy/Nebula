@@ -81,7 +81,6 @@ public class Player implements GameDatabaseObject {
     // Managers
     private final transient CharacterStorage characters;
     private final transient FriendList friendList;
-    private final transient GachaManager gachaManager;
     private final transient BattlePassManager battlePassManager;
     private final transient StarTowerManager starTowerManager;
     private final transient InstanceManager instanceManager;
@@ -93,6 +92,7 @@ public class Player implements GameDatabaseObject {
     private transient Inventory inventory;
     private transient FormationManager formations;
     private transient Mailbox mailbox;
+    private transient GachaManager gachaManager;
     private transient PlayerProgress progress;
     private transient StoryManager storyManager;
     private transient QuestManager questManager;
@@ -107,7 +107,6 @@ public class Player implements GameDatabaseObject {
         // Init player managers
         this.characters = new CharacterStorage(this);
         this.friendList = new FriendList(this);
-        this.gachaManager = new GachaManager(this);
         this.battlePassManager = new BattlePassManager(this);
         this.starTowerManager = new StarTowerManager(this);
         this.instanceManager = new InstanceManager(this);
@@ -597,6 +596,7 @@ public class Player implements GameDatabaseObject {
         this.formations = this.loadManagerFromDatabase(FormationManager.class);
         this.mailbox = this.loadManagerFromDatabase(Mailbox.class);
         this.progress = this.loadManagerFromDatabase(PlayerProgress.class);
+        this.gachaManager = this.loadManagerFromDatabase(GachaManager.class);
         this.storyManager = this.loadManagerFromDatabase(StoryManager.class);
         this.questManager = this.loadManagerFromDatabase(QuestManager.class);
         this.agentManager = this.loadManagerFromDatabase(AgentManager.class);

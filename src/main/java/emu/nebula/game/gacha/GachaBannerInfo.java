@@ -1,28 +1,19 @@
 package emu.nebula.game.gacha;
 
-import org.bson.types.ObjectId;
-
 import dev.morphia.annotations.Entity;
-import dev.morphia.annotations.Id;
-import dev.morphia.annotations.Indexed;
+
 import emu.nebula.data.resources.GachaDef;
 import emu.nebula.data.resources.GachaDef.GachaPackage;
 import emu.nebula.data.resources.GachaPkgDef;
-import emu.nebula.database.GameDatabaseObject;
-import emu.nebula.game.player.Player;
 import emu.nebula.proto.GachaInformation.GachaInfo;
 import emu.nebula.util.Utils;
+
 import lombok.Getter;
 
 @Getter
-@Entity(value = "banner_info", useDiscriminator = false)
-public class GachaBannerInfo implements GameDatabaseObject {
-    @Id
-    private ObjectId id;
-    
-    @Indexed
-    private int playerUid;
-    private int bannerId;
+@Entity(useDiscriminator = false)
+public class GachaBannerInfo {
+    private int id;
     
     private int total;
     private int missTimesA;
@@ -35,9 +26,8 @@ public class GachaBannerInfo implements GameDatabaseObject {
         
     }
     
-    public GachaBannerInfo(Player player, GachaDef data) {
-        this.playerUid = player.getUid();
-        this.bannerId = data.getId();
+    public GachaBannerInfo(GachaDef data) {
+        this.id = data.getId();
     }
     
     public void setUsedGuarantee(boolean value) {
@@ -108,7 +98,7 @@ public class GachaBannerInfo implements GameDatabaseObject {
 
     public GachaInfo toProto() {
         var proto = GachaInfo.newInstance()
-                .setId(this.getBannerId())
+                .setId(this.getId())
                 .setGachaTotalTimes(this.getTotal())
                 .setTotalTimes(this.getTotal())
                 .setAupMissTimes(this.getMissTimesA())
