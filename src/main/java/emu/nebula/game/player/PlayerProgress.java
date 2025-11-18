@@ -5,6 +5,7 @@ import java.util.Map;
 
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
+import dev.morphia.annotations.PostLoad;
 import emu.nebula.Nebula;
 import emu.nebula.data.GameData;
 import emu.nebula.database.GameDatabaseObject;
@@ -32,6 +33,7 @@ public class PlayerProgress extends PlayerManager implements GameDatabaseObject 
     
     // Star Tower
     private IntSet starTowerLog;
+    private int[] starTowerGrowth;
     
     // Instances
     private Int2IntMap dailyInstanceLog;
@@ -64,6 +66,7 @@ public class PlayerProgress extends PlayerManager implements GameDatabaseObject 
         
         // Star Tower
         this.starTowerLog = new IntOpenHashSet();
+        this.starTowerGrowth = new int[3];
         
         // Instances
         this.dailyInstanceLog = new Int2IntOpenHashMap();
@@ -98,6 +101,25 @@ public class PlayerProgress extends PlayerManager implements GameDatabaseObject 
         // Add & Save to database
         this.getStarTowerLog().add(id);
         Nebula.getGameDatabase().addToSet(this, this.getUid(), "starTowerLog", id);
+    }
+    
+    public boolean setStarTowerGrowthNode(int group, int nodeId) {
+        // Get index
+        int index = group - 1;
+        if (index < 0) return false;
+        
+        // Grow growth if its too small
+        if (index >= this.starTowerGrowth.length) {
+            var old = this.starTowerGrowth;
+            this.starTowerGrowth = new int[index + 1];
+            System.arraycopy(old, 0, this.starTowerGrowth, 0, old.length);
+        }
+        
+        // Set
+        this.starTowerGrowth[index] |= (1 << nodeId);
+        
+        // Success
+        return true;
     }
     
     public void addInfinityArenaLog(int levelId) {
@@ -232,6 +254,15 @@ public class PlayerProgress extends PlayerManager implements GameDatabaseObject 
         // Tutorials
         for (var tutorial : this.getTutorialLog().values()) {
             proto.addTutorialLevels(tutorial.toProto());
+        }
+    }
+    
+    // Database fix
+    
+    @PostLoad
+    public void postLoad() {
+        if (this.starTowerGrowth == null) {
+            this.starTowerGrowth = new int[1];
         }
     }
 }

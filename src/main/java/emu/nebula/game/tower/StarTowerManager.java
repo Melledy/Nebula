@@ -2,12 +2,14 @@ package emu.nebula.game.tower;
 
 import emu.nebula.Nebula;
 import emu.nebula.data.GameData;
+import emu.nebula.data.resources.StarTowerGrowthNodeDef;
 import emu.nebula.game.player.Player;
 import emu.nebula.game.player.PlayerChangeInfo;
 import emu.nebula.game.player.PlayerManager;
+import emu.nebula.game.player.PlayerProgress;
 import emu.nebula.game.quest.QuestCondType;
 import emu.nebula.proto.StarTowerApply.StarTowerApplyReq;
-
+import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 
@@ -25,6 +27,121 @@ public class StarTowerManager extends PlayerManager {
     public StarTowerManager(Player player) {
         super(player);
     }
+    
+    public PlayerProgress getProgress() {
+        return this.getPlayer().getProgress();
+    }
+    
+    // Growth nodes (talents/research)
+    
+    public boolean hasGrowthNode(int id) {
+        // Get growth node data
+        var data = GameData.getStarTowerGrowthNodeDataTable().get(id);
+        if (data == null) return false;
+        
+        // Check if bit is set
+        return hasGrowthNode(data);
+    }
+    
+    public boolean hasGrowthNode(StarTowerGrowthNodeDef data) {
+        // Get current growth nodes
+        var growth = getPlayer().getProgress().getStarTowerGrowth();
+        
+        // Get group index
+        int groupIndex = data.getGroup() - 1;
+        if (groupIndex >= growth.length) {
+            return false;
+        }
+        
+        // Get nodes bits
+        int nodes = growth[groupIndex];
+        int test = (1 << data.getNodeId());
+        
+        // Check if bit is set
+        return (nodes & test) != 0;
+    }
+    
+    public PlayerChangeInfo unlockGrowthNode(int id) {
+        // Get growth node data
+        var data = GameData.getStarTowerGrowthNodeDataTable().get(id);
+        if (data == null) return null;
+        
+        // Make sure node is not already set
+        if (this.hasGrowthNode(data)) {
+            return null;
+        }
+        
+        // Check if we have the required items to unlock
+        if (!getPlayer().getInventory().hasItem(data.getItemId1(), data.getItemQty1())) {
+            return null;
+        }
+        
+        // Set node
+        this.getProgress().setStarTowerGrowthNode(data.getGroup(), data.getNodeId());
+        
+        // Save to database
+        Nebula.getGameDatabase().update(
+            this.getProgress(),
+            this.getPlayerUid(),
+            "starTowerGrowth",
+            this.getProgress().getStarTowerGrowth()
+        );
+        
+        // Remove items
+        return getPlayer().getInventory().removeItem(data.getItemId1(), data.getItemQty1());
+    }
+    
+    public PlayerChangeInfo unlockGrowthNodeGroup(int group) {
+        // Create variables
+        var change = new PlayerChangeInfo();
+        var unlocked = new IntArrayList();
+        
+        // Filter data
+        for (var data : GameData.getStarTowerGrowthNodeDataTable()) {
+            // Filter out nodes that are not from our group
+            if (data.getGroup() != group) {
+                continue;
+            }
+            
+            // Filter out set growth nodes
+            if (this.hasGrowthNode(data)) {
+                continue;
+            }
+            
+            // Check if we have the required items to unlock
+            if (!getPlayer().getInventory().hasItem(data.getItemId1(), data.getItemQty1())) {
+                continue;
+            }
+            
+            // Set node
+            this.getProgress().setStarTowerGrowthNode(data.getGroup(), data.getNodeId());
+            
+            // Remove items
+            getPlayer().getInventory().removeItem(data.getItemId1(), data.getItemQty1());
+            
+            // Add to unlocked list
+            unlocked.add(data.getId());
+        }
+        
+        // Save to database if any nodes were unlocked
+        if (unlocked.size() > 0) {
+            // Save to database
+            Nebula.getGameDatabase().update(
+                this.getProgress(),
+                this.getPlayerUid(),
+                "starTowerGrowth",
+                this.getProgress().getStarTowerGrowth()
+            );
+        }
+        
+        // Set unlocked list
+        change.setExtraData(unlocked);
+        
+        // Return change
+        return change;
+    }
+    
+    // Builds
     
     public Long2ObjectMap<StarTowerBuild> getBuilds() {
         if (this.builds == null) {

@@ -2,6 +2,7 @@ package emu.nebula.server.handlers;
 
 import emu.nebula.net.NetHandler;
 import emu.nebula.net.NetMsgId;
+import emu.nebula.proto.TowerGrowthDetail.TowerGrowthDetailResp;
 import emu.nebula.net.HandlerId;
 import emu.nebula.net.GameSession;
 
@@ -10,7 +11,12 @@ public class HandlerTowerGrowthDetailReq extends NetHandler {
 
     @Override
     public byte[] handle(GameSession session, byte[] message) throws Exception {
-        return session.encodeMsg(NetMsgId.tower_growth_detail_succeed_ack);
+        // Build response
+        var rsp = TowerGrowthDetailResp.newInstance()
+                .addAllDetail(session.getPlayer().getProgress().getStarTowerGrowth());
+        
+        // Encode and send
+        return session.encodeMsg(NetMsgId.tower_growth_detail_succeed_ack, rsp);
     }
 
 }
