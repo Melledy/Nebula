@@ -29,7 +29,7 @@ java {
     }
 }
 
-version = '1.0.0'
+version = '1.0.1'
 
 var shouldGenerateProto = System.getenv("GENERATE_PROTO") == "true"
 System.out.println(shouldGenerateProto ? "Generating proto files" : "Skipping proto generation")
