@@ -284,6 +284,27 @@ public class Player implements GameDatabaseObject {
         // Success
         return true;
     }
+    
+    public boolean setSkin(int skinId) {
+        // Skip if we are setting the same skin
+        if (this.skinId == skinId) {
+            return true;
+        }
+        
+        // Make sure we own this skin
+        if (!getInventory().hasSkin(skinId)) {
+            return false;
+        }
+        
+        // Set skin
+        this.skinId = skinId;
+        
+        // Update in database
+        Nebula.getGameDatabase().update(this, this.getUid(), "skinId", this.getSkinId());
+        
+        // Success
+        return false;
+    }
 
     public boolean setShowChars(RepeatedInt charIds) {
         // Sanity check
