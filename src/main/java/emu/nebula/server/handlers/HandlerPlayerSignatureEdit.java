@@ -17,7 +17,7 @@ public class HandlerPlayerSignatureEdit extends NetHandler {
         var req = PlayerSignatureEditReq.parseFrom(message);
         var signature = req.getSignature();
         
-        if (signature == null) {
+        if (signature == null || signature.isEmpty()) {
             return session.encodeMsg(NetMsgId.player_signature_edit_failed_ack);
         }
         
