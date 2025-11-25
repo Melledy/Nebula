@@ -45,6 +45,7 @@ import emu.nebula.proto.Public.WorldClassRewardState;
 import emu.nebula.proto.Public.Title;
 
 import lombok.Getter;
+import lombok.Setter;
 import us.hebi.quickbuf.ProtoMessage;
 import us.hebi.quickbuf.RepeatedInt;
 
@@ -87,6 +88,7 @@ public class Player implements GameDatabaseObject {
     private final transient InfinityTowerManager infinityTowerManager;
     private final transient VampireSurvivorManager vampireSurvivorManager;
     private final transient ScoreBossManager scoreBossManager;
+    @Indexed @Setter @Getter private String playerRemoteToken;
     
     // Referenced data
     private transient Inventory inventory;
@@ -142,6 +144,7 @@ public class Player implements GameDatabaseObject {
         this.honor = new int[3];
         this.showChars = new int[3];
         this.boards = new int[] {410301};
+        this.playerRemoteToken = null;
         
         this.level = 1;
         this.energy = 240;

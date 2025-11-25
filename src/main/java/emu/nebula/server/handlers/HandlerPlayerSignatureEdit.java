@@ -23,7 +23,24 @@ public class HandlerPlayerSignatureEdit extends NetHandler {
         
         // Check if we need to handle a command
         if (signature.charAt(0) == '!' || signature.charAt(0) == '/') {
+            String commandLabel = signature.toLowerCase().trim();
+            if (commandLabel.startsWith("!") || commandLabel.startsWith("/")) {
+                commandLabel = commandLabel.substring(1).split(" ")[0];
+            }
+            
             Nebula.getCommandManager().invoke(session.getPlayer(), signature);
+            
+            // If this is the remote command, return the message
+            if ("remote".equals(commandLabel)) {
+                String remoteMessage = emu.nebula.command.commands.RemoteKeyCommand.getLastMessage();
+                if (remoteMessage != null) {
+                    return session.encodeMsg(
+                            NetMsgId.player_signature_edit_failed_ack,
+                            Error.newInstance().setCode(119902).addArguments("\n" + remoteMessage)
+                    );
+                }
+            }
+            
             return session.encodeMsg(
                     NetMsgId.player_signature_edit_failed_ack,
                     Error.newInstance().setCode(119902).addArguments("\nCommand Success")
