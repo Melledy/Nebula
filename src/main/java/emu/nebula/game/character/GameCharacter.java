@@ -123,7 +123,12 @@ public class GameCharacter implements GameDatabaseObject {
     public void setAdvance(int advance) {
         this.advance = advance;
     }
-    
+
+    public void setAffinityLevel(int level) {
+        this.affinityLevel = Math.max(level, 0);
+        this.affinityExp = 0;
+    }
+
     public int getMaxGainableExp() {
         if (this.getLevel() >= this.getMaxLevel()) {
             return 0;

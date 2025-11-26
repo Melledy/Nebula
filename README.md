@@ -73,7 +73,8 @@ Server commands need to be run in the server console OR in the signature edit me
 
 ```
 !account {create | delete} [email] (reserved player uid) = Creates or deletes an account.
-!char [all | {characterId}] lv(level) a(ascension) s(skill level) t(talent level) = Changes the properties of the targeted characters.
+!char [all | {characterId}] lv(level) a(ascension) s(skill level) t(talent level) f(affinity level) = Changes the properties of the targeted characters.
+!clean [all | {id} ...] [items|resources] = Removes items/resources from the targeted player.
 !disc [all | {discId}] lv(level) a(ascension) c(crescendo level) = Changes the properties of the targeted discs.
 !give [item id] x[amount] = Gives the targeted player an item through the mail.
 !giveall [characters | discs | materials] = Gives the targeted player items.
