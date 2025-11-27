@@ -6,6 +6,7 @@ import java.util.List;
 import dev.morphia.annotations.Entity;
 
 import emu.nebula.GameConstants;
+import emu.nebula.Nebula;
 import emu.nebula.data.GameData;
 import emu.nebula.data.resources.PotentialDef;
 import emu.nebula.data.resources.StarTowerDef;
@@ -55,6 +56,7 @@ public class StarTowerGame {
     private int buildId;
     private int teamLevel;
     private int teamExp;
+    private int nextLevelExp;
     private int charHp;
     private int battleTime;
     private int battleCount;
@@ -103,6 +105,8 @@ public class StarTowerGame {
         this.formationId = req.getFormationId();
         this.buildId = Snowflake.newUid();
         this.teamLevel = 1;
+        this.teamExp = 0;
+        this.nextLevelExp = GameData.getStarTowerTeamExpDataTable().get(2).getNeedExp();
         this.stageNum = 1;
         this.stageFloor = 1;
         this.floor = 1;
@@ -222,6 +226,37 @@ public class StarTowerGame {
         }
         
         return gold;
+    }
+
+    public int levelUp(int exp, int picks) {
+        if (this.teamExp + exp >= this.nextLevelExp) {
+            // Level up
+            this.teamLevel++;
+
+            // Add 1 to pending potential picks
+            picks++;
+
+            // Handle excess exp
+            if (this.teamExp + exp - this.nextLevelExp > 0) {
+                int excessExp = this.teamExp + exp - this.nextLevelExp;
+                return levelUp(excessExp, picks);
+            }
+
+            // Next level
+            this.nextLevelExp = GameData.getStarTowerTeamExpDataTable().get(this.teamLevel + 1).getNeedExp();
+        }
+        else {
+            // Update current team exp
+            this.teamExp += exp;
+        }
+
+        // Return picks
+        return picks;
+    }
+
+    public int levelUp(int exp) {
+        int potentialPicks = 0;
+        return this.levelUp(exp, potentialPicks);
     }
     
     // Cases
@@ -443,8 +478,34 @@ public class StarTowerGame {
         
         // Handle victory/defeat
         if (proto.hasVictory()) {
-            // Add team level
-            this.teamLevel++;
+            // Handle leveling up
+
+            // Get relevant floor exp data
+            var floorExpData = GameData.getStarTowerFloorExpDataTable().get(this.getId());
+            int expReward = 0;
+
+            // Determine appropriate exp reward
+            switch (this.getRoomType()) {
+                // Regular battle room
+                case 0:
+                    expReward = floorExpData.getNormalExp();
+                    break;
+                // Elite battle room
+                case 1:
+                    expReward = floorExpData.getEliteExp();
+                    break;
+                // Non-final boss room
+                case 2:
+                    expReward = floorExpData.getBossExp();
+                    break;
+                // Final room
+                case 3:
+                    expReward = floorExpData.getFinalBossExp();
+                    break;
+            }
+
+            // Level up
+            this.pendingPotentialCases += this.levelUp(expReward);
             
             // Add clear time
             this.battleTime += proto.getVictory().getTime();
@@ -460,9 +521,6 @@ public class StarTowerGame {
             
             this.addItem(GameConstants.STAR_TOWER_GOLD_ITEM_ID, money, change);
             
-            // Add potential selectors
-            this.pendingPotentialCases += 1;
-            
             // Handle pending potential selectors
             if (this.pendingPotentialCases > 0) {
                 // Create potential selector
@@ -470,6 +528,18 @@ public class StarTowerGame {
                 this.addCase(rsp.getMutableCases(), potentialCase);
                 
                 this.pendingPotentialCases--;
+            }
+            else {
+                // Add door case here
+                var doorCase = this.addCase(new StarTowerCase(CaseType.OpenDoor));
+                doorCase.setFloorId(this.getStageFloor() + 1);
+        
+                var nextStage = this.getNextStageData();
+                if (nextStage != null) {
+                    doorCase.setRoomType(nextStage.getRoomType());
+                }
+
+                this.addCase(rsp.getMutableCases(), doorCase);
             }
             
             // Add sub note skills
