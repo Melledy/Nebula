@@ -21,7 +21,7 @@ public class RemoteKeyCommand implements CommandHandler {
                 int index = random.nextInt(characters.length());
                 sb.append(characters.charAt(index));
             }
-            
+
             args.getTarget().setRemoteToken(sb.toString());
             return "Key Generated: " + sb.toString();
         } else {

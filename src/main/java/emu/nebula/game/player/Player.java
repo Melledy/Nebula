@@ -201,7 +201,17 @@ public class Player implements GameDatabaseObject {
     public boolean hasSession() {
         return this.session != null;
     }
+
+    public void setLevel(int level) {
+        this.level = level;
+        Nebula.getGameDatabase().update(this, this.getUid(), "level", this.level);
+    }
     
+    public void setExp(int exp) {
+        this.exp = exp;
+        Nebula.getGameDatabase().update(this, this.getUid(), "exp", this.exp);
+    }
+
     public void setRemoteToken(String token) {
         // Skip if tokens are the same
         if (this.remoteToken == null) {

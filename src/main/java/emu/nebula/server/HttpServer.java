@@ -163,14 +163,9 @@ public class HttpServer {
         // https://nova-static.stellasora.global/
         getApp().get("/meta/serverlist.html", new MetaServerlistHandler(this));
         getApp().get("/meta/win.html", new MetaWinHandler(this));
-        // if (!Nebula.getConfig().getRemoteCommand().useRemoteServices) {
-        // getApp().post("/api/command", new RemoteHandler());
-        // }
+
         getApp().post("/api/command", new RemoteHandler());
-        // getApp.get("/notice/noticelist.html");
-        getApp().get("/webchatv3/*", ctx -> {
-            ctx.redirect("https://google.com");
-        });
+
 
     }
 
