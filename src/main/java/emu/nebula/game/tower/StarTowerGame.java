@@ -6,6 +6,7 @@ import java.util.List;
 import dev.morphia.annotations.Entity;
 
 import emu.nebula.GameConstants;
+import emu.nebula.Nebula;
 import emu.nebula.data.GameData;
 import emu.nebula.data.resources.PotentialDef;
 import emu.nebula.data.resources.StarTowerDef;
@@ -227,35 +228,33 @@ public class StarTowerGame {
         return gold;
     }
 
-    public int levelUp(int exp, int picks) {
-        if (this.teamExp + exp >= this.nextLevelExp) {
+    public int levelUp(int picks) {
+        if (this.teamExp >= this.nextLevelExp) {
             // Level up
             this.teamLevel++;
 
             // Add 1 to pending potential picks
             picks++;
 
-            // Handle excess exp
-            if (this.teamExp + exp - this.nextLevelExp > 0) {
-                int excessExp = this.teamExp + exp - this.nextLevelExp;
-                return levelUp(excessExp, picks);
-            }
+            // Subtract target exp
+            this.teamExp = this.teamExp - this.nextLevelExp;
 
-            // Next level
+            // Update next level exp 
             this.nextLevelExp = GameData.getStarTowerTeamExpDataTable().get(this.teamLevel + 1).getNeedExp();
-        }
-        else {
-            // Update current team exp
-            this.teamExp += exp;
+            
+            // Re-check and continue processing if we still got exp
+            if (this.teamExp > 0) {
+                return levelUp(picks);
+            }
         }
 
         // Return picks
         return picks;
     }
 
-    public int levelUp(int exp) {
+    public int levelUp() {
         int potentialPicks = 0;
-        return this.levelUp(exp, potentialPicks);
+        return this.levelUp(potentialPicks);
     }
     
     // Cases
@@ -480,7 +479,11 @@ public class StarTowerGame {
             // Handle leveling up
 
             // Get relevant floor exp data
-            var floorExpData = GameData.getStarTowerFloorExpDataTable().get(this.getId());
+            // fishiatee: THERE'S NO LINQ IN JAVAAAAAAAAAAAAA
+            var floorExpData = GameData.getStarTowerFloorExpDataTable().stream()
+                                .filter(f -> f.getStarTowerId() == this.getId())
+                                .findFirst()
+                                .orElseThrow();
             int expReward = 0;
 
             // Determine appropriate exp reward
@@ -504,7 +507,8 @@ public class StarTowerGame {
             }
 
             // Level up
-            this.pendingPotentialCases += this.levelUp(expReward);
+            this.teamExp += expReward;
+            this.pendingPotentialCases += this.levelUp();
             
             // Add clear time
             this.battleTime += proto.getVictory().getTime();
