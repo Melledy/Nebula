@@ -50,15 +50,15 @@ public class HttpServer {
     }
 
     private HttpConnectionFactory getHttpFactory() {
-        HttpConfiguration httpsConfig = new HttpConfiguration();
-        SecureRequestCustomizer src = new SecureRequestCustomizer();
+        var httpsConfig = new HttpConfiguration();
+        var src = new SecureRequestCustomizer();
         src.setSniHostCheck(false);
         httpsConfig.addCustomizer(src);
         return new HttpConnectionFactory(httpsConfig);
     }
 
     private SslContextFactory.Server getSSLContextFactory() {
-        SslContextFactory.Server sslContextFactory = new SslContextFactory.Server();
+        var sslContextFactory = new SslContextFactory.Server();
         sslContextFactory.setKeyStorePath(Nebula.getConfig().getKeystore().getPath());
         sslContextFactory.setKeyStorePassword(Nebula.getConfig().getKeystore().getPassword());
         sslContextFactory.setSniRequired(false);
@@ -102,23 +102,29 @@ public class HttpServer {
     // Start server
 
     public void start() {
-        if (this.started)
+        if (this.started) {
             return;
+        }
+            
         this.started = true;
 
         // Http server
         if (getServerConfig().isUseSSL()) {
-            ServerConnector sslConnector = new ServerConnector(getApp().jettyServer().server(), getSSLContextFactory(),
-                    getHttpFactory());
+            ServerConnector sslConnector = new ServerConnector(getApp().jettyServer().server(), getSSLContextFactory(), getHttpFactory());
             sslConnector.setHost(getServerConfig().getBindAddress());
             sslConnector.setPort(getServerConfig().getBindPort());
             getApp().jettyServer().server().addConnector(sslConnector);
-
             getApp().start();
         } else {
             getApp().start(getServerConfig().getBindAddress(), getServerConfig().getBindPort());
         }
-
+        
+        if (type.runGame()) {
+            Nebula.getLogger().info("Nebula PS is free server software.");
+            Nebula.getLogger().info("Github: https://github.com/Melledy/Nebula");
+            Nebula.getLogger().info("Discord: https://discord.gg/cskCWBqdJk");
+        }
+        
         // Done
         Nebula.getLogger().info("Http Server started on " + getServerConfig().getBindPort());
     }

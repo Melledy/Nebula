@@ -109,7 +109,7 @@ public class Nebula {
         
         // Start servers
         try {
-            // Always run http server as it is needed by for dispatch and gateserver
+            // Always run http server as it is needed by for login and game server
             httpServer = new HttpServer(serverType);
             httpServer.start();
         } catch (Exception exception) {
