@@ -2,6 +2,7 @@ package emu.nebula.game.tower;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import dev.morphia.annotations.Entity;
 
@@ -449,12 +450,28 @@ public class StarTowerGame {
         potentials.addElements(0, data.getCommonPotentialIds());
         
         // Get up to 3 random potentials
-        // TODO bug: this may pick duplicate potentials
         IntList selector = new IntArrayList();
         
         for (int i = 0; i < 3; i++) {
-            var potentialId = Utils.randomElement(potentials);
+            // Sanity check
+            if (potentials.isEmpty()) {
+                break;
+            }
+            
+            // Get random potential id
+            int index = ThreadLocalRandom.current().nextInt(0, potentials.size());
+            int potentialId = potentials.getInt(index);
+            
+            // Add to selector
             selector.add(potentialId);
+            
+            // Remove potential id from the selector
+            potentials.removeInt(index);
+        }
+        
+        // Sanity check
+        if (selector.isEmpty()) {
+            return null;
         }
         
         // Creator potential selector case
