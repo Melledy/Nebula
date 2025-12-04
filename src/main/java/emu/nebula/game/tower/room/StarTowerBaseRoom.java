@@ -1,8 +1,5 @@
 package emu.nebula.game.tower.room;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import emu.nebula.data.resources.StarTowerStageDef;
 import emu.nebula.game.tower.StarTowerGame;
 import emu.nebula.game.tower.StarTowerModifiers;
@@ -13,7 +10,12 @@ import emu.nebula.proto.PublicStarTower.InteractEnterReq;
 import emu.nebula.proto.PublicStarTower.StarTowerRoomCase;
 import emu.nebula.proto.PublicStarTower.StarTowerRoomData;
 import emu.nebula.proto.StarTowerApply.StarTowerApplyReq;
+
+import it.unimi.dsi.fastutil.ints.Int2ObjectLinkedOpenHashMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+
 import lombok.Getter;
+
 import us.hebi.quickbuf.RepeatedMessage;
 
 @Getter
@@ -30,7 +32,7 @@ public class StarTowerBaseRoom {
     
     // Cases
     private int lastCaseId = 0;
-    private List<StarTowerBaseCase> cases;
+    private Int2ObjectMap<StarTowerBaseCase> cases;
     
     // Misc
     private boolean hasDoor;
@@ -38,7 +40,7 @@ public class StarTowerBaseRoom {
     public StarTowerBaseRoom(StarTowerGame game, StarTowerStageDef stage) {
         this.game = game;
         this.stage = stage;
-        this.cases = new ArrayList<>();
+        this.cases = new Int2ObjectLinkedOpenHashMap<>();
     }
     
     public int getType() {
@@ -80,10 +82,7 @@ public class StarTowerBaseRoom {
     }
     
     public StarTowerBaseCase getCase(int id) {
-        return this.getCases().stream()
-                .filter(c -> c.getId() == id)
-                .findFirst()
-                .orElse(null);
+        return this.getCases().get(id);
     }
     
     public StarTowerBaseCase addCase(StarTowerBaseCase towerCase) {
@@ -91,11 +90,11 @@ public class StarTowerBaseRoom {
     }
     
     public StarTowerBaseCase addCase(RepeatedMessage<StarTowerRoomCase> cases, StarTowerBaseCase towerCase) {
-        // Add to cases list
-        this.getCases().add(towerCase);
-        
         // Set game for tower case
         towerCase.register(this);
+        
+        // Add to cases list
+        this.getCases().put(towerCase.getId(), towerCase);
         
         // Add case to proto
         if (cases != null) {
@@ -127,7 +126,7 @@ public class StarTowerBaseRoom {
         var proto = emu.nebula.proto.PublicStarTower.StarTowerRoom.newInstance()
                 .setData(this.getDataProto());
         
-        for (var towerCase : this.getCases()) {
+        for (var towerCase : this.getCases().values()) {
             proto.addCases(towerCase.toProto());
         }
         
