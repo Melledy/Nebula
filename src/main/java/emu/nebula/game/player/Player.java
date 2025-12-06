@@ -1,6 +1,7 @@
 package emu.nebula.game.player;
 
 import java.util.Stack;
+import java.util.concurrent.TimeUnit;
 
 import dev.morphia.annotations.AlsoLoad;
 import dev.morphia.annotations.Entity;
@@ -185,16 +186,23 @@ public class Player implements GameDatabaseObject {
     }
     
     public void setSession(GameSession session) {
-        if (this.session != null) {
-            // Sanity check
-            if (this.session == session) {
-                return;
-            }
-            
-            // Clear player from session
-            this.session.clearPlayer();
+        int time = Nebula.getConfig().getServerOptions().sessionTimeout;
+        long timeout = System.currentTimeMillis() - TimeUnit.SECONDS.toMillis(time);
+
+        if (this.session == null) {
+            // Set session
+            this.session = session;
+            return;
         }
-        
+
+        // 1. Sanity check
+        // 2. Prevent incorrect deletion of players when re-logging into the game
+        if (this.session == session || this.lastLogin > timeout) {
+            return;
+        }
+
+        // Clear player from session
+        this.session.clearPlayer();
         // Set session
         this.session = session;
     }
