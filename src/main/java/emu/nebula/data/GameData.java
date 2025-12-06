@@ -139,6 +139,9 @@ public class GameData {
     
     // Activity
     @Getter private static DataTable<ActivityDef> ActivityDataTable = new DataTable<>();
+
+    // Tower defense
+    @Getter private static DataTable<TowerDefenseLevelDef> TowerDefenseLevelDataTable = new DataTable<>();
     
     @Getter private static DataTable<TrialControlDef> TrialControlDataTable = new DataTable<>();
     @Getter private static DataTable<TrialGroupDef> TrialGroupDataTable = new DataTable<>();

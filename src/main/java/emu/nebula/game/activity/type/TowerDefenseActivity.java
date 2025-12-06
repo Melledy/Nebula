@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import dev.morphia.annotations.Entity;
+import emu.nebula.data.GameData;
 import emu.nebula.data.resources.ActivityDef;
 import emu.nebula.game.activity.ActivityManager;
 import emu.nebula.game.activity.GameActivity;
+import emu.nebula.game.inventory.ItemParamMap;
+import emu.nebula.game.player.PlayerChangeInfo;
 import emu.nebula.proto.ActivityDetail.ActivityMsg;
 import emu.nebula.proto.Public.ActivityQuest;
 import emu.nebula.proto.Public.ActivityTowerDefenseLevel;
@@ -26,9 +29,19 @@ public class TowerDefenseActivity extends GameActivity {
     
     public TowerDefenseActivity(ActivityManager manager, ActivityDef data) {
         super(manager, data);
-        // fishiatee: Unsure if this is the correct way to do this
         this.completedStages = new HashMap<Integer, Integer>();
         this.completedQuests = new HashMap<Integer, Integer>();
+    }
+
+    public PlayerChangeInfo claimReward(int level) {
+        // Initialize change info
+        var change = new PlayerChangeInfo();
+
+        // Get rewards
+        var rewards = GameData.getTowerDefenseLevelDataTable().get(level).getRewards();
+
+        // Add rewards
+        return getPlayer().getInventory().addItems(rewards, change);
     }
     
     // public PlayerChangeInfo claimReward(int groupId) {

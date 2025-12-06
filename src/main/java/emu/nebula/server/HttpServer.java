@@ -170,7 +170,14 @@ public class HttpServer {
 
         // https://nova-static.stellasora.global/
         getApp().get("/meta/serverlist.html", new MetaServerlistHandler(this));
-        getApp().get("/meta/*.html", new MetaPatchListHandler(this));
+
+        /*
+           fishiatee: Maybe this should be handled better.
+
+           For example, if raw meta is detected in say ./web/meta, serve that instead.
+           Otherwise, detect and serve from custom patchlist definition.
+        */
+        //getApp().get("/meta/*.html", new MetaPatchListHandler(this));
     }
 
     private void addGameServerRoutes() {
