@@ -205,16 +205,22 @@ public class StarTowerNpcEventCase extends StarTowerBaseCase {
                 if (option == 11403) {
                     int subNoteId = this.getGame().getRandomSubNoteId();
                     this.getGame().addItem(subNoteId, 10, change);
+                } else {
+                    success.setOptionsParamId(100140101);
                 }
             }
             case 11501, 11502, 11503, 11504, 11505 -> {
                 if (option == 11503) {
                     this.addPotentialSelector(rsp);
+                } else {
+                    success.setOptionsParamId(100140101);
                 }
             }
             case 11601, 11602, 11603, 11604, 11605 -> {
                 if (option == 11603) {
                     this.addRarePotentialSelector(rsp);
+                } else {
+                    success.setOptionsParamId(100140101);
                 }
             }
             case 12601 -> {

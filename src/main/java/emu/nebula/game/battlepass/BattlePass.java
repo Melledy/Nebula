@@ -30,7 +30,7 @@ public class BattlePass implements GameDatabaseObject {
     private int uid;
     private transient BattlePassManager manager;
     
-    private int battlePassId;
+    private int battlePassId; // Season id
     private int mode;
     private int level;
     private int exp;
@@ -71,12 +71,27 @@ public class BattlePass implements GameDatabaseObject {
         return manager.getPlayer();
     }
     
+    /**
+     * Sets the mode directly
+     */
+    public synchronized void setMode(int mode) {
+        this.mode = mode;
+    }
+    
     public boolean isPremium() {
         return this.mode > 0;
     }
 
     private BattlePassRewardDef getRewardData(int level) {
         return GameData.getBattlePassRewardDataTable().get((this.getBattlePassId() << 16) + level);
+    }
+    
+    /**
+     * Sets the level directly, use getMaxExp() instead if adding exp.
+     */
+    public synchronized void setLevel(int level) {
+        this.level = level;
+        this.exp = 0;
     }
     
     public int getMaxExp() {
@@ -100,6 +115,32 @@ public class BattlePass implements GameDatabaseObject {
         }
     }
     
+    /**
+     * Returns true if any rewards or quests are claimable
+     */
+    public synchronized boolean hasNew() {
+        // Check if any quests are complete but unclaimed
+        for (var quest : getQuests().values()) {
+            if (quest.isComplete() && !quest.isClaimed()) {
+                return true;
+            }
+        }
+        
+        // Check if we have any pending rewards
+        for (int i = 1; i <= this.getLevel(); i++) {
+            if (!this.getBasicReward().isSet(i)) {
+                return true;
+            }
+            
+            if (this.isPremium() && !this.getPremiumReward().isSet(i)) {
+                return true;
+            }
+        }
+        
+        // No claimable things
+        return false;
+    }
+    
     public synchronized void resetDailyQuests(boolean resetWeekly) {
         // Reset daily quests
         for (var data : GameData.getBattlePassQuestDataTable()) {
@@ -116,6 +157,11 @@ public class BattlePass implements GameDatabaseObject {
             
             // Sync quest with player client
             this.syncQuest(quest);
+        }
+        
+        // Reset weekly limit for exp
+        if (resetWeekly) {
+            this.expWeek = 0;
         }
         
         // Persist to database

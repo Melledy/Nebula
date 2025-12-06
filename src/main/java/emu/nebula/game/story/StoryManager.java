@@ -38,6 +38,18 @@ public class StoryManager extends PlayerManager implements GameDatabaseObject {
         
         this.save();
     }
+    
+    public boolean hasNew() {
+        if (this.getCompletedStories().size() < GameData.getStoryDataTable().size()) {
+            return true;
+        }
+        
+        if (this.getCompletedSets().size() < GameData.getStorySetSectionDataTable().size()) {
+            return true;
+        }
+        
+        return false;
+    }
 
     public PlayerChangeInfo settle(IntList list) {
         // Player change info
@@ -63,6 +75,7 @@ public class StoryManager extends PlayerManager implements GameDatabaseObject {
             Nebula.getGameDatabase().addToSet(this, this.getPlayerUid(), "completedStories", id);
         }
         
+        // Complete
         return changes;
     }
 
@@ -90,6 +103,7 @@ public class StoryManager extends PlayerManager implements GameDatabaseObject {
         // Save to db
         Nebula.getGameDatabase().update(this, this.getPlayerUid(), "completedSets." + chapterId, sectionIndex);
         
+        // Complete
         return changes;
     }
 }

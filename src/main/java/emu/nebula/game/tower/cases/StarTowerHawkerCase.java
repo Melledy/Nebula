@@ -44,12 +44,14 @@ public class StarTowerHawkerCase extends StarTowerBaseCase {
         int minPotentials = Math.max(total / 2, 2);
         int maxPotentials = Math.max(total - 1, minPotentials);
         int potentials = Utils.randomRange(minPotentials, maxPotentials);
+        
         int subNotes = total - potentials;
+        boolean hasCoins = this.getGame().getResCount(GameConstants.TOWER_COIN_ITEM_ID) >= 500;
         
         // Add goods
         for (int i = 0; i < potentials; i++) {
             // Create potential selector shop item
-            var goods = new StarTowerShopGoods(1, 102, 200);
+            var goods = new StarTowerShopGoods(1, 1, 102, 200);
             
             // Add character specific potentials
             if (Utils.generateRandomDouble() < .2) {
@@ -62,11 +64,15 @@ public class StarTowerHawkerCase extends StarTowerBaseCase {
         for (int i = 0; i < subNotes; i++) {
             // Randomize sub note
             int id = Utils.randomElement(this.getGame().getSubNoteDropList());
-            int count = Utils.randomRange(3, 10);
             
             // Create sub note shop item
-            var goods = new StarTowerShopGoods(2, id, 15 * count);
-            goods.setCount(count);
+            StarTowerShopGoods goods = null;
+            
+            if (hasCoins && Utils.randomChance(.25)) {
+                goods = new StarTowerShopGoods(2, 8, id, 400);
+            } else {
+                goods = new StarTowerShopGoods(2, 3, id, 90);
+            }
             
             // Add to goods map
             this.addGoods(goods);
@@ -219,9 +225,9 @@ public class StarTowerHawkerCase extends StarTowerBaseCase {
             var goods = entry.getValue();
             
             var info = HawkerGoods.newInstance()
-                    .setIdx(1)
                     .setSid(sid)
                     .setType(goods.getType())
+                    .setIdx(goods.getIdx())
                     .setGoodsId(goods.getGoodsId())
                     .setPrice(goods.getDisplayPrice())
                     .setTag(1);

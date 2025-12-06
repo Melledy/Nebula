@@ -12,6 +12,10 @@ public class BattlePassManager extends PlayerManager {
     public BattlePassManager(Player player) {
         super(player);
     }
+
+    public boolean hasNew() {
+        return this.getBattlePass().hasNew();
+    }
     
     // Database
     
