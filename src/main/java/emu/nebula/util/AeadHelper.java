@@ -49,6 +49,10 @@ public class AeadHelper {
         RegionConfig.getRegion("tw")
             .setServerMetaKey("owGYVDmfHrxi^4pm")
             .setServerGarbleKey("N&mfco452ZH5!nE3s&o5uxB57UGPENVo");
+
+        RegionConfig.getRegion("cn")
+                .setServerMetaKey("Xf&FRcsYm48cJ2A@")
+                .setServerGarbleKey("QW*Wi7fKjLk!T82Qf2nEGZA%nSC!D9qV");
     }
     
     public static void loadKeys() {

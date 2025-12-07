@@ -1,8 +1,8 @@
-package emu.nebula.server.routes;
+package emu.nebula.server.routes.entity;
 
 import java.util.List;
 
-public class UserLoginEntity {
+public class OverseaUserLoginEntity {
     public int Code;
     public UserDetailJson Data;
     public String Msg;

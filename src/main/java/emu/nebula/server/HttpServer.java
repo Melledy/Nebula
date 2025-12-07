@@ -164,6 +164,8 @@ public class HttpServer {
         getApp().post("/user/set", new UserSetDataHandler());
         getApp().post("/user/login", new UserLoginHandler());
         getApp().post("/user/quick-login", new UserLoginHandler());
+        getApp().post("/user/set-info", new HttpJsonResponse("{\"Code\":200,\"Data\":{},\"Msg\":\"OK\"}"));
+        getApp().post("/user/send-sms", new HttpJsonResponse("{\"Code\":200,\"Data\":{},\"Msg\":\"OK\"}"));
 
         getApp().post("/yostar/get-auth", new GetAuthHandler());
         getApp().post("/yostar/send-code", new HttpJsonResponse("{\"Code\":200,\"Data\":{},\"Msg\":\"OK\"}")); // Dummy handler

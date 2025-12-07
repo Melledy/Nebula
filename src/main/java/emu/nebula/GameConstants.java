@@ -22,6 +22,9 @@ public class GameConstants {
         
         RegionConfig.getRegion("tw")
             .setDataVersion(64);
+
+        RegionConfig.getRegion("cn")
+            .setDataVersion(64);
     }
     
     public static final ZoneId UTC_ZONE = ZoneId.of("UTC");

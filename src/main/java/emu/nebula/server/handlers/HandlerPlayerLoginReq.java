@@ -19,7 +19,15 @@ public class HandlerPlayerLoginReq extends NetHandler {
     public byte[] handle(GameSession session, byte[] message) throws Exception {
         // Parse request
         var req = LoginReq.parseFrom(message);
-        var loginToken = req.getOfficialOverseas().getToken();
+
+        // os
+        String loginToken = req.getOfficialOverseas().getToken();
+
+        if (loginToken == null || loginToken.isEmpty()) {
+            // cn
+            loginToken = req.getOfficial().getToken();
+        }
+
 
         // Login
         boolean result = session.login(loginToken);
