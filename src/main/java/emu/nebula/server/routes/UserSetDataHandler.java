@@ -31,8 +31,9 @@ public class UserSetDataHandler extends UserLoginHandler {
             ctx.result("{\"Code\":100110,\"Data\":{},\"Msg\":\"Error\"}"); // VALID_FAIL
             return;
         }
-        
-        if (req.Key.equals("Nickname")) {
+
+        // OS uses the former, CN uses the latter
+        if (req.Key.equals("Nickname") || req.Key.equals("nickname")) {
             account.setNickname(req.Value);
             account.save();
         }
