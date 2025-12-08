@@ -1,14 +1,7 @@
 package emu.nebula.server;
 
-import java.io.File;
-import java.io.FileReader;
-
-import org.eclipse.jetty.server.HttpConfiguration;
-import org.eclipse.jetty.server.HttpConnectionFactory;
-import org.eclipse.jetty.server.SecureRequestCustomizer;
-import org.eclipse.jetty.server.ServerConnector;
-import org.eclipse.jetty.util.ssl.SslContextFactory;
-
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
 import emu.nebula.Config.HttpServerConfig;
 import emu.nebula.GameConstants;
 import emu.nebula.Nebula;
@@ -21,6 +14,15 @@ import io.javalin.http.ContentType;
 import io.javalin.http.Context;
 import io.javalin.http.staticfiles.Location;
 import lombok.Getter;
+import org.eclipse.jetty.server.HttpConfiguration;
+import org.eclipse.jetty.server.HttpConnectionFactory;
+import org.eclipse.jetty.server.SecureRequestCustomizer;
+import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.util.ssl.SslContextFactory;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.FileReader;
 
 @Getter
 public class HttpServer {
@@ -38,6 +40,11 @@ public class HttpServer {
             var staticFilesDir = new File(Nebula.getConfig().getWebFilesDir());
             if (staticFilesDir.exists()) {
                 javalinConfig.staticFiles.add(staticFilesDir.getPath(), Location.EXTERNAL);
+            }
+
+            if (Nebula.getConfig().getLogOptions().httpDebug) {
+                javalinConfig.plugins.enableDevLogging();
+                ((Logger) LoggerFactory.getLogger("io.javalin")).setLevel(Level.DEBUG);
             }
         });
 

@@ -121,6 +121,7 @@ public class Config {
     public static class LogOptions {
         public boolean commands = true;
         public boolean packets = false;
+        public boolean httpDebug = false;
     }
 
     @Getter
