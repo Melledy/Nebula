@@ -33,7 +33,7 @@ For any extra support, questions, or discussions, check out our [Discord](https:
 
 Nebula supports the global PC client by default. If you want to switch regions, you need to change the `region` field in the Nebula config.
 
-Current supported regions (PC): `GLOBAL`, `KR`, `JP`, `TW`
+Current supported regions (PC): `GLOBAL`, `KR`, `JP`, `TW`, `CN`
 
 You may need to change the data version when switching regions. The `customDataVersion` field should match the the data version of your client, which is usually the last number of your client's version string (top left of your login screen). Example: 1.0.0.42 = data version 42.
 
@@ -66,7 +66,8 @@ class Handlers
         ".stellasora.global",
         ".stellasora.kr",
         ".stellasora.jp",
-        ".stargazer-games.com"
+        ".stargazer-games.com",
+        ".yostar.cn"
     ];
 
     static function OnBeforeRequest(oS: Session) {
