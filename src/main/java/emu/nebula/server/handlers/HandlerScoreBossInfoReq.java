@@ -41,6 +41,11 @@ public class HandlerScoreBossInfoReq extends NetHandler {
                 
                 rsp.addLevels(info);
             }
+            
+            // Add claimed rewards
+            for (int id : rankEntry.getClaimedRewards()) {
+                rsp.addStarRewards(id);
+            }
         }
         
         // Encode and send

@@ -16,7 +16,8 @@ import emu.nebula.proto.Public.HonorInfo;
 import emu.nebula.proto.ScoreBossRank.ScoreBossRankChar;
 import emu.nebula.proto.ScoreBossRank.ScoreBossRankData;
 import emu.nebula.proto.ScoreBossRank.ScoreBossRankTeam;
-
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
+import it.unimi.dsi.fastutil.ints.IntSet;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,6 +36,7 @@ public class ScoreBossRankEntry implements GameDatabaseObject {
     private int score;
     @SuppressWarnings("unused")
     private int stars;
+    private IntSet claimedRewards;
     
     private int controlId;
     private Map<Integer, ScoreBossTeamEntry> teams;
@@ -62,6 +64,14 @@ public class ScoreBossRankEntry implements GameDatabaseObject {
         }
         
         return stars;
+    }
+    
+    public IntSet getClaimedRewards() {
+        if (this.claimedRewards == null) {
+            this.claimedRewards = new IntOpenHashSet();
+        }
+        
+        return this.claimedRewards;
     }
     
     public void update(Player player) {
@@ -102,6 +112,7 @@ public class ScoreBossRankEntry implements GameDatabaseObject {
     private void reset() {
         this.score = 0;
         this.stars = 0;
+        this.getClaimedRewards().clear();
         this.getTeams().clear();
     }
     

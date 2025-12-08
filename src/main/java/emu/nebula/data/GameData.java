@@ -136,6 +136,7 @@ public class GameData {
     
     // Score boss
     @Getter private static DataTable<ScoreBossControlDef> ScoreBossControlDataTable = new DataTable<>();
+    @Getter private static DataTable<ScoreBossRewardDef> ScoreBossRewardDataTable = new DataTable<>();
     
     // Activity
     @Getter private static DataTable<ActivityDef> ActivityDataTable = new DataTable<>();

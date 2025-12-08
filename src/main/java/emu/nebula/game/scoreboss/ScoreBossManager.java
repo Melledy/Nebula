@@ -1,10 +1,17 @@
 package emu.nebula.game.scoreboss;
 
+import java.util.Collection;
+import java.util.List;
+
 import emu.nebula.Nebula;
 import emu.nebula.data.GameData;
 import emu.nebula.data.resources.ScoreBossControlDef;
+import emu.nebula.data.resources.ScoreBossRewardDef;
+import emu.nebula.game.inventory.ItemParamMap;
 import emu.nebula.game.player.Player;
+import emu.nebula.game.player.PlayerChangeInfo;
 import emu.nebula.game.player.PlayerManager;
+
 import lombok.Getter;
 
 @Getter
@@ -90,5 +97,55 @@ public class ScoreBossManager extends PlayerManager  {
         
         // Success
         return true;
+    }
+
+    public PlayerChangeInfo claimRewards(int star) {
+        // Get rank entry
+        this.getRankEntry();
+        
+        if (this.ranking == null) {
+            return new PlayerChangeInfo();
+        }
+        
+        // Init variables
+        Collection<ScoreBossRewardDef> claims = null;
+        
+        // Add to claim list
+        if (star > 0) {
+            var data = GameData.getScoreBossRewardDataTable().get(star);
+            if (data != null) {
+                claims = List.of(data);
+            }
+        } else {
+            claims = GameData.getScoreBossRewardDataTable().values();
+        }
+        
+        // Init rewards
+        var rewards = new ItemParamMap();
+        int starCount = ranking.getStars();
+        boolean shouldSave = false;
+        
+        // Try and claim
+        for (var data : claims) {
+            // Check if we have earned enough stars
+            if (starCount >= data.getStarNeed() && !ranking.getClaimedRewards().contains(data.getId())) {
+                // Add rewards
+                rewards.add(data.getRewardItemId1(), data.getRewardNum1());
+                
+                // Set in claimed rewards
+                this.ranking.getClaimedRewards().add(data.getId());
+                
+                // Set save flag so we update ranking to the database
+                shouldSave = true;
+            }
+        }
+        
+        // Save to database
+        if (shouldSave) {
+            this.ranking.save();
+        }
+        
+        // Add rewards
+        return this.getPlayer().getInventory().addItems(rewards);     
     }
 }
