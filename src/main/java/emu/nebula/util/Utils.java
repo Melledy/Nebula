@@ -4,13 +4,17 @@ import java.io.File;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Base64;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+import emu.nebula.GameConstants;
 import it.unimi.dsi.fastutil.ints.IntList;
 
 public class Utils {
@@ -320,5 +324,17 @@ public class Utils {
         var date = LocalDate.ofEpochDay(epochDays);
         var month = YearMonth.of(date.getYear(), date.getMonthValue());
         return month.lengthOfMonth();
+    }
+
+    public static String formatTimestamp(long timestamp) {
+        return Instant.ofEpochMilli(timestamp)
+                .atZone(GameConstants.UTC_ZONE)
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
+
+    public static String formatTimestamp(long timestamp, String pattern) {
+        return Instant.ofEpochMilli(timestamp)
+                .atZone(GameConstants.UTC_ZONE)
+                .format(DateTimeFormatter.ofPattern(pattern));
     }
 }

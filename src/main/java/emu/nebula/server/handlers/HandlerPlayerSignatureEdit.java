@@ -1,5 +1,6 @@
 package emu.nebula.server.handlers;
 
+import emu.nebula.game.player.PlayerErrorCode;
 import emu.nebula.net.NetHandler;
 import emu.nebula.net.NetMsgId;
 import emu.nebula.proto.PlayerSignatureEdit.PlayerSignatureEditReq;
@@ -27,7 +28,9 @@ public class HandlerPlayerSignatureEdit extends NetHandler {
             
             return session.encodeMsg(
                     NetMsgId.player_signature_edit_failed_ack,
-                    Error.newInstance().setCode(119902).addArguments("\nCommand Result: " + result.getMessage())
+                    Error.newInstance()
+                            .setCode(PlayerErrorCode.ErrConfig.getValue())
+                            .addArguments("\nCommand Result: " + result.getMessage())
             );
         }
         

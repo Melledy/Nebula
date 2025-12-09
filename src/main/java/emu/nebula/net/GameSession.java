@@ -24,6 +24,7 @@ public class GameSession {
     private String token;
     private Account account;
     private Player player;
+    private String ipAddress;
 
     // Crypto
     private int encryptMethod; // 0 = gcm, 1 = chacha20
@@ -141,6 +142,10 @@ public class GameSession {
 
     public void updateLastActiveTime() {
         this.lastActiveTime = System.currentTimeMillis();
+    }
+
+    public void updateIpAddress(String ip) {
+        this.ipAddress = ip;
     }
 
     // Packet encoding helper functions

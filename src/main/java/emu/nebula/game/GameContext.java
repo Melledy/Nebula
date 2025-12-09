@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import emu.nebula.GameConstants;
 import emu.nebula.Nebula;
 import emu.nebula.game.activity.ActivityModule;
+import emu.nebula.game.ban.BanModule;
 import emu.nebula.game.gacha.GachaModule;
 import emu.nebula.game.player.PlayerModule;
 import emu.nebula.game.scoreboss.ScoreBossModule;
@@ -30,6 +31,7 @@ public class GameContext implements Runnable {
     private final TutorialModule tutorialModule;
     private final ActivityModule activityModule;
     private final ScoreBossModule scoreBossModule;
+    private final BanModule banModule;
     
     // Game loop
     private final ScheduledExecutorService scheduler;
@@ -48,6 +50,7 @@ public class GameContext implements Runnable {
         this.tutorialModule = new TutorialModule(this);
         this.activityModule = new ActivityModule(this);
         this.scoreBossModule = new ScoreBossModule(this);
+        this.banModule = new BanModule(this);
         
         // Run game loop
         this.scheduler = Executors.newScheduledThreadPool(1);

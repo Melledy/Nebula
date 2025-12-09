@@ -111,6 +111,7 @@ public class AgentZoneHandler implements Handler {
         // Update last active time for session
         if (session != null) {
             session.updateLastActiveTime();
+            session.updateIpAddress(ctx.ip());
         }
         
         // Handle packet

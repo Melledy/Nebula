@@ -1,12 +1,15 @@
 package emu.nebula.server.handlers;
 
+import emu.nebula.Nebula;
+import emu.nebula.game.player.Player;
+import emu.nebula.game.player.PlayerErrorCode;
+import emu.nebula.net.GameSession;
+import emu.nebula.net.HandlerId;
 import emu.nebula.net.NetHandler;
 import emu.nebula.net.NetMsgId;
 import emu.nebula.proto.PlayerLogin.LoginReq;
 import emu.nebula.proto.PlayerLogin.LoginResp;
-import emu.nebula.net.HandlerId;
-import emu.nebula.Nebula;
-import emu.nebula.net.GameSession;
+import emu.nebula.proto.Public.Error;
 
 @HandlerId(NetMsgId.player_login_req)
 public class HandlerPlayerLoginReq extends NetHandler {
@@ -20,20 +23,35 @@ public class HandlerPlayerLoginReq extends NetHandler {
         // Parse request
         var req = LoginReq.parseFrom(message);
 
-        // os
+        // OS
         String loginToken = req.getOfficialOverseas().getToken();
 
-        if (loginToken == null || loginToken.isEmpty()) {
-            // cn
+        if (loginToken.isEmpty()) {
+            // CN
             loginToken = req.getOfficial().getToken();
         }
 
 
+        var banModule = Nebula.getGameContext().getBanModule();
+
+        // Check IP ban
+        if (banModule.isIpBanned(session.getIpAddress())) {
+            var banInfo = banModule.getIpBanInfo(session.getIpAddress());
+            return session.encodeMsg(NetMsgId.player_login_failed_ack, banInfo.toProto());
+        }
+
         // Login
         boolean result = session.login(loginToken);
-
         if (!result) {
-            return session.encodeMsg(NetMsgId.player_login_failed_ack);
+            Error errorCause = Error.newInstance().setCode(PlayerErrorCode.ErrLogin.getValue());
+            return session.encodeMsg(NetMsgId.player_login_failed_ack, errorCause);
+        }
+
+        // Check player ban
+        int playerUid = session.getPlayer().getUid();
+        if (banModule.isPlayerBanned(playerUid)) {
+            var banInfo = banModule.getPlayerBanInfo(playerUid);
+            return session.encodeMsg(NetMsgId.player_login_failed_ack, banInfo.toProto());
         }
 
         // Regenerate session token because we are switching encrpytion method
