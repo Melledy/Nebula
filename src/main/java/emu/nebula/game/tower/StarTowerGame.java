@@ -215,6 +215,10 @@ public class StarTowerGame {
         return this.getRarePotentialCount().get(charId);
     }
     
+    public int getTotalPotentialCount() {
+        return this.getItems().values().intStream().reduce(0, Integer::sum);
+    }
+    
     /**
      * Gets the team element, if the team has 2+ or more elements, then returns null
      */
