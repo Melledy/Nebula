@@ -132,6 +132,7 @@ public class GameData {
 
     // ===== Infinity Tower =====
     @Getter private static DataTable<InfinityTowerLevelDef> InfinityTowerLevelDataTable = new DataTable<>();
+    @Getter private static DataTable<InfinityTowerDifficultyDef> InfinityTowerDifficultyDataTable = new DataTable<>();
     
     // ===== Vampire Survivor =====
     @Getter private static DataTable<VampireSurvivorDef> VampireSurvivorDataTable = new DataTable<>();

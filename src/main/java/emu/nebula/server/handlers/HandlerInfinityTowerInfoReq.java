@@ -17,7 +17,7 @@ public class HandlerInfinityTowerInfoReq extends NetHandler {
                 .setBountyLevel(session.getPlayer().getInfinityTowerManager().getBountyLevel());
         
         // Get infinite arena log from player progress
-        for (var entry : session.getPlayer().getProgress().getInfinityArenaLog().int2IntEntrySet()) {
+        for (var entry : session.getPlayer().getProgress().getInfinityTowerLog().int2IntEntrySet()) {
             var info = InfinityTowerLevelInfo.newInstance()
                     .setId(entry.getIntKey())
                     .setLevelId(entry.getIntValue());

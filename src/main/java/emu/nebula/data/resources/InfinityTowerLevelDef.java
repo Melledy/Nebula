@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import emu.nebula.data.BaseDef;
+import emu.nebula.data.GameData;
 import emu.nebula.data.ResourceType;
 import emu.nebula.game.inventory.ItemParamMap;
 import emu.nebula.game.inventory.ItemRewardParam;
@@ -25,8 +26,13 @@ public class InfinityTowerLevelDef extends BaseDef {
         return Id;
     }
     
-    public int getEnergyConsume() {
-        return 0;
+    public int getTowerId() {
+        var diff = GameData.getInfinityTowerDifficultyDataTable().get(this.DifficultyId);
+        if (diff == null) {
+            return 0;
+        }
+        
+        return diff.getTowerId();
     }
     
     public ItemParamMap generateRewards() {

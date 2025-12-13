@@ -8,6 +8,7 @@ import dev.morphia.annotations.Id;
 import dev.morphia.annotations.PostLoad;
 import emu.nebula.Nebula;
 import emu.nebula.data.GameData;
+import emu.nebula.data.resources.InfinityTowerLevelDef;
 import emu.nebula.database.GameDatabaseObject;
 import emu.nebula.game.tutorial.TutorialLevelLog;
 import emu.nebula.game.vampire.VampireSurvivorLog;
@@ -44,7 +45,8 @@ public class PlayerProgress extends PlayerManager implements GameDatabaseObject 
     private Int2IntMap weekBossLog;
     
     // Infinite Arena
-    private Int2IntMap infinityArenaLog;
+    private Int2IntMap infinityTowerLog;
+    @Deprecated private Int2IntMap infinityArenaLog;
     
     // Vampire Survivors
     private Map<Integer, VampireSurvivorLog> vampireLog;
@@ -76,8 +78,8 @@ public class PlayerProgress extends PlayerManager implements GameDatabaseObject 
         this.charGemLog = new Int2IntOpenHashMap();
         this.weekBossLog = new Int2IntOpenHashMap();
         
-        // Infinity Arena
-        this.infinityArenaLog = new Int2IntOpenHashMap();
+        // Infinity Tower
+        this.infinityTowerLog = new Int2IntOpenHashMap();
         
         // Vampire Survivor
         this.vampireLog = new HashMap<>();
@@ -156,17 +158,22 @@ public class PlayerProgress extends PlayerManager implements GameDatabaseObject 
         Nebula.getGameDatabase().update(this, this.getUid(), "towerTickets", this.towerTickets);
     }
     
-    public void addInfinityArenaLog(int levelId) {
-        // Calculate arena id
-        int id = (int) Math.floor(levelId / 10000D);
+    public void addInfinityTowerLog(InfinityTowerLevelDef level) {
+        // Calculate tower id
+        int towerId = level.getTowerId();
+        int levelId = level.getId();
+        
+        if (towerId <= 0) {
+            return;
+        }
         
         // Check highest clear
-        int highestClearId = this.getInfinityArenaLog().get(id);
+        int highestClearId = this.getInfinityTowerLog().get(towerId);
 
         // Add & Save to database
         if (levelId > highestClearId) {
-            this.getInfinityArenaLog().put(id, levelId);
-            Nebula.getGameDatabase().update(this, this.getUid(), "infinityArenaLog." + id, levelId);
+            this.getInfinityTowerLog().put(towerId, levelId);
+            Nebula.getGameDatabase().update(this, this.getUid(), "infinityArenaLog." + towerId, levelId);
         }
     }
     
@@ -295,8 +302,43 @@ public class PlayerProgress extends PlayerManager implements GameDatabaseObject 
     
     @PostLoad
     public void postLoad() {
+        boolean shouldSave = false;
+        
+        // Fix missing star tower growth
         if (this.starTowerGrowth == null) {
             this.starTowerGrowth = new int[1];
+            shouldSave = true;
+        }
+        
+        // Fix missing infinity tower log
+        if (this.infinityTowerLog == null) {
+            this.infinityTowerLog = new Int2IntOpenHashMap();
+            shouldSave = true;
+        }
+        
+        // Carry over infinity tower progress
+        if (this.infinityArenaLog != null) {
+            for (int levelId : this.infinityArenaLog.values()) {
+                var data = GameData.getInfinityTowerLevelDataTable().get(levelId);
+                if (data == null) {
+                    continue;
+                }
+                
+                int towerId = data.getTowerId();
+                
+                if (towerId > 0) {
+                    this.infinityTowerLog.put(data.getTowerId(), levelId);
+                }
+            }
+            
+            // Clear old infinity tower logs when done
+            this.infinityArenaLog = null;
+            shouldSave = true;
+        }
+        
+        // Update in database if anything changed
+        if (shouldSave) {
+            this.save();
         }
     }
 }
