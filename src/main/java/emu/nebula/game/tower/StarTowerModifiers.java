@@ -18,8 +18,8 @@ public class StarTowerModifiers {
     private boolean freeStrengthen;
     private int strengthenDiscount;
     
-    // Bonus max potential level
-    private int bonusMaxPotentialLevel;
+    // Extra max potential level
+    private int extraMaxPotentialLevel;
     
     // Shop
     private int shopGoodsCount;
@@ -70,11 +70,11 @@ public class StarTowerModifiers {
             this.strengthenDiscount = 30;
         }
         
-        // Bonus potential max level (Ocean of Souls)
+        // Extra potential max level (Ocean of Souls)
         if (this.hasGrowthNode(30301)) {
-            this.bonusMaxPotentialLevel = 3; // 6 total
+            this.extraMaxPotentialLevel = 3; // 6 total
         } else if (this.hasGrowthNode(20601)) {
-            this.bonusMaxPotentialLevel = 1; // 4 total
+            this.extraMaxPotentialLevel = 1; // 4 total
         }
         
         // Shop extra goods (Monolith Premium)
@@ -116,16 +116,16 @@ public class StarTowerModifiers {
         // Bonus potential levels (Butterflies Inside)
         if (game.getDifficulty() >= 7 && this.hasGrowthNode(30901)) {
             this.bonusPotentialChance = 0.3;
-            this.bonusMaxPotentialLevel = 2;
+            this.bonusPotentialLevel = 2;
         } else if (game.getDifficulty() >= 7 && this.hasGrowthNode(30801)) {
             this.bonusPotentialChance = 0.2;
-            this.bonusMaxPotentialLevel = 1;
+            this.bonusPotentialLevel = 1;
         } else if (game.getDifficulty() >= 6 && this.hasGrowthNode(30201)) {
             this.bonusPotentialChance = 0.1;
-            this.bonusMaxPotentialLevel = 1;
+            this.bonusPotentialLevel = 1;
         } else if (game.getDifficulty() >= 5 && this.hasGrowthNode(20801)) {
             this.bonusPotentialChance = 0.05;
-            this.bonusMaxPotentialLevel = 1;
+            this.bonusPotentialLevel = 1;
         }
         
         // Potential reroll (Cloud Dice)

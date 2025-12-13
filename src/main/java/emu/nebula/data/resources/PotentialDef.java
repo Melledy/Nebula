@@ -39,7 +39,7 @@ public class PotentialDef extends BaseDef {
     public int getMaxLevel(StarTowerGame game) {
         // Check if regular potential
         if (this.BranchType == 3) {
-            return this.MaxLevel + game.getModifiers().getBonusMaxPotentialLevel();
+            return this.MaxLevel + game.getModifiers().getExtraMaxPotentialLevel();
         }
         
         // Special potential should always have a max level of 1
