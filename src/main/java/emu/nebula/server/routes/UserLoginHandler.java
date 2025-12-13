@@ -71,6 +71,8 @@ public class UserLoginHandler implements Handler {
             response.Data.Yostar = new ChinaUserLoginEntity.LoginYostarJson();
             response.Data.Identity = new ChinaUserLoginEntity.IdentityJson();
             response.Data.TaptapProfile = null;
+            response.Data.Destroy = new ChinaUserLoginEntity.DestroyJson();
+            response.Data.YostarDestroy = new ChinaUserLoginEntity.YostarDestroyJson();
 
             response.Data.User.ID = Long.parseLong(account.getUid());
             response.Data.User.PID = "NEBULA";
@@ -93,6 +95,9 @@ public class UserLoginHandler implements Handler {
             response.Data.Identity.PI = "";
             response.Data.Identity.BirthDate = "";
             response.Data.Identity.State = 1;
+
+            response.Data.Destroy.DestroyAt = 0;
+            response.Data.YostarDestroy.DestroyAt = 0;
 
             var key = new ChinaUserLoginEntity.UserKeyJson();
             key.Type = "mobile";

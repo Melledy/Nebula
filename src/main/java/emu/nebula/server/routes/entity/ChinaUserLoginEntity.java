@@ -6,11 +6,8 @@ public class ChinaUserLoginEntity {
     public int Code;
     public UserDetailJson Data;
     public String Msg;
-    
-    public static class UserDetailJson {
-        public Object Destroy;
-        public Object YostarDestroy;
 
+    public static class UserDetailJson {
         public boolean IsNew;
         public boolean IsTestAccount;
         public List<UserKeyJson> Keys;
@@ -18,6 +15,8 @@ public class ChinaUserLoginEntity {
         public LoginYostarJson Yostar;
         public Object TaptapProfile;
         public IdentityJson Identity;
+        public DestroyJson Destroy;
+        public YostarDestroyJson YostarDestroy;
     }
 
     public static class UserJson {
@@ -28,7 +27,7 @@ public class ChinaUserLoginEntity {
         public String RegChannel;
         public int DestroyState;
     }
-    
+
     public static class UserKeyJson {
         public String Type;
         public String NickName;
@@ -52,5 +51,13 @@ public class ChinaUserLoginEntity {
         public String PI;
         public String BirthDate;
         public int State;
+    }
+
+    public static class DestroyJson {
+        public int DestroyAt;
+    }
+
+    public static class YostarDestroyJson {
+        public int DestroyAt;
     }
 }
