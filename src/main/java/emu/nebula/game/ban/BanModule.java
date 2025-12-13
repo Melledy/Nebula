@@ -73,9 +73,13 @@ public class BanModule extends GameContextModule {
 
         String playerIpAddress;
         for (Player player : playerList) {
+            if (player.getSession() == null) {
+                continue;
+            }
+
             playerIpAddress = player.getSession().getIpAddress();
             if (playerIpAddress == null) {
-                return;
+                continue;
             }
 
             // Kick player
