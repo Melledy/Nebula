@@ -25,6 +25,7 @@ public class Config {
 
     public int customDataVersion = 0;
     public String region = "global";
+    public String language = "en_US";
     
     public String resourceDir = "./resources";
     public String webFilesDir = "./web";

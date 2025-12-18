@@ -117,7 +117,8 @@ public class Handbook {
         Map<String, String> map = null;
         
         try {
-            map = JsonUtils.loadToMap(Nebula.getConfig().getResourceDir() + "/language/en_US/" + type.name(), String.class, String.class);
+            String fileName = Nebula.getConfig().getResourceDir() + "/language/" + Nebula.getConfig().getLanguage() + "/" + type.name();
+            map = JsonUtils.loadToMap(fileName, String.class, String.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
