@@ -573,7 +573,7 @@ public class GameCharacter implements GameDatabaseObject {
     
     public CharacterGem getGemFromPreset(CharacterGemPreset preset, int slotId) {
         // Get gem index
-        int gemIndex = preset.getGemIndex(slotId - 1);
+        int gemIndex = preset.getGemIndex(slotId);
         
         if (gemIndex <= 0) {
             return null;
