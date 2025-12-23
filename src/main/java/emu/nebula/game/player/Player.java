@@ -405,8 +405,20 @@ public class Player implements GameDatabaseObject {
         
         // Verify that we have the honor titles
         for (int id : honorIds) {
-            if (id != 0 && !getInventory().getHonorList().contains(id)) {
-                System.out.println(id);
+            // Empty honor title
+            if (id == 0) {
+                continue;
+            }
+            
+            // Make sure we own the honor title
+            if (!getInventory().hasHonor(id)) {
+                return false;
+            }
+            
+            // Make sure honor exists and won't crash the client
+            var honor = GameData.getHonorDataTable().get(id);
+            
+            if (honor == null || !honor.isValid()) {
                 return false;
             }
         }
@@ -788,6 +800,9 @@ public class Player implements GameDatabaseObject {
         // See if we need to reset dailies
         this.checkResetDailies();
         
+        // Fix any broken honor ids
+        this.checkBrokenHonor();
+        
         // Update last login time
         this.lastLogin = System.currentTimeMillis();
         Nebula.getGameDatabase().update(this, this.getUid(), "lastLogin", this.getLastLogin());
@@ -812,6 +827,35 @@ public class Player implements GameDatabaseObject {
         // Check if we need save achievements
         if (this.getAchievementManager().isQueueSave()) {
             this.getAchievementManager().save();
+        }
+    }
+    
+    /**
+     * Checks the player's honor ids to make sure they don't crash the client
+     */
+    private void checkBrokenHonor() {
+        boolean changed = false;
+        
+        for (int i = 0; i < this.honor.length; i++) {
+            int honorId = this.honor[i];
+            
+            if (honorId == 0) {
+                continue;
+            }
+            
+            // Get honor data
+            var honor = GameData.getHonorDataTable().get(honorId);
+            
+            // Check if honor is valid
+            if (honor == null || !honor.isValid()) {
+                this.honor[i] = 0;
+                changed = true;
+            }
+        }
+        
+        // Update in database
+        if (changed) {
+            Nebula.getGameDatabase().update(this, this.getUid(), "honor", this.getHonor());
         }
     }
     

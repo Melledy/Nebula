@@ -259,6 +259,10 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
         return true;
     }
     
+    public boolean hasHonor(int id) {
+        return id == GameConstants.DEFAULT_HONOR_ID || this.getHonorList().contains(id);
+    }
+    
     // Resources
     
     public synchronized int getResourceCount(int id) {
