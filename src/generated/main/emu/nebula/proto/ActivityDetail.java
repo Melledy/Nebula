@@ -91,6 +91,16 @@ public final class ActivityDetail {
     private final Public.ActivityBuildConvert bdConvert = Public.ActivityBuildConvert.newInstance();
 
     /**
+     * <code>optional .ActivityTrekkerVersus TrekkerVersus = 15;</code>
+     */
+    private final Public.ActivityTrekkerVersus trekkerVersus = Public.ActivityTrekkerVersus.newInstance();
+
+    /**
+     * <code>optional .ActivityStoryChapter StoryChapter = 16;</code>
+     */
+    private final Public.ActivityStoryChapter storyChapter = Public.ActivityStoryChapter.newInstance();
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -884,11 +894,125 @@ public final class ActivityDetail {
     }
 
     /**
+     * <code>optional .ActivityTrekkerVersus TrekkerVersus = 15;</code>
+     * @return whether the trekkerVersus field is set
+     */
+    public boolean hasTrekkerVersus() {
+      return (bitField0_ & 0x00004000) != 0;
+    }
+
+    /**
+     * <code>optional .ActivityTrekkerVersus TrekkerVersus = 15;</code>
+     * @return this
+     */
+    public ActivityMsg clearTrekkerVersus() {
+      bitField0_ &= ~0x00004000;
+      trekkerVersus.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityTrekkerVersus TrekkerVersus = 15;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableTrekkerVersus()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.ActivityTrekkerVersus getTrekkerVersus() {
+      return trekkerVersus;
+    }
+
+    /**
+     * <code>optional .ActivityTrekkerVersus TrekkerVersus = 15;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.ActivityTrekkerVersus getMutableTrekkerVersus() {
+      bitField0_ |= 0x00004000;
+      return trekkerVersus;
+    }
+
+    /**
+     * <code>optional .ActivityTrekkerVersus TrekkerVersus = 15;</code>
+     * @param value the trekkerVersus to set
+     * @return this
+     */
+    public ActivityMsg setTrekkerVersus(final Public.ActivityTrekkerVersus value) {
+      bitField0_ |= 0x00004000;
+      trekkerVersus.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityStoryChapter StoryChapter = 16;</code>
+     * @return whether the storyChapter field is set
+     */
+    public boolean hasStoryChapter() {
+      return (bitField0_ & 0x00008000) != 0;
+    }
+
+    /**
+     * <code>optional .ActivityStoryChapter StoryChapter = 16;</code>
+     * @return this
+     */
+    public ActivityMsg clearStoryChapter() {
+      bitField0_ &= ~0x00008000;
+      storyChapter.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityStoryChapter StoryChapter = 16;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableStoryChapter()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.ActivityStoryChapter getStoryChapter() {
+      return storyChapter;
+    }
+
+    /**
+     * <code>optional .ActivityStoryChapter StoryChapter = 16;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.ActivityStoryChapter getMutableStoryChapter() {
+      bitField0_ |= 0x00008000;
+      return storyChapter;
+    }
+
+    /**
+     * <code>optional .ActivityStoryChapter StoryChapter = 16;</code>
+     * @param value the storyChapter to set
+     * @return this
+     */
+    public ActivityMsg setStoryChapter(final Public.ActivityStoryChapter value) {
+      bitField0_ |= 0x00008000;
+      storyChapter.copyFrom(value);
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00004000) != 0;
+      return (bitField0_ & 0x00010000) != 0;
     }
 
     /**
@@ -896,7 +1020,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg clearNextPackage() {
-      bitField0_ &= ~0x00004000;
+      bitField0_ &= ~0x00010000;
       nextPackage.clear();
       return this;
     }
@@ -925,7 +1049,7 @@ public final class ActivityDetail {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00004000;
+      bitField0_ |= 0x00010000;
       return nextPackage;
     }
 
@@ -935,7 +1059,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg addNextPackage(final byte value) {
-      bitField0_ |= 0x00004000;
+      bitField0_ |= 0x00010000;
       nextPackage.add(value);
       return this;
     }
@@ -946,7 +1070,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00004000;
+      bitField0_ |= 0x00010000;
       nextPackage.addAll(values);
       return this;
     }
@@ -957,7 +1081,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg setNextPackage(final byte... values) {
-      bitField0_ |= 0x00004000;
+      bitField0_ |= 0x00010000;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -981,6 +1105,8 @@ public final class ActivityDetail {
         task.copyFrom(other.task);
         shop.copyFrom(other.shop);
         bdConvert.copyFrom(other.bdConvert);
+        trekkerVersus.copyFrom(other.trekkerVersus);
+        storyChapter.copyFrom(other.storyChapter);
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -1034,6 +1160,12 @@ public final class ActivityDetail {
       if (other.hasBdConvert()) {
         getMutableBdConvert().mergeFrom(other.bdConvert);
       }
+      if (other.hasTrekkerVersus()) {
+        getMutableTrekkerVersus().mergeFrom(other.trekkerVersus);
+      }
+      if (other.hasStoryChapter()) {
+        getMutableStoryChapter().mergeFrom(other.storyChapter);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -1061,6 +1193,8 @@ public final class ActivityDetail {
       task.clear();
       shop.clear();
       bdConvert.clear();
+      trekkerVersus.clear();
+      storyChapter.clear();
       nextPackage.clear();
       return this;
     }
@@ -1085,6 +1219,8 @@ public final class ActivityDetail {
       task.clearQuick();
       shop.clearQuick();
       bdConvert.clearQuick();
+      trekkerVersus.clearQuick();
+      storyChapter.clearQuick();
       nextPackage.clear();
       return this;
     }
@@ -1113,6 +1249,8 @@ public final class ActivityDetail {
         && (!hasTask() || task.equals(other.task))
         && (!hasShop() || shop.equals(other.shop))
         && (!hasBdConvert() || bdConvert.equals(other.bdConvert))
+        && (!hasTrekkerVersus() || trekkerVersus.equals(other.trekkerVersus))
+        && (!hasStoryChapter() || storyChapter.equals(other.storyChapter))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
@@ -1175,6 +1313,14 @@ public final class ActivityDetail {
         output.writeMessageNoTag(bdConvert);
       }
       if ((bitField0_ & 0x00004000) != 0) {
+        output.writeRawByte((byte) 122);
+        output.writeMessageNoTag(trekkerVersus);
+      }
+      if ((bitField0_ & 0x00008000) != 0) {
+        output.writeRawLittleEndian16((short) 386);
+        output.writeMessageNoTag(storyChapter);
+      }
+      if ((bitField0_ & 0x00010000) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
@@ -1226,6 +1372,12 @@ public final class ActivityDetail {
         size += 1 + ProtoSink.computeMessageSizeNoTag(bdConvert);
       }
       if ((bitField0_ & 0x00004000) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(trekkerVersus);
+      }
+      if ((bitField0_ & 0x00008000) != 0) {
+        size += 2 + ProtoSink.computeMessageSizeNoTag(storyChapter);
+      }
+      if ((bitField0_ & 0x00010000) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       return size;
@@ -1360,6 +1512,24 @@ public final class ActivityDetail {
             input.readMessage(bdConvert);
             bitField0_ |= 0x00002000;
             tag = input.readTag();
+            if (tag != 122) {
+              break;
+            }
+          }
+          case 122: {
+            // trekkerVersus
+            input.readMessage(trekkerVersus);
+            bitField0_ |= 0x00004000;
+            tag = input.readTag();
+            if (tag != 130) {
+              break;
+            }
+          }
+          case 130: {
+            // storyChapter
+            input.readMessage(storyChapter);
+            bitField0_ |= 0x00008000;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -1367,7 +1537,7 @@ public final class ActivityDetail {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00004000;
+            bitField0_ |= 0x00010000;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -1433,6 +1603,12 @@ public final class ActivityDetail {
         output.writeMessage(FieldNames.bdConvert, bdConvert);
       }
       if ((bitField0_ & 0x00004000) != 0) {
+        output.writeMessage(FieldNames.trekkerVersus, trekkerVersus);
+      }
+      if ((bitField0_ & 0x00008000) != 0) {
+        output.writeMessage(FieldNames.storyChapter, storyChapter);
+      }
+      if ((bitField0_ & 0x00010000) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       output.endObject();
@@ -1599,11 +1775,33 @@ public final class ActivityDetail {
             }
             break;
           }
+          case -1534874366: {
+            if (input.isAtField(FieldNames.trekkerVersus)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(trekkerVersus);
+                bitField0_ |= 0x00004000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1858182728: {
+            if (input.isAtField(FieldNames.storyChapter)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(storyChapter);
+                bitField0_ |= 0x00008000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00004000;
+                bitField0_ |= 0x00010000;
               }
             } else {
               input.skipUnknownField();
@@ -1689,6 +1887,10 @@ public final class ActivityDetail {
       static final FieldName shop = FieldName.forField("Shop");
 
       static final FieldName bdConvert = FieldName.forField("BdConvert");
+
+      static final FieldName trekkerVersus = FieldName.forField("TrekkerVersus");
+
+      static final FieldName storyChapter = FieldName.forField("StoryChapter");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }

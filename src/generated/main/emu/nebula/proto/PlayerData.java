@@ -154,6 +154,11 @@ public final class PlayerData {
     private final RepeatedInt dailyActiveIds = RepeatedInt.newEmptyInstance();
 
     /**
+     * <code>repeated uint32 WeeklyActiveIds = 38;</code>
+     */
+    private final RepeatedInt weeklyActiveIds = RepeatedInt.newEmptyInstance();
+
+    /**
      * <code>repeated uint32 HonorList = 123;</code>
      */
     private final RepeatedInt honorList = RepeatedInt.newEmptyInstance();
@@ -237,6 +242,11 @@ public final class PlayerData {
      * <code>repeated .TutorialLevel TutorialLevels = 37;</code>
      */
     private final RepeatedMessage<Public.TutorialLevel> tutorialLevels = RepeatedMessage.newEmptyInstance(Public.TutorialLevel.getFactory());
+
+    /**
+     * <code>repeated .AssistInfo Assists = 39;</code>
+     */
+    private final RepeatedMessage<AssistInfo> assists = RepeatedMessage.newEmptyInstance(AssistInfo.getFactory());
 
     /**
      * <code>repeated .HonorInfo Honors = 124;</code>
@@ -1624,11 +1634,79 @@ public final class PlayerData {
     }
 
     /**
+     * <code>repeated uint32 WeeklyActiveIds = 38;</code>
+     * @return whether the weeklyActiveIds field is set
+     */
+    public boolean hasWeeklyActiveIds() {
+      return (bitField0_ & 0x04000000) != 0;
+    }
+
+    /**
+     * <code>repeated uint32 WeeklyActiveIds = 38;</code>
+     * @return this
+     */
+    public PlayerInfo clearWeeklyActiveIds() {
+      bitField0_ &= ~0x04000000;
+      weeklyActiveIds.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 WeeklyActiveIds = 38;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableWeeklyActiveIds()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedInt getWeeklyActiveIds() {
+      return weeklyActiveIds;
+    }
+
+    /**
+     * <code>repeated uint32 WeeklyActiveIds = 38;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedInt getMutableWeeklyActiveIds() {
+      bitField0_ |= 0x04000000;
+      return weeklyActiveIds;
+    }
+
+    /**
+     * <code>repeated uint32 WeeklyActiveIds = 38;</code>
+     * @param value the weeklyActiveIds to add
+     * @return this
+     */
+    public PlayerInfo addWeeklyActiveIds(final int value) {
+      bitField0_ |= 0x04000000;
+      weeklyActiveIds.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 WeeklyActiveIds = 38;</code>
+     * @param values the weeklyActiveIds to add
+     * @return this
+     */
+    public PlayerInfo addAllWeeklyActiveIds(final int... values) {
+      bitField0_ |= 0x04000000;
+      weeklyActiveIds.addAll(values);
+      return this;
+    }
+
+    /**
      * <code>repeated uint32 HonorList = 123;</code>
      * @return whether the honorList field is set
      */
     public boolean hasHonorList() {
-      return (bitField0_ & 0x04000000) != 0;
+      return (bitField0_ & 0x08000000) != 0;
     }
 
     /**
@@ -1636,7 +1714,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo clearHonorList() {
-      bitField0_ &= ~0x04000000;
+      bitField0_ &= ~0x08000000;
       honorList.clear();
       return this;
     }
@@ -1665,7 +1743,7 @@ public final class PlayerData {
      * @return internal storage object for modifications
      */
     public RepeatedInt getMutableHonorList() {
-      bitField0_ |= 0x04000000;
+      bitField0_ |= 0x08000000;
       return honorList;
     }
 
@@ -1675,7 +1753,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addHonorList(final int value) {
-      bitField0_ |= 0x04000000;
+      bitField0_ |= 0x08000000;
       honorList.add(value);
       return this;
     }
@@ -1686,7 +1764,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addAllHonorList(final int... values) {
-      bitField0_ |= 0x04000000;
+      bitField0_ |= 0x08000000;
       honorList.addAll(values);
       return this;
     }
@@ -1696,7 +1774,7 @@ public final class PlayerData {
      * @return whether the res field is set
      */
     public boolean hasRes() {
-      return (bitField0_ & 0x08000000) != 0;
+      return (bitField0_ & 0x10000000) != 0;
     }
 
     /**
@@ -1704,7 +1782,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo clearRes() {
-      bitField0_ &= ~0x08000000;
+      bitField0_ &= ~0x10000000;
       res.clear();
       return this;
     }
@@ -1733,7 +1811,7 @@ public final class PlayerData {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.Res> getMutableRes() {
-      bitField0_ |= 0x08000000;
+      bitField0_ |= 0x10000000;
       return res;
     }
 
@@ -1743,7 +1821,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addRes(final Public.Res value) {
-      bitField0_ |= 0x08000000;
+      bitField0_ |= 0x10000000;
       res.add(value);
       return this;
     }
@@ -1754,7 +1832,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addAllRes(final Public.Res... values) {
-      bitField0_ |= 0x08000000;
+      bitField0_ |= 0x10000000;
       res.addAll(values);
       return this;
     }
@@ -1764,7 +1842,7 @@ public final class PlayerData {
      * @return whether the items field is set
      */
     public boolean hasItems() {
-      return (bitField0_ & 0x10000000) != 0;
+      return (bitField0_ & 0x20000000) != 0;
     }
 
     /**
@@ -1772,7 +1850,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo clearItems() {
-      bitField0_ &= ~0x10000000;
+      bitField0_ &= ~0x20000000;
       items.clear();
       return this;
     }
@@ -1801,7 +1879,7 @@ public final class PlayerData {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.Item> getMutableItems() {
-      bitField0_ |= 0x10000000;
+      bitField0_ |= 0x20000000;
       return items;
     }
 
@@ -1811,7 +1889,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addItems(final Public.Item value) {
-      bitField0_ |= 0x10000000;
+      bitField0_ |= 0x20000000;
       items.add(value);
       return this;
     }
@@ -1822,7 +1900,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addAllItems(final Public.Item... values) {
-      bitField0_ |= 0x10000000;
+      bitField0_ |= 0x20000000;
       items.addAll(values);
       return this;
     }
@@ -1832,7 +1910,7 @@ public final class PlayerData {
      * @return whether the chars field is set
      */
     public boolean hasChars() {
-      return (bitField0_ & 0x20000000) != 0;
+      return (bitField0_ & 0x40000000) != 0;
     }
 
     /**
@@ -1840,7 +1918,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo clearChars() {
-      bitField0_ &= ~0x20000000;
+      bitField0_ &= ~0x40000000;
       chars.clear();
       return this;
     }
@@ -1869,7 +1947,7 @@ public final class PlayerData {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.Char> getMutableChars() {
-      bitField0_ |= 0x20000000;
+      bitField0_ |= 0x40000000;
       return chars;
     }
 
@@ -1879,7 +1957,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addChars(final Public.Char value) {
-      bitField0_ |= 0x20000000;
+      bitField0_ |= 0x40000000;
       chars.add(value);
       return this;
     }
@@ -1890,7 +1968,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addAllChars(final Public.Char... values) {
-      bitField0_ |= 0x20000000;
+      bitField0_ |= 0x40000000;
       chars.addAll(values);
       return this;
     }
@@ -1900,7 +1978,7 @@ public final class PlayerData {
      * @return whether the equipments field is set
      */
     public boolean hasEquipments() {
-      return (bitField0_ & 0x40000000) != 0;
+      return (bitField0_ & 0x80000000) != 0;
     }
 
     /**
@@ -1908,7 +1986,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo clearEquipments() {
-      bitField0_ &= ~0x40000000;
+      bitField0_ &= ~0x80000000;
       equipments.clear();
       return this;
     }
@@ -1937,7 +2015,7 @@ public final class PlayerData {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.EquipmentInfo> getMutableEquipments() {
-      bitField0_ |= 0x40000000;
+      bitField0_ |= 0x80000000;
       return equipments;
     }
 
@@ -1947,7 +2025,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addEquipments(final Public.EquipmentInfo value) {
-      bitField0_ |= 0x40000000;
+      bitField0_ |= 0x80000000;
       equipments.add(value);
       return this;
     }
@@ -1958,7 +2036,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addAllEquipments(final Public.EquipmentInfo... values) {
-      bitField0_ |= 0x40000000;
+      bitField0_ |= 0x80000000;
       equipments.addAll(values);
       return this;
     }
@@ -1968,7 +2046,7 @@ public final class PlayerData {
      * @return whether the regionBossLevels field is set
      */
     public boolean hasRegionBossLevels() {
-      return (bitField0_ & 0x80000000) != 0;
+      return (bitField1_ & 0x00000001) != 0;
     }
 
     /**
@@ -1976,7 +2054,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo clearRegionBossLevels() {
-      bitField0_ &= ~0x80000000;
+      bitField1_ &= ~0x00000001;
       regionBossLevels.clear();
       return this;
     }
@@ -2005,7 +2083,7 @@ public final class PlayerData {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.RegionBossLevel> getMutableRegionBossLevels() {
-      bitField0_ |= 0x80000000;
+      bitField1_ |= 0x00000001;
       return regionBossLevels;
     }
 
@@ -2015,7 +2093,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addRegionBossLevels(final Public.RegionBossLevel value) {
-      bitField0_ |= 0x80000000;
+      bitField1_ |= 0x00000001;
       regionBossLevels.add(value);
       return this;
     }
@@ -2026,7 +2104,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addAllRegionBossLevels(final Public.RegionBossLevel... values) {
-      bitField0_ |= 0x80000000;
+      bitField1_ |= 0x00000001;
       regionBossLevels.addAll(values);
       return this;
     }
@@ -2036,7 +2114,7 @@ public final class PlayerData {
      * @return whether the handbook field is set
      */
     public boolean hasHandbook() {
-      return (bitField1_ & 0x00000001) != 0;
+      return (bitField1_ & 0x00000002) != 0;
     }
 
     /**
@@ -2044,7 +2122,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo clearHandbook() {
-      bitField1_ &= ~0x00000001;
+      bitField1_ &= ~0x00000002;
       handbook.clear();
       return this;
     }
@@ -2073,7 +2151,7 @@ public final class PlayerData {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.HandbookInfo> getMutableHandbook() {
-      bitField1_ |= 0x00000001;
+      bitField1_ |= 0x00000002;
       return handbook;
     }
 
@@ -2083,7 +2161,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addHandbook(final Public.HandbookInfo value) {
-      bitField1_ |= 0x00000001;
+      bitField1_ |= 0x00000002;
       handbook.add(value);
       return this;
     }
@@ -2094,7 +2172,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addAllHandbook(final Public.HandbookInfo... values) {
-      bitField1_ |= 0x00000001;
+      bitField1_ |= 0x00000002;
       handbook.addAll(values);
       return this;
     }
@@ -2104,7 +2182,7 @@ public final class PlayerData {
      * @return whether the titles field is set
      */
     public boolean hasTitles() {
-      return (bitField1_ & 0x00000002) != 0;
+      return (bitField1_ & 0x00000004) != 0;
     }
 
     /**
@@ -2112,7 +2190,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo clearTitles() {
-      bitField1_ &= ~0x00000002;
+      bitField1_ &= ~0x00000004;
       titles.clear();
       return this;
     }
@@ -2141,7 +2219,7 @@ public final class PlayerData {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.Title> getMutableTitles() {
-      bitField1_ |= 0x00000002;
+      bitField1_ |= 0x00000004;
       return titles;
     }
 
@@ -2151,7 +2229,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addTitles(final Public.Title value) {
-      bitField1_ |= 0x00000002;
+      bitField1_ |= 0x00000004;
       titles.add(value);
       return this;
     }
@@ -2162,7 +2240,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addAllTitles(final Public.Title... values) {
-      bitField1_ |= 0x00000002;
+      bitField1_ |= 0x00000004;
       titles.addAll(values);
       return this;
     }
@@ -2172,7 +2250,7 @@ public final class PlayerData {
      * @return whether the dailyInstances field is set
      */
     public boolean hasDailyInstances() {
-      return (bitField1_ & 0x00000004) != 0;
+      return (bitField1_ & 0x00000008) != 0;
     }
 
     /**
@@ -2180,7 +2258,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo clearDailyInstances() {
-      bitField1_ &= ~0x00000004;
+      bitField1_ &= ~0x00000008;
       dailyInstances.clear();
       return this;
     }
@@ -2209,7 +2287,7 @@ public final class PlayerData {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.DailyInstance> getMutableDailyInstances() {
-      bitField1_ |= 0x00000004;
+      bitField1_ |= 0x00000008;
       return dailyInstances;
     }
 
@@ -2219,7 +2297,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addDailyInstances(final Public.DailyInstance value) {
-      bitField1_ |= 0x00000004;
+      bitField1_ |= 0x00000008;
       dailyInstances.add(value);
       return this;
     }
@@ -2230,7 +2308,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addAllDailyInstances(final Public.DailyInstance... values) {
-      bitField1_ |= 0x00000004;
+      bitField1_ |= 0x00000008;
       dailyInstances.addAll(values);
       return this;
     }
@@ -2240,7 +2318,7 @@ public final class PlayerData {
      * @return whether the dictionaries field is set
      */
     public boolean hasDictionaries() {
-      return (bitField1_ & 0x00000008) != 0;
+      return (bitField1_ & 0x00000010) != 0;
     }
 
     /**
@@ -2248,7 +2326,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo clearDictionaries() {
-      bitField1_ &= ~0x00000008;
+      bitField1_ &= ~0x00000010;
       dictionaries.clear();
       return this;
     }
@@ -2277,7 +2355,7 @@ public final class PlayerData {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<DictionaryTab> getMutableDictionaries() {
-      bitField1_ |= 0x00000008;
+      bitField1_ |= 0x00000010;
       return dictionaries;
     }
 
@@ -2287,7 +2365,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addDictionaries(final DictionaryTab value) {
-      bitField1_ |= 0x00000008;
+      bitField1_ |= 0x00000010;
       dictionaries.add(value);
       return this;
     }
@@ -2298,7 +2376,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addAllDictionaries(final DictionaryTab... values) {
-      bitField1_ |= 0x00000008;
+      bitField1_ |= 0x00000010;
       dictionaries.addAll(values);
       return this;
     }
@@ -2308,7 +2386,7 @@ public final class PlayerData {
      * @return whether the activities field is set
      */
     public boolean hasActivities() {
-      return (bitField1_ & 0x00000010) != 0;
+      return (bitField1_ & 0x00000020) != 0;
     }
 
     /**
@@ -2316,7 +2394,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo clearActivities() {
-      bitField1_ &= ~0x00000010;
+      bitField1_ &= ~0x00000020;
       activities.clear();
       return this;
     }
@@ -2345,7 +2423,7 @@ public final class PlayerData {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.Activity> getMutableActivities() {
-      bitField1_ |= 0x00000010;
+      bitField1_ |= 0x00000020;
       return activities;
     }
 
@@ -2355,7 +2433,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addActivities(final Public.Activity value) {
-      bitField1_ |= 0x00000010;
+      bitField1_ |= 0x00000020;
       activities.add(value);
       return this;
     }
@@ -2366,7 +2444,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addAllActivities(final Public.Activity... values) {
-      bitField1_ |= 0x00000010;
+      bitField1_ |= 0x00000020;
       activities.addAll(values);
       return this;
     }
@@ -2376,7 +2454,7 @@ public final class PlayerData {
      * @return whether the discs field is set
      */
     public boolean hasDiscs() {
-      return (bitField1_ & 0x00000020) != 0;
+      return (bitField1_ & 0x00000040) != 0;
     }
 
     /**
@@ -2384,7 +2462,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo clearDiscs() {
-      bitField1_ &= ~0x00000020;
+      bitField1_ &= ~0x00000040;
       discs.clear();
       return this;
     }
@@ -2413,7 +2491,7 @@ public final class PlayerData {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.Disc> getMutableDiscs() {
-      bitField1_ |= 0x00000020;
+      bitField1_ |= 0x00000040;
       return discs;
     }
 
@@ -2423,7 +2501,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addDiscs(final Public.Disc value) {
-      bitField1_ |= 0x00000020;
+      bitField1_ |= 0x00000040;
       discs.add(value);
       return this;
     }
@@ -2434,7 +2512,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addAllDiscs(final Public.Disc... values) {
-      bitField1_ |= 0x00000020;
+      bitField1_ |= 0x00000040;
       discs.addAll(values);
       return this;
     }
@@ -2444,7 +2522,7 @@ public final class PlayerData {
      * @return whether the equipmentInstances field is set
      */
     public boolean hasEquipmentInstances() {
-      return (bitField1_ & 0x00000040) != 0;
+      return (bitField1_ & 0x00000080) != 0;
     }
 
     /**
@@ -2452,7 +2530,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo clearEquipmentInstances() {
-      bitField1_ &= ~0x00000040;
+      bitField1_ &= ~0x00000080;
       equipmentInstances.clear();
       return this;
     }
@@ -2481,7 +2559,7 @@ public final class PlayerData {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.EquipmentInstance> getMutableEquipmentInstances() {
-      bitField1_ |= 0x00000040;
+      bitField1_ |= 0x00000080;
       return equipmentInstances;
     }
 
@@ -2491,7 +2569,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addEquipmentInstances(final Public.EquipmentInstance value) {
-      bitField1_ |= 0x00000040;
+      bitField1_ |= 0x00000080;
       equipmentInstances.add(value);
       return this;
     }
@@ -2502,7 +2580,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addAllEquipmentInstances(final Public.EquipmentInstance... values) {
-      bitField1_ |= 0x00000040;
+      bitField1_ |= 0x00000080;
       equipmentInstances.addAll(values);
       return this;
     }
@@ -2512,7 +2590,7 @@ public final class PlayerData {
      * @return whether the skillInstances field is set
      */
     public boolean hasSkillInstances() {
-      return (bitField1_ & 0x00000080) != 0;
+      return (bitField1_ & 0x00000100) != 0;
     }
 
     /**
@@ -2520,7 +2598,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo clearSkillInstances() {
-      bitField1_ &= ~0x00000080;
+      bitField1_ &= ~0x00000100;
       skillInstances.clear();
       return this;
     }
@@ -2549,7 +2627,7 @@ public final class PlayerData {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.SkillInstance> getMutableSkillInstances() {
-      bitField1_ |= 0x00000080;
+      bitField1_ |= 0x00000100;
       return skillInstances;
     }
 
@@ -2559,7 +2637,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addSkillInstances(final Public.SkillInstance value) {
-      bitField1_ |= 0x00000080;
+      bitField1_ |= 0x00000100;
       skillInstances.add(value);
       return this;
     }
@@ -2570,7 +2648,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addAllSkillInstances(final Public.SkillInstance... values) {
-      bitField1_ |= 0x00000080;
+      bitField1_ |= 0x00000100;
       skillInstances.addAll(values);
       return this;
     }
@@ -2580,7 +2658,7 @@ public final class PlayerData {
      * @return whether the weekBossLevels field is set
      */
     public boolean hasWeekBossLevels() {
-      return (bitField1_ & 0x00000100) != 0;
+      return (bitField1_ & 0x00000200) != 0;
     }
 
     /**
@@ -2588,7 +2666,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo clearWeekBossLevels() {
-      bitField1_ &= ~0x00000100;
+      bitField1_ &= ~0x00000200;
       weekBossLevels.clear();
       return this;
     }
@@ -2617,7 +2695,7 @@ public final class PlayerData {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.WeekBossLevel> getMutableWeekBossLevels() {
-      bitField1_ |= 0x00000100;
+      bitField1_ |= 0x00000200;
       return weekBossLevels;
     }
 
@@ -2627,7 +2705,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addWeekBossLevels(final Public.WeekBossLevel value) {
-      bitField1_ |= 0x00000100;
+      bitField1_ |= 0x00000200;
       weekBossLevels.add(value);
       return this;
     }
@@ -2638,7 +2716,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addAllWeekBossLevels(final Public.WeekBossLevel... values) {
-      bitField1_ |= 0x00000100;
+      bitField1_ |= 0x00000200;
       weekBossLevels.addAll(values);
       return this;
     }
@@ -2648,7 +2726,7 @@ public final class PlayerData {
      * @return whether the charGemInstances field is set
      */
     public boolean hasCharGemInstances() {
-      return (bitField1_ & 0x00000200) != 0;
+      return (bitField1_ & 0x00000400) != 0;
     }
 
     /**
@@ -2656,7 +2734,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo clearCharGemInstances() {
-      bitField1_ &= ~0x00000200;
+      bitField1_ &= ~0x00000400;
       charGemInstances.clear();
       return this;
     }
@@ -2685,7 +2763,7 @@ public final class PlayerData {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.CharGemInstance> getMutableCharGemInstances() {
-      bitField1_ |= 0x00000200;
+      bitField1_ |= 0x00000400;
       return charGemInstances;
     }
 
@@ -2695,7 +2773,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addCharGemInstances(final Public.CharGemInstance value) {
-      bitField1_ |= 0x00000200;
+      bitField1_ |= 0x00000400;
       charGemInstances.add(value);
       return this;
     }
@@ -2706,7 +2784,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addAllCharGemInstances(final Public.CharGemInstance... values) {
-      bitField1_ |= 0x00000200;
+      bitField1_ |= 0x00000400;
       charGemInstances.addAll(values);
       return this;
     }
@@ -2716,7 +2794,7 @@ public final class PlayerData {
      * @return whether the tutorialLevels field is set
      */
     public boolean hasTutorialLevels() {
-      return (bitField1_ & 0x00000400) != 0;
+      return (bitField1_ & 0x00000800) != 0;
     }
 
     /**
@@ -2724,7 +2802,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo clearTutorialLevels() {
-      bitField1_ &= ~0x00000400;
+      bitField1_ &= ~0x00000800;
       tutorialLevels.clear();
       return this;
     }
@@ -2753,7 +2831,7 @@ public final class PlayerData {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.TutorialLevel> getMutableTutorialLevels() {
-      bitField1_ |= 0x00000400;
+      bitField1_ |= 0x00000800;
       return tutorialLevels;
     }
 
@@ -2763,7 +2841,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addTutorialLevels(final Public.TutorialLevel value) {
-      bitField1_ |= 0x00000400;
+      bitField1_ |= 0x00000800;
       tutorialLevels.add(value);
       return this;
     }
@@ -2774,8 +2852,76 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addAllTutorialLevels(final Public.TutorialLevel... values) {
-      bitField1_ |= 0x00000400;
+      bitField1_ |= 0x00000800;
       tutorialLevels.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .AssistInfo Assists = 39;</code>
+     * @return whether the assists field is set
+     */
+    public boolean hasAssists() {
+      return (bitField1_ & 0x00001000) != 0;
+    }
+
+    /**
+     * <code>repeated .AssistInfo Assists = 39;</code>
+     * @return this
+     */
+    public PlayerInfo clearAssists() {
+      bitField1_ &= ~0x00001000;
+      assists.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .AssistInfo Assists = 39;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableAssists()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<AssistInfo> getAssists() {
+      return assists;
+    }
+
+    /**
+     * <code>repeated .AssistInfo Assists = 39;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<AssistInfo> getMutableAssists() {
+      bitField1_ |= 0x00001000;
+      return assists;
+    }
+
+    /**
+     * <code>repeated .AssistInfo Assists = 39;</code>
+     * @param value the assists to add
+     * @return this
+     */
+    public PlayerInfo addAssists(final AssistInfo value) {
+      bitField1_ |= 0x00001000;
+      assists.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .AssistInfo Assists = 39;</code>
+     * @param values the assists to add
+     * @return this
+     */
+    public PlayerInfo addAllAssists(final AssistInfo... values) {
+      bitField1_ |= 0x00001000;
+      assists.addAll(values);
       return this;
     }
 
@@ -2784,7 +2930,7 @@ public final class PlayerData {
      * @return whether the honors field is set
      */
     public boolean hasHonors() {
-      return (bitField1_ & 0x00000800) != 0;
+      return (bitField1_ & 0x00002000) != 0;
     }
 
     /**
@@ -2792,7 +2938,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo clearHonors() {
-      bitField1_ &= ~0x00000800;
+      bitField1_ &= ~0x00002000;
       honors.clear();
       return this;
     }
@@ -2821,7 +2967,7 @@ public final class PlayerData {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.HonorInfo> getMutableHonors() {
-      bitField1_ |= 0x00000800;
+      bitField1_ |= 0x00002000;
       return honors;
     }
 
@@ -2831,7 +2977,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addHonors(final Public.HonorInfo value) {
-      bitField1_ |= 0x00000800;
+      bitField1_ |= 0x00002000;
       honors.add(value);
       return this;
     }
@@ -2842,7 +2988,7 @@ public final class PlayerData {
      * @return this
      */
     public PlayerInfo addAllHonors(final Public.HonorInfo... values) {
-      bitField1_ |= 0x00000800;
+      bitField1_ |= 0x00002000;
       honors.addAll(values);
       return this;
     }
@@ -2878,15 +3024,16 @@ public final class PlayerData {
         board.copyFrom(other.board);
         datingCharIds.copyFrom(other.datingCharIds);
         dailyActiveIds.copyFrom(other.dailyActiveIds);
+        weeklyActiveIds.copyFrom(other.weeklyActiveIds);
         honorList.copyFrom(other.honorList);
         res.copyFrom(other.res);
         items.copyFrom(other.items);
         chars.copyFrom(other.chars);
         equipments.copyFrom(other.equipments);
-        regionBossLevels.copyFrom(other.regionBossLevels);
       }
       if ((bitField1_ | other.bitField1_) != 0) {
         bitField1_ = other.bitField1_;
+        regionBossLevels.copyFrom(other.regionBossLevels);
         handbook.copyFrom(other.handbook);
         titles.copyFrom(other.titles);
         dailyInstances.copyFrom(other.dailyInstances);
@@ -2898,6 +3045,7 @@ public final class PlayerData {
         weekBossLevels.copyFrom(other.weekBossLevels);
         charGemInstances.copyFrom(other.charGemInstances);
         tutorialLevels.copyFrom(other.tutorialLevels);
+        assists.copyFrom(other.assists);
         honors.copyFrom(other.honors);
       }
       return this;
@@ -2987,6 +3135,9 @@ public final class PlayerData {
       if (other.hasDailyActiveIds()) {
         getMutableDailyActiveIds().addAll(other.dailyActiveIds);
       }
+      if (other.hasWeeklyActiveIds()) {
+        getMutableWeeklyActiveIds().addAll(other.weeklyActiveIds);
+      }
       if (other.hasHonorList()) {
         getMutableHonorList().addAll(other.honorList);
       }
@@ -3038,6 +3189,9 @@ public final class PlayerData {
       if (other.hasTutorialLevels()) {
         getMutableTutorialLevels().addAll(other.tutorialLevels);
       }
+      if (other.hasAssists()) {
+        getMutableAssists().addAll(other.assists);
+      }
       if (other.hasHonors()) {
         getMutableHonors().addAll(other.honors);
       }
@@ -3078,6 +3232,7 @@ public final class PlayerData {
       board.clear();
       datingCharIds.clear();
       dailyActiveIds.clear();
+      weeklyActiveIds.clear();
       honorList.clear();
       res.clear();
       items.clear();
@@ -3095,6 +3250,7 @@ public final class PlayerData {
       weekBossLevels.clear();
       charGemInstances.clear();
       tutorialLevels.clear();
+      assists.clear();
       honors.clear();
       return this;
     }
@@ -3123,6 +3279,7 @@ public final class PlayerData {
       board.clear();
       datingCharIds.clear();
       dailyActiveIds.clear();
+      weeklyActiveIds.clear();
       honorList.clear();
       res.clearQuick();
       items.clearQuick();
@@ -3140,6 +3297,7 @@ public final class PlayerData {
       weekBossLevels.clearQuick();
       charGemInstances.clearQuick();
       tutorialLevels.clearQuick();
+      assists.clearQuick();
       honors.clearQuick();
       return this;
     }
@@ -3181,6 +3339,7 @@ public final class PlayerData {
         && (!hasBoard() || board.equals(other.board))
         && (!hasDatingCharIds() || datingCharIds.equals(other.datingCharIds))
         && (!hasDailyActiveIds() || dailyActiveIds.equals(other.dailyActiveIds))
+        && (!hasWeeklyActiveIds() || weeklyActiveIds.equals(other.weeklyActiveIds))
         && (!hasHonorList() || honorList.equals(other.honorList))
         && (!hasRes() || res.equals(other.res))
         && (!hasItems() || items.equals(other.items))
@@ -3198,6 +3357,7 @@ public final class PlayerData {
         && (!hasWeekBossLevels() || weekBossLevels.equals(other.weekBossLevels))
         && (!hasCharGemInstances() || charGemInstances.equals(other.charGemInstances))
         && (!hasTutorialLevels() || tutorialLevels.equals(other.tutorialLevels))
+        && (!hasAssists() || assists.equals(other.assists))
         && (!hasHonors() || honors.equals(other.honors));
     }
 
@@ -3316,108 +3476,120 @@ public final class PlayerData {
         }
       }
       if ((bitField0_ & 0x04000000) != 0) {
+        for (int i = 0; i < weeklyActiveIds.length(); i++) {
+          output.writeRawLittleEndian16((short) 688);
+          output.writeUInt32NoTag(weeklyActiveIds.array()[i]);
+        }
+      }
+      if ((bitField0_ & 0x08000000) != 0) {
         for (int i = 0; i < honorList.length(); i++) {
           output.writeRawLittleEndian16((short) 2008);
           output.writeUInt32NoTag(honorList.array()[i]);
         }
       }
-      if ((bitField0_ & 0x08000000) != 0) {
+      if ((bitField0_ & 0x10000000) != 0) {
         for (int i = 0; i < res.length(); i++) {
           output.writeRawByte((byte) 18);
           output.writeMessageNoTag(res.get(i));
         }
       }
-      if ((bitField0_ & 0x10000000) != 0) {
+      if ((bitField0_ & 0x20000000) != 0) {
         for (int i = 0; i < items.length(); i++) {
           output.writeRawByte((byte) 26);
           output.writeMessageNoTag(items.get(i));
         }
       }
-      if ((bitField0_ & 0x20000000) != 0) {
+      if ((bitField0_ & 0x40000000) != 0) {
         for (int i = 0; i < chars.length(); i++) {
           output.writeRawByte((byte) 34);
           output.writeMessageNoTag(chars.get(i));
         }
       }
-      if ((bitField0_ & 0x40000000) != 0) {
+      if ((bitField0_ & 0x80000000) != 0) {
         for (int i = 0; i < equipments.length(); i++) {
           output.writeRawByte((byte) 90);
           output.writeMessageNoTag(equipments.get(i));
         }
       }
-      if ((bitField0_ & 0x80000000) != 0) {
+      if ((bitField1_ & 0x00000001) != 0) {
         for (int i = 0; i < regionBossLevels.length(); i++) {
           output.writeRawByte((byte) 98);
           output.writeMessageNoTag(regionBossLevels.get(i));
         }
       }
-      if ((bitField1_ & 0x00000001) != 0) {
+      if ((bitField1_ & 0x00000002) != 0) {
         for (int i = 0; i < handbook.length(); i++) {
           output.writeRawLittleEndian16((short) 410);
           output.writeMessageNoTag(handbook.get(i));
         }
       }
-      if ((bitField1_ & 0x00000002) != 0) {
+      if ((bitField1_ & 0x00000004) != 0) {
         for (int i = 0; i < titles.length(); i++) {
           output.writeRawLittleEndian16((short) 426);
           output.writeMessageNoTag(titles.get(i));
         }
       }
-      if ((bitField1_ & 0x00000004) != 0) {
+      if ((bitField1_ & 0x00000008) != 0) {
         for (int i = 0; i < dailyInstances.length(); i++) {
           output.writeRawLittleEndian16((short) 434);
           output.writeMessageNoTag(dailyInstances.get(i));
         }
       }
-      if ((bitField1_ & 0x00000008) != 0) {
+      if ((bitField1_ & 0x00000010) != 0) {
         for (int i = 0; i < dictionaries.length(); i++) {
           output.writeRawLittleEndian16((short) 442);
           output.writeMessageNoTag(dictionaries.get(i));
         }
       }
-      if ((bitField1_ & 0x00000010) != 0) {
+      if ((bitField1_ & 0x00000020) != 0) {
         for (int i = 0; i < activities.length(); i++) {
           output.writeRawLittleEndian16((short) 450);
           output.writeMessageNoTag(activities.get(i));
         }
       }
-      if ((bitField1_ & 0x00000020) != 0) {
+      if ((bitField1_ & 0x00000040) != 0) {
         for (int i = 0; i < discs.length(); i++) {
           output.writeRawLittleEndian16((short) 482);
           output.writeMessageNoTag(discs.get(i));
         }
       }
-      if ((bitField1_ & 0x00000040) != 0) {
+      if ((bitField1_ & 0x00000080) != 0) {
         for (int i = 0; i < equipmentInstances.length(); i++) {
           output.writeRawLittleEndian16((short) 490);
           output.writeMessageNoTag(equipmentInstances.get(i));
         }
       }
-      if ((bitField1_ & 0x00000080) != 0) {
+      if ((bitField1_ & 0x00000100) != 0) {
         for (int i = 0; i < skillInstances.length(); i++) {
           output.writeRawLittleEndian16((short) 658);
           output.writeMessageNoTag(skillInstances.get(i));
         }
       }
-      if ((bitField1_ & 0x00000100) != 0) {
+      if ((bitField1_ & 0x00000200) != 0) {
         for (int i = 0; i < weekBossLevels.length(); i++) {
           output.writeRawLittleEndian16((short) 666);
           output.writeMessageNoTag(weekBossLevels.get(i));
         }
       }
-      if ((bitField1_ & 0x00000200) != 0) {
+      if ((bitField1_ & 0x00000400) != 0) {
         for (int i = 0; i < charGemInstances.length(); i++) {
           output.writeRawLittleEndian16((short) 674);
           output.writeMessageNoTag(charGemInstances.get(i));
         }
       }
-      if ((bitField1_ & 0x00000400) != 0) {
+      if ((bitField1_ & 0x00000800) != 0) {
         for (int i = 0; i < tutorialLevels.length(); i++) {
           output.writeRawLittleEndian16((short) 682);
           output.writeMessageNoTag(tutorialLevels.get(i));
         }
       }
-      if ((bitField1_ & 0x00000800) != 0) {
+      if ((bitField1_ & 0x00001000) != 0) {
+        for (int i = 0; i < assists.length(); i++) {
+          output.writeRawLittleEndian16((short) 698);
+          output.writeMessageNoTag(assists.get(i));
+        }
+      }
+      if ((bitField1_ & 0x00002000) != 0) {
         for (int i = 0; i < honors.length(); i++) {
           output.writeRawLittleEndian16((short) 2018);
           output.writeMessageNoTag(honors.get(i));
@@ -3507,57 +3679,63 @@ public final class PlayerData {
         size += (2 * dailyActiveIds.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(dailyActiveIds);
       }
       if ((bitField0_ & 0x04000000) != 0) {
-        size += (2 * honorList.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(honorList);
+        size += (2 * weeklyActiveIds.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(weeklyActiveIds);
       }
       if ((bitField0_ & 0x08000000) != 0) {
-        size += (1 * res.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(res);
+        size += (2 * honorList.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(honorList);
       }
       if ((bitField0_ & 0x10000000) != 0) {
-        size += (1 * items.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(items);
+        size += (1 * res.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(res);
       }
       if ((bitField0_ & 0x20000000) != 0) {
-        size += (1 * chars.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(chars);
+        size += (1 * items.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(items);
       }
       if ((bitField0_ & 0x40000000) != 0) {
-        size += (1 * equipments.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(equipments);
+        size += (1 * chars.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(chars);
       }
       if ((bitField0_ & 0x80000000) != 0) {
-        size += (1 * regionBossLevels.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(regionBossLevels);
+        size += (1 * equipments.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(equipments);
       }
       if ((bitField1_ & 0x00000001) != 0) {
-        size += (2 * handbook.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(handbook);
+        size += (1 * regionBossLevels.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(regionBossLevels);
       }
       if ((bitField1_ & 0x00000002) != 0) {
-        size += (2 * titles.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(titles);
+        size += (2 * handbook.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(handbook);
       }
       if ((bitField1_ & 0x00000004) != 0) {
-        size += (2 * dailyInstances.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(dailyInstances);
+        size += (2 * titles.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(titles);
       }
       if ((bitField1_ & 0x00000008) != 0) {
-        size += (2 * dictionaries.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(dictionaries);
+        size += (2 * dailyInstances.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(dailyInstances);
       }
       if ((bitField1_ & 0x00000010) != 0) {
-        size += (2 * activities.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(activities);
+        size += (2 * dictionaries.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(dictionaries);
       }
       if ((bitField1_ & 0x00000020) != 0) {
-        size += (2 * discs.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(discs);
+        size += (2 * activities.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(activities);
       }
       if ((bitField1_ & 0x00000040) != 0) {
-        size += (2 * equipmentInstances.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(equipmentInstances);
+        size += (2 * discs.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(discs);
       }
       if ((bitField1_ & 0x00000080) != 0) {
-        size += (2 * skillInstances.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(skillInstances);
+        size += (2 * equipmentInstances.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(equipmentInstances);
       }
       if ((bitField1_ & 0x00000100) != 0) {
-        size += (2 * weekBossLevels.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(weekBossLevels);
+        size += (2 * skillInstances.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(skillInstances);
       }
       if ((bitField1_ & 0x00000200) != 0) {
-        size += (2 * charGemInstances.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(charGemInstances);
+        size += (2 * weekBossLevels.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(weekBossLevels);
       }
       if ((bitField1_ & 0x00000400) != 0) {
-        size += (2 * tutorialLevels.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(tutorialLevels);
+        size += (2 * charGemInstances.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(charGemInstances);
       }
       if ((bitField1_ & 0x00000800) != 0) {
+        size += (2 * tutorialLevels.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(tutorialLevels);
+      }
+      if ((bitField1_ & 0x00001000) != 0) {
+        size += (2 * assists.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(assists);
+      }
+      if ((bitField1_ & 0x00002000) != 0) {
         size += (2 * honors.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(honors);
       }
       return size;
@@ -3800,6 +3978,15 @@ public final class PlayerData {
             input.readPackedUInt32(dailyActiveIds, tag);
             bitField0_ |= 0x02000000;
             tag = input.readTag();
+            if (tag != 306) {
+              break;
+            }
+          }
+          case 306: {
+            // weeklyActiveIds [packed=true]
+            input.readPackedUInt32(weeklyActiveIds, tag);
+            bitField0_ |= 0x04000000;
+            tag = input.readTag();
             if (tag != 986) {
               break;
             }
@@ -3807,7 +3994,7 @@ public final class PlayerData {
           case 986: {
             // honorList [packed=true]
             input.readPackedUInt32(honorList, tag);
-            bitField0_ |= 0x04000000;
+            bitField0_ |= 0x08000000;
             tag = input.readTag();
             if (tag != 18) {
               break;
@@ -3816,7 +4003,7 @@ public final class PlayerData {
           case 18: {
             // res
             tag = input.readRepeatedMessage(res, tag);
-            bitField0_ |= 0x08000000;
+            bitField0_ |= 0x10000000;
             if (tag != 26) {
               break;
             }
@@ -3824,7 +4011,7 @@ public final class PlayerData {
           case 26: {
             // items
             tag = input.readRepeatedMessage(items, tag);
-            bitField0_ |= 0x10000000;
+            bitField0_ |= 0x20000000;
             if (tag != 34) {
               break;
             }
@@ -3832,7 +4019,7 @@ public final class PlayerData {
           case 34: {
             // chars
             tag = input.readRepeatedMessage(chars, tag);
-            bitField0_ |= 0x20000000;
+            bitField0_ |= 0x40000000;
             if (tag != 90) {
               break;
             }
@@ -3840,7 +4027,7 @@ public final class PlayerData {
           case 90: {
             // equipments
             tag = input.readRepeatedMessage(equipments, tag);
-            bitField0_ |= 0x40000000;
+            bitField0_ |= 0x80000000;
             if (tag != 98) {
               break;
             }
@@ -3848,7 +4035,7 @@ public final class PlayerData {
           case 98: {
             // regionBossLevels
             tag = input.readRepeatedMessage(regionBossLevels, tag);
-            bitField0_ |= 0x80000000;
+            bitField1_ |= 0x00000001;
             if (tag != 154) {
               break;
             }
@@ -3856,7 +4043,7 @@ public final class PlayerData {
           case 154: {
             // handbook
             tag = input.readRepeatedMessage(handbook, tag);
-            bitField1_ |= 0x00000001;
+            bitField1_ |= 0x00000002;
             if (tag != 170) {
               break;
             }
@@ -3864,7 +4051,7 @@ public final class PlayerData {
           case 170: {
             // titles
             tag = input.readRepeatedMessage(titles, tag);
-            bitField1_ |= 0x00000002;
+            bitField1_ |= 0x00000004;
             if (tag != 178) {
               break;
             }
@@ -3872,7 +4059,7 @@ public final class PlayerData {
           case 178: {
             // dailyInstances
             tag = input.readRepeatedMessage(dailyInstances, tag);
-            bitField1_ |= 0x00000004;
+            bitField1_ |= 0x00000008;
             if (tag != 186) {
               break;
             }
@@ -3880,7 +4067,7 @@ public final class PlayerData {
           case 186: {
             // dictionaries
             tag = input.readRepeatedMessage(dictionaries, tag);
-            bitField1_ |= 0x00000008;
+            bitField1_ |= 0x00000010;
             if (tag != 194) {
               break;
             }
@@ -3888,7 +4075,7 @@ public final class PlayerData {
           case 194: {
             // activities
             tag = input.readRepeatedMessage(activities, tag);
-            bitField1_ |= 0x00000010;
+            bitField1_ |= 0x00000020;
             if (tag != 226) {
               break;
             }
@@ -3896,7 +4083,7 @@ public final class PlayerData {
           case 226: {
             // discs
             tag = input.readRepeatedMessage(discs, tag);
-            bitField1_ |= 0x00000020;
+            bitField1_ |= 0x00000040;
             if (tag != 234) {
               break;
             }
@@ -3904,7 +4091,7 @@ public final class PlayerData {
           case 234: {
             // equipmentInstances
             tag = input.readRepeatedMessage(equipmentInstances, tag);
-            bitField1_ |= 0x00000040;
+            bitField1_ |= 0x00000080;
             if (tag != 274) {
               break;
             }
@@ -3912,7 +4099,7 @@ public final class PlayerData {
           case 274: {
             // skillInstances
             tag = input.readRepeatedMessage(skillInstances, tag);
-            bitField1_ |= 0x00000080;
+            bitField1_ |= 0x00000100;
             if (tag != 282) {
               break;
             }
@@ -3920,7 +4107,7 @@ public final class PlayerData {
           case 282: {
             // weekBossLevels
             tag = input.readRepeatedMessage(weekBossLevels, tag);
-            bitField1_ |= 0x00000100;
+            bitField1_ |= 0x00000200;
             if (tag != 290) {
               break;
             }
@@ -3928,7 +4115,7 @@ public final class PlayerData {
           case 290: {
             // charGemInstances
             tag = input.readRepeatedMessage(charGemInstances, tag);
-            bitField1_ |= 0x00000200;
+            bitField1_ |= 0x00000400;
             if (tag != 298) {
               break;
             }
@@ -3936,7 +4123,15 @@ public final class PlayerData {
           case 298: {
             // tutorialLevels
             tag = input.readRepeatedMessage(tutorialLevels, tag);
-            bitField1_ |= 0x00000400;
+            bitField1_ |= 0x00000800;
+            if (tag != 314) {
+              break;
+            }
+          }
+          case 314: {
+            // assists
+            tag = input.readRepeatedMessage(assists, tag);
+            bitField1_ |= 0x00001000;
             if (tag != 994) {
               break;
             }
@@ -3944,7 +4139,7 @@ public final class PlayerData {
           case 994: {
             // honors
             tag = input.readRepeatedMessage(honors, tag);
-            bitField1_ |= 0x00000800;
+            bitField1_ |= 0x00002000;
             if (tag != 0) {
               break;
             }
@@ -3983,10 +4178,16 @@ public final class PlayerData {
             bitField0_ |= 0x02000000;
             break;
           }
+          case 304: {
+            // weeklyActiveIds [packed=false]
+            tag = input.readRepeatedUInt32(weeklyActiveIds, tag);
+            bitField0_ |= 0x04000000;
+            break;
+          }
           case 984: {
             // honorList [packed=false]
             tag = input.readRepeatedUInt32(honorList, tag);
-            bitField0_ |= 0x04000000;
+            bitField0_ |= 0x08000000;
             break;
           }
         }
@@ -4075,57 +4276,63 @@ public final class PlayerData {
         output.writeRepeatedUInt32(FieldNames.dailyActiveIds, dailyActiveIds);
       }
       if ((bitField0_ & 0x04000000) != 0) {
-        output.writeRepeatedUInt32(FieldNames.honorList, honorList);
+        output.writeRepeatedUInt32(FieldNames.weeklyActiveIds, weeklyActiveIds);
       }
       if ((bitField0_ & 0x08000000) != 0) {
-        output.writeRepeatedMessage(FieldNames.res, res);
+        output.writeRepeatedUInt32(FieldNames.honorList, honorList);
       }
       if ((bitField0_ & 0x10000000) != 0) {
-        output.writeRepeatedMessage(FieldNames.items, items);
+        output.writeRepeatedMessage(FieldNames.res, res);
       }
       if ((bitField0_ & 0x20000000) != 0) {
-        output.writeRepeatedMessage(FieldNames.chars, chars);
+        output.writeRepeatedMessage(FieldNames.items, items);
       }
       if ((bitField0_ & 0x40000000) != 0) {
-        output.writeRepeatedMessage(FieldNames.equipments, equipments);
+        output.writeRepeatedMessage(FieldNames.chars, chars);
       }
       if ((bitField0_ & 0x80000000) != 0) {
-        output.writeRepeatedMessage(FieldNames.regionBossLevels, regionBossLevels);
+        output.writeRepeatedMessage(FieldNames.equipments, equipments);
       }
       if ((bitField1_ & 0x00000001) != 0) {
-        output.writeRepeatedMessage(FieldNames.handbook, handbook);
+        output.writeRepeatedMessage(FieldNames.regionBossLevels, regionBossLevels);
       }
       if ((bitField1_ & 0x00000002) != 0) {
-        output.writeRepeatedMessage(FieldNames.titles, titles);
+        output.writeRepeatedMessage(FieldNames.handbook, handbook);
       }
       if ((bitField1_ & 0x00000004) != 0) {
-        output.writeRepeatedMessage(FieldNames.dailyInstances, dailyInstances);
+        output.writeRepeatedMessage(FieldNames.titles, titles);
       }
       if ((bitField1_ & 0x00000008) != 0) {
-        output.writeRepeatedMessage(FieldNames.dictionaries, dictionaries);
+        output.writeRepeatedMessage(FieldNames.dailyInstances, dailyInstances);
       }
       if ((bitField1_ & 0x00000010) != 0) {
-        output.writeRepeatedMessage(FieldNames.activities, activities);
+        output.writeRepeatedMessage(FieldNames.dictionaries, dictionaries);
       }
       if ((bitField1_ & 0x00000020) != 0) {
-        output.writeRepeatedMessage(FieldNames.discs, discs);
+        output.writeRepeatedMessage(FieldNames.activities, activities);
       }
       if ((bitField1_ & 0x00000040) != 0) {
-        output.writeRepeatedMessage(FieldNames.equipmentInstances, equipmentInstances);
+        output.writeRepeatedMessage(FieldNames.discs, discs);
       }
       if ((bitField1_ & 0x00000080) != 0) {
-        output.writeRepeatedMessage(FieldNames.skillInstances, skillInstances);
+        output.writeRepeatedMessage(FieldNames.equipmentInstances, equipmentInstances);
       }
       if ((bitField1_ & 0x00000100) != 0) {
-        output.writeRepeatedMessage(FieldNames.weekBossLevels, weekBossLevels);
+        output.writeRepeatedMessage(FieldNames.skillInstances, skillInstances);
       }
       if ((bitField1_ & 0x00000200) != 0) {
-        output.writeRepeatedMessage(FieldNames.charGemInstances, charGemInstances);
+        output.writeRepeatedMessage(FieldNames.weekBossLevels, weekBossLevels);
       }
       if ((bitField1_ & 0x00000400) != 0) {
-        output.writeRepeatedMessage(FieldNames.tutorialLevels, tutorialLevels);
+        output.writeRepeatedMessage(FieldNames.charGemInstances, charGemInstances);
       }
       if ((bitField1_ & 0x00000800) != 0) {
+        output.writeRepeatedMessage(FieldNames.tutorialLevels, tutorialLevels);
+      }
+      if ((bitField1_ & 0x00001000) != 0) {
+        output.writeRepeatedMessage(FieldNames.assists, assists);
+      }
+      if ((bitField1_ & 0x00002000) != 0) {
         output.writeRepeatedMessage(FieldNames.honors, honors);
       }
       output.endObject();
@@ -4424,11 +4631,22 @@ public final class PlayerData {
             }
             break;
           }
+          case -1042853327: {
+            if (input.isAtField(FieldNames.weeklyActiveIds)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedUInt32(weeklyActiveIds);
+                bitField0_ |= 0x04000000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case 1017359368: {
             if (input.isAtField(FieldNames.honorList)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedUInt32(honorList);
-                bitField0_ |= 0x04000000;
+                bitField0_ |= 0x08000000;
               }
             } else {
               input.skipUnknownField();
@@ -4439,7 +4657,7 @@ public final class PlayerData {
             if (input.isAtField(FieldNames.res)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(res);
-                bitField0_ |= 0x08000000;
+                bitField0_ |= 0x10000000;
               }
             } else {
               input.skipUnknownField();
@@ -4450,7 +4668,7 @@ public final class PlayerData {
             if (input.isAtField(FieldNames.items)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(items);
-                bitField0_ |= 0x10000000;
+                bitField0_ |= 0x20000000;
               }
             } else {
               input.skipUnknownField();
@@ -4461,7 +4679,7 @@ public final class PlayerData {
             if (input.isAtField(FieldNames.chars)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(chars);
-                bitField0_ |= 0x20000000;
+                bitField0_ |= 0x40000000;
               }
             } else {
               input.skipUnknownField();
@@ -4472,7 +4690,7 @@ public final class PlayerData {
             if (input.isAtField(FieldNames.equipments)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(equipments);
-                bitField0_ |= 0x40000000;
+                bitField0_ |= 0x80000000;
               }
             } else {
               input.skipUnknownField();
@@ -4483,7 +4701,7 @@ public final class PlayerData {
             if (input.isAtField(FieldNames.regionBossLevels)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(regionBossLevels);
-                bitField0_ |= 0x80000000;
+                bitField1_ |= 0x00000001;
               }
             } else {
               input.skipUnknownField();
@@ -4494,7 +4712,7 @@ public final class PlayerData {
             if (input.isAtField(FieldNames.handbook)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(handbook);
-                bitField1_ |= 0x00000001;
+                bitField1_ |= 0x00000002;
               }
             } else {
               input.skipUnknownField();
@@ -4505,7 +4723,7 @@ public final class PlayerData {
             if (input.isAtField(FieldNames.titles)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(titles);
-                bitField1_ |= 0x00000002;
+                bitField1_ |= 0x00000004;
               }
             } else {
               input.skipUnknownField();
@@ -4516,7 +4734,7 @@ public final class PlayerData {
             if (input.isAtField(FieldNames.dailyInstances)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(dailyInstances);
-                bitField1_ |= 0x00000004;
+                bitField1_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -4527,7 +4745,7 @@ public final class PlayerData {
             if (input.isAtField(FieldNames.dictionaries)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(dictionaries);
-                bitField1_ |= 0x00000008;
+                bitField1_ |= 0x00000010;
               }
             } else {
               input.skipUnknownField();
@@ -4538,7 +4756,7 @@ public final class PlayerData {
             if (input.isAtField(FieldNames.activities)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(activities);
-                bitField1_ |= 0x00000010;
+                bitField1_ |= 0x00000020;
               }
             } else {
               input.skipUnknownField();
@@ -4549,7 +4767,7 @@ public final class PlayerData {
             if (input.isAtField(FieldNames.discs)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(discs);
-                bitField1_ |= 0x00000020;
+                bitField1_ |= 0x00000040;
               }
             } else {
               input.skipUnknownField();
@@ -4560,7 +4778,7 @@ public final class PlayerData {
             if (input.isAtField(FieldNames.equipmentInstances)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(equipmentInstances);
-                bitField1_ |= 0x00000040;
+                bitField1_ |= 0x00000080;
               }
             } else {
               input.skipUnknownField();
@@ -4571,7 +4789,7 @@ public final class PlayerData {
             if (input.isAtField(FieldNames.skillInstances)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(skillInstances);
-                bitField1_ |= 0x00000080;
+                bitField1_ |= 0x00000100;
               }
             } else {
               input.skipUnknownField();
@@ -4582,7 +4800,7 @@ public final class PlayerData {
             if (input.isAtField(FieldNames.weekBossLevels)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(weekBossLevels);
-                bitField1_ |= 0x00000100;
+                bitField1_ |= 0x00000200;
               }
             } else {
               input.skipUnknownField();
@@ -4593,7 +4811,7 @@ public final class PlayerData {
             if (input.isAtField(FieldNames.charGemInstances)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(charGemInstances);
-                bitField1_ |= 0x00000200;
+                bitField1_ |= 0x00000400;
               }
             } else {
               input.skipUnknownField();
@@ -4604,7 +4822,18 @@ public final class PlayerData {
             if (input.isAtField(FieldNames.tutorialLevels)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(tutorialLevels);
-                bitField1_ |= 0x00000400;
+                bitField1_ |= 0x00000800;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 959996682: {
+            if (input.isAtField(FieldNames.assists)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(assists);
+                bitField1_ |= 0x00001000;
               }
             } else {
               input.skipUnknownField();
@@ -4615,7 +4844,7 @@ public final class PlayerData {
             if (input.isAtField(FieldNames.honors)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(honors);
-                bitField1_ |= 0x00000800;
+                bitField1_ |= 0x00002000;
               }
             } else {
               input.skipUnknownField();
@@ -4726,6 +4955,8 @@ public final class PlayerData {
 
       static final FieldName dailyActiveIds = FieldName.forField("DailyActiveIds");
 
+      static final FieldName weeklyActiveIds = FieldName.forField("WeeklyActiveIds");
+
       static final FieldName honorList = FieldName.forField("HonorList");
 
       static final FieldName res = FieldName.forField("Res");
@@ -4759,6 +4990,8 @@ public final class PlayerData {
       static final FieldName charGemInstances = FieldName.forField("CharGemInstances");
 
       static final FieldName tutorialLevels = FieldName.forField("TutorialLevels");
+
+      static final FieldName assists = FieldName.forField("Assists");
 
       static final FieldName honors = FieldName.forField("Honors");
     }
@@ -7130,6 +7363,453 @@ public final class PlayerData {
       static final FieldName cur = FieldName.forField("Cur");
 
       static final FieldName stage = FieldName.forField("Stage");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code AssistInfo}
+   */
+  public static final class AssistInfo extends ProtoMessage<AssistInfo> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 Attribute = 1;</code>
+     */
+    private int attribute;
+
+    /**
+     * <code>optional uint32 Group = 2;</code>
+     */
+    private int group;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private AssistInfo() {
+    }
+
+    /**
+     * @return a new empty instance of {@code AssistInfo}
+     */
+    public static AssistInfo newInstance() {
+      return new AssistInfo();
+    }
+
+    /**
+     * <code>optional uint32 Attribute = 1;</code>
+     * @return whether the attribute field is set
+     */
+    public boolean hasAttribute() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Attribute = 1;</code>
+     * @return this
+     */
+    public AssistInfo clearAttribute() {
+      bitField0_ &= ~0x00000001;
+      attribute = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Attribute = 1;</code>
+     * @return the attribute
+     */
+    public int getAttribute() {
+      return attribute;
+    }
+
+    /**
+     * <code>optional uint32 Attribute = 1;</code>
+     * @param value the attribute to set
+     * @return this
+     */
+    public AssistInfo setAttribute(final int value) {
+      bitField0_ |= 0x00000001;
+      attribute = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Group = 2;</code>
+     * @return whether the group field is set
+     */
+    public boolean hasGroup() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Group = 2;</code>
+     * @return this
+     */
+    public AssistInfo clearGroup() {
+      bitField0_ &= ~0x00000002;
+      group = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Group = 2;</code>
+     * @return the group
+     */
+    public int getGroup() {
+      return group;
+    }
+
+    /**
+     * <code>optional uint32 Group = 2;</code>
+     * @param value the group to set
+     * @return this
+     */
+    public AssistInfo setGroup(final int value) {
+      bitField0_ |= 0x00000002;
+      group = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public AssistInfo clearNextPackage() {
+      bitField0_ &= ~0x00000004;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000004;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public AssistInfo addNextPackage(final byte value) {
+      bitField0_ |= 0x00000004;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public AssistInfo addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public AssistInfo setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public AssistInfo copyFrom(final AssistInfo other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        attribute = other.attribute;
+        group = other.group;
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public AssistInfo mergeFrom(final AssistInfo other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasAttribute()) {
+        setAttribute(other.attribute);
+      }
+      if (other.hasGroup()) {
+        setGroup(other.group);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public AssistInfo clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      attribute = 0;
+      group = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public AssistInfo clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof AssistInfo)) {
+        return false;
+      }
+      AssistInfo other = (AssistInfo) o;
+      return bitField0_ == other.bitField0_
+        && (!hasAttribute() || attribute == other.attribute)
+        && (!hasGroup() || group == other.group)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(attribute);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeUInt32NoTag(group);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(attribute);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(group);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public AssistInfo mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // attribute
+            attribute = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16) {
+              break;
+            }
+          }
+          case 16: {
+            // group
+            group = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.attribute, attribute);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeUInt32(FieldNames.group, group);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public AssistInfo mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 2017053308: {
+            if (input.isAtField(FieldNames.attribute)) {
+              if (!input.trySkipNullValue()) {
+                attribute = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 69076575: {
+            if (input.isAtField(FieldNames.group)) {
+              if (!input.trySkipNullValue()) {
+                group = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public AssistInfo clone() {
+      return new AssistInfo().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static AssistInfo parseFrom(final byte[] data) throws InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new AssistInfo(), data).checkInitialized();
+    }
+
+    public static AssistInfo parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new AssistInfo(), input).checkInitialized();
+    }
+
+    public static AssistInfo parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new AssistInfo(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating AssistInfo messages
+     */
+    public static MessageFactory<AssistInfo> getFactory() {
+      return AssistInfoFactory.INSTANCE;
+    }
+
+    private enum AssistInfoFactory implements MessageFactory<AssistInfo> {
+      INSTANCE;
+
+      @Override
+      public AssistInfo create() {
+        return AssistInfo.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName attribute = FieldName.forField("Attribute");
+
+      static final FieldName group = FieldName.forField("Group");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }

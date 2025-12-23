@@ -87,7 +87,17 @@ public final class Public {
     /**
      * <code>TowerEvent = 12;</code>
      */
-    TowerEvent("TowerEvent", 12);
+    TowerEvent("TowerEvent", 12),
+
+    /**
+     * <code>Weekly = 13;</code>
+     */
+    Weekly("Weekly", 13),
+
+    /**
+     * <code>Assist = 14;</code>
+     */
+    Assist("Assist", 14);
 
     /**
      * <code>UnknownQuest = 0;</code>
@@ -154,6 +164,16 @@ public final class Public {
      */
     public static final int TowerEvent_VALUE = 12;
 
+    /**
+     * <code>Weekly = 13;</code>
+     */
+    public static final int Weekly_VALUE = 13;
+
+    /**
+     * <code>Assist = 14;</code>
+     */
+    public static final int Assist_VALUE = 14;
+
     private final java.lang.String name;
 
     private final int number;
@@ -207,7 +227,7 @@ public final class Public {
     enum QuestTypeConverter implements ProtoEnum.EnumConverter<QuestType> {
       INSTANCE;
 
-      private static final QuestType[] lookup = new QuestType[13];
+      private static final QuestType[] lookup = new QuestType[15];
 
       static {
         lookup[0] = UnknownQuest;
@@ -223,6 +243,8 @@ public final class Public {
         lookup[10] = Tower;
         lookup[11] = Demon;
         lookup[12] = TowerEvent;
+        lookup[13] = Weekly;
+        lookup[14] = Assist;
       }
 
       @Override
@@ -245,6 +267,15 @@ public final class Public {
             }
             if (ProtoUtil.isEqual("Demon", value)) {
               return Demon;
+            }
+            break;
+          }
+          case 6: {
+            if (ProtoUtil.isEqual("Weekly", value)) {
+              return Weekly;
+            }
+            if (ProtoUtil.isEqual("Assist", value)) {
+              return Assist;
             }
             break;
           }
@@ -72214,6 +72245,2838 @@ public final class Public {
       static final FieldName timeLimit = FieldName.forField("TimeLimit");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code TrekkerVersusShow}
+   */
+  public static final class TrekkerVersusShow extends ProtoMessage<TrekkerVersusShow> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 BuildScore = 3;</code>
+     */
+    private int buildScore;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>repeated uint32 CharIds = 1;</code>
+     */
+    private final RepeatedInt charIds = RepeatedInt.newEmptyInstance();
+
+    /**
+     * <code>repeated uint32 AffixIds = 2;</code>
+     */
+    private final RepeatedInt affixIds = RepeatedInt.newEmptyInstance();
+
+    private TrekkerVersusShow() {
+    }
+
+    /**
+     * @return a new empty instance of {@code TrekkerVersusShow}
+     */
+    public static TrekkerVersusShow newInstance() {
+      return new TrekkerVersusShow();
+    }
+
+    /**
+     * <code>optional uint32 BuildScore = 3;</code>
+     * @return whether the buildScore field is set
+     */
+    public boolean hasBuildScore() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 BuildScore = 3;</code>
+     * @return this
+     */
+    public TrekkerVersusShow clearBuildScore() {
+      bitField0_ &= ~0x00000001;
+      buildScore = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 BuildScore = 3;</code>
+     * @return the buildScore
+     */
+    public int getBuildScore() {
+      return buildScore;
+    }
+
+    /**
+     * <code>optional uint32 BuildScore = 3;</code>
+     * @param value the buildScore to set
+     * @return this
+     */
+    public TrekkerVersusShow setBuildScore(final int value) {
+      bitField0_ |= 0x00000001;
+      buildScore = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public TrekkerVersusShow clearNextPackage() {
+      bitField0_ &= ~0x00000002;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000002;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public TrekkerVersusShow addNextPackage(final byte value) {
+      bitField0_ |= 0x00000002;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public TrekkerVersusShow addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public TrekkerVersusShow setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 CharIds = 1;</code>
+     * @return whether the charIds field is set
+     */
+    public boolean hasCharIds() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>repeated uint32 CharIds = 1;</code>
+     * @return this
+     */
+    public TrekkerVersusShow clearCharIds() {
+      bitField0_ &= ~0x00000004;
+      charIds.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 CharIds = 1;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableCharIds()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedInt getCharIds() {
+      return charIds;
+    }
+
+    /**
+     * <code>repeated uint32 CharIds = 1;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedInt getMutableCharIds() {
+      bitField0_ |= 0x00000004;
+      return charIds;
+    }
+
+    /**
+     * <code>repeated uint32 CharIds = 1;</code>
+     * @param value the charIds to add
+     * @return this
+     */
+    public TrekkerVersusShow addCharIds(final int value) {
+      bitField0_ |= 0x00000004;
+      charIds.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 CharIds = 1;</code>
+     * @param values the charIds to add
+     * @return this
+     */
+    public TrekkerVersusShow addAllCharIds(final int... values) {
+      bitField0_ |= 0x00000004;
+      charIds.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 AffixIds = 2;</code>
+     * @return whether the affixIds field is set
+     */
+    public boolean hasAffixIds() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>repeated uint32 AffixIds = 2;</code>
+     * @return this
+     */
+    public TrekkerVersusShow clearAffixIds() {
+      bitField0_ &= ~0x00000008;
+      affixIds.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 AffixIds = 2;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableAffixIds()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedInt getAffixIds() {
+      return affixIds;
+    }
+
+    /**
+     * <code>repeated uint32 AffixIds = 2;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedInt getMutableAffixIds() {
+      bitField0_ |= 0x00000008;
+      return affixIds;
+    }
+
+    /**
+     * <code>repeated uint32 AffixIds = 2;</code>
+     * @param value the affixIds to add
+     * @return this
+     */
+    public TrekkerVersusShow addAffixIds(final int value) {
+      bitField0_ |= 0x00000008;
+      affixIds.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 AffixIds = 2;</code>
+     * @param values the affixIds to add
+     * @return this
+     */
+    public TrekkerVersusShow addAllAffixIds(final int... values) {
+      bitField0_ |= 0x00000008;
+      affixIds.addAll(values);
+      return this;
+    }
+
+    @Override
+    public TrekkerVersusShow copyFrom(final TrekkerVersusShow other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        buildScore = other.buildScore;
+        nextPackage.copyFrom(other.nextPackage);
+        charIds.copyFrom(other.charIds);
+        affixIds.copyFrom(other.affixIds);
+      }
+      return this;
+    }
+
+    @Override
+    public TrekkerVersusShow mergeFrom(final TrekkerVersusShow other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasBuildScore()) {
+        setBuildScore(other.buildScore);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasCharIds()) {
+        getMutableCharIds().addAll(other.charIds);
+      }
+      if (other.hasAffixIds()) {
+        getMutableAffixIds().addAll(other.affixIds);
+      }
+      return this;
+    }
+
+    @Override
+    public TrekkerVersusShow clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      buildScore = 0;
+      nextPackage.clear();
+      charIds.clear();
+      affixIds.clear();
+      return this;
+    }
+
+    @Override
+    public TrekkerVersusShow clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      charIds.clear();
+      affixIds.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof TrekkerVersusShow)) {
+        return false;
+      }
+      TrekkerVersusShow other = (TrekkerVersusShow) o;
+      return bitField0_ == other.bitField0_
+        && (!hasBuildScore() || buildScore == other.buildScore)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasCharIds() || charIds.equals(other.charIds))
+        && (!hasAffixIds() || affixIds.equals(other.affixIds));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeUInt32NoTag(buildScore);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        for (int i = 0; i < charIds.length(); i++) {
+          output.writeRawByte((byte) 8);
+          output.writeUInt32NoTag(charIds.array()[i]);
+        }
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        for (int i = 0; i < affixIds.length(); i++) {
+          output.writeRawByte((byte) 16);
+          output.writeUInt32NoTag(affixIds.array()[i]);
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(buildScore);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += (1 * charIds.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(charIds);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += (1 * affixIds.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(affixIds);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public TrekkerVersusShow mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 24: {
+            // buildScore
+            buildScore = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 10) {
+              break;
+            }
+          }
+          case 10: {
+            // charIds [packed=true]
+            input.readPackedUInt32(charIds, tag);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 18) {
+              break;
+            }
+          }
+          case 18: {
+            // affixIds [packed=true]
+            input.readPackedUInt32(affixIds, tag);
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+          case 8: {
+            // charIds [packed=false]
+            tag = input.readRepeatedUInt32(charIds, tag);
+            bitField0_ |= 0x00000004;
+            break;
+          }
+          case 16: {
+            // affixIds [packed=false]
+            tag = input.readRepeatedUInt32(affixIds, tag);
+            bitField0_ |= 0x00000008;
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.buildScore, buildScore);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRepeatedUInt32(FieldNames.charIds, charIds);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRepeatedUInt32(FieldNames.affixIds, affixIds);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public TrekkerVersusShow mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 1511471332: {
+            if (input.isAtField(FieldNames.buildScore)) {
+              if (!input.trySkipNullValue()) {
+                buildScore = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1891280030: {
+            if (input.isAtField(FieldNames.charIds)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedUInt32(charIds);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 670408424: {
+            if (input.isAtField(FieldNames.affixIds)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedUInt32(affixIds);
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public TrekkerVersusShow clone() {
+      return new TrekkerVersusShow().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static TrekkerVersusShow parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new TrekkerVersusShow(), data).checkInitialized();
+    }
+
+    public static TrekkerVersusShow parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new TrekkerVersusShow(), input).checkInitialized();
+    }
+
+    public static TrekkerVersusShow parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new TrekkerVersusShow(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating TrekkerVersusShow messages
+     */
+    public static MessageFactory<TrekkerVersusShow> getFactory() {
+      return TrekkerVersusShowFactory.INSTANCE;
+    }
+
+    private enum TrekkerVersusShowFactory implements MessageFactory<TrekkerVersusShow> {
+      INSTANCE;
+
+      @Override
+      public TrekkerVersusShow create() {
+        return TrekkerVersusShow.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName buildScore = FieldName.forField("BuildScore");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName charIds = FieldName.forField("CharIds");
+
+      static final FieldName affixIds = FieldName.forField("AffixIds");
+    }
+  }
+
+  /**
+   * Protobuf type {@code ActivityTrekkerVersus}
+   */
+  public static final class ActivityTrekkerVersus extends ProtoMessage<ActivityTrekkerVersus> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint64 BuildId = 2;</code>
+     */
+    private long buildId;
+
+    /**
+     * <code>optional .TrekkerVersusShow Show = 1;</code>
+     */
+    private final TrekkerVersusShow show = TrekkerVersusShow.newInstance();
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     */
+    private final RepeatedMessage<ActivityQuest> quests = RepeatedMessage.newEmptyInstance(ActivityQuest.getFactory());
+
+    private ActivityTrekkerVersus() {
+    }
+
+    /**
+     * @return a new empty instance of {@code ActivityTrekkerVersus}
+     */
+    public static ActivityTrekkerVersus newInstance() {
+      return new ActivityTrekkerVersus();
+    }
+
+    /**
+     * <code>optional uint64 BuildId = 2;</code>
+     * @return whether the buildId field is set
+     */
+    public boolean hasBuildId() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint64 BuildId = 2;</code>
+     * @return this
+     */
+    public ActivityTrekkerVersus clearBuildId() {
+      bitField0_ &= ~0x00000001;
+      buildId = 0L;
+      return this;
+    }
+
+    /**
+     * <code>optional uint64 BuildId = 2;</code>
+     * @return the buildId
+     */
+    public long getBuildId() {
+      return buildId;
+    }
+
+    /**
+     * <code>optional uint64 BuildId = 2;</code>
+     * @param value the buildId to set
+     * @return this
+     */
+    public ActivityTrekkerVersus setBuildId(final long value) {
+      bitField0_ |= 0x00000001;
+      buildId = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .TrekkerVersusShow Show = 1;</code>
+     * @return whether the show field is set
+     */
+    public boolean hasShow() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional .TrekkerVersusShow Show = 1;</code>
+     * @return this
+     */
+    public ActivityTrekkerVersus clearShow() {
+      bitField0_ &= ~0x00000002;
+      show.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .TrekkerVersusShow Show = 1;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableShow()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public TrekkerVersusShow getShow() {
+      return show;
+    }
+
+    /**
+     * <code>optional .TrekkerVersusShow Show = 1;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public TrekkerVersusShow getMutableShow() {
+      bitField0_ |= 0x00000002;
+      return show;
+    }
+
+    /**
+     * <code>optional .TrekkerVersusShow Show = 1;</code>
+     * @param value the show to set
+     * @return this
+     */
+    public ActivityTrekkerVersus setShow(final TrekkerVersusShow value) {
+      bitField0_ |= 0x00000002;
+      show.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public ActivityTrekkerVersus clearNextPackage() {
+      bitField0_ &= ~0x00000004;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000004;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public ActivityTrekkerVersus addNextPackage(final byte value) {
+      bitField0_ |= 0x00000004;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public ActivityTrekkerVersus addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public ActivityTrekkerVersus setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * @return whether the quests field is set
+     */
+    public boolean hasQuests() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * @return this
+     */
+    public ActivityTrekkerVersus clearQuests() {
+      bitField0_ &= ~0x00000008;
+      quests.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableQuests()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<ActivityQuest> getQuests() {
+      return quests;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<ActivityQuest> getMutableQuests() {
+      bitField0_ |= 0x00000008;
+      return quests;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * @param value the quests to add
+     * @return this
+     */
+    public ActivityTrekkerVersus addQuests(final ActivityQuest value) {
+      bitField0_ |= 0x00000008;
+      quests.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * @param values the quests to add
+     * @return this
+     */
+    public ActivityTrekkerVersus addAllQuests(final ActivityQuest... values) {
+      bitField0_ |= 0x00000008;
+      quests.addAll(values);
+      return this;
+    }
+
+    @Override
+    public ActivityTrekkerVersus copyFrom(final ActivityTrekkerVersus other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        buildId = other.buildId;
+        show.copyFrom(other.show);
+        nextPackage.copyFrom(other.nextPackage);
+        quests.copyFrom(other.quests);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityTrekkerVersus mergeFrom(final ActivityTrekkerVersus other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasBuildId()) {
+        setBuildId(other.buildId);
+      }
+      if (other.hasShow()) {
+        getMutableShow().mergeFrom(other.show);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasQuests()) {
+        getMutableQuests().addAll(other.quests);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityTrekkerVersus clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      buildId = 0L;
+      show.clear();
+      nextPackage.clear();
+      quests.clear();
+      return this;
+    }
+
+    @Override
+    public ActivityTrekkerVersus clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      show.clearQuick();
+      nextPackage.clear();
+      quests.clearQuick();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof ActivityTrekkerVersus)) {
+        return false;
+      }
+      ActivityTrekkerVersus other = (ActivityTrekkerVersus) o;
+      return bitField0_ == other.bitField0_
+        && (!hasBuildId() || buildId == other.buildId)
+        && (!hasShow() || show.equals(other.show))
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasQuests() || quests.equals(other.quests));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeUInt64NoTag(buildId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 10);
+        output.writeMessageNoTag(show);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        for (int i = 0; i < quests.length(); i++) {
+          output.writeRawByte((byte) 26);
+          output.writeMessageNoTag(quests.get(i));
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(show);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += (1 * quests.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(quests);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public ActivityTrekkerVersus mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 16: {
+            // buildId
+            buildId = input.readUInt64();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 10) {
+              break;
+            }
+          }
+          case 10: {
+            // show
+            input.readMessage(show);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 26) {
+              break;
+            }
+          }
+          case 26: {
+            // quests
+            tag = input.readRepeatedMessage(quests, tag);
+            bitField0_ |= 0x00000008;
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt64(FieldNames.buildId, buildId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeMessage(FieldNames.show, show);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRepeatedMessage(FieldNames.quests, quests);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public ActivityTrekkerVersus mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 1895597065: {
+            if (input.isAtField(FieldNames.buildId)) {
+              if (!input.trySkipNullValue()) {
+                buildId = input.readUInt64();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 2576157: {
+            if (input.isAtField(FieldNames.show)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(show);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1864830991: {
+            if (input.isAtField(FieldNames.quests)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(quests);
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public ActivityTrekkerVersus clone() {
+      return new ActivityTrekkerVersus().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static ActivityTrekkerVersus parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new ActivityTrekkerVersus(), data).checkInitialized();
+    }
+
+    public static ActivityTrekkerVersus parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityTrekkerVersus(), input).checkInitialized();
+    }
+
+    public static ActivityTrekkerVersus parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityTrekkerVersus(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating ActivityTrekkerVersus messages
+     */
+    public static MessageFactory<ActivityTrekkerVersus> getFactory() {
+      return ActivityTrekkerVersusFactory.INSTANCE;
+    }
+
+    private enum ActivityTrekkerVersusFactory implements MessageFactory<ActivityTrekkerVersus> {
+      INSTANCE;
+
+      @Override
+      public ActivityTrekkerVersus create() {
+        return ActivityTrekkerVersus.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName buildId = FieldName.forField("BuildId");
+
+      static final FieldName show = FieldName.forField("Show");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName quests = FieldName.forField("Quests");
+    }
+  }
+
+  /**
+   * Protobuf type {@code ActivityStoryChoice}
+   */
+  public static final class ActivityStoryChoice extends ProtoMessage<ActivityStoryChoice> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 Group = 1;</code>
+     */
+    private int group;
+
+    /**
+     * <code>optional uint32 Value = 2;</code>
+     */
+    private int value_;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private ActivityStoryChoice() {
+    }
+
+    /**
+     * @return a new empty instance of {@code ActivityStoryChoice}
+     */
+    public static ActivityStoryChoice newInstance() {
+      return new ActivityStoryChoice();
+    }
+
+    /**
+     * <code>optional uint32 Group = 1;</code>
+     * @return whether the group field is set
+     */
+    public boolean hasGroup() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Group = 1;</code>
+     * @return this
+     */
+    public ActivityStoryChoice clearGroup() {
+      bitField0_ &= ~0x00000001;
+      group = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Group = 1;</code>
+     * @return the group
+     */
+    public int getGroup() {
+      return group;
+    }
+
+    /**
+     * <code>optional uint32 Group = 1;</code>
+     * @param value the group to set
+     * @return this
+     */
+    public ActivityStoryChoice setGroup(final int value) {
+      bitField0_ |= 0x00000001;
+      group = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Value = 2;</code>
+     * @return whether the value_ field is set
+     */
+    public boolean hasValue() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Value = 2;</code>
+     * @return this
+     */
+    public ActivityStoryChoice clearValue() {
+      bitField0_ &= ~0x00000002;
+      value_ = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Value = 2;</code>
+     * @return the value_
+     */
+    public int getValue() {
+      return value_;
+    }
+
+    /**
+     * <code>optional uint32 Value = 2;</code>
+     * @param value the value_ to set
+     * @return this
+     */
+    public ActivityStoryChoice setValue(final int value) {
+      bitField0_ |= 0x00000002;
+      value_ = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public ActivityStoryChoice clearNextPackage() {
+      bitField0_ &= ~0x00000004;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000004;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public ActivityStoryChoice addNextPackage(final byte value) {
+      bitField0_ |= 0x00000004;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public ActivityStoryChoice addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public ActivityStoryChoice setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public ActivityStoryChoice copyFrom(final ActivityStoryChoice other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        group = other.group;
+        value_ = other.value_;
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityStoryChoice mergeFrom(final ActivityStoryChoice other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasGroup()) {
+        setGroup(other.group);
+      }
+      if (other.hasValue()) {
+        setValue(other.value_);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityStoryChoice clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      group = 0;
+      value_ = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public ActivityStoryChoice clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof ActivityStoryChoice)) {
+        return false;
+      }
+      ActivityStoryChoice other = (ActivityStoryChoice) o;
+      return bitField0_ == other.bitField0_
+        && (!hasGroup() || group == other.group)
+        && (!hasValue() || value_ == other.value_)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(group);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeUInt32NoTag(value_);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(group);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(value_);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public ActivityStoryChoice mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // group
+            group = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16) {
+              break;
+            }
+          }
+          case 16: {
+            // value_
+            value_ = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.group, group);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeUInt32(FieldNames.value_, value_);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public ActivityStoryChoice mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 69076575: {
+            if (input.isAtField(FieldNames.group)) {
+              if (!input.trySkipNullValue()) {
+                group = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 82420049: {
+            if (input.isAtField(FieldNames.value_)) {
+              if (!input.trySkipNullValue()) {
+                value_ = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public ActivityStoryChoice clone() {
+      return new ActivityStoryChoice().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static ActivityStoryChoice parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new ActivityStoryChoice(), data).checkInitialized();
+    }
+
+    public static ActivityStoryChoice parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityStoryChoice(), input).checkInitialized();
+    }
+
+    public static ActivityStoryChoice parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityStoryChoice(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating ActivityStoryChoice messages
+     */
+    public static MessageFactory<ActivityStoryChoice> getFactory() {
+      return ActivityStoryChoiceFactory.INSTANCE;
+    }
+
+    private enum ActivityStoryChoiceFactory implements MessageFactory<ActivityStoryChoice> {
+      INSTANCE;
+
+      @Override
+      public ActivityStoryChoice create() {
+        return ActivityStoryChoice.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName group = FieldName.forField("Group");
+
+      static final FieldName value_ = FieldName.forField("Value");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code ActivityStory}
+   */
+  public static final class ActivityStory extends ProtoMessage<ActivityStory> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     */
+    private int id;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>repeated .ActivityStoryChoice Major = 2;</code>
+     */
+    private final RepeatedMessage<ActivityStoryChoice> major = RepeatedMessage.newEmptyInstance(ActivityStoryChoice.getFactory());
+
+    /**
+     * <code>repeated .ActivityStoryChoice Personality = 3;</code>
+     */
+    private final RepeatedMessage<ActivityStoryChoice> personality = RepeatedMessage.newEmptyInstance(ActivityStoryChoice.getFactory());
+
+    private ActivityStory() {
+    }
+
+    /**
+     * @return a new empty instance of {@code ActivityStory}
+     */
+    public static ActivityStory newInstance() {
+      return new ActivityStory();
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @return whether the id field is set
+     */
+    public boolean hasId() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @return this
+     */
+    public ActivityStory clearId() {
+      bitField0_ &= ~0x00000001;
+      id = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @return the id
+     */
+    public int getId() {
+      return id;
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @param value the id to set
+     * @return this
+     */
+    public ActivityStory setId(final int value) {
+      bitField0_ |= 0x00000001;
+      id = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public ActivityStory clearNextPackage() {
+      bitField0_ &= ~0x00000002;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000002;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public ActivityStory addNextPackage(final byte value) {
+      bitField0_ |= 0x00000002;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public ActivityStory addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public ActivityStory setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityStoryChoice Major = 2;</code>
+     * @return whether the major field is set
+     */
+    public boolean hasMajor() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>repeated .ActivityStoryChoice Major = 2;</code>
+     * @return this
+     */
+    public ActivityStory clearMajor() {
+      bitField0_ &= ~0x00000004;
+      major.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityStoryChoice Major = 2;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableMajor()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<ActivityStoryChoice> getMajor() {
+      return major;
+    }
+
+    /**
+     * <code>repeated .ActivityStoryChoice Major = 2;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<ActivityStoryChoice> getMutableMajor() {
+      bitField0_ |= 0x00000004;
+      return major;
+    }
+
+    /**
+     * <code>repeated .ActivityStoryChoice Major = 2;</code>
+     * @param value the major to add
+     * @return this
+     */
+    public ActivityStory addMajor(final ActivityStoryChoice value) {
+      bitField0_ |= 0x00000004;
+      major.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityStoryChoice Major = 2;</code>
+     * @param values the major to add
+     * @return this
+     */
+    public ActivityStory addAllMajor(final ActivityStoryChoice... values) {
+      bitField0_ |= 0x00000004;
+      major.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityStoryChoice Personality = 3;</code>
+     * @return whether the personality field is set
+     */
+    public boolean hasPersonality() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>repeated .ActivityStoryChoice Personality = 3;</code>
+     * @return this
+     */
+    public ActivityStory clearPersonality() {
+      bitField0_ &= ~0x00000008;
+      personality.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityStoryChoice Personality = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutablePersonality()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<ActivityStoryChoice> getPersonality() {
+      return personality;
+    }
+
+    /**
+     * <code>repeated .ActivityStoryChoice Personality = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<ActivityStoryChoice> getMutablePersonality() {
+      bitField0_ |= 0x00000008;
+      return personality;
+    }
+
+    /**
+     * <code>repeated .ActivityStoryChoice Personality = 3;</code>
+     * @param value the personality to add
+     * @return this
+     */
+    public ActivityStory addPersonality(final ActivityStoryChoice value) {
+      bitField0_ |= 0x00000008;
+      personality.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityStoryChoice Personality = 3;</code>
+     * @param values the personality to add
+     * @return this
+     */
+    public ActivityStory addAllPersonality(final ActivityStoryChoice... values) {
+      bitField0_ |= 0x00000008;
+      personality.addAll(values);
+      return this;
+    }
+
+    @Override
+    public ActivityStory copyFrom(final ActivityStory other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        id = other.id;
+        nextPackage.copyFrom(other.nextPackage);
+        major.copyFrom(other.major);
+        personality.copyFrom(other.personality);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityStory mergeFrom(final ActivityStory other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasId()) {
+        setId(other.id);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasMajor()) {
+        getMutableMajor().addAll(other.major);
+      }
+      if (other.hasPersonality()) {
+        getMutablePersonality().addAll(other.personality);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityStory clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      id = 0;
+      nextPackage.clear();
+      major.clear();
+      personality.clear();
+      return this;
+    }
+
+    @Override
+    public ActivityStory clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      major.clearQuick();
+      personality.clearQuick();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof ActivityStory)) {
+        return false;
+      }
+      ActivityStory other = (ActivityStory) o;
+      return bitField0_ == other.bitField0_
+        && (!hasId() || id == other.id)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasMajor() || major.equals(other.major))
+        && (!hasPersonality() || personality.equals(other.personality));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        for (int i = 0; i < major.length(); i++) {
+          output.writeRawByte((byte) 18);
+          output.writeMessageNoTag(major.get(i));
+        }
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        for (int i = 0; i < personality.length(); i++) {
+          output.writeRawByte((byte) 26);
+          output.writeMessageNoTag(personality.get(i));
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += (1 * major.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(major);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += (1 * personality.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(personality);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public ActivityStory mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // id
+            id = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 18) {
+              break;
+            }
+          }
+          case 18: {
+            // major
+            tag = input.readRepeatedMessage(major, tag);
+            bitField0_ |= 0x00000004;
+            if (tag != 26) {
+              break;
+            }
+          }
+          case 26: {
+            // personality
+            tag = input.readRepeatedMessage(personality, tag);
+            bitField0_ |= 0x00000008;
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.id, id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRepeatedMessage(FieldNames.major, major);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRepeatedMessage(FieldNames.personality, personality);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public ActivityStory mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 2363: {
+            if (input.isAtField(FieldNames.id)) {
+              if (!input.trySkipNullValue()) {
+                id = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 74106265: {
+            if (input.isAtField(FieldNames.major)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(major);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 1243902542: {
+            if (input.isAtField(FieldNames.personality)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(personality);
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public ActivityStory clone() {
+      return new ActivityStory().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static ActivityStory parseFrom(final byte[] data) throws InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new ActivityStory(), data).checkInitialized();
+    }
+
+    public static ActivityStory parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityStory(), input).checkInitialized();
+    }
+
+    public static ActivityStory parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityStory(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating ActivityStory messages
+     */
+    public static MessageFactory<ActivityStory> getFactory() {
+      return ActivityStoryFactory.INSTANCE;
+    }
+
+    private enum ActivityStoryFactory implements MessageFactory<ActivityStory> {
+      INSTANCE;
+
+      @Override
+      public ActivityStory create() {
+        return ActivityStory.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName id = FieldName.forField("Id");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName major = FieldName.forField("Major");
+
+      static final FieldName personality = FieldName.forField("Personality");
+    }
+  }
+
+  /**
+   * Protobuf type {@code ActivityStoryChapter}
+   */
+  public static final class ActivityStoryChapter extends ProtoMessage<ActivityStoryChapter> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint64 BuildId = 2;</code>
+     */
+    private long buildId;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>repeated uint32 Evidences = 1;</code>
+     */
+    private final RepeatedInt evidences = RepeatedInt.newEmptyInstance();
+
+    /**
+     * <code>repeated .ActivityStory Stories = 3;</code>
+     */
+    private final RepeatedMessage<ActivityStory> stories = RepeatedMessage.newEmptyInstance(ActivityStory.getFactory());
+
+    private ActivityStoryChapter() {
+    }
+
+    /**
+     * @return a new empty instance of {@code ActivityStoryChapter}
+     */
+    public static ActivityStoryChapter newInstance() {
+      return new ActivityStoryChapter();
+    }
+
+    /**
+     * <code>optional uint64 BuildId = 2;</code>
+     * @return whether the buildId field is set
+     */
+    public boolean hasBuildId() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint64 BuildId = 2;</code>
+     * @return this
+     */
+    public ActivityStoryChapter clearBuildId() {
+      bitField0_ &= ~0x00000001;
+      buildId = 0L;
+      return this;
+    }
+
+    /**
+     * <code>optional uint64 BuildId = 2;</code>
+     * @return the buildId
+     */
+    public long getBuildId() {
+      return buildId;
+    }
+
+    /**
+     * <code>optional uint64 BuildId = 2;</code>
+     * @param value the buildId to set
+     * @return this
+     */
+    public ActivityStoryChapter setBuildId(final long value) {
+      bitField0_ |= 0x00000001;
+      buildId = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public ActivityStoryChapter clearNextPackage() {
+      bitField0_ &= ~0x00000002;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000002;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public ActivityStoryChapter addNextPackage(final byte value) {
+      bitField0_ |= 0x00000002;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public ActivityStoryChapter addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public ActivityStoryChapter setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 Evidences = 1;</code>
+     * @return whether the evidences field is set
+     */
+    public boolean hasEvidences() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>repeated uint32 Evidences = 1;</code>
+     * @return this
+     */
+    public ActivityStoryChapter clearEvidences() {
+      bitField0_ &= ~0x00000004;
+      evidences.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 Evidences = 1;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableEvidences()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedInt getEvidences() {
+      return evidences;
+    }
+
+    /**
+     * <code>repeated uint32 Evidences = 1;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedInt getMutableEvidences() {
+      bitField0_ |= 0x00000004;
+      return evidences;
+    }
+
+    /**
+     * <code>repeated uint32 Evidences = 1;</code>
+     * @param value the evidences to add
+     * @return this
+     */
+    public ActivityStoryChapter addEvidences(final int value) {
+      bitField0_ |= 0x00000004;
+      evidences.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 Evidences = 1;</code>
+     * @param values the evidences to add
+     * @return this
+     */
+    public ActivityStoryChapter addAllEvidences(final int... values) {
+      bitField0_ |= 0x00000004;
+      evidences.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityStory Stories = 3;</code>
+     * @return whether the stories field is set
+     */
+    public boolean hasStories() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>repeated .ActivityStory Stories = 3;</code>
+     * @return this
+     */
+    public ActivityStoryChapter clearStories() {
+      bitField0_ &= ~0x00000008;
+      stories.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityStory Stories = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableStories()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<ActivityStory> getStories() {
+      return stories;
+    }
+
+    /**
+     * <code>repeated .ActivityStory Stories = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<ActivityStory> getMutableStories() {
+      bitField0_ |= 0x00000008;
+      return stories;
+    }
+
+    /**
+     * <code>repeated .ActivityStory Stories = 3;</code>
+     * @param value the stories to add
+     * @return this
+     */
+    public ActivityStoryChapter addStories(final ActivityStory value) {
+      bitField0_ |= 0x00000008;
+      stories.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityStory Stories = 3;</code>
+     * @param values the stories to add
+     * @return this
+     */
+    public ActivityStoryChapter addAllStories(final ActivityStory... values) {
+      bitField0_ |= 0x00000008;
+      stories.addAll(values);
+      return this;
+    }
+
+    @Override
+    public ActivityStoryChapter copyFrom(final ActivityStoryChapter other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        buildId = other.buildId;
+        nextPackage.copyFrom(other.nextPackage);
+        evidences.copyFrom(other.evidences);
+        stories.copyFrom(other.stories);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityStoryChapter mergeFrom(final ActivityStoryChapter other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasBuildId()) {
+        setBuildId(other.buildId);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasEvidences()) {
+        getMutableEvidences().addAll(other.evidences);
+      }
+      if (other.hasStories()) {
+        getMutableStories().addAll(other.stories);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityStoryChapter clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      buildId = 0L;
+      nextPackage.clear();
+      evidences.clear();
+      stories.clear();
+      return this;
+    }
+
+    @Override
+    public ActivityStoryChapter clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      evidences.clear();
+      stories.clearQuick();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof ActivityStoryChapter)) {
+        return false;
+      }
+      ActivityStoryChapter other = (ActivityStoryChapter) o;
+      return bitField0_ == other.bitField0_
+        && (!hasBuildId() || buildId == other.buildId)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasEvidences() || evidences.equals(other.evidences))
+        && (!hasStories() || stories.equals(other.stories));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeUInt64NoTag(buildId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        for (int i = 0; i < evidences.length(); i++) {
+          output.writeRawByte((byte) 8);
+          output.writeUInt32NoTag(evidences.array()[i]);
+        }
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        for (int i = 0; i < stories.length(); i++) {
+          output.writeRawByte((byte) 26);
+          output.writeMessageNoTag(stories.get(i));
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += (1 * evidences.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(evidences);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += (1 * stories.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(stories);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public ActivityStoryChapter mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 16: {
+            // buildId
+            buildId = input.readUInt64();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 10) {
+              break;
+            }
+          }
+          case 10: {
+            // evidences [packed=true]
+            input.readPackedUInt32(evidences, tag);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 26) {
+              break;
+            }
+          }
+          case 26: {
+            // stories
+            tag = input.readRepeatedMessage(stories, tag);
+            bitField0_ |= 0x00000008;
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+          case 8: {
+            // evidences [packed=false]
+            tag = input.readRepeatedUInt32(evidences, tag);
+            bitField0_ |= 0x00000004;
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt64(FieldNames.buildId, buildId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRepeatedUInt32(FieldNames.evidences, evidences);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRepeatedMessage(FieldNames.stories, stories);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public ActivityStoryChapter mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 1895597065: {
+            if (input.isAtField(FieldNames.buildId)) {
+              if (!input.trySkipNullValue()) {
+                buildId = input.readUInt64();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 991055068: {
+            if (input.isAtField(FieldNames.evidences)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedUInt32(evidences);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -219613133: {
+            if (input.isAtField(FieldNames.stories)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(stories);
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public ActivityStoryChapter clone() {
+      return new ActivityStoryChapter().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static ActivityStoryChapter parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new ActivityStoryChapter(), data).checkInitialized();
+    }
+
+    public static ActivityStoryChapter parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityStoryChapter(), input).checkInitialized();
+    }
+
+    public static ActivityStoryChapter parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityStoryChapter(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating ActivityStoryChapter messages
+     */
+    public static MessageFactory<ActivityStoryChapter> getFactory() {
+      return ActivityStoryChapterFactory.INSTANCE;
+    }
+
+    private enum ActivityStoryChapterFactory implements MessageFactory<ActivityStoryChapter> {
+      INSTANCE;
+
+      @Override
+      public ActivityStoryChapter create() {
+        return ActivityStoryChapter.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName buildId = FieldName.forField("BuildId");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName evidences = FieldName.forField("Evidences");
+
+      static final FieldName stories = FieldName.forField("Stories");
     }
   }
 }

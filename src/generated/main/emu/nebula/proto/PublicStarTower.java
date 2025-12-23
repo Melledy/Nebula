@@ -659,6 +659,11 @@ public final class PublicStarTower {
     private int totalTime;
 
     /**
+     * <code>optional uint32 DataVersion = 17;</code>
+     */
+    private int dataVersion;
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -1037,11 +1042,48 @@ public final class PublicStarTower {
     }
 
     /**
+     * <code>optional uint32 DataVersion = 17;</code>
+     * @return whether the dataVersion field is set
+     */
+    public boolean hasDataVersion() {
+      return (bitField0_ & 0x00000200) != 0;
+    }
+
+    /**
+     * <code>optional uint32 DataVersion = 17;</code>
+     * @return this
+     */
+    public StarTowerMeta clearDataVersion() {
+      bitField0_ &= ~0x00000200;
+      dataVersion = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 DataVersion = 17;</code>
+     * @return the dataVersion
+     */
+    public int getDataVersion() {
+      return dataVersion;
+    }
+
+    /**
+     * <code>optional uint32 DataVersion = 17;</code>
+     * @param value the dataVersion to set
+     * @return this
+     */
+    public StarTowerMeta setDataVersion(final int value) {
+      bitField0_ |= 0x00000200;
+      dataVersion = value;
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000200) != 0;
+      return (bitField0_ & 0x00000400) != 0;
     }
 
     /**
@@ -1049,7 +1091,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta clearNextPackage() {
-      bitField0_ &= ~0x00000200;
+      bitField0_ &= ~0x00000400;
       nextPackage.clear();
       return this;
     }
@@ -1078,7 +1120,7 @@ public final class PublicStarTower {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000400;
       return nextPackage;
     }
 
@@ -1088,7 +1130,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta addNextPackage(final byte value) {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000400;
       nextPackage.add(value);
       return this;
     }
@@ -1099,7 +1141,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000400;
       nextPackage.addAll(values);
       return this;
     }
@@ -1110,7 +1152,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000400;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -1120,7 +1162,7 @@ public final class PublicStarTower {
      * @return whether the clientData field is set
      */
     public boolean hasClientData() {
-      return (bitField0_ & 0x00000400) != 0;
+      return (bitField0_ & 0x00000800) != 0;
     }
 
     /**
@@ -1128,7 +1170,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta clearClientData() {
-      bitField0_ &= ~0x00000400;
+      bitField0_ &= ~0x00000800;
       clientData.clear();
       return this;
     }
@@ -1154,7 +1196,7 @@ public final class PublicStarTower {
      * @return internal {@code Utf8String} representation of clientData for modifications
      */
     public Utf8String getMutableClientDataBytes() {
-      bitField0_ |= 0x00000400;
+      bitField0_ |= 0x00000800;
       return this.clientData;
     }
 
@@ -1164,7 +1206,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta setClientData(final CharSequence value) {
-      bitField0_ |= 0x00000400;
+      bitField0_ |= 0x00000800;
       clientData.copyFrom(value);
       return this;
     }
@@ -1175,7 +1217,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta setClientData(final Utf8String value) {
-      bitField0_ |= 0x00000400;
+      bitField0_ |= 0x00000800;
       clientData.copyFrom(value);
       return this;
     }
@@ -1185,7 +1227,7 @@ public final class PublicStarTower {
      * @return whether the totalDamages field is set
      */
     public boolean hasTotalDamages() {
-      return (bitField0_ & 0x00000800) != 0;
+      return (bitField0_ & 0x00001000) != 0;
     }
 
     /**
@@ -1193,7 +1235,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta clearTotalDamages() {
-      bitField0_ &= ~0x00000800;
+      bitField0_ &= ~0x00001000;
       totalDamages.clear();
       return this;
     }
@@ -1222,7 +1264,7 @@ public final class PublicStarTower {
      * @return internal storage object for modifications
      */
     public RepeatedLong getMutableTotalDamages() {
-      bitField0_ |= 0x00000800;
+      bitField0_ |= 0x00001000;
       return totalDamages;
     }
 
@@ -1232,7 +1274,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta addTotalDamages(final long value) {
-      bitField0_ |= 0x00000800;
+      bitField0_ |= 0x00001000;
       totalDamages.add(value);
       return this;
     }
@@ -1243,7 +1285,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta addAllTotalDamages(final long... values) {
-      bitField0_ |= 0x00000800;
+      bitField0_ |= 0x00001000;
       totalDamages.addAll(values);
       return this;
     }
@@ -1253,7 +1295,7 @@ public final class PublicStarTower {
      * @return whether the activeSecondaryIds field is set
      */
     public boolean hasActiveSecondaryIds() {
-      return (bitField0_ & 0x00001000) != 0;
+      return (bitField0_ & 0x00002000) != 0;
     }
 
     /**
@@ -1261,7 +1303,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta clearActiveSecondaryIds() {
-      bitField0_ &= ~0x00001000;
+      bitField0_ &= ~0x00002000;
       activeSecondaryIds.clear();
       return this;
     }
@@ -1290,7 +1332,7 @@ public final class PublicStarTower {
      * @return internal storage object for modifications
      */
     public RepeatedInt getMutableActiveSecondaryIds() {
-      bitField0_ |= 0x00001000;
+      bitField0_ |= 0x00002000;
       return activeSecondaryIds;
     }
 
@@ -1300,7 +1342,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta addActiveSecondaryIds(final int value) {
-      bitField0_ |= 0x00001000;
+      bitField0_ |= 0x00002000;
       activeSecondaryIds.add(value);
       return this;
     }
@@ -1311,7 +1353,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta addAllActiveSecondaryIds(final int... values) {
-      bitField0_ |= 0x00001000;
+      bitField0_ |= 0x00002000;
       activeSecondaryIds.addAll(values);
       return this;
     }
@@ -1321,7 +1363,7 @@ public final class PublicStarTower {
      * @return whether the towerGrowthNodes field is set
      */
     public boolean hasTowerGrowthNodes() {
-      return (bitField0_ & 0x00002000) != 0;
+      return (bitField0_ & 0x00004000) != 0;
     }
 
     /**
@@ -1329,7 +1371,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta clearTowerGrowthNodes() {
-      bitField0_ &= ~0x00002000;
+      bitField0_ &= ~0x00004000;
       towerGrowthNodes.clear();
       return this;
     }
@@ -1358,7 +1400,7 @@ public final class PublicStarTower {
      * @return internal storage object for modifications
      */
     public RepeatedInt getMutableTowerGrowthNodes() {
-      bitField0_ |= 0x00002000;
+      bitField0_ |= 0x00004000;
       return towerGrowthNodes;
     }
 
@@ -1368,7 +1410,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta addTowerGrowthNodes(final int value) {
-      bitField0_ |= 0x00002000;
+      bitField0_ |= 0x00004000;
       towerGrowthNodes.add(value);
       return this;
     }
@@ -1379,7 +1421,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta addAllTowerGrowthNodes(final int... values) {
-      bitField0_ |= 0x00002000;
+      bitField0_ |= 0x00004000;
       towerGrowthNodes.addAll(values);
       return this;
     }
@@ -1389,7 +1431,7 @@ public final class PublicStarTower {
      * @return whether the chars field is set
      */
     public boolean hasChars() {
-      return (bitField0_ & 0x00004000) != 0;
+      return (bitField0_ & 0x00008000) != 0;
     }
 
     /**
@@ -1397,7 +1439,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta clearChars() {
-      bitField0_ &= ~0x00004000;
+      bitField0_ &= ~0x00008000;
       chars.clear();
       return this;
     }
@@ -1426,7 +1468,7 @@ public final class PublicStarTower {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<StarTowerChar> getMutableChars() {
-      bitField0_ |= 0x00004000;
+      bitField0_ |= 0x00008000;
       return chars;
     }
 
@@ -1436,7 +1478,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta addChars(final StarTowerChar value) {
-      bitField0_ |= 0x00004000;
+      bitField0_ |= 0x00008000;
       chars.add(value);
       return this;
     }
@@ -1447,7 +1489,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta addAllChars(final StarTowerChar... values) {
-      bitField0_ |= 0x00004000;
+      bitField0_ |= 0x00008000;
       chars.addAll(values);
       return this;
     }
@@ -1457,7 +1499,7 @@ public final class PublicStarTower {
      * @return whether the discs field is set
      */
     public boolean hasDiscs() {
-      return (bitField0_ & 0x00008000) != 0;
+      return (bitField0_ & 0x00010000) != 0;
     }
 
     /**
@@ -1465,7 +1507,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta clearDiscs() {
-      bitField0_ &= ~0x00008000;
+      bitField0_ &= ~0x00010000;
       discs.clear();
       return this;
     }
@@ -1494,7 +1536,7 @@ public final class PublicStarTower {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<StarTowerDisc> getMutableDiscs() {
-      bitField0_ |= 0x00008000;
+      bitField0_ |= 0x00010000;
       return discs;
     }
 
@@ -1504,7 +1546,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta addDiscs(final StarTowerDisc value) {
-      bitField0_ |= 0x00008000;
+      bitField0_ |= 0x00010000;
       discs.add(value);
       return this;
     }
@@ -1515,7 +1557,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerMeta addAllDiscs(final StarTowerDisc... values) {
-      bitField0_ |= 0x00008000;
+      bitField0_ |= 0x00010000;
       discs.addAll(values);
       return this;
     }
@@ -1534,6 +1576,7 @@ public final class PublicStarTower {
         nPCInteractions = other.nPCInteractions;
         resurrectionCnt = other.resurrectionCnt;
         totalTime = other.totalTime;
+        dataVersion = other.dataVersion;
         nextPackage.copyFrom(other.nextPackage);
         clientData.copyFrom(other.clientData);
         totalDamages.copyFrom(other.totalDamages);
@@ -1578,6 +1621,9 @@ public final class PublicStarTower {
       if (other.hasTotalTime()) {
         setTotalTime(other.totalTime);
       }
+      if (other.hasDataVersion()) {
+        setDataVersion(other.dataVersion);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -1618,6 +1664,7 @@ public final class PublicStarTower {
       nPCInteractions = 0;
       resurrectionCnt = 0;
       totalTime = 0;
+      dataVersion = 0;
       nextPackage.clear();
       clientData.clear();
       totalDamages.clear();
@@ -1664,6 +1711,7 @@ public final class PublicStarTower {
         && (!hasNPCInteractions() || nPCInteractions == other.nPCInteractions)
         && (!hasResurrectionCnt() || resurrectionCnt == other.resurrectionCnt)
         && (!hasTotalTime() || totalTime == other.totalTime)
+        && (!hasDataVersion() || dataVersion == other.dataVersion)
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasClientData() || clientData.equals(other.clientData))
         && (!hasTotalDamages() || totalDamages.equals(other.totalDamages))
@@ -1712,38 +1760,42 @@ public final class PublicStarTower {
         output.writeUInt32NoTag(totalTime);
       }
       if ((bitField0_ & 0x00000200) != 0) {
+        output.writeRawLittleEndian16((short) 392);
+        output.writeUInt32NoTag(dataVersion);
+      }
+      if ((bitField0_ & 0x00000400) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
-      if ((bitField0_ & 0x00000400) != 0) {
+      if ((bitField0_ & 0x00000800) != 0) {
         output.writeRawByte((byte) 66);
         output.writeStringNoTag(clientData);
       }
-      if ((bitField0_ & 0x00000800) != 0) {
+      if ((bitField0_ & 0x00001000) != 0) {
         for (int i = 0; i < totalDamages.length(); i++) {
           output.writeRawByte((byte) 120);
           output.writeUInt64NoTag(totalDamages.array()[i]);
         }
       }
-      if ((bitField0_ & 0x00001000) != 0) {
+      if ((bitField0_ & 0x00002000) != 0) {
         for (int i = 0; i < activeSecondaryIds.length(); i++) {
           output.writeRawByte((byte) 72);
           output.writeUInt32NoTag(activeSecondaryIds.array()[i]);
         }
       }
-      if ((bitField0_ & 0x00002000) != 0) {
+      if ((bitField0_ & 0x00004000) != 0) {
         for (int i = 0; i < towerGrowthNodes.length(); i++) {
           output.writeRawByte((byte) 88);
           output.writeUInt32NoTag(towerGrowthNodes.array()[i]);
         }
       }
-      if ((bitField0_ & 0x00004000) != 0) {
+      if ((bitField0_ & 0x00008000) != 0) {
         for (int i = 0; i < chars.length(); i++) {
           output.writeRawByte((byte) 42);
           output.writeMessageNoTag(chars.get(i));
         }
       }
-      if ((bitField0_ & 0x00008000) != 0) {
+      if ((bitField0_ & 0x00010000) != 0) {
         for (int i = 0; i < discs.length(); i++) {
           output.writeRawByte((byte) 50);
           output.writeMessageNoTag(discs.get(i));
@@ -1782,24 +1834,27 @@ public final class PublicStarTower {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(totalTime);
       }
       if ((bitField0_ & 0x00000200) != 0) {
-        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+        size += 2 + ProtoSink.computeUInt32SizeNoTag(dataVersion);
       }
       if ((bitField0_ & 0x00000400) != 0) {
-        size += 1 + ProtoSink.computeStringSizeNoTag(clientData);
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       if ((bitField0_ & 0x00000800) != 0) {
-        size += (1 * totalDamages.length()) + ProtoSink.computeRepeatedUInt64SizeNoTag(totalDamages);
+        size += 1 + ProtoSink.computeStringSizeNoTag(clientData);
       }
       if ((bitField0_ & 0x00001000) != 0) {
-        size += (1 * activeSecondaryIds.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(activeSecondaryIds);
+        size += (1 * totalDamages.length()) + ProtoSink.computeRepeatedUInt64SizeNoTag(totalDamages);
       }
       if ((bitField0_ & 0x00002000) != 0) {
-        size += (1 * towerGrowthNodes.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(towerGrowthNodes);
+        size += (1 * activeSecondaryIds.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(activeSecondaryIds);
       }
       if ((bitField0_ & 0x00004000) != 0) {
-        size += (1 * chars.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(chars);
+        size += (1 * towerGrowthNodes.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(towerGrowthNodes);
       }
       if ((bitField0_ & 0x00008000) != 0) {
+        size += (1 * chars.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(chars);
+      }
+      if ((bitField0_ & 0x00010000) != 0) {
         size += (1 * discs.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(discs);
       }
       return size;
@@ -1889,6 +1944,15 @@ public final class PublicStarTower {
             totalTime = input.readUInt32();
             bitField0_ |= 0x00000100;
             tag = input.readTag();
+            if (tag != 136) {
+              break;
+            }
+          }
+          case 136: {
+            // dataVersion
+            dataVersion = input.readUInt32();
+            bitField0_ |= 0x00000200;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -1896,7 +1960,7 @@ public final class PublicStarTower {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000200;
+            bitField0_ |= 0x00000400;
             tag = input.readTag();
             if (tag != 66) {
               break;
@@ -1905,7 +1969,7 @@ public final class PublicStarTower {
           case 66: {
             // clientData
             input.readString(clientData);
-            bitField0_ |= 0x00000400;
+            bitField0_ |= 0x00000800;
             tag = input.readTag();
             if (tag != 122) {
               break;
@@ -1914,7 +1978,7 @@ public final class PublicStarTower {
           case 122: {
             // totalDamages [packed=true]
             input.readPackedUInt64(totalDamages, tag);
-            bitField0_ |= 0x00000800;
+            bitField0_ |= 0x00001000;
             tag = input.readTag();
             if (tag != 74) {
               break;
@@ -1923,7 +1987,7 @@ public final class PublicStarTower {
           case 74: {
             // activeSecondaryIds [packed=true]
             input.readPackedUInt32(activeSecondaryIds, tag);
-            bitField0_ |= 0x00001000;
+            bitField0_ |= 0x00002000;
             tag = input.readTag();
             if (tag != 90) {
               break;
@@ -1932,7 +1996,7 @@ public final class PublicStarTower {
           case 90: {
             // towerGrowthNodes [packed=true]
             input.readPackedUInt32(towerGrowthNodes, tag);
-            bitField0_ |= 0x00002000;
+            bitField0_ |= 0x00004000;
             tag = input.readTag();
             if (tag != 42) {
               break;
@@ -1941,7 +2005,7 @@ public final class PublicStarTower {
           case 42: {
             // chars
             tag = input.readRepeatedMessage(chars, tag);
-            bitField0_ |= 0x00004000;
+            bitField0_ |= 0x00008000;
             if (tag != 50) {
               break;
             }
@@ -1949,7 +2013,7 @@ public final class PublicStarTower {
           case 50: {
             // discs
             tag = input.readRepeatedMessage(discs, tag);
-            bitField0_ |= 0x00008000;
+            bitField0_ |= 0x00010000;
             if (tag != 0) {
               break;
             }
@@ -1967,19 +2031,19 @@ public final class PublicStarTower {
           case 120: {
             // totalDamages [packed=false]
             tag = input.readRepeatedUInt64(totalDamages, tag);
-            bitField0_ |= 0x00000800;
+            bitField0_ |= 0x00001000;
             break;
           }
           case 72: {
             // activeSecondaryIds [packed=false]
             tag = input.readRepeatedUInt32(activeSecondaryIds, tag);
-            bitField0_ |= 0x00001000;
+            bitField0_ |= 0x00002000;
             break;
           }
           case 88: {
             // towerGrowthNodes [packed=false]
             tag = input.readRepeatedUInt32(towerGrowthNodes, tag);
-            bitField0_ |= 0x00002000;
+            bitField0_ |= 0x00004000;
             break;
           }
         }
@@ -2017,24 +2081,27 @@ public final class PublicStarTower {
         output.writeUInt32(FieldNames.totalTime, totalTime);
       }
       if ((bitField0_ & 0x00000200) != 0) {
-        output.writeBytes(FieldNames.nextPackage, nextPackage);
+        output.writeUInt32(FieldNames.dataVersion, dataVersion);
       }
       if ((bitField0_ & 0x00000400) != 0) {
-        output.writeString(FieldNames.clientData, clientData);
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       if ((bitField0_ & 0x00000800) != 0) {
-        output.writeRepeatedUInt64(FieldNames.totalDamages, totalDamages);
+        output.writeString(FieldNames.clientData, clientData);
       }
       if ((bitField0_ & 0x00001000) != 0) {
-        output.writeRepeatedUInt32(FieldNames.activeSecondaryIds, activeSecondaryIds);
+        output.writeRepeatedUInt64(FieldNames.totalDamages, totalDamages);
       }
       if ((bitField0_ & 0x00002000) != 0) {
-        output.writeRepeatedUInt32(FieldNames.towerGrowthNodes, towerGrowthNodes);
+        output.writeRepeatedUInt32(FieldNames.activeSecondaryIds, activeSecondaryIds);
       }
       if ((bitField0_ & 0x00004000) != 0) {
-        output.writeRepeatedMessage(FieldNames.chars, chars);
+        output.writeRepeatedUInt32(FieldNames.towerGrowthNodes, towerGrowthNodes);
       }
       if ((bitField0_ & 0x00008000) != 0) {
+        output.writeRepeatedMessage(FieldNames.chars, chars);
+      }
+      if ((bitField0_ & 0x00010000) != 0) {
         output.writeRepeatedMessage(FieldNames.discs, discs);
       }
       output.endObject();
@@ -2146,11 +2213,22 @@ public final class PublicStarTower {
             }
             break;
           }
+          case 538270126: {
+            if (input.isAtField(FieldNames.dataVersion)) {
+              if (!input.trySkipNullValue()) {
+                dataVersion = input.readUInt32();
+                bitField0_ |= 0x00000200;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000200;
+                bitField0_ |= 0x00000400;
               }
             } else {
               input.skipUnknownField();
@@ -2161,7 +2239,7 @@ public final class PublicStarTower {
             if (input.isAtField(FieldNames.clientData)) {
               if (!input.trySkipNullValue()) {
                 input.readString(clientData);
-                bitField0_ |= 0x00000400;
+                bitField0_ |= 0x00000800;
               }
             } else {
               input.skipUnknownField();
@@ -2172,7 +2250,7 @@ public final class PublicStarTower {
             if (input.isAtField(FieldNames.totalDamages)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedUInt64(totalDamages);
-                bitField0_ |= 0x00000800;
+                bitField0_ |= 0x00001000;
               }
             } else {
               input.skipUnknownField();
@@ -2183,7 +2261,7 @@ public final class PublicStarTower {
             if (input.isAtField(FieldNames.activeSecondaryIds)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedUInt32(activeSecondaryIds);
-                bitField0_ |= 0x00001000;
+                bitField0_ |= 0x00002000;
               }
             } else {
               input.skipUnknownField();
@@ -2194,7 +2272,7 @@ public final class PublicStarTower {
             if (input.isAtField(FieldNames.towerGrowthNodes)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedUInt32(towerGrowthNodes);
-                bitField0_ |= 0x00002000;
+                bitField0_ |= 0x00004000;
               }
             } else {
               input.skipUnknownField();
@@ -2205,7 +2283,7 @@ public final class PublicStarTower {
             if (input.isAtField(FieldNames.chars)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(chars);
-                bitField0_ |= 0x00004000;
+                bitField0_ |= 0x00008000;
               }
             } else {
               input.skipUnknownField();
@@ -2216,7 +2294,7 @@ public final class PublicStarTower {
             if (input.isAtField(FieldNames.discs)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(discs);
-                bitField0_ |= 0x00008000;
+                bitField0_ |= 0x00010000;
               }
             } else {
               input.skipUnknownField();
@@ -2292,6 +2370,8 @@ public final class PublicStarTower {
       static final FieldName resurrectionCnt = FieldName.forField("ResurrectionCnt");
 
       static final FieldName totalTime = FieldName.forField("TotalTime");
+
+      static final FieldName dataVersion = FieldName.forField("DataVersion");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
@@ -16324,6 +16404,11 @@ public final class PublicStarTower {
     private int mapTableId;
 
     /**
+     * <code>optional uint32 DataVersion = 7;</code>
+     */
+    private int dataVersion;
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -16497,11 +16582,48 @@ public final class PublicStarTower {
     }
 
     /**
+     * <code>optional uint32 DataVersion = 7;</code>
+     * @return whether the dataVersion field is set
+     */
+    public boolean hasDataVersion() {
+      return (bitField0_ & 0x00000010) != 0;
+    }
+
+    /**
+     * <code>optional uint32 DataVersion = 7;</code>
+     * @return this
+     */
+    public InteractEnterReq clearDataVersion() {
+      bitField0_ &= ~0x00000010;
+      dataVersion = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 DataVersion = 7;</code>
+     * @return the dataVersion
+     */
+    public int getDataVersion() {
+      return dataVersion;
+    }
+
+    /**
+     * <code>optional uint32 DataVersion = 7;</code>
+     * @param value the dataVersion to set
+     * @return this
+     */
+    public InteractEnterReq setDataVersion(final int value) {
+      bitField0_ |= 0x00000010;
+      dataVersion = value;
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000010) != 0;
+      return (bitField0_ & 0x00000020) != 0;
     }
 
     /**
@@ -16509,7 +16631,7 @@ public final class PublicStarTower {
      * @return this
      */
     public InteractEnterReq clearNextPackage() {
-      bitField0_ &= ~0x00000010;
+      bitField0_ &= ~0x00000020;
       nextPackage.clear();
       return this;
     }
@@ -16538,7 +16660,7 @@ public final class PublicStarTower {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       return nextPackage;
     }
 
@@ -16548,7 +16670,7 @@ public final class PublicStarTower {
      * @return this
      */
     public InteractEnterReq addNextPackage(final byte value) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       nextPackage.add(value);
       return this;
     }
@@ -16559,7 +16681,7 @@ public final class PublicStarTower {
      * @return this
      */
     public InteractEnterReq addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       nextPackage.addAll(values);
       return this;
     }
@@ -16570,7 +16692,7 @@ public final class PublicStarTower {
      * @return this
      */
     public InteractEnterReq setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -16580,7 +16702,7 @@ public final class PublicStarTower {
      * @return whether the clientData field is set
      */
     public boolean hasClientData() {
-      return (bitField0_ & 0x00000020) != 0;
+      return (bitField0_ & 0x00000040) != 0;
     }
 
     /**
@@ -16588,7 +16710,7 @@ public final class PublicStarTower {
      * @return this
      */
     public InteractEnterReq clearClientData() {
-      bitField0_ &= ~0x00000020;
+      bitField0_ &= ~0x00000040;
       clientData.clear();
       return this;
     }
@@ -16614,7 +16736,7 @@ public final class PublicStarTower {
      * @return internal {@code Utf8String} representation of clientData for modifications
      */
     public Utf8String getMutableClientDataBytes() {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000040;
       return this.clientData;
     }
 
@@ -16624,7 +16746,7 @@ public final class PublicStarTower {
      * @return this
      */
     public InteractEnterReq setClientData(final CharSequence value) {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000040;
       clientData.copyFrom(value);
       return this;
     }
@@ -16635,7 +16757,7 @@ public final class PublicStarTower {
      * @return this
      */
     public InteractEnterReq setClientData(final Utf8String value) {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000040;
       clientData.copyFrom(value);
       return this;
     }
@@ -16645,7 +16767,7 @@ public final class PublicStarTower {
      * @return whether the mapParam field is set
      */
     public boolean hasMapParam() {
-      return (bitField0_ & 0x00000040) != 0;
+      return (bitField0_ & 0x00000080) != 0;
     }
 
     /**
@@ -16653,7 +16775,7 @@ public final class PublicStarTower {
      * @return this
      */
     public InteractEnterReq clearMapParam() {
-      bitField0_ &= ~0x00000040;
+      bitField0_ &= ~0x00000080;
       mapParam.clear();
       return this;
     }
@@ -16679,7 +16801,7 @@ public final class PublicStarTower {
      * @return internal {@code Utf8String} representation of mapParam for modifications
      */
     public Utf8String getMutableMapParamBytes() {
-      bitField0_ |= 0x00000040;
+      bitField0_ |= 0x00000080;
       return this.mapParam;
     }
 
@@ -16689,7 +16811,7 @@ public final class PublicStarTower {
      * @return this
      */
     public InteractEnterReq setMapParam(final CharSequence value) {
-      bitField0_ |= 0x00000040;
+      bitField0_ |= 0x00000080;
       mapParam.copyFrom(value);
       return this;
     }
@@ -16700,7 +16822,7 @@ public final class PublicStarTower {
      * @return this
      */
     public InteractEnterReq setMapParam(final Utf8String value) {
-      bitField0_ |= 0x00000040;
+      bitField0_ |= 0x00000080;
       mapParam.copyFrom(value);
       return this;
     }
@@ -16714,6 +16836,7 @@ public final class PublicStarTower {
         paramId = other.paramId;
         dateLen = other.dateLen;
         mapTableId = other.mapTableId;
+        dataVersion = other.dataVersion;
         nextPackage.copyFrom(other.nextPackage);
         clientData.copyFrom(other.clientData);
         mapParam.copyFrom(other.mapParam);
@@ -16739,6 +16862,9 @@ public final class PublicStarTower {
       if (other.hasMapTableId()) {
         setMapTableId(other.mapTableId);
       }
+      if (other.hasDataVersion()) {
+        setDataVersion(other.dataVersion);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -16762,6 +16888,7 @@ public final class PublicStarTower {
       paramId = 0;
       dateLen = 0;
       mapTableId = 0;
+      dataVersion = 0;
       nextPackage.clear();
       clientData.clear();
       mapParam.clear();
@@ -16795,6 +16922,7 @@ public final class PublicStarTower {
         && (!hasParamId() || paramId == other.paramId)
         && (!hasDateLen() || dateLen == other.dateLen)
         && (!hasMapTableId() || mapTableId == other.mapTableId)
+        && (!hasDataVersion() || dataVersion == other.dataVersion)
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasClientData() || clientData.equals(other.clientData))
         && (!hasMapParam() || mapParam.equals(other.mapParam));
@@ -16819,14 +16947,18 @@ public final class PublicStarTower {
         output.writeUInt32NoTag(mapTableId);
       }
       if ((bitField0_ & 0x00000010) != 0) {
+        output.writeRawByte((byte) 56);
+        output.writeUInt32NoTag(dataVersion);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
-      if ((bitField0_ & 0x00000020) != 0) {
+      if ((bitField0_ & 0x00000040) != 0) {
         output.writeRawByte((byte) 34);
         output.writeStringNoTag(clientData);
       }
-      if ((bitField0_ & 0x00000040) != 0) {
+      if ((bitField0_ & 0x00000080) != 0) {
         output.writeRawByte((byte) 42);
         output.writeStringNoTag(mapParam);
       }
@@ -16848,12 +16980,15 @@ public final class PublicStarTower {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(mapTableId);
       }
       if ((bitField0_ & 0x00000010) != 0) {
-        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(dataVersion);
       }
       if ((bitField0_ & 0x00000020) != 0) {
-        size += 1 + ProtoSink.computeStringSizeNoTag(clientData);
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       if ((bitField0_ & 0x00000040) != 0) {
+        size += 1 + ProtoSink.computeStringSizeNoTag(clientData);
+      }
+      if ((bitField0_ & 0x00000080) != 0) {
         size += 1 + ProtoSink.computeStringSizeNoTag(mapParam);
       }
       return size;
@@ -16898,6 +17033,15 @@ public final class PublicStarTower {
             mapTableId = input.readUInt32();
             bitField0_ |= 0x00000008;
             tag = input.readTag();
+            if (tag != 56) {
+              break;
+            }
+          }
+          case 56: {
+            // dataVersion
+            dataVersion = input.readUInt32();
+            bitField0_ |= 0x00000010;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -16905,7 +17049,7 @@ public final class PublicStarTower {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000010;
+            bitField0_ |= 0x00000020;
             tag = input.readTag();
             if (tag != 34) {
               break;
@@ -16914,7 +17058,7 @@ public final class PublicStarTower {
           case 34: {
             // clientData
             input.readString(clientData);
-            bitField0_ |= 0x00000020;
+            bitField0_ |= 0x00000040;
             tag = input.readTag();
             if (tag != 42) {
               break;
@@ -16923,7 +17067,7 @@ public final class PublicStarTower {
           case 42: {
             // mapParam
             input.readString(mapParam);
-            bitField0_ |= 0x00000040;
+            bitField0_ |= 0x00000080;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -16959,12 +17103,15 @@ public final class PublicStarTower {
         output.writeUInt32(FieldNames.mapTableId, mapTableId);
       }
       if ((bitField0_ & 0x00000010) != 0) {
-        output.writeBytes(FieldNames.nextPackage, nextPackage);
+        output.writeUInt32(FieldNames.dataVersion, dataVersion);
       }
       if ((bitField0_ & 0x00000020) != 0) {
-        output.writeString(FieldNames.clientData, clientData);
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       if ((bitField0_ & 0x00000040) != 0) {
+        output.writeString(FieldNames.clientData, clientData);
+      }
+      if ((bitField0_ & 0x00000080) != 0) {
         output.writeString(FieldNames.mapParam, mapParam);
       }
       output.endObject();
@@ -17021,11 +17168,22 @@ public final class PublicStarTower {
             }
             break;
           }
+          case 538270126: {
+            if (input.isAtField(FieldNames.dataVersion)) {
+              if (!input.trySkipNullValue()) {
+                dataVersion = input.readUInt32();
+                bitField0_ |= 0x00000010;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000010;
+                bitField0_ |= 0x00000020;
               }
             } else {
               input.skipUnknownField();
@@ -17036,7 +17194,7 @@ public final class PublicStarTower {
             if (input.isAtField(FieldNames.clientData)) {
               if (!input.trySkipNullValue()) {
                 input.readString(clientData);
-                bitField0_ |= 0x00000020;
+                bitField0_ |= 0x00000040;
               }
             } else {
               input.skipUnknownField();
@@ -17047,7 +17205,7 @@ public final class PublicStarTower {
             if (input.isAtField(FieldNames.mapParam)) {
               if (!input.trySkipNullValue()) {
                 input.readString(mapParam);
-                bitField0_ |= 0x00000040;
+                bitField0_ |= 0x00000080;
               }
             } else {
               input.skipUnknownField();
@@ -17114,6 +17272,8 @@ public final class PublicStarTower {
       static final FieldName dateLen = FieldName.forField("DateLen");
 
       static final FieldName mapTableId = FieldName.forField("MapTableId");
+
+      static final FieldName dataVersion = FieldName.forField("DataVersion");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
@@ -17982,6 +18142,11 @@ public final class PublicStarTower {
       private int dateLen;
 
       /**
+       * <code>optional uint32 DataVersion = 7;</code>
+       */
+      private int dataVersion;
+
+      /**
        * <code>optional .Events Events = 15;</code>
        */
       private final Public.Events events = Public.Events.newInstance();
@@ -18123,11 +18288,48 @@ public final class PublicStarTower {
       }
 
       /**
+       * <code>optional uint32 DataVersion = 7;</code>
+       * @return whether the dataVersion field is set
+       */
+      public boolean hasDataVersion() {
+        return (bitField0_ & 0x00000008) != 0;
+      }
+
+      /**
+       * <code>optional uint32 DataVersion = 7;</code>
+       * @return this
+       */
+      public VictoryData clearDataVersion() {
+        bitField0_ &= ~0x00000008;
+        dataVersion = 0;
+        return this;
+      }
+
+      /**
+       * <code>optional uint32 DataVersion = 7;</code>
+       * @return the dataVersion
+       */
+      public int getDataVersion() {
+        return dataVersion;
+      }
+
+      /**
+       * <code>optional uint32 DataVersion = 7;</code>
+       * @param value the dataVersion to set
+       * @return this
+       */
+      public VictoryData setDataVersion(final int value) {
+        bitField0_ |= 0x00000008;
+        dataVersion = value;
+        return this;
+      }
+
+      /**
        * <code>optional .Events Events = 15;</code>
        * @return whether the events field is set
        */
       public boolean hasEvents() {
-        return (bitField0_ & 0x00000008) != 0;
+        return (bitField0_ & 0x00000010) != 0;
       }
 
       /**
@@ -18135,7 +18337,7 @@ public final class PublicStarTower {
        * @return this
        */
       public VictoryData clearEvents() {
-        bitField0_ &= ~0x00000008;
+        bitField0_ &= ~0x00000010;
         events.clear();
         return this;
       }
@@ -18164,7 +18366,7 @@ public final class PublicStarTower {
        * @return internal storage object for modifications
        */
       public Public.Events getMutableEvents() {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         return events;
       }
 
@@ -18174,7 +18376,7 @@ public final class PublicStarTower {
        * @return this
        */
       public VictoryData setEvents(final Public.Events value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         events.copyFrom(value);
         return this;
       }
@@ -18184,7 +18386,7 @@ public final class PublicStarTower {
        * @return whether the clientData field is set
        */
       public boolean hasClientData() {
-        return (bitField0_ & 0x00000010) != 0;
+        return (bitField0_ & 0x00000020) != 0;
       }
 
       /**
@@ -18192,7 +18394,7 @@ public final class PublicStarTower {
        * @return this
        */
       public VictoryData clearClientData() {
-        bitField0_ &= ~0x00000010;
+        bitField0_ &= ~0x00000020;
         clientData.clear();
         return this;
       }
@@ -18218,7 +18420,7 @@ public final class PublicStarTower {
        * @return internal {@code Utf8String} representation of clientData for modifications
        */
       public Utf8String getMutableClientDataBytes() {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         return this.clientData;
       }
 
@@ -18228,7 +18430,7 @@ public final class PublicStarTower {
        * @return this
        */
       public VictoryData setClientData(final CharSequence value) {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         clientData.copyFrom(value);
         return this;
       }
@@ -18239,7 +18441,7 @@ public final class PublicStarTower {
        * @return this
        */
       public VictoryData setClientData(final Utf8String value) {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         clientData.copyFrom(value);
         return this;
       }
@@ -18249,7 +18451,7 @@ public final class PublicStarTower {
        * @return whether the damages field is set
        */
       public boolean hasDamages() {
-        return (bitField0_ & 0x00000020) != 0;
+        return (bitField0_ & 0x00000040) != 0;
       }
 
       /**
@@ -18257,7 +18459,7 @@ public final class PublicStarTower {
        * @return this
        */
       public VictoryData clearDamages() {
-        bitField0_ &= ~0x00000020;
+        bitField0_ &= ~0x00000040;
         damages.clear();
         return this;
       }
@@ -18286,7 +18488,7 @@ public final class PublicStarTower {
        * @return internal storage object for modifications
        */
       public RepeatedInt getMutableDamages() {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         return damages;
       }
 
@@ -18296,7 +18498,7 @@ public final class PublicStarTower {
        * @return this
        */
       public VictoryData addDamages(final int value) {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         damages.add(value);
         return this;
       }
@@ -18307,7 +18509,7 @@ public final class PublicStarTower {
        * @return this
        */
       public VictoryData addAllDamages(final int... values) {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         damages.addAll(values);
         return this;
       }
@@ -18317,7 +18519,7 @@ public final class PublicStarTower {
        * @return whether the fateCardUsage field is set
        */
       public boolean hasFateCardUsage() {
-        return (bitField0_ & 0x00000040) != 0;
+        return (bitField0_ & 0x00000080) != 0;
       }
 
       /**
@@ -18325,7 +18527,7 @@ public final class PublicStarTower {
        * @return this
        */
       public VictoryData clearFateCardUsage() {
-        bitField0_ &= ~0x00000040;
+        bitField0_ &= ~0x00000080;
         fateCardUsage.clear();
         return this;
       }
@@ -18354,7 +18556,7 @@ public final class PublicStarTower {
        * @return internal storage object for modifications
        */
       public RepeatedMessage<FateCardUsage> getMutableFateCardUsage() {
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         return fateCardUsage;
       }
 
@@ -18364,7 +18566,7 @@ public final class PublicStarTower {
        * @return this
        */
       public VictoryData addFateCardUsage(final FateCardUsage value) {
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         fateCardUsage.add(value);
         return this;
       }
@@ -18375,7 +18577,7 @@ public final class PublicStarTower {
        * @return this
        */
       public VictoryData addAllFateCardUsage(final FateCardUsage... values) {
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         fateCardUsage.addAll(values);
         return this;
       }
@@ -18388,6 +18590,7 @@ public final class PublicStarTower {
           hP = other.hP;
           time = other.time;
           dateLen = other.dateLen;
+          dataVersion = other.dataVersion;
           events.copyFrom(other.events);
           clientData.copyFrom(other.clientData);
           damages.copyFrom(other.damages);
@@ -18410,6 +18613,9 @@ public final class PublicStarTower {
         }
         if (other.hasDateLen()) {
           setDateLen(other.dateLen);
+        }
+        if (other.hasDataVersion()) {
+          setDataVersion(other.dataVersion);
         }
         if (other.hasEvents()) {
           getMutableEvents().mergeFrom(other.events);
@@ -18436,6 +18642,7 @@ public final class PublicStarTower {
         hP = 0;
         time = 0;
         dateLen = 0;
+        dataVersion = 0;
         events.clear();
         clientData.clear();
         damages.clear();
@@ -18470,6 +18677,7 @@ public final class PublicStarTower {
           && (!hasHP() || hP == other.hP)
           && (!hasTime() || time == other.time)
           && (!hasDateLen() || dateLen == other.dateLen)
+          && (!hasDataVersion() || dataVersion == other.dataVersion)
           && (!hasEvents() || events.equals(other.events))
           && (!hasClientData() || clientData.equals(other.clientData))
           && (!hasDamages() || damages.equals(other.damages))
@@ -18491,20 +18699,24 @@ public final class PublicStarTower {
           output.writeUInt32NoTag(dateLen);
         }
         if ((bitField0_ & 0x00000008) != 0) {
+          output.writeRawByte((byte) 56);
+          output.writeUInt32NoTag(dataVersion);
+        }
+        if ((bitField0_ & 0x00000010) != 0) {
           output.writeRawByte((byte) 122);
           output.writeMessageNoTag(events);
         }
-        if ((bitField0_ & 0x00000010) != 0) {
+        if ((bitField0_ & 0x00000020) != 0) {
           output.writeRawByte((byte) 34);
           output.writeStringNoTag(clientData);
         }
-        if ((bitField0_ & 0x00000020) != 0) {
+        if ((bitField0_ & 0x00000040) != 0) {
           for (int i = 0; i < damages.length(); i++) {
             output.writeRawByte((byte) 48);
             output.writeUInt32NoTag(damages.array()[i]);
           }
         }
-        if ((bitField0_ & 0x00000040) != 0) {
+        if ((bitField0_ & 0x00000080) != 0) {
           for (int i = 0; i < fateCardUsage.length(); i++) {
             output.writeRawByte((byte) 42);
             output.writeMessageNoTag(fateCardUsage.get(i));
@@ -18525,15 +18737,18 @@ public final class PublicStarTower {
           size += 1 + ProtoSink.computeUInt32SizeNoTag(dateLen);
         }
         if ((bitField0_ & 0x00000008) != 0) {
-          size += 1 + ProtoSink.computeMessageSizeNoTag(events);
+          size += 1 + ProtoSink.computeUInt32SizeNoTag(dataVersion);
         }
         if ((bitField0_ & 0x00000010) != 0) {
-          size += 1 + ProtoSink.computeStringSizeNoTag(clientData);
+          size += 1 + ProtoSink.computeMessageSizeNoTag(events);
         }
         if ((bitField0_ & 0x00000020) != 0) {
-          size += (1 * damages.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(damages);
+          size += 1 + ProtoSink.computeStringSizeNoTag(clientData);
         }
         if ((bitField0_ & 0x00000040) != 0) {
+          size += (1 * damages.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(damages);
+        }
+        if ((bitField0_ & 0x00000080) != 0) {
           size += (1 * fateCardUsage.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(fateCardUsage);
         }
         return size;
@@ -18569,6 +18784,15 @@ public final class PublicStarTower {
               dateLen = input.readUInt32();
               bitField0_ |= 0x00000004;
               tag = input.readTag();
+              if (tag != 56) {
+                break;
+              }
+            }
+            case 56: {
+              // dataVersion
+              dataVersion = input.readUInt32();
+              bitField0_ |= 0x00000008;
+              tag = input.readTag();
               if (tag != 122) {
                 break;
               }
@@ -18576,7 +18800,7 @@ public final class PublicStarTower {
             case 122: {
               // events
               input.readMessage(events);
-              bitField0_ |= 0x00000008;
+              bitField0_ |= 0x00000010;
               tag = input.readTag();
               if (tag != 34) {
                 break;
@@ -18585,7 +18809,7 @@ public final class PublicStarTower {
             case 34: {
               // clientData
               input.readString(clientData);
-              bitField0_ |= 0x00000010;
+              bitField0_ |= 0x00000020;
               tag = input.readTag();
               if (tag != 50) {
                 break;
@@ -18594,7 +18818,7 @@ public final class PublicStarTower {
             case 50: {
               // damages [packed=true]
               input.readPackedUInt32(damages, tag);
-              bitField0_ |= 0x00000020;
+              bitField0_ |= 0x00000040;
               tag = input.readTag();
               if (tag != 42) {
                 break;
@@ -18603,7 +18827,7 @@ public final class PublicStarTower {
             case 42: {
               // fateCardUsage
               tag = input.readRepeatedMessage(fateCardUsage, tag);
-              bitField0_ |= 0x00000040;
+              bitField0_ |= 0x00000080;
               if (tag != 0) {
                 break;
               }
@@ -18621,7 +18845,7 @@ public final class PublicStarTower {
             case 48: {
               // damages [packed=false]
               tag = input.readRepeatedUInt32(damages, tag);
-              bitField0_ |= 0x00000020;
+              bitField0_ |= 0x00000040;
               break;
             }
           }
@@ -18641,15 +18865,18 @@ public final class PublicStarTower {
           output.writeUInt32(FieldNames.dateLen, dateLen);
         }
         if ((bitField0_ & 0x00000008) != 0) {
-          output.writeMessage(FieldNames.events, events);
+          output.writeUInt32(FieldNames.dataVersion, dataVersion);
         }
         if ((bitField0_ & 0x00000010) != 0) {
-          output.writeString(FieldNames.clientData, clientData);
+          output.writeMessage(FieldNames.events, events);
         }
         if ((bitField0_ & 0x00000020) != 0) {
-          output.writeRepeatedUInt32(FieldNames.damages, damages);
+          output.writeString(FieldNames.clientData, clientData);
         }
         if ((bitField0_ & 0x00000040) != 0) {
+          output.writeRepeatedUInt32(FieldNames.damages, damages);
+        }
+        if ((bitField0_ & 0x00000080) != 0) {
           output.writeRepeatedMessage(FieldNames.fateCardUsage, fateCardUsage);
         }
         output.endObject();
@@ -18695,11 +18922,22 @@ public final class PublicStarTower {
               }
               break;
             }
+            case 538270126: {
+              if (input.isAtField(FieldNames.dataVersion)) {
+                if (!input.trySkipNullValue()) {
+                  dataVersion = input.readUInt32();
+                  bitField0_ |= 0x00000008;
+                }
+              } else {
+                input.skipUnknownField();
+              }
+              break;
+            }
             case 2087505209: {
               if (input.isAtField(FieldNames.events)) {
                 if (!input.trySkipNullValue()) {
                   input.readMessage(events);
-                  bitField0_ |= 0x00000008;
+                  bitField0_ |= 0x00000010;
                 }
               } else {
                 input.skipUnknownField();
@@ -18710,7 +18948,7 @@ public final class PublicStarTower {
               if (input.isAtField(FieldNames.clientData)) {
                 if (!input.trySkipNullValue()) {
                   input.readString(clientData);
-                  bitField0_ |= 0x00000010;
+                  bitField0_ |= 0x00000020;
                 }
               } else {
                 input.skipUnknownField();
@@ -18721,7 +18959,7 @@ public final class PublicStarTower {
               if (input.isAtField(FieldNames.damages)) {
                 if (!input.trySkipNullValue()) {
                   input.readRepeatedUInt32(damages);
-                  bitField0_ |= 0x00000020;
+                  bitField0_ |= 0x00000040;
                 }
               } else {
                 input.skipUnknownField();
@@ -18732,7 +18970,7 @@ public final class PublicStarTower {
               if (input.isAtField(FieldNames.fateCardUsage)) {
                 if (!input.trySkipNullValue()) {
                   input.readRepeatedMessage(fateCardUsage);
-                  bitField0_ |= 0x00000040;
+                  bitField0_ |= 0x00000080;
                 }
               } else {
                 input.skipUnknownField();
@@ -18796,6 +19034,8 @@ public final class PublicStarTower {
         static final FieldName time = FieldName.forField("Time");
 
         static final FieldName dateLen = FieldName.forField("DateLen");
+
+        static final FieldName dataVersion = FieldName.forField("DataVersion");
 
         static final FieldName events = FieldName.forField("Events");
 

@@ -133,8 +133,16 @@ public class ScoreBossRankEntry implements GameDatabaseObject {
             proto.addHonors(HonorInfo.newInstance().setId(id));
         }
         
-        for (var team : this.getTeams().values()) {
-            proto.addTeams(team.toProto());
+        for (var entry : this.getTeams().entrySet()) {
+            // Get team and level id from entry
+            int levelId = entry.getKey();
+            var team = entry.getValue();
+            
+            // Get team proto
+            var info = team.toProto()
+                    .setLevelId(levelId);
+            
+            proto.addTeams(info);
         }
         
         return proto;

@@ -3,6 +3,7 @@ package emu.nebula.net;
 public class NetMsgId {
     public static final int none = 0;
 
+    public static final int assist_add_build_notify = -10047;
     public static final int clear_all_activity_levels_notify = -10046;
     public static final int clear_all_activity_avg_notify = -10045;
     public static final int vs_add_fate_card_notify = -10044;
@@ -286,6 +287,18 @@ public class NetMsgId {
     public static final int quest_tour_guide_group_reward_receive_req = 4216;
     public static final int quest_tour_guide_group_reward_receive_succeed_ack = 4217;
     public static final int quest_tour_guide_group_reward_receive_failed_ack = 4218;
+    public static final int quest_weekly_reward_receive_req = 4219;
+    public static final int quest_weekly_reward_receive_succeed_ack = 4220;
+    public static final int quest_weekly_reward_receive_failed_ack = 4221;
+    public static final int quest_weekly_active_reward_receive_req = 4222;
+    public static final int quest_weekly_active_reward_receive_succeed_ack = 4223;
+    public static final int quest_weekly_active_reward_receive_failed_ack = 4224;
+    public static final int quest_assist_reward_receive_req = 4225;
+    public static final int quest_assist_reward_receive_succeed_ack = 4226;
+    public static final int quest_assist_reward_receive_failed_ack = 4227;
+    public static final int quest_assist_group_reward_receive_req = 4228;
+    public static final int quest_assist_group_reward_receive_succeed_ack = 4229;
+    public static final int quest_assist_group_reward_receive_failed_ack = 4230;
     public static final int activity_task_reward_receive_req = 4301;
     public static final int activity_task_reward_receive_succeed_ack = 4302;
     public static final int activity_task_reward_receive_failed_ack = 4303;
@@ -433,6 +446,7 @@ public class NetMsgId {
     public static final int gacha_newbie_info_req = 6022;
     public static final int gacha_newbie_info_succeed_ack = 6023;
     public static final int gacha_newbie_info_failed_ack = 6024;
+    public static final int gacha_spin_sync_ack = 6025;
     public static final int tower_book_fate_card_detail_req = 6101;
     public static final int tower_book_fate_card_detail_succeed_ack = 6102;
     public static final int tower_book_fate_card_detail_failed_ack = 6103;
@@ -598,6 +612,12 @@ public class NetMsgId {
     public static final int vampire_survivor_info_req = 8313;
     public static final int vampire_survivor_info_succeed_ack = 8314;
     public static final int vampire_survivor_info_failed_ack = 8315;
+    public static final int activity_story_apply_req = 8316;
+    public static final int activity_story_apply_succeed_ack = 8317;
+    public static final int activity_story_apply_failed_ack = 8318;
+    public static final int activity_story_settle_req = 8319;
+    public static final int activity_story_settle_succeed_ack = 8320;
+    public static final int activity_story_settle_failed_ack = 8321;
     public static final int mail_list_req = 9001;
     public static final int mail_list_succeed_ack = 9002;
     public static final int mail_list_failed_ack = 9003;
@@ -637,6 +657,15 @@ public class NetMsgId {
     public static final int activity_tower_defense_level_settle_req = 9122;
     public static final int activity_tower_defense_level_settle_succeed_ack = 9123;
     public static final int activity_tower_defense_level_settle_failed_ack = 9124;
+    public static final int activity_trekker_versus_apply_req = 9125;
+    public static final int activity_trekker_versus_apply_succeed_ack = 9126;
+    public static final int activity_trekker_versus_apply_failed_ack = 9127;
+    public static final int activity_trekker_versus_settle_req = 9128;
+    public static final int activity_trekker_versus_settle_succeed_ack = 9129;
+    public static final int activity_trekker_versus_settle_failed_ack = 9130;
+    public static final int activity_trekker_versus_reward_receive_req = 9131;
+    public static final int activity_trekker_versus_reward_receive_succeed_ack = 9132;
+    public static final int activity_trekker_versus_reward_receive_failed_ack = 9133;
     public static final int phone_contacts_info_req = 9201;
     public static final int phone_contacts_info_succeed_ack = 9202;
     public static final int phone_contacts_info_failed_ack = 9203;
@@ -758,7 +787,6 @@ public class NetMsgId {
     public static final int order_collected_notify = 10052;
     public static final int activity_end_item_change_notify = 10053;
     public static final int item_expired_change_notify = 10054;
-    public static final int activity_mining_grids_error_notify = 10055;
     public static final int activity_mining_apply_req = 11001;
     public static final int activity_mining_apply_succeed_ack = 11002;
     public static final int activity_mining_apply_failed_ack = 11003;

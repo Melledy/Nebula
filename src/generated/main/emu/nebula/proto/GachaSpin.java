@@ -35,6 +35,11 @@ public final class GachaSpin {
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
 
+    /**
+     * <code>repeated .ItemTpl Check = 15;</code>
+     */
+    private final RepeatedMessage<Public.ItemTpl> check = RepeatedMessage.newEmptyInstance(Public.ItemTpl.getFactory());
+
     private GachaSpinReq() {
     }
 
@@ -198,6 +203,74 @@ public final class GachaSpin {
       return this;
     }
 
+    /**
+     * <code>repeated .ItemTpl Check = 15;</code>
+     * @return whether the check field is set
+     */
+    public boolean hasCheck() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>repeated .ItemTpl Check = 15;</code>
+     * @return this
+     */
+    public GachaSpinReq clearCheck() {
+      bitField0_ &= ~0x00000008;
+      check.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .ItemTpl Check = 15;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableCheck()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<Public.ItemTpl> getCheck() {
+      return check;
+    }
+
+    /**
+     * <code>repeated .ItemTpl Check = 15;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<Public.ItemTpl> getMutableCheck() {
+      bitField0_ |= 0x00000008;
+      return check;
+    }
+
+    /**
+     * <code>repeated .ItemTpl Check = 15;</code>
+     * @param value the check to add
+     * @return this
+     */
+    public GachaSpinReq addCheck(final Public.ItemTpl value) {
+      bitField0_ |= 0x00000008;
+      check.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ItemTpl Check = 15;</code>
+     * @param values the check to add
+     * @return this
+     */
+    public GachaSpinReq addAllCheck(final Public.ItemTpl... values) {
+      bitField0_ |= 0x00000008;
+      check.addAll(values);
+      return this;
+    }
+
     @Override
     public GachaSpinReq copyFrom(final GachaSpinReq other) {
       cachedSize = other.cachedSize;
@@ -206,6 +279,7 @@ public final class GachaSpin {
         id = other.id;
         mode = other.mode;
         nextPackage.copyFrom(other.nextPackage);
+        check.copyFrom(other.check);
       }
       return this;
     }
@@ -225,6 +299,9 @@ public final class GachaSpin {
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
+      if (other.hasCheck()) {
+        getMutableCheck().addAll(other.check);
+      }
       return this;
     }
 
@@ -238,6 +315,7 @@ public final class GachaSpin {
       id = 0;
       mode = 0;
       nextPackage.clear();
+      check.clear();
       return this;
     }
 
@@ -249,6 +327,7 @@ public final class GachaSpin {
       cachedSize = -1;
       bitField0_ = 0;
       nextPackage.clear();
+      check.clearQuick();
       return this;
     }
 
@@ -264,7 +343,8 @@ public final class GachaSpin {
       return bitField0_ == other.bitField0_
         && (!hasId() || id == other.id)
         && (!hasMode() || mode == other.mode)
-        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasCheck() || check.equals(other.check));
     }
 
     @Override
@@ -281,6 +361,12 @@ public final class GachaSpin {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
+      if ((bitField0_ & 0x00000008) != 0) {
+        for (int i = 0; i < check.length(); i++) {
+          output.writeRawByte((byte) 122);
+          output.writeMessageNoTag(check.get(i));
+        }
+      }
     }
 
     @Override
@@ -294,6 +380,9 @@ public final class GachaSpin {
       }
       if ((bitField0_ & 0x00000004) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += (1 * check.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(check);
       }
       return size;
     }
@@ -328,6 +417,14 @@ public final class GachaSpin {
             input.readBytes(nextPackage);
             bitField0_ |= 0x00000004;
             tag = input.readTag();
+            if (tag != 122) {
+              break;
+            }
+          }
+          case 122: {
+            // check
+            tag = input.readRepeatedMessage(check, tag);
+            bitField0_ |= 0x00000008;
             if (tag != 0) {
               break;
             }
@@ -357,6 +454,9 @@ public final class GachaSpin {
       }
       if ((bitField0_ & 0x00000004) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRepeatedMessage(FieldNames.check, check);
       }
       output.endObject();
     }
@@ -395,6 +495,17 @@ public final class GachaSpin {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
                 bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 65074408: {
+            if (input.isAtField(FieldNames.check)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(check);
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -458,6 +569,8 @@ public final class GachaSpin {
       static final FieldName mode = FieldName.forField("Mode");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName check = FieldName.forField("Check");
     }
   }
 
@@ -2020,6 +2133,520 @@ public final class GachaSpin {
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
       static final FieldName rewards = FieldName.forField("Rewards");
+    }
+  }
+
+  /**
+   * Protobuf type {@code GachaSpinSyncResp}
+   */
+  public static final class GachaSpinSyncResp extends ProtoMessage<GachaSpinSyncResp> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>repeated .Res Res = 2;</code>
+     */
+    private final RepeatedMessage<Public.Res> res = RepeatedMessage.newEmptyInstance(Public.Res.getFactory());
+
+    /**
+     * <code>repeated .Item Items = 3;</code>
+     */
+    private final RepeatedMessage<Public.Item> items = RepeatedMessage.newEmptyInstance(Public.Item.getFactory());
+
+    private GachaSpinSyncResp() {
+    }
+
+    /**
+     * @return a new empty instance of {@code GachaSpinSyncResp}
+     */
+    public static GachaSpinSyncResp newInstance() {
+      return new GachaSpinSyncResp();
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public GachaSpinSyncResp clearNextPackage() {
+      bitField0_ &= ~0x00000001;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000001;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public GachaSpinSyncResp addNextPackage(final byte value) {
+      bitField0_ |= 0x00000001;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public GachaSpinSyncResp addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000001;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public GachaSpinSyncResp setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000001;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .Res Res = 2;</code>
+     * @return whether the res field is set
+     */
+    public boolean hasRes() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>repeated .Res Res = 2;</code>
+     * @return this
+     */
+    public GachaSpinSyncResp clearRes() {
+      bitField0_ &= ~0x00000002;
+      res.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .Res Res = 2;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableRes()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<Public.Res> getRes() {
+      return res;
+    }
+
+    /**
+     * <code>repeated .Res Res = 2;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<Public.Res> getMutableRes() {
+      bitField0_ |= 0x00000002;
+      return res;
+    }
+
+    /**
+     * <code>repeated .Res Res = 2;</code>
+     * @param value the res to add
+     * @return this
+     */
+    public GachaSpinSyncResp addRes(final Public.Res value) {
+      bitField0_ |= 0x00000002;
+      res.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .Res Res = 2;</code>
+     * @param values the res to add
+     * @return this
+     */
+    public GachaSpinSyncResp addAllRes(final Public.Res... values) {
+      bitField0_ |= 0x00000002;
+      res.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .Item Items = 3;</code>
+     * @return whether the items field is set
+     */
+    public boolean hasItems() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>repeated .Item Items = 3;</code>
+     * @return this
+     */
+    public GachaSpinSyncResp clearItems() {
+      bitField0_ &= ~0x00000004;
+      items.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .Item Items = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableItems()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<Public.Item> getItems() {
+      return items;
+    }
+
+    /**
+     * <code>repeated .Item Items = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<Public.Item> getMutableItems() {
+      bitField0_ |= 0x00000004;
+      return items;
+    }
+
+    /**
+     * <code>repeated .Item Items = 3;</code>
+     * @param value the items to add
+     * @return this
+     */
+    public GachaSpinSyncResp addItems(final Public.Item value) {
+      bitField0_ |= 0x00000004;
+      items.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .Item Items = 3;</code>
+     * @param values the items to add
+     * @return this
+     */
+    public GachaSpinSyncResp addAllItems(final Public.Item... values) {
+      bitField0_ |= 0x00000004;
+      items.addAll(values);
+      return this;
+    }
+
+    @Override
+    public GachaSpinSyncResp copyFrom(final GachaSpinSyncResp other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        nextPackage.copyFrom(other.nextPackage);
+        res.copyFrom(other.res);
+        items.copyFrom(other.items);
+      }
+      return this;
+    }
+
+    @Override
+    public GachaSpinSyncResp mergeFrom(final GachaSpinSyncResp other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasRes()) {
+        getMutableRes().addAll(other.res);
+      }
+      if (other.hasItems()) {
+        getMutableItems().addAll(other.items);
+      }
+      return this;
+    }
+
+    @Override
+    public GachaSpinSyncResp clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      res.clear();
+      items.clear();
+      return this;
+    }
+
+    @Override
+    public GachaSpinSyncResp clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      res.clearQuick();
+      items.clearQuick();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof GachaSpinSyncResp)) {
+        return false;
+      }
+      GachaSpinSyncResp other = (GachaSpinSyncResp) o;
+      return bitField0_ == other.bitField0_
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasRes() || res.equals(other.res))
+        && (!hasItems() || items.equals(other.items));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        for (int i = 0; i < res.length(); i++) {
+          output.writeRawByte((byte) 18);
+          output.writeMessageNoTag(res.get(i));
+        }
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        for (int i = 0; i < items.length(); i++) {
+          output.writeRawByte((byte) 26);
+          output.writeMessageNoTag(items.get(i));
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += (1 * res.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(res);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += (1 * items.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(items);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public GachaSpinSyncResp mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 18) {
+              break;
+            }
+          }
+          case 18: {
+            // res
+            tag = input.readRepeatedMessage(res, tag);
+            bitField0_ |= 0x00000002;
+            if (tag != 26) {
+              break;
+            }
+          }
+          case 26: {
+            // items
+            tag = input.readRepeatedMessage(items, tag);
+            bitField0_ |= 0x00000004;
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRepeatedMessage(FieldNames.res, res);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRepeatedMessage(FieldNames.items, items);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public GachaSpinSyncResp mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 82048: {
+            if (input.isAtField(FieldNames.res)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(res);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 70973344: {
+            if (input.isAtField(FieldNames.items)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(items);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public GachaSpinSyncResp clone() {
+      return new GachaSpinSyncResp().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static GachaSpinSyncResp parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new GachaSpinSyncResp(), data).checkInitialized();
+    }
+
+    public static GachaSpinSyncResp parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new GachaSpinSyncResp(), input).checkInitialized();
+    }
+
+    public static GachaSpinSyncResp parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new GachaSpinSyncResp(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating GachaSpinSyncResp messages
+     */
+    public static MessageFactory<GachaSpinSyncResp> getFactory() {
+      return GachaSpinSyncRespFactory.INSTANCE;
+    }
+
+    private enum GachaSpinSyncRespFactory implements MessageFactory<GachaSpinSyncResp> {
+      INSTANCE;
+
+      @Override
+      public GachaSpinSyncResp create() {
+        return GachaSpinSyncResp.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName res = FieldName.forField("Res");
+
+      static final FieldName items = FieldName.forField("Items");
     }
   }
 }

@@ -25,13 +25,15 @@ public class ActivityModule extends GameContextModule {
         // Tower defense activity
         this.activities.add(102001);
         
-        // 
-        this.activities.add(1010201);
-        this.activities.add(1010203);
-        this.activities.add(1010204);
+        // Beyond the dream
+        //this.activities.add(1010201);
+        //this.activities.add(1010203);
+        //this.activities.add(1010204);
         
-        //this.activities.add(101002);
-        //this.activities.add(101003);
+        // Christmas 2025
+        this.activities.add(2010101);
+        this.activities.add(2010103);
+        this.activities.add(2010104);
     }
     
 }
