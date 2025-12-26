@@ -75,6 +75,7 @@ public class Player implements GameDatabaseObject {
     private int skinId;
     private int titlePrefix;
     private int titleSuffix;
+    private long music;
     private int[] honor;
     private int[] showChars;
     private int[] boards;
@@ -339,6 +340,22 @@ public class Player implements GameDatabaseObject {
         
         // Update in database
         Nebula.getGameDatabase().update(this, this.getUid(), "signature", this.getSignature());
+        
+        // Success
+        return true;
+    }
+    
+    public boolean setMusic(long id) {
+        // Make sure we own the disc
+        if (id != 0 && !this.getCharacters().hasDisc((int) id)) {
+            return false;
+        }
+        
+        // Set main menu music
+        this.music = id;
+        
+        // Update in database
+        Nebula.getGameDatabase().update(this, this.getUid(), "music", this.getMusic());
         
         // Success
         return true;
@@ -871,6 +888,7 @@ public class Player implements GameDatabaseObject {
                 .setSigninIndex(this.getSignInIndex())
                 .setTowerTicket(this.getProgress().getTowerTickets())
                 .setDailyShopRewardStatus(this.getQuestManager().hasDailyReward())
+                .setMusicInfo(this.getMusic())
                 .setAchievements(new byte[64]);
         
         var acc = proto.getMutableAcc()
