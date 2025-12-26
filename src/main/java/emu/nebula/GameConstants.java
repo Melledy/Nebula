@@ -13,19 +13,19 @@ public class GameConstants {
     // TODO move this to a json file inside the jar to make it easier to auto-update
     static {
         RegionConfig.getRegion("global")
-            .setDataVersion(73);
+            .setDataVersion(74);
         
         RegionConfig.getRegion("kr")
-            .setDataVersion(80);
+            .setDataVersion(81);
         
         RegionConfig.getRegion("jp")
-            .setDataVersion(76);
+            .setDataVersion(78);
         
         RegionConfig.getRegion("tw")
-            .setDataVersion(74);
+            .setDataVersion(75);
 
         RegionConfig.getRegion("cn")
-            .setDataVersion(74);
+            .setDataVersion(75);
     }
     
     public static final ZoneId UTC_ZONE = ZoneId.of("UTC");
