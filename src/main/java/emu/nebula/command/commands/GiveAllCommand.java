@@ -45,7 +45,7 @@ public class GiveAllCommand implements CommandHandler {
                 
                 // Check sub type
                 for (ItemDef data : GameData.getItemDataTable()) {
-                    if (!MATERIAL_ITEM_SUBTYPES.contains(data.getItemSubType())) {
+                    if (data.getItemSubType() == null || !MATERIAL_ITEM_SUBTYPES.contains(data.getItemSubType())) {
                         continue;
                     }
                     
