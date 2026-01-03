@@ -43,7 +43,7 @@ public class HttpServer {
             }
 
             if (Nebula.getConfig().getLogOptions().httpDebug) {
-                javalinConfig.plugins.enableDevLogging();
+                javalinConfig.bundledPlugins.enableDevLogging();
                 ((Logger) LoggerFactory.getLogger("io.javalin")).setLevel(Level.DEBUG);
             }
         });
