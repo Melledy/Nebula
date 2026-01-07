@@ -1,5 +1,6 @@
 package emu.nebula.server.handlers;
 
+import emu.nebula.Nebula;
 import emu.nebula.net.NetHandler;
 import emu.nebula.net.NetMsgId;
 import emu.nebula.proto.MallGemListOuterClass.GemInfo;
@@ -13,6 +14,7 @@ public class HandlerMallGemListReq extends NetHandler {
 
     @Override
     public byte[] handle(GameSession session, byte[] message) throws Exception {
+        Nebula.getLogger().info("HandlerMallGemListReq called");
         var rsp = MallGemList.newInstance();
         
         for (var data : GameData.getMallGemDataTable()) {
