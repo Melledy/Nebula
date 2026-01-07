@@ -170,7 +170,7 @@ public class Player implements GameDatabaseObject {
         // Add starter characters
         this.getCharacters().addCharacter(103);
         this.getCharacters().addCharacter(112);
-        this.getCharacters().addCharacter(113);
+        this.getCharacters().addCharacter(111);
         
         // Add starter discs
         this.getCharacters().addDisc(211001);
