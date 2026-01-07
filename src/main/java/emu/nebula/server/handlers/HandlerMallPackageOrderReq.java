@@ -56,9 +56,9 @@ public class HandlerMallPackageOrderReq extends NetHandler {
             
             // Add Products/Rewards to the SAME rewardChange
             if (def.getProducts() != null) {
-                for (var entry : def.getProducts().entrySet()) {
-                    int itemId = entry.getKey();
-                    int count = entry.getValue();
+                for (var entry : def.getProducts().int2IntEntrySet()) {
+                    int itemId = entry.getIntKey();
+                    int count = entry.getIntValue();
                     
                     if (itemId > 0 && count > 0) {
                         session.getPlayer().getInventory().addItem(itemId, count, rewardChange);
