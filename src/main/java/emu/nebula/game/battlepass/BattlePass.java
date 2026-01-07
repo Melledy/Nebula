@@ -354,6 +354,56 @@ public class BattlePass implements GameDatabaseObject {
         // Add rewards
         return getPlayer().getInventory().addItems(rewards);
     }
+    
+    public BattlePass buyLevels(int amount) {
+        // Sanity check
+        if (amount <= 0) {
+            return null;
+        }
+        
+        // Calculate cost
+        // We will assume the cost is constant for now, based on the next level
+        var levelDef = GameData.getBattlePassLevelDataTable().get(this.getLevel() + 1);
+        
+        if (levelDef == null) {
+            return null;
+        }
+        
+        // Get cost info
+        int currencyId = levelDef.getTid();
+        int price = levelDef.getQty();
+        
+        // Fallback defaults if data is missing
+        if (price <= 0) {
+            currencyId = GameConstants.GEM_ITEM_ID;
+            price = 200;
+        }
+        
+        int totalCost = price * amount;
+        
+        // Check funds
+        if (!getPlayer().getInventory().hasItem(currencyId, totalCost)) {
+            return null;
+        }
+        
+        // Pay
+        getPlayer().getInventory().removeItem(currencyId, totalCost);
+        
+        // Add levels
+        // We do this by adding exp
+        for (int i = 0; i < amount; i++) {
+        	// Get exp info for current level loop
+            var nextLevelDef = GameData.getBattlePassLevelDataTable().get(this.getLevel() + 1);
+            if (nextLevelDef == null) break;
+            
+            this.addExp(nextLevelDef.getExp());
+        }
+        
+        // Save
+        this.save();
+        
+        return this;
+    }
 
     // Proto
     
