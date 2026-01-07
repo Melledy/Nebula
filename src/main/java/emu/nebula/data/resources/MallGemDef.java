@@ -11,10 +11,29 @@ import lombok.Getter;
 public class MallGemDef extends BaseDef {
     @SerializedName("Id")
     private String IdString;
-    private int Stock;
-    private int ItemId;
-    private int CurrencyItemId;
-    private int ItemQty;
+    
+    private String Name;
+    private String Desc;
+    
+    @SerializedName("BaseItemId")
+    private int baseItemId;
+    
+    @SerializedName("BaseItemQty")
+    private int baseItemQty;
+    
+    @SerializedName("ExperiencedBonusItemId")
+    private int experiencedBonusItemId;
+    
+    @SerializedName("ExperiencedBonusItemQty")
+    private int experiencedBonusItemQty;
+    
+    @SerializedName("MaidenBonusItemID")
+    private int maidenBonusItemId;
+    
+    @SerializedName("MaidenBonusItemQty")
+    private int maidenBonusItemQty;
+    
+    private int Price;
     
     @Override
     public int getId() {
