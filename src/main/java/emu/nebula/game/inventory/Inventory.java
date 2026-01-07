@@ -273,8 +273,20 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
     // Items
     
     public synchronized int getItemCount(int id) {
-        var item = this.getItems().get(id);
-        return item != null ? item.getCount() : 0;
+        var data = GameData.getItemDataTable().get(id);
+        if (data == null) return 0;
+        
+        return switch (data.getItemType()) {
+            case Res -> {
+                var res = this.resources.get(id);
+                yield res != null ? res.getCount() : 0;
+            }
+            case Item -> {
+                var item = this.items.get(id);
+                yield item != null ? item.getCount() : 0;
+            }
+            default -> 0;
+        };
     }
     
     // Add/Remove items
