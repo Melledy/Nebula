@@ -273,8 +273,20 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
     // Items
     
     public synchronized int getItemCount(int id) {
-        var item = this.getItems().get(id);
-        return item != null ? item.getCount() : 0;
+        var data = GameData.getItemDataTable().get(id);
+        if (data == null) return 0;
+        
+        return switch (data.getItemType()) {
+            case Res -> {
+                var res = this.resources.get(id);
+                yield res != null ? res.getCount() : 0;
+            }
+            case Item -> {
+                var item = this.items.get(id);
+                yield item != null ? item.getCount() : 0;
+            }
+            default -> 0;
+        };
     }
     
     // Add/Remove items
@@ -861,16 +873,37 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
     }
     
     public PlayerChangeInfo convertGems(int amount) {
-        // Verify that we have the gems
-        if (!this.hasItem(GameConstants.PREM_GEM_ITEM_ID, amount)) {
+        // Get counts
+        int baseCount = this.getItemCount(GameConstants.PREM_GEM_ITEM_ID);
+        int bonusCount = this.getItemCount(GameConstants.BONUS_GEM_ITEM_ID);
+        long total = (long) baseCount + bonusCount;
+        
+        Nebula.getLogger().info("Inventory.convertGems: Base=" + baseCount + " Bonus=" + bonusCount + " Total=" + total + " Req=" + amount);
+        
+        // Verify funds
+        if (total < amount) {
+            Nebula.getLogger().info("Inventory.convertGems: Insufficient funds.");
             return null;
         }
         
         // Create change info
         var change = new PlayerChangeInfo();
         
-        // Convert gems
-        this.removeItem(GameConstants.PREM_GEM_ITEM_ID, amount, change);
+        // Calculate deduction
+        // Prioritize consuming Bonus (ID 4) first, then Base (ID 3)
+        int consumeBonus = Math.min(amount, bonusCount);
+        int consumeBase = amount - consumeBonus;
+        
+        // Remove items
+        if (consumeBonus > 0) {
+            this.removeItem(GameConstants.BONUS_GEM_ITEM_ID, consumeBonus, change);
+        }
+        
+        if (consumeBase > 0) {
+            this.removeItem(GameConstants.PREM_GEM_ITEM_ID, consumeBase, change);
+        }
+        
+        // Add Stellanite Dust (ID 2)
         this.addItem(GameConstants.GEM_ITEM_ID, amount, change);
         
         // Success

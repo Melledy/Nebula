@@ -19,6 +19,7 @@ public class GameConstants {
     public static final int GOLD_ITEM_ID = 1;
     public static final int GEM_ITEM_ID = 2;
     public static final int PREM_GEM_ITEM_ID = 3;
+    public static final int BONUS_GEM_ITEM_ID = 4;
     public static final int ENERGY_BUY_ITEM_ID = GEM_ITEM_ID;
     public static final int EXP_ITEM_ID = 21;
     public static final int WEEKLY_ENTRY_ITEM_ID = 28;
