@@ -29,9 +29,6 @@ public class HandlerMallPackageListReq extends NetHandler {
             rsp.addList(info);
         }
         
-        // Log count
-      
-        
         return session.encodeMsg(NetMsgId.mall_package_list_succeed_ack, rsp);
     }
 }
