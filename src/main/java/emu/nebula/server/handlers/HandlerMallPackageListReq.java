@@ -1,6 +1,5 @@
 package emu.nebula.server.handlers;
 
-import emu.nebula.Nebula;
 import emu.nebula.net.NetHandler;
 import emu.nebula.net.NetMsgId;
 import emu.nebula.proto.MallPackageListOuterClass.MallPackageList;
@@ -14,7 +13,7 @@ public class HandlerMallPackageListReq extends NetHandler {
 
     @Override
     public byte[] handle(GameSession session, byte[] message) throws Exception {
-        Nebula.getLogger().info("HandlerMallPackageListReq called");
+      
         var rsp = MallPackageList.newInstance();
         var inventory = session.getPlayer().getInventory();
         
@@ -31,7 +30,7 @@ public class HandlerMallPackageListReq extends NetHandler {
         }
         
         // Log count
-        Nebula.getLogger().info("HandlerMallPackageListReq sending " + rsp.getList().length() + " items.");
+      
         
         return session.encodeMsg(NetMsgId.mall_package_list_succeed_ack, rsp);
     }
