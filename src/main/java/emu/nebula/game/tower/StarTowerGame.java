@@ -862,8 +862,8 @@ public class StarTowerGame {
             int research = 50 + (Utils.randomRange(this.getDifficulty() - 1, this.getDifficulty() * 2) * 10);
             rewards.add(51, research);
             
-            // Add to inventory
-            var change = this.getPlayer().getInventory().addItem(51, research);
+            // Add to inventory (both tickets and research materials)
+            var change = this.getPlayer().getInventory().addItems(rewards);
             
             // Set proto data
             settle.setChange(change.toProto());
