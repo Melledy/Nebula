@@ -80,7 +80,7 @@ public class BattlePass implements GameDatabaseObject {
     
     public boolean isPremium() {
         return this.mode > 0;
-    }
+    }   
 
     private BattlePassRewardDef getRewardData(int level) {
         return GameData.getBattlePassRewardDataTable().get((this.getBattlePassId() << 16) + level);
@@ -362,7 +362,6 @@ public class BattlePass implements GameDatabaseObject {
         }
         
         // Calculate cost
-        // We will assume the cost is constant for now, based on the next level
         var levelDef = GameData.getBattlePassLevelDataTable().get(this.getLevel() + 1);
         
         if (levelDef == null) {
@@ -390,7 +389,6 @@ public class BattlePass implements GameDatabaseObject {
         getPlayer().getInventory().removeItem(currencyId, totalCost);
         
         // Add levels
-        // We do this by adding exp
         for (int i = 0; i < amount; i++) {
         	// Get exp info for current level loop
             var nextLevelDef = GameData.getBattlePassLevelDataTable().get(this.getLevel() + 1);
