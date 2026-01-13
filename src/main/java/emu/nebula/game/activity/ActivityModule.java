@@ -17,12 +17,7 @@ public class ActivityModule extends GameContextModule {
         // Hardcode these activities for now
         // TODO make an activity json file to read activity ids from
         
-        // Trial activities
-        this.activities.add(700105);
-        this.activities.add(700106);
-
-        // Tower defense activity
-        this.activities.add(102001);
+        // ===== Standard Events =====
         
         // Beyond the dream
         //this.activities.add(1010201);
@@ -30,9 +25,23 @@ public class ActivityModule extends GameContextModule {
         //this.activities.add(1010204);
         
         // Christmas 2025
-        this.activities.add(2010101);
-        this.activities.add(2010103);
-        this.activities.add(2010104);
+        //this.activities.add(2010101);
+        //this.activities.add(2010103);
+        //this.activities.add(2010104);
+        
+        // Miracle of a Flicker
+        this.activities.add(1010301);
+        this.activities.add(1010303);
+        this.activities.add(1010304);
+        
+        // ===== Etc Events =====
+        
+        // Trial activities
+        this.activities.add(700109);
+        this.activities.add(700110);
+
+        // Tower defense activity
+        this.activities.add(102001);
         
         // Christmas 2025 login events
         this.activities.add(301011);
