@@ -575,7 +575,7 @@ public class GameCharacter implements GameDatabaseObject {
         // Get gem index
         int gemIndex = preset.getGemIndex(slotId);
         
-        if (gemIndex <= 0) {
+        if (gemIndex < 0) {
             return null;
         }
         

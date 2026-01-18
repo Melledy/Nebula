@@ -278,12 +278,14 @@ public class StarTowerManager extends PlayerManager {
             return null;
         }
         
-        // Create change
+        // Create change info
         var change = new PlayerChangeInfo();
+        int expressItemId = 0;
         
         // Check if sweeping
         if (req.getSweep()) {
-            // Make sure we have the proper growth node that enables sweeping
+            // Key to the Stairs to the Stars
+            // Make sure we have the proper growth node that enables the express pass
             if (!this.hasGrowthNode(10301)) {
                 return null;
             }
@@ -294,11 +296,11 @@ public class StarTowerManager extends PlayerManager {
                 return null;
             }
             
-            // Check materials
+            // Check if the player has any express pass
             if (this.getPlayer().getInventory().hasItem(29, 1)) {
-                this.getPlayer().getInventory().removeItem(29, 1, change);
+                expressItemId = 29;
             } else if (this.getPlayer().getInventory().hasItem(30, 1)) {
-                this.getPlayer().getInventory().removeItem(30, 1, change);
+                expressItemId = 30;
             } else {
                 return null;
             }
@@ -310,6 +312,11 @@ public class StarTowerManager extends PlayerManager {
         } catch (Exception e) {
             Nebula.getLogger().error("Could not create star tower game", e);
             return null;
+        }
+        
+        // Consume express pass item
+        if (expressItemId > 0) {
+            this.getPlayer().getInventory().removeItem(expressItemId, 1, change);
         }
         
         // Trigger quest
