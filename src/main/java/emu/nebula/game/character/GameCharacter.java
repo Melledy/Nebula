@@ -698,7 +698,7 @@ public class GameCharacter implements GameDatabaseObject {
         }
         
         // Generate attributes and create gem
-        var attributes = gemControl.generateAttributes();
+        var attributes = gemControl.generateAttributes(this);
         var gem = new CharacterGem(attributes);
         
         // Add gem to slot
@@ -771,7 +771,7 @@ public class GameCharacter implements GameDatabaseObject {
         }
         
         // Generate attributes and create gem
-        var attributes = gemControl.generateAttributes(list);
+        var attributes = gemControl.generateAttributes(this, list);
         gem.setNewAttributes(attributes);
         
         // Save to database

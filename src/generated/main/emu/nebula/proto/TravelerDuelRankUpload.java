@@ -514,6 +514,11 @@ public final class TravelerDuelRankUpload {
     private final TravelerDuelBattleSamples samples = TravelerDuelBattleSamples.newInstance();
 
     /**
+     * <code>optional bytes Extra = 3;</code>
+     */
+    private final RepeatedByte extra = RepeatedByte.newEmptyInstance();
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -643,11 +648,90 @@ public final class TravelerDuelRankUpload {
     }
 
     /**
+     * <code>optional bytes Extra = 3;</code>
+     * @return whether the extra field is set
+     */
+    public boolean hasExtra() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional bytes Extra = 3;</code>
+     * @return this
+     */
+    public TravelerDuelBattleData clearExtra() {
+      bitField0_ &= ~0x00000004;
+      extra.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes Extra = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableExtra()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getExtra() {
+      return extra;
+    }
+
+    /**
+     * <code>optional bytes Extra = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableExtra() {
+      bitField0_ |= 0x00000004;
+      return extra;
+    }
+
+    /**
+     * <code>optional bytes Extra = 3;</code>
+     * @param value the extra to add
+     * @return this
+     */
+    public TravelerDuelBattleData addExtra(final byte value) {
+      bitField0_ |= 0x00000004;
+      extra.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes Extra = 3;</code>
+     * @param values the extra to add
+     * @return this
+     */
+    public TravelerDuelBattleData addAllExtra(final byte... values) {
+      bitField0_ |= 0x00000004;
+      extra.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes Extra = 3;</code>
+     * @param values the extra to set
+     * @return this
+     */
+    public TravelerDuelBattleData setExtra(final byte... values) {
+      bitField0_ |= 0x00000004;
+      extra.copyFrom(values);
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
@@ -655,7 +739,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleData clearNextPackage() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000008;
       nextPackage.clear();
       return this;
     }
@@ -684,7 +768,7 @@ public final class TravelerDuelRankUpload {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       return nextPackage;
     }
 
@@ -694,7 +778,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleData addNextPackage(final byte value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       nextPackage.add(value);
       return this;
     }
@@ -705,7 +789,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleData addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       nextPackage.addAll(values);
       return this;
     }
@@ -716,7 +800,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleData setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -728,6 +812,7 @@ public final class TravelerDuelRankUpload {
         bitField0_ = other.bitField0_;
         meta.copyFrom(other.meta);
         samples.copyFrom(other.samples);
+        extra.copyFrom(other.extra);
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -745,6 +830,9 @@ public final class TravelerDuelRankUpload {
       if (other.hasSamples()) {
         getMutableSamples().mergeFrom(other.samples);
       }
+      if (other.hasExtra()) {
+        getMutableExtra().copyFrom(other.extra);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -760,6 +848,7 @@ public final class TravelerDuelRankUpload {
       bitField0_ = 0;
       meta.clear();
       samples.clear();
+      extra.clear();
       nextPackage.clear();
       return this;
     }
@@ -773,6 +862,7 @@ public final class TravelerDuelRankUpload {
       bitField0_ = 0;
       meta.clearQuick();
       samples.clearQuick();
+      extra.clear();
       nextPackage.clear();
       return this;
     }
@@ -789,6 +879,7 @@ public final class TravelerDuelRankUpload {
       return bitField0_ == other.bitField0_
         && (!hasMeta() || meta.equals(other.meta))
         && (!hasSamples() || samples.equals(other.samples))
+        && (!hasExtra() || extra.equals(other.extra))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
@@ -803,6 +894,10 @@ public final class TravelerDuelRankUpload {
         output.writeMessageNoTag(samples);
       }
       if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 26);
+        output.writeBytesNoTag(extra);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
@@ -818,6 +913,9 @@ public final class TravelerDuelRankUpload {
         size += 1 + ProtoSink.computeMessageSizeNoTag(samples);
       }
       if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeBytesSizeNoTag(extra);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       return size;
@@ -844,6 +942,15 @@ public final class TravelerDuelRankUpload {
             input.readMessage(samples);
             bitField0_ |= 0x00000002;
             tag = input.readTag();
+            if (tag != 26) {
+              break;
+            }
+          }
+          case 26: {
+            // extra
+            input.readBytes(extra);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -851,7 +958,7 @@ public final class TravelerDuelRankUpload {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000008;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -881,6 +988,9 @@ public final class TravelerDuelRankUpload {
         output.writeMessage(FieldNames.samples, samples);
       }
       if ((bitField0_ & 0x00000004) != 0) {
+        output.writeBytes(FieldNames.extra, extra);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       output.endObject();
@@ -915,11 +1025,22 @@ public final class TravelerDuelRankUpload {
             }
             break;
           }
+          case 67412976: {
+            if (input.isAtField(FieldNames.extra)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(extra);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -982,6 +1103,8 @@ public final class TravelerDuelRankUpload {
       static final FieldName meta = FieldName.forField("Meta");
 
       static final FieldName samples = FieldName.forField("Samples");
+
+      static final FieldName extra = FieldName.forField("Extra");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }
@@ -2220,6 +2343,16 @@ public final class TravelerDuelRankUpload {
     private static final long serialVersionUID = 0L;
 
     /**
+     * <code>optional int64 Dmg = 16;</code>
+     */
+    private long dmg;
+
+    /**
+     * <code>optional int64 Hp = 18;</code>
+     */
+    private long hp;
+
+    /**
      * <code>optional float FromPerkIntensityRatio = 2;</code>
      */
     private float fromPerkIntensityRatio;
@@ -2300,16 +2433,6 @@ public final class TravelerDuelRankUpload {
     private int fromFinalDmgPlus;
 
     /**
-     * <code>optional int32 Dmg = 16;</code>
-     */
-    private int dmg;
-
-    /**
-     * <code>optional int32 Hp = 18;</code>
-     */
-    private int hp;
-
-    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -2325,11 +2448,85 @@ public final class TravelerDuelRankUpload {
     }
 
     /**
+     * <code>optional int64 Dmg = 16;</code>
+     * @return whether the dmg field is set
+     */
+    public boolean hasDmg() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional int64 Dmg = 16;</code>
+     * @return this
+     */
+    public TravelerDuelBattleSample clearDmg() {
+      bitField0_ &= ~0x00000001;
+      dmg = 0L;
+      return this;
+    }
+
+    /**
+     * <code>optional int64 Dmg = 16;</code>
+     * @return the dmg
+     */
+    public long getDmg() {
+      return dmg;
+    }
+
+    /**
+     * <code>optional int64 Dmg = 16;</code>
+     * @param value the dmg to set
+     * @return this
+     */
+    public TravelerDuelBattleSample setDmg(final long value) {
+      bitField0_ |= 0x00000001;
+      dmg = value;
+      return this;
+    }
+
+    /**
+     * <code>optional int64 Hp = 18;</code>
+     * @return whether the hp field is set
+     */
+    public boolean hasHp() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional int64 Hp = 18;</code>
+     * @return this
+     */
+    public TravelerDuelBattleSample clearHp() {
+      bitField0_ &= ~0x00000002;
+      hp = 0L;
+      return this;
+    }
+
+    /**
+     * <code>optional int64 Hp = 18;</code>
+     * @return the hp
+     */
+    public long getHp() {
+      return hp;
+    }
+
+    /**
+     * <code>optional int64 Hp = 18;</code>
+     * @param value the hp to set
+     * @return this
+     */
+    public TravelerDuelBattleSample setHp(final long value) {
+      bitField0_ |= 0x00000002;
+      hp = value;
+      return this;
+    }
+
+    /**
      * <code>optional float FromPerkIntensityRatio = 2;</code>
      * @return whether the fromPerkIntensityRatio field is set
      */
     public boolean hasFromPerkIntensityRatio() {
-      return (bitField0_ & 0x00000001) != 0;
+      return (bitField0_ & 0x00000004) != 0;
     }
 
     /**
@@ -2337,7 +2534,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample clearFromPerkIntensityRatio() {
-      bitField0_ &= ~0x00000001;
+      bitField0_ &= ~0x00000004;
       fromPerkIntensityRatio = 0F;
       return this;
     }
@@ -2356,7 +2553,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample setFromPerkIntensityRatio(final float value) {
-      bitField0_ |= 0x00000001;
+      bitField0_ |= 0x00000004;
       fromPerkIntensityRatio = value;
       return this;
     }
@@ -2366,7 +2563,7 @@ public final class TravelerDuelRankUpload {
      * @return whether the fromSlotDmgRatio field is set
      */
     public boolean hasFromSlotDmgRatio() {
-      return (bitField0_ & 0x00000002) != 0;
+      return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
@@ -2374,7 +2571,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample clearFromSlotDmgRatio() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000008;
       fromSlotDmgRatio = 0F;
       return this;
     }
@@ -2393,7 +2590,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample setFromSlotDmgRatio(final float value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000008;
       fromSlotDmgRatio = value;
       return this;
     }
@@ -2403,7 +2600,7 @@ public final class TravelerDuelRankUpload {
      * @return whether the fromEE field is set
      */
     public boolean hasFromEE() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000010) != 0;
     }
 
     /**
@@ -2411,7 +2608,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample clearFromEE() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000010;
       fromEE = 0F;
       return this;
     }
@@ -2430,7 +2627,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample setFromEE(final float value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000010;
       fromEE = value;
       return this;
     }
@@ -2440,7 +2637,7 @@ public final class TravelerDuelRankUpload {
      * @return whether the fromGenDmgRatio field is set
      */
     public boolean hasFromGenDmgRatio() {
-      return (bitField0_ & 0x00000008) != 0;
+      return (bitField0_ & 0x00000020) != 0;
     }
 
     /**
@@ -2448,7 +2645,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample clearFromGenDmgRatio() {
-      bitField0_ &= ~0x00000008;
+      bitField0_ &= ~0x00000020;
       fromGenDmgRatio = 0F;
       return this;
     }
@@ -2467,7 +2664,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample setFromGenDmgRatio(final float value) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000020;
       fromGenDmgRatio = value;
       return this;
     }
@@ -2477,7 +2674,7 @@ public final class TravelerDuelRankUpload {
      * @return whether the fromCritRatio field is set
      */
     public boolean hasFromCritRatio() {
-      return (bitField0_ & 0x00000010) != 0;
+      return (bitField0_ & 0x00000040) != 0;
     }
 
     /**
@@ -2485,7 +2682,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample clearFromCritRatio() {
-      bitField0_ &= ~0x00000010;
+      bitField0_ &= ~0x00000040;
       fromCritRatio = 0F;
       return this;
     }
@@ -2504,7 +2701,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample setFromCritRatio(final float value) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000040;
       fromCritRatio = value;
       return this;
     }
@@ -2514,7 +2711,7 @@ public final class TravelerDuelRankUpload {
      * @return whether the fromFinalDmgRatio field is set
      */
     public boolean hasFromFinalDmgRatio() {
-      return (bitField0_ & 0x00000020) != 0;
+      return (bitField0_ & 0x00000080) != 0;
     }
 
     /**
@@ -2522,7 +2719,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample clearFromFinalDmgRatio() {
-      bitField0_ &= ~0x00000020;
+      bitField0_ &= ~0x00000080;
       fromFinalDmgRatio = 0F;
       return this;
     }
@@ -2541,7 +2738,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample setFromFinalDmgRatio(final float value) {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000080;
       fromFinalDmgRatio = value;
       return this;
     }
@@ -2551,7 +2748,7 @@ public final class TravelerDuelRankUpload {
      * @return whether the toErAmend field is set
      */
     public boolean hasToErAmend() {
-      return (bitField0_ & 0x00000040) != 0;
+      return (bitField0_ & 0x00000100) != 0;
     }
 
     /**
@@ -2559,7 +2756,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample clearToErAmend() {
-      bitField0_ &= ~0x00000040;
+      bitField0_ &= ~0x00000100;
       toErAmend = 0F;
       return this;
     }
@@ -2578,7 +2775,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample setToErAmend(final float value) {
-      bitField0_ |= 0x00000040;
+      bitField0_ |= 0x00000100;
       toErAmend = value;
       return this;
     }
@@ -2588,7 +2785,7 @@ public final class TravelerDuelRankUpload {
      * @return whether the toDefAmend field is set
      */
     public boolean hasToDefAmend() {
-      return (bitField0_ & 0x00000080) != 0;
+      return (bitField0_ & 0x00000200) != 0;
     }
 
     /**
@@ -2596,7 +2793,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample clearToDefAmend() {
-      bitField0_ &= ~0x00000080;
+      bitField0_ &= ~0x00000200;
       toDefAmend = 0F;
       return this;
     }
@@ -2615,7 +2812,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample setToDefAmend(final float value) {
-      bitField0_ |= 0x00000080;
+      bitField0_ |= 0x00000200;
       toDefAmend = value;
       return this;
     }
@@ -2625,7 +2822,7 @@ public final class TravelerDuelRankUpload {
      * @return whether the toRcdSlotDmgRatio field is set
      */
     public boolean hasToRcdSlotDmgRatio() {
-      return (bitField0_ & 0x00000100) != 0;
+      return (bitField0_ & 0x00000400) != 0;
     }
 
     /**
@@ -2633,7 +2830,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample clearToRcdSlotDmgRatio() {
-      bitField0_ &= ~0x00000100;
+      bitField0_ &= ~0x00000400;
       toRcdSlotDmgRatio = 0F;
       return this;
     }
@@ -2652,7 +2849,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample setToRcdSlotDmgRatio(final float value) {
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000400;
       toRcdSlotDmgRatio = value;
       return this;
     }
@@ -2662,7 +2859,7 @@ public final class TravelerDuelRankUpload {
      * @return whether the toEERCD field is set
      */
     public boolean hasToEERCD() {
-      return (bitField0_ & 0x00000200) != 0;
+      return (bitField0_ & 0x00000800) != 0;
     }
 
     /**
@@ -2670,7 +2867,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample clearToEERCD() {
-      bitField0_ &= ~0x00000200;
+      bitField0_ &= ~0x00000800;
       toEERCD = 0F;
       return this;
     }
@@ -2689,7 +2886,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample setToEERCD(final float value) {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000800;
       toEERCD = value;
       return this;
     }
@@ -2699,7 +2896,7 @@ public final class TravelerDuelRankUpload {
      * @return whether the toGenDmgRcdRatio field is set
      */
     public boolean hasToGenDmgRcdRatio() {
-      return (bitField0_ & 0x00000400) != 0;
+      return (bitField0_ & 0x00001000) != 0;
     }
 
     /**
@@ -2707,7 +2904,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample clearToGenDmgRcdRatio() {
-      bitField0_ &= ~0x00000400;
+      bitField0_ &= ~0x00001000;
       toGenDmgRcdRatio = 0F;
       return this;
     }
@@ -2726,7 +2923,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample setToGenDmgRcdRatio(final float value) {
-      bitField0_ |= 0x00000400;
+      bitField0_ |= 0x00001000;
       toGenDmgRcdRatio = value;
       return this;
     }
@@ -2736,7 +2933,7 @@ public final class TravelerDuelRankUpload {
      * @return whether the toDmgPlusRcd field is set
      */
     public boolean hasToDmgPlusRcd() {
-      return (bitField0_ & 0x00000800) != 0;
+      return (bitField0_ & 0x00002000) != 0;
     }
 
     /**
@@ -2744,7 +2941,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample clearToDmgPlusRcd() {
-      bitField0_ &= ~0x00000800;
+      bitField0_ &= ~0x00002000;
       toDmgPlusRcd = 0F;
       return this;
     }
@@ -2763,7 +2960,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample setToDmgPlusRcd(final float value) {
-      bitField0_ |= 0x00000800;
+      bitField0_ |= 0x00002000;
       toDmgPlusRcd = value;
       return this;
     }
@@ -2773,7 +2970,7 @@ public final class TravelerDuelRankUpload {
      * @return whether the critRate field is set
      */
     public boolean hasCritRate() {
-      return (bitField0_ & 0x00001000) != 0;
+      return (bitField0_ & 0x00004000) != 0;
     }
 
     /**
@@ -2781,7 +2978,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample clearCritRate() {
-      bitField0_ &= ~0x00001000;
+      bitField0_ &= ~0x00004000;
       critRate = 0F;
       return this;
     }
@@ -2800,7 +2997,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample setCritRate(final float value) {
-      bitField0_ |= 0x00001000;
+      bitField0_ |= 0x00004000;
       critRate = value;
       return this;
     }
@@ -2810,7 +3007,7 @@ public final class TravelerDuelRankUpload {
      * @return whether the fromSrcAtk field is set
      */
     public boolean hasFromSrcAtk() {
-      return (bitField0_ & 0x00002000) != 0;
+      return (bitField0_ & 0x00008000) != 0;
     }
 
     /**
@@ -2818,7 +3015,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample clearFromSrcAtk() {
-      bitField0_ &= ~0x00002000;
+      bitField0_ &= ~0x00008000;
       fromSrcAtk = 0;
       return this;
     }
@@ -2837,7 +3034,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample setFromSrcAtk(final int value) {
-      bitField0_ |= 0x00002000;
+      bitField0_ |= 0x00008000;
       fromSrcAtk = value;
       return this;
     }
@@ -2847,7 +3044,7 @@ public final class TravelerDuelRankUpload {
      * @return whether the fromDmgPlus field is set
      */
     public boolean hasFromDmgPlus() {
-      return (bitField0_ & 0x00004000) != 0;
+      return (bitField0_ & 0x00010000) != 0;
     }
 
     /**
@@ -2855,7 +3052,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample clearFromDmgPlus() {
-      bitField0_ &= ~0x00004000;
+      bitField0_ &= ~0x00010000;
       fromDmgPlus = 0;
       return this;
     }
@@ -2874,7 +3071,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample setFromDmgPlus(final int value) {
-      bitField0_ |= 0x00004000;
+      bitField0_ |= 0x00010000;
       fromDmgPlus = value;
       return this;
     }
@@ -2884,7 +3081,7 @@ public final class TravelerDuelRankUpload {
      * @return whether the fromFinalDmgPlus field is set
      */
     public boolean hasFromFinalDmgPlus() {
-      return (bitField0_ & 0x00008000) != 0;
+      return (bitField0_ & 0x00020000) != 0;
     }
 
     /**
@@ -2892,7 +3089,7 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample clearFromFinalDmgPlus() {
-      bitField0_ &= ~0x00008000;
+      bitField0_ &= ~0x00020000;
       fromFinalDmgPlus = 0;
       return this;
     }
@@ -2911,82 +3108,8 @@ public final class TravelerDuelRankUpload {
      * @return this
      */
     public TravelerDuelBattleSample setFromFinalDmgPlus(final int value) {
-      bitField0_ |= 0x00008000;
-      fromFinalDmgPlus = value;
-      return this;
-    }
-
-    /**
-     * <code>optional int32 Dmg = 16;</code>
-     * @return whether the dmg field is set
-     */
-    public boolean hasDmg() {
-      return (bitField0_ & 0x00010000) != 0;
-    }
-
-    /**
-     * <code>optional int32 Dmg = 16;</code>
-     * @return this
-     */
-    public TravelerDuelBattleSample clearDmg() {
-      bitField0_ &= ~0x00010000;
-      dmg = 0;
-      return this;
-    }
-
-    /**
-     * <code>optional int32 Dmg = 16;</code>
-     * @return the dmg
-     */
-    public int getDmg() {
-      return dmg;
-    }
-
-    /**
-     * <code>optional int32 Dmg = 16;</code>
-     * @param value the dmg to set
-     * @return this
-     */
-    public TravelerDuelBattleSample setDmg(final int value) {
-      bitField0_ |= 0x00010000;
-      dmg = value;
-      return this;
-    }
-
-    /**
-     * <code>optional int32 Hp = 18;</code>
-     * @return whether the hp field is set
-     */
-    public boolean hasHp() {
-      return (bitField0_ & 0x00020000) != 0;
-    }
-
-    /**
-     * <code>optional int32 Hp = 18;</code>
-     * @return this
-     */
-    public TravelerDuelBattleSample clearHp() {
-      bitField0_ &= ~0x00020000;
-      hp = 0;
-      return this;
-    }
-
-    /**
-     * <code>optional int32 Hp = 18;</code>
-     * @return the hp
-     */
-    public int getHp() {
-      return hp;
-    }
-
-    /**
-     * <code>optional int32 Hp = 18;</code>
-     * @param value the hp to set
-     * @return this
-     */
-    public TravelerDuelBattleSample setHp(final int value) {
       bitField0_ |= 0x00020000;
-      hp = value;
+      fromFinalDmgPlus = value;
       return this;
     }
 
@@ -3074,6 +3197,8 @@ public final class TravelerDuelRankUpload {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
+        dmg = other.dmg;
+        hp = other.hp;
         fromPerkIntensityRatio = other.fromPerkIntensityRatio;
         fromSlotDmgRatio = other.fromSlotDmgRatio;
         fromEE = other.fromEE;
@@ -3090,8 +3215,6 @@ public final class TravelerDuelRankUpload {
         fromSrcAtk = other.fromSrcAtk;
         fromDmgPlus = other.fromDmgPlus;
         fromFinalDmgPlus = other.fromFinalDmgPlus;
-        dmg = other.dmg;
-        hp = other.hp;
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -3103,6 +3226,12 @@ public final class TravelerDuelRankUpload {
         return this;
       }
       cachedSize = -1;
+      if (other.hasDmg()) {
+        setDmg(other.dmg);
+      }
+      if (other.hasHp()) {
+        setHp(other.hp);
+      }
       if (other.hasFromPerkIntensityRatio()) {
         setFromPerkIntensityRatio(other.fromPerkIntensityRatio);
       }
@@ -3151,12 +3280,6 @@ public final class TravelerDuelRankUpload {
       if (other.hasFromFinalDmgPlus()) {
         setFromFinalDmgPlus(other.fromFinalDmgPlus);
       }
-      if (other.hasDmg()) {
-        setDmg(other.dmg);
-      }
-      if (other.hasHp()) {
-        setHp(other.hp);
-      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -3170,6 +3293,8 @@ public final class TravelerDuelRankUpload {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      dmg = 0L;
+      hp = 0L;
       fromPerkIntensityRatio = 0F;
       fromSlotDmgRatio = 0F;
       fromEE = 0F;
@@ -3186,8 +3311,6 @@ public final class TravelerDuelRankUpload {
       fromSrcAtk = 0;
       fromDmgPlus = 0;
       fromFinalDmgPlus = 0;
-      dmg = 0;
-      hp = 0;
       nextPackage.clear();
       return this;
     }
@@ -3213,6 +3336,8 @@ public final class TravelerDuelRankUpload {
       }
       TravelerDuelBattleSample other = (TravelerDuelBattleSample) o;
       return bitField0_ == other.bitField0_
+        && (!hasDmg() || dmg == other.dmg)
+        && (!hasHp() || hp == other.hp)
         && (!hasFromPerkIntensityRatio() || ProtoUtil.isEqual(fromPerkIntensityRatio, other.fromPerkIntensityRatio))
         && (!hasFromSlotDmgRatio() || ProtoUtil.isEqual(fromSlotDmgRatio, other.fromSlotDmgRatio))
         && (!hasFromEE() || ProtoUtil.isEqual(fromEE, other.fromEE))
@@ -3229,84 +3354,82 @@ public final class TravelerDuelRankUpload {
         && (!hasFromSrcAtk() || fromSrcAtk == other.fromSrcAtk)
         && (!hasFromDmgPlus() || fromDmgPlus == other.fromDmgPlus)
         && (!hasFromFinalDmgPlus() || fromFinalDmgPlus == other.fromFinalDmgPlus)
-        && (!hasDmg() || dmg == other.dmg)
-        && (!hasHp() || hp == other.hp)
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawLittleEndian16((short) 384);
+        output.writeInt64NoTag(dmg);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawLittleEndian16((short) 400);
+        output.writeInt64NoTag(hp);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
         output.writeRawByte((byte) 21);
         output.writeFloatNoTag(fromPerkIntensityRatio);
       }
-      if ((bitField0_ & 0x00000002) != 0) {
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawByte((byte) 29);
         output.writeFloatNoTag(fromSlotDmgRatio);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000010) != 0) {
         output.writeRawByte((byte) 37);
         output.writeFloatNoTag(fromEE);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000020) != 0) {
         output.writeRawByte((byte) 45);
         output.writeFloatNoTag(fromGenDmgRatio);
       }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000040) != 0) {
         output.writeRawByte((byte) 61);
         output.writeFloatNoTag(fromCritRatio);
       }
-      if ((bitField0_ & 0x00000020) != 0) {
+      if ((bitField0_ & 0x00000080) != 0) {
         output.writeRawByte((byte) 69);
         output.writeFloatNoTag(fromFinalDmgRatio);
       }
-      if ((bitField0_ & 0x00000040) != 0) {
+      if ((bitField0_ & 0x00000100) != 0) {
         output.writeRawByte((byte) 85);
         output.writeFloatNoTag(toErAmend);
       }
-      if ((bitField0_ & 0x00000080) != 0) {
+      if ((bitField0_ & 0x00000200) != 0) {
         output.writeRawByte((byte) 93);
         output.writeFloatNoTag(toDefAmend);
       }
-      if ((bitField0_ & 0x00000100) != 0) {
+      if ((bitField0_ & 0x00000400) != 0) {
         output.writeRawByte((byte) 101);
         output.writeFloatNoTag(toRcdSlotDmgRatio);
       }
-      if ((bitField0_ & 0x00000200) != 0) {
+      if ((bitField0_ & 0x00000800) != 0) {
         output.writeRawByte((byte) 109);
         output.writeFloatNoTag(toEERCD);
       }
-      if ((bitField0_ & 0x00000400) != 0) {
+      if ((bitField0_ & 0x00001000) != 0) {
         output.writeRawByte((byte) 117);
         output.writeFloatNoTag(toGenDmgRcdRatio);
       }
-      if ((bitField0_ & 0x00000800) != 0) {
+      if ((bitField0_ & 0x00002000) != 0) {
         output.writeRawByte((byte) 125);
         output.writeFloatNoTag(toDmgPlusRcd);
       }
-      if ((bitField0_ & 0x00001000) != 0) {
+      if ((bitField0_ & 0x00004000) != 0) {
         output.writeRawLittleEndian16((short) 397);
         output.writeFloatNoTag(critRate);
       }
-      if ((bitField0_ & 0x00002000) != 0) {
+      if ((bitField0_ & 0x00008000) != 0) {
         output.writeRawByte((byte) 8);
         output.writeInt32NoTag(fromSrcAtk);
       }
-      if ((bitField0_ & 0x00004000) != 0) {
+      if ((bitField0_ & 0x00010000) != 0) {
         output.writeRawByte((byte) 48);
         output.writeInt32NoTag(fromDmgPlus);
       }
-      if ((bitField0_ & 0x00008000) != 0) {
+      if ((bitField0_ & 0x00020000) != 0) {
         output.writeRawByte((byte) 72);
         output.writeInt32NoTag(fromFinalDmgPlus);
-      }
-      if ((bitField0_ & 0x00010000) != 0) {
-        output.writeRawLittleEndian16((short) 384);
-        output.writeInt32NoTag(dmg);
-      }
-      if ((bitField0_ & 0x00020000) != 0) {
-        output.writeRawLittleEndian16((short) 400);
-        output.writeInt32NoTag(hp);
       }
       if ((bitField0_ & 0x00040000) != 0) {
         output.writeRawLittleEndian16((short) 32762);
@@ -3318,10 +3441,10 @@ public final class TravelerDuelRankUpload {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 5;
+        size += 2 + ProtoSink.computeInt64SizeNoTag(dmg);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        size += 5;
+        size += 2 + ProtoSink.computeInt64SizeNoTag(hp);
       }
       if ((bitField0_ & 0x00000004) != 0) {
         size += 5;
@@ -3354,22 +3477,22 @@ public final class TravelerDuelRankUpload {
         size += 5;
       }
       if ((bitField0_ & 0x00001000) != 0) {
-        size += 6;
+        size += 5;
       }
       if ((bitField0_ & 0x00002000) != 0) {
-        size += 1 + ProtoSink.computeInt32SizeNoTag(fromSrcAtk);
+        size += 5;
       }
       if ((bitField0_ & 0x00004000) != 0) {
-        size += 1 + ProtoSink.computeInt32SizeNoTag(fromDmgPlus);
+        size += 6;
       }
       if ((bitField0_ & 0x00008000) != 0) {
-        size += 1 + ProtoSink.computeInt32SizeNoTag(fromFinalDmgPlus);
+        size += 1 + ProtoSink.computeInt32SizeNoTag(fromSrcAtk);
       }
       if ((bitField0_ & 0x00010000) != 0) {
-        size += 2 + ProtoSink.computeInt32SizeNoTag(dmg);
+        size += 1 + ProtoSink.computeInt32SizeNoTag(fromDmgPlus);
       }
       if ((bitField0_ & 0x00020000) != 0) {
-        size += 2 + ProtoSink.computeInt32SizeNoTag(hp);
+        size += 1 + ProtoSink.computeInt32SizeNoTag(fromFinalDmgPlus);
       }
       if ((bitField0_ & 0x00040000) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
@@ -3384,10 +3507,28 @@ public final class TravelerDuelRankUpload {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
+          case 128: {
+            // dmg
+            dmg = input.readInt64();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 144) {
+              break;
+            }
+          }
+          case 144: {
+            // hp
+            hp = input.readInt64();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 21) {
+              break;
+            }
+          }
           case 21: {
             // fromPerkIntensityRatio
             fromPerkIntensityRatio = input.readFloat();
-            bitField0_ |= 0x00000001;
+            bitField0_ |= 0x00000004;
             tag = input.readTag();
             if (tag != 29) {
               break;
@@ -3396,7 +3537,7 @@ public final class TravelerDuelRankUpload {
           case 29: {
             // fromSlotDmgRatio
             fromSlotDmgRatio = input.readFloat();
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000008;
             tag = input.readTag();
             if (tag != 37) {
               break;
@@ -3405,7 +3546,7 @@ public final class TravelerDuelRankUpload {
           case 37: {
             // fromEE
             fromEE = input.readFloat();
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000010;
             tag = input.readTag();
             if (tag != 45) {
               break;
@@ -3414,7 +3555,7 @@ public final class TravelerDuelRankUpload {
           case 45: {
             // fromGenDmgRatio
             fromGenDmgRatio = input.readFloat();
-            bitField0_ |= 0x00000008;
+            bitField0_ |= 0x00000020;
             tag = input.readTag();
             if (tag != 61) {
               break;
@@ -3423,7 +3564,7 @@ public final class TravelerDuelRankUpload {
           case 61: {
             // fromCritRatio
             fromCritRatio = input.readFloat();
-            bitField0_ |= 0x00000010;
+            bitField0_ |= 0x00000040;
             tag = input.readTag();
             if (tag != 69) {
               break;
@@ -3432,7 +3573,7 @@ public final class TravelerDuelRankUpload {
           case 69: {
             // fromFinalDmgRatio
             fromFinalDmgRatio = input.readFloat();
-            bitField0_ |= 0x00000020;
+            bitField0_ |= 0x00000080;
             tag = input.readTag();
             if (tag != 85) {
               break;
@@ -3441,7 +3582,7 @@ public final class TravelerDuelRankUpload {
           case 85: {
             // toErAmend
             toErAmend = input.readFloat();
-            bitField0_ |= 0x00000040;
+            bitField0_ |= 0x00000100;
             tag = input.readTag();
             if (tag != 93) {
               break;
@@ -3450,7 +3591,7 @@ public final class TravelerDuelRankUpload {
           case 93: {
             // toDefAmend
             toDefAmend = input.readFloat();
-            bitField0_ |= 0x00000080;
+            bitField0_ |= 0x00000200;
             tag = input.readTag();
             if (tag != 101) {
               break;
@@ -3459,7 +3600,7 @@ public final class TravelerDuelRankUpload {
           case 101: {
             // toRcdSlotDmgRatio
             toRcdSlotDmgRatio = input.readFloat();
-            bitField0_ |= 0x00000100;
+            bitField0_ |= 0x00000400;
             tag = input.readTag();
             if (tag != 109) {
               break;
@@ -3468,7 +3609,7 @@ public final class TravelerDuelRankUpload {
           case 109: {
             // toEERCD
             toEERCD = input.readFloat();
-            bitField0_ |= 0x00000200;
+            bitField0_ |= 0x00000800;
             tag = input.readTag();
             if (tag != 117) {
               break;
@@ -3477,7 +3618,7 @@ public final class TravelerDuelRankUpload {
           case 117: {
             // toGenDmgRcdRatio
             toGenDmgRcdRatio = input.readFloat();
-            bitField0_ |= 0x00000400;
+            bitField0_ |= 0x00001000;
             tag = input.readTag();
             if (tag != 125) {
               break;
@@ -3486,7 +3627,7 @@ public final class TravelerDuelRankUpload {
           case 125: {
             // toDmgPlusRcd
             toDmgPlusRcd = input.readFloat();
-            bitField0_ |= 0x00000800;
+            bitField0_ |= 0x00002000;
             tag = input.readTag();
             if (tag != 141) {
               break;
@@ -3495,7 +3636,7 @@ public final class TravelerDuelRankUpload {
           case 141: {
             // critRate
             critRate = input.readFloat();
-            bitField0_ |= 0x00001000;
+            bitField0_ |= 0x00004000;
             tag = input.readTag();
             if (tag != 8) {
               break;
@@ -3504,7 +3645,7 @@ public final class TravelerDuelRankUpload {
           case 8: {
             // fromSrcAtk
             fromSrcAtk = input.readInt32();
-            bitField0_ |= 0x00002000;
+            bitField0_ |= 0x00008000;
             tag = input.readTag();
             if (tag != 48) {
               break;
@@ -3513,7 +3654,7 @@ public final class TravelerDuelRankUpload {
           case 48: {
             // fromDmgPlus
             fromDmgPlus = input.readInt32();
-            bitField0_ |= 0x00004000;
+            bitField0_ |= 0x00010000;
             tag = input.readTag();
             if (tag != 72) {
               break;
@@ -3522,24 +3663,6 @@ public final class TravelerDuelRankUpload {
           case 72: {
             // fromFinalDmgPlus
             fromFinalDmgPlus = input.readInt32();
-            bitField0_ |= 0x00008000;
-            tag = input.readTag();
-            if (tag != 128) {
-              break;
-            }
-          }
-          case 128: {
-            // dmg
-            dmg = input.readInt32();
-            bitField0_ |= 0x00010000;
-            tag = input.readTag();
-            if (tag != 144) {
-              break;
-            }
-          }
-          case 144: {
-            // hp
-            hp = input.readInt32();
             bitField0_ |= 0x00020000;
             tag = input.readTag();
             if (tag != 16378) {
@@ -3573,58 +3696,58 @@ public final class TravelerDuelRankUpload {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeFloat(FieldNames.fromPerkIntensityRatio, fromPerkIntensityRatio);
+        output.writeInt64(FieldNames.dmg, dmg);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeFloat(FieldNames.fromSlotDmgRatio, fromSlotDmgRatio);
+        output.writeInt64(FieldNames.hp, hp);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        output.writeFloat(FieldNames.fromEE, fromEE);
+        output.writeFloat(FieldNames.fromPerkIntensityRatio, fromPerkIntensityRatio);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        output.writeFloat(FieldNames.fromGenDmgRatio, fromGenDmgRatio);
+        output.writeFloat(FieldNames.fromSlotDmgRatio, fromSlotDmgRatio);
       }
       if ((bitField0_ & 0x00000010) != 0) {
-        output.writeFloat(FieldNames.fromCritRatio, fromCritRatio);
+        output.writeFloat(FieldNames.fromEE, fromEE);
       }
       if ((bitField0_ & 0x00000020) != 0) {
-        output.writeFloat(FieldNames.fromFinalDmgRatio, fromFinalDmgRatio);
+        output.writeFloat(FieldNames.fromGenDmgRatio, fromGenDmgRatio);
       }
       if ((bitField0_ & 0x00000040) != 0) {
-        output.writeFloat(FieldNames.toErAmend, toErAmend);
+        output.writeFloat(FieldNames.fromCritRatio, fromCritRatio);
       }
       if ((bitField0_ & 0x00000080) != 0) {
-        output.writeFloat(FieldNames.toDefAmend, toDefAmend);
+        output.writeFloat(FieldNames.fromFinalDmgRatio, fromFinalDmgRatio);
       }
       if ((bitField0_ & 0x00000100) != 0) {
-        output.writeFloat(FieldNames.toRcdSlotDmgRatio, toRcdSlotDmgRatio);
+        output.writeFloat(FieldNames.toErAmend, toErAmend);
       }
       if ((bitField0_ & 0x00000200) != 0) {
-        output.writeFloat(FieldNames.toEERCD, toEERCD);
+        output.writeFloat(FieldNames.toDefAmend, toDefAmend);
       }
       if ((bitField0_ & 0x00000400) != 0) {
-        output.writeFloat(FieldNames.toGenDmgRcdRatio, toGenDmgRcdRatio);
+        output.writeFloat(FieldNames.toRcdSlotDmgRatio, toRcdSlotDmgRatio);
       }
       if ((bitField0_ & 0x00000800) != 0) {
-        output.writeFloat(FieldNames.toDmgPlusRcd, toDmgPlusRcd);
+        output.writeFloat(FieldNames.toEERCD, toEERCD);
       }
       if ((bitField0_ & 0x00001000) != 0) {
-        output.writeFloat(FieldNames.critRate, critRate);
+        output.writeFloat(FieldNames.toGenDmgRcdRatio, toGenDmgRcdRatio);
       }
       if ((bitField0_ & 0x00002000) != 0) {
-        output.writeInt32(FieldNames.fromSrcAtk, fromSrcAtk);
+        output.writeFloat(FieldNames.toDmgPlusRcd, toDmgPlusRcd);
       }
       if ((bitField0_ & 0x00004000) != 0) {
-        output.writeInt32(FieldNames.fromDmgPlus, fromDmgPlus);
+        output.writeFloat(FieldNames.critRate, critRate);
       }
       if ((bitField0_ & 0x00008000) != 0) {
-        output.writeInt32(FieldNames.fromFinalDmgPlus, fromFinalDmgPlus);
+        output.writeInt32(FieldNames.fromSrcAtk, fromSrcAtk);
       }
       if ((bitField0_ & 0x00010000) != 0) {
-        output.writeInt32(FieldNames.dmg, dmg);
+        output.writeInt32(FieldNames.fromDmgPlus, fromDmgPlus);
       }
       if ((bitField0_ & 0x00020000) != 0) {
-        output.writeInt32(FieldNames.hp, hp);
+        output.writeInt32(FieldNames.fromFinalDmgPlus, fromFinalDmgPlus);
       }
       if ((bitField0_ & 0x00040000) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
@@ -3639,11 +3762,33 @@ public final class TravelerDuelRankUpload {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
+          case 68830: {
+            if (input.isAtField(FieldNames.dmg)) {
+              if (!input.trySkipNullValue()) {
+                dmg = input.readInt64();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 2344: {
+            if (input.isAtField(FieldNames.hp)) {
+              if (!input.trySkipNullValue()) {
+                hp = input.readInt64();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -1072259184: {
             if (input.isAtField(FieldNames.fromPerkIntensityRatio)) {
               if (!input.trySkipNullValue()) {
                 fromPerkIntensityRatio = input.readFloat();
-                bitField0_ |= 0x00000001;
+                bitField0_ |= 0x00000004;
               }
             } else {
               input.skipUnknownField();
@@ -3654,7 +3799,7 @@ public final class TravelerDuelRankUpload {
             if (input.isAtField(FieldNames.fromSlotDmgRatio)) {
               if (!input.trySkipNullValue()) {
                 fromSlotDmgRatio = input.readFloat();
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -3665,7 +3810,7 @@ public final class TravelerDuelRankUpload {
             if (input.isAtField(FieldNames.fromEE)) {
               if (!input.trySkipNullValue()) {
                 fromEE = input.readFloat();
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000010;
               }
             } else {
               input.skipUnknownField();
@@ -3676,7 +3821,7 @@ public final class TravelerDuelRankUpload {
             if (input.isAtField(FieldNames.fromGenDmgRatio)) {
               if (!input.trySkipNullValue()) {
                 fromGenDmgRatio = input.readFloat();
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000020;
               }
             } else {
               input.skipUnknownField();
@@ -3687,7 +3832,7 @@ public final class TravelerDuelRankUpload {
             if (input.isAtField(FieldNames.fromCritRatio)) {
               if (!input.trySkipNullValue()) {
                 fromCritRatio = input.readFloat();
-                bitField0_ |= 0x00000010;
+                bitField0_ |= 0x00000040;
               }
             } else {
               input.skipUnknownField();
@@ -3698,7 +3843,7 @@ public final class TravelerDuelRankUpload {
             if (input.isAtField(FieldNames.fromFinalDmgRatio)) {
               if (!input.trySkipNullValue()) {
                 fromFinalDmgRatio = input.readFloat();
-                bitField0_ |= 0x00000020;
+                bitField0_ |= 0x00000080;
               }
             } else {
               input.skipUnknownField();
@@ -3709,7 +3854,7 @@ public final class TravelerDuelRankUpload {
             if (input.isAtField(FieldNames.toErAmend)) {
               if (!input.trySkipNullValue()) {
                 toErAmend = input.readFloat();
-                bitField0_ |= 0x00000040;
+                bitField0_ |= 0x00000100;
               }
             } else {
               input.skipUnknownField();
@@ -3720,7 +3865,7 @@ public final class TravelerDuelRankUpload {
             if (input.isAtField(FieldNames.toDefAmend)) {
               if (!input.trySkipNullValue()) {
                 toDefAmend = input.readFloat();
-                bitField0_ |= 0x00000080;
+                bitField0_ |= 0x00000200;
               }
             } else {
               input.skipUnknownField();
@@ -3731,7 +3876,7 @@ public final class TravelerDuelRankUpload {
             if (input.isAtField(FieldNames.toRcdSlotDmgRatio)) {
               if (!input.trySkipNullValue()) {
                 toRcdSlotDmgRatio = input.readFloat();
-                bitField0_ |= 0x00000100;
+                bitField0_ |= 0x00000400;
               }
             } else {
               input.skipUnknownField();
@@ -3742,7 +3887,7 @@ public final class TravelerDuelRankUpload {
             if (input.isAtField(FieldNames.toEERCD)) {
               if (!input.trySkipNullValue()) {
                 toEERCD = input.readFloat();
-                bitField0_ |= 0x00000200;
+                bitField0_ |= 0x00000800;
               }
             } else {
               input.skipUnknownField();
@@ -3753,7 +3898,7 @@ public final class TravelerDuelRankUpload {
             if (input.isAtField(FieldNames.toGenDmgRcdRatio)) {
               if (!input.trySkipNullValue()) {
                 toGenDmgRcdRatio = input.readFloat();
-                bitField0_ |= 0x00000400;
+                bitField0_ |= 0x00001000;
               }
             } else {
               input.skipUnknownField();
@@ -3764,7 +3909,7 @@ public final class TravelerDuelRankUpload {
             if (input.isAtField(FieldNames.toDmgPlusRcd)) {
               if (!input.trySkipNullValue()) {
                 toDmgPlusRcd = input.readFloat();
-                bitField0_ |= 0x00000800;
+                bitField0_ |= 0x00002000;
               }
             } else {
               input.skipUnknownField();
@@ -3775,7 +3920,7 @@ public final class TravelerDuelRankUpload {
             if (input.isAtField(FieldNames.critRate)) {
               if (!input.trySkipNullValue()) {
                 critRate = input.readFloat();
-                bitField0_ |= 0x00001000;
+                bitField0_ |= 0x00004000;
               }
             } else {
               input.skipUnknownField();
@@ -3786,7 +3931,7 @@ public final class TravelerDuelRankUpload {
             if (input.isAtField(FieldNames.fromSrcAtk)) {
               if (!input.trySkipNullValue()) {
                 fromSrcAtk = input.readInt32();
-                bitField0_ |= 0x00002000;
+                bitField0_ |= 0x00008000;
               }
             } else {
               input.skipUnknownField();
@@ -3797,7 +3942,7 @@ public final class TravelerDuelRankUpload {
             if (input.isAtField(FieldNames.fromDmgPlus)) {
               if (!input.trySkipNullValue()) {
                 fromDmgPlus = input.readInt32();
-                bitField0_ |= 0x00004000;
+                bitField0_ |= 0x00010000;
               }
             } else {
               input.skipUnknownField();
@@ -3808,28 +3953,6 @@ public final class TravelerDuelRankUpload {
             if (input.isAtField(FieldNames.fromFinalDmgPlus)) {
               if (!input.trySkipNullValue()) {
                 fromFinalDmgPlus = input.readInt32();
-                bitField0_ |= 0x00008000;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
-          case 68830: {
-            if (input.isAtField(FieldNames.dmg)) {
-              if (!input.trySkipNullValue()) {
-                dmg = input.readInt32();
-                bitField0_ |= 0x00010000;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
-          case 2344: {
-            if (input.isAtField(FieldNames.hp)) {
-              if (!input.trySkipNullValue()) {
-                hp = input.readInt32();
                 bitField0_ |= 0x00020000;
               }
             } else {
@@ -3901,6 +4024,10 @@ public final class TravelerDuelRankUpload {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
+      static final FieldName dmg = FieldName.forField("Dmg");
+
+      static final FieldName hp = FieldName.forField("Hp");
+
       static final FieldName fromPerkIntensityRatio = FieldName.forField("FromPerkIntensityRatio");
 
       static final FieldName fromSlotDmgRatio = FieldName.forField("FromSlotDmgRatio");
@@ -3932,10 +4059,6 @@ public final class TravelerDuelRankUpload {
       static final FieldName fromDmgPlus = FieldName.forField("FromDmgPlus");
 
       static final FieldName fromFinalDmgPlus = FieldName.forField("FromFinalDmgPlus");
-
-      static final FieldName dmg = FieldName.forField("Dmg");
-
-      static final FieldName hp = FieldName.forField("Hp");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }

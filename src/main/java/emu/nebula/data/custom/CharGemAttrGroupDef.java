@@ -7,6 +7,7 @@ import emu.nebula.data.BaseDef;
 import emu.nebula.data.GameData;
 import emu.nebula.data.ResourceType;
 import emu.nebula.data.resources.CharGemAttrValueDef;
+import emu.nebula.game.character.GameCharacter;
 import emu.nebula.util.WeightedList;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
@@ -42,7 +43,7 @@ public class CharGemAttrGroupDef extends BaseDef {
         return this.uniqueAttrNum.next();
     }
     
-    public CharGemAttrTypeData getRandomAttributeType(IntList list) {
+    public CharGemAttrTypeData getRandomAttributeType(GameCharacter character, IntList list) {
         // Setup blacklist to prevent the same attribute from showing up twice
         var blacklist = new IntOpenHashSet();
         
@@ -58,11 +59,21 @@ public class CharGemAttrGroupDef extends BaseDef {
         var random = new WeightedList<CharGemAttrTypeData>();
         
         for (var type : this.getAttributeTypes()) {
+            // Don't add types that we already have in the emblem
             if (blacklist.contains(type.getId())) {
                 continue;
             }
             
+            // Skip attributes that don't match the trekker's element
+            if (type.isElementalAttr() && !character.getElementType().getGemAttrTypes().contains(type.getFirstSubType())) {
+                continue;
+            }
+            
             random.add(100, type);
+        }
+        
+        if (random.size() == 0) {
+            return null;
         }
         
         return random.next();
@@ -91,6 +102,7 @@ public class CharGemAttrGroupDef extends BaseDef {
     @Getter
     public static class CharGemAttrTypeData {
         private int id;
+        private int firstSubType;
         private WeightedList<CharGemAttrValueDef> values;
         
         public CharGemAttrTypeData(int id) {
@@ -98,7 +110,12 @@ public class CharGemAttrGroupDef extends BaseDef {
             this.values = new WeightedList<>();
         }
         
+        public boolean isElementalAttr() {
+            return this.getFirstSubType() >= 17 && this.getFirstSubType() <= 28;
+        }
+        
         public void addValue(CharGemAttrValueDef value) {
+            this.firstSubType = value.getAttrTypeFirstSubtype();
             this.values.add(value.getRarity(), value);
         }
         

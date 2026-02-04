@@ -4,6 +4,7 @@ import emu.nebula.data.BaseDef;
 import emu.nebula.data.GameData;
 import emu.nebula.data.ResourceType;
 import emu.nebula.data.custom.CharGemAttrGroupDef;
+import emu.nebula.game.character.GameCharacter;
 import emu.nebula.util.Utils;
 import emu.nebula.util.WeightedList;
 import emu.nebula.util.ints.CustomIntArray;
@@ -35,8 +36,8 @@ public class CharGemSlotControlDef extends BaseDef {
         return Id;
     }
     
-    public IntList generateAttributes() {
-        return this.generateAttributes(new CustomIntArray());
+    public IntList generateAttributes(GameCharacter character) {
+        return this.generateAttributes(character, new CustomIntArray());
     }
     
     // Check if we should add unique attributes based on the probablity
@@ -45,14 +46,18 @@ public class CharGemSlotControlDef extends BaseDef {
         return random <= this.UniqueAttrGroupProb;
     }
     
-    public IntList generateAttributes(CustomIntArray list) {
+    public IntList generateAttributes(GameCharacter character, CustomIntArray list) {
         // Add unique attributes
         if (this.UniqueAttrGroupId > 0 && this.shouldAddUniqueAttr()) {
             var group = GameData.getCharGemAttrGroupDataTable().get(this.UniqueAttrGroupId);
             int num = group.getRandomUniqueAttrNum();
             
             for (int i = 0; i < num; i++) {
-                var attributeType = group.getRandomAttributeType(list);
+                var attributeType = group.getRandomAttributeType(character, list);
+                if (attributeType == null) {
+                    break;
+                }
+                
                 list.add(attributeType.getRandomValue());
             }
             
@@ -76,7 +81,8 @@ public class CharGemSlotControlDef extends BaseDef {
         // Add up to 4 attributes
         while (list.getValueCount() < this.MaxAlterNum) {
             var group = random.next();
-            var attributeType = group.getRandomAttributeType(list);
+            var attributeType = group.getRandomAttributeType(character, list);
+            
             list.add(attributeType.getRandomValue());
         }
         

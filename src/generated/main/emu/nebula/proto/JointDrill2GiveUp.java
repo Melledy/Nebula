@@ -11,93 +11,94 @@ import us.hebi.quickbuf.ProtoMessage;
 import us.hebi.quickbuf.ProtoSink;
 import us.hebi.quickbuf.ProtoSource;
 import us.hebi.quickbuf.RepeatedByte;
+import us.hebi.quickbuf.RepeatedMessage;
 
-public final class JointDrillSettle {
+public final class JointDrill2GiveUp {
   /**
-   * Protobuf type {@code JointDrillSettleReq}
+   * Protobuf type {@code JointDrill2GiveUpReq}
    */
-  public static final class JointDrillSettleReq extends ProtoMessage<JointDrillSettleReq> implements Cloneable {
+  public static final class JointDrill2GiveUpReq extends ProtoMessage<JointDrill2GiveUpReq> implements Cloneable {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint64 Checksum = 4;</code>
+     * <code>optional uint32 Floor = 1;</code>
      */
-    private long checksum;
+    private int floor;
 
     /**
-     * <code>optional uint32 Time = 1;</code>
+     * <code>optional uint32 Time = 2;</code>
      */
     private int time;
 
     /**
-     * <code>optional uint32 Damage = 2;</code>
+     * <code>optional uint32 Damage = 3;</code>
      */
     private int damage;
 
     /**
-     * <code>optional .TravelerDuelBattleSamples Sample = 3;</code>
+     * <code>optional bytes Record = 5;</code>
      */
-    private final TravelerDuelRankUpload.TravelerDuelBattleSamples sample = TravelerDuelRankUpload.TravelerDuelBattleSamples.newInstance();
-
-    /**
-     * <code>optional .Events Events = 7;</code>
-     */
-    private final Public.Events events = Public.Events.newInstance();
+    private final RepeatedByte record = RepeatedByte.newEmptyInstance();
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
 
-    private JointDrillSettleReq() {
+    /**
+     * <code>repeated .JointDrillBossHp BossHps = 4;</code>
+     */
+    private final RepeatedMessage<PublicJointDrill.JointDrillBossHp> bossHps = RepeatedMessage.newEmptyInstance(PublicJointDrill.JointDrillBossHp.getFactory());
+
+    private JointDrill2GiveUpReq() {
     }
 
     /**
-     * @return a new empty instance of {@code JointDrillSettleReq}
+     * @return a new empty instance of {@code JointDrill2GiveUpReq}
      */
-    public static JointDrillSettleReq newInstance() {
-      return new JointDrillSettleReq();
+    public static JointDrill2GiveUpReq newInstance() {
+      return new JointDrill2GiveUpReq();
     }
 
     /**
-     * <code>optional uint64 Checksum = 4;</code>
-     * @return whether the checksum field is set
+     * <code>optional uint32 Floor = 1;</code>
+     * @return whether the floor field is set
      */
-    public boolean hasChecksum() {
+    public boolean hasFloor() {
       return (bitField0_ & 0x00000001) != 0;
     }
 
     /**
-     * <code>optional uint64 Checksum = 4;</code>
+     * <code>optional uint32 Floor = 1;</code>
      * @return this
      */
-    public JointDrillSettleReq clearChecksum() {
+    public JointDrill2GiveUpReq clearFloor() {
       bitField0_ &= ~0x00000001;
-      checksum = 0L;
+      floor = 0;
       return this;
     }
 
     /**
-     * <code>optional uint64 Checksum = 4;</code>
-     * @return the checksum
+     * <code>optional uint32 Floor = 1;</code>
+     * @return the floor
      */
-    public long getChecksum() {
-      return checksum;
+    public int getFloor() {
+      return floor;
     }
 
     /**
-     * <code>optional uint64 Checksum = 4;</code>
-     * @param value the checksum to set
+     * <code>optional uint32 Floor = 1;</code>
+     * @param value the floor to set
      * @return this
      */
-    public JointDrillSettleReq setChecksum(final long value) {
+    public JointDrill2GiveUpReq setFloor(final int value) {
       bitField0_ |= 0x00000001;
-      checksum = value;
+      floor = value;
       return this;
     }
 
     /**
-     * <code>optional uint32 Time = 1;</code>
+     * <code>optional uint32 Time = 2;</code>
      * @return whether the time field is set
      */
     public boolean hasTime() {
@@ -105,17 +106,17 @@ public final class JointDrillSettle {
     }
 
     /**
-     * <code>optional uint32 Time = 1;</code>
+     * <code>optional uint32 Time = 2;</code>
      * @return this
      */
-    public JointDrillSettleReq clearTime() {
+    public JointDrill2GiveUpReq clearTime() {
       bitField0_ &= ~0x00000002;
       time = 0;
       return this;
     }
 
     /**
-     * <code>optional uint32 Time = 1;</code>
+     * <code>optional uint32 Time = 2;</code>
      * @return the time
      */
     public int getTime() {
@@ -123,18 +124,18 @@ public final class JointDrillSettle {
     }
 
     /**
-     * <code>optional uint32 Time = 1;</code>
+     * <code>optional uint32 Time = 2;</code>
      * @param value the time to set
      * @return this
      */
-    public JointDrillSettleReq setTime(final int value) {
+    public JointDrill2GiveUpReq setTime(final int value) {
       bitField0_ |= 0x00000002;
       time = value;
       return this;
     }
 
     /**
-     * <code>optional uint32 Damage = 2;</code>
+     * <code>optional uint32 Damage = 3;</code>
      * @return whether the damage field is set
      */
     public boolean hasDamage() {
@@ -142,17 +143,17 @@ public final class JointDrillSettle {
     }
 
     /**
-     * <code>optional uint32 Damage = 2;</code>
+     * <code>optional uint32 Damage = 3;</code>
      * @return this
      */
-    public JointDrillSettleReq clearDamage() {
+    public JointDrill2GiveUpReq clearDamage() {
       bitField0_ &= ~0x00000004;
       damage = 0;
       return this;
     }
 
     /**
-     * <code>optional uint32 Damage = 2;</code>
+     * <code>optional uint32 Damage = 3;</code>
      * @return the damage
      */
     public int getDamage() {
@@ -160,50 +161,50 @@ public final class JointDrillSettle {
     }
 
     /**
-     * <code>optional uint32 Damage = 2;</code>
+     * <code>optional uint32 Damage = 3;</code>
      * @param value the damage to set
      * @return this
      */
-    public JointDrillSettleReq setDamage(final int value) {
+    public JointDrill2GiveUpReq setDamage(final int value) {
       bitField0_ |= 0x00000004;
       damage = value;
       return this;
     }
 
     /**
-     * <code>optional .TravelerDuelBattleSamples Sample = 3;</code>
-     * @return whether the sample field is set
+     * <code>optional bytes Record = 5;</code>
+     * @return whether the record field is set
      */
-    public boolean hasSample() {
+    public boolean hasRecord() {
       return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
-     * <code>optional .TravelerDuelBattleSamples Sample = 3;</code>
+     * <code>optional bytes Record = 5;</code>
      * @return this
      */
-    public JointDrillSettleReq clearSample() {
+    public JointDrill2GiveUpReq clearRecord() {
       bitField0_ &= ~0x00000008;
-      sample.clear();
+      record.clear();
       return this;
     }
 
     /**
-     * <code>optional .TravelerDuelBattleSamples Sample = 3;</code>
+     * <code>optional bytes Record = 5;</code>
      *
      * This method returns the internal storage object without modifying any has state.
      * The returned object should not be modified and be treated as read-only.
      *
-     * Use {@link #getMutableSample()} if you want to modify it.
+     * Use {@link #getMutableRecord()} if you want to modify it.
      *
      * @return internal storage object for reading
      */
-    public TravelerDuelRankUpload.TravelerDuelBattleSamples getSample() {
-      return sample;
+    public RepeatedByte getRecord() {
+      return record;
     }
 
     /**
-     * <code>optional .TravelerDuelBattleSamples Sample = 3;</code>
+     * <code>optional bytes Record = 5;</code>
      *
      * This method returns the internal storage object and sets the corresponding
      * has state. The returned object will become part of this message and its
@@ -211,77 +212,41 @@ public final class JointDrillSettle {
      *
      * @return internal storage object for modifications
      */
-    public TravelerDuelRankUpload.TravelerDuelBattleSamples getMutableSample() {
+    public RepeatedByte getMutableRecord() {
       bitField0_ |= 0x00000008;
-      return sample;
+      return record;
     }
 
     /**
-     * <code>optional .TravelerDuelBattleSamples Sample = 3;</code>
-     * @param value the sample to set
+     * <code>optional bytes Record = 5;</code>
+     * @param value the record to add
      * @return this
      */
-    public JointDrillSettleReq setSample(
-        final TravelerDuelRankUpload.TravelerDuelBattleSamples value) {
+    public JointDrill2GiveUpReq addRecord(final byte value) {
       bitField0_ |= 0x00000008;
-      sample.copyFrom(value);
+      record.add(value);
       return this;
     }
 
     /**
-     * <code>optional .Events Events = 7;</code>
-     * @return whether the events field is set
-     */
-    public boolean hasEvents() {
-      return (bitField0_ & 0x00000010) != 0;
-    }
-
-    /**
-     * <code>optional .Events Events = 7;</code>
+     * <code>optional bytes Record = 5;</code>
+     * @param values the record to add
      * @return this
      */
-    public JointDrillSettleReq clearEvents() {
-      bitField0_ &= ~0x00000010;
-      events.clear();
+    public JointDrill2GiveUpReq addAllRecord(final byte... values) {
+      bitField0_ |= 0x00000008;
+      record.addAll(values);
       return this;
     }
 
     /**
-     * <code>optional .Events Events = 7;</code>
-     *
-     * This method returns the internal storage object without modifying any has state.
-     * The returned object should not be modified and be treated as read-only.
-     *
-     * Use {@link #getMutableEvents()} if you want to modify it.
-     *
-     * @return internal storage object for reading
-     */
-    public Public.Events getEvents() {
-      return events;
-    }
-
-    /**
-     * <code>optional .Events Events = 7;</code>
-     *
-     * This method returns the internal storage object and sets the corresponding
-     * has state. The returned object will become part of this message and its
-     * contents may be modified as long as the has state is not cleared.
-     *
-     * @return internal storage object for modifications
-     */
-    public Public.Events getMutableEvents() {
-      bitField0_ |= 0x00000010;
-      return events;
-    }
-
-    /**
-     * <code>optional .Events Events = 7;</code>
-     * @param value the events to set
+     * <code>optional bytes Record = 5;</code>
+     * @param values the record to set
      * @return this
      */
-    public JointDrillSettleReq setEvents(final Public.Events value) {
-      bitField0_ |= 0x00000010;
-      events.copyFrom(value);
+    public JointDrill2GiveUpReq setRecord(final byte... values) {
+      bitField0_ |= 0x00000008;
+      record.copyFrom(values);
       return this;
     }
 
@@ -290,15 +255,15 @@ public final class JointDrillSettle {
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000020) != 0;
+      return (bitField0_ & 0x00000010) != 0;
     }
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return this
      */
-    public JointDrillSettleReq clearNextPackage() {
-      bitField0_ &= ~0x00000020;
+    public JointDrill2GiveUpReq clearNextPackage() {
+      bitField0_ &= ~0x00000010;
       nextPackage.clear();
       return this;
     }
@@ -327,7 +292,7 @@ public final class JointDrillSettle {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000010;
       return nextPackage;
     }
 
@@ -336,8 +301,8 @@ public final class JointDrillSettle {
      * @param value the nextPackage to add
      * @return this
      */
-    public JointDrillSettleReq addNextPackage(final byte value) {
-      bitField0_ |= 0x00000020;
+    public JointDrill2GiveUpReq addNextPackage(final byte value) {
+      bitField0_ |= 0x00000010;
       nextPackage.add(value);
       return this;
     }
@@ -347,8 +312,8 @@ public final class JointDrillSettle {
      * @param values the nextPackage to add
      * @return this
      */
-    public JointDrillSettleReq addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000020;
+    public JointDrill2GiveUpReq addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000010;
       nextPackage.addAll(values);
       return this;
     }
@@ -358,35 +323,103 @@ public final class JointDrillSettle {
      * @param values the nextPackage to set
      * @return this
      */
-    public JointDrillSettleReq setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000020;
+    public JointDrill2GiveUpReq setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000010;
       nextPackage.copyFrom(values);
       return this;
     }
 
+    /**
+     * <code>repeated .JointDrillBossHp BossHps = 4;</code>
+     * @return whether the bossHps field is set
+     */
+    public boolean hasBossHps() {
+      return (bitField0_ & 0x00000020) != 0;
+    }
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHps = 4;</code>
+     * @return this
+     */
+    public JointDrill2GiveUpReq clearBossHps() {
+      bitField0_ &= ~0x00000020;
+      bossHps.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHps = 4;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBossHps()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<PublicJointDrill.JointDrillBossHp> getBossHps() {
+      return bossHps;
+    }
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHps = 4;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<PublicJointDrill.JointDrillBossHp> getMutableBossHps() {
+      bitField0_ |= 0x00000020;
+      return bossHps;
+    }
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHps = 4;</code>
+     * @param value the bossHps to add
+     * @return this
+     */
+    public JointDrill2GiveUpReq addBossHps(final PublicJointDrill.JointDrillBossHp value) {
+      bitField0_ |= 0x00000020;
+      bossHps.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHps = 4;</code>
+     * @param values the bossHps to add
+     * @return this
+     */
+    public JointDrill2GiveUpReq addAllBossHps(final PublicJointDrill.JointDrillBossHp... values) {
+      bitField0_ |= 0x00000020;
+      bossHps.addAll(values);
+      return this;
+    }
+
     @Override
-    public JointDrillSettleReq copyFrom(final JointDrillSettleReq other) {
+    public JointDrill2GiveUpReq copyFrom(final JointDrill2GiveUpReq other) {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
-        checksum = other.checksum;
+        floor = other.floor;
         time = other.time;
         damage = other.damage;
-        sample.copyFrom(other.sample);
-        events.copyFrom(other.events);
+        record.copyFrom(other.record);
         nextPackage.copyFrom(other.nextPackage);
+        bossHps.copyFrom(other.bossHps);
       }
       return this;
     }
 
     @Override
-    public JointDrillSettleReq mergeFrom(final JointDrillSettleReq other) {
+    public JointDrill2GiveUpReq mergeFrom(final JointDrill2GiveUpReq other) {
       if (other.isEmpty()) {
         return this;
       }
       cachedSize = -1;
-      if (other.hasChecksum()) {
-        setChecksum(other.checksum);
+      if (other.hasFloor()) {
+        setFloor(other.floor);
       }
       if (other.hasTime()) {
         setTime(other.time);
@@ -394,44 +427,44 @@ public final class JointDrillSettle {
       if (other.hasDamage()) {
         setDamage(other.damage);
       }
-      if (other.hasSample()) {
-        getMutableSample().mergeFrom(other.sample);
-      }
-      if (other.hasEvents()) {
-        getMutableEvents().mergeFrom(other.events);
+      if (other.hasRecord()) {
+        getMutableRecord().copyFrom(other.record);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
+      if (other.hasBossHps()) {
+        getMutableBossHps().addAll(other.bossHps);
+      }
       return this;
     }
 
     @Override
-    public JointDrillSettleReq clear() {
+    public JointDrill2GiveUpReq clear() {
       if (isEmpty()) {
         return this;
       }
       cachedSize = -1;
       bitField0_ = 0;
-      checksum = 0L;
+      floor = 0;
       time = 0;
       damage = 0;
-      sample.clear();
-      events.clear();
+      record.clear();
       nextPackage.clear();
+      bossHps.clear();
       return this;
     }
 
     @Override
-    public JointDrillSettleReq clearQuick() {
+    public JointDrill2GiveUpReq clearQuick() {
       if (isEmpty()) {
         return this;
       }
       cachedSize = -1;
       bitField0_ = 0;
-      sample.clearQuick();
-      events.clearQuick();
+      record.clear();
       nextPackage.clear();
+      bossHps.clearQuick();
       return this;
     }
 
@@ -440,44 +473,46 @@ public final class JointDrillSettle {
       if (o == this) {
         return true;
       }
-      if (!(o instanceof JointDrillSettleReq)) {
+      if (!(o instanceof JointDrill2GiveUpReq)) {
         return false;
       }
-      JointDrillSettleReq other = (JointDrillSettleReq) o;
+      JointDrill2GiveUpReq other = (JointDrill2GiveUpReq) o;
       return bitField0_ == other.bitField0_
-        && (!hasChecksum() || checksum == other.checksum)
+        && (!hasFloor() || floor == other.floor)
         && (!hasTime() || time == other.time)
         && (!hasDamage() || damage == other.damage)
-        && (!hasSample() || sample.equals(other.sample))
-        && (!hasEvents() || events.equals(other.events))
-        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+        && (!hasRecord() || record.equals(other.record))
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasBossHps() || bossHps.equals(other.bossHps));
     }
 
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 32);
-        output.writeUInt64NoTag(checksum);
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(floor);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeRawByte((byte) 8);
+        output.writeRawByte((byte) 16);
         output.writeUInt32NoTag(time);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        output.writeRawByte((byte) 16);
+        output.writeRawByte((byte) 24);
         output.writeUInt32NoTag(damage);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        output.writeRawByte((byte) 26);
-        output.writeMessageNoTag(sample);
+        output.writeRawByte((byte) 42);
+        output.writeBytesNoTag(record);
       }
       if ((bitField0_ & 0x00000010) != 0) {
-        output.writeRawByte((byte) 58);
-        output.writeMessageNoTag(events);
-      }
-      if ((bitField0_ & 0x00000020) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        for (int i = 0; i < bossHps.length(); i++) {
+          output.writeRawByte((byte) 34);
+          output.writeMessageNoTag(bossHps.get(i));
+        }
       }
     }
 
@@ -485,7 +520,7 @@ public final class JointDrillSettle {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt64SizeNoTag(checksum);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(floor);
       }
       if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(time);
@@ -494,64 +529,55 @@ public final class JointDrillSettle {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(damage);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(sample);
+        size += 1 + ProtoSink.computeBytesSizeNoTag(record);
       }
       if ((bitField0_ & 0x00000010) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(events);
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       if ((bitField0_ & 0x00000020) != 0) {
-        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+        size += (1 * bossHps.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(bossHps);
       }
       return size;
     }
 
     @Override
     @SuppressWarnings("fallthrough")
-    public JointDrillSettleReq mergeFrom(final ProtoSource input) throws IOException {
+    public JointDrill2GiveUpReq mergeFrom(final ProtoSource input) throws IOException {
       // Enabled Fall-Through Optimization (QuickBuffers)
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 32: {
-            // checksum
-            checksum = input.readUInt64();
-            bitField0_ |= 0x00000001;
-            tag = input.readTag();
-            if (tag != 8) {
-              break;
-            }
-          }
           case 8: {
-            // time
-            time = input.readUInt32();
-            bitField0_ |= 0x00000002;
+            // floor
+            floor = input.readUInt32();
+            bitField0_ |= 0x00000001;
             tag = input.readTag();
             if (tag != 16) {
               break;
             }
           }
           case 16: {
+            // time
+            time = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
             // damage
             damage = input.readUInt32();
             bitField0_ |= 0x00000004;
             tag = input.readTag();
-            if (tag != 26) {
+            if (tag != 42) {
               break;
             }
           }
-          case 26: {
-            // sample
-            input.readMessage(sample);
+          case 42: {
+            // record
+            input.readBytes(record);
             bitField0_ |= 0x00000008;
-            tag = input.readTag();
-            if (tag != 58) {
-              break;
-            }
-          }
-          case 58: {
-            // events
-            input.readMessage(events);
-            bitField0_ |= 0x00000010;
             tag = input.readTag();
             if (tag != 16378) {
               break;
@@ -560,8 +586,16 @@ public final class JointDrillSettle {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000020;
+            bitField0_ |= 0x00000010;
             tag = input.readTag();
+            if (tag != 34) {
+              break;
+            }
+          }
+          case 34: {
+            // bossHps
+            tag = input.readRepeatedMessage(bossHps, tag);
+            bitField0_ |= 0x00000020;
             if (tag != 0) {
               break;
             }
@@ -584,7 +618,7 @@ public final class JointDrillSettle {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt64(FieldNames.checksum, checksum);
+        output.writeUInt32(FieldNames.floor, floor);
       }
       if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.time, time);
@@ -593,28 +627,28 @@ public final class JointDrillSettle {
         output.writeUInt32(FieldNames.damage, damage);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        output.writeMessage(FieldNames.sample, sample);
+        output.writeBytes(FieldNames.record, record);
       }
       if ((bitField0_ & 0x00000010) != 0) {
-        output.writeMessage(FieldNames.events, events);
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       if ((bitField0_ & 0x00000020) != 0) {
-        output.writeBytes(FieldNames.nextPackage, nextPackage);
+        output.writeRepeatedMessage(FieldNames.bossHps, bossHps);
       }
       output.endObject();
     }
 
     @Override
-    public JointDrillSettleReq mergeFrom(final JsonSource input) throws IOException {
+    public JointDrill2GiveUpReq mergeFrom(final JsonSource input) throws IOException {
       if (!input.beginObject()) {
         return this;
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
-          case 1601552483: {
-            if (input.isAtField(FieldNames.checksum)) {
+          case 67974124: {
+            if (input.isAtField(FieldNames.floor)) {
               if (!input.trySkipNullValue()) {
-                checksum = input.readUInt64();
+                floor = input.readUInt32();
                 bitField0_ |= 0x00000001;
               }
             } else {
@@ -644,22 +678,11 @@ public final class JointDrillSettle {
             }
             break;
           }
-          case -1825807926: {
-            if (input.isAtField(FieldNames.sample)) {
+          case -1851041679: {
+            if (input.isAtField(FieldNames.record)) {
               if (!input.trySkipNullValue()) {
-                input.readMessage(sample);
+                input.readBytes(record);
                 bitField0_ |= 0x00000008;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
-          case 2087505209: {
-            if (input.isAtField(FieldNames.events)) {
-              if (!input.trySkipNullValue()) {
-                input.readMessage(events);
-                bitField0_ |= 0x00000010;
               }
             } else {
               input.skipUnknownField();
@@ -670,6 +693,17 @@ public final class JointDrillSettle {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
+                bitField0_ |= 0x00000010;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 1733240222: {
+            if (input.isAtField(FieldNames.bossHps)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(bossHps);
                 bitField0_ |= 0x00000020;
               }
             } else {
@@ -688,8 +722,8 @@ public final class JointDrillSettle {
     }
 
     @Override
-    public JointDrillSettleReq clone() {
-      return new JointDrillSettleReq().copyFrom(this);
+    public JointDrill2GiveUpReq clone() {
+      return new JointDrill2GiveUpReq().copyFrom(this);
     }
 
     @Override
@@ -697,32 +731,32 @@ public final class JointDrillSettle {
       return ((bitField0_) == 0);
     }
 
-    public static JointDrillSettleReq parseFrom(final byte[] data) throws
+    public static JointDrill2GiveUpReq parseFrom(final byte[] data) throws
         InvalidProtocolBufferException {
-      return ProtoMessage.mergeFrom(new JointDrillSettleReq(), data).checkInitialized();
+      return ProtoMessage.mergeFrom(new JointDrill2GiveUpReq(), data).checkInitialized();
     }
 
-    public static JointDrillSettleReq parseFrom(final ProtoSource input) throws IOException {
-      return ProtoMessage.mergeFrom(new JointDrillSettleReq(), input).checkInitialized();
+    public static JointDrill2GiveUpReq parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new JointDrill2GiveUpReq(), input).checkInitialized();
     }
 
-    public static JointDrillSettleReq parseFrom(final JsonSource input) throws IOException {
-      return ProtoMessage.mergeFrom(new JointDrillSettleReq(), input).checkInitialized();
+    public static JointDrill2GiveUpReq parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new JointDrill2GiveUpReq(), input).checkInitialized();
     }
 
     /**
-     * @return factory for creating JointDrillSettleReq messages
+     * @return factory for creating JointDrill2GiveUpReq messages
      */
-    public static MessageFactory<JointDrillSettleReq> getFactory() {
-      return JointDrillSettleReqFactory.INSTANCE;
+    public static MessageFactory<JointDrill2GiveUpReq> getFactory() {
+      return JointDrill2GiveUpReqFactory.INSTANCE;
     }
 
-    private enum JointDrillSettleReqFactory implements MessageFactory<JointDrillSettleReq> {
+    private enum JointDrill2GiveUpReqFactory implements MessageFactory<JointDrill2GiveUpReq> {
       INSTANCE;
 
       @Override
-      public JointDrillSettleReq create() {
-        return JointDrillSettleReq.newInstance();
+      public JointDrill2GiveUpReq create() {
+        return JointDrill2GiveUpReq.newInstance();
       }
     }
 
@@ -730,17 +764,17 @@ public final class JointDrillSettle {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
-      static final FieldName checksum = FieldName.forField("Checksum");
+      static final FieldName floor = FieldName.forField("Floor");
 
       static final FieldName time = FieldName.forField("Time");
 
       static final FieldName damage = FieldName.forField("Damage");
 
-      static final FieldName sample = FieldName.forField("Sample");
-
-      static final FieldName events = FieldName.forField("Events");
+      static final FieldName record = FieldName.forField("Record");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName bossHps = FieldName.forField("BossHps");
     }
   }
 }

@@ -12,6 +12,7 @@ public class CharGemAttrValueDef extends BaseDef {
     private int Id;
     private int TypeId;
     private int AttrType;
+    private int AttrTypeFirstSubtype;
     private int Rarity;
     
     @Override

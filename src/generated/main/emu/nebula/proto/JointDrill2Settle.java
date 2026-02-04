@@ -12,11 +12,11 @@ import us.hebi.quickbuf.ProtoSink;
 import us.hebi.quickbuf.ProtoSource;
 import us.hebi.quickbuf.RepeatedByte;
 
-public final class JointDrillSettle {
+public final class JointDrill2Settle {
   /**
-   * Protobuf type {@code JointDrillSettleReq}
+   * Protobuf type {@code JointDrill2SettleReq}
    */
-  public static final class JointDrillSettleReq extends ProtoMessage<JointDrillSettleReq> implements Cloneable {
+  public static final class JointDrill2SettleReq extends ProtoMessage<JointDrill2SettleReq> implements Cloneable {
     private static final long serialVersionUID = 0L;
 
     /**
@@ -49,14 +49,14 @@ public final class JointDrillSettle {
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
 
-    private JointDrillSettleReq() {
+    private JointDrill2SettleReq() {
     }
 
     /**
-     * @return a new empty instance of {@code JointDrillSettleReq}
+     * @return a new empty instance of {@code JointDrill2SettleReq}
      */
-    public static JointDrillSettleReq newInstance() {
-      return new JointDrillSettleReq();
+    public static JointDrill2SettleReq newInstance() {
+      return new JointDrill2SettleReq();
     }
 
     /**
@@ -71,7 +71,7 @@ public final class JointDrillSettle {
      * <code>optional uint64 Checksum = 4;</code>
      * @return this
      */
-    public JointDrillSettleReq clearChecksum() {
+    public JointDrill2SettleReq clearChecksum() {
       bitField0_ &= ~0x00000001;
       checksum = 0L;
       return this;
@@ -90,7 +90,7 @@ public final class JointDrillSettle {
      * @param value the checksum to set
      * @return this
      */
-    public JointDrillSettleReq setChecksum(final long value) {
+    public JointDrill2SettleReq setChecksum(final long value) {
       bitField0_ |= 0x00000001;
       checksum = value;
       return this;
@@ -108,7 +108,7 @@ public final class JointDrillSettle {
      * <code>optional uint32 Time = 1;</code>
      * @return this
      */
-    public JointDrillSettleReq clearTime() {
+    public JointDrill2SettleReq clearTime() {
       bitField0_ &= ~0x00000002;
       time = 0;
       return this;
@@ -127,7 +127,7 @@ public final class JointDrillSettle {
      * @param value the time to set
      * @return this
      */
-    public JointDrillSettleReq setTime(final int value) {
+    public JointDrill2SettleReq setTime(final int value) {
       bitField0_ |= 0x00000002;
       time = value;
       return this;
@@ -145,7 +145,7 @@ public final class JointDrillSettle {
      * <code>optional uint32 Damage = 2;</code>
      * @return this
      */
-    public JointDrillSettleReq clearDamage() {
+    public JointDrill2SettleReq clearDamage() {
       bitField0_ &= ~0x00000004;
       damage = 0;
       return this;
@@ -164,7 +164,7 @@ public final class JointDrillSettle {
      * @param value the damage to set
      * @return this
      */
-    public JointDrillSettleReq setDamage(final int value) {
+    public JointDrill2SettleReq setDamage(final int value) {
       bitField0_ |= 0x00000004;
       damage = value;
       return this;
@@ -182,7 +182,7 @@ public final class JointDrillSettle {
      * <code>optional .TravelerDuelBattleSamples Sample = 3;</code>
      * @return this
      */
-    public JointDrillSettleReq clearSample() {
+    public JointDrill2SettleReq clearSample() {
       bitField0_ &= ~0x00000008;
       sample.clear();
       return this;
@@ -221,7 +221,7 @@ public final class JointDrillSettle {
      * @param value the sample to set
      * @return this
      */
-    public JointDrillSettleReq setSample(
+    public JointDrill2SettleReq setSample(
         final TravelerDuelRankUpload.TravelerDuelBattleSamples value) {
       bitField0_ |= 0x00000008;
       sample.copyFrom(value);
@@ -240,7 +240,7 @@ public final class JointDrillSettle {
      * <code>optional .Events Events = 7;</code>
      * @return this
      */
-    public JointDrillSettleReq clearEvents() {
+    public JointDrill2SettleReq clearEvents() {
       bitField0_ &= ~0x00000010;
       events.clear();
       return this;
@@ -279,7 +279,7 @@ public final class JointDrillSettle {
      * @param value the events to set
      * @return this
      */
-    public JointDrillSettleReq setEvents(final Public.Events value) {
+    public JointDrill2SettleReq setEvents(final Public.Events value) {
       bitField0_ |= 0x00000010;
       events.copyFrom(value);
       return this;
@@ -297,7 +297,7 @@ public final class JointDrillSettle {
      * <code>optional bytes NextPackage = 2047;</code>
      * @return this
      */
-    public JointDrillSettleReq clearNextPackage() {
+    public JointDrill2SettleReq clearNextPackage() {
       bitField0_ &= ~0x00000020;
       nextPackage.clear();
       return this;
@@ -336,7 +336,7 @@ public final class JointDrillSettle {
      * @param value the nextPackage to add
      * @return this
      */
-    public JointDrillSettleReq addNextPackage(final byte value) {
+    public JointDrill2SettleReq addNextPackage(final byte value) {
       bitField0_ |= 0x00000020;
       nextPackage.add(value);
       return this;
@@ -347,7 +347,7 @@ public final class JointDrillSettle {
      * @param values the nextPackage to add
      * @return this
      */
-    public JointDrillSettleReq addAllNextPackage(final byte... values) {
+    public JointDrill2SettleReq addAllNextPackage(final byte... values) {
       bitField0_ |= 0x00000020;
       nextPackage.addAll(values);
       return this;
@@ -358,14 +358,14 @@ public final class JointDrillSettle {
      * @param values the nextPackage to set
      * @return this
      */
-    public JointDrillSettleReq setNextPackage(final byte... values) {
+    public JointDrill2SettleReq setNextPackage(final byte... values) {
       bitField0_ |= 0x00000020;
       nextPackage.copyFrom(values);
       return this;
     }
 
     @Override
-    public JointDrillSettleReq copyFrom(final JointDrillSettleReq other) {
+    public JointDrill2SettleReq copyFrom(final JointDrill2SettleReq other) {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
@@ -380,7 +380,7 @@ public final class JointDrillSettle {
     }
 
     @Override
-    public JointDrillSettleReq mergeFrom(final JointDrillSettleReq other) {
+    public JointDrill2SettleReq mergeFrom(final JointDrill2SettleReq other) {
       if (other.isEmpty()) {
         return this;
       }
@@ -407,7 +407,7 @@ public final class JointDrillSettle {
     }
 
     @Override
-    public JointDrillSettleReq clear() {
+    public JointDrill2SettleReq clear() {
       if (isEmpty()) {
         return this;
       }
@@ -423,7 +423,7 @@ public final class JointDrillSettle {
     }
 
     @Override
-    public JointDrillSettleReq clearQuick() {
+    public JointDrill2SettleReq clearQuick() {
       if (isEmpty()) {
         return this;
       }
@@ -440,10 +440,10 @@ public final class JointDrillSettle {
       if (o == this) {
         return true;
       }
-      if (!(o instanceof JointDrillSettleReq)) {
+      if (!(o instanceof JointDrill2SettleReq)) {
         return false;
       }
-      JointDrillSettleReq other = (JointDrillSettleReq) o;
+      JointDrill2SettleReq other = (JointDrill2SettleReq) o;
       return bitField0_ == other.bitField0_
         && (!hasChecksum() || checksum == other.checksum)
         && (!hasTime() || time == other.time)
@@ -507,7 +507,7 @@ public final class JointDrillSettle {
 
     @Override
     @SuppressWarnings("fallthrough")
-    public JointDrillSettleReq mergeFrom(final ProtoSource input) throws IOException {
+    public JointDrill2SettleReq mergeFrom(final ProtoSource input) throws IOException {
       // Enabled Fall-Through Optimization (QuickBuffers)
       int tag = input.readTag();
       while (true) {
@@ -605,7 +605,7 @@ public final class JointDrillSettle {
     }
 
     @Override
-    public JointDrillSettleReq mergeFrom(final JsonSource input) throws IOException {
+    public JointDrill2SettleReq mergeFrom(final JsonSource input) throws IOException {
       if (!input.beginObject()) {
         return this;
       }
@@ -688,8 +688,8 @@ public final class JointDrillSettle {
     }
 
     @Override
-    public JointDrillSettleReq clone() {
-      return new JointDrillSettleReq().copyFrom(this);
+    public JointDrill2SettleReq clone() {
+      return new JointDrill2SettleReq().copyFrom(this);
     }
 
     @Override
@@ -697,32 +697,32 @@ public final class JointDrillSettle {
       return ((bitField0_) == 0);
     }
 
-    public static JointDrillSettleReq parseFrom(final byte[] data) throws
+    public static JointDrill2SettleReq parseFrom(final byte[] data) throws
         InvalidProtocolBufferException {
-      return ProtoMessage.mergeFrom(new JointDrillSettleReq(), data).checkInitialized();
+      return ProtoMessage.mergeFrom(new JointDrill2SettleReq(), data).checkInitialized();
     }
 
-    public static JointDrillSettleReq parseFrom(final ProtoSource input) throws IOException {
-      return ProtoMessage.mergeFrom(new JointDrillSettleReq(), input).checkInitialized();
+    public static JointDrill2SettleReq parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new JointDrill2SettleReq(), input).checkInitialized();
     }
 
-    public static JointDrillSettleReq parseFrom(final JsonSource input) throws IOException {
-      return ProtoMessage.mergeFrom(new JointDrillSettleReq(), input).checkInitialized();
+    public static JointDrill2SettleReq parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new JointDrill2SettleReq(), input).checkInitialized();
     }
 
     /**
-     * @return factory for creating JointDrillSettleReq messages
+     * @return factory for creating JointDrill2SettleReq messages
      */
-    public static MessageFactory<JointDrillSettleReq> getFactory() {
-      return JointDrillSettleReqFactory.INSTANCE;
+    public static MessageFactory<JointDrill2SettleReq> getFactory() {
+      return JointDrill2SettleReqFactory.INSTANCE;
     }
 
-    private enum JointDrillSettleReqFactory implements MessageFactory<JointDrillSettleReq> {
+    private enum JointDrill2SettleReqFactory implements MessageFactory<JointDrill2SettleReq> {
       INSTANCE;
 
       @Override
-      public JointDrillSettleReq create() {
-        return JointDrillSettleReq.newInstance();
+      public JointDrill2SettleReq create() {
+        return JointDrill2SettleReq.newInstance();
       }
     }
 

@@ -77,6 +77,14 @@ public class Handbook {
                     }
                 }
                 
+                // Hacky way of checking if a skin is released or not
+                if (data.getItemType() == ItemType.CharacterSkin) {
+                    var skinData = GameData.getCharacterSkinDataTable().get(id);
+                    if (skinData != null) {
+                        skinData.setReleased(itemLanguageKey.containsKey(data.getTitle()));
+                    }
+                }
+                
                 writer.println("");
             }
             

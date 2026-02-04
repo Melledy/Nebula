@@ -30,18 +30,23 @@ public class ActivityModule extends GameContextModule {
         //this.activities.add(2010104);
         
         // Miracle of a Flicker
-        this.activities.add(1010301);
-        this.activities.add(1010303);
-        this.activities.add(1010304);
+        //this.activities.add(1010301);
+        //this.activities.add(1010303);
+        //this.activities.add(1010304);
+        
+        // Springseek Festival
+        this.activities.add(1010401);
+        this.activities.add(1010403);
+        this.activities.add(1010404);
         
         // ===== Etc Events =====
         
         // Trial activities
-        this.activities.add(700109);
-        this.activities.add(700110);
+        this.activities.add(700111);
+        this.activities.add(700112);
 
         // Tower defense activity
-        this.activities.add(102001);
+        this.activities.add(102002);
         
         // Christmas 2025 login events
         this.activities.add(301011);

@@ -101,6 +101,21 @@ public final class ActivityDetail {
     private final Public.ActivityStoryChapter storyChapter = Public.ActivityStoryChapter.newInstance();
 
     /**
+     * <code>optional .Milkout Milkout = 17;</code>
+     */
+    private final Public.Milkout milkout = Public.Milkout.newInstance();
+
+    /**
+     * <code>optional .ActivityPenguinCard PenguinCard = 18;</code>
+     */
+    private final Public.ActivityPenguinCard penguinCard = Public.ActivityPenguinCard.newInstance();
+
+    /**
+     * <code>optional .ActivityThrowGift ThrowGift = 19;</code>
+     */
+    private final Public.ActivityThrowGift throwGift = Public.ActivityThrowGift.newInstance();
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -1008,11 +1023,182 @@ public final class ActivityDetail {
     }
 
     /**
+     * <code>optional .Milkout Milkout = 17;</code>
+     * @return whether the milkout field is set
+     */
+    public boolean hasMilkout() {
+      return (bitField0_ & 0x00010000) != 0;
+    }
+
+    /**
+     * <code>optional .Milkout Milkout = 17;</code>
+     * @return this
+     */
+    public ActivityMsg clearMilkout() {
+      bitField0_ &= ~0x00010000;
+      milkout.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .Milkout Milkout = 17;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableMilkout()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.Milkout getMilkout() {
+      return milkout;
+    }
+
+    /**
+     * <code>optional .Milkout Milkout = 17;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.Milkout getMutableMilkout() {
+      bitField0_ |= 0x00010000;
+      return milkout;
+    }
+
+    /**
+     * <code>optional .Milkout Milkout = 17;</code>
+     * @param value the milkout to set
+     * @return this
+     */
+    public ActivityMsg setMilkout(final Public.Milkout value) {
+      bitField0_ |= 0x00010000;
+      milkout.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityPenguinCard PenguinCard = 18;</code>
+     * @return whether the penguinCard field is set
+     */
+    public boolean hasPenguinCard() {
+      return (bitField0_ & 0x00020000) != 0;
+    }
+
+    /**
+     * <code>optional .ActivityPenguinCard PenguinCard = 18;</code>
+     * @return this
+     */
+    public ActivityMsg clearPenguinCard() {
+      bitField0_ &= ~0x00020000;
+      penguinCard.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityPenguinCard PenguinCard = 18;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutablePenguinCard()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.ActivityPenguinCard getPenguinCard() {
+      return penguinCard;
+    }
+
+    /**
+     * <code>optional .ActivityPenguinCard PenguinCard = 18;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.ActivityPenguinCard getMutablePenguinCard() {
+      bitField0_ |= 0x00020000;
+      return penguinCard;
+    }
+
+    /**
+     * <code>optional .ActivityPenguinCard PenguinCard = 18;</code>
+     * @param value the penguinCard to set
+     * @return this
+     */
+    public ActivityMsg setPenguinCard(final Public.ActivityPenguinCard value) {
+      bitField0_ |= 0x00020000;
+      penguinCard.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityThrowGift ThrowGift = 19;</code>
+     * @return whether the throwGift field is set
+     */
+    public boolean hasThrowGift() {
+      return (bitField0_ & 0x00040000) != 0;
+    }
+
+    /**
+     * <code>optional .ActivityThrowGift ThrowGift = 19;</code>
+     * @return this
+     */
+    public ActivityMsg clearThrowGift() {
+      bitField0_ &= ~0x00040000;
+      throwGift.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityThrowGift ThrowGift = 19;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableThrowGift()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.ActivityThrowGift getThrowGift() {
+      return throwGift;
+    }
+
+    /**
+     * <code>optional .ActivityThrowGift ThrowGift = 19;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.ActivityThrowGift getMutableThrowGift() {
+      bitField0_ |= 0x00040000;
+      return throwGift;
+    }
+
+    /**
+     * <code>optional .ActivityThrowGift ThrowGift = 19;</code>
+     * @param value the throwGift to set
+     * @return this
+     */
+    public ActivityMsg setThrowGift(final Public.ActivityThrowGift value) {
+      bitField0_ |= 0x00040000;
+      throwGift.copyFrom(value);
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00010000) != 0;
+      return (bitField0_ & 0x00080000) != 0;
     }
 
     /**
@@ -1020,7 +1206,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg clearNextPackage() {
-      bitField0_ &= ~0x00010000;
+      bitField0_ &= ~0x00080000;
       nextPackage.clear();
       return this;
     }
@@ -1049,7 +1235,7 @@ public final class ActivityDetail {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00010000;
+      bitField0_ |= 0x00080000;
       return nextPackage;
     }
 
@@ -1059,7 +1245,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg addNextPackage(final byte value) {
-      bitField0_ |= 0x00010000;
+      bitField0_ |= 0x00080000;
       nextPackage.add(value);
       return this;
     }
@@ -1070,7 +1256,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00010000;
+      bitField0_ |= 0x00080000;
       nextPackage.addAll(values);
       return this;
     }
@@ -1081,7 +1267,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg setNextPackage(final byte... values) {
-      bitField0_ |= 0x00010000;
+      bitField0_ |= 0x00080000;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -1107,6 +1293,9 @@ public final class ActivityDetail {
         bdConvert.copyFrom(other.bdConvert);
         trekkerVersus.copyFrom(other.trekkerVersus);
         storyChapter.copyFrom(other.storyChapter);
+        milkout.copyFrom(other.milkout);
+        penguinCard.copyFrom(other.penguinCard);
+        throwGift.copyFrom(other.throwGift);
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -1166,6 +1355,15 @@ public final class ActivityDetail {
       if (other.hasStoryChapter()) {
         getMutableStoryChapter().mergeFrom(other.storyChapter);
       }
+      if (other.hasMilkout()) {
+        getMutableMilkout().mergeFrom(other.milkout);
+      }
+      if (other.hasPenguinCard()) {
+        getMutablePenguinCard().mergeFrom(other.penguinCard);
+      }
+      if (other.hasThrowGift()) {
+        getMutableThrowGift().mergeFrom(other.throwGift);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -1195,6 +1393,9 @@ public final class ActivityDetail {
       bdConvert.clear();
       trekkerVersus.clear();
       storyChapter.clear();
+      milkout.clear();
+      penguinCard.clear();
+      throwGift.clear();
       nextPackage.clear();
       return this;
     }
@@ -1221,6 +1422,9 @@ public final class ActivityDetail {
       bdConvert.clearQuick();
       trekkerVersus.clearQuick();
       storyChapter.clearQuick();
+      milkout.clearQuick();
+      penguinCard.clearQuick();
+      throwGift.clearQuick();
       nextPackage.clear();
       return this;
     }
@@ -1251,6 +1455,9 @@ public final class ActivityDetail {
         && (!hasBdConvert() || bdConvert.equals(other.bdConvert))
         && (!hasTrekkerVersus() || trekkerVersus.equals(other.trekkerVersus))
         && (!hasStoryChapter() || storyChapter.equals(other.storyChapter))
+        && (!hasMilkout() || milkout.equals(other.milkout))
+        && (!hasPenguinCard() || penguinCard.equals(other.penguinCard))
+        && (!hasThrowGift() || throwGift.equals(other.throwGift))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
@@ -1321,6 +1528,18 @@ public final class ActivityDetail {
         output.writeMessageNoTag(storyChapter);
       }
       if ((bitField0_ & 0x00010000) != 0) {
+        output.writeRawLittleEndian16((short) 394);
+        output.writeMessageNoTag(milkout);
+      }
+      if ((bitField0_ & 0x00020000) != 0) {
+        output.writeRawLittleEndian16((short) 402);
+        output.writeMessageNoTag(penguinCard);
+      }
+      if ((bitField0_ & 0x00040000) != 0) {
+        output.writeRawLittleEndian16((short) 410);
+        output.writeMessageNoTag(throwGift);
+      }
+      if ((bitField0_ & 0x00080000) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
@@ -1378,6 +1597,15 @@ public final class ActivityDetail {
         size += 2 + ProtoSink.computeMessageSizeNoTag(storyChapter);
       }
       if ((bitField0_ & 0x00010000) != 0) {
+        size += 2 + ProtoSink.computeMessageSizeNoTag(milkout);
+      }
+      if ((bitField0_ & 0x00020000) != 0) {
+        size += 2 + ProtoSink.computeMessageSizeNoTag(penguinCard);
+      }
+      if ((bitField0_ & 0x00040000) != 0) {
+        size += 2 + ProtoSink.computeMessageSizeNoTag(throwGift);
+      }
+      if ((bitField0_ & 0x00080000) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       return size;
@@ -1530,6 +1758,33 @@ public final class ActivityDetail {
             input.readMessage(storyChapter);
             bitField0_ |= 0x00008000;
             tag = input.readTag();
+            if (tag != 138) {
+              break;
+            }
+          }
+          case 138: {
+            // milkout
+            input.readMessage(milkout);
+            bitField0_ |= 0x00010000;
+            tag = input.readTag();
+            if (tag != 146) {
+              break;
+            }
+          }
+          case 146: {
+            // penguinCard
+            input.readMessage(penguinCard);
+            bitField0_ |= 0x00020000;
+            tag = input.readTag();
+            if (tag != 154) {
+              break;
+            }
+          }
+          case 154: {
+            // throwGift
+            input.readMessage(throwGift);
+            bitField0_ |= 0x00040000;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -1537,7 +1792,7 @@ public final class ActivityDetail {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00010000;
+            bitField0_ |= 0x00080000;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -1609,6 +1864,15 @@ public final class ActivityDetail {
         output.writeMessage(FieldNames.storyChapter, storyChapter);
       }
       if ((bitField0_ & 0x00010000) != 0) {
+        output.writeMessage(FieldNames.milkout, milkout);
+      }
+      if ((bitField0_ & 0x00020000) != 0) {
+        output.writeMessage(FieldNames.penguinCard, penguinCard);
+      }
+      if ((bitField0_ & 0x00040000) != 0) {
+        output.writeMessage(FieldNames.throwGift, throwGift);
+      }
+      if ((bitField0_ & 0x00080000) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       output.endObject();
@@ -1797,11 +2061,44 @@ public final class ActivityDetail {
             }
             break;
           }
+          case -1567561421: {
+            if (input.isAtField(FieldNames.milkout)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(milkout);
+                bitField0_ |= 0x00010000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 1342583868: {
+            if (input.isAtField(FieldNames.penguinCard)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(penguinCard);
+                bitField0_ |= 0x00020000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 747487510: {
+            if (input.isAtField(FieldNames.throwGift)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(throwGift);
+                bitField0_ |= 0x00040000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00010000;
+                bitField0_ |= 0x00080000;
               }
             } else {
               input.skipUnknownField();
@@ -1891,6 +2188,12 @@ public final class ActivityDetail {
       static final FieldName trekkerVersus = FieldName.forField("TrekkerVersus");
 
       static final FieldName storyChapter = FieldName.forField("StoryChapter");
+
+      static final FieldName milkout = FieldName.forField("Milkout");
+
+      static final FieldName penguinCard = FieldName.forField("PenguinCard");
+
+      static final FieldName throwGift = FieldName.forField("ThrowGift");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }

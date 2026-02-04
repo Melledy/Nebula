@@ -27,6 +27,16 @@ public final class PublicJointDrill {
     private final JointDrillMeta meta = JointDrillMeta.newInstance();
 
     /**
+     * <code>optional .Mode1Meta Mode1 = 9;</code>
+     */
+    private final Mode1Meta mode1 = Mode1Meta.newInstance();
+
+    /**
+     * <code>optional .Mode2Meta Mode2 = 10;</code>
+     */
+    private final Mode2Meta mode2 = Mode2Meta.newInstance();
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -109,11 +119,125 @@ public final class PublicJointDrill {
     }
 
     /**
+     * <code>optional .Mode1Meta Mode1 = 9;</code>
+     * @return whether the mode1 field is set
+     */
+    public boolean hasMode1() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional .Mode1Meta Mode1 = 9;</code>
+     * @return this
+     */
+    public ActivityJointDrill clearMode1() {
+      bitField0_ &= ~0x00000002;
+      mode1.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .Mode1Meta Mode1 = 9;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableMode1()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Mode1Meta getMode1() {
+      return mode1;
+    }
+
+    /**
+     * <code>optional .Mode1Meta Mode1 = 9;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Mode1Meta getMutableMode1() {
+      bitField0_ |= 0x00000002;
+      return mode1;
+    }
+
+    /**
+     * <code>optional .Mode1Meta Mode1 = 9;</code>
+     * @param value the mode1 to set
+     * @return this
+     */
+    public ActivityJointDrill setMode1(final Mode1Meta value) {
+      bitField0_ |= 0x00000002;
+      mode1.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional .Mode2Meta Mode2 = 10;</code>
+     * @return whether the mode2 field is set
+     */
+    public boolean hasMode2() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional .Mode2Meta Mode2 = 10;</code>
+     * @return this
+     */
+    public ActivityJointDrill clearMode2() {
+      bitField0_ &= ~0x00000004;
+      mode2.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .Mode2Meta Mode2 = 10;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableMode2()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Mode2Meta getMode2() {
+      return mode2;
+    }
+
+    /**
+     * <code>optional .Mode2Meta Mode2 = 10;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Mode2Meta getMutableMode2() {
+      bitField0_ |= 0x00000004;
+      return mode2;
+    }
+
+    /**
+     * <code>optional .Mode2Meta Mode2 = 10;</code>
+     * @param value the mode2 to set
+     * @return this
+     */
+    public ActivityJointDrill setMode2(final Mode2Meta value) {
+      bitField0_ |= 0x00000004;
+      mode2.copyFrom(value);
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000002) != 0;
+      return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
@@ -121,7 +245,7 @@ public final class PublicJointDrill {
      * @return this
      */
     public ActivityJointDrill clearNextPackage() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000008;
       nextPackage.clear();
       return this;
     }
@@ -150,7 +274,7 @@ public final class PublicJointDrill {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000008;
       return nextPackage;
     }
 
@@ -160,7 +284,7 @@ public final class PublicJointDrill {
      * @return this
      */
     public ActivityJointDrill addNextPackage(final byte value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000008;
       nextPackage.add(value);
       return this;
     }
@@ -171,7 +295,7 @@ public final class PublicJointDrill {
      * @return this
      */
     public ActivityJointDrill addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000008;
       nextPackage.addAll(values);
       return this;
     }
@@ -182,7 +306,7 @@ public final class PublicJointDrill {
      * @return this
      */
     public ActivityJointDrill setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000008;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -192,7 +316,7 @@ public final class PublicJointDrill {
      * @return whether the passedLevels field is set
      */
     public boolean hasPassedLevels() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000010) != 0;
     }
 
     /**
@@ -200,7 +324,7 @@ public final class PublicJointDrill {
      * @return this
      */
     public ActivityJointDrill clearPassedLevels() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000010;
       passedLevels.clear();
       return this;
     }
@@ -229,7 +353,7 @@ public final class PublicJointDrill {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<JointDrillLevel> getMutablePassedLevels() {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000010;
       return passedLevels;
     }
 
@@ -239,7 +363,7 @@ public final class PublicJointDrill {
      * @return this
      */
     public ActivityJointDrill addPassedLevels(final JointDrillLevel value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000010;
       passedLevels.add(value);
       return this;
     }
@@ -250,7 +374,7 @@ public final class PublicJointDrill {
      * @return this
      */
     public ActivityJointDrill addAllPassedLevels(final JointDrillLevel... values) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000010;
       passedLevels.addAll(values);
       return this;
     }
@@ -260,7 +384,7 @@ public final class PublicJointDrill {
      * @return whether the quests field is set
      */
     public boolean hasQuests() {
-      return (bitField0_ & 0x00000008) != 0;
+      return (bitField0_ & 0x00000020) != 0;
     }
 
     /**
@@ -268,7 +392,7 @@ public final class PublicJointDrill {
      * @return this
      */
     public ActivityJointDrill clearQuests() {
-      bitField0_ &= ~0x00000008;
+      bitField0_ &= ~0x00000020;
       quests.clear();
       return this;
     }
@@ -297,7 +421,7 @@ public final class PublicJointDrill {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.ActivityQuest> getMutableQuests() {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000020;
       return quests;
     }
 
@@ -307,7 +431,7 @@ public final class PublicJointDrill {
      * @return this
      */
     public ActivityJointDrill addQuests(final Public.ActivityQuest value) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000020;
       quests.add(value);
       return this;
     }
@@ -318,7 +442,7 @@ public final class PublicJointDrill {
      * @return this
      */
     public ActivityJointDrill addAllQuests(final Public.ActivityQuest... values) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000020;
       quests.addAll(values);
       return this;
     }
@@ -329,6 +453,8 @@ public final class PublicJointDrill {
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
         meta.copyFrom(other.meta);
+        mode1.copyFrom(other.mode1);
+        mode2.copyFrom(other.mode2);
         nextPackage.copyFrom(other.nextPackage);
         passedLevels.copyFrom(other.passedLevels);
         quests.copyFrom(other.quests);
@@ -344,6 +470,12 @@ public final class PublicJointDrill {
       cachedSize = -1;
       if (other.hasMeta()) {
         getMutableMeta().mergeFrom(other.meta);
+      }
+      if (other.hasMode1()) {
+        getMutableMode1().mergeFrom(other.mode1);
+      }
+      if (other.hasMode2()) {
+        getMutableMode2().mergeFrom(other.mode2);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -365,6 +497,8 @@ public final class PublicJointDrill {
       cachedSize = -1;
       bitField0_ = 0;
       meta.clear();
+      mode1.clear();
+      mode2.clear();
       nextPackage.clear();
       passedLevels.clear();
       quests.clear();
@@ -379,6 +513,8 @@ public final class PublicJointDrill {
       cachedSize = -1;
       bitField0_ = 0;
       meta.clearQuick();
+      mode1.clearQuick();
+      mode2.clearQuick();
       nextPackage.clear();
       passedLevels.clearQuick();
       quests.clearQuick();
@@ -396,6 +532,8 @@ public final class PublicJointDrill {
       ActivityJointDrill other = (ActivityJointDrill) o;
       return bitField0_ == other.bitField0_
         && (!hasMeta() || meta.equals(other.meta))
+        && (!hasMode1() || mode1.equals(other.mode1))
+        && (!hasMode2() || mode2.equals(other.mode2))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasPassedLevels() || passedLevels.equals(other.passedLevels))
         && (!hasQuests() || quests.equals(other.quests));
@@ -408,16 +546,24 @@ public final class PublicJointDrill {
         output.writeMessageNoTag(meta);
       }
       if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 74);
+        output.writeMessageNoTag(mode1);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 82);
+        output.writeMessageNoTag(mode2);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000010) != 0) {
         for (int i = 0; i < passedLevels.length(); i++) {
           output.writeRawByte((byte) 18);
           output.writeMessageNoTag(passedLevels.get(i));
         }
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000020) != 0) {
         for (int i = 0; i < quests.length(); i++) {
           output.writeRawByte((byte) 26);
           output.writeMessageNoTag(quests.get(i));
@@ -432,12 +578,18 @@ public final class PublicJointDrill {
         size += 1 + ProtoSink.computeMessageSizeNoTag(meta);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(mode1);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        size += (1 * passedLevels.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(passedLevels);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(mode2);
       }
       if ((bitField0_ & 0x00000008) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        size += (1 * passedLevels.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(passedLevels);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
         size += (1 * quests.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(quests);
       }
       return size;
@@ -455,6 +607,24 @@ public final class PublicJointDrill {
             input.readMessage(meta);
             bitField0_ |= 0x00000001;
             tag = input.readTag();
+            if (tag != 74) {
+              break;
+            }
+          }
+          case 74: {
+            // mode1
+            input.readMessage(mode1);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 82) {
+              break;
+            }
+          }
+          case 82: {
+            // mode2
+            input.readMessage(mode2);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -462,7 +632,7 @@ public final class PublicJointDrill {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000008;
             tag = input.readTag();
             if (tag != 18) {
               break;
@@ -471,7 +641,7 @@ public final class PublicJointDrill {
           case 18: {
             // passedLevels
             tag = input.readRepeatedMessage(passedLevels, tag);
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000010;
             if (tag != 26) {
               break;
             }
@@ -479,7 +649,7 @@ public final class PublicJointDrill {
           case 26: {
             // quests
             tag = input.readRepeatedMessage(quests, tag);
-            bitField0_ |= 0x00000008;
+            bitField0_ |= 0x00000020;
             if (tag != 0) {
               break;
             }
@@ -505,12 +675,18 @@ public final class PublicJointDrill {
         output.writeMessage(FieldNames.meta, meta);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeBytes(FieldNames.nextPackage, nextPackage);
+        output.writeMessage(FieldNames.mode1, mode1);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        output.writeRepeatedMessage(FieldNames.passedLevels, passedLevels);
+        output.writeMessage(FieldNames.mode2, mode2);
       }
       if ((bitField0_ & 0x00000008) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeRepeatedMessage(FieldNames.passedLevels, passedLevels);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
         output.writeRepeatedMessage(FieldNames.quests, quests);
       }
       output.endObject();
@@ -534,11 +710,33 @@ public final class PublicJointDrill {
             }
             break;
           }
+          case 74517198: {
+            if (input.isAtField(FieldNames.mode1)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(mode1);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 74517199: {
+            if (input.isAtField(FieldNames.mode2)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(mode2);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -549,7 +747,7 @@ public final class PublicJointDrill {
             if (input.isAtField(FieldNames.passedLevels)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(passedLevels);
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000010;
               }
             } else {
               input.skipUnknownField();
@@ -560,7 +758,7 @@ public final class PublicJointDrill {
             if (input.isAtField(FieldNames.quests)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(quests);
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000020;
               }
             } else {
               input.skipUnknownField();
@@ -622,6 +820,10 @@ public final class PublicJointDrill {
     static class FieldNames {
       static final FieldName meta = FieldName.forField("Meta");
 
+      static final FieldName mode1 = FieldName.forField("Mode1");
+
+      static final FieldName mode2 = FieldName.forField("Mode2");
+
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
       static final FieldName passedLevels = FieldName.forField("PassedLevels");
@@ -652,29 +854,14 @@ public final class PublicJointDrill {
     private int floor;
 
     /**
-     * <code>optional uint32 BossHP = 4;</code>
-     */
-    private int bossHP;
-
-    /**
-     * <code>optional uint32 BossHPMax = 5;</code>
-     */
-    private int bossHPMax;
-
-    /**
-     * <code>optional uint32 TotalScore = 9;</code>
+     * <code>optional uint32 TotalScore = 7;</code>
      */
     private int totalScore;
 
     /**
-     * <code>optional bool Simulate = 8;</code>
+     * <code>optional bool Simulate = 6;</code>
      */
     private boolean simulate;
-
-    /**
-     * <code>optional bytes Record = 6;</code>
-     */
-    private final RepeatedByte record = RepeatedByte.newEmptyInstance();
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
@@ -682,7 +869,7 @@ public final class PublicJointDrill {
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
 
     /**
-     * <code>repeated .JointDrillTeam Teams = 7;</code>
+     * <code>repeated .JointDrillTeam Teams = 5;</code>
      */
     private final RepeatedMessage<JointDrillTeam> teams = RepeatedMessage.newEmptyInstance(JointDrillTeam.getFactory());
 
@@ -808,99 +995,25 @@ public final class PublicJointDrill {
     }
 
     /**
-     * <code>optional uint32 BossHP = 4;</code>
-     * @return whether the bossHP field is set
+     * <code>optional uint32 TotalScore = 7;</code>
+     * @return whether the totalScore field is set
      */
-    public boolean hasBossHP() {
+    public boolean hasTotalScore() {
       return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
-     * <code>optional uint32 BossHP = 4;</code>
-     * @return this
-     */
-    public JointDrillMeta clearBossHP() {
-      bitField0_ &= ~0x00000008;
-      bossHP = 0;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 BossHP = 4;</code>
-     * @return the bossHP
-     */
-    public int getBossHP() {
-      return bossHP;
-    }
-
-    /**
-     * <code>optional uint32 BossHP = 4;</code>
-     * @param value the bossHP to set
-     * @return this
-     */
-    public JointDrillMeta setBossHP(final int value) {
-      bitField0_ |= 0x00000008;
-      bossHP = value;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 BossHPMax = 5;</code>
-     * @return whether the bossHPMax field is set
-     */
-    public boolean hasBossHPMax() {
-      return (bitField0_ & 0x00000010) != 0;
-    }
-
-    /**
-     * <code>optional uint32 BossHPMax = 5;</code>
-     * @return this
-     */
-    public JointDrillMeta clearBossHPMax() {
-      bitField0_ &= ~0x00000010;
-      bossHPMax = 0;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 BossHPMax = 5;</code>
-     * @return the bossHPMax
-     */
-    public int getBossHPMax() {
-      return bossHPMax;
-    }
-
-    /**
-     * <code>optional uint32 BossHPMax = 5;</code>
-     * @param value the bossHPMax to set
-     * @return this
-     */
-    public JointDrillMeta setBossHPMax(final int value) {
-      bitField0_ |= 0x00000010;
-      bossHPMax = value;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 TotalScore = 9;</code>
-     * @return whether the totalScore field is set
-     */
-    public boolean hasTotalScore() {
-      return (bitField0_ & 0x00000020) != 0;
-    }
-
-    /**
-     * <code>optional uint32 TotalScore = 9;</code>
+     * <code>optional uint32 TotalScore = 7;</code>
      * @return this
      */
     public JointDrillMeta clearTotalScore() {
-      bitField0_ &= ~0x00000020;
+      bitField0_ &= ~0x00000008;
       totalScore = 0;
       return this;
     }
 
     /**
-     * <code>optional uint32 TotalScore = 9;</code>
+     * <code>optional uint32 TotalScore = 7;</code>
      * @return the totalScore
      */
     public int getTotalScore() {
@@ -908,36 +1021,36 @@ public final class PublicJointDrill {
     }
 
     /**
-     * <code>optional uint32 TotalScore = 9;</code>
+     * <code>optional uint32 TotalScore = 7;</code>
      * @param value the totalScore to set
      * @return this
      */
     public JointDrillMeta setTotalScore(final int value) {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000008;
       totalScore = value;
       return this;
     }
 
     /**
-     * <code>optional bool Simulate = 8;</code>
+     * <code>optional bool Simulate = 6;</code>
      * @return whether the simulate field is set
      */
     public boolean hasSimulate() {
-      return (bitField0_ & 0x00000040) != 0;
+      return (bitField0_ & 0x00000010) != 0;
     }
 
     /**
-     * <code>optional bool Simulate = 8;</code>
+     * <code>optional bool Simulate = 6;</code>
      * @return this
      */
     public JointDrillMeta clearSimulate() {
-      bitField0_ &= ~0x00000040;
+      bitField0_ &= ~0x00000010;
       simulate = false;
       return this;
     }
 
     /**
-     * <code>optional bool Simulate = 8;</code>
+     * <code>optional bool Simulate = 6;</code>
      * @return the simulate
      */
     public boolean getSimulate() {
@@ -945,92 +1058,13 @@ public final class PublicJointDrill {
     }
 
     /**
-     * <code>optional bool Simulate = 8;</code>
+     * <code>optional bool Simulate = 6;</code>
      * @param value the simulate to set
      * @return this
      */
     public JointDrillMeta setSimulate(final boolean value) {
-      bitField0_ |= 0x00000040;
+      bitField0_ |= 0x00000010;
       simulate = value;
-      return this;
-    }
-
-    /**
-     * <code>optional bytes Record = 6;</code>
-     * @return whether the record field is set
-     */
-    public boolean hasRecord() {
-      return (bitField0_ & 0x00000080) != 0;
-    }
-
-    /**
-     * <code>optional bytes Record = 6;</code>
-     * @return this
-     */
-    public JointDrillMeta clearRecord() {
-      bitField0_ &= ~0x00000080;
-      record.clear();
-      return this;
-    }
-
-    /**
-     * <code>optional bytes Record = 6;</code>
-     *
-     * This method returns the internal storage object without modifying any has state.
-     * The returned object should not be modified and be treated as read-only.
-     *
-     * Use {@link #getMutableRecord()} if you want to modify it.
-     *
-     * @return internal storage object for reading
-     */
-    public RepeatedByte getRecord() {
-      return record;
-    }
-
-    /**
-     * <code>optional bytes Record = 6;</code>
-     *
-     * This method returns the internal storage object and sets the corresponding
-     * has state. The returned object will become part of this message and its
-     * contents may be modified as long as the has state is not cleared.
-     *
-     * @return internal storage object for modifications
-     */
-    public RepeatedByte getMutableRecord() {
-      bitField0_ |= 0x00000080;
-      return record;
-    }
-
-    /**
-     * <code>optional bytes Record = 6;</code>
-     * @param value the record to add
-     * @return this
-     */
-    public JointDrillMeta addRecord(final byte value) {
-      bitField0_ |= 0x00000080;
-      record.add(value);
-      return this;
-    }
-
-    /**
-     * <code>optional bytes Record = 6;</code>
-     * @param values the record to add
-     * @return this
-     */
-    public JointDrillMeta addAllRecord(final byte... values) {
-      bitField0_ |= 0x00000080;
-      record.addAll(values);
-      return this;
-    }
-
-    /**
-     * <code>optional bytes Record = 6;</code>
-     * @param values the record to set
-     * @return this
-     */
-    public JointDrillMeta setRecord(final byte... values) {
-      bitField0_ |= 0x00000080;
-      record.copyFrom(values);
       return this;
     }
 
@@ -1039,7 +1073,7 @@ public final class PublicJointDrill {
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000100) != 0;
+      return (bitField0_ & 0x00000020) != 0;
     }
 
     /**
@@ -1047,7 +1081,7 @@ public final class PublicJointDrill {
      * @return this
      */
     public JointDrillMeta clearNextPackage() {
-      bitField0_ &= ~0x00000100;
+      bitField0_ &= ~0x00000020;
       nextPackage.clear();
       return this;
     }
@@ -1076,7 +1110,7 @@ public final class PublicJointDrill {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000020;
       return nextPackage;
     }
 
@@ -1086,7 +1120,7 @@ public final class PublicJointDrill {
      * @return this
      */
     public JointDrillMeta addNextPackage(final byte value) {
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000020;
       nextPackage.add(value);
       return this;
     }
@@ -1097,7 +1131,7 @@ public final class PublicJointDrill {
      * @return this
      */
     public JointDrillMeta addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000020;
       nextPackage.addAll(values);
       return this;
     }
@@ -1108,31 +1142,31 @@ public final class PublicJointDrill {
      * @return this
      */
     public JointDrillMeta setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000020;
       nextPackage.copyFrom(values);
       return this;
     }
 
     /**
-     * <code>repeated .JointDrillTeam Teams = 7;</code>
+     * <code>repeated .JointDrillTeam Teams = 5;</code>
      * @return whether the teams field is set
      */
     public boolean hasTeams() {
-      return (bitField0_ & 0x00000200) != 0;
+      return (bitField0_ & 0x00000040) != 0;
     }
 
     /**
-     * <code>repeated .JointDrillTeam Teams = 7;</code>
+     * <code>repeated .JointDrillTeam Teams = 5;</code>
      * @return this
      */
     public JointDrillMeta clearTeams() {
-      bitField0_ &= ~0x00000200;
+      bitField0_ &= ~0x00000040;
       teams.clear();
       return this;
     }
 
     /**
-     * <code>repeated .JointDrillTeam Teams = 7;</code>
+     * <code>repeated .JointDrillTeam Teams = 5;</code>
      *
      * This method returns the internal storage object without modifying any has state.
      * The returned object should not be modified and be treated as read-only.
@@ -1146,7 +1180,7 @@ public final class PublicJointDrill {
     }
 
     /**
-     * <code>repeated .JointDrillTeam Teams = 7;</code>
+     * <code>repeated .JointDrillTeam Teams = 5;</code>
      *
      * This method returns the internal storage object and sets the corresponding
      * has state. The returned object will become part of this message and its
@@ -1155,28 +1189,28 @@ public final class PublicJointDrill {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<JointDrillTeam> getMutableTeams() {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000040;
       return teams;
     }
 
     /**
-     * <code>repeated .JointDrillTeam Teams = 7;</code>
+     * <code>repeated .JointDrillTeam Teams = 5;</code>
      * @param value the teams to add
      * @return this
      */
     public JointDrillMeta addTeams(final JointDrillTeam value) {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000040;
       teams.add(value);
       return this;
     }
 
     /**
-     * <code>repeated .JointDrillTeam Teams = 7;</code>
+     * <code>repeated .JointDrillTeam Teams = 5;</code>
      * @param values the teams to add
      * @return this
      */
     public JointDrillMeta addAllTeams(final JointDrillTeam... values) {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000040;
       teams.addAll(values);
       return this;
     }
@@ -1189,11 +1223,8 @@ public final class PublicJointDrill {
         startTime = other.startTime;
         levelId = other.levelId;
         floor = other.floor;
-        bossHP = other.bossHP;
-        bossHPMax = other.bossHPMax;
         totalScore = other.totalScore;
         simulate = other.simulate;
-        record.copyFrom(other.record);
         nextPackage.copyFrom(other.nextPackage);
         teams.copyFrom(other.teams);
       }
@@ -1215,20 +1246,11 @@ public final class PublicJointDrill {
       if (other.hasFloor()) {
         setFloor(other.floor);
       }
-      if (other.hasBossHP()) {
-        setBossHP(other.bossHP);
-      }
-      if (other.hasBossHPMax()) {
-        setBossHPMax(other.bossHPMax);
-      }
       if (other.hasTotalScore()) {
         setTotalScore(other.totalScore);
       }
       if (other.hasSimulate()) {
         setSimulate(other.simulate);
-      }
-      if (other.hasRecord()) {
-        getMutableRecord().copyFrom(other.record);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -1249,11 +1271,8 @@ public final class PublicJointDrill {
       startTime = 0L;
       levelId = 0;
       floor = 0;
-      bossHP = 0;
-      bossHPMax = 0;
       totalScore = 0;
       simulate = false;
-      record.clear();
       nextPackage.clear();
       teams.clear();
       return this;
@@ -1266,7 +1285,6 @@ public final class PublicJointDrill {
       }
       cachedSize = -1;
       bitField0_ = 0;
-      record.clear();
       nextPackage.clear();
       teams.clearQuick();
       return this;
@@ -1285,11 +1303,8 @@ public final class PublicJointDrill {
         && (!hasStartTime() || startTime == other.startTime)
         && (!hasLevelId() || levelId == other.levelId)
         && (!hasFloor() || floor == other.floor)
-        && (!hasBossHP() || bossHP == other.bossHP)
-        && (!hasBossHPMax() || bossHPMax == other.bossHPMax)
         && (!hasTotalScore() || totalScore == other.totalScore)
         && (!hasSimulate() || simulate == other.simulate)
-        && (!hasRecord() || record.equals(other.record))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasTeams() || teams.equals(other.teams));
     }
@@ -1309,32 +1324,20 @@ public final class PublicJointDrill {
         output.writeUInt32NoTag(floor);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        output.writeRawByte((byte) 32);
-        output.writeUInt32NoTag(bossHP);
-      }
-      if ((bitField0_ & 0x00000010) != 0) {
-        output.writeRawByte((byte) 40);
-        output.writeUInt32NoTag(bossHPMax);
-      }
-      if ((bitField0_ & 0x00000020) != 0) {
-        output.writeRawByte((byte) 72);
+        output.writeRawByte((byte) 56);
         output.writeUInt32NoTag(totalScore);
       }
-      if ((bitField0_ & 0x00000040) != 0) {
-        output.writeRawByte((byte) 64);
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeRawByte((byte) 48);
         output.writeBoolNoTag(simulate);
       }
-      if ((bitField0_ & 0x00000080) != 0) {
-        output.writeRawByte((byte) 50);
-        output.writeBytesNoTag(record);
-      }
-      if ((bitField0_ & 0x00000100) != 0) {
+      if ((bitField0_ & 0x00000020) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
-      if ((bitField0_ & 0x00000200) != 0) {
+      if ((bitField0_ & 0x00000040) != 0) {
         for (int i = 0; i < teams.length(); i++) {
-          output.writeRawByte((byte) 58);
+          output.writeRawByte((byte) 42);
           output.writeMessageNoTag(teams.get(i));
         }
       }
@@ -1353,24 +1356,15 @@ public final class PublicJointDrill {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(floor);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(bossHP);
-      }
-      if ((bitField0_ & 0x00000010) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(bossHPMax);
-      }
-      if ((bitField0_ & 0x00000020) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(totalScore);
       }
-      if ((bitField0_ & 0x00000040) != 0) {
+      if ((bitField0_ & 0x00000010) != 0) {
         size += 2;
       }
-      if ((bitField0_ & 0x00000080) != 0) {
-        size += 1 + ProtoSink.computeBytesSizeNoTag(record);
-      }
-      if ((bitField0_ & 0x00000100) != 0) {
+      if ((bitField0_ & 0x00000020) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
-      if ((bitField0_ & 0x00000200) != 0) {
+      if ((bitField0_ & 0x00000040) != 0) {
         size += (1 * teams.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(teams);
       }
       return size;
@@ -1406,50 +1400,23 @@ public final class PublicJointDrill {
             floor = input.readUInt32();
             bitField0_ |= 0x00000004;
             tag = input.readTag();
-            if (tag != 32) {
+            if (tag != 56) {
               break;
             }
           }
-          case 32: {
-            // bossHP
-            bossHP = input.readUInt32();
-            bitField0_ |= 0x00000008;
-            tag = input.readTag();
-            if (tag != 40) {
-              break;
-            }
-          }
-          case 40: {
-            // bossHPMax
-            bossHPMax = input.readUInt32();
-            bitField0_ |= 0x00000010;
-            tag = input.readTag();
-            if (tag != 72) {
-              break;
-            }
-          }
-          case 72: {
+          case 56: {
             // totalScore
             totalScore = input.readUInt32();
-            bitField0_ |= 0x00000020;
+            bitField0_ |= 0x00000008;
             tag = input.readTag();
-            if (tag != 64) {
+            if (tag != 48) {
               break;
             }
           }
-          case 64: {
+          case 48: {
             // simulate
             simulate = input.readBool();
-            bitField0_ |= 0x00000040;
-            tag = input.readTag();
-            if (tag != 50) {
-              break;
-            }
-          }
-          case 50: {
-            // record
-            input.readBytes(record);
-            bitField0_ |= 0x00000080;
+            bitField0_ |= 0x00000010;
             tag = input.readTag();
             if (tag != 16378) {
               break;
@@ -1458,16 +1425,16 @@ public final class PublicJointDrill {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000100;
+            bitField0_ |= 0x00000020;
             tag = input.readTag();
-            if (tag != 58) {
+            if (tag != 42) {
               break;
             }
           }
-          case 58: {
+          case 42: {
             // teams
             tag = input.readRepeatedMessage(teams, tag);
-            bitField0_ |= 0x00000200;
+            bitField0_ |= 0x00000040;
             if (tag != 0) {
               break;
             }
@@ -1499,24 +1466,15 @@ public final class PublicJointDrill {
         output.writeUInt32(FieldNames.floor, floor);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        output.writeUInt32(FieldNames.bossHP, bossHP);
-      }
-      if ((bitField0_ & 0x00000010) != 0) {
-        output.writeUInt32(FieldNames.bossHPMax, bossHPMax);
-      }
-      if ((bitField0_ & 0x00000020) != 0) {
         output.writeUInt32(FieldNames.totalScore, totalScore);
       }
-      if ((bitField0_ & 0x00000040) != 0) {
+      if ((bitField0_ & 0x00000010) != 0) {
         output.writeBool(FieldNames.simulate, simulate);
       }
-      if ((bitField0_ & 0x00000080) != 0) {
-        output.writeBytes(FieldNames.record, record);
-      }
-      if ((bitField0_ & 0x00000100) != 0) {
+      if ((bitField0_ & 0x00000020) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
-      if ((bitField0_ & 0x00000200) != 0) {
+      if ((bitField0_ & 0x00000040) != 0) {
         output.writeRepeatedMessage(FieldNames.teams, teams);
       }
       output.endObject();
@@ -1562,33 +1520,11 @@ public final class PublicJointDrill {
             }
             break;
           }
-          case 1995573589: {
-            if (input.isAtField(FieldNames.bossHP)) {
-              if (!input.trySkipNullValue()) {
-                bossHP = input.readUInt32();
-                bitField0_ |= 0x00000008;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
-          case -804444209: {
-            if (input.isAtField(FieldNames.bossHPMax)) {
-              if (!input.trySkipNullValue()) {
-                bossHPMax = input.readUInt32();
-                bitField0_ |= 0x00000010;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
           case 1276492238: {
             if (input.isAtField(FieldNames.totalScore)) {
               if (!input.trySkipNullValue()) {
                 totalScore = input.readUInt32();
-                bitField0_ |= 0x00000020;
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -1599,18 +1535,7 @@ public final class PublicJointDrill {
             if (input.isAtField(FieldNames.simulate)) {
               if (!input.trySkipNullValue()) {
                 simulate = input.readBool();
-                bitField0_ |= 0x00000040;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
-          case -1851041679: {
-            if (input.isAtField(FieldNames.record)) {
-              if (!input.trySkipNullValue()) {
-                input.readBytes(record);
-                bitField0_ |= 0x00000080;
+                bitField0_ |= 0x00000010;
               }
             } else {
               input.skipUnknownField();
@@ -1621,7 +1546,7 @@ public final class PublicJointDrill {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000100;
+                bitField0_ |= 0x00000020;
               }
             } else {
               input.skipUnknownField();
@@ -1632,7 +1557,7 @@ public final class PublicJointDrill {
             if (input.isAtField(FieldNames.teams)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(teams);
-                bitField0_ |= 0x00000200;
+                bitField0_ |= 0x00000040;
               }
             } else {
               input.skipUnknownField();
@@ -1698,19 +1623,1667 @@ public final class PublicJointDrill {
 
       static final FieldName floor = FieldName.forField("Floor");
 
-      static final FieldName bossHP = FieldName.forField("BossHP");
-
-      static final FieldName bossHPMax = FieldName.forField("BossHPMax");
-
       static final FieldName totalScore = FieldName.forField("TotalScore");
 
       static final FieldName simulate = FieldName.forField("Simulate");
 
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName teams = FieldName.forField("Teams");
+    }
+  }
+
+  /**
+   * Protobuf type {@code Mode1Meta}
+   */
+  public static final class Mode1Meta extends ProtoMessage<Mode1Meta> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 BossHp = 1;</code>
+     */
+    private int bossHp;
+
+    /**
+     * <code>optional uint32 BossHpMax = 2;</code>
+     */
+    private int bossHpMax;
+
+    /**
+     * <code>optional bytes Record = 3;</code>
+     */
+    private final RepeatedByte record = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private Mode1Meta() {
+    }
+
+    /**
+     * @return a new empty instance of {@code Mode1Meta}
+     */
+    public static Mode1Meta newInstance() {
+      return new Mode1Meta();
+    }
+
+    /**
+     * <code>optional uint32 BossHp = 1;</code>
+     * @return whether the bossHp field is set
+     */
+    public boolean hasBossHp() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 BossHp = 1;</code>
+     * @return this
+     */
+    public Mode1Meta clearBossHp() {
+      bitField0_ &= ~0x00000001;
+      bossHp = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 BossHp = 1;</code>
+     * @return the bossHp
+     */
+    public int getBossHp() {
+      return bossHp;
+    }
+
+    /**
+     * <code>optional uint32 BossHp = 1;</code>
+     * @param value the bossHp to set
+     * @return this
+     */
+    public Mode1Meta setBossHp(final int value) {
+      bitField0_ |= 0x00000001;
+      bossHp = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 BossHpMax = 2;</code>
+     * @return whether the bossHpMax field is set
+     */
+    public boolean hasBossHpMax() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint32 BossHpMax = 2;</code>
+     * @return this
+     */
+    public Mode1Meta clearBossHpMax() {
+      bitField0_ &= ~0x00000002;
+      bossHpMax = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 BossHpMax = 2;</code>
+     * @return the bossHpMax
+     */
+    public int getBossHpMax() {
+      return bossHpMax;
+    }
+
+    /**
+     * <code>optional uint32 BossHpMax = 2;</code>
+     * @param value the bossHpMax to set
+     * @return this
+     */
+    public Mode1Meta setBossHpMax(final int value) {
+      bitField0_ |= 0x00000002;
+      bossHpMax = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes Record = 3;</code>
+     * @return whether the record field is set
+     */
+    public boolean hasRecord() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional bytes Record = 3;</code>
+     * @return this
+     */
+    public Mode1Meta clearRecord() {
+      bitField0_ &= ~0x00000004;
+      record.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes Record = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableRecord()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getRecord() {
+      return record;
+    }
+
+    /**
+     * <code>optional bytes Record = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableRecord() {
+      bitField0_ |= 0x00000004;
+      return record;
+    }
+
+    /**
+     * <code>optional bytes Record = 3;</code>
+     * @param value the record to add
+     * @return this
+     */
+    public Mode1Meta addRecord(final byte value) {
+      bitField0_ |= 0x00000004;
+      record.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes Record = 3;</code>
+     * @param values the record to add
+     * @return this
+     */
+    public Mode1Meta addAllRecord(final byte... values) {
+      bitField0_ |= 0x00000004;
+      record.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes Record = 3;</code>
+     * @param values the record to set
+     * @return this
+     */
+    public Mode1Meta setRecord(final byte... values) {
+      bitField0_ |= 0x00000004;
+      record.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public Mode1Meta clearNextPackage() {
+      bitField0_ &= ~0x00000008;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000008;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public Mode1Meta addNextPackage(final byte value) {
+      bitField0_ |= 0x00000008;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public Mode1Meta addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000008;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public Mode1Meta setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000008;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public Mode1Meta copyFrom(final Mode1Meta other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        bossHp = other.bossHp;
+        bossHpMax = other.bossHpMax;
+        record.copyFrom(other.record);
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public Mode1Meta mergeFrom(final Mode1Meta other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasBossHp()) {
+        setBossHp(other.bossHp);
+      }
+      if (other.hasBossHpMax()) {
+        setBossHpMax(other.bossHpMax);
+      }
+      if (other.hasRecord()) {
+        getMutableRecord().copyFrom(other.record);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public Mode1Meta clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      bossHp = 0;
+      bossHpMax = 0;
+      record.clear();
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public Mode1Meta clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      record.clear();
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof Mode1Meta)) {
+        return false;
+      }
+      Mode1Meta other = (Mode1Meta) o;
+      return bitField0_ == other.bitField0_
+        && (!hasBossHp() || bossHp == other.bossHp)
+        && (!hasBossHpMax() || bossHpMax == other.bossHpMax)
+        && (!hasRecord() || record.equals(other.record))
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(bossHp);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeUInt32NoTag(bossHpMax);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 26);
+        output.writeBytesNoTag(record);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(bossHp);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(bossHpMax);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeBytesSizeNoTag(record);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public Mode1Meta mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // bossHp
+            bossHp = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16) {
+              break;
+            }
+          }
+          case 16: {
+            // bossHpMax
+            bossHpMax = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 26) {
+              break;
+            }
+          }
+          case 26: {
+            // record
+            input.readBytes(record);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.bossHp, bossHp);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeUInt32(FieldNames.bossHpMax, bossHpMax);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeBytes(FieldNames.record, record);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public Mode1Meta mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 1995573621: {
+            if (input.isAtField(FieldNames.bossHp)) {
+              if (!input.trySkipNullValue()) {
+                bossHp = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -803490897: {
+            if (input.isAtField(FieldNames.bossHpMax)) {
+              if (!input.trySkipNullValue()) {
+                bossHpMax = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1851041679: {
+            if (input.isAtField(FieldNames.record)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(record);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public Mode1Meta clone() {
+      return new Mode1Meta().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static Mode1Meta parseFrom(final byte[] data) throws InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new Mode1Meta(), data).checkInitialized();
+    }
+
+    public static Mode1Meta parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new Mode1Meta(), input).checkInitialized();
+    }
+
+    public static Mode1Meta parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new Mode1Meta(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating Mode1Meta messages
+     */
+    public static MessageFactory<Mode1Meta> getFactory() {
+      return Mode1MetaFactory.INSTANCE;
+    }
+
+    private enum Mode1MetaFactory implements MessageFactory<Mode1Meta> {
+      INSTANCE;
+
+      @Override
+      public Mode1Meta create() {
+        return Mode1Meta.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName bossHp = FieldName.forField("BossHp");
+
+      static final FieldName bossHpMax = FieldName.forField("BossHpMax");
+
+      static final FieldName record = FieldName.forField("Record");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code Mode2Meta}
+   */
+  public static final class Mode2Meta extends ProtoMessage<Mode2Meta> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional bytes Record = 3;</code>
+     */
+    private final RepeatedByte record = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHps = 1;</code>
+     */
+    private final RepeatedMessage<JointDrillBossHp> bossHps = RepeatedMessage.newEmptyInstance(JointDrillBossHp.getFactory());
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHpMaxes = 2;</code>
+     */
+    private final RepeatedMessage<JointDrillBossHp> bossHpMaxes = RepeatedMessage.newEmptyInstance(JointDrillBossHp.getFactory());
+
+    private Mode2Meta() {
+    }
+
+    /**
+     * @return a new empty instance of {@code Mode2Meta}
+     */
+    public static Mode2Meta newInstance() {
+      return new Mode2Meta();
+    }
+
+    /**
+     * <code>optional bytes Record = 3;</code>
+     * @return whether the record field is set
+     */
+    public boolean hasRecord() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional bytes Record = 3;</code>
+     * @return this
+     */
+    public Mode2Meta clearRecord() {
+      bitField0_ &= ~0x00000001;
+      record.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes Record = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableRecord()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getRecord() {
+      return record;
+    }
+
+    /**
+     * <code>optional bytes Record = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableRecord() {
+      bitField0_ |= 0x00000001;
+      return record;
+    }
+
+    /**
+     * <code>optional bytes Record = 3;</code>
+     * @param value the record to add
+     * @return this
+     */
+    public Mode2Meta addRecord(final byte value) {
+      bitField0_ |= 0x00000001;
+      record.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes Record = 3;</code>
+     * @param values the record to add
+     * @return this
+     */
+    public Mode2Meta addAllRecord(final byte... values) {
+      bitField0_ |= 0x00000001;
+      record.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes Record = 3;</code>
+     * @param values the record to set
+     * @return this
+     */
+    public Mode2Meta setRecord(final byte... values) {
+      bitField0_ |= 0x00000001;
+      record.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public Mode2Meta clearNextPackage() {
+      bitField0_ &= ~0x00000002;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000002;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public Mode2Meta addNextPackage(final byte value) {
+      bitField0_ |= 0x00000002;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public Mode2Meta addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public Mode2Meta setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHps = 1;</code>
+     * @return whether the bossHps field is set
+     */
+    public boolean hasBossHps() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHps = 1;</code>
+     * @return this
+     */
+    public Mode2Meta clearBossHps() {
+      bitField0_ &= ~0x00000004;
+      bossHps.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHps = 1;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBossHps()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<JointDrillBossHp> getBossHps() {
+      return bossHps;
+    }
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHps = 1;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<JointDrillBossHp> getMutableBossHps() {
+      bitField0_ |= 0x00000004;
+      return bossHps;
+    }
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHps = 1;</code>
+     * @param value the bossHps to add
+     * @return this
+     */
+    public Mode2Meta addBossHps(final JointDrillBossHp value) {
+      bitField0_ |= 0x00000004;
+      bossHps.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHps = 1;</code>
+     * @param values the bossHps to add
+     * @return this
+     */
+    public Mode2Meta addAllBossHps(final JointDrillBossHp... values) {
+      bitField0_ |= 0x00000004;
+      bossHps.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHpMaxes = 2;</code>
+     * @return whether the bossHpMaxes field is set
+     */
+    public boolean hasBossHpMaxes() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHpMaxes = 2;</code>
+     * @return this
+     */
+    public Mode2Meta clearBossHpMaxes() {
+      bitField0_ &= ~0x00000008;
+      bossHpMaxes.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHpMaxes = 2;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBossHpMaxes()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<JointDrillBossHp> getBossHpMaxes() {
+      return bossHpMaxes;
+    }
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHpMaxes = 2;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<JointDrillBossHp> getMutableBossHpMaxes() {
+      bitField0_ |= 0x00000008;
+      return bossHpMaxes;
+    }
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHpMaxes = 2;</code>
+     * @param value the bossHpMaxes to add
+     * @return this
+     */
+    public Mode2Meta addBossHpMaxes(final JointDrillBossHp value) {
+      bitField0_ |= 0x00000008;
+      bossHpMaxes.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .JointDrillBossHp BossHpMaxes = 2;</code>
+     * @param values the bossHpMaxes to add
+     * @return this
+     */
+    public Mode2Meta addAllBossHpMaxes(final JointDrillBossHp... values) {
+      bitField0_ |= 0x00000008;
+      bossHpMaxes.addAll(values);
+      return this;
+    }
+
+    @Override
+    public Mode2Meta copyFrom(final Mode2Meta other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        record.copyFrom(other.record);
+        nextPackage.copyFrom(other.nextPackage);
+        bossHps.copyFrom(other.bossHps);
+        bossHpMaxes.copyFrom(other.bossHpMaxes);
+      }
+      return this;
+    }
+
+    @Override
+    public Mode2Meta mergeFrom(final Mode2Meta other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasRecord()) {
+        getMutableRecord().copyFrom(other.record);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasBossHps()) {
+        getMutableBossHps().addAll(other.bossHps);
+      }
+      if (other.hasBossHpMaxes()) {
+        getMutableBossHpMaxes().addAll(other.bossHpMaxes);
+      }
+      return this;
+    }
+
+    @Override
+    public Mode2Meta clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      record.clear();
+      nextPackage.clear();
+      bossHps.clear();
+      bossHpMaxes.clear();
+      return this;
+    }
+
+    @Override
+    public Mode2Meta clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      record.clear();
+      nextPackage.clear();
+      bossHps.clearQuick();
+      bossHpMaxes.clearQuick();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof Mode2Meta)) {
+        return false;
+      }
+      Mode2Meta other = (Mode2Meta) o;
+      return bitField0_ == other.bitField0_
+        && (!hasRecord() || record.equals(other.record))
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasBossHps() || bossHps.equals(other.bossHps))
+        && (!hasBossHpMaxes() || bossHpMaxes.equals(other.bossHpMaxes));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 26);
+        output.writeBytesNoTag(record);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        for (int i = 0; i < bossHps.length(); i++) {
+          output.writeRawByte((byte) 10);
+          output.writeMessageNoTag(bossHps.get(i));
+        }
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        for (int i = 0; i < bossHpMaxes.length(); i++) {
+          output.writeRawByte((byte) 18);
+          output.writeMessageNoTag(bossHpMaxes.get(i));
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeBytesSizeNoTag(record);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += (1 * bossHps.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(bossHps);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += (1 * bossHpMaxes.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(bossHpMaxes);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public Mode2Meta mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 26: {
+            // record
+            input.readBytes(record);
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 10) {
+              break;
+            }
+          }
+          case 10: {
+            // bossHps
+            tag = input.readRepeatedMessage(bossHps, tag);
+            bitField0_ |= 0x00000004;
+            if (tag != 18) {
+              break;
+            }
+          }
+          case 18: {
+            // bossHpMaxes
+            tag = input.readRepeatedMessage(bossHpMaxes, tag);
+            bitField0_ |= 0x00000008;
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeBytes(FieldNames.record, record);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRepeatedMessage(FieldNames.bossHps, bossHps);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRepeatedMessage(FieldNames.bossHpMaxes, bossHpMaxes);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public Mode2Meta mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case -1851041679: {
+            if (input.isAtField(FieldNames.record)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(record);
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 1733240222: {
+            if (input.isAtField(FieldNames.bossHps)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(bossHps);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 939364509: {
+            if (input.isAtField(FieldNames.bossHpMaxes)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(bossHpMaxes);
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public Mode2Meta clone() {
+      return new Mode2Meta().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static Mode2Meta parseFrom(final byte[] data) throws InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new Mode2Meta(), data).checkInitialized();
+    }
+
+    public static Mode2Meta parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new Mode2Meta(), input).checkInitialized();
+    }
+
+    public static Mode2Meta parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new Mode2Meta(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating Mode2Meta messages
+     */
+    public static MessageFactory<Mode2Meta> getFactory() {
+      return Mode2MetaFactory.INSTANCE;
+    }
+
+    private enum Mode2MetaFactory implements MessageFactory<Mode2Meta> {
+      INSTANCE;
+
+      @Override
+      public Mode2Meta create() {
+        return Mode2Meta.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
       static final FieldName record = FieldName.forField("Record");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
-      static final FieldName teams = FieldName.forField("Teams");
+      static final FieldName bossHps = FieldName.forField("BossHps");
+
+      static final FieldName bossHpMaxes = FieldName.forField("BossHpMaxes");
+    }
+  }
+
+  /**
+   * Protobuf type {@code JointDrillBossHp}
+   */
+  public static final class JointDrillBossHp extends ProtoMessage<JointDrillBossHp> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     */
+    private int id;
+
+    /**
+     * <code>optional uint32 Hp = 2;</code>
+     */
+    private int hp;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private JointDrillBossHp() {
+    }
+
+    /**
+     * @return a new empty instance of {@code JointDrillBossHp}
+     */
+    public static JointDrillBossHp newInstance() {
+      return new JointDrillBossHp();
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @return whether the id field is set
+     */
+    public boolean hasId() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @return this
+     */
+    public JointDrillBossHp clearId() {
+      bitField0_ &= ~0x00000001;
+      id = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @return the id
+     */
+    public int getId() {
+      return id;
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @param value the id to set
+     * @return this
+     */
+    public JointDrillBossHp setId(final int value) {
+      bitField0_ |= 0x00000001;
+      id = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Hp = 2;</code>
+     * @return whether the hp field is set
+     */
+    public boolean hasHp() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Hp = 2;</code>
+     * @return this
+     */
+    public JointDrillBossHp clearHp() {
+      bitField0_ &= ~0x00000002;
+      hp = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Hp = 2;</code>
+     * @return the hp
+     */
+    public int getHp() {
+      return hp;
+    }
+
+    /**
+     * <code>optional uint32 Hp = 2;</code>
+     * @param value the hp to set
+     * @return this
+     */
+    public JointDrillBossHp setHp(final int value) {
+      bitField0_ |= 0x00000002;
+      hp = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public JointDrillBossHp clearNextPackage() {
+      bitField0_ &= ~0x00000004;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000004;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public JointDrillBossHp addNextPackage(final byte value) {
+      bitField0_ |= 0x00000004;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public JointDrillBossHp addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public JointDrillBossHp setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public JointDrillBossHp copyFrom(final JointDrillBossHp other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        id = other.id;
+        hp = other.hp;
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public JointDrillBossHp mergeFrom(final JointDrillBossHp other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasId()) {
+        setId(other.id);
+      }
+      if (other.hasHp()) {
+        setHp(other.hp);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public JointDrillBossHp clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      id = 0;
+      hp = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public JointDrillBossHp clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof JointDrillBossHp)) {
+        return false;
+      }
+      JointDrillBossHp other = (JointDrillBossHp) o;
+      return bitField0_ == other.bitField0_
+        && (!hasId() || id == other.id)
+        && (!hasHp() || hp == other.hp)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeUInt32NoTag(hp);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(hp);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public JointDrillBossHp mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // id
+            id = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16) {
+              break;
+            }
+          }
+          case 16: {
+            // hp
+            hp = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.id, id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeUInt32(FieldNames.hp, hp);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public JointDrillBossHp mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 2363: {
+            if (input.isAtField(FieldNames.id)) {
+              if (!input.trySkipNullValue()) {
+                id = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 2344: {
+            if (input.isAtField(FieldNames.hp)) {
+              if (!input.trySkipNullValue()) {
+                hp = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public JointDrillBossHp clone() {
+      return new JointDrillBossHp().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static JointDrillBossHp parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new JointDrillBossHp(), data).checkInitialized();
+    }
+
+    public static JointDrillBossHp parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new JointDrillBossHp(), input).checkInitialized();
+    }
+
+    public static JointDrillBossHp parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new JointDrillBossHp(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating JointDrillBossHp messages
+     */
+    public static MessageFactory<JointDrillBossHp> getFactory() {
+      return JointDrillBossHpFactory.INSTANCE;
+    }
+
+    private enum JointDrillBossHpFactory implements MessageFactory<JointDrillBossHp> {
+      INSTANCE;
+
+      @Override
+      public JointDrillBossHp create() {
+        return JointDrillBossHp.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName id = FieldName.forField("Id");
+
+      static final FieldName hp = FieldName.forField("Hp");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
     }
   }
 

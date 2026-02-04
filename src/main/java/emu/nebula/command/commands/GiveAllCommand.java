@@ -13,6 +13,7 @@ import emu.nebula.game.inventory.ItemSubType;
 import emu.nebula.game.player.Player;
 import emu.nebula.game.player.PlayerChangeInfo;
 import emu.nebula.net.NetMsgId;
+import emu.nebula.proto.Public.Item;
 
 @Command(
         label = "giveall", 
@@ -67,7 +68,7 @@ public class GiveAllCommand implements CommandHandler {
                 // Send message
                 message.append("Giving " + target.getName() + " " + items.size() + " items.\n");
             }
-            case "d", "discs" -> {
+            case "d", "disc", "discs" -> {
                 // Get all discs
                 for (var data : GameData.getDiscDataTable()) {
                     // Skip unavailable discs
@@ -97,7 +98,7 @@ public class GiveAllCommand implements CommandHandler {
                 // Send message
                 message.append("Giving " + target.getName() + " all discs.\n");
             }
-            case "c", "characters", "trekkers", "t" -> {
+            case "c", "char", "characters", "trekkers", "t" -> {
                 // Get all characters
                 for (var data : GameData.getCharacterDataTable()) {
                     // Skip unavailable characters
@@ -126,6 +127,40 @@ public class GiveAllCommand implements CommandHandler {
 
                 // Send message
                 message.append("Giving " + target.getName() + " all characters.\n");
+            }
+            case "skin", "skins" -> {
+                // Skins count
+                int count = 0;
+                
+                // Get all paid skins
+                for (var data : GameData.getCharacterSkinDataTable()) {
+                    // Skip basic/ascension skins
+                    if (data.getType() != 3) {
+                        continue;
+                    }
+                    
+                    // Make sure player has the character the skin is for
+                    if (!target.getCharacters().hasCharacter(data.getCharId())) {
+                        continue; 
+                    }
+                    
+                    // Make sure skin is released
+                    if (!data.isReleased()) {
+                        continue;
+                    }
+                    
+                    // Add skin for player, will return true if we successfully added the skin
+                    if (target.getInventory().addSkin(data.getId())) {
+                        // Increment counter
+                        count++;
+                        
+                        // Add change info
+                        change.add(Item.newInstance().setId(data.getId()).setQty(1));
+                    }
+                }
+                
+                // Send message
+                message.append("Giving " + count + " skins.\n");
             }
             default -> {
                 // Ignored

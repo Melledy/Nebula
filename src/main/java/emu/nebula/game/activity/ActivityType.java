@@ -22,7 +22,9 @@ public enum ActivityType {
     BDConvert     (14),
     Breakout      (15),
     TrekkerVersus (16),
-    Story         (17);
+    Story         (17),
+    PenguinCard   (18),
+    ThrowGift     (19);
 
     @Getter
     private final int value;
