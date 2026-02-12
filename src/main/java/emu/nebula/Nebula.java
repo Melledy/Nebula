@@ -36,7 +36,7 @@ public class Nebula {
     
     // Server
     @Getter private static HttpServer httpServer;
-    @Getter private static HttpServer gameServer; // TODO
+    @Getter private static HttpServer gameServer;
     @Getter private static ServerType serverType = ServerType.BOTH;
     
     @Getter private static GameContext gameContext;
