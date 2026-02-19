@@ -16,19 +16,26 @@ public class HandlerActivityTowerDefenseLevelSettleReq extends NetHandler {
         var req = ActivityTowerDefenseLevelSettleReq.parseFrom(message);
 
         // Get activity
-        var activity = session.getPlayer().getActivityManager().getActivity(TowerDefenseActivity.class, 102001);
+        var activity = session.getPlayer().getActivityManager().getFirstActivity(TowerDefenseActivity.class);
+        
+        if (activity == null) {
+            return session.encodeMsg(NetMsgId.activity_tower_defense_level_settle_failed_ack);
+        }
 
-        // Claim rewards
-        var change = activity.claimReward(req.getLevelId());
-
-        // Update completed stages
-        activity.getCompletedStages().put(req.getLevelId(), req.getStar());
-
-        // Save changes
-        session.getPlayer().save();
-
-        // Encode and send
-        return session.encodeMsg(NetMsgId.activity_tower_defense_level_settle_succeed_ack, change.toProto());
+        // Only receive rewards if we havent completed the stage
+        if (!activity.getCompletedStages().containsKey(req.getLevelId())) {
+            // Claim rewards
+            var change = activity.claimReward(req.getLevelId());
+            
+            // Update completed stages and save activity to the database
+            activity.getCompletedStages().put(req.getLevelId(), req.getStar());
+            activity.save();
+            
+            // Encode and send
+            return session.encodeMsg(NetMsgId.activity_tower_defense_level_settle_succeed_ack, change.toProto());
+        } else {
+            return session.encodeMsg(NetMsgId.activity_tower_defense_level_settle_succeed_ack);
+        }
     }
 
 }

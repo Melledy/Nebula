@@ -53,6 +53,16 @@ public class ActivityManager extends PlayerManager implements GameDatabaseObject
         return null;
     }
     
+    public <T extends GameActivity> T getFirstActivity(Class<T> activityClass) {
+        for (var activity : this.getActivities().values()) {
+            if (activityClass.isInstance(activity)) {
+                return activityClass.cast(activity);
+            }
+        }
+        
+        return null;
+    }
+    
     /**
      * This needs to be called after being loaded from the database
      */
