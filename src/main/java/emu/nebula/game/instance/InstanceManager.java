@@ -156,13 +156,11 @@ public class InstanceManager extends PlayerManager {
         if (settleData.isWin()) {
             // Calculate rewards
             int entries = this.getPlayer().getInventory().getResourceCount(GameConstants.WEEKLY_ENTRY_ITEM_ID);
+            var rewards = new ItemParamMap();
             
             if (entries > 0) {
                 // Generate regular rewards
-                settleData.setRewards(data.getRewards().generate());
-                
-                // Add regular rewards
-                getPlayer().getInventory().addItems(settleData.getRewards(), change);
+                rewards.add(data.getRewards().generate());
                 
                 // Remove weekly entry
                 getPlayer().getInventory().removeItem(GameConstants.WEEKLY_ENTRY_ITEM_ID, 1, change);
@@ -171,10 +169,16 @@ public class InstanceManager extends PlayerManager {
             // Add first clear rewards even if we dont have the entry ticket
             if (settleData.isFirst()) {
                 // Generate first clear rewards
-                settleData.setRewards(data.getFirstRewards().generate());
+                rewards.add(data.getFirstRewards().generate());
+            }
+            
+            // Calculate rewards if we have any
+            if (!rewards.isEmpty()) {
+                // Set rewards in settle data
+                settleData.setRewards(rewards);
                 
-                // Add to inventory
-                getPlayer().getInventory().addItems(settleData.getFirstRewards(), change);
+                // Add rewards to inventory
+                getPlayer().getInventory().addItems(rewards, change);
             }
             
             // Log
@@ -182,6 +186,7 @@ public class InstanceManager extends PlayerManager {
             
             // Quest triggers
             this.getPlayer().trigger(QuestCondition.WeekBoosClearSpecificDifficultyAndTotal, 1);
+            this.getPlayer().trigger(QuestCondition.WeekBossClearTotal, 1);
             this.getPlayer().trigger(QuestCondition.BattleTotal, 1);
         }
         
