@@ -43,8 +43,9 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
     // Level rewards
     private Bitset levelRewards;
     
-    @Getter(AccessLevel.NONE)
-    private boolean hasDailyReward;
+    // Claimed daily rewards
+    @Getter(AccessLevel.NONE) private boolean dailyShopReward;
+    @Getter(AccessLevel.NONE) private boolean dailyMallReward;
     
     @Deprecated // Morphia only
     public QuestManager() {
@@ -58,7 +59,6 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
         this.claimedWeeklyIds = new IntOpenHashSet();
         this.list = new HashMap<>();
         this.levelRewards = new Bitset();
-        this.hasDailyReward = true;
         
         this.resetDailyQuests(true);
         
@@ -79,8 +79,12 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
         return this.getList().values();
     }
     
-    public boolean hasDailyReward() {
-        return this.hasDailyReward;
+    public boolean hasDailyShopReward() {
+        return !this.dailyShopReward;
+    }
+    
+    public boolean hasDailyMallReward() {
+        return !this.dailyMallReward;
     }
     
     public void saveLevelRewards() {
@@ -128,8 +132,9 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
         // Reset activity
         this.claimedActiveIds.clear();
         
-        // Reset daily shop reward
-        this.hasDailyReward = true;
+        // Reset daily shop rewards
+        this.dailyShopReward = false;
+        this.dailyMallReward = false;
         
         // Persist to database
         this.save();
@@ -466,7 +471,7 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
     
     public PlayerChangeInfo claimDailyShopGift() {
         // Sanity check
-        if (!this.hasDailyReward) {
+        if (!this.hasDailyShopReward()) {
             return null;
         }
         
@@ -475,8 +480,29 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
         var change = this.getPlayer().getInventory().addItem(reward.getId(), reward.getCount());
         
         // Set and update in database
-        this.hasDailyReward = false;
-        Nebula.getGameDatabase().update(this, this.getUid(), "hasDailyReward", this.hasDailyReward);
+        this.dailyShopReward = true;
+        Nebula.getGameDatabase().update(this, this.getUid(), "dailyShopReward", this.dailyShopReward);
+        
+        // Trigger quest
+        this.getPlayer().trigger(QuestCondition.DailyShopReceiveShopTotal, 1);
+        
+        // Success
+        return change.setSuccess(true);
+    }
+    
+    public PlayerChangeInfo claimDailyMallGift() {
+        // Sanity check
+        if (!this.hasDailyMallReward()) {
+            return null;
+        }
+        
+        // Daily mall reward
+        var reward = GameConstants.DAILY_GIFTS.next();
+        var change = this.getPlayer().getInventory().addItem(reward.getId(), reward.getCount());
+        
+        // Set and update in database
+        this.dailyMallReward = true;
+        Nebula.getGameDatabase().update(this, this.getUid(), "dailyMallReward", this.dailyMallReward);
         
         // Trigger quest
         this.getPlayer().trigger(QuestCondition.DailyShopReceiveShopTotal, 1);
