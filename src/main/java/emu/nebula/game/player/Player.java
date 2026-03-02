@@ -887,7 +887,8 @@ public class Player implements GameDatabaseObject {
                 .setServerTs(Nebula.getCurrentServerTime())
                 .setSigninIndex(this.getSignInIndex())
                 .setTowerTicket(this.getProgress().getTowerTickets())
-                .setDailyShopRewardStatus(this.getQuestManager().hasDailyReward())
+                .setDailyShopRewardStatus(this.getQuestManager().hasDailyShopReward())
+                .setDailyMallRewardStatus(this.getQuestManager().hasDailyMallReward())
                 .setMusicInfo(this.getMusic())
                 .setAchievements(new byte[64]);
         

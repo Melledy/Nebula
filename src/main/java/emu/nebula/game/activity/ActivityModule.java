@@ -35,9 +35,14 @@ public class ActivityModule extends GameContextModule {
         //this.activities.add(1010304);
         
         // Springseek Festival
-        this.activities.add(1010401);
-        this.activities.add(1010403);
-        this.activities.add(1010404);
+        //this.activities.add(1010401);
+        //this.activities.add(1010403);
+        //this.activities.add(1010404);
+        
+        // Winter Requiem and the Trigger of Dawn
+        this.activities.add(1010501);
+        this.activities.add(1010503);
+        this.activities.add(1010504);
         
         // ===== Etc Events =====
         
