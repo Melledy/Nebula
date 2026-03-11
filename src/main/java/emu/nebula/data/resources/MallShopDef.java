@@ -29,7 +29,10 @@ public class MallShopDef extends BaseDef {
     }
     
     public int getStock(Player player) {
-        return Math.max(this.getStock() - player.getInventory().getMallBuyCount().get(this.getIdString()), 0);
+        int limit = this.getStock();
+        if (limit <= 0) return 0;
+        int bought = player.getInventory().getMallBuyCount().getOrDefault(this.getIdString(), 0);
+        return limit - (bought % limit);
     }
     
     @Override

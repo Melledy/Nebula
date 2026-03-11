@@ -27,7 +27,10 @@ public class ResidentGoodsDef extends BaseDef {
     }
 
     public int getStock(Player player) {
-        return Math.max(this.getMaximumLimit() - player.getInventory().getMallBuyCount().getInt(this.getId()), 0);
+        int limit = this.getMaximumLimit();
+        if (limit <= 0) return 0;
+        int bought = player.getInventory().getShopBuyCount().getOrDefault(this.getId(), 0);
+        return limit - (bought % limit);
     }
     
     @Override

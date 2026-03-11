@@ -19,8 +19,12 @@ public class HandlerMallPackageListReq extends NetHandler {
         
         for (var data : GameData.getMallPackageDataTable()) {
             int buyCount = inventory.getMallBuyCount().getOrDefault(data.getIdString(), 0);
-            int stock = data.getStock() - buyCount;
-            if (stock < 0) stock = 0;
+            int stock = data.getStock();
+            if (stock > 0) {
+                stock = stock - (buyCount % stock);
+            } else {
+                stock = 0;
+            }
             
             var info = PackageInfo.newInstance()
                     .setId(data.getIdString())
