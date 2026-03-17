@@ -40,9 +40,14 @@ public class ActivityModule extends GameContextModule {
         //this.activities.add(1010404);
         
         // Winter Requiem and the Trigger of Dawn
-        this.activities.add(1010501);
-        this.activities.add(1010503);
-        this.activities.add(1010504);
+        //this.activities.add(1010501);
+        //this.activities.add(1010503);
+        //this.activities.add(1010504);
+        
+        // To My Dearest You
+        this.activities.add(1010601);
+        this.activities.add(1010603);
+        this.activities.add(1010604);
         
         // ===== Joint Drills (Finale Echoing) =====
         this.activities.add(510003);
@@ -60,8 +65,8 @@ public class ActivityModule extends GameContextModule {
         this.activities.add(301011);
         this.activities.add(301012);
         
-        // Trekker versus
-        this.activities.add(600001);
+        // Trekker versus (broken)
+        //this.activities.add(600001);
     }
     
 }

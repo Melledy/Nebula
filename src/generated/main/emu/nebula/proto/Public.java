@@ -74785,9 +74785,24 @@ public final class Public {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint32 BuildScore = 3;</code>
+     * <code>optional int64 IdleTime = 2;</code>
      */
-    private int buildScore;
+    private long idleTime;
+
+    /**
+     * <code>optional uint32 Difficult = 1;</code>
+     */
+    private int difficult;
+
+    /**
+     * <code>optional uint32 SelfHotValue = 4;</code>
+     */
+    private int selfHotValue;
+
+    /**
+     * <code>optional uint32 RivalHotValue = 5;</code>
+     */
+    private int rivalHotValue;
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
@@ -74795,14 +74810,9 @@ public final class Public {
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
 
     /**
-     * <code>repeated uint32 CharIds = 1;</code>
+     * <code>repeated .TrekkerVersusShow.IdleValue IdleValues = 3;</code>
      */
-    private final RepeatedInt charIds = RepeatedInt.newEmptyInstance();
-
-    /**
-     * <code>repeated uint32 AffixIds = 2;</code>
-     */
-    private final RepeatedInt affixIds = RepeatedInt.newEmptyInstance();
+    private final RepeatedMessage<IdleValue> idleValues = RepeatedMessage.newEmptyInstance(IdleValue.getFactory());
 
     private TrekkerVersusShow() {
     }
@@ -74815,39 +74825,150 @@ public final class Public {
     }
 
     /**
-     * <code>optional uint32 BuildScore = 3;</code>
-     * @return whether the buildScore field is set
+     * <code>optional int64 IdleTime = 2;</code>
+     * @return whether the idleTime field is set
      */
-    public boolean hasBuildScore() {
+    public boolean hasIdleTime() {
       return (bitField0_ & 0x00000001) != 0;
     }
 
     /**
-     * <code>optional uint32 BuildScore = 3;</code>
+     * <code>optional int64 IdleTime = 2;</code>
      * @return this
      */
-    public TrekkerVersusShow clearBuildScore() {
+    public TrekkerVersusShow clearIdleTime() {
       bitField0_ &= ~0x00000001;
-      buildScore = 0;
+      idleTime = 0L;
       return this;
     }
 
     /**
-     * <code>optional uint32 BuildScore = 3;</code>
-     * @return the buildScore
+     * <code>optional int64 IdleTime = 2;</code>
+     * @return the idleTime
      */
-    public int getBuildScore() {
-      return buildScore;
+    public long getIdleTime() {
+      return idleTime;
     }
 
     /**
-     * <code>optional uint32 BuildScore = 3;</code>
-     * @param value the buildScore to set
+     * <code>optional int64 IdleTime = 2;</code>
+     * @param value the idleTime to set
      * @return this
      */
-    public TrekkerVersusShow setBuildScore(final int value) {
+    public TrekkerVersusShow setIdleTime(final long value) {
       bitField0_ |= 0x00000001;
-      buildScore = value;
+      idleTime = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Difficult = 1;</code>
+     * @return whether the difficult field is set
+     */
+    public boolean hasDifficult() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Difficult = 1;</code>
+     * @return this
+     */
+    public TrekkerVersusShow clearDifficult() {
+      bitField0_ &= ~0x00000002;
+      difficult = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Difficult = 1;</code>
+     * @return the difficult
+     */
+    public int getDifficult() {
+      return difficult;
+    }
+
+    /**
+     * <code>optional uint32 Difficult = 1;</code>
+     * @param value the difficult to set
+     * @return this
+     */
+    public TrekkerVersusShow setDifficult(final int value) {
+      bitField0_ |= 0x00000002;
+      difficult = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 SelfHotValue = 4;</code>
+     * @return whether the selfHotValue field is set
+     */
+    public boolean hasSelfHotValue() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional uint32 SelfHotValue = 4;</code>
+     * @return this
+     */
+    public TrekkerVersusShow clearSelfHotValue() {
+      bitField0_ &= ~0x00000004;
+      selfHotValue = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 SelfHotValue = 4;</code>
+     * @return the selfHotValue
+     */
+    public int getSelfHotValue() {
+      return selfHotValue;
+    }
+
+    /**
+     * <code>optional uint32 SelfHotValue = 4;</code>
+     * @param value the selfHotValue to set
+     * @return this
+     */
+    public TrekkerVersusShow setSelfHotValue(final int value) {
+      bitField0_ |= 0x00000004;
+      selfHotValue = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 RivalHotValue = 5;</code>
+     * @return whether the rivalHotValue field is set
+     */
+    public boolean hasRivalHotValue() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional uint32 RivalHotValue = 5;</code>
+     * @return this
+     */
+    public TrekkerVersusShow clearRivalHotValue() {
+      bitField0_ &= ~0x00000008;
+      rivalHotValue = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 RivalHotValue = 5;</code>
+     * @return the rivalHotValue
+     */
+    public int getRivalHotValue() {
+      return rivalHotValue;
+    }
+
+    /**
+     * <code>optional uint32 RivalHotValue = 5;</code>
+     * @param value the rivalHotValue to set
+     * @return this
+     */
+    public TrekkerVersusShow setRivalHotValue(final int value) {
+      bitField0_ |= 0x00000008;
+      rivalHotValue = value;
       return this;
     }
 
@@ -74856,7 +74977,7 @@ public final class Public {
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000002) != 0;
+      return (bitField0_ & 0x00000010) != 0;
     }
 
     /**
@@ -74864,7 +74985,7 @@ public final class Public {
      * @return this
      */
     public TrekkerVersusShow clearNextPackage() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000010;
       nextPackage.clear();
       return this;
     }
@@ -74893,7 +75014,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000010;
       return nextPackage;
     }
 
@@ -74903,7 +75024,7 @@ public final class Public {
      * @return this
      */
     public TrekkerVersusShow addNextPackage(final byte value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000010;
       nextPackage.add(value);
       return this;
     }
@@ -74914,7 +75035,7 @@ public final class Public {
      * @return this
      */
     public TrekkerVersusShow addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000010;
       nextPackage.addAll(values);
       return this;
     }
@@ -74925,45 +75046,45 @@ public final class Public {
      * @return this
      */
     public TrekkerVersusShow setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000010;
       nextPackage.copyFrom(values);
       return this;
     }
 
     /**
-     * <code>repeated uint32 CharIds = 1;</code>
-     * @return whether the charIds field is set
+     * <code>repeated .TrekkerVersusShow.IdleValue IdleValues = 3;</code>
+     * @return whether the idleValues field is set
      */
-    public boolean hasCharIds() {
-      return (bitField0_ & 0x00000004) != 0;
+    public boolean hasIdleValues() {
+      return (bitField0_ & 0x00000020) != 0;
     }
 
     /**
-     * <code>repeated uint32 CharIds = 1;</code>
+     * <code>repeated .TrekkerVersusShow.IdleValue IdleValues = 3;</code>
      * @return this
      */
-    public TrekkerVersusShow clearCharIds() {
-      bitField0_ &= ~0x00000004;
-      charIds.clear();
+    public TrekkerVersusShow clearIdleValues() {
+      bitField0_ &= ~0x00000020;
+      idleValues.clear();
       return this;
     }
 
     /**
-     * <code>repeated uint32 CharIds = 1;</code>
+     * <code>repeated .TrekkerVersusShow.IdleValue IdleValues = 3;</code>
      *
      * This method returns the internal storage object without modifying any has state.
      * The returned object should not be modified and be treated as read-only.
      *
-     * Use {@link #getMutableCharIds()} if you want to modify it.
+     * Use {@link #getMutableIdleValues()} if you want to modify it.
      *
      * @return internal storage object for reading
      */
-    public RepeatedInt getCharIds() {
-      return charIds;
+    public RepeatedMessage<IdleValue> getIdleValues() {
+      return idleValues;
     }
 
     /**
-     * <code>repeated uint32 CharIds = 1;</code>
+     * <code>repeated .TrekkerVersusShow.IdleValue IdleValues = 3;</code>
      *
      * This method returns the internal storage object and sets the corresponding
      * has state. The returned object will become part of this message and its
@@ -74971,98 +75092,30 @@ public final class Public {
      *
      * @return internal storage object for modifications
      */
-    public RepeatedInt getMutableCharIds() {
-      bitField0_ |= 0x00000004;
-      return charIds;
+    public RepeatedMessage<IdleValue> getMutableIdleValues() {
+      bitField0_ |= 0x00000020;
+      return idleValues;
     }
 
     /**
-     * <code>repeated uint32 CharIds = 1;</code>
-     * @param value the charIds to add
+     * <code>repeated .TrekkerVersusShow.IdleValue IdleValues = 3;</code>
+     * @param value the idleValues to add
      * @return this
      */
-    public TrekkerVersusShow addCharIds(final int value) {
-      bitField0_ |= 0x00000004;
-      charIds.add(value);
+    public TrekkerVersusShow addIdleValues(final IdleValue value) {
+      bitField0_ |= 0x00000020;
+      idleValues.add(value);
       return this;
     }
 
     /**
-     * <code>repeated uint32 CharIds = 1;</code>
-     * @param values the charIds to add
+     * <code>repeated .TrekkerVersusShow.IdleValue IdleValues = 3;</code>
+     * @param values the idleValues to add
      * @return this
      */
-    public TrekkerVersusShow addAllCharIds(final int... values) {
-      bitField0_ |= 0x00000004;
-      charIds.addAll(values);
-      return this;
-    }
-
-    /**
-     * <code>repeated uint32 AffixIds = 2;</code>
-     * @return whether the affixIds field is set
-     */
-    public boolean hasAffixIds() {
-      return (bitField0_ & 0x00000008) != 0;
-    }
-
-    /**
-     * <code>repeated uint32 AffixIds = 2;</code>
-     * @return this
-     */
-    public TrekkerVersusShow clearAffixIds() {
-      bitField0_ &= ~0x00000008;
-      affixIds.clear();
-      return this;
-    }
-
-    /**
-     * <code>repeated uint32 AffixIds = 2;</code>
-     *
-     * This method returns the internal storage object without modifying any has state.
-     * The returned object should not be modified and be treated as read-only.
-     *
-     * Use {@link #getMutableAffixIds()} if you want to modify it.
-     *
-     * @return internal storage object for reading
-     */
-    public RepeatedInt getAffixIds() {
-      return affixIds;
-    }
-
-    /**
-     * <code>repeated uint32 AffixIds = 2;</code>
-     *
-     * This method returns the internal storage object and sets the corresponding
-     * has state. The returned object will become part of this message and its
-     * contents may be modified as long as the has state is not cleared.
-     *
-     * @return internal storage object for modifications
-     */
-    public RepeatedInt getMutableAffixIds() {
-      bitField0_ |= 0x00000008;
-      return affixIds;
-    }
-
-    /**
-     * <code>repeated uint32 AffixIds = 2;</code>
-     * @param value the affixIds to add
-     * @return this
-     */
-    public TrekkerVersusShow addAffixIds(final int value) {
-      bitField0_ |= 0x00000008;
-      affixIds.add(value);
-      return this;
-    }
-
-    /**
-     * <code>repeated uint32 AffixIds = 2;</code>
-     * @param values the affixIds to add
-     * @return this
-     */
-    public TrekkerVersusShow addAllAffixIds(final int... values) {
-      bitField0_ |= 0x00000008;
-      affixIds.addAll(values);
+    public TrekkerVersusShow addAllIdleValues(final IdleValue... values) {
+      bitField0_ |= 0x00000020;
+      idleValues.addAll(values);
       return this;
     }
 
@@ -75071,10 +75124,12 @@ public final class Public {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
-        buildScore = other.buildScore;
+        idleTime = other.idleTime;
+        difficult = other.difficult;
+        selfHotValue = other.selfHotValue;
+        rivalHotValue = other.rivalHotValue;
         nextPackage.copyFrom(other.nextPackage);
-        charIds.copyFrom(other.charIds);
-        affixIds.copyFrom(other.affixIds);
+        idleValues.copyFrom(other.idleValues);
       }
       return this;
     }
@@ -75085,17 +75140,23 @@ public final class Public {
         return this;
       }
       cachedSize = -1;
-      if (other.hasBuildScore()) {
-        setBuildScore(other.buildScore);
+      if (other.hasIdleTime()) {
+        setIdleTime(other.idleTime);
+      }
+      if (other.hasDifficult()) {
+        setDifficult(other.difficult);
+      }
+      if (other.hasSelfHotValue()) {
+        setSelfHotValue(other.selfHotValue);
+      }
+      if (other.hasRivalHotValue()) {
+        setRivalHotValue(other.rivalHotValue);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
-      if (other.hasCharIds()) {
-        getMutableCharIds().addAll(other.charIds);
-      }
-      if (other.hasAffixIds()) {
-        getMutableAffixIds().addAll(other.affixIds);
+      if (other.hasIdleValues()) {
+        getMutableIdleValues().addAll(other.idleValues);
       }
       return this;
     }
@@ -75107,10 +75168,12 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
-      buildScore = 0;
+      idleTime = 0L;
+      difficult = 0;
+      selfHotValue = 0;
+      rivalHotValue = 0;
       nextPackage.clear();
-      charIds.clear();
-      affixIds.clear();
+      idleValues.clear();
       return this;
     }
 
@@ -75122,8 +75185,7 @@ public final class Public {
       cachedSize = -1;
       bitField0_ = 0;
       nextPackage.clear();
-      charIds.clear();
-      affixIds.clear();
+      idleValues.clearQuick();
       return this;
     }
 
@@ -75137,32 +75199,40 @@ public final class Public {
       }
       TrekkerVersusShow other = (TrekkerVersusShow) o;
       return bitField0_ == other.bitField0_
-        && (!hasBuildScore() || buildScore == other.buildScore)
+        && (!hasIdleTime() || idleTime == other.idleTime)
+        && (!hasDifficult() || difficult == other.difficult)
+        && (!hasSelfHotValue() || selfHotValue == other.selfHotValue)
+        && (!hasRivalHotValue() || rivalHotValue == other.rivalHotValue)
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
-        && (!hasCharIds() || charIds.equals(other.charIds))
-        && (!hasAffixIds() || affixIds.equals(other.affixIds));
+        && (!hasIdleValues() || idleValues.equals(other.idleValues));
     }
 
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 24);
-        output.writeUInt32NoTag(buildScore);
+        output.writeRawByte((byte) 16);
+        output.writeInt64NoTag(idleTime);
       }
       if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(difficult);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 32);
+        output.writeUInt32NoTag(selfHotValue);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawByte((byte) 40);
+        output.writeUInt32NoTag(rivalHotValue);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
-        for (int i = 0; i < charIds.length(); i++) {
-          output.writeRawByte((byte) 8);
-          output.writeUInt32NoTag(charIds.array()[i]);
-        }
-      }
-      if ((bitField0_ & 0x00000008) != 0) {
-        for (int i = 0; i < affixIds.length(); i++) {
-          output.writeRawByte((byte) 16);
-          output.writeUInt32NoTag(affixIds.array()[i]);
+      if ((bitField0_ & 0x00000020) != 0) {
+        for (int i = 0; i < idleValues.length(); i++) {
+          output.writeRawByte((byte) 26);
+          output.writeMessageNoTag(idleValues.get(i));
         }
       }
     }
@@ -75171,16 +75241,22 @@ public final class Public {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(buildScore);
+        size += 1 + ProtoSink.computeInt64SizeNoTag(idleTime);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(difficult);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        size += (1 * charIds.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(charIds);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(selfHotValue);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        size += (1 * affixIds.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(affixIds);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(rivalHotValue);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        size += (1 * idleValues.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(idleValues);
       }
       return size;
     }
@@ -75192,10 +75268,37 @@ public final class Public {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 24: {
-            // buildScore
-            buildScore = input.readUInt32();
+          case 16: {
+            // idleTime
+            idleTime = input.readInt64();
             bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 8) {
+              break;
+            }
+          }
+          case 8: {
+            // difficult
+            difficult = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 32) {
+              break;
+            }
+          }
+          case 32: {
+            // selfHotValue
+            selfHotValue = input.readUInt32();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 40) {
+              break;
+            }
+          }
+          case 40: {
+            // rivalHotValue
+            rivalHotValue = input.readUInt32();
+            bitField0_ |= 0x00000008;
             tag = input.readTag();
             if (tag != 16378) {
               break;
@@ -75204,26 +75307,16 @@ public final class Public {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000010;
             tag = input.readTag();
-            if (tag != 10) {
+            if (tag != 26) {
               break;
             }
           }
-          case 10: {
-            // charIds [packed=true]
-            input.readPackedUInt32(charIds, tag);
-            bitField0_ |= 0x00000004;
-            tag = input.readTag();
-            if (tag != 18) {
-              break;
-            }
-          }
-          case 18: {
-            // affixIds [packed=true]
-            input.readPackedUInt32(affixIds, tag);
-            bitField0_ |= 0x00000008;
-            tag = input.readTag();
+          case 26: {
+            // idleValues
+            tag = input.readRepeatedMessage(idleValues, tag);
+            bitField0_ |= 0x00000020;
             if (tag != 0) {
               break;
             }
@@ -75238,18 +75331,6 @@ public final class Public {
             tag = input.readTag();
             break;
           }
-          case 8: {
-            // charIds [packed=false]
-            tag = input.readRepeatedUInt32(charIds, tag);
-            bitField0_ |= 0x00000004;
-            break;
-          }
-          case 16: {
-            // affixIds [packed=false]
-            tag = input.readRepeatedUInt32(affixIds, tag);
-            bitField0_ |= 0x00000008;
-            break;
-          }
         }
       }
     }
@@ -75258,16 +75339,22 @@ public final class Public {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt32(FieldNames.buildScore, buildScore);
+        output.writeInt64(FieldNames.idleTime, idleTime);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeBytes(FieldNames.nextPackage, nextPackage);
+        output.writeUInt32(FieldNames.difficult, difficult);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        output.writeRepeatedUInt32(FieldNames.charIds, charIds);
+        output.writeUInt32(FieldNames.selfHotValue, selfHotValue);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        output.writeRepeatedUInt32(FieldNames.affixIds, affixIds);
+        output.writeUInt32(FieldNames.rivalHotValue, rivalHotValue);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        output.writeRepeatedMessage(FieldNames.idleValues, idleValues);
       }
       output.endObject();
     }
@@ -75279,11 +75366,44 @@ public final class Public {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
-          case 1511471332: {
-            if (input.isAtField(FieldNames.buildScore)) {
+          case 120021217: {
+            if (input.isAtField(FieldNames.idleTime)) {
               if (!input.trySkipNullValue()) {
-                buildScore = input.readUInt32();
+                idleTime = input.readInt64();
                 bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -985057186: {
+            if (input.isAtField(FieldNames.difficult)) {
+              if (!input.trySkipNullValue()) {
+                difficult = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 1360474288: {
+            if (input.isAtField(FieldNames.selfHotValue)) {
+              if (!input.trySkipNullValue()) {
+                selfHotValue = input.readUInt32();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 1039538350: {
+            if (input.isAtField(FieldNames.rivalHotValue)) {
+              if (!input.trySkipNullValue()) {
+                rivalHotValue = input.readUInt32();
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -75294,29 +75414,18 @@ public final class Public {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000010;
               }
             } else {
               input.skipUnknownField();
             }
             break;
           }
-          case -1891280030: {
-            if (input.isAtField(FieldNames.charIds)) {
+          case -573868490: {
+            if (input.isAtField(FieldNames.idleValues)) {
               if (!input.trySkipNullValue()) {
-                input.readRepeatedUInt32(charIds);
-                bitField0_ |= 0x00000004;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
-          case 670408424: {
-            if (input.isAtField(FieldNames.affixIds)) {
-              if (!input.trySkipNullValue()) {
-                input.readRepeatedUInt32(affixIds);
-                bitField0_ |= 0x00000008;
+                input.readRepeatedMessage(idleValues);
+                bitField0_ |= 0x00000020;
               }
             } else {
               input.skipUnknownField();
@@ -75363,6 +75472,330 @@ public final class Public {
       return TrekkerVersusShowFactory.INSTANCE;
     }
 
+    /**
+     * Protobuf type {@code IdleValue}
+     */
+    public static final class IdleValue extends ProtoMessage<IdleValue> implements Cloneable {
+      private static final long serialVersionUID = 0L;
+
+      /**
+       * <code>optional uint32 TypeId = 1;</code>
+       */
+      private int typeId;
+
+      /**
+       * <code>optional uint32 Value = 2;</code>
+       */
+      private int value_;
+
+      private IdleValue() {
+      }
+
+      /**
+       * @return a new empty instance of {@code IdleValue}
+       */
+      public static IdleValue newInstance() {
+        return new IdleValue();
+      }
+
+      /**
+       * <code>optional uint32 TypeId = 1;</code>
+       * @return whether the typeId field is set
+       */
+      public boolean hasTypeId() {
+        return (bitField0_ & 0x00000001) != 0;
+      }
+
+      /**
+       * <code>optional uint32 TypeId = 1;</code>
+       * @return this
+       */
+      public IdleValue clearTypeId() {
+        bitField0_ &= ~0x00000001;
+        typeId = 0;
+        return this;
+      }
+
+      /**
+       * <code>optional uint32 TypeId = 1;</code>
+       * @return the typeId
+       */
+      public int getTypeId() {
+        return typeId;
+      }
+
+      /**
+       * <code>optional uint32 TypeId = 1;</code>
+       * @param value the typeId to set
+       * @return this
+       */
+      public IdleValue setTypeId(final int value) {
+        bitField0_ |= 0x00000001;
+        typeId = value;
+        return this;
+      }
+
+      /**
+       * <code>optional uint32 Value = 2;</code>
+       * @return whether the value_ field is set
+       */
+      public boolean hasValue() {
+        return (bitField0_ & 0x00000002) != 0;
+      }
+
+      /**
+       * <code>optional uint32 Value = 2;</code>
+       * @return this
+       */
+      public IdleValue clearValue() {
+        bitField0_ &= ~0x00000002;
+        value_ = 0;
+        return this;
+      }
+
+      /**
+       * <code>optional uint32 Value = 2;</code>
+       * @return the value_
+       */
+      public int getValue() {
+        return value_;
+      }
+
+      /**
+       * <code>optional uint32 Value = 2;</code>
+       * @param value the value_ to set
+       * @return this
+       */
+      public IdleValue setValue(final int value) {
+        bitField0_ |= 0x00000002;
+        value_ = value;
+        return this;
+      }
+
+      @Override
+      public IdleValue copyFrom(final IdleValue other) {
+        cachedSize = other.cachedSize;
+        if ((bitField0_ | other.bitField0_) != 0) {
+          bitField0_ = other.bitField0_;
+          typeId = other.typeId;
+          value_ = other.value_;
+        }
+        return this;
+      }
+
+      @Override
+      public IdleValue mergeFrom(final IdleValue other) {
+        if (other.isEmpty()) {
+          return this;
+        }
+        cachedSize = -1;
+        if (other.hasTypeId()) {
+          setTypeId(other.typeId);
+        }
+        if (other.hasValue()) {
+          setValue(other.value_);
+        }
+        return this;
+      }
+
+      @Override
+      public IdleValue clear() {
+        if (isEmpty()) {
+          return this;
+        }
+        cachedSize = -1;
+        bitField0_ = 0;
+        typeId = 0;
+        value_ = 0;
+        return this;
+      }
+
+      @Override
+      public IdleValue clearQuick() {
+        if (isEmpty()) {
+          return this;
+        }
+        cachedSize = -1;
+        bitField0_ = 0;
+        return this;
+      }
+
+      @Override
+      public boolean equals(Object o) {
+        if (o == this) {
+          return true;
+        }
+        if (!(o instanceof IdleValue)) {
+          return false;
+        }
+        IdleValue other = (IdleValue) o;
+        return bitField0_ == other.bitField0_
+          && (!hasTypeId() || typeId == other.typeId)
+          && (!hasValue() || value_ == other.value_);
+      }
+
+      @Override
+      public void writeTo(final ProtoSink output) throws IOException {
+        if ((bitField0_ & 0x00000001) != 0) {
+          output.writeRawByte((byte) 8);
+          output.writeUInt32NoTag(typeId);
+        }
+        if ((bitField0_ & 0x00000002) != 0) {
+          output.writeRawByte((byte) 16);
+          output.writeUInt32NoTag(value_);
+        }
+      }
+
+      @Override
+      protected int computeSerializedSize() {
+        int size = 0;
+        if ((bitField0_ & 0x00000001) != 0) {
+          size += 1 + ProtoSink.computeUInt32SizeNoTag(typeId);
+        }
+        if ((bitField0_ & 0x00000002) != 0) {
+          size += 1 + ProtoSink.computeUInt32SizeNoTag(value_);
+        }
+        return size;
+      }
+
+      @Override
+      @SuppressWarnings("fallthrough")
+      public IdleValue mergeFrom(final ProtoSource input) throws IOException {
+        // Enabled Fall-Through Optimization (QuickBuffers)
+        int tag = input.readTag();
+        while (true) {
+          switch (tag) {
+            case 8: {
+              // typeId
+              typeId = input.readUInt32();
+              bitField0_ |= 0x00000001;
+              tag = input.readTag();
+              if (tag != 16) {
+                break;
+              }
+            }
+            case 16: {
+              // value_
+              value_ = input.readUInt32();
+              bitField0_ |= 0x00000002;
+              tag = input.readTag();
+              if (tag != 0) {
+                break;
+              }
+            }
+            case 0: {
+              return this;
+            }
+            default: {
+              if (!input.skipField(tag)) {
+                return this;
+              }
+              tag = input.readTag();
+              break;
+            }
+          }
+        }
+      }
+
+      @Override
+      public void writeTo(final JsonSink output) throws IOException {
+        output.beginObject();
+        if ((bitField0_ & 0x00000001) != 0) {
+          output.writeUInt32(FieldNames.typeId, typeId);
+        }
+        if ((bitField0_ & 0x00000002) != 0) {
+          output.writeUInt32(FieldNames.value_, value_);
+        }
+        output.endObject();
+      }
+
+      @Override
+      public IdleValue mergeFrom(final JsonSource input) throws IOException {
+        if (!input.beginObject()) {
+          return this;
+        }
+        while (!input.isAtEnd()) {
+          switch (input.readFieldHash()) {
+            case -1774936555: {
+              if (input.isAtField(FieldNames.typeId)) {
+                if (!input.trySkipNullValue()) {
+                  typeId = input.readUInt32();
+                  bitField0_ |= 0x00000001;
+                }
+              } else {
+                input.skipUnknownField();
+              }
+              break;
+            }
+            case 82420049: {
+              if (input.isAtField(FieldNames.value_)) {
+                if (!input.trySkipNullValue()) {
+                  value_ = input.readUInt32();
+                  bitField0_ |= 0x00000002;
+                }
+              } else {
+                input.skipUnknownField();
+              }
+              break;
+            }
+            default: {
+              input.skipUnknownField();
+              break;
+            }
+          }
+        }
+        input.endObject();
+        return this;
+      }
+
+      @Override
+      public IdleValue clone() {
+        return new IdleValue().copyFrom(this);
+      }
+
+      @Override
+      public boolean isEmpty() {
+        return ((bitField0_) == 0);
+      }
+
+      public static IdleValue parseFrom(final byte[] data) throws InvalidProtocolBufferException {
+        return ProtoMessage.mergeFrom(new IdleValue(), data).checkInitialized();
+      }
+
+      public static IdleValue parseFrom(final ProtoSource input) throws IOException {
+        return ProtoMessage.mergeFrom(new IdleValue(), input).checkInitialized();
+      }
+
+      public static IdleValue parseFrom(final JsonSource input) throws IOException {
+        return ProtoMessage.mergeFrom(new IdleValue(), input).checkInitialized();
+      }
+
+      /**
+       * @return factory for creating IdleValue messages
+       */
+      public static MessageFactory<IdleValue> getFactory() {
+        return IdleValueFactory.INSTANCE;
+      }
+
+      private enum IdleValueFactory implements MessageFactory<IdleValue> {
+        INSTANCE;
+
+        @Override
+        public IdleValue create() {
+          return IdleValue.newInstance();
+        }
+      }
+
+      /**
+       * Contains name constants used for serializing JSON
+       */
+      static class FieldNames {
+        static final FieldName typeId = FieldName.forField("TypeId");
+
+        static final FieldName value_ = FieldName.forField("Value");
+      }
+    }
+
     private enum TrekkerVersusShowFactory implements MessageFactory<TrekkerVersusShow> {
       INSTANCE;
 
@@ -75376,13 +75809,17 @@ public final class Public {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
-      static final FieldName buildScore = FieldName.forField("BuildScore");
+      static final FieldName idleTime = FieldName.forField("IdleTime");
+
+      static final FieldName difficult = FieldName.forField("Difficult");
+
+      static final FieldName selfHotValue = FieldName.forField("SelfHotValue");
+
+      static final FieldName rivalHotValue = FieldName.forField("RivalHotValue");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
-      static final FieldName charIds = FieldName.forField("CharIds");
-
-      static final FieldName affixIds = FieldName.forField("AffixIds");
+      static final FieldName idleValues = FieldName.forField("IdleValues");
     }
   }
 
@@ -75393,12 +75830,27 @@ public final class Public {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint64 BuildId = 2;</code>
+     * <code>optional uint64 BuildId = 4;</code>
      */
     private long buildId;
 
     /**
-     * <code>optional .TrekkerVersusShow Show = 1;</code>
+     * <code>optional uint32 DayNum = 1;</code>
+     */
+    private int dayNum;
+
+    /**
+     * <code>optional uint32 Level = 2;</code>
+     */
+    private int level;
+
+    /**
+     * <code>optional uint32 Exp = 3;</code>
+     */
+    private int exp;
+
+    /**
+     * <code>optional .TrekkerVersusShow Show = 5;</code>
      */
     private final TrekkerVersusShow show = TrekkerVersusShow.newInstance();
 
@@ -75408,9 +75860,24 @@ public final class Public {
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
 
     /**
-     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * <code>repeated uint32 HotValueRewardIds = 6;</code>
+     */
+    private final RepeatedInt hotValueRewardIds = RepeatedInt.newEmptyInstance();
+
+    /**
+     * <code>repeated uint32 DuelRewardIds = 7;</code>
+     */
+    private final RepeatedInt duelRewardIds = RepeatedInt.newEmptyInstance();
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 8;</code>
      */
     private final RepeatedMessage<ActivityQuest> quests = RepeatedMessage.newEmptyInstance(ActivityQuest.getFactory());
+
+    /**
+     * <code>repeated .ActivityTrekkerVersus.HistoryResult Results = 9;</code>
+     */
+    private final RepeatedMessage<HistoryResult> results = RepeatedMessage.newEmptyInstance(HistoryResult.getFactory());
 
     private ActivityTrekkerVersus() {
     }
@@ -75423,7 +75890,7 @@ public final class Public {
     }
 
     /**
-     * <code>optional uint64 BuildId = 2;</code>
+     * <code>optional uint64 BuildId = 4;</code>
      * @return whether the buildId field is set
      */
     public boolean hasBuildId() {
@@ -75431,7 +75898,7 @@ public final class Public {
     }
 
     /**
-     * <code>optional uint64 BuildId = 2;</code>
+     * <code>optional uint64 BuildId = 4;</code>
      * @return this
      */
     public ActivityTrekkerVersus clearBuildId() {
@@ -75441,7 +75908,7 @@ public final class Public {
     }
 
     /**
-     * <code>optional uint64 BuildId = 2;</code>
+     * <code>optional uint64 BuildId = 4;</code>
      * @return the buildId
      */
     public long getBuildId() {
@@ -75449,7 +75916,7 @@ public final class Public {
     }
 
     /**
-     * <code>optional uint64 BuildId = 2;</code>
+     * <code>optional uint64 BuildId = 4;</code>
      * @param value the buildId to set
      * @return this
      */
@@ -75460,25 +75927,136 @@ public final class Public {
     }
 
     /**
-     * <code>optional .TrekkerVersusShow Show = 1;</code>
-     * @return whether the show field is set
+     * <code>optional uint32 DayNum = 1;</code>
+     * @return whether the dayNum field is set
      */
-    public boolean hasShow() {
+    public boolean hasDayNum() {
       return (bitField0_ & 0x00000002) != 0;
     }
 
     /**
-     * <code>optional .TrekkerVersusShow Show = 1;</code>
+     * <code>optional uint32 DayNum = 1;</code>
+     * @return this
+     */
+    public ActivityTrekkerVersus clearDayNum() {
+      bitField0_ &= ~0x00000002;
+      dayNum = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 DayNum = 1;</code>
+     * @return the dayNum
+     */
+    public int getDayNum() {
+      return dayNum;
+    }
+
+    /**
+     * <code>optional uint32 DayNum = 1;</code>
+     * @param value the dayNum to set
+     * @return this
+     */
+    public ActivityTrekkerVersus setDayNum(final int value) {
+      bitField0_ |= 0x00000002;
+      dayNum = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Level = 2;</code>
+     * @return whether the level field is set
+     */
+    public boolean hasLevel() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Level = 2;</code>
+     * @return this
+     */
+    public ActivityTrekkerVersus clearLevel() {
+      bitField0_ &= ~0x00000004;
+      level = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Level = 2;</code>
+     * @return the level
+     */
+    public int getLevel() {
+      return level;
+    }
+
+    /**
+     * <code>optional uint32 Level = 2;</code>
+     * @param value the level to set
+     * @return this
+     */
+    public ActivityTrekkerVersus setLevel(final int value) {
+      bitField0_ |= 0x00000004;
+      level = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Exp = 3;</code>
+     * @return whether the exp field is set
+     */
+    public boolean hasExp() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Exp = 3;</code>
+     * @return this
+     */
+    public ActivityTrekkerVersus clearExp() {
+      bitField0_ &= ~0x00000008;
+      exp = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Exp = 3;</code>
+     * @return the exp
+     */
+    public int getExp() {
+      return exp;
+    }
+
+    /**
+     * <code>optional uint32 Exp = 3;</code>
+     * @param value the exp to set
+     * @return this
+     */
+    public ActivityTrekkerVersus setExp(final int value) {
+      bitField0_ |= 0x00000008;
+      exp = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .TrekkerVersusShow Show = 5;</code>
+     * @return whether the show field is set
+     */
+    public boolean hasShow() {
+      return (bitField0_ & 0x00000010) != 0;
+    }
+
+    /**
+     * <code>optional .TrekkerVersusShow Show = 5;</code>
      * @return this
      */
     public ActivityTrekkerVersus clearShow() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000010;
       show.clear();
       return this;
     }
 
     /**
-     * <code>optional .TrekkerVersusShow Show = 1;</code>
+     * <code>optional .TrekkerVersusShow Show = 5;</code>
      *
      * This method returns the internal storage object without modifying any has state.
      * The returned object should not be modified and be treated as read-only.
@@ -75492,7 +76070,7 @@ public final class Public {
     }
 
     /**
-     * <code>optional .TrekkerVersusShow Show = 1;</code>
+     * <code>optional .TrekkerVersusShow Show = 5;</code>
      *
      * This method returns the internal storage object and sets the corresponding
      * has state. The returned object will become part of this message and its
@@ -75501,17 +76079,17 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public TrekkerVersusShow getMutableShow() {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000010;
       return show;
     }
 
     /**
-     * <code>optional .TrekkerVersusShow Show = 1;</code>
+     * <code>optional .TrekkerVersusShow Show = 5;</code>
      * @param value the show to set
      * @return this
      */
     public ActivityTrekkerVersus setShow(final TrekkerVersusShow value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000010;
       show.copyFrom(value);
       return this;
     }
@@ -75521,7 +76099,7 @@ public final class Public {
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000020) != 0;
     }
 
     /**
@@ -75529,7 +76107,7 @@ public final class Public {
      * @return this
      */
     public ActivityTrekkerVersus clearNextPackage() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000020;
       nextPackage.clear();
       return this;
     }
@@ -75558,7 +76136,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000020;
       return nextPackage;
     }
 
@@ -75568,7 +76146,7 @@ public final class Public {
      * @return this
      */
     public ActivityTrekkerVersus addNextPackage(final byte value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000020;
       nextPackage.add(value);
       return this;
     }
@@ -75579,7 +76157,7 @@ public final class Public {
      * @return this
      */
     public ActivityTrekkerVersus addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000020;
       nextPackage.addAll(values);
       return this;
     }
@@ -75590,31 +76168,167 @@ public final class Public {
      * @return this
      */
     public ActivityTrekkerVersus setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000020;
       nextPackage.copyFrom(values);
       return this;
     }
 
     /**
-     * <code>repeated .ActivityQuest Quests = 3;</code>
-     * @return whether the quests field is set
+     * <code>repeated uint32 HotValueRewardIds = 6;</code>
+     * @return whether the hotValueRewardIds field is set
      */
-    public boolean hasQuests() {
-      return (bitField0_ & 0x00000008) != 0;
+    public boolean hasHotValueRewardIds() {
+      return (bitField0_ & 0x00000040) != 0;
     }
 
     /**
-     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * <code>repeated uint32 HotValueRewardIds = 6;</code>
+     * @return this
+     */
+    public ActivityTrekkerVersus clearHotValueRewardIds() {
+      bitField0_ &= ~0x00000040;
+      hotValueRewardIds.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 HotValueRewardIds = 6;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableHotValueRewardIds()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedInt getHotValueRewardIds() {
+      return hotValueRewardIds;
+    }
+
+    /**
+     * <code>repeated uint32 HotValueRewardIds = 6;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedInt getMutableHotValueRewardIds() {
+      bitField0_ |= 0x00000040;
+      return hotValueRewardIds;
+    }
+
+    /**
+     * <code>repeated uint32 HotValueRewardIds = 6;</code>
+     * @param value the hotValueRewardIds to add
+     * @return this
+     */
+    public ActivityTrekkerVersus addHotValueRewardIds(final int value) {
+      bitField0_ |= 0x00000040;
+      hotValueRewardIds.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 HotValueRewardIds = 6;</code>
+     * @param values the hotValueRewardIds to add
+     * @return this
+     */
+    public ActivityTrekkerVersus addAllHotValueRewardIds(final int... values) {
+      bitField0_ |= 0x00000040;
+      hotValueRewardIds.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 DuelRewardIds = 7;</code>
+     * @return whether the duelRewardIds field is set
+     */
+    public boolean hasDuelRewardIds() {
+      return (bitField0_ & 0x00000080) != 0;
+    }
+
+    /**
+     * <code>repeated uint32 DuelRewardIds = 7;</code>
+     * @return this
+     */
+    public ActivityTrekkerVersus clearDuelRewardIds() {
+      bitField0_ &= ~0x00000080;
+      duelRewardIds.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 DuelRewardIds = 7;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableDuelRewardIds()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedInt getDuelRewardIds() {
+      return duelRewardIds;
+    }
+
+    /**
+     * <code>repeated uint32 DuelRewardIds = 7;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedInt getMutableDuelRewardIds() {
+      bitField0_ |= 0x00000080;
+      return duelRewardIds;
+    }
+
+    /**
+     * <code>repeated uint32 DuelRewardIds = 7;</code>
+     * @param value the duelRewardIds to add
+     * @return this
+     */
+    public ActivityTrekkerVersus addDuelRewardIds(final int value) {
+      bitField0_ |= 0x00000080;
+      duelRewardIds.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 DuelRewardIds = 7;</code>
+     * @param values the duelRewardIds to add
+     * @return this
+     */
+    public ActivityTrekkerVersus addAllDuelRewardIds(final int... values) {
+      bitField0_ |= 0x00000080;
+      duelRewardIds.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 8;</code>
+     * @return whether the quests field is set
+     */
+    public boolean hasQuests() {
+      return (bitField0_ & 0x00000100) != 0;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 8;</code>
      * @return this
      */
     public ActivityTrekkerVersus clearQuests() {
-      bitField0_ &= ~0x00000008;
+      bitField0_ &= ~0x00000100;
       quests.clear();
       return this;
     }
 
     /**
-     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * <code>repeated .ActivityQuest Quests = 8;</code>
      *
      * This method returns the internal storage object without modifying any has state.
      * The returned object should not be modified and be treated as read-only.
@@ -75628,7 +76342,7 @@ public final class Public {
     }
 
     /**
-     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * <code>repeated .ActivityQuest Quests = 8;</code>
      *
      * This method returns the internal storage object and sets the corresponding
      * has state. The returned object will become part of this message and its
@@ -75637,29 +76351,97 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<ActivityQuest> getMutableQuests() {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000100;
       return quests;
     }
 
     /**
-     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * <code>repeated .ActivityQuest Quests = 8;</code>
      * @param value the quests to add
      * @return this
      */
     public ActivityTrekkerVersus addQuests(final ActivityQuest value) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000100;
       quests.add(value);
       return this;
     }
 
     /**
-     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * <code>repeated .ActivityQuest Quests = 8;</code>
      * @param values the quests to add
      * @return this
      */
     public ActivityTrekkerVersus addAllQuests(final ActivityQuest... values) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000100;
       quests.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityTrekkerVersus.HistoryResult Results = 9;</code>
+     * @return whether the results field is set
+     */
+    public boolean hasResults() {
+      return (bitField0_ & 0x00000200) != 0;
+    }
+
+    /**
+     * <code>repeated .ActivityTrekkerVersus.HistoryResult Results = 9;</code>
+     * @return this
+     */
+    public ActivityTrekkerVersus clearResults() {
+      bitField0_ &= ~0x00000200;
+      results.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityTrekkerVersus.HistoryResult Results = 9;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableResults()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<HistoryResult> getResults() {
+      return results;
+    }
+
+    /**
+     * <code>repeated .ActivityTrekkerVersus.HistoryResult Results = 9;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<HistoryResult> getMutableResults() {
+      bitField0_ |= 0x00000200;
+      return results;
+    }
+
+    /**
+     * <code>repeated .ActivityTrekkerVersus.HistoryResult Results = 9;</code>
+     * @param value the results to add
+     * @return this
+     */
+    public ActivityTrekkerVersus addResults(final HistoryResult value) {
+      bitField0_ |= 0x00000200;
+      results.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityTrekkerVersus.HistoryResult Results = 9;</code>
+     * @param values the results to add
+     * @return this
+     */
+    public ActivityTrekkerVersus addAllResults(final HistoryResult... values) {
+      bitField0_ |= 0x00000200;
+      results.addAll(values);
       return this;
     }
 
@@ -75669,9 +76451,15 @@ public final class Public {
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
         buildId = other.buildId;
+        dayNum = other.dayNum;
+        level = other.level;
+        exp = other.exp;
         show.copyFrom(other.show);
         nextPackage.copyFrom(other.nextPackage);
+        hotValueRewardIds.copyFrom(other.hotValueRewardIds);
+        duelRewardIds.copyFrom(other.duelRewardIds);
         quests.copyFrom(other.quests);
+        results.copyFrom(other.results);
       }
       return this;
     }
@@ -75685,14 +76473,32 @@ public final class Public {
       if (other.hasBuildId()) {
         setBuildId(other.buildId);
       }
+      if (other.hasDayNum()) {
+        setDayNum(other.dayNum);
+      }
+      if (other.hasLevel()) {
+        setLevel(other.level);
+      }
+      if (other.hasExp()) {
+        setExp(other.exp);
+      }
       if (other.hasShow()) {
         getMutableShow().mergeFrom(other.show);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
+      if (other.hasHotValueRewardIds()) {
+        getMutableHotValueRewardIds().addAll(other.hotValueRewardIds);
+      }
+      if (other.hasDuelRewardIds()) {
+        getMutableDuelRewardIds().addAll(other.duelRewardIds);
+      }
       if (other.hasQuests()) {
         getMutableQuests().addAll(other.quests);
+      }
+      if (other.hasResults()) {
+        getMutableResults().addAll(other.results);
       }
       return this;
     }
@@ -75705,9 +76511,15 @@ public final class Public {
       cachedSize = -1;
       bitField0_ = 0;
       buildId = 0L;
+      dayNum = 0;
+      level = 0;
+      exp = 0;
       show.clear();
       nextPackage.clear();
+      hotValueRewardIds.clear();
+      duelRewardIds.clear();
       quests.clear();
+      results.clear();
       return this;
     }
 
@@ -75720,7 +76532,10 @@ public final class Public {
       bitField0_ = 0;
       show.clearQuick();
       nextPackage.clear();
+      hotValueRewardIds.clear();
+      duelRewardIds.clear();
       quests.clearQuick();
+      results.clearQuick();
       return this;
     }
 
@@ -75735,29 +76550,65 @@ public final class Public {
       ActivityTrekkerVersus other = (ActivityTrekkerVersus) o;
       return bitField0_ == other.bitField0_
         && (!hasBuildId() || buildId == other.buildId)
+        && (!hasDayNum() || dayNum == other.dayNum)
+        && (!hasLevel() || level == other.level)
+        && (!hasExp() || exp == other.exp)
         && (!hasShow() || show.equals(other.show))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
-        && (!hasQuests() || quests.equals(other.quests));
+        && (!hasHotValueRewardIds() || hotValueRewardIds.equals(other.hotValueRewardIds))
+        && (!hasDuelRewardIds() || duelRewardIds.equals(other.duelRewardIds))
+        && (!hasQuests() || quests.equals(other.quests))
+        && (!hasResults() || results.equals(other.results));
     }
 
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 16);
+        output.writeRawByte((byte) 32);
         output.writeUInt64NoTag(buildId);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeRawByte((byte) 10);
-        output.writeMessageNoTag(show);
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(dayNum);
       }
       if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeUInt32NoTag(level);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeUInt32NoTag(exp);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeRawByte((byte) 42);
+        output.writeMessageNoTag(show);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000040) != 0) {
+        for (int i = 0; i < hotValueRewardIds.length(); i++) {
+          output.writeRawByte((byte) 48);
+          output.writeUInt32NoTag(hotValueRewardIds.array()[i]);
+        }
+      }
+      if ((bitField0_ & 0x00000080) != 0) {
+        for (int i = 0; i < duelRewardIds.length(); i++) {
+          output.writeRawByte((byte) 56);
+          output.writeUInt32NoTag(duelRewardIds.array()[i]);
+        }
+      }
+      if ((bitField0_ & 0x00000100) != 0) {
         for (int i = 0; i < quests.length(); i++) {
-          output.writeRawByte((byte) 26);
+          output.writeRawByte((byte) 66);
           output.writeMessageNoTag(quests.get(i));
+        }
+      }
+      if ((bitField0_ & 0x00000200) != 0) {
+        for (int i = 0; i < results.length(); i++) {
+          output.writeRawByte((byte) 74);
+          output.writeMessageNoTag(results.get(i));
         }
       }
     }
@@ -75769,13 +76620,31 @@ public final class Public {
         size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(show);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(dayNum);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(level);
       }
       if ((bitField0_ & 0x00000008) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(exp);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(show);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000040) != 0) {
+        size += (1 * hotValueRewardIds.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(hotValueRewardIds);
+      }
+      if ((bitField0_ & 0x00000080) != 0) {
+        size += (1 * duelRewardIds.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(duelRewardIds);
+      }
+      if ((bitField0_ & 0x00000100) != 0) {
         size += (1 * quests.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(quests);
+      }
+      if ((bitField0_ & 0x00000200) != 0) {
+        size += (1 * results.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(results);
       }
       return size;
     }
@@ -75787,19 +76656,46 @@ public final class Public {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 16: {
+          case 32: {
             // buildId
             buildId = input.readUInt64();
             bitField0_ |= 0x00000001;
             tag = input.readTag();
-            if (tag != 10) {
+            if (tag != 8) {
               break;
             }
           }
-          case 10: {
+          case 8: {
+            // dayNum
+            dayNum = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 16) {
+              break;
+            }
+          }
+          case 16: {
+            // level
+            level = input.readUInt32();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
+            // exp
+            exp = input.readUInt32();
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
+            if (tag != 42) {
+              break;
+            }
+          }
+          case 42: {
             // show
             input.readMessage(show);
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000010;
             tag = input.readTag();
             if (tag != 16378) {
               break;
@@ -75808,16 +76704,42 @@ public final class Public {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000020;
             tag = input.readTag();
-            if (tag != 26) {
+            if (tag != 50) {
               break;
             }
           }
-          case 26: {
+          case 50: {
+            // hotValueRewardIds [packed=true]
+            input.readPackedUInt32(hotValueRewardIds, tag);
+            bitField0_ |= 0x00000040;
+            tag = input.readTag();
+            if (tag != 58) {
+              break;
+            }
+          }
+          case 58: {
+            // duelRewardIds [packed=true]
+            input.readPackedUInt32(duelRewardIds, tag);
+            bitField0_ |= 0x00000080;
+            tag = input.readTag();
+            if (tag != 66) {
+              break;
+            }
+          }
+          case 66: {
             // quests
             tag = input.readRepeatedMessage(quests, tag);
-            bitField0_ |= 0x00000008;
+            bitField0_ |= 0x00000100;
+            if (tag != 74) {
+              break;
+            }
+          }
+          case 74: {
+            // results
+            tag = input.readRepeatedMessage(results, tag);
+            bitField0_ |= 0x00000200;
             if (tag != 0) {
               break;
             }
@@ -75832,6 +76754,18 @@ public final class Public {
             tag = input.readTag();
             break;
           }
+          case 48: {
+            // hotValueRewardIds [packed=false]
+            tag = input.readRepeatedUInt32(hotValueRewardIds, tag);
+            bitField0_ |= 0x00000040;
+            break;
+          }
+          case 56: {
+            // duelRewardIds [packed=false]
+            tag = input.readRepeatedUInt32(duelRewardIds, tag);
+            bitField0_ |= 0x00000080;
+            break;
+          }
         }
       }
     }
@@ -75843,13 +76777,31 @@ public final class Public {
         output.writeUInt64(FieldNames.buildId, buildId);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeMessage(FieldNames.show, show);
+        output.writeUInt32(FieldNames.dayNum, dayNum);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        output.writeBytes(FieldNames.nextPackage, nextPackage);
+        output.writeUInt32(FieldNames.level, level);
       }
       if ((bitField0_ & 0x00000008) != 0) {
+        output.writeUInt32(FieldNames.exp, exp);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeMessage(FieldNames.show, show);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000040) != 0) {
+        output.writeRepeatedUInt32(FieldNames.hotValueRewardIds, hotValueRewardIds);
+      }
+      if ((bitField0_ & 0x00000080) != 0) {
+        output.writeRepeatedUInt32(FieldNames.duelRewardIds, duelRewardIds);
+      }
+      if ((bitField0_ & 0x00000100) != 0) {
         output.writeRepeatedMessage(FieldNames.quests, quests);
+      }
+      if ((bitField0_ & 0x00000200) != 0) {
+        output.writeRepeatedMessage(FieldNames.results, results);
       }
       output.endObject();
     }
@@ -75872,11 +76824,44 @@ public final class Public {
             }
             break;
           }
+          case 2040047210: {
+            if (input.isAtField(FieldNames.dayNum)) {
+              if (!input.trySkipNullValue()) {
+                dayNum = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 73313124: {
+            if (input.isAtField(FieldNames.level)) {
+              if (!input.trySkipNullValue()) {
+                level = input.readUInt32();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 70141: {
+            if (input.isAtField(FieldNames.exp)) {
+              if (!input.trySkipNullValue()) {
+                exp = input.readUInt32();
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case 2576157: {
             if (input.isAtField(FieldNames.show)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(show);
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000010;
               }
             } else {
               input.skipUnknownField();
@@ -75887,7 +76872,29 @@ public final class Public {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000020;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -556990427: {
+            if (input.isAtField(FieldNames.hotValueRewardIds)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedUInt32(hotValueRewardIds);
+                bitField0_ |= 0x00000040;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 1761049297: {
+            if (input.isAtField(FieldNames.duelRewardIds)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedUInt32(duelRewardIds);
+                bitField0_ |= 0x00000080;
               }
             } else {
               input.skipUnknownField();
@@ -75898,7 +76905,18 @@ public final class Public {
             if (input.isAtField(FieldNames.quests)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(quests);
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000100;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1532767274: {
+            if (input.isAtField(FieldNames.results)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(results);
+                bitField0_ |= 0x00000200;
               }
             } else {
               input.skipUnknownField();
@@ -75945,6 +76963,331 @@ public final class Public {
       return ActivityTrekkerVersusFactory.INSTANCE;
     }
 
+    /**
+     * Protobuf type {@code HistoryResult}
+     */
+    public static final class HistoryResult extends ProtoMessage<HistoryResult> implements Cloneable {
+      private static final long serialVersionUID = 0L;
+
+      /**
+       * <code>optional uint32 SelfHotValue = 1;</code>
+       */
+      private int selfHotValue;
+
+      /**
+       * <code>optional uint32 RivalHotValue = 2;</code>
+       */
+      private int rivalHotValue;
+
+      private HistoryResult() {
+      }
+
+      /**
+       * @return a new empty instance of {@code HistoryResult}
+       */
+      public static HistoryResult newInstance() {
+        return new HistoryResult();
+      }
+
+      /**
+       * <code>optional uint32 SelfHotValue = 1;</code>
+       * @return whether the selfHotValue field is set
+       */
+      public boolean hasSelfHotValue() {
+        return (bitField0_ & 0x00000001) != 0;
+      }
+
+      /**
+       * <code>optional uint32 SelfHotValue = 1;</code>
+       * @return this
+       */
+      public HistoryResult clearSelfHotValue() {
+        bitField0_ &= ~0x00000001;
+        selfHotValue = 0;
+        return this;
+      }
+
+      /**
+       * <code>optional uint32 SelfHotValue = 1;</code>
+       * @return the selfHotValue
+       */
+      public int getSelfHotValue() {
+        return selfHotValue;
+      }
+
+      /**
+       * <code>optional uint32 SelfHotValue = 1;</code>
+       * @param value the selfHotValue to set
+       * @return this
+       */
+      public HistoryResult setSelfHotValue(final int value) {
+        bitField0_ |= 0x00000001;
+        selfHotValue = value;
+        return this;
+      }
+
+      /**
+       * <code>optional uint32 RivalHotValue = 2;</code>
+       * @return whether the rivalHotValue field is set
+       */
+      public boolean hasRivalHotValue() {
+        return (bitField0_ & 0x00000002) != 0;
+      }
+
+      /**
+       * <code>optional uint32 RivalHotValue = 2;</code>
+       * @return this
+       */
+      public HistoryResult clearRivalHotValue() {
+        bitField0_ &= ~0x00000002;
+        rivalHotValue = 0;
+        return this;
+      }
+
+      /**
+       * <code>optional uint32 RivalHotValue = 2;</code>
+       * @return the rivalHotValue
+       */
+      public int getRivalHotValue() {
+        return rivalHotValue;
+      }
+
+      /**
+       * <code>optional uint32 RivalHotValue = 2;</code>
+       * @param value the rivalHotValue to set
+       * @return this
+       */
+      public HistoryResult setRivalHotValue(final int value) {
+        bitField0_ |= 0x00000002;
+        rivalHotValue = value;
+        return this;
+      }
+
+      @Override
+      public HistoryResult copyFrom(final HistoryResult other) {
+        cachedSize = other.cachedSize;
+        if ((bitField0_ | other.bitField0_) != 0) {
+          bitField0_ = other.bitField0_;
+          selfHotValue = other.selfHotValue;
+          rivalHotValue = other.rivalHotValue;
+        }
+        return this;
+      }
+
+      @Override
+      public HistoryResult mergeFrom(final HistoryResult other) {
+        if (other.isEmpty()) {
+          return this;
+        }
+        cachedSize = -1;
+        if (other.hasSelfHotValue()) {
+          setSelfHotValue(other.selfHotValue);
+        }
+        if (other.hasRivalHotValue()) {
+          setRivalHotValue(other.rivalHotValue);
+        }
+        return this;
+      }
+
+      @Override
+      public HistoryResult clear() {
+        if (isEmpty()) {
+          return this;
+        }
+        cachedSize = -1;
+        bitField0_ = 0;
+        selfHotValue = 0;
+        rivalHotValue = 0;
+        return this;
+      }
+
+      @Override
+      public HistoryResult clearQuick() {
+        if (isEmpty()) {
+          return this;
+        }
+        cachedSize = -1;
+        bitField0_ = 0;
+        return this;
+      }
+
+      @Override
+      public boolean equals(Object o) {
+        if (o == this) {
+          return true;
+        }
+        if (!(o instanceof HistoryResult)) {
+          return false;
+        }
+        HistoryResult other = (HistoryResult) o;
+        return bitField0_ == other.bitField0_
+          && (!hasSelfHotValue() || selfHotValue == other.selfHotValue)
+          && (!hasRivalHotValue() || rivalHotValue == other.rivalHotValue);
+      }
+
+      @Override
+      public void writeTo(final ProtoSink output) throws IOException {
+        if ((bitField0_ & 0x00000001) != 0) {
+          output.writeRawByte((byte) 8);
+          output.writeUInt32NoTag(selfHotValue);
+        }
+        if ((bitField0_ & 0x00000002) != 0) {
+          output.writeRawByte((byte) 16);
+          output.writeUInt32NoTag(rivalHotValue);
+        }
+      }
+
+      @Override
+      protected int computeSerializedSize() {
+        int size = 0;
+        if ((bitField0_ & 0x00000001) != 0) {
+          size += 1 + ProtoSink.computeUInt32SizeNoTag(selfHotValue);
+        }
+        if ((bitField0_ & 0x00000002) != 0) {
+          size += 1 + ProtoSink.computeUInt32SizeNoTag(rivalHotValue);
+        }
+        return size;
+      }
+
+      @Override
+      @SuppressWarnings("fallthrough")
+      public HistoryResult mergeFrom(final ProtoSource input) throws IOException {
+        // Enabled Fall-Through Optimization (QuickBuffers)
+        int tag = input.readTag();
+        while (true) {
+          switch (tag) {
+            case 8: {
+              // selfHotValue
+              selfHotValue = input.readUInt32();
+              bitField0_ |= 0x00000001;
+              tag = input.readTag();
+              if (tag != 16) {
+                break;
+              }
+            }
+            case 16: {
+              // rivalHotValue
+              rivalHotValue = input.readUInt32();
+              bitField0_ |= 0x00000002;
+              tag = input.readTag();
+              if (tag != 0) {
+                break;
+              }
+            }
+            case 0: {
+              return this;
+            }
+            default: {
+              if (!input.skipField(tag)) {
+                return this;
+              }
+              tag = input.readTag();
+              break;
+            }
+          }
+        }
+      }
+
+      @Override
+      public void writeTo(final JsonSink output) throws IOException {
+        output.beginObject();
+        if ((bitField0_ & 0x00000001) != 0) {
+          output.writeUInt32(FieldNames.selfHotValue, selfHotValue);
+        }
+        if ((bitField0_ & 0x00000002) != 0) {
+          output.writeUInt32(FieldNames.rivalHotValue, rivalHotValue);
+        }
+        output.endObject();
+      }
+
+      @Override
+      public HistoryResult mergeFrom(final JsonSource input) throws IOException {
+        if (!input.beginObject()) {
+          return this;
+        }
+        while (!input.isAtEnd()) {
+          switch (input.readFieldHash()) {
+            case 1360474288: {
+              if (input.isAtField(FieldNames.selfHotValue)) {
+                if (!input.trySkipNullValue()) {
+                  selfHotValue = input.readUInt32();
+                  bitField0_ |= 0x00000001;
+                }
+              } else {
+                input.skipUnknownField();
+              }
+              break;
+            }
+            case 1039538350: {
+              if (input.isAtField(FieldNames.rivalHotValue)) {
+                if (!input.trySkipNullValue()) {
+                  rivalHotValue = input.readUInt32();
+                  bitField0_ |= 0x00000002;
+                }
+              } else {
+                input.skipUnknownField();
+              }
+              break;
+            }
+            default: {
+              input.skipUnknownField();
+              break;
+            }
+          }
+        }
+        input.endObject();
+        return this;
+      }
+
+      @Override
+      public HistoryResult clone() {
+        return new HistoryResult().copyFrom(this);
+      }
+
+      @Override
+      public boolean isEmpty() {
+        return ((bitField0_) == 0);
+      }
+
+      public static HistoryResult parseFrom(final byte[] data) throws
+          InvalidProtocolBufferException {
+        return ProtoMessage.mergeFrom(new HistoryResult(), data).checkInitialized();
+      }
+
+      public static HistoryResult parseFrom(final ProtoSource input) throws IOException {
+        return ProtoMessage.mergeFrom(new HistoryResult(), input).checkInitialized();
+      }
+
+      public static HistoryResult parseFrom(final JsonSource input) throws IOException {
+        return ProtoMessage.mergeFrom(new HistoryResult(), input).checkInitialized();
+      }
+
+      /**
+       * @return factory for creating HistoryResult messages
+       */
+      public static MessageFactory<HistoryResult> getFactory() {
+        return HistoryResultFactory.INSTANCE;
+      }
+
+      private enum HistoryResultFactory implements MessageFactory<HistoryResult> {
+        INSTANCE;
+
+        @Override
+        public HistoryResult create() {
+          return HistoryResult.newInstance();
+        }
+      }
+
+      /**
+       * Contains name constants used for serializing JSON
+       */
+      static class FieldNames {
+        static final FieldName selfHotValue = FieldName.forField("SelfHotValue");
+
+        static final FieldName rivalHotValue = FieldName.forField("RivalHotValue");
+      }
+    }
+
     private enum ActivityTrekkerVersusFactory implements MessageFactory<ActivityTrekkerVersus> {
       INSTANCE;
 
@@ -75960,11 +77303,23 @@ public final class Public {
     static class FieldNames {
       static final FieldName buildId = FieldName.forField("BuildId");
 
+      static final FieldName dayNum = FieldName.forField("DayNum");
+
+      static final FieldName level = FieldName.forField("Level");
+
+      static final FieldName exp = FieldName.forField("Exp");
+
       static final FieldName show = FieldName.forField("Show");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
+      static final FieldName hotValueRewardIds = FieldName.forField("HotValueRewardIds");
+
+      static final FieldName duelRewardIds = FieldName.forField("DuelRewardIds");
+
       static final FieldName quests = FieldName.forField("Quests");
+
+      static final FieldName results = FieldName.forField("Results");
     }
   }
 

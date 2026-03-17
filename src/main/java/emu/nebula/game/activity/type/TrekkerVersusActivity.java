@@ -81,6 +81,9 @@ public class TrekkerVersusActivity extends GameActivity {
     public TrekkerVersusShow getShowProto() {
         var show = TrekkerVersusShow.newInstance();
         
+        // TODO update
+        
+        /*
         if (this.getCharIds() != null) {
             show.addAllCharIds(this.getCharIds());
             show.setBuildScore(this.getBuildScore());
@@ -89,6 +92,7 @@ public class TrekkerVersusActivity extends GameActivity {
         if (this.getAffixIds() != null) {
             show.addAllAffixIds(this.getAffixIds());
         }
+        */
         
         return show;
     }

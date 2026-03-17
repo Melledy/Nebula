@@ -60,9 +60,11 @@ public class Handbook {
             var itemLanguageKey = loadLanguageKey(ItemDef.class);
             for (int id : list) {
                 ItemDef data = GameData.getItemDataTable().get(id);
+                String name = itemLanguageKey.getOrDefault(data.getTitle(), data.getTitle());
+                
                 writer.print(data.getId());
                 writer.print(" : ");
-                writer.print(itemLanguageKey.getOrDefault(data.getTitle(), data.getTitle()));
+                writer.print(name);
                 
                 writer.print(" [");
                 writer.print(data.getItemType());
@@ -80,7 +82,7 @@ public class Handbook {
                 // Hacky way of checking if a skin is released or not
                 if (data.getItemType() == ItemType.CharacterSkin) {
                     var skinData = GameData.getCharacterSkinDataTable().get(id);
-                    if (skinData != null) {
+                    if (skinData != null && !name.equals("???")) {
                         skinData.setReleased(itemLanguageKey.containsKey(data.getTitle()));
                     }
                 }
