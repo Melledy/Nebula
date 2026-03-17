@@ -26,6 +26,9 @@ public class HandlerActivityPenguinCardSettleReq extends NetHandler {
         data.setStars(req.getStar());
         activity.getCompletedLevels().put(req.getLevelId(), data);
 
+        // Save changes
+        session.getPlayer().save();
+
         // Encode and send
         return session.encodeMsg(NetMsgId.activity_penguin_card_level_settle_succeed_ack);
     }

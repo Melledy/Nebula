@@ -21,8 +21,8 @@ import lombok.Setter;
 @Getter
 @Entity
 public class PenguinCardActivity extends GameActivity {
-    private Map<Integer, LevelStats> completedLevels = new Int2ObjectOpenHashMap<>();
-    private Int2IntMap completedQuests = new Int2IntOpenHashMap();
+    private Map<Integer, LevelStats> completedLevels;
+    private Int2IntMap completedQuests;
     
     @Deprecated // Morphia only
     public PenguinCardActivity() {
@@ -31,6 +31,8 @@ public class PenguinCardActivity extends GameActivity {
     
     public PenguinCardActivity(ActivityManager manager, ActivityDef data) {
         super(manager, data);
+        this.completedLevels = new Int2ObjectOpenHashMap<>();
+        this.completedQuests = new Int2IntOpenHashMap();
     }
     
     // Proto
