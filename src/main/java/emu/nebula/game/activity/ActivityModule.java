@@ -64,6 +64,9 @@ public class ActivityModule extends GameContextModule {
         // Christmas 2025 login events
         this.activities.add(301011);
         this.activities.add(301012);
+
+        // Fatebound Stellar Deck
+        this.activities.add(800001);
         
         // Trekker versus (broken)
         //this.activities.add(600001);
