@@ -51,7 +51,21 @@ You may need to change the data version when switching regions. The `customDataV
 3. Download the `bin`, `language` folders from a repository with [datamined game data](https://github.com/Hiro420/StellaSoraData) and place them into your resources folder.
 4. Run the server with `java -jar Nebula.jar` from your system terminal. This server comes with a built-in internal MongoDB server for its database, so no Mongodb installation is required. However, it is highly recommended to install Mongodb anyway. 
 
-### Connecting with the client (Fiddler method)
+### Connecting with the client
+You can do this either via [mitmproxy](https://www.mitmproxy.org/) or [Fiddler Classic](https://www.telerik.com/fiddler/fiddler-classic).
+
+#### Using mitmproxy (recommended)
+> [!IMPORTANT]
+> If you intend to connect using clients other than global, you may need to modify `mitmproxy/proxy.py` to also redirect their appropriate endpoints as well.
+
+1. Download and install mitmproxy from [here](https://www.mitmproxy.org/) (do **NOT** get the Microsoft Store version)
+2. Navigate to the `mitmproxy` directory and run `proxy.bat`
+3. Navigate to `%userprofile%\.mitmproxy` and import `mitmproxy-ca-cert.cer` to **Local Machine**, place it under the **Trusted Root Certification Authorities** certificate store
+4. You may now launch the game
+
+If Nebula is exposed on another port other than `80`, open `mitmproxy/proxy.py` with your favorite text editor and modify the `SERVER_PORT` field to the appropriate port.
+
+#### Using Fiddler Classic
 1. **Log in with the client to an official server at least once to download game data.**
 2. Install and have [Fiddler Classic](https://www.telerik.com/fiddler) running.
 3. Copy and paste the following code into the Fiddlerscript tab of Fiddler Classic. Remember to save the fiddler script after you copy and paste it:
