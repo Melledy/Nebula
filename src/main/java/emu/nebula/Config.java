@@ -36,13 +36,24 @@ public class Config {
         public String uri = "mongodb://localhost:27017";
         public String collection = "nebula";
         public boolean useInternal = true;
+
+        public String getConnectionString() {
+            if (System.getenv("NEBULA_MONGODB_HOST") != null) {
+                int port = 80;
+                if (System.getenv("NEBULA_MONGODB_PORT") != null) {
+                    port = Integer.parseInt(System.getenv("NEBULA_MONGODB_PORT"));
+                }
+                this.uri = "mongodb://" + System.getenv("NEBULA_MONGODB_HOST") + ":" + port;
+            }
+            return this.uri;
+        }
     }
 
     @Getter
     public static class InternalMongoInfo {
         public String address = "localhost";
         public int port = 27017;
-        public String filePath = "database.mv";
+        public String filePath = "./data/database.mv";
     }
 
     @Getter
@@ -56,7 +67,7 @@ public class Config {
         public boolean useSSL = false;
         public String bindAddress = "0.0.0.0";
         public int bindPort;
-        public String publicAddress = "127.0.0.1"; // Will return bindAddress if publicAddress is null
+        public String publicAddress; // Will return bindAddress if publicAddress is null
         public Integer publicPort; // Will return bindPort if publicPort is null
 
         public ServerConfig(int port) {

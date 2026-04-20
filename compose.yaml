@@ -1,0 +1,29 @@
+services:
+  mongodb:
+    image: mongo:8.2.7
+    # https://gist.github.com/maitrungduc1410/f2f7b34d2e736912471b006c6dba17e5
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh mongodb://localhost:27017/nebula --quiet
+      interval: 5s
+      timeout: 15s
+      retries: 3
+      start_period: 10s
+    volumes:
+      - database:/data/db/
+    restart: unless-stopped
+  nebula:
+    build: .
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+    ports:
+      - "5000:80"
+    volumes:
+      - ./data/:/app/data/
+      # - ./plugins/:/app/plugins/
+      # - ./cdn/:/app/web/res
+    environment:
+      NEBULA_MONGODB_HOST: mongodb
+      NEBULA_MONGODB_PORT: 27017
+volumes:
+  database:

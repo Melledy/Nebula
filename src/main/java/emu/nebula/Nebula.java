@@ -27,7 +27,8 @@ public class Nebula {
     private static final Logger log = LoggerFactory.getLogger(Nebula.class);
     
     // Config
-    private static final File configFile = new File("./config.json");
+    private static final File dataDir = new File("./data");
+    private static final File configFile = new File("./data/config.json");
     @Getter private static Config config;
     
     // Database
@@ -49,6 +50,11 @@ public class Nebula {
         // Start Server
         Nebula.getLogger().info("Starting Nebula " + getJarVersion());
         Nebula.getLogger().info("Git hash: " + getGitHash());
+
+        // Create data directory if it doesn't exist yet
+        if (!dataDir.exists()) {
+            dataDir.mkdirs();
+        }
         
         // Load config and data versions first
         Nebula.loadConfig();

@@ -46,10 +46,12 @@ public final class DatabaseManager {
     public DatabaseManager(DatabaseInfo info, ServerType type) {
         // Variables
         var internalConfig = Nebula.getConfig().getInternalMongoServer();
-        String connectionString = info.getUri();
+        String connectionString = info.getConnectionString();
+
+        boolean useMongo = System.getenv("NEBULA_MONGODB_HOST") != null;
 
         // Start local mongo server
-        if (info.isUseInternal()) {
+        if (info.isUseInternal() && !useMongo) {
             if (Utils.isPortOpen(internalConfig.getAddress(), internalConfig.getPort())) {
                 connectionString = startInternalMongoServer(internalConfig);
                 Nebula.getLogger().info("Started local MongoDB server at " + server.getConnectionString());
