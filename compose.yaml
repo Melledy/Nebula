@@ -25,5 +25,6 @@ services:
     environment:
       NEBULA_MONGODB_HOST: mongodb
       NEBULA_MONGODB_PORT: 27017
+      NEBULA_PUBLIC_PORT: 5000
 volumes:
   database:
