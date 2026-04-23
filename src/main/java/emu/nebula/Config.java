@@ -67,7 +67,7 @@ public class Config {
         public boolean useSSL = false;
         public String bindAddress = "0.0.0.0";
         public int bindPort;
-        public String publicAddress; // Will return bindAddress if publicAddress is null
+        public String publicAddress = "127.0.0.1"; // Will return bindAddress if publicAddress is null
         public Integer publicPort; // Will return bindPort if publicPort is null
 
         public ServerConfig(int port) {
@@ -75,6 +75,10 @@ public class Config {
         }
 
         public String getPublicAddress() {
+            if (System.getenv("NEBULA_PUBLIC_HOST") != null) {
+                return System.getenv("NEBULA_PUBLIC_HOST");
+            }
+
             if (this.publicAddress != null && !this.publicAddress.isEmpty()) {
                 return this.publicAddress;
             }
@@ -83,6 +87,10 @@ public class Config {
         }
 
         public int getPublicPort() {
+            if (System.getenv("NEBULA_PUBLIC_PORT") != null) {
+                return Integer.parseInt(System.getenv("NEBULA_PUBLIC_PORT"));
+            }
+
             if (this.publicPort != null && this.publicPort != 0) {
                 return this.publicPort;
             }
