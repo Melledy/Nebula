@@ -94,11 +94,10 @@ public class ResourceLoader {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            Nebula.getLogger().error("Error loading resource file: " + type.name(), e);
+            Nebula.getLogger().error("Error loading resource file: {}", type.name(), e);
         }
-        
-        Nebula.getLogger().info("Loaded " + count + " " + resourceClass.getSimpleName() + "s.");
+
+        Nebula.getLogger().info("Loaded {} {}s.", count, resourceClass.getSimpleName());
     }
     
     // Utility
@@ -132,7 +131,7 @@ public class ResourceLoader {
                 field.setAccessible(true);
                 table = (DataTable<T>) field.get(null);
             } catch (Exception e) {
-                
+                // ignore exception
             } finally {
                 field.setAccessible(false);
             }

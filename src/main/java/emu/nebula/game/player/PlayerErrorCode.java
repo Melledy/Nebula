@@ -177,10 +177,10 @@ public enum PlayerErrorCode {
     ErrCondNotMet(119906),
     ErrInsufficientWorldClass(119907),
     ErrNoRewardsToReceive(119908),
-    ErrAlreayExists(119909),
+    ErrAlreadyExists(119909),
     ErrExchangeNotSupported(119910),
     ErrRequestTooFrequent(119911),
-    ErrAlreaydReceive(119912),
+    ErrAlreadyReceive(119912),
     ErrLimit(119913),
     ErrDataUpdated(119914);
 
