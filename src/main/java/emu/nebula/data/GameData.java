@@ -1,19 +1,7 @@
 package emu.nebula.data;
 
-import java.lang.reflect.Field;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.ArrayList;
-
-import java.util.stream.Collectors;
-
-import it.unimi.dsi.fastutil.ints.*;
-import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import emu.nebula.data.custom.CharGemAttrGroupDef;
 import emu.nebula.data.resources.*;
-
 import lombok.Getter;
 
 @SuppressWarnings("unused")
@@ -87,8 +75,11 @@ public class GameData {
     @Getter private static DataTable<DictionaryEntryDef> DictionaryEntryDataTable = new DataTable<>();
     
     // ===== Gacha =====
+    @Getter private static DataTable<GachaATypeProbDef> GachaATypeProbDataTable = new DataTable<>();
     @Getter private static DataTable<GachaDef> GachaDataTable = new DataTable<>();
+    @Getter private static DataTable<GachaNewbieDef> GachaNewbieDataTable = new DataTable<>();
     @Getter private static DataTable<GachaStorageDef> GachaStorageDataTable = new DataTable<>();
+    @Getter private static DataTable<GachaTypeDef> GachaTypeDataTable = new DataTable<>();
     
     // ===== Story =====
     @Getter private static DataTable<StoryDef> StoryDataTable = new DataTable<>();
@@ -165,7 +156,7 @@ public class GameData {
     // Activity: Trials
     @Getter private static DataTable<TrialControlDef> TrialControlDataTable = new DataTable<>();
     @Getter private static DataTable<TrialGroupDef> TrialGroupDataTable = new DataTable<>();
-    
+
     // Activity: Joint Drill
     @Getter private static DataTable<JointDrill2LevelDef> JointDrill2LevelDataTable = new DataTable<>();
     
@@ -175,7 +166,7 @@ public class GameData {
     // Activity: Task
     @Getter private static DataTable<ActivityTaskDef> ActivityTaskDataTable = new DataTable<>();
     @Getter private static DataTable<ActivityTaskGroupDef> ActivityTaskGroupDataTable = new DataTable<>();
-    
+
     // Activity: Shop
     @Getter private static DataTable<ActivityShopDef> ActivityShopDataTable = new DataTable<>();
     @Getter private static DataTable<ActivityShopControlDef> ActivityShopControlDataTable = new DataTable<>();

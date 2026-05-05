@@ -1,5 +1,6 @@
 package emu.nebula.server.handlers;
 
+import emu.nebula.Nebula;
 import emu.nebula.net.NetHandler;
 import emu.nebula.net.NetMsgId;
 import emu.nebula.proto.Public.UI32;
@@ -14,8 +15,8 @@ public class HandlerGachaGuaranteeRewardReceiveReq extends NetHandler {
         // Parse req
         var req = UI32.parseFrom(message);
         
-        // Recieve guaranteed reward
-        var change = session.getPlayer().getGachaManager().recvGuarantee(req.getValue());
+        // Receive guaranteed reward
+        var change = Nebula.getGameContext().getGachaModule().recvGuarantee(session.getPlayer(), req.getValue());
         
         if (change == null) {
             return session.encodeMsg(NetMsgId.gacha_guarantee_reward_receive_failed_ack);

@@ -6,6 +6,7 @@ import emu.nebula.command.CommandManager;
 import emu.nebula.data.ResourceLoader;
 import emu.nebula.database.DatabaseManager;
 import emu.nebula.game.GameContext;
+import emu.nebula.game.gacha.GachaDataMigration;
 import emu.nebula.net.PacketHelper;
 import emu.nebula.plugin.PluginManager;
 import emu.nebula.server.HttpServer;
@@ -114,6 +115,10 @@ public class Nebula {
             Nebula.initDatabases();
         } catch (Exception exception) {
             Nebula.getLogger().error("Unable to start the database(s).", exception);
+        }
+
+        if (serverType.runGame() && Nebula.getGameDatabase() != null) {
+            GachaDataMigration.run();
         }
         
         // Start game context

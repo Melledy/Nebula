@@ -1,6 +1,8 @@
 package emu.nebula.database;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import emu.nebula.Config.DatabaseInfo;
@@ -30,6 +32,7 @@ import dev.morphia.mapping.MapperOptions;
 import dev.morphia.query.FindOptions;
 import dev.morphia.query.Sort;
 import dev.morphia.query.filters.Filters;
+import dev.morphia.query.updates.UpdateOperator;
 import dev.morphia.query.updates.UpdateOperators;
 import lombok.Getter;
 
@@ -110,7 +113,7 @@ public final class DatabaseManager {
         ensureIndexes();
         
         // Done
-        Nebula.getLogger().info("Connected to the MongoDB database at " + connectionString);
+        Nebula.getLogger().info("Connected to the MongoDB database at {}", connectionString);
     }
 
     public MongoDatabase getDatabase() {
@@ -177,6 +180,30 @@ public final class DatabaseManager {
                 .toList();
     }
 
+    public <T> List<T> getSortedObjects(
+            Class<T> cls,
+            String filter,
+            int value,
+            String filter2,
+            int value2,
+            String minFilter,
+            long minValue,
+            String sortBy,
+            int limit
+    ) {
+        var options = new FindOptions()
+                .sort(Sort.descending(sortBy))
+                .limit(limit);
+
+        return getDatastore()
+                .find(cls)
+                .filter(Filters.eq(filter, value))
+                .filter(Filters.eq(filter2, value2))
+                .filter(Filters.gte(minFilter, minValue))
+                .iterator(options)
+                .toList();
+    }
+
     public <T> void save(T obj) {
         getDatastore().save(obj, INSERT_OPTIONS);
     }
@@ -237,6 +264,20 @@ public final class DatabaseManager {
         getDatastore().find(obj.getClass())
             .filter(Filters.eq("_id", uid))
             .update(opt, UpdateOperators.addToSet(field, item));
+    }
+
+    public void update(Object obj, int uid, Map<String, Object> fields) {
+        if (fields == null || fields.isEmpty()) {
+            return;
+        }
+
+        var operators = new ArrayList<UpdateOperator>();
+        fields.forEach((field, value) -> operators.add(UpdateOperators.set(field, value)));
+
+        var opt = new UpdateOptions().upsert(false);
+        getDatastore().find(obj.getClass())
+            .filter(Filters.eq("_id", uid))
+            .update(opt, operators.toArray(UpdateOperator[]::new));
     }
     
     // Database counter
