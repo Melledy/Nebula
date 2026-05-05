@@ -1,5 +1,6 @@
 package emu.nebula.game.gacha;
 
+import emu.nebula.Nebula;
 import emu.nebula.data.resources.GachaDef;
 import emu.nebula.game.player.PlayerChangeInfo;
 import emu.nebula.game.gacha.GachaPityState.GachaPityDraft;
@@ -23,11 +24,11 @@ public class GachaResult {
         this.cards = cards;
     }
 
-    public GachaSpinResp toSpinResp(long currentServerTime, GachaDef gachaData) {
+    public GachaSpinResp toSpinResp(GachaDef gachaData) {
         int aupGuaranteeTimes = gachaData != null ? gachaData.getDisplayAUpGuaranteeTimes() : 0;
 
         var rsp = GachaSpinResp.newInstance()
-                .setTime(currentServerTime)
+                .setTime(Nebula.getCurrentServerTime())
                 .setAMissTimes(this.pityState.missTimesA())
                 .setAupMissTimes(this.pityState.missTimesUpA())
                 .setTotalTimes(this.info.getTotal())

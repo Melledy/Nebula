@@ -33,7 +33,7 @@ public class HandlerGachaSpinReq extends NetHandler {
         }
 
         var gachaData = GameData.getGachaDataTable().get(req.getId());
-        var rsp = result.toSpinResp(Nebula.getCurrentServerTime(), gachaData);
+        var rsp = result.toSpinResp(gachaData);
         
         // Encode and send response
         return session.encodeMsg(NetMsgId.gacha_spin_succeed_ack, rsp);
