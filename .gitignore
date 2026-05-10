@@ -76,7 +76,6 @@ tmp/
 
 # Extra
 Nebula Handbook.txt
-data/*
 patchlist.json
 *.mv
 *.exe
