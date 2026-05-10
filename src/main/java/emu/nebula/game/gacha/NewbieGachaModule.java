@@ -14,9 +14,6 @@ import java.util.List;
 
 public final class NewbieGachaModule {
 
-    private record NewbieRequest(GachaManager manager, GachaNewbieDef newbieDef) {
-    }
-
     public List<GachaNewbieInfo> listInfos(Player player) {
         var newbieDefs = GameData.getGachaNewbieDataTable().values();
         var infos = new ArrayList<GachaNewbieInfo>(newbieDefs.size());
@@ -54,21 +51,20 @@ public final class NewbieGachaModule {
     }
 
     public int[] spin(Player player, int newbieId) {
-        var request = resolveRequest(player, newbieId);
-        if (request == null) {
+        GachaNewbieDef newbieDef = GameData.getGachaNewbieDataTable().get(newbieId);
+        if (newbieDef == null) {
             return null;
         }
 
-        int newbieStateId = request.newbieDef().getId();
+        int newbieStateId = newbieDef.getId();
         var bannerDef = GameData.getGachaDataTable().get(newbieStateId);
         if (bannerDef == null) {
             return null;
         }
 
-        var manager = request.manager();
-        synchronized (manager) {
-            var state = loadStateForSpin(manager, request.newbieDef());
-            if (state == null) {
+        synchronized (player.getGachaManager()) {
+            NewbieGachaState state = player.getGachaManager().getOrCreateNewbieState(newbieDef);
+            if (player.getGachaManager().isNewbieObtainLocked(newbieStateId) || !state.canSpin()) {
                 return null;
             }
 
@@ -81,56 +77,52 @@ public final class NewbieGachaModule {
                 return null;
             }
 
-            manager.saveNewbieState(state);
+            player.getGachaManager().saveNewbieState(state);
             return cards;
         }
     }
 
     public boolean save(Player player, int newbieId, Integer index) {
-        int resolvedIndex = index == null ? -1 : index;
-        var request = resolveRequest(player, newbieId);
-        if (request == null) {
+        var newbieDef = GameData.getGachaNewbieDataTable().get(newbieId);
+        if (newbieDef == null) {
             return false;
         }
 
-        var manager = request.manager();
-        synchronized (manager) {
-            var state = loadStateForSave(manager, request.newbieDef());
-            if (state == null) {
+        synchronized (player.getGachaManager()) {
+            if (player.getGachaManager().isNewbieObtainLocked(newbieId)) {
+                return false;
+            }
+            var state = player.getGachaManager().getOrCreateNewbieState(newbieDef);
+            if (state == null || !state.canSavePendingResult()) {
                 return false;
             }
 
-            if (!state.savePendingResult(resolvedIndex)) {
+            if (!state.savePendingResult(index)) {
                 return false;
             }
 
-            manager.saveNewbieState(state);
+            player.getGachaManager().saveNewbieState(state);
             return true;
         }
     }
 
     public PlayerChangeInfo obtain(Player player, int newbieId, int index) {
-        if (index < 0) {
+        GachaNewbieDef gachaNewbieDef = GameData.getGachaNewbieDataTable().get(newbieId);
+        if (gachaNewbieDef == null) {
             return null;
         }
 
-        var request = resolveRequest(player, newbieId);
-        if (request == null) {
+        int newbieStateId = gachaNewbieDef.getId();
+        if (!player.getGachaManager().tryLockNewbieObtain(newbieStateId)) {
             return null;
         }
 
-        int newbieStateId = request.newbieDef().getId();
-        var obtainLock = request.manager().lockNewbieObtain(newbieStateId);
-        if (obtainLock == null) {
-            return null;
-        }
-
-        try (var ignored = obtainLock) {
+        try {
             NewbieGachaState state;
             int[] cards;
-            synchronized (request.manager()) {
-                state = loadStateForObtain(request.manager(), request.newbieDef(), index);
-                if (state == null) {
+            synchronized (player.getGachaManager()) {
+                state = player.getGachaManager().findNewbieState(newbieStateId);
+                if (state == null || !state.canObtain(index)) {
                     return null;
                 }
 
@@ -147,66 +139,19 @@ public final class NewbieGachaModule {
                 return null;
             }
 
-            synchronized (request.manager()) {
+            synchronized (player.getGachaManager()) {
                 if (!state.markReceived(index)) {
                     return null;
                 }
 
-                request.manager().saveNewbieState(state);
+                player.getGachaManager().saveNewbieState(state);
             }
 
             GachaRewardResolver.apply(player, rewardPlan, change);
             return change;
+        } finally {
+            player.getGachaManager().unlockNewbieObtain(newbieStateId);
         }
-    }
-
-    private NewbieRequest resolveRequest(Player player, int newbieId) {
-        var newbieDef = GameData.getGachaNewbieDataTable().get(newbieId);
-        if (newbieDef == null) {
-            return null;
-        }
-
-        return new NewbieRequest(player.getGachaManager(), newbieDef);
-    }
-
-    private NewbieGachaState loadStateForSpin(GachaManager manager, GachaNewbieDef newbieDef) {
-        int newbieStateId = newbieDef.getId();
-        if (manager.isNewbieObtainLocked(newbieStateId)) {
-            return null;
-        }
-        var state = manager.getOrCreateNewbieState(newbieDef);
-        if (!state.canSpin(false)) {
-            return null;
-        }
-
-        return state;
-    }
-
-    private NewbieGachaState loadStateForSave(GachaManager manager,
-                                              GachaNewbieDef newbieDef) {
-        int newbieStateId = newbieDef.getId();
-        if (manager.isNewbieObtainLocked(newbieStateId)) {
-            return null;
-        }
-        var state = manager.getOrCreateNewbieState(newbieDef);
-        if (!state.canSavePendingResult(false)) {
-            return null;
-        }
-
-        return state;
-    }
-
-    private NewbieGachaState loadStateForObtain(GachaManager manager, GachaNewbieDef newbieDef, int index) {
-        int newbieStateId = newbieDef.getId();
-        var state = manager.findNewbieState(newbieStateId);
-        if (state == null) {
-            return null;
-        }
-        if (!state.canObtain(index)) {
-            return null;
-        }
-
-        return state;
     }
 
 }

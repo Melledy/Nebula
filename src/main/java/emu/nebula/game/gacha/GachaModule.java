@@ -18,10 +18,12 @@ import it.unimi.dsi.fastutil.ints.IntArrayList;
 import java.util.List;
 
 public class GachaModule extends GameContextModule {
-    private final NewbieGachaModule newbieGachaModule = new NewbieGachaModule();
+
+    private final NewbieGachaModule newbieGachaModule;
 
     public GachaModule(GameContext context) {
         super(context);
+        this.newbieGachaModule = new NewbieGachaModule();
     }
 
     public GachaResult spin(Player player, int bannerId, int amount) {

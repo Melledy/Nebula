@@ -14,8 +14,11 @@ public class HandlerGachaNewbieSaveReq extends NetHandler {
     public byte[] handle(GameSession session, byte[] message) throws Exception {
         var req = GachaNewbieSaveReq.parseFrom(message);
         Integer index = req.hasIdx() ? req.getIdx() : null;
-        boolean succeeded = Nebula.getGameContext().getGachaModule().saveNewbie(session.getPlayer(), req.getId(), index);
-        if (!succeeded) {
+        if (!req.hasId() || req.getId() < 0 || (index != null && index < 0)) {
+            return session.encodeMsg(NetMsgId.gacha_newbie_save_failed_ack);
+        }
+        boolean newbieSaveResult = Nebula.getGameContext().getGachaModule().saveNewbie(session.getPlayer(), req.getId(), index);
+        if (!newbieSaveResult) {
             return session.encodeMsg(NetMsgId.gacha_newbie_save_failed_ack);
         }
 

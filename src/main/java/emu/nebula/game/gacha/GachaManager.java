@@ -45,20 +45,20 @@ public class GachaManager extends PlayerManager implements GameDatabaseObject {
         this.save();
     }
 
-    public synchronized NewbieObtainLock lockNewbieObtain(int newbieId) {
+    public synchronized boolean tryLockNewbieObtain(int newbieId) {
         if (this.lockedNewbieObtainIds.contains(newbieId)) {
-            return null;
+            return false;
         }
 
         this.lockedNewbieObtainIds.add(newbieId);
-        return new NewbieObtainLockHandle(newbieId);
+        return true;
     }
 
     public synchronized boolean isNewbieObtainLocked(int newbieId) {
         return this.lockedNewbieObtainIds.contains(newbieId);
     }
 
-    private synchronized void unlockNewbieObtainInternal(int newbieId) {
+    public synchronized void unlockNewbieObtain(int newbieId) {
         this.lockedNewbieObtainIds.remove(newbieId);
     }
 
@@ -143,32 +143,6 @@ public class GachaManager extends PlayerManager implements GameDatabaseObject {
                 PATH_BANNERS + info.getId(),
                 info
         );
-    }
-
-    private final class NewbieObtainLockHandle implements NewbieObtainLock {
-        private final int newbieId;
-        private boolean closed;
-
-        private NewbieObtainLockHandle(int newbieId) {
-            this.newbieId = newbieId;
-        }
-
-        @Override
-        public void close() {
-            synchronized (GachaManager.this) {
-                if (this.closed) {
-                    return;
-                }
-
-                this.closed = true;
-                unlockNewbieObtainInternal(this.newbieId);
-            }
-        }
-    }
-
-    public interface NewbieObtainLock extends AutoCloseable {
-        @Override
-        void close();
     }
 
 }

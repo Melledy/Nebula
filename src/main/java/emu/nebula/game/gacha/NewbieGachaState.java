@@ -30,25 +30,23 @@ public class NewbieGachaState {
     }
 
     // Checks if the player can perform a spin.
-    public boolean canSpin(boolean obtainLocked) {
-        return !received && !obtainLocked && remainingSpinCount > 0;
+    public boolean canSpin() {
+        return !received && remainingSpinCount > 0;
     }
 
     // Checks if the current pending result can be moved to saved results
-    public boolean canSavePendingResult(boolean obtainLocked) {
-        return !received && !obtainLocked && hasPendingResult();
+    public boolean canSavePendingResult() {
+        return !received && hasPendingResult();
     }
 
     // Updates the maximum allowed saved results.
-    public boolean applyConfig(int saveCount) {
-        int oldSaveCount = this.saveCount;
+    public void applyConfig(int saveCount) {
         this.saveCount = Math.max(1, saveCount);
-        return this.saveCount != oldSaveCount;
     }
 
     // Applies a new spin result to the pending slot and consumes a spin attempt
     public boolean applySpinResult(int[] cards) {
-        if (!canSpin(false) || cards == null || cards.length == 0) {
+        if (!canSpin() || cards == null || cards.length == 0) {
             return false;
         }
 
@@ -58,13 +56,15 @@ public class NewbieGachaState {
     }
 
     // Saves the pending result into the saved results list at the specified index or adds it
-    public boolean savePendingResult(int index) {
-        if (!hasPendingResult() || received) return false;
+    public boolean savePendingResult(Integer index) {
+        if (!hasPendingResult() || this.received) {
+            return false;
+        }
 
-        if (index >= 0 && index < savedResults.size()) {
+        if (index != null && index < savedResults.size()) {
             // Replace existing slot
             savedResults.set(index, pendingResult);
-        } else if (savedResults.size() < saveCount) {
+        } else if (index == null && savedResults.size() < saveCount) {
             // Add new slot if capacity allows
             savedResults.add(pendingResult);
         } else {
@@ -75,19 +75,26 @@ public class NewbieGachaState {
         return true;
     }
 
-    // Returns a clone of the saved result at the given index
+    // Returns a clone of the result referenced by obtain request index.
+    // Idx=0 -> pendingResult, Idx=1-saveCount -> savedResults[idx-1]
     public int[] copySavedResult(int index) {
-        return (index >= 0 && index < savedResults.size()) ? savedResults.get(index).clone() : null;
+        if (index == 0) {
+            return hasPendingResult() ? pendingResult.clone() : null;
+        }
+
+        int savedResultIndex = index - 1;
+        return (savedResultIndex >= 0 && savedResultIndex < savedResults.size()) ? savedResults.get(savedResultIndex).clone() : null;
     }
 
-    // Check for claiming a specific result
+    // Checks whether the obtain request index points to a valid result.
+    // Idx=0 -> pendingResult, Idx=1-saveCount -> savedResults[idx-1]
     public boolean canObtain(int index) {
-        return !received && index >= 0 && index < savedResults.size();
+        return !received && copySavedResult(index) != null;
     }
 
-    // Marks a specific saved result as claimed and closes the gacha session
+    // Marks the selected obtain request index as claimed and closes the gacha session.
     public boolean markReceived(int index) {
-        if (received || index < 0 || index >= savedResults.size()) {
+        if (received || copySavedResult(index) == null) {
             return false;
         }
 
