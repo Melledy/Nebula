@@ -18,9 +18,10 @@ public class GameConstants {
     public static final int DEFAULT_HONOR_ID = 111001;
 
     public static final int GOLD_ITEM_ID = 1;
-    public static final int GEM_ITEM_ID = 2;
-    public static final int PREM_GEM_ITEM_ID = 3;
-    public static final int ENERGY_BUY_ITEM_ID = GEM_ITEM_ID;
+    public static final int STELLANITE_DUST_ITEM_ID = 2;
+    public static final int PAID_STELLANITE_LUMINA_ITEM_ID = 3;
+    public static final int FREE_STELLANITE_LUMINA_ITEM_ID = 4;
+    public static final int ENERGY_BUY_ITEM_ID = STELLANITE_DUST_ITEM_ID;
     public static final int EXP_ITEM_ID = 21;
     public static final int WEEKLY_ENTRY_ITEM_ID = 28;
     public static final int JOINT_DRILL_TICKET_ID = 36;
@@ -53,12 +54,26 @@ public class GameConstants {
     public static final int[] TOWER_EVENTS_IDS = new int[] {
         101, 102, 104, 105, 106, 107, 108, 114, 115, 116, 126, 127, 128
     };
+
+    public static final int REFRESH_TYPE_DAILY = 1;
+    public static final int REFRESH_TYPE_WEEKLY = 2;
+    public static final int REFRESH_TYPE_MONTHLY = 3;
+
+    public static final int CURRENCY_TYPE_CASH = 1;
+    // Stellanite Lumina
+    public static final int CURRENCY_TYPE_ITEM = 2;
+    public static final int CURRENCY_TYPE_FREE = 3;
+    public static final int TAG_SKIN = 2;
+
+    public static final int BATTLE_PASS_UNLOCK_LEVEL = 3;
     
     public static int[][] VAMPIRE_SURVIVOR_BONUS_POWER = new int[][] {
         new int[] {100, 120},
         new int[] {200, 150},
         new int[] {300, 200}
     };
+
+    public static final int UNLIMITED_STOCK = Integer.MAX_VALUE;
     
     // Daily gifts (Custom)
     
@@ -70,13 +85,13 @@ public class GameConstants {
         DAILY_SHOP_GIFTS.add(250, new ItemParam(GOLD_ITEM_ID, 18888));
         DAILY_SHOP_GIFTS.add(100, new ItemParam(GOLD_ITEM_ID, 28888));
         DAILY_SHOP_GIFTS.add(250, new ItemParam(33001, 10));
-        DAILY_SHOP_GIFTS.add(10, new ItemParam(GEM_ITEM_ID, 50)); // Custom
+        DAILY_SHOP_GIFTS.add(10, new ItemParam(STELLANITE_DUST_ITEM_ID, 50)); // Custom
         
         DAILY_MALL_GIFTS.add(100, ItemParamMap.of(GOLD_ITEM_ID, 25_000, 82007, 5));
     }
     
     // Helper functions
-    
+
     public static String getGameVersion() {
         // Load data version
         var region = RegionConfig.getRegion(Nebula.getConfig().getRegion());
@@ -91,4 +106,5 @@ public class GameConstants {
     public static int getDataVersion() {
         return Nebula.getConfig().getCustomDataVersion() > 0 ? Nebula.getConfig().getCustomDataVersion() : DATA_VERSION ;
     }
+
 }

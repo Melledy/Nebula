@@ -18,6 +18,8 @@ public class HandlerPlayerDataReq extends NetHandler {
         if (session.getPlayer() == null) {
             return session.encodeMsg(NetMsgId.player_new_notify);
         }
+
+        session.getPlayer().queueMallPackageStateNotify();
         
         // Encode player data
         return session.encodeMsg(NetMsgId.player_data_succeed_ack, session.getPlayer().toProto());

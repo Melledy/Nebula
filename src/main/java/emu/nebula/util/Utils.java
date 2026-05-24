@@ -1,24 +1,23 @@
 package emu.nebula.util;
 
+import emu.nebula.GameConstants;
+import emu.nebula.Nebula;
+import it.unimi.dsi.fastutil.ints.IntList;
+
 import java.io.File;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.time.YearMonth;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Base64;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-import emu.nebula.GameConstants;
-import it.unimi.dsi.fastutil.ints.IntList;
-
 public class Utils {
     private static final char[] HEX_ARRAY = "0123456789abcdef".toCharArray();
+    private static final String MALL_COUNTER_DOT_ESCAPE = "__dot__";
     
     public static final Object EMPTY_OBJECT = new Object();
     public static final int[] EMPTY_INT_ARRAY = new int[0];
@@ -60,6 +59,22 @@ public class Utils {
         StringBuilder sb = new StringBuilder(s);
         sb.setCharAt(0, Character.toLowerCase(sb.charAt(0)));
         return sb.toString();
+    }
+
+    public static String escapeKey(String key) {
+        if (key == null || key.indexOf('.') < 0) {
+            return key;
+        }
+
+        return key.replace(".", MALL_COUNTER_DOT_ESCAPE);
+    }
+
+    public static String unescapeKey(String key) {
+        if (key == null || !key.contains(MALL_COUNTER_DOT_ESCAPE)) {
+            return key;
+        }
+
+        return key.replace(MALL_COUNTER_DOT_ESCAPE, ".");
     }
 
     /**
@@ -342,4 +357,86 @@ public class Utils {
         var offsetDateTime = OffsetDateTime.parse(dateString, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
         return offsetDateTime.toInstant().toEpochMilli();
     }
+
+    /**
+     * Convert ISO offset datetime to epoch seconds, return 0 on empty/invalid
+     */
+    public static long dateToSeconds(String dateString) {
+        if (dateString == null || dateString.isBlank()) {
+            return 0L;
+        }
+
+        try {
+            return dateToMilliseconds(dateString) / 1000L;
+        } catch (Exception e) {
+            return 0L;
+        }
+    }
+
+    public static long getNextResetTimeSeconds(int refreshTimeType) {
+        ResetCycle resetCycle = ResetCycle.fromRefreshType(refreshTimeType);
+        return getNextResetTimeSeconds(resetCycle);
+    }
+
+    public static long getNextResetTimeSeconds(ResetCycle resetCycle) {
+        if (resetCycle == null) {
+            return 0;
+        }
+        return getNextResetTimeSeconds(resetCycle, Nebula.getCurrentServerTime());
+    }
+
+    public static long getNextResetTimeSeconds(ResetCycle cycle, long nowSeconds) {
+        long resetHour = Nebula.getConfig().getServerOptions().getDailyResetHour();
+        LocalDate shiftedDate = getShiftedResetDate(nowSeconds, resetHour);
+        LocalDate nextResetDate = switch (cycle) {
+            case DAILY -> shiftedDate.plusDays(1);
+            case WEEKLY -> shiftedDate.plusDays(8L - shiftedDate.getDayOfWeek().getValue());
+            case MONTHLY -> shiftedDate.withDayOfMonth(1).plusMonths(1);
+        };
+
+        return toResetEpochSecond(nextResetDate, resetHour);
+    }
+
+    public static long getResetEpochDay() {
+        return getResetEpochDay(Nebula.getCurrentServerTime());
+    }
+
+    public static long getResetEpochDay(long nowSeconds) {
+        return getShiftedResetDate(nowSeconds, Nebula.getConfig().getServerOptions().getDailyResetHour()).toEpochDay();
+    }
+
+    /**
+     * Convert epochDay to server local time seconds.
+     */
+    public static long getResetTimeSecondsByEpochDay(long epochDay) {
+        return toResetEpochSecond(LocalDate.ofEpochDay(epochDay), Nebula.getConfig().getServerOptions().getDailyResetHour());
+    }
+
+    public static int getResetPeriodIndex(ResetCycle cycle, long nowSeconds) {
+        long epochDay = getResetEpochDay(nowSeconds);
+        return switch (cycle) {
+            case DAILY -> Math.toIntExact(epochDay);
+            case WEEKLY -> getWeeks(epochDay);
+            case MONTHLY -> getMonths(epochDay);
+        };
+    }
+
+    private static LocalDate getShiftedResetDate(long nowSeconds, long resetHour) {
+        return LocalDate.ofInstant(
+                Instant.ofEpochSecond(nowSeconds).minusSeconds(resetHour * 3600L),
+                getResetZone()
+        );
+    }
+
+    private static long toResetEpochSecond(LocalDate date, long resetHour) {
+        return date.atStartOfDay(getResetZone()).toEpochSecond() + (resetHour * 3600L);
+    }
+
+    /**
+     * Server local timezone as reset timezone
+     */
+    private static ZoneId getResetZone() {
+        return ZoneId.systemDefault();
+    }
+
 }

@@ -1,5 +1,8 @@
 package emu.nebula.game.player;
 
+import lombok.Getter;
+
+@Getter
 public abstract class PlayerManager {
     private transient Player player;
 
@@ -11,10 +14,6 @@ public abstract class PlayerManager {
         this.player = player;
     }
 
-    public Player getPlayer() {
-        return this.player;
-    }
-    
     public void setPlayer(Player player) {
         if (this.player == null) {
             this.player = player;
