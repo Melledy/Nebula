@@ -13,9 +13,12 @@ public class HandlerGemConvertReq extends NetHandler {
     public byte[] handle(GameSession session, byte[] message) throws Exception {
         // Parse request
         var req = UI32.parseFrom(message);
+        if (req.getValue() <= 0) {
+            return session.encodeMsg(NetMsgId.gem_convert_failed_ack);
+        }
         
         // Convert gems
-        var change = session.getPlayer().getInventory().convertGems(req.getValue());
+        var change = session.getPlayer().getInventory().convertStellaniteLuminaToDust(req.getValue());
         
         if (change == null) {
             return session.encodeMsg(NetMsgId.gem_convert_failed_ack);

@@ -1,15 +1,13 @@
 package emu.nebula.game.player;
 
-import java.util.Stack;
-
 import dev.morphia.annotations.AlsoLoad;
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
 import dev.morphia.annotations.Indexed;
-
 import emu.nebula.GameConstants;
 import emu.nebula.Nebula;
 import emu.nebula.data.GameData;
+import emu.nebula.data.resources.MallMonthlyCardDef;
 import emu.nebula.database.GameDatabaseObject;
 import emu.nebula.game.account.Account;
 import emu.nebula.game.achievement.AchievementCondition;
@@ -35,26 +33,22 @@ import emu.nebula.game.vampire.VampireSurvivorManager;
 import emu.nebula.net.GameSession;
 import emu.nebula.net.NetMsgId;
 import emu.nebula.net.NetMsgPacket;
+import emu.nebula.proto.Notify.MonthlyCardRewards;
 import emu.nebula.proto.Notify.SigninRewardUpdate;
 import emu.nebula.proto.PlayerData.DictionaryEntry;
 import emu.nebula.proto.PlayerData.DictionaryTab;
 import emu.nebula.proto.PlayerData.PlayerInfo;
-import emu.nebula.proto.Public.CharShow;
-import emu.nebula.proto.Public.Energy;
-import emu.nebula.proto.Public.Friend;
-import emu.nebula.proto.Public.HonorInfo;
-import emu.nebula.proto.Public.Item;
-import emu.nebula.proto.Public.NewbieInfo;
-import emu.nebula.proto.Public.QuestType;
-import emu.nebula.proto.Public.Res;
-import emu.nebula.proto.Public.WorldClass;
-import emu.nebula.proto.Public.WorldClassRewardState;
+import emu.nebula.proto.Public;
+import emu.nebula.proto.Public.*;
+import emu.nebula.util.ResetCycle;
 import emu.nebula.util.Utils;
-import emu.nebula.proto.Public.Title;
-
+import emu.nebula.util.ints.String2IntMap;
 import lombok.Getter;
 import us.hebi.quickbuf.ProtoMessage;
 import us.hebi.quickbuf.RepeatedInt;
+
+import java.lang.String;
+import java.util.Stack;
 
 @Getter
 @Entity(value = "players", useDiscriminator = false)
@@ -92,6 +86,8 @@ public class Player implements GameDatabaseObject {
     private long lastEpochDay;
     private long lastLogin;
     private long createTime;
+    private String2IntMap monthlyCardExpireDays;
+    private String2IntMap monthlyCardLastRewardDays;
     
     // Managers
     private final transient CharacterStorage characters;
@@ -165,6 +161,8 @@ public class Player implements GameDatabaseObject {
         this.level = 1;
         this.energy = 240;
         this.energyLastUpdate = this.createTime;
+        this.monthlyCardExpireDays = new String2IntMap();
+        this.monthlyCardLastRewardDays = new String2IntMap();
         
         // Setup inventory
         this.inventory = new Inventory(this);
@@ -217,6 +215,8 @@ public class Player implements GameDatabaseObject {
     }
 
     public void setLevel(int level) {
+        int oldLevel = this.level;
+
         // Set player world class (level)
         this.level = level;
         
@@ -225,6 +225,10 @@ public class Player implements GameDatabaseObject {
         
         // Trigger achievement
         this.trigger(AchievementCondition.WorldClassSpecific, this.getLevel());
+
+        if (oldLevel != this.level) {
+            this.queueBattlePassUnlockNotify(oldLevel);
+        }
     }
     
     public void setExp(int exp) {
@@ -547,6 +551,8 @@ public class Player implements GameDatabaseObject {
             
             // Trigger achievement
             this.trigger(AchievementCondition.WorldClassSpecific, this.getLevel());
+
+            this.queueBattlePassUnlockNotify(oldLevel);
         }
         
         // Calculate changes
@@ -555,7 +561,7 @@ public class Player implements GameDatabaseObject {
                 .setExpChange(this.getExp() - oldExp);
         
         changes.add(proto);
-        
+
         return changes;
     }
     
@@ -637,26 +643,29 @@ public class Player implements GameDatabaseObject {
     // Dailies
     
     public void checkResetDailies() {
-        // Sanity check to make sure daily reset isnt being triggered wrong
-        if (Nebula.getGameContext().getEpochDays() <= this.getLastEpochDay()) {
+        long currentResetDay = Utils.getResetEpochDay();
+
+        // Sanity check to make sure daily reset isn't being triggered wrong
+        if (currentResetDay <= this.getLastEpochDay()) {
             // Fix sign-in index
             // TODO remove later
             if (this.getSignInIndex() <= 0) {
                 this.getSignInRewards(false);
             }
+
+            this.refreshMonthlyCardRewards(false);
             
             // End
             return;
         }
         
-        // Check if week has changed (Resets on monday)
-        // TODO add a config option
-        int curWeek = Utils.getWeeks(this.getLastEpochDay());
-        boolean hasWeekChanged = Nebula.getGameContext().getEpochWeeks() > curWeek;
+        // Check if week has changed (Resets on Monday)
+        int curWeek = Utils.getResetPeriodIndex(ResetCycle.WEEKLY, this.getLastResetDayTimeSeconds());
+        boolean hasWeekChanged = Utils.getResetPeriodIndex(ResetCycle.WEEKLY, Nebula.getCurrentServerTime()) > curWeek;
         
         // Check if month was changed
-        int curMonth = Utils.getMonths(this.getLastEpochDay());
-        boolean hasMonthChanged = Nebula.getGameContext().getEpochMonths() > curMonth;
+        int curMonth = Utils.getResetPeriodIndex(ResetCycle.MONTHLY, this.getLastResetDayTimeSeconds());
+        boolean hasMonthChanged = Utils.getResetPeriodIndex(ResetCycle.MONTHLY, Nebula.getCurrentServerTime()) > curMonth;
         
         // Reset dailies
         this.resetDailies(hasWeekChanged, hasMonthChanged);
@@ -666,9 +675,10 @@ public class Player implements GameDatabaseObject {
 
         // Give sign-in rewards
         this.getSignInRewards(hasMonthChanged);
+        this.refreshMonthlyCardRewards(true);
         
         // Update last epoch day
-        this.lastEpochDay = Nebula.getGameContext().getEpochDays();
+        this.lastEpochDay = currentResetDay;
         Nebula.getGameDatabase().update(this, this.getUid(), "lastEpochDay", this.lastEpochDay);
     }
     
@@ -680,7 +690,7 @@ public class Player implements GameDatabaseObject {
         
         // Get next sign-in index
         int nextSignIn = this.signInIndex + 1;
-        int group = Utils.getDaysOfMonth(this.getLastEpochDay());
+        int group = Utils.getDaysOfMonth(Utils.getResetEpochDay());
         
         var data = GameData.getSignInDataTable().get((group << 16) + nextSignIn);
         if (data == null) {
@@ -725,12 +735,14 @@ public class Player implements GameDatabaseObject {
             
             // Reset weekly tower tickets
             this.getProgress().clearWeeklyTowerTicketLog();
+            this.getInventory().resetWeeklyMallPackagePurchases();
         }
         
         // Check if we need to reset monthly
         if (resetMonthly) {
             // Reset monthly shop purchases
             this.getInventory().resetShopPurchases();
+            this.getInventory().resetMonthlyMallPackagePurchases();
         }
     }
     
@@ -809,6 +821,16 @@ public class Player implements GameDatabaseObject {
             this.showChars = new int[3];
             this.save();
         }
+
+        if (this.monthlyCardExpireDays == null) {
+            this.monthlyCardExpireDays = new String2IntMap();
+            Nebula.getGameDatabase().update(this, this.getUid(), "monthlyCardExpireDays", this.monthlyCardExpireDays);
+        }
+
+        if (this.monthlyCardLastRewardDays == null) {
+            this.monthlyCardLastRewardDays = new String2IntMap();
+            Nebula.getGameDatabase().update(this, this.getUid(), "monthlyCardLastRewardDays", this.monthlyCardLastRewardDays);
+        }
         
         // Init activities
         this.getActivityManager().init();
@@ -829,12 +851,224 @@ public class Player implements GameDatabaseObject {
         // Fix any broken honor ids
         this.checkBrokenHonor();
         
-        // Update activities
-        this.getActivityManager().onLogin();
-        
         // Update last login time
         this.lastLogin = System.currentTimeMillis();
         Nebula.getGameDatabase().update(this, this.getUid(), "lastLogin", this.getLastLogin());
+    }
+
+    /**
+     * Returns whether the player currently has at least one purchasable
+     * free mall package (`CurrencyType = 3`) for the mall entrance red dot.
+     */
+    public boolean hasAvailableFreeMallPackage() {
+        for (var data : GameData.getMallPackageDataTable()) {
+            if (!data.isFreePackage()) {
+                continue;
+            }
+
+            if (data.canPurchase(this)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Queues the mall entrance red dot state for free mall packages (`CurrencyType = 3`).
+     * Specific package entries are still refreshed from the package list itself.
+     */
+    public void queueMallPackageStateNotify() {
+        this.addNextPackage(
+                NetMsgId.mall_package_state_notify,
+                MallPackageState.newInstance().setNew(this.hasAvailableFreeMallPackage())
+        );
+    }
+
+    public void queueBattlePassStateNotify() {
+        this.addNextPackage(
+                NetMsgId.battle_pass_state_notify,
+                this.buildBattlePassStateProto()
+        );
+    }
+
+    /**
+     * Pushes a full battle-pass snapshot for clients that only refresh their
+     * local battle-pass cache/red dots from the page-info payload.
+     */
+    public void queueBattlePassInfoNotify() {
+        this.addNextPackage(
+                NetMsgId.battle_pass_info_succeed_ack,
+                this.getBattlePassManager().getBattlePass().toProto()
+        );
+    }
+
+    /**
+     * Battle-pass unlock is a special case: clients need the full page snapshot
+     * to initialize local battle-pass cache and refresh the main-entry red dot.
+     */
+    private void queueBattlePassUnlockNotify(int oldLevel) {
+        if (oldLevel < GameConstants.BATTLE_PASS_UNLOCK_LEVEL && this.isBattlePassUnlocked()) {
+            this.queueBattlePassInfoNotify();
+        }
+    }
+
+    private Public.BattlePassState buildBattlePassStateProto() {
+        int state = this.isBattlePassUnlocked()
+                ? this.getBattlePassManager().getBattlePass().getClientState()
+                : 0;
+
+        return Public.BattlePassState.newInstance().setState(state);
+    }
+
+    /**
+     * Returns the number of future game days still covered after the current game day.
+     * On the last claimable day this value is 0 even though today's reward can still be claimed.
+     */
+    public int getMonthlyCardRemainingDays(String cardId) {
+        if (this.monthlyCardExpireDays == null) {
+            return 0;
+        }
+
+        int endDay = this.monthlyCardExpireDays.get(cardId);
+        long currentDay = Utils.getResetEpochDay();
+
+        if (endDay < currentDay) {
+            return 0;
+        }
+
+        return (int) (endDay - currentDay);
+    }
+
+    public boolean receivedMonthlyCardRewardToday(String cardId) {
+        return cardId != null
+                && this.monthlyCardLastRewardDays != null
+                && this.monthlyCardLastRewardDays.get(cardId) >= Utils.getResetEpochDay();
+    }
+
+    public long getMonthlyCardEndTime(String cardId) {
+        if (cardId == null || this.monthlyCardExpireDays == null) {
+            return 0;
+        }
+
+        int endDay = this.monthlyCardExpireDays.get(cardId);
+        if (endDay <= 0) {
+            return 0;
+        }
+
+        return Utils.getResetTimeSecondsByEpochDay((long) endDay + 1);
+    }
+
+    private void setMonthlyCardRewardEndDay(String cardId, int endDay) {
+        if (this.monthlyCardExpireDays == null) {
+            this.monthlyCardExpireDays = new String2IntMap();
+        }
+
+        this.monthlyCardExpireDays.put(cardId, endDay);
+        Nebula.getGameDatabase().update(this, this.getUid(), "monthlyCardExpireDays", this.monthlyCardExpireDays);
+    }
+
+    private void setMonthlyCardLastRewardDay(String cardId, int rewardDay) {
+        if (this.monthlyCardLastRewardDays == null) {
+            this.monthlyCardLastRewardDays = new String2IntMap();
+        }
+
+        this.monthlyCardLastRewardDays.put(cardId, rewardDay);
+        Nebula.getGameDatabase().update(this, this.getUid(), "monthlyCardLastRewardDays", this.monthlyCardLastRewardDays);
+    }
+
+    public void activateMonthlyCard(String cardId, int durationDays) {
+        if (cardId == null || durationDays <= 0) {
+            return;
+        }
+
+        int currentDay = Math.toIntExact(Utils.getResetEpochDay());
+        int remainingDays = this.getMonthlyCardRemainingDays(cardId);
+        boolean claimedToday = this.receivedMonthlyCardRewardToday(cardId);
+
+        // remainingDays:
+        // - > 0: directly add durationDays
+        // - == 0 and claimed today: add full durationDays
+        // - == 0 and not claimed today: purchase auto-claims today's reward, so keep durationDays - 1 future days
+        int newRemainingDays = remainingDays > 0 || claimedToday
+                ? remainingDays + durationDays
+                : Math.max(durationDays - 1, 0);
+
+        this.setMonthlyCardRewardEndDay(cardId, currentDay + newRemainingDays);
+    }
+
+    public PlayerChangeInfo createMonthlyCardRewardChange(String cardId) {
+        var cardData = this.getMonthlyCardData(cardId);
+        if (cardData == null || !this.canClaimMonthlyCardReward(cardId)) {
+            return null;
+        }
+
+        var rewards = cardData.getDailyRewards();
+        if (rewards.isEmpty()) {
+            return null;
+        }
+
+        var change = this.getInventory().addItems(rewards);
+        this.setMonthlyCardLastRewardDay(cardId, Math.toIntExact(Utils.getResetEpochDay()));
+        return change;
+    }
+
+    public void grantMonthlyCardReward(String cardId, boolean notifyOnly) {
+        var cardData = this.getMonthlyCardData(cardId);
+        if (cardData == null) {
+            return;
+        }
+
+        var change = this.createMonthlyCardRewardChange(cardId);
+        if (change == null) {
+            return;
+        }
+
+        var rewards = cardData.getDailyRewards();
+
+        var notify = MonthlyCardRewards.newInstance()
+                .setId(cardData.getMonthlyCardId())
+                .setRemaining(this.getMonthlyCardRemainingDays(cardId))
+                .setSwitch(!notifyOnly)
+                .setEndTime(this.getMonthlyCardEndTime(cardId));
+
+        var changeProto = change.toProto();
+        notify.setChange(changeProto);
+        rewards.toItemTemplateStream().forEach(notify::addRewards);
+
+        this.addNextPackage(NetMsgId.monthly_card_rewards_notify, notify);
+
+        if (!changeProto.isEmpty()) {
+            this.addNextPackage(NetMsgId.items_change_notify, changeProto);
+        }
+    }
+
+    private MallMonthlyCardDef getMonthlyCardData(String cardId) {
+        return cardId == null ? null : GameData.getMallMonthlyCardDataTable().get(cardId.hashCode());
+    }
+
+    private boolean canClaimMonthlyCardReward(String cardId) {
+        if (this.monthlyCardExpireDays == null) {
+            return false;
+        }
+
+        int today = Math.toIntExact(Utils.getResetEpochDay());
+        int endDay = this.monthlyCardExpireDays.get(cardId);
+        return endDay > 0 && today <= endDay && !this.receivedMonthlyCardRewardToday(cardId);
+    }
+
+    private void refreshMonthlyCardRewards(boolean notifyOnly) {
+        if (this.monthlyCardExpireDays == null || this.monthlyCardExpireDays.isEmpty()) {
+            return;
+        }
+
+        for (var entry : this.monthlyCardExpireDays.object2IntEntrySet()) {
+            this.grantMonthlyCardReward(entry.getKey(), notifyOnly);
+        }
+    }
+
+    private long getLastResetDayTimeSeconds() {
+        return Utils.getResetTimeSecondsByEpochDay(this.getLastEpochDay());
     }
     
     // Next packages
@@ -846,7 +1080,7 @@ public class Player implements GameDatabaseObject {
     public void addNextPackage(int msgId, ProtoMessage<?> proto) {
         this.getNextPackages().add(new NetMsgPacket(msgId, proto));
     }
-    
+
     // Misc
     
     /**
@@ -984,8 +1218,9 @@ public class Player implements GameDatabaseObject {
         state.getMutableMail()
             .setNew(this.getMailbox().hasNewMail());
         
-        state.getMutableBattlePass()
-            .setState(this.getBattlePassManager().hasNew() ? 1 : 0);
+        // Keep BattlePass state container present for client-side login cache flow.
+        // Some clients assume State.BattlePass exists during player_data bootstrap.
+        state.setBattlePass(this.buildBattlePassStateProto());
 
         state.getMutableAchievement()
             .setNew(this.getAchievementManager().hasNewAchievements());
@@ -1073,7 +1308,7 @@ public class Player implements GameDatabaseObject {
         // Complete
         return proto;
     }
-    
+
     public Friend getFriendProto() {
         var proto = Friend.newInstance()
                 .setId(this.getUid())
@@ -1115,5 +1350,9 @@ public class Player implements GameDatabaseObject {
         
         return proto;
     }
-    
+
+    public boolean isBattlePassUnlocked() {
+        return this.getLevel() >= GameConstants.BATTLE_PASS_UNLOCK_LEVEL;
+    }
+
 }

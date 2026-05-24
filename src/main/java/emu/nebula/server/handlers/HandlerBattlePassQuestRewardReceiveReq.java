@@ -12,6 +12,10 @@ public class HandlerBattlePassQuestRewardReceiveReq extends NetHandler {
 
     @Override
     public byte[] handle(GameSession session, byte[] message) throws Exception {
+        if (!session.getPlayer().isBattlePassUnlocked()) {
+            return session.encodeMsg(NetMsgId.battle_pass_quest_reward_receive_failed_ack);
+        }
+
         // Parse req
         var req = UI32.parseFrom(message);
         
@@ -27,6 +31,8 @@ public class HandlerBattlePassQuestRewardReceiveReq extends NetHandler {
                 .setLevel(battlePass.getLevel())
                 .setExp(battlePass.getExp())
                 .setExpThisWeek(battlePass.getExpWeek());
+
+        session.getPlayer().queueBattlePassStateNotify();
         
         // Encode and send
         return session.encodeMsg(NetMsgId.battle_pass_quest_reward_receive_succeed_ack, rsp);

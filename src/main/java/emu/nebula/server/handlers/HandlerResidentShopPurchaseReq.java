@@ -18,7 +18,7 @@ public class HandlerResidentShopPurchaseReq extends NetHandler {
         
         // Get goods
         var data = GameData.getResidentGoodsDataTable().get(req.getGoodsId());
-        if (data == null) {
+        if (data == null || !data.isVisible(session.getPlayer())) {
             return session.encodeMsg(NetMsgId.resident_shop_purchase_failed_ack);
         }
         
@@ -33,10 +33,15 @@ public class HandlerResidentShopPurchaseReq extends NetHandler {
         var rsp = ResidentShopPurchaseResp.newInstance()
                 .setChange(change.toProto())
                 .setPurchasedNumber(req.getNumber());
+
+        var shopData = GameData.getResidentShopDataTable().get(data.getShopId());
+        if (shopData == null || !shopData.isVisible()) {
+            return session.encodeMsg(NetMsgId.resident_shop_purchase_failed_ack);
+        }
         
         rsp.getMutableShop()
             .setId(data.getShopId())
-            .setRefreshTime(Long.MAX_VALUE);
+            .setRefreshTime(shopData.getNextRefreshTime());
         
         // Encode and send
         return session.encodeMsg(NetMsgId.resident_shop_purchase_succeed_ack, rsp);

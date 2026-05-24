@@ -54,10 +54,10 @@ public class ItemParamMap extends Int2IntLinkedOpenHashMap implements ObjectBidi
     
     /**
      * Returns a new ItemParamMap with item amounts multiplied
-     * @param mult Value to multiply all item amounts in this map by
-     * @return
+     * @param multiplier Value to multiply all item amounts in this map by
+     * @return ItemParamMap
      */
-    public ItemParamMap mulitply(int multiplier) {
+    public ItemParamMap multiply(int multiplier) {
         var params = new ItemParamMap();
         
         for (var entry : this.int2IntEntrySet()) {

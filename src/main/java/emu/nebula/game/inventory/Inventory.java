@@ -1,43 +1,37 @@
 package emu.nebula.game.inventory;
 
-import java.util.List;
-
 import com.mongodb.client.model.Filters;
-
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
 import emu.nebula.GameConstants;
 import emu.nebula.Nebula;
 import emu.nebula.data.GameData;
-import emu.nebula.data.resources.DropPkgDef;
-import emu.nebula.data.resources.MallShopDef;
-import emu.nebula.data.resources.ResidentGoodsDef;
+import emu.nebula.data.resources.*;
 import emu.nebula.database.GameDatabaseObject;
+import emu.nebula.game.achievement.AchievementCondition;
+import emu.nebula.game.player.Player;
+import emu.nebula.game.player.PlayerChangeInfo;
 import emu.nebula.game.player.PlayerManager;
 import emu.nebula.game.quest.QuestCondition;
 import emu.nebula.net.NetMsgId;
 import emu.nebula.proto.Notify.Skin;
-import emu.nebula.proto.Public.Honor;
-import emu.nebula.proto.Public.Item;
-import emu.nebula.proto.Public.Res;
-import emu.nebula.proto.Public.Title;
-import emu.nebula.proto.Public.UI32;
+import emu.nebula.proto.Public.*;
 import emu.nebula.util.Utils;
 import emu.nebula.util.ints.String2IntMap;
-import emu.nebula.game.achievement.AchievementCondition;
-import emu.nebula.game.player.Player;
-import emu.nebula.game.player.PlayerChangeInfo;
 import it.unimi.dsi.fastutil.ints.IntCollection;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
 import lombok.Getter;
+
+import java.lang.String;
+import java.util.List;
 
 @Getter
 @Entity(value = "inventory", useDiscriminator = false)
 public class Inventory extends PlayerManager implements GameDatabaseObject {
     @Id
     private int uid;
-    
+
     // Items/resources
     private ItemParamMap items;
     private ItemParamMap resources;
@@ -51,8 +45,15 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
     // Buy limit
     private ItemParamMap shopBuyCount;
     private String2IntMap mallBuyCount;
-    
-    @Deprecated
+    private String2IntMap mallPackageBuyCount;
+    /**
+     * Tracks whether a MallGem pack has already consumed its maiden bonus.
+     * This is the only persisted state MallGem recharge still needs now that
+     * recharge packs no longer have any purchase-limit semantics.
+     */
+    private String2IntMap gemMaidenClaimed;
+    private String2IntMap monthlyCardBuyCount;
+
     public Inventory() {
         // Morphia only
     }
@@ -73,7 +74,10 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
         
         this.shopBuyCount = new ItemParamMap();
         this.mallBuyCount = new String2IntMap();
-        
+        this.mallPackageBuyCount = new String2IntMap();
+        this.gemMaidenClaimed = new String2IntMap();
+        this.monthlyCardBuyCount = new String2IntMap();
+
         // Add player heads
         this.getHeadIcons().add(101);
         this.getHeadIcons().add(102);
@@ -562,6 +566,29 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
                     change.add(proto);
                 }
             }
+            case HeadItem -> {
+                // Cannot remove head icons
+                if (amount <= 0) {
+                    break;
+                }
+
+                // Ensure the head icon exists in data and persist ownership.
+                var headData = GameData.getPlayerHeadDataTable().get(id);
+                if (headData == null) {
+                    break;
+                }
+
+                // Persist ownership and expose it in ChangeInfo as a normal item reward,
+                // so regular reward popup can still show the head icon entry.
+                if (this.addHeadIcon(id)) {
+                    // Client head-page state/red-dot updates are driven by proto.HeadIcon
+                    // in ChangeInfo, not by a generic proto.Item entry.
+                    var proto = HeadIcon.newInstance()
+                            .setTid(id);
+
+                    change.add(proto);
+                }
+            }
             default -> {
                 // Not implemented
             }
@@ -651,7 +678,7 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
     }
     
     /**
-     * Checks if the player has enough quanity of this item
+     * Checks if the player has enough quantity of this item
      */
     public synchronized boolean hasItem(int id, int count) {
         // Sanity check
@@ -726,7 +753,7 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
         }
         
         // Get materials
-        var materials = data.getMaterials().mulitply(num);
+        var materials = data.getMaterials().multiply(num);
         
         // Verify that we have the materials
         if (!this.hasItems(materials)) {
@@ -774,8 +801,7 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
     
     public PlayerChangeInfo buyMallItem(MallShopDef data, int buyCount) {
         // Check stock
-        int stock = data.getStock(this.getPlayer());
-        if (buyCount > stock) {
+        if (!data.canPurchase(this.getPlayer(), buyCount)) {
             return null;
         }
         
@@ -787,14 +813,14 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
         }
         
         // Update purchase limit
-        this.getMallBuyCount().addTo(data.getIdString(), buyCount);
+        int purchaseCount = this.getMallShopPurchaseCount(data.getIdString());
+        this.setMallCounterValue(this.getMallBuyCount(), data.getIdString(), purchaseCount + buyCount);
         Nebula.getGameDatabase().update(
-            this,
-            getUid(),
-            "mallBuyCount." + data.getIdString(),
-            getMallBuyCount().get(data.getIdString())
-        );
-        
+           this,
+           getUid(),
+           "mallBuyCount",
+           this.getMallBuyCount());
+
         // Return
         return change;
     }
@@ -846,7 +872,7 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
         this.removeItem(currencyId, cost, change);
         
         // Add items
-        this.addItems(buyItems.mulitply(buyCount), change);
+        this.addItems(buyItems.multiply(buyCount), change);
         
         // Success
         return change.setSuccess(true);
@@ -879,7 +905,7 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
         switch (data.getUseAction()) {
             case 2 -> {
                 // Add items
-                this.addItems(data.getUseParams().mulitply(count), change);
+                this.addItems(data.getUseParams().multiply(count), change);
                 
                 // Success
                 success = true;
@@ -912,18 +938,18 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
         return change.setSuccess(true);
     }
     
-    public PlayerChangeInfo convertGems(int amount) {
-        // Verify that we have the gems
-        if (!this.hasItem(GameConstants.PREM_GEM_ITEM_ID, amount)) {
+    public PlayerChangeInfo convertStellaniteLuminaToDust(int amount) {
+        // Verify that we have enough stellanite lumina in the combined paid/free pool.
+        if (!this.hasMallPackageCurrency(GameConstants.FREE_STELLANITE_LUMINA_ITEM_ID, amount)) {
             return null;
         }
         
         // Create change info
         var change = new PlayerChangeInfo();
         
-        // Convert gems
-        this.removeItem(GameConstants.PREM_GEM_ITEM_ID, amount, change);
-        this.addItem(GameConstants.GEM_ITEM_ID, amount, change);
+        // Convert stellanite lumina into stellanite dust.
+        this.consumeMallPackageCurrency(GameConstants.FREE_STELLANITE_LUMINA_ITEM_ID, amount, change);
+        this.addItem(GameConstants.STELLANITE_DUST_ITEM_ID, amount, change);
         
         // Success
         return change.setSuccess(true);
@@ -942,7 +968,207 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
             Nebula.getGameDatabase().update(this, this.getUid(), "mallBuyCount", this.getMallBuyCount());
         }
     }
-    
+
+    public void resetWeeklyMallPackagePurchases() {
+        this.resetMallCounterByRefreshType(this.getMallPackageBuyCount(), "mallPackageBuyCount", GameConstants.REFRESH_TYPE_WEEKLY);
+    }
+
+    public void resetMonthlyMallPackagePurchases() {
+        this.resetMallCounterByRefreshType(this.getMallPackageBuyCount(), "mallPackageBuyCount", GameConstants.REFRESH_TYPE_MONTHLY);
+    }
+
+    private void resetMallCounterByRefreshType(String2IntMap counter, String fieldName, int refreshType) {
+        if (counter == null || counter.isEmpty()) {
+            return;
+        }
+
+        var updated = new String2IntMap();
+        boolean changed = false;
+
+        for (var entry : counter.object2IntEntrySet()) {
+            var data = GameData.getMallPackageDataTable().get(Utils.unescapeKey(entry.getKey()).hashCode());
+
+            if (data != null && data.getRefreshType() == refreshType) {
+                changed = true;
+                continue;
+            }
+
+            updated.put(entry.getKey(), entry.getIntValue());
+        }
+
+        if (!changed) {
+            return;
+        }
+
+        counter.clear();
+        counter.putAll(updated);
+        Nebula.getGameDatabase().update(this, this.getUid(), fieldName, counter);
+    }
+
+    private int getMallCounterValue(String2IntMap counter, String key) {
+        if (counter == null || key == null) {
+            return 0;
+        }
+
+        int directValue = counter.get(key);
+        String escapedKey = Utils.escapeKey(key);
+
+        if (escapedKey.equals(key)) {
+            return directValue;
+        }
+
+        return Math.max(directValue, counter.get(escapedKey));
+    }
+
+    private void setMallCounterValue(String2IntMap counter, String key, int value) {
+        if (counter == null || key == null) {
+            return;
+        }
+
+        String escapedKey = Utils.escapeKey(key);
+        counter.put(escapedKey, value);
+
+        if (!escapedKey.equals(key)) {
+            counter.removeInt(key);
+        }
+    }
+
+    public int getMallPackagePurchaseCount(String packageId) {
+        return this.getMallCounterValue(this.getMallPackageBuyCount(), packageId);
+    }
+
+    public int getMallShopPurchaseCount(String shopId) {
+        return this.getMallCounterValue(this.getMallBuyCount(), shopId);
+    }
+
+    public boolean hasMallGemMaidenBonus(String gemId) {
+        return this.getMallCounterValue(this.getGemMaidenClaimed(), gemId) <= 0;
+    }
+
+    /**
+     * Dedicated toggle for MallGem first-purchase bonus state.
+     * Can reset this field later to reopen maiden bonus eligibility
+     */
+    public void setMallGemMaidenClaimed(String gemId, boolean claimed) {
+        if (gemId == null) {
+            return;
+        }
+
+        if (this.gemMaidenClaimed == null) {
+            this.gemMaidenClaimed = new String2IntMap();
+        }
+
+        if (claimed) {
+            this.setMallCounterValue(this.getGemMaidenClaimed(), gemId, 1);
+        } else {
+            this.gemMaidenClaimed.removeInt(Utils.escapeKey(gemId));
+            this.gemMaidenClaimed.removeInt(gemId);
+        }
+        Nebula.getGameDatabase().update(this, getUid(), "gemMaidenClaimed", this.getGemMaidenClaimed());
+    }
+
+    /**
+     * Resets all MallGem maiden-bonus flags.
+     * This is the intended operation hook for anniversary-style first-purchase refreshes.
+     */
+    public void resetMallGemMaidenBonuses() {
+        if (this.gemMaidenClaimed == null || this.gemMaidenClaimed.isEmpty()) {
+            return;
+        }
+
+        this.gemMaidenClaimed.clear();
+        Nebula.getGameDatabase().update(this, getUid(), "gemMaidenClaimed", this.getGemMaidenClaimed());
+    }
+
+    public int getMallMonthlyCardPurchaseCount(String cardId) {
+        return this.getMallCounterValue(this.getMonthlyCardBuyCount(), cardId);
+    }
+
+    public PlayerChangeInfo buyMallPackage(MallPackageDef data) {
+        var player = this.getPlayer();
+        if (!data.canPurchase(player)) {
+            return null;
+        }
+
+        int currencyItemId = data.getCurrencyItemId();
+        int currencyItemQty = data.getCurrencyItemQty();
+        if (data.isItemPackage() && currencyItemId > 0 && currencyItemQty > 0
+                && !this.hasMallPackageCurrency(currencyItemId, currencyItemQty)) {
+            return null;
+        }
+
+        var change = new PlayerChangeInfo();
+
+        if (data.isItemPackage() && currencyItemId > 0 && currencyItemQty > 0) {
+            this.consumeMallPackageCurrency(currencyItemId, currencyItemQty, change);
+        }
+
+        this.addItems(data.getProducts(), change);
+
+        String packageId = data.getIdString();
+        int purchaseCount = this.getMallPackagePurchaseCount(packageId);
+        this.setMallCounterValue(this.getMallPackageBuyCount(), packageId, purchaseCount + 1);
+        Nebula.getGameDatabase().update(this, getUid(), "mallPackageBuyCount", this.getMallPackageBuyCount());
+
+        return change.setSuccess(true);
+    }
+
+    private boolean hasMallPackageCurrency(int currencyItemId, int currencyItemQty) {
+        if (currencyItemQty <= 0) {
+            return true;
+        }
+
+        if (currencyItemId == GameConstants.PAID_STELLANITE_LUMINA_ITEM_ID
+                || currencyItemId == GameConstants.FREE_STELLANITE_LUMINA_ITEM_ID) {
+            return this.getResourceCount(GameConstants.PAID_STELLANITE_LUMINA_ITEM_ID)
+                    + this.getResourceCount(GameConstants.FREE_STELLANITE_LUMINA_ITEM_ID) >= currencyItemQty;
+        }
+
+        return this.hasItem(currencyItemId, currencyItemQty);
+    }
+
+    private void consumeMallPackageCurrency(int currencyItemId, int currencyItemQty, PlayerChangeInfo change) {
+        if (currencyItemId == GameConstants.PAID_STELLANITE_LUMINA_ITEM_ID
+                || currencyItemId == GameConstants.FREE_STELLANITE_LUMINA_ITEM_ID) {
+            // use free stellanite lumina first.
+            int freeOwned = this.getResourceCount(GameConstants.FREE_STELLANITE_LUMINA_ITEM_ID);
+            int useFree = Math.min(freeOwned, currencyItemQty);
+            if (useFree > 0) {
+                this.removeItem(GameConstants.FREE_STELLANITE_LUMINA_ITEM_ID, useFree, change);
+            }
+
+            int remain = currencyItemQty - useFree;
+            if (remain > 0) {
+                this.removeItem(GameConstants.PAID_STELLANITE_LUMINA_ITEM_ID, remain, change);
+            }
+            return;
+        }
+
+        this.removeItem(currencyItemId, currencyItemQty, change);
+    }
+
+    public PlayerChangeInfo buyMallGem(MallGemDef data) {
+        var change = new PlayerChangeInfo();
+
+        this.addItems(data.buildProducts(this.getPlayer()), change);
+        this.setMallGemMaidenClaimed(data.getIdString(), true);
+
+        return change.setSuccess(true);
+    }
+
+    public PlayerChangeInfo buyMallMonthlyCard(MallMonthlyCardDef data) {
+        var change = new PlayerChangeInfo();
+
+        this.addItems(data.getProducts(), change);
+
+        String cardId = data.getIdString();
+        int purchaseCount = this.getMallMonthlyCardPurchaseCount(cardId);
+        this.setMallCounterValue(this.getMonthlyCardBuyCount(), cardId, purchaseCount + 1);
+        Nebula.getGameDatabase().update(this, getUid(), "monthlyCardBuyCount", this.getMonthlyCardBuyCount());
+
+        return change.setSuccess(true);
+    }
+
     // Database
     
     @SuppressWarnings("deprecation")
@@ -990,7 +1216,22 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
             // Set to save inventory to database
             save = true;
         }
-        
+
+        if (this.mallPackageBuyCount == null) {
+            this.mallPackageBuyCount = new String2IntMap();
+            save = true;
+        }
+
+        if (this.gemMaidenClaimed == null) {
+            this.gemMaidenClaimed = new String2IntMap();
+            save = true;
+        }
+
+        if (this.monthlyCardBuyCount == null) {
+            this.monthlyCardBuyCount = new String2IntMap();
+            save = true;
+        }
+
         // Update in database
         if (save) {
             this.save();

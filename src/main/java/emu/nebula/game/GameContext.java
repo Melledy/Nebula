@@ -1,21 +1,20 @@
 package emu.nebula.game;
 
-import java.time.Instant;
-import java.time.LocalDate;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import emu.nebula.GameConstants;
 import emu.nebula.Nebula;
 import emu.nebula.game.activity.ActivityModule;
 import emu.nebula.game.ban.BanModule;
 import emu.nebula.game.gacha.GachaModule;
 import emu.nebula.game.jointdrill.JointDrillModule;
+import emu.nebula.game.mall.PayModule;
 import emu.nebula.game.player.PlayerModule;
 import emu.nebula.game.scoreboss.ScoreBossModule;
 import emu.nebula.game.tutorial.TutorialModule;
 import emu.nebula.net.GameSession;
+import emu.nebula.util.ResetCycle;
 import emu.nebula.util.Utils;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
@@ -34,14 +33,15 @@ public class GameContext implements Runnable {
     private final ScoreBossModule scoreBossModule;
     private final JointDrillModule jointDrillModule;
     private final BanModule banModule;
+    private final PayModule payModule;
     
     // Game loop
     private final ScheduledExecutorService scheduler;
     
-    // Daily
-    private long epochDays;
-    private int epochWeeks;
-    private int epochMonths;
+    // Reset-period indexes aligned to the configured daily reset boundary.
+    private long resetDays;
+    private int resetWeeks;
+    private int resetMonths;
     
     public GameContext() {
         // Create session map
@@ -55,6 +55,7 @@ public class GameContext implements Runnable {
         this.scoreBossModule = new ScoreBossModule(this);
         this.jointDrillModule = new JointDrillModule(this);
         this.banModule = new BanModule(this);
+        this.payModule = new PayModule(this);
         
         // Run game loop
         this.scheduler = Executors.newScheduledThreadPool(1);
@@ -76,7 +77,7 @@ public class GameContext implements Runnable {
         }
         
         // Generate token
-        String token = null;
+        String token;
         
         do {
             token = session.generateToken();
@@ -107,20 +108,14 @@ public class GameContext implements Runnable {
 
     @Override
     public void run() {
-        // Check daily - Update epoch days
-        long offset = Nebula.getConfig().getServerOptions().getDailyResetHour() * -3600;
-        var instant = Instant.now().plusSeconds(offset);
-        var date = LocalDate.ofInstant(instant, GameConstants.UTC_ZONE);
-        
-        // Update epoch days
-        long lastEpochDays = this.epochDays;
-        this.epochDays = date.toEpochDay();
+        long lastResetDays = this.resetDays;
+        this.resetDays = Utils.getResetEpochDay();
         
         // Check if the day was changed
-        if (this.epochDays > lastEpochDays) {
+        if (this.resetDays > lastResetDays) {
             // Update epoch weeks/months
-            this.epochWeeks = Utils.getWeeks(this.epochDays);
-            this.epochMonths = Utils.getMonths(this.epochDays);
+            this.resetWeeks = Utils.getResetPeriodIndex(ResetCycle.WEEKLY, Nebula.getCurrentServerTime());
+            this.resetMonths = Utils.getResetPeriodIndex(ResetCycle.MONTHLY, Nebula.getCurrentServerTime());
             
             // Update score boss season
             this.getScoreBossModule().updateSeason();
@@ -145,8 +140,7 @@ public class GameContext implements Runnable {
             if (player == null) {
                 continue;
             }
-            
-            //
+
             player.checkResetDailies();
         }
     }

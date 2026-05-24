@@ -1,15 +1,11 @@
 package emu.nebula.game.battlepass;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
-
 import emu.nebula.GameConstants;
 import emu.nebula.Nebula;
 import emu.nebula.data.GameData;
+import emu.nebula.data.resources.BattlePassDef;
 import emu.nebula.data.resources.BattlePassRewardDef;
 import emu.nebula.database.GameDatabaseObject;
 import emu.nebula.game.inventory.ItemParamMap;
@@ -20,10 +16,15 @@ import emu.nebula.game.quest.QuestType;
 import emu.nebula.net.NetMsgId;
 import emu.nebula.proto.BattlePassInfoOuterClass.BattlePassInfo;
 import emu.nebula.util.Bitset;
-
 import lombok.Getter;
+import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @Getter
+@Setter
 @Entity(value = "battlepass", useDiscriminator = false)
 public class BattlePass implements GameDatabaseObject {
     @Id
@@ -49,7 +50,7 @@ public class BattlePass implements GameDatabaseObject {
     public BattlePass(BattlePassManager manager) {
         this.uid = manager.getPlayerUid();
         this.manager = manager;
-        this.battlePassId = GameConstants.BATTLE_PASS_ID;
+        this.battlePassId = getActiveBattlePassId();
         this.basicReward = new Bitset();
         this.premiumReward = new Bitset();
         
@@ -63,8 +64,22 @@ public class BattlePass implements GameDatabaseObject {
         this.save();
     }
 
-    public void setManager(BattlePassManager manager) {
-        this.manager = manager;
+    private static int getActiveBattlePassId() {
+        long currentTimeSec = Nebula.getCurrentServerTime();
+
+        for (BattlePassDef data : GameData.getBattlePassDataTable()) {
+            if (data == null) {
+                continue;
+            }
+
+            long start = data.getStartTimeTimestamp();
+            long end = data.getEndTimeTimestamp();
+            if (currentTimeSec >= start && currentTimeSec <= end) {
+                return data.getId();
+            }
+        }
+
+        return GameConstants.BATTLE_PASS_ID;
     }
     
     public Player getPlayer() {
@@ -116,29 +131,62 @@ public class BattlePass implements GameDatabaseObject {
     }
     
     /**
-     * Returns true if any rewards or quests are claimable
+     * Check claimable tasks to show battle pass red dot.
      */
-    public synchronized boolean hasNew() {
-        // Check if any quests are complete but unclaimed
+    public synchronized boolean hasClaimableQuest() {
+        if (!this.getPlayer().isBattlePassUnlocked()) {
+            return false;
+        }
+
+        var nextLevelData = GameData.getBattlePassLevelDataTable().get(this.getLevel() + 1);
+        if (nextLevelData == null) {
+            return false;
+        }
+
         for (var quest : getQuests().values()) {
             if (quest.isComplete() && !quest.isClaimed()) {
                 return true;
             }
         }
-        
-        // Check if we have any pending rewards
+
+        return false;
+    }
+
+    /**
+     * Returns whether the battle pass currently has at least one claimable
+     * reward lane item for the player's current level/mode.
+     */
+    public synchronized boolean hasClaimableReward() {
+        if (!this.getPlayer().isBattlePassUnlocked()) {
+            return false;
+        }
+
         for (int i = 1; i <= this.getLevel(); i++) {
             if (!this.getBasicReward().isSet(i)) {
                 return true;
             }
-            
+
             if (this.isPremium() && !this.getPremiumReward().isSet(i)) {
                 return true;
             }
         }
-        
-        // No claimable things
+
         return false;
+    }
+
+    /**
+     * Encodes the client battle-pass state red dot contract:
+     * 0 = none, 1 = quest only, 2 = reward only, 3 = both.
+     */
+    public synchronized int getClientState() {
+        int state = 0;
+        if (this.hasClaimableQuest()) {
+            state |= 1;
+        }
+        if (this.hasClaimableReward()) {
+            state |= 2;
+        }
+        return state;
     }
     
     public synchronized void resetDailyQuests(boolean resetWeekly) {
@@ -190,7 +238,7 @@ public class BattlePass implements GameDatabaseObject {
      * Update this quest on the player client
      */
     private void syncQuest(GameQuest quest) {
-        if (!getPlayer().hasSession()) {
+        if (!getPlayer().hasSession() || !getPlayer().isBattlePassUnlocked()) {
             return;
         }
         
@@ -269,7 +317,7 @@ public class BattlePass implements GameDatabaseObject {
     
     public PlayerChangeInfo receiveReward(boolean premium, int levelId) {
         // Get bitset
-        Bitset rewards = null;
+        Bitset rewards;
         
         if (premium) {
             rewards = this.getPremiumReward();
@@ -296,7 +344,13 @@ public class BattlePass implements GameDatabaseObject {
         
         // Add items
         if (premium) {
-            return getPlayer().getInventory().addItems(data.getPremiumRewards());
+            var premiumRewards = data.getPremiumRewards().clone();
+
+            if (this.getMode() >= 2 && data.hasLuxuryRewards()) {
+                premiumRewards.add(data.getLuxuryRewards());
+            }
+
+            return getPlayer().getInventory().addItems(premiumRewards);
         } else {
             return getPlayer().getInventory().addItems(data.getBasicRewards());
         }
@@ -308,38 +362,29 @@ public class BattlePass implements GameDatabaseObject {
         
         // Get unclaimed rewards
         for (int i = 1; i <= this.getLevel(); i++) {
-            // Cache reward data
-            BattlePassRewardDef data = null;
-            
-            // Basic reward
-            if (!this.getBasicReward().isSet(i)) {
-                // Set flag
-                this.getBasicReward().setBit(i);
-                
-                // Get reward data if we havent already
-                if (data == null) {
-                    data = this.getRewardData(i);
-                }
-                
-                // Add basic rewards
-                if (data != null) {
-                    rewards.add(data.getBasicRewards());
-                }
+            boolean claimBasic = !this.getBasicReward().isSet(i);
+            boolean claimPremium = this.isPremium() && !this.getPremiumReward().isSet(i);
+
+            if (!claimBasic && !claimPremium) {
+                continue;
             }
-            
-            // Premium reward
-            if (this.isPremium() && !this.getPremiumReward().isSet(i)) {
-                // Set flag
+
+            BattlePassRewardDef data = this.getRewardData(i);
+            if (data == null) {
+                continue;
+            }
+
+            if (claimBasic) {
+                this.getBasicReward().setBit(i);
+                rewards.add(data.getBasicRewards());
+            }
+
+            if (claimPremium) {
                 this.getPremiumReward().setBit(i);
-                
-                // Get reward data if we havent already
-                if (data == null) {
-                    data = this.getRewardData(i);
-                }
-                
-                // Add basic rewards
-                if (data != null) {
-                    rewards.add(data.getPremiumRewards());
+                rewards.add(data.getPremiumRewards());
+
+                if (this.getMode() >= 2 && data.hasLuxuryRewards()) {
+                    rewards.add(data.getLuxuryRewards());
                 }
             }
         }
@@ -358,6 +403,20 @@ public class BattlePass implements GameDatabaseObject {
     // Proto
     
     public BattlePassInfo toProto() {
+        // Return a locked/empty snapshot until the battle pass feature is unlocked,
+        // so the client cannot derive local quest or reward red dots from battle pass data.
+        if (!this.getPlayer().isBattlePassUnlocked()) {
+            return BattlePassInfo.newInstance()
+                    .setId(0)
+                    .setLevel(0)
+                    .setMode(0)
+                    .setExp(0)
+                    .setExpThisWeek(0)
+                    .setDeadline(0L)
+                    .setBasicReward()
+                    .setPremiumReward();
+        }
+
         var proto = BattlePassInfo.newInstance()
                 .setId(this.getBattlePassId())
                 .setLevel(this.getLevel())
@@ -367,10 +426,10 @@ public class BattlePass implements GameDatabaseObject {
                 .setDeadline(Long.MAX_VALUE)
                 .setBasicReward(this.getBasicReward().toByteArray())
                 .setPremiumReward(this.getPremiumReward().toByteArray());
-        
+
         var daily = proto.getMutableDailyQuests();
         var weekly = proto.getMutableWeeklyQuests();
-        
+
         for (var quest : this.getQuests().values()) {
             if (quest.getType() == QuestType.BattlePassDaily) {
                 daily.addList(quest.toProto());
@@ -378,7 +437,8 @@ public class BattlePass implements GameDatabaseObject {
                 weekly.addList(quest.toProto());
             }
         }
-        
+
         return proto;
     }
+
 }

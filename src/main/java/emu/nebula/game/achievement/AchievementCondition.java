@@ -148,11 +148,12 @@ public enum AchievementCondition {
         }
     }
 
-    private AchievementCondition(int value) {
+    AchievementCondition(int value) {
         this.value = value;
     }
 
     public static AchievementCondition getByValue(int value) {
         return map.get(value);
     }
+
 }

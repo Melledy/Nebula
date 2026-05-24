@@ -1,6 +1,8 @@
 package emu.nebula.game.quest;
 
 import dev.morphia.annotations.Entity;
+import emu.nebula.util.Utils;
+import emu.nebula.util.ResetCycle;
 import emu.nebula.proto.Public.Quest;
 import emu.nebula.proto.Public.QuestProgress;
 import lombok.Getter;
@@ -103,7 +105,21 @@ public class GameQuest {
                 .setTypeValue(this.getType())
                 .setStatus(this.getStatus())
                 .addProgress(progress);
+
+        long expire = this.getExpireTime();
+        if (expire > 0) {
+            proto.setExpire(expire);
+        }
         
         return proto;
     }
+
+    private long getExpireTime() {
+        return switch (this.type) {
+            case QuestType.BattlePassDaily -> Utils.getNextResetTimeSeconds(ResetCycle.DAILY);
+            case QuestType.BattlePassWeekly -> Utils.getNextResetTimeSeconds(ResetCycle.WEEKLY);
+            default -> 0L;
+        };
+    }
+
 }
