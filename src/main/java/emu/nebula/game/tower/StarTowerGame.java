@@ -633,7 +633,7 @@ public class StarTowerGame {
             int level = 1;
             
             // Check for bonuses
-            if (this.getItemCount(id) > 0) {
+            if (this.getItemCount(id) == 0) {
                 // New potential
                 if (Utils.randomChance(this.getModifiers().getBonusPotentialChance())) {
                     level += this.getModifiers().getBonusPotentialLevel();
