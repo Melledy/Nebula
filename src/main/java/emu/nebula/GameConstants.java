@@ -7,7 +7,7 @@ import emu.nebula.game.inventory.ItemParamMap;
 import emu.nebula.util.WeightedList;
 
 public class GameConstants {
-    public static final String VERSION = "1.11.0";
+    public static final String VERSION = "1.12.0";
     public static int DATA_VERSION = 0;
     
     public static final ZoneId UTC_ZONE = ZoneId.of("UTC");
@@ -45,7 +45,7 @@ public class GameConstants {
     public static final int MAX_BUILDS = 100;
     public static final int MAX_PRESETS = 50;
     
-    public static final int BATTLE_PASS_ID = 7;
+    public static final int BATTLE_PASS_ID = 9;
     
     public static final int MAX_FRIENDSHIPS = 50;
     public static final int MAX_PENDING_FRIENDSHIPS = 30;

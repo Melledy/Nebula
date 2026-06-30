@@ -534,6 +534,11 @@ public final class SkillInstanceSettle {
      */
     private final RepeatedMessage<Public.ItemTpl> surpriseItems = RepeatedMessage.newEmptyInstance(Public.ItemTpl.getFactory());
 
+    /**
+     * <code>repeated .ItemTpl DoubleItems = 9;</code>
+     */
+    private final RepeatedMessage<Public.ItemTpl> doubleItems = RepeatedMessage.newEmptyInstance(Public.ItemTpl.getFactory());
+
     private SkillInstanceSettleResp() {
     }
 
@@ -1063,6 +1068,74 @@ public final class SkillInstanceSettle {
       return this;
     }
 
+    /**
+     * <code>repeated .ItemTpl DoubleItems = 9;</code>
+     * @return whether the doubleItems field is set
+     */
+    public boolean hasDoubleItems() {
+      return (bitField0_ & 0x00000200) != 0;
+    }
+
+    /**
+     * <code>repeated .ItemTpl DoubleItems = 9;</code>
+     * @return this
+     */
+    public SkillInstanceSettleResp clearDoubleItems() {
+      bitField0_ &= ~0x00000200;
+      doubleItems.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .ItemTpl DoubleItems = 9;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableDoubleItems()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<Public.ItemTpl> getDoubleItems() {
+      return doubleItems;
+    }
+
+    /**
+     * <code>repeated .ItemTpl DoubleItems = 9;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<Public.ItemTpl> getMutableDoubleItems() {
+      bitField0_ |= 0x00000200;
+      return doubleItems;
+    }
+
+    /**
+     * <code>repeated .ItemTpl DoubleItems = 9;</code>
+     * @param value the doubleItems to add
+     * @return this
+     */
+    public SkillInstanceSettleResp addDoubleItems(final Public.ItemTpl value) {
+      bitField0_ |= 0x00000200;
+      doubleItems.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ItemTpl DoubleItems = 9;</code>
+     * @param values the doubleItems to add
+     * @return this
+     */
+    public SkillInstanceSettleResp addAllDoubleItems(final Public.ItemTpl... values) {
+      bitField0_ |= 0x00000200;
+      doubleItems.addAll(values);
+      return this;
+    }
+
     @Override
     public SkillInstanceSettleResp copyFrom(final SkillInstanceSettleResp other) {
       cachedSize = other.cachedSize;
@@ -1077,6 +1150,7 @@ public final class SkillInstanceSettle {
         firstItems.copyFrom(other.firstItems);
         threeStarItems.copyFrom(other.threeStarItems);
         surpriseItems.copyFrom(other.surpriseItems);
+        doubleItems.copyFrom(other.doubleItems);
       }
       return this;
     }
@@ -1114,6 +1188,9 @@ public final class SkillInstanceSettle {
       if (other.hasSurpriseItems()) {
         getMutableSurpriseItems().addAll(other.surpriseItems);
       }
+      if (other.hasDoubleItems()) {
+        getMutableDoubleItems().addAll(other.doubleItems);
+      }
       return this;
     }
 
@@ -1133,6 +1210,7 @@ public final class SkillInstanceSettle {
       firstItems.clear();
       threeStarItems.clear();
       surpriseItems.clear();
+      doubleItems.clear();
       return this;
     }
 
@@ -1149,6 +1227,7 @@ public final class SkillInstanceSettle {
       firstItems.clearQuick();
       threeStarItems.clearQuick();
       surpriseItems.clearQuick();
+      doubleItems.clearQuick();
       return this;
     }
 
@@ -1170,7 +1249,8 @@ public final class SkillInstanceSettle {
         && (!hasAwardItems() || awardItems.equals(other.awardItems))
         && (!hasFirstItems() || firstItems.equals(other.firstItems))
         && (!hasThreeStarItems() || threeStarItems.equals(other.threeStarItems))
-        && (!hasSurpriseItems() || surpriseItems.equals(other.surpriseItems));
+        && (!hasSurpriseItems() || surpriseItems.equals(other.surpriseItems))
+        && (!hasDoubleItems() || doubleItems.equals(other.doubleItems));
     }
 
     @Override
@@ -1219,6 +1299,12 @@ public final class SkillInstanceSettle {
           output.writeMessageNoTag(surpriseItems.get(i));
         }
       }
+      if ((bitField0_ & 0x00000200) != 0) {
+        for (int i = 0; i < doubleItems.length(); i++) {
+          output.writeRawByte((byte) 74);
+          output.writeMessageNoTag(doubleItems.get(i));
+        }
+      }
     }
 
     @Override
@@ -1250,6 +1336,9 @@ public final class SkillInstanceSettle {
       }
       if ((bitField0_ & 0x00000100) != 0) {
         size += (1 * surpriseItems.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(surpriseItems);
+      }
+      if ((bitField0_ & 0x00000200) != 0) {
+        size += (1 * doubleItems.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(doubleItems);
       }
       return size;
     }
@@ -1334,6 +1423,14 @@ public final class SkillInstanceSettle {
             // surpriseItems
             tag = input.readRepeatedMessage(surpriseItems, tag);
             bitField0_ |= 0x00000100;
+            if (tag != 74) {
+              break;
+            }
+          }
+          case 74: {
+            // doubleItems
+            tag = input.readRepeatedMessage(doubleItems, tag);
+            bitField0_ |= 0x00000200;
             if (tag != 0) {
               break;
             }
@@ -1381,6 +1478,9 @@ public final class SkillInstanceSettle {
       }
       if ((bitField0_ & 0x00000100) != 0) {
         output.writeRepeatedMessage(FieldNames.surpriseItems, surpriseItems);
+      }
+      if ((bitField0_ & 0x00000200) != 0) {
+        output.writeRepeatedMessage(FieldNames.doubleItems, doubleItems);
       }
       output.endObject();
     }
@@ -1491,6 +1591,17 @@ public final class SkillInstanceSettle {
             }
             break;
           }
+          case 29810255: {
+            if (input.isAtField(FieldNames.doubleItems)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(doubleItems);
+                bitField0_ |= 0x00000200;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           default: {
             input.skipUnknownField();
             break;
@@ -1561,6 +1672,8 @@ public final class SkillInstanceSettle {
       static final FieldName threeStarItems = FieldName.forField("ThreeStarItems");
 
       static final FieldName surpriseItems = FieldName.forField("SurpriseItems");
+
+      static final FieldName doubleItems = FieldName.forField("DoubleItems");
     }
   }
 }

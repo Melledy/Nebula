@@ -7,7 +7,6 @@ import emu.nebula.net.HandlerId;
 import emu.nebula.net.NetHandler;
 import emu.nebula.net.NetMsgId;
 import emu.nebula.proto.BattlePassOrder.BattlePassOrderReq;
-import emu.nebula.proto.MallGemOrder.OrderInfo;
 
 @HandlerId(NetMsgId.battle_pass_order_req)
 public class HandlerBattlePassOrderReq extends NetHandler {

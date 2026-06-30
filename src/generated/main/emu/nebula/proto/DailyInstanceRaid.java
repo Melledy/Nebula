@@ -664,6 +664,11 @@ public final class DailyInstanceRaid {
      */
     private final RepeatedMessage<Public.Item> select = RepeatedMessage.newEmptyInstance(Public.Item.getFactory());
 
+    /**
+     * <code>repeated .Item DoubleItems = 2;</code>
+     */
+    private final RepeatedMessage<Public.Item> doubleItems = RepeatedMessage.newEmptyInstance(Public.Item.getFactory());
+
     private DailyInstanceReward() {
     }
 
@@ -858,6 +863,74 @@ public final class DailyInstanceRaid {
       return this;
     }
 
+    /**
+     * <code>repeated .Item DoubleItems = 2;</code>
+     * @return whether the doubleItems field is set
+     */
+    public boolean hasDoubleItems() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>repeated .Item DoubleItems = 2;</code>
+     * @return this
+     */
+    public DailyInstanceReward clearDoubleItems() {
+      bitField0_ &= ~0x00000008;
+      doubleItems.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .Item DoubleItems = 2;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableDoubleItems()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<Public.Item> getDoubleItems() {
+      return doubleItems;
+    }
+
+    /**
+     * <code>repeated .Item DoubleItems = 2;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<Public.Item> getMutableDoubleItems() {
+      bitField0_ |= 0x00000008;
+      return doubleItems;
+    }
+
+    /**
+     * <code>repeated .Item DoubleItems = 2;</code>
+     * @param value the doubleItems to add
+     * @return this
+     */
+    public DailyInstanceReward addDoubleItems(final Public.Item value) {
+      bitField0_ |= 0x00000008;
+      doubleItems.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .Item DoubleItems = 2;</code>
+     * @param values the doubleItems to add
+     * @return this
+     */
+    public DailyInstanceReward addAllDoubleItems(final Public.Item... values) {
+      bitField0_ |= 0x00000008;
+      doubleItems.addAll(values);
+      return this;
+    }
+
     @Override
     public DailyInstanceReward copyFrom(final DailyInstanceReward other) {
       cachedSize = other.cachedSize;
@@ -866,6 +939,7 @@ public final class DailyInstanceRaid {
         exp = other.exp;
         nextPackage.copyFrom(other.nextPackage);
         select.copyFrom(other.select);
+        doubleItems.copyFrom(other.doubleItems);
       }
       return this;
     }
@@ -885,6 +959,9 @@ public final class DailyInstanceRaid {
       if (other.hasSelect()) {
         getMutableSelect().addAll(other.select);
       }
+      if (other.hasDoubleItems()) {
+        getMutableDoubleItems().addAll(other.doubleItems);
+      }
       return this;
     }
 
@@ -898,6 +975,7 @@ public final class DailyInstanceRaid {
       exp = 0;
       nextPackage.clear();
       select.clear();
+      doubleItems.clear();
       return this;
     }
 
@@ -910,6 +988,7 @@ public final class DailyInstanceRaid {
       bitField0_ = 0;
       nextPackage.clear();
       select.clearQuick();
+      doubleItems.clearQuick();
       return this;
     }
 
@@ -925,7 +1004,8 @@ public final class DailyInstanceRaid {
       return bitField0_ == other.bitField0_
         && (!hasExp() || exp == other.exp)
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
-        && (!hasSelect() || select.equals(other.select));
+        && (!hasSelect() || select.equals(other.select))
+        && (!hasDoubleItems() || doubleItems.equals(other.doubleItems));
     }
 
     @Override
@@ -944,6 +1024,12 @@ public final class DailyInstanceRaid {
           output.writeMessageNoTag(select.get(i));
         }
       }
+      if ((bitField0_ & 0x00000008) != 0) {
+        for (int i = 0; i < doubleItems.length(); i++) {
+          output.writeRawByte((byte) 18);
+          output.writeMessageNoTag(doubleItems.get(i));
+        }
+      }
     }
 
     @Override
@@ -957,6 +1043,9 @@ public final class DailyInstanceRaid {
       }
       if ((bitField0_ & 0x00000004) != 0) {
         size += (1 * select.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(select);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += (1 * doubleItems.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(doubleItems);
       }
       return size;
     }
@@ -990,6 +1079,14 @@ public final class DailyInstanceRaid {
             // select
             tag = input.readRepeatedMessage(select, tag);
             bitField0_ |= 0x00000004;
+            if (tag != 18) {
+              break;
+            }
+          }
+          case 18: {
+            // doubleItems
+            tag = input.readRepeatedMessage(doubleItems, tag);
+            bitField0_ |= 0x00000008;
             if (tag != 0) {
               break;
             }
@@ -1019,6 +1116,9 @@ public final class DailyInstanceRaid {
       }
       if ((bitField0_ & 0x00000004) != 0) {
         output.writeRepeatedMessage(FieldNames.select, select);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRepeatedMessage(FieldNames.doubleItems, doubleItems);
       }
       output.endObject();
     }
@@ -1057,6 +1157,17 @@ public final class DailyInstanceRaid {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(select);
                 bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 29810255: {
+            if (input.isAtField(FieldNames.doubleItems)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(doubleItems);
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -1121,6 +1232,8 @@ public final class DailyInstanceRaid {
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
       static final FieldName select = FieldName.forField("Select");
+
+      static final FieldName doubleItems = FieldName.forField("DoubleItems");
     }
   }
 

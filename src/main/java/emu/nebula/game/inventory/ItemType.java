@@ -18,7 +18,9 @@ public enum ItemType {
     Title         (12),
     Honor         (13),
     HeadItem      (14),
-    LevelHonor    (15);
+    LevelHonor    (15),
+    TraceRequest  (16),
+    HuntPermit    (17);
 
     @Getter
     private final int value;

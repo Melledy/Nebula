@@ -60,9 +60,14 @@ public class ActivityModule extends GameContextModule {
         //this.activities.add(1010704);
         
         // Heartbeat! Neo-Inspired Rhapsody
-        this.activities.add(1010801);
-        this.activities.add(1010803);
-        this.activities.add(1010804);
+        //this.activities.add(1010801);
+        //this.activities.add(1010803);
+        //this.activities.add(1010804);
+        
+        // A Sandstorm of Gunfire
+        this.activities.add(1010901);
+        this.activities.add(1010903);
+        this.activities.add(1010904);
         
         // ===== Joint Drills (Finale Echoing) =====
         //this.activities.add(510003); // Causes soft lock in event screen
@@ -70,8 +75,8 @@ public class ActivityModule extends GameContextModule {
         // ===== Etc Events =====
         
         // Trial activities
-        this.activities.add(700117);
-        this.activities.add(700118);
+        this.activities.add(700123);
+        this.activities.add(700124);
 
         // Tower defense activity
         this.activities.add(102002); // Broken
@@ -79,8 +84,8 @@ public class ActivityModule extends GameContextModule {
         // Login events
         //this.activities.add(301011);  // Christmas 2025
         //this.activities.add(301012);  // Christmas 2025
-        this.activities.add(301031);    // Stellar Prelude
-        this.activities.add(301033);    // Price of the Star
+        //this.activities.add(301031);  // Stellar Prelude
+        //this.activities.add(301033);  // Price of the Star
         
         // Fatebound Stellar Deck
         //this.activities.add(800001); // Causes soft lock in event screen

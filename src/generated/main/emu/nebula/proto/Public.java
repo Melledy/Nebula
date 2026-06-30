@@ -54534,6 +54534,567 @@ public final class Public {
   }
 
   /**
+   * Protobuf type {@code ActivityDouble}
+   */
+  public static final class ActivityDouble extends ProtoMessage<ActivityDouble> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     */
+    private int activityId;
+
+    /**
+     * <code>optional uint32 DailyUseTimes = 2;</code>
+     */
+    private int dailyUseTimes;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     */
+    private final RepeatedMessage<ActivityQuest> quests = RepeatedMessage.newEmptyInstance(ActivityQuest.getFactory());
+
+    private ActivityDouble() {
+    }
+
+    /**
+     * @return a new empty instance of {@code ActivityDouble}
+     */
+    public static ActivityDouble newInstance() {
+      return new ActivityDouble();
+    }
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     * @return whether the activityId field is set
+     */
+    public boolean hasActivityId() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     * @return this
+     */
+    public ActivityDouble clearActivityId() {
+      bitField0_ &= ~0x00000001;
+      activityId = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     * @return the activityId
+     */
+    public int getActivityId() {
+      return activityId;
+    }
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     * @param value the activityId to set
+     * @return this
+     */
+    public ActivityDouble setActivityId(final int value) {
+      bitField0_ |= 0x00000001;
+      activityId = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 DailyUseTimes = 2;</code>
+     * @return whether the dailyUseTimes field is set
+     */
+    public boolean hasDailyUseTimes() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint32 DailyUseTimes = 2;</code>
+     * @return this
+     */
+    public ActivityDouble clearDailyUseTimes() {
+      bitField0_ &= ~0x00000002;
+      dailyUseTimes = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 DailyUseTimes = 2;</code>
+     * @return the dailyUseTimes
+     */
+    public int getDailyUseTimes() {
+      return dailyUseTimes;
+    }
+
+    /**
+     * <code>optional uint32 DailyUseTimes = 2;</code>
+     * @param value the dailyUseTimes to set
+     * @return this
+     */
+    public ActivityDouble setDailyUseTimes(final int value) {
+      bitField0_ |= 0x00000002;
+      dailyUseTimes = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public ActivityDouble clearNextPackage() {
+      bitField0_ &= ~0x00000004;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000004;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public ActivityDouble addNextPackage(final byte value) {
+      bitField0_ |= 0x00000004;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public ActivityDouble addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public ActivityDouble setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * @return whether the quests field is set
+     */
+    public boolean hasQuests() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * @return this
+     */
+    public ActivityDouble clearQuests() {
+      bitField0_ &= ~0x00000008;
+      quests.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableQuests()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<ActivityQuest> getQuests() {
+      return quests;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<ActivityQuest> getMutableQuests() {
+      bitField0_ |= 0x00000008;
+      return quests;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * @param value the quests to add
+     * @return this
+     */
+    public ActivityDouble addQuests(final ActivityQuest value) {
+      bitField0_ |= 0x00000008;
+      quests.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * @param values the quests to add
+     * @return this
+     */
+    public ActivityDouble addAllQuests(final ActivityQuest... values) {
+      bitField0_ |= 0x00000008;
+      quests.addAll(values);
+      return this;
+    }
+
+    @Override
+    public ActivityDouble copyFrom(final ActivityDouble other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        activityId = other.activityId;
+        dailyUseTimes = other.dailyUseTimes;
+        nextPackage.copyFrom(other.nextPackage);
+        quests.copyFrom(other.quests);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityDouble mergeFrom(final ActivityDouble other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasActivityId()) {
+        setActivityId(other.activityId);
+      }
+      if (other.hasDailyUseTimes()) {
+        setDailyUseTimes(other.dailyUseTimes);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasQuests()) {
+        getMutableQuests().addAll(other.quests);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityDouble clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      activityId = 0;
+      dailyUseTimes = 0;
+      nextPackage.clear();
+      quests.clear();
+      return this;
+    }
+
+    @Override
+    public ActivityDouble clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      quests.clearQuick();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof ActivityDouble)) {
+        return false;
+      }
+      ActivityDouble other = (ActivityDouble) o;
+      return bitField0_ == other.bitField0_
+        && (!hasActivityId() || activityId == other.activityId)
+        && (!hasDailyUseTimes() || dailyUseTimes == other.dailyUseTimes)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasQuests() || quests.equals(other.quests));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(activityId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeUInt32NoTag(dailyUseTimes);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        for (int i = 0; i < quests.length(); i++) {
+          output.writeRawByte((byte) 26);
+          output.writeMessageNoTag(quests.get(i));
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(activityId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(dailyUseTimes);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += (1 * quests.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(quests);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public ActivityDouble mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // activityId
+            activityId = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16) {
+              break;
+            }
+          }
+          case 16: {
+            // dailyUseTimes
+            dailyUseTimes = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 26) {
+              break;
+            }
+          }
+          case 26: {
+            // quests
+            tag = input.readRepeatedMessage(quests, tag);
+            bitField0_ |= 0x00000008;
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.activityId, activityId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeUInt32(FieldNames.dailyUseTimes, dailyUseTimes);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRepeatedMessage(FieldNames.quests, quests);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public ActivityDouble mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case -252882774: {
+            if (input.isAtField(FieldNames.activityId)) {
+              if (!input.trySkipNullValue()) {
+                activityId = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 1822029592: {
+            if (input.isAtField(FieldNames.dailyUseTimes)) {
+              if (!input.trySkipNullValue()) {
+                dailyUseTimes = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1864830991: {
+            if (input.isAtField(FieldNames.quests)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(quests);
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public ActivityDouble clone() {
+      return new ActivityDouble().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static ActivityDouble parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new ActivityDouble(), data).checkInitialized();
+    }
+
+    public static ActivityDouble parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityDouble(), input).checkInitialized();
+    }
+
+    public static ActivityDouble parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityDouble(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating ActivityDouble messages
+     */
+    public static MessageFactory<ActivityDouble> getFactory() {
+      return ActivityDoubleFactory.INSTANCE;
+    }
+
+    private enum ActivityDoubleFactory implements MessageFactory<ActivityDouble> {
+      INSTANCE;
+
+      @Override
+      public ActivityDouble create() {
+        return ActivityDouble.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName activityId = FieldName.forField("ActivityId");
+
+      static final FieldName dailyUseTimes = FieldName.forField("DailyUseTimes");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName quests = FieldName.forField("Quests");
+    }
+  }
+
+  /**
    * Protobuf type {@code AffinityInfo}
    */
   public static final class AffinityInfo extends ProtoMessage<AffinityInfo> implements Cloneable {

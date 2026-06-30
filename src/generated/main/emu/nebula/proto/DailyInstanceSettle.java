@@ -514,6 +514,11 @@ public final class DailyInstanceSettle {
      */
     private final RepeatedMessage<Public.Item> first = RepeatedMessage.newEmptyInstance(Public.Item.getFactory());
 
+    /**
+     * <code>repeated .Item DoubleItems = 4;</code>
+     */
+    private final RepeatedMessage<Public.Item> doubleItems = RepeatedMessage.newEmptyInstance(Public.Item.getFactory());
+
     private DailyInstanceSettleResp() {
     }
 
@@ -833,6 +838,74 @@ public final class DailyInstanceSettle {
       return this;
     }
 
+    /**
+     * <code>repeated .Item DoubleItems = 4;</code>
+     * @return whether the doubleItems field is set
+     */
+    public boolean hasDoubleItems() {
+      return (bitField0_ & 0x00000020) != 0;
+    }
+
+    /**
+     * <code>repeated .Item DoubleItems = 4;</code>
+     * @return this
+     */
+    public DailyInstanceSettleResp clearDoubleItems() {
+      bitField0_ &= ~0x00000020;
+      doubleItems.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .Item DoubleItems = 4;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableDoubleItems()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<Public.Item> getDoubleItems() {
+      return doubleItems;
+    }
+
+    /**
+     * <code>repeated .Item DoubleItems = 4;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<Public.Item> getMutableDoubleItems() {
+      bitField0_ |= 0x00000020;
+      return doubleItems;
+    }
+
+    /**
+     * <code>repeated .Item DoubleItems = 4;</code>
+     * @param value the doubleItems to add
+     * @return this
+     */
+    public DailyInstanceSettleResp addDoubleItems(final Public.Item value) {
+      bitField0_ |= 0x00000020;
+      doubleItems.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .Item DoubleItems = 4;</code>
+     * @param values the doubleItems to add
+     * @return this
+     */
+    public DailyInstanceSettleResp addAllDoubleItems(final Public.Item... values) {
+      bitField0_ |= 0x00000020;
+      doubleItems.addAll(values);
+      return this;
+    }
+
     @Override
     public DailyInstanceSettleResp copyFrom(final DailyInstanceSettleResp other) {
       cachedSize = other.cachedSize;
@@ -843,6 +916,7 @@ public final class DailyInstanceSettle {
         nextPackage.copyFrom(other.nextPackage);
         select.copyFrom(other.select);
         first.copyFrom(other.first);
+        doubleItems.copyFrom(other.doubleItems);
       }
       return this;
     }
@@ -868,6 +942,9 @@ public final class DailyInstanceSettle {
       if (other.hasFirst()) {
         getMutableFirst().addAll(other.first);
       }
+      if (other.hasDoubleItems()) {
+        getMutableDoubleItems().addAll(other.doubleItems);
+      }
       return this;
     }
 
@@ -883,6 +960,7 @@ public final class DailyInstanceSettle {
       nextPackage.clear();
       select.clear();
       first.clear();
+      doubleItems.clear();
       return this;
     }
 
@@ -897,6 +975,7 @@ public final class DailyInstanceSettle {
       nextPackage.clear();
       select.clearQuick();
       first.clearQuick();
+      doubleItems.clearQuick();
       return this;
     }
 
@@ -914,7 +993,8 @@ public final class DailyInstanceSettle {
         && (!hasChange() || change.equals(other.change))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasSelect() || select.equals(other.select))
-        && (!hasFirst() || first.equals(other.first));
+        && (!hasFirst() || first.equals(other.first))
+        && (!hasDoubleItems() || doubleItems.equals(other.doubleItems));
     }
 
     @Override
@@ -943,6 +1023,12 @@ public final class DailyInstanceSettle {
           output.writeMessageNoTag(first.get(i));
         }
       }
+      if ((bitField0_ & 0x00000020) != 0) {
+        for (int i = 0; i < doubleItems.length(); i++) {
+          output.writeRawByte((byte) 34);
+          output.writeMessageNoTag(doubleItems.get(i));
+        }
+      }
     }
 
     @Override
@@ -962,6 +1048,9 @@ public final class DailyInstanceSettle {
       }
       if ((bitField0_ & 0x00000010) != 0) {
         size += (1 * first.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(first);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        size += (1 * doubleItems.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(doubleItems);
       }
       return size;
     }
@@ -1012,6 +1101,14 @@ public final class DailyInstanceSettle {
             // first
             tag = input.readRepeatedMessage(first, tag);
             bitField0_ |= 0x00000010;
+            if (tag != 34) {
+              break;
+            }
+          }
+          case 34: {
+            // doubleItems
+            tag = input.readRepeatedMessage(doubleItems, tag);
+            bitField0_ |= 0x00000020;
             if (tag != 0) {
               break;
             }
@@ -1047,6 +1144,9 @@ public final class DailyInstanceSettle {
       }
       if ((bitField0_ & 0x00000010) != 0) {
         output.writeRepeatedMessage(FieldNames.first, first);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        output.writeRepeatedMessage(FieldNames.doubleItems, doubleItems);
       }
       output.endObject();
     }
@@ -1107,6 +1207,17 @@ public final class DailyInstanceSettle {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(first);
                 bitField0_ |= 0x00000010;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 29810255: {
+            if (input.isAtField(FieldNames.doubleItems)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(doubleItems);
+                bitField0_ |= 0x00000020;
               }
             } else {
               input.skipUnknownField();
@@ -1175,6 +1286,8 @@ public final class DailyInstanceSettle {
       static final FieldName select = FieldName.forField("Select");
 
       static final FieldName first = FieldName.forField("First");
+
+      static final FieldName doubleItems = FieldName.forField("DoubleItems");
     }
   }
 }

@@ -700,6 +700,9 @@ public class NetMsgId {
     public static final int activity_penguin_card_quest_reward_receive_req = 8404;
     public static final int activity_penguin_card_quest_reward_receive_succeed_ack = 8405;
     public static final int activity_penguin_card_quest_reward_receive_failed_ack = 8406;
+    public static final int activity_double_quest_reward_receive_req = 8407;
+    public static final int activity_double_quest_reward_receive_succeed_ack = 8408;
+    public static final int activity_double_quest_reward_receive_failed_ack = 8409;
     public static final int mail_list_req = 9001;
     public static final int mail_list_succeed_ack = 9002;
     public static final int mail_list_failed_ack = 9003;
@@ -882,6 +885,7 @@ public class NetMsgId {
     public static final int activity_end_item_change_notify = 10053;
     public static final int item_expired_change_notify = 10054;
     public static final int milkout_character_unlock_notify = 10055;
+    public static final int activity_double_reward_times_notify = 10056;
     public static final int activity_mining_apply_req = 11001;
     public static final int activity_mining_apply_succeed_ack = 11002;
     public static final int activity_mining_apply_failed_ack = 11003;

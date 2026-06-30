@@ -584,6 +584,11 @@ public final class CharGemInstanceSweep {
      */
     private final RepeatedMessage<Public.ItemTpl> awardItems = RepeatedMessage.newEmptyInstance(Public.ItemTpl.getFactory());
 
+    /**
+     * <code>repeated .ItemTpl DoubleItems = 3;</code>
+     */
+    private final RepeatedMessage<Public.ItemTpl> doubleItems = RepeatedMessage.newEmptyInstance(Public.ItemTpl.getFactory());
+
     private CharGemInstanceSweepReward() {
     }
 
@@ -778,6 +783,74 @@ public final class CharGemInstanceSweep {
       return this;
     }
 
+    /**
+     * <code>repeated .ItemTpl DoubleItems = 3;</code>
+     * @return whether the doubleItems field is set
+     */
+    public boolean hasDoubleItems() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>repeated .ItemTpl DoubleItems = 3;</code>
+     * @return this
+     */
+    public CharGemInstanceSweepReward clearDoubleItems() {
+      bitField0_ &= ~0x00000008;
+      doubleItems.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .ItemTpl DoubleItems = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableDoubleItems()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<Public.ItemTpl> getDoubleItems() {
+      return doubleItems;
+    }
+
+    /**
+     * <code>repeated .ItemTpl DoubleItems = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<Public.ItemTpl> getMutableDoubleItems() {
+      bitField0_ |= 0x00000008;
+      return doubleItems;
+    }
+
+    /**
+     * <code>repeated .ItemTpl DoubleItems = 3;</code>
+     * @param value the doubleItems to add
+     * @return this
+     */
+    public CharGemInstanceSweepReward addDoubleItems(final Public.ItemTpl value) {
+      bitField0_ |= 0x00000008;
+      doubleItems.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ItemTpl DoubleItems = 3;</code>
+     * @param values the doubleItems to add
+     * @return this
+     */
+    public CharGemInstanceSweepReward addAllDoubleItems(final Public.ItemTpl... values) {
+      bitField0_ |= 0x00000008;
+      doubleItems.addAll(values);
+      return this;
+    }
+
     @Override
     public CharGemInstanceSweepReward copyFrom(final CharGemInstanceSweepReward other) {
       cachedSize = other.cachedSize;
@@ -786,6 +859,7 @@ public final class CharGemInstanceSweep {
         exp = other.exp;
         nextPackage.copyFrom(other.nextPackage);
         awardItems.copyFrom(other.awardItems);
+        doubleItems.copyFrom(other.doubleItems);
       }
       return this;
     }
@@ -805,6 +879,9 @@ public final class CharGemInstanceSweep {
       if (other.hasAwardItems()) {
         getMutableAwardItems().addAll(other.awardItems);
       }
+      if (other.hasDoubleItems()) {
+        getMutableDoubleItems().addAll(other.doubleItems);
+      }
       return this;
     }
 
@@ -818,6 +895,7 @@ public final class CharGemInstanceSweep {
       exp = 0;
       nextPackage.clear();
       awardItems.clear();
+      doubleItems.clear();
       return this;
     }
 
@@ -830,6 +908,7 @@ public final class CharGemInstanceSweep {
       bitField0_ = 0;
       nextPackage.clear();
       awardItems.clearQuick();
+      doubleItems.clearQuick();
       return this;
     }
 
@@ -845,7 +924,8 @@ public final class CharGemInstanceSweep {
       return bitField0_ == other.bitField0_
         && (!hasExp() || exp == other.exp)
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
-        && (!hasAwardItems() || awardItems.equals(other.awardItems));
+        && (!hasAwardItems() || awardItems.equals(other.awardItems))
+        && (!hasDoubleItems() || doubleItems.equals(other.doubleItems));
     }
 
     @Override
@@ -864,6 +944,12 @@ public final class CharGemInstanceSweep {
           output.writeMessageNoTag(awardItems.get(i));
         }
       }
+      if ((bitField0_ & 0x00000008) != 0) {
+        for (int i = 0; i < doubleItems.length(); i++) {
+          output.writeRawByte((byte) 26);
+          output.writeMessageNoTag(doubleItems.get(i));
+        }
+      }
     }
 
     @Override
@@ -877,6 +963,9 @@ public final class CharGemInstanceSweep {
       }
       if ((bitField0_ & 0x00000004) != 0) {
         size += (1 * awardItems.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(awardItems);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += (1 * doubleItems.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(doubleItems);
       }
       return size;
     }
@@ -910,6 +999,14 @@ public final class CharGemInstanceSweep {
             // awardItems
             tag = input.readRepeatedMessage(awardItems, tag);
             bitField0_ |= 0x00000004;
+            if (tag != 26) {
+              break;
+            }
+          }
+          case 26: {
+            // doubleItems
+            tag = input.readRepeatedMessage(doubleItems, tag);
+            bitField0_ |= 0x00000008;
             if (tag != 0) {
               break;
             }
@@ -939,6 +1036,9 @@ public final class CharGemInstanceSweep {
       }
       if ((bitField0_ & 0x00000004) != 0) {
         output.writeRepeatedMessage(FieldNames.awardItems, awardItems);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRepeatedMessage(FieldNames.doubleItems, doubleItems);
       }
       output.endObject();
     }
@@ -977,6 +1077,17 @@ public final class CharGemInstanceSweep {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(awardItems);
                 bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 29810255: {
+            if (input.isAtField(FieldNames.doubleItems)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(doubleItems);
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -1041,6 +1152,8 @@ public final class CharGemInstanceSweep {
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
       static final FieldName awardItems = FieldName.forField("AwardItems");
+
+      static final FieldName doubleItems = FieldName.forField("DoubleItems");
     }
   }
 

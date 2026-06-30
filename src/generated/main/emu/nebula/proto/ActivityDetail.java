@@ -121,7 +121,12 @@ public final class ActivityDetail {
     private final Public.ActivityGDS gDS = Public.ActivityGDS.newInstance();
 
     /**
-     * <code>optional .ActivityHistoryStoryChapter HistoryStoryChapter = 21;</code>
+     * <code>optional .ActivityDouble Double = 21;</code>
+     */
+    private final Public.ActivityDouble double_ = Public.ActivityDouble.newInstance();
+
+    /**
+     * <code>optional .ActivityHistoryStoryChapter HistoryStoryChapter = 22;</code>
      */
     private final Public.ActivityHistoryStoryChapter historyStoryChapter = Public.ActivityHistoryStoryChapter.newInstance();
 
@@ -1261,25 +1266,82 @@ public final class ActivityDetail {
     }
 
     /**
-     * <code>optional .ActivityHistoryStoryChapter HistoryStoryChapter = 21;</code>
-     * @return whether the historyStoryChapter field is set
+     * <code>optional .ActivityDouble Double = 21;</code>
+     * @return whether the double_ field is set
      */
-    public boolean hasHistoryStoryChapter() {
+    public boolean hasDouble() {
       return (bitField0_ & 0x00100000) != 0;
     }
 
     /**
-     * <code>optional .ActivityHistoryStoryChapter HistoryStoryChapter = 21;</code>
+     * <code>optional .ActivityDouble Double = 21;</code>
+     * @return this
+     */
+    public ActivityMsg clearDouble() {
+      bitField0_ &= ~0x00100000;
+      double_.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityDouble Double = 21;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableDouble()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.ActivityDouble getDouble() {
+      return double_;
+    }
+
+    /**
+     * <code>optional .ActivityDouble Double = 21;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.ActivityDouble getMutableDouble() {
+      bitField0_ |= 0x00100000;
+      return double_;
+    }
+
+    /**
+     * <code>optional .ActivityDouble Double = 21;</code>
+     * @param value the double_ to set
+     * @return this
+     */
+    public ActivityMsg setDouble(final Public.ActivityDouble value) {
+      bitField0_ |= 0x00100000;
+      double_.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityHistoryStoryChapter HistoryStoryChapter = 22;</code>
+     * @return whether the historyStoryChapter field is set
+     */
+    public boolean hasHistoryStoryChapter() {
+      return (bitField0_ & 0x00200000) != 0;
+    }
+
+    /**
+     * <code>optional .ActivityHistoryStoryChapter HistoryStoryChapter = 22;</code>
      * @return this
      */
     public ActivityMsg clearHistoryStoryChapter() {
-      bitField0_ &= ~0x00100000;
+      bitField0_ &= ~0x00200000;
       historyStoryChapter.clear();
       return this;
     }
 
     /**
-     * <code>optional .ActivityHistoryStoryChapter HistoryStoryChapter = 21;</code>
+     * <code>optional .ActivityHistoryStoryChapter HistoryStoryChapter = 22;</code>
      *
      * This method returns the internal storage object without modifying any has state.
      * The returned object should not be modified and be treated as read-only.
@@ -1293,7 +1355,7 @@ public final class ActivityDetail {
     }
 
     /**
-     * <code>optional .ActivityHistoryStoryChapter HistoryStoryChapter = 21;</code>
+     * <code>optional .ActivityHistoryStoryChapter HistoryStoryChapter = 22;</code>
      *
      * This method returns the internal storage object and sets the corresponding
      * has state. The returned object will become part of this message and its
@@ -1302,17 +1364,17 @@ public final class ActivityDetail {
      * @return internal storage object for modifications
      */
     public Public.ActivityHistoryStoryChapter getMutableHistoryStoryChapter() {
-      bitField0_ |= 0x00100000;
+      bitField0_ |= 0x00200000;
       return historyStoryChapter;
     }
 
     /**
-     * <code>optional .ActivityHistoryStoryChapter HistoryStoryChapter = 21;</code>
+     * <code>optional .ActivityHistoryStoryChapter HistoryStoryChapter = 22;</code>
      * @param value the historyStoryChapter to set
      * @return this
      */
     public ActivityMsg setHistoryStoryChapter(final Public.ActivityHistoryStoryChapter value) {
-      bitField0_ |= 0x00100000;
+      bitField0_ |= 0x00200000;
       historyStoryChapter.copyFrom(value);
       return this;
     }
@@ -1322,7 +1384,7 @@ public final class ActivityDetail {
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00200000) != 0;
+      return (bitField0_ & 0x00400000) != 0;
     }
 
     /**
@@ -1330,7 +1392,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg clearNextPackage() {
-      bitField0_ &= ~0x00200000;
+      bitField0_ &= ~0x00400000;
       nextPackage.clear();
       return this;
     }
@@ -1359,7 +1421,7 @@ public final class ActivityDetail {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00200000;
+      bitField0_ |= 0x00400000;
       return nextPackage;
     }
 
@@ -1369,7 +1431,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg addNextPackage(final byte value) {
-      bitField0_ |= 0x00200000;
+      bitField0_ |= 0x00400000;
       nextPackage.add(value);
       return this;
     }
@@ -1380,7 +1442,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00200000;
+      bitField0_ |= 0x00400000;
       nextPackage.addAll(values);
       return this;
     }
@@ -1391,7 +1453,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg setNextPackage(final byte... values) {
-      bitField0_ |= 0x00200000;
+      bitField0_ |= 0x00400000;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -1421,6 +1483,7 @@ public final class ActivityDetail {
         penguinCard.copyFrom(other.penguinCard);
         throwGift.copyFrom(other.throwGift);
         gDS.copyFrom(other.gDS);
+        double_.copyFrom(other.double_);
         historyStoryChapter.copyFrom(other.historyStoryChapter);
         nextPackage.copyFrom(other.nextPackage);
       }
@@ -1493,6 +1556,9 @@ public final class ActivityDetail {
       if (other.hasGDS()) {
         getMutableGDS().mergeFrom(other.gDS);
       }
+      if (other.hasDouble()) {
+        getMutableDouble().mergeFrom(other.double_);
+      }
       if (other.hasHistoryStoryChapter()) {
         getMutableHistoryStoryChapter().mergeFrom(other.historyStoryChapter);
       }
@@ -1529,6 +1595,7 @@ public final class ActivityDetail {
       penguinCard.clear();
       throwGift.clear();
       gDS.clear();
+      double_.clear();
       historyStoryChapter.clear();
       nextPackage.clear();
       return this;
@@ -1560,6 +1627,7 @@ public final class ActivityDetail {
       penguinCard.clearQuick();
       throwGift.clearQuick();
       gDS.clearQuick();
+      double_.clearQuick();
       historyStoryChapter.clearQuick();
       nextPackage.clear();
       return this;
@@ -1595,6 +1663,7 @@ public final class ActivityDetail {
         && (!hasPenguinCard() || penguinCard.equals(other.penguinCard))
         && (!hasThrowGift() || throwGift.equals(other.throwGift))
         && (!hasGDS() || gDS.equals(other.gDS))
+        && (!hasDouble() || double_.equals(other.double_))
         && (!hasHistoryStoryChapter() || historyStoryChapter.equals(other.historyStoryChapter))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
@@ -1683,9 +1752,13 @@ public final class ActivityDetail {
       }
       if ((bitField0_ & 0x00100000) != 0) {
         output.writeRawLittleEndian16((short) 426);
-        output.writeMessageNoTag(historyStoryChapter);
+        output.writeMessageNoTag(double_);
       }
       if ((bitField0_ & 0x00200000) != 0) {
+        output.writeRawLittleEndian16((short) 434);
+        output.writeMessageNoTag(historyStoryChapter);
+      }
+      if ((bitField0_ & 0x00400000) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
@@ -1755,9 +1828,12 @@ public final class ActivityDetail {
         size += 2 + ProtoSink.computeMessageSizeNoTag(gDS);
       }
       if ((bitField0_ & 0x00100000) != 0) {
-        size += 2 + ProtoSink.computeMessageSizeNoTag(historyStoryChapter);
+        size += 2 + ProtoSink.computeMessageSizeNoTag(double_);
       }
       if ((bitField0_ & 0x00200000) != 0) {
+        size += 2 + ProtoSink.computeMessageSizeNoTag(historyStoryChapter);
+      }
+      if ((bitField0_ & 0x00400000) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       return size;
@@ -1951,9 +2027,18 @@ public final class ActivityDetail {
             }
           }
           case 170: {
+            // double_
+            input.readMessage(double_);
+            bitField0_ |= 0x00100000;
+            tag = input.readTag();
+            if (tag != 178) {
+              break;
+            }
+          }
+          case 178: {
             // historyStoryChapter
             input.readMessage(historyStoryChapter);
-            bitField0_ |= 0x00100000;
+            bitField0_ |= 0x00200000;
             tag = input.readTag();
             if (tag != 16378) {
               break;
@@ -1962,7 +2047,7 @@ public final class ActivityDetail {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00200000;
+            bitField0_ |= 0x00400000;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -2046,9 +2131,12 @@ public final class ActivityDetail {
         output.writeMessage(FieldNames.gDS, gDS);
       }
       if ((bitField0_ & 0x00100000) != 0) {
-        output.writeMessage(FieldNames.historyStoryChapter, historyStoryChapter);
+        output.writeMessage(FieldNames.double_, double_);
       }
       if ((bitField0_ & 0x00200000) != 0) {
+        output.writeMessage(FieldNames.historyStoryChapter, historyStoryChapter);
+      }
+      if ((bitField0_ & 0x00400000) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       output.endObject();
@@ -2281,11 +2369,22 @@ public final class ActivityDetail {
             }
             break;
           }
+          case 2052876273: {
+            if (input.isAtField(FieldNames.double_)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(double_);
+                bitField0_ |= 0x00100000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -1036267476: {
             if (input.isAtField(FieldNames.historyStoryChapter)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(historyStoryChapter);
-                bitField0_ |= 0x00100000;
+                bitField0_ |= 0x00200000;
               }
             } else {
               input.skipUnknownField();
@@ -2296,7 +2395,7 @@ public final class ActivityDetail {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00200000;
+                bitField0_ |= 0x00400000;
               }
             } else {
               input.skipUnknownField();
@@ -2394,6 +2493,8 @@ public final class ActivityDetail {
       static final FieldName throwGift = FieldName.forField("ThrowGift");
 
       static final FieldName gDS = FieldName.forField("GDS");
+
+      static final FieldName double_ = FieldName.forField("Double");
 
       static final FieldName historyStoryChapter = FieldName.forField("HistoryStoryChapter");
 
