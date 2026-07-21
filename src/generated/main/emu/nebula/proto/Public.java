@@ -19934,6 +19934,11 @@ public final class Public {
     private final ScoreBossState scoreBoss = ScoreBossState.newInstance();
 
     /**
+     * <code>optional .TraceHuntState TraceHunt = 23;</code>
+     */
+    private final TraceHuntState traceHunt = TraceHuntState.newInstance();
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -20756,11 +20761,68 @@ public final class Public {
     }
 
     /**
+     * <code>optional .TraceHuntState TraceHunt = 23;</code>
+     * @return whether the traceHunt field is set
+     */
+    public boolean hasTraceHunt() {
+      return (bitField0_ & 0x00010000) != 0;
+    }
+
+    /**
+     * <code>optional .TraceHuntState TraceHunt = 23;</code>
+     * @return this
+     */
+    public StateInfo clearTraceHunt() {
+      bitField0_ &= ~0x00010000;
+      traceHunt.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .TraceHuntState TraceHunt = 23;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableTraceHunt()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public TraceHuntState getTraceHunt() {
+      return traceHunt;
+    }
+
+    /**
+     * <code>optional .TraceHuntState TraceHunt = 23;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public TraceHuntState getMutableTraceHunt() {
+      bitField0_ |= 0x00010000;
+      return traceHunt;
+    }
+
+    /**
+     * <code>optional .TraceHuntState TraceHunt = 23;</code>
+     * @param value the traceHunt to set
+     * @return this
+     */
+    public StateInfo setTraceHunt(final TraceHuntState value) {
+      bitField0_ |= 0x00010000;
+      traceHunt.copyFrom(value);
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00010000) != 0;
+      return (bitField0_ & 0x00020000) != 0;
     }
 
     /**
@@ -20768,7 +20830,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearNextPackage() {
-      bitField0_ &= ~0x00010000;
+      bitField0_ &= ~0x00020000;
       nextPackage.clear();
       return this;
     }
@@ -20797,7 +20859,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00010000;
+      bitField0_ |= 0x00020000;
       return nextPackage;
     }
 
@@ -20807,7 +20869,7 @@ public final class Public {
      * @return this
      */
     public StateInfo addNextPackage(final byte value) {
-      bitField0_ |= 0x00010000;
+      bitField0_ |= 0x00020000;
       nextPackage.add(value);
       return this;
     }
@@ -20818,7 +20880,7 @@ public final class Public {
      * @return this
      */
     public StateInfo addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00010000;
+      bitField0_ |= 0x00020000;
       nextPackage.addAll(values);
       return this;
     }
@@ -20829,7 +20891,7 @@ public final class Public {
      * @return this
      */
     public StateInfo setNextPackage(final byte... values) {
-      bitField0_ |= 0x00010000;
+      bitField0_ |= 0x00020000;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -20839,7 +20901,7 @@ public final class Public {
      * @return whether the charAdvanceRewards field is set
      */
     public boolean hasCharAdvanceRewards() {
-      return (bitField0_ & 0x00020000) != 0;
+      return (bitField0_ & 0x00040000) != 0;
     }
 
     /**
@@ -20847,7 +20909,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearCharAdvanceRewards() {
-      bitField0_ &= ~0x00020000;
+      bitField0_ &= ~0x00040000;
       charAdvanceRewards.clear();
       return this;
     }
@@ -20876,7 +20938,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<CharAdvanceRewardState> getMutableCharAdvanceRewards() {
-      bitField0_ |= 0x00020000;
+      bitField0_ |= 0x00040000;
       return charAdvanceRewards;
     }
 
@@ -20886,7 +20948,7 @@ public final class Public {
      * @return this
      */
     public StateInfo addCharAdvanceRewards(final CharAdvanceRewardState value) {
-      bitField0_ |= 0x00020000;
+      bitField0_ |= 0x00040000;
       charAdvanceRewards.add(value);
       return this;
     }
@@ -20897,7 +20959,7 @@ public final class Public {
      * @return this
      */
     public StateInfo addAllCharAdvanceRewards(final CharAdvanceRewardState... values) {
-      bitField0_ |= 0x00020000;
+      bitField0_ |= 0x00040000;
       charAdvanceRewards.addAll(values);
       return this;
     }
@@ -20907,7 +20969,7 @@ public final class Public {
      * @return whether the charAffinityRewards field is set
      */
     public boolean hasCharAffinityRewards() {
-      return (bitField0_ & 0x00040000) != 0;
+      return (bitField0_ & 0x00080000) != 0;
     }
 
     /**
@@ -20915,7 +20977,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearCharAffinityRewards() {
-      bitField0_ &= ~0x00040000;
+      bitField0_ &= ~0x00080000;
       charAffinityRewards.clear();
       return this;
     }
@@ -20944,7 +21006,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<CharAffinityRewardState> getMutableCharAffinityRewards() {
-      bitField0_ |= 0x00040000;
+      bitField0_ |= 0x00080000;
       return charAffinityRewards;
     }
 
@@ -20954,7 +21016,7 @@ public final class Public {
      * @return this
      */
     public StateInfo addCharAffinityRewards(final CharAffinityRewardState value) {
-      bitField0_ |= 0x00040000;
+      bitField0_ |= 0x00080000;
       charAffinityRewards.add(value);
       return this;
     }
@@ -20965,7 +21027,7 @@ public final class Public {
      * @return this
      */
     public StateInfo addAllCharAffinityRewards(final CharAffinityRewardState... values) {
-      bitField0_ |= 0x00040000;
+      bitField0_ |= 0x00080000;
       charAffinityRewards.addAll(values);
       return this;
     }
@@ -20975,7 +21037,7 @@ public final class Public {
      * @return whether the activities field is set
      */
     public boolean hasActivities() {
-      return (bitField0_ & 0x00080000) != 0;
+      return (bitField0_ & 0x00100000) != 0;
     }
 
     /**
@@ -20983,7 +21045,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearActivities() {
-      bitField0_ &= ~0x00080000;
+      bitField0_ &= ~0x00100000;
       activities.clear();
       return this;
     }
@@ -21012,7 +21074,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<ActivityState> getMutableActivities() {
-      bitField0_ |= 0x00080000;
+      bitField0_ |= 0x00100000;
       return activities;
     }
 
@@ -21022,7 +21084,7 @@ public final class Public {
      * @return this
      */
     public StateInfo addActivities(final ActivityState value) {
-      bitField0_ |= 0x00080000;
+      bitField0_ |= 0x00100000;
       activities.add(value);
       return this;
     }
@@ -21033,7 +21095,7 @@ public final class Public {
      * @return this
      */
     public StateInfo addAllActivities(final ActivityState... values) {
-      bitField0_ |= 0x00080000;
+      bitField0_ |= 0x00100000;
       activities.addAll(values);
       return this;
     }
@@ -21059,6 +21121,7 @@ public final class Public {
         starTower.copyFrom(other.starTower);
         starTowerBook.copyFrom(other.starTowerBook);
         scoreBoss.copyFrom(other.scoreBoss);
+        traceHunt.copyFrom(other.traceHunt);
         nextPackage.copyFrom(other.nextPackage);
         charAdvanceRewards.copyFrom(other.charAdvanceRewards);
         charAffinityRewards.copyFrom(other.charAffinityRewards);
@@ -21121,6 +21184,9 @@ public final class Public {
       if (other.hasScoreBoss()) {
         getMutableScoreBoss().mergeFrom(other.scoreBoss);
       }
+      if (other.hasTraceHunt()) {
+        getMutableTraceHunt().mergeFrom(other.traceHunt);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -21159,6 +21225,7 @@ public final class Public {
       starTower.clear();
       starTowerBook.clear();
       scoreBoss.clear();
+      traceHunt.clear();
       nextPackage.clear();
       charAdvanceRewards.clear();
       charAffinityRewards.clear();
@@ -21183,6 +21250,7 @@ public final class Public {
       starTower.clearQuick();
       starTowerBook.clearQuick();
       scoreBoss.clearQuick();
+      traceHunt.clearQuick();
       nextPackage.clear();
       charAdvanceRewards.clearQuick();
       charAffinityRewards.clearQuick();
@@ -21216,6 +21284,7 @@ public final class Public {
         && (!hasStarTower() || starTower.equals(other.starTower))
         && (!hasStarTowerBook() || starTowerBook.equals(other.starTowerBook))
         && (!hasScoreBoss() || scoreBoss.equals(other.scoreBoss))
+        && (!hasTraceHunt() || traceHunt.equals(other.traceHunt))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasCharAdvanceRewards() || charAdvanceRewards.equals(other.charAdvanceRewards))
         && (!hasCharAffinityRewards() || charAffinityRewards.equals(other.charAffinityRewards))
@@ -21289,22 +21358,26 @@ public final class Public {
         output.writeMessageNoTag(scoreBoss);
       }
       if ((bitField0_ & 0x00010000) != 0) {
+        output.writeRawLittleEndian16((short) 442);
+        output.writeMessageNoTag(traceHunt);
+      }
+      if ((bitField0_ & 0x00020000) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
-      if ((bitField0_ & 0x00020000) != 0) {
+      if ((bitField0_ & 0x00040000) != 0) {
         for (int i = 0; i < charAdvanceRewards.length(); i++) {
           output.writeRawByte((byte) 50);
           output.writeMessageNoTag(charAdvanceRewards.get(i));
         }
       }
-      if ((bitField0_ & 0x00040000) != 0) {
+      if ((bitField0_ & 0x00080000) != 0) {
         for (int i = 0; i < charAffinityRewards.length(); i++) {
           output.writeRawByte((byte) 66);
           output.writeMessageNoTag(charAffinityRewards.get(i));
         }
       }
-      if ((bitField0_ & 0x00080000) != 0) {
+      if ((bitField0_ & 0x00100000) != 0) {
         for (int i = 0; i < activities.length(); i++) {
           output.writeRawLittleEndian16((short) 426);
           output.writeMessageNoTag(activities.get(i));
@@ -21364,15 +21437,18 @@ public final class Public {
         size += 2 + ProtoSink.computeMessageSizeNoTag(scoreBoss);
       }
       if ((bitField0_ & 0x00010000) != 0) {
-        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+        size += 2 + ProtoSink.computeMessageSizeNoTag(traceHunt);
       }
       if ((bitField0_ & 0x00020000) != 0) {
-        size += (1 * charAdvanceRewards.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(charAdvanceRewards);
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       if ((bitField0_ & 0x00040000) != 0) {
-        size += (1 * charAffinityRewards.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(charAffinityRewards);
+        size += (1 * charAdvanceRewards.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(charAdvanceRewards);
       }
       if ((bitField0_ & 0x00080000) != 0) {
+        size += (1 * charAffinityRewards.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(charAffinityRewards);
+      }
+      if ((bitField0_ & 0x00100000) != 0) {
         size += (2 * activities.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(activities);
       }
       return size;
@@ -21525,6 +21601,15 @@ public final class Public {
             input.readMessage(scoreBoss);
             bitField0_ |= 0x00008000;
             tag = input.readTag();
+            if (tag != 186) {
+              break;
+            }
+          }
+          case 186: {
+            // traceHunt
+            input.readMessage(traceHunt);
+            bitField0_ |= 0x00010000;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -21532,7 +21617,7 @@ public final class Public {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00010000;
+            bitField0_ |= 0x00020000;
             tag = input.readTag();
             if (tag != 50) {
               break;
@@ -21541,7 +21626,7 @@ public final class Public {
           case 50: {
             // charAdvanceRewards
             tag = input.readRepeatedMessage(charAdvanceRewards, tag);
-            bitField0_ |= 0x00020000;
+            bitField0_ |= 0x00040000;
             if (tag != 66) {
               break;
             }
@@ -21549,7 +21634,7 @@ public final class Public {
           case 66: {
             // charAffinityRewards
             tag = input.readRepeatedMessage(charAffinityRewards, tag);
-            bitField0_ |= 0x00040000;
+            bitField0_ |= 0x00080000;
             if (tag != 170) {
               break;
             }
@@ -21557,7 +21642,7 @@ public final class Public {
           case 170: {
             // activities
             tag = input.readRepeatedMessage(activities, tag);
-            bitField0_ |= 0x00080000;
+            bitField0_ |= 0x00100000;
             if (tag != 0) {
               break;
             }
@@ -21628,15 +21713,18 @@ public final class Public {
         output.writeMessage(FieldNames.scoreBoss, scoreBoss);
       }
       if ((bitField0_ & 0x00010000) != 0) {
-        output.writeBytes(FieldNames.nextPackage, nextPackage);
+        output.writeMessage(FieldNames.traceHunt, traceHunt);
       }
       if ((bitField0_ & 0x00020000) != 0) {
-        output.writeRepeatedMessage(FieldNames.charAdvanceRewards, charAdvanceRewards);
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       if ((bitField0_ & 0x00040000) != 0) {
-        output.writeRepeatedMessage(FieldNames.charAffinityRewards, charAffinityRewards);
+        output.writeRepeatedMessage(FieldNames.charAdvanceRewards, charAdvanceRewards);
       }
       if ((bitField0_ & 0x00080000) != 0) {
+        output.writeRepeatedMessage(FieldNames.charAffinityRewards, charAffinityRewards);
+      }
+      if ((bitField0_ & 0x00100000) != 0) {
         output.writeRepeatedMessage(FieldNames.activities, activities);
       }
       output.endObject();
@@ -21825,11 +21913,22 @@ public final class Public {
             }
             break;
           }
+          case -1567070632: {
+            if (input.isAtField(FieldNames.traceHunt)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(traceHunt);
+                bitField0_ |= 0x00010000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00010000;
+                bitField0_ |= 0x00020000;
               }
             } else {
               input.skipUnknownField();
@@ -21840,7 +21939,7 @@ public final class Public {
             if (input.isAtField(FieldNames.charAdvanceRewards)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(charAdvanceRewards);
-                bitField0_ |= 0x00020000;
+                bitField0_ |= 0x00040000;
               }
             } else {
               input.skipUnknownField();
@@ -21851,7 +21950,7 @@ public final class Public {
             if (input.isAtField(FieldNames.charAffinityRewards)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(charAffinityRewards);
-                bitField0_ |= 0x00040000;
+                bitField0_ |= 0x00080000;
               }
             } else {
               input.skipUnknownField();
@@ -21862,7 +21961,7 @@ public final class Public {
             if (input.isAtField(FieldNames.activities)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(activities);
-                bitField0_ |= 0x00080000;
+                bitField0_ |= 0x00100000;
               }
             } else {
               input.skipUnknownField();
@@ -21952,6 +22051,8 @@ public final class Public {
       static final FieldName starTowerBook = FieldName.forField("StarTowerBook");
 
       static final FieldName scoreBoss = FieldName.forField("ScoreBoss");
+
+      static final FieldName traceHunt = FieldName.forField("TraceHunt");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
@@ -86824,6 +86925,5565 @@ public final class Public {
       static final FieldName evidences = FieldName.forField("Evidences");
 
       static final FieldName stories = FieldName.forField("Stories");
+    }
+  }
+
+  /**
+   * Protobuf type {@code ActivityShare}
+   */
+  public static final class ActivityShare extends ProtoMessage<ActivityShare> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional bytes State = 1;</code>
+     */
+    private final RepeatedByte state = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private ActivityShare() {
+    }
+
+    /**
+     * @return a new empty instance of {@code ActivityShare}
+     */
+    public static ActivityShare newInstance() {
+      return new ActivityShare();
+    }
+
+    /**
+     * <code>optional bytes State = 1;</code>
+     * @return whether the state field is set
+     */
+    public boolean hasState() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional bytes State = 1;</code>
+     * @return this
+     */
+    public ActivityShare clearState() {
+      bitField0_ &= ~0x00000001;
+      state.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes State = 1;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableState()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getState() {
+      return state;
+    }
+
+    /**
+     * <code>optional bytes State = 1;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableState() {
+      bitField0_ |= 0x00000001;
+      return state;
+    }
+
+    /**
+     * <code>optional bytes State = 1;</code>
+     * @param value the state to add
+     * @return this
+     */
+    public ActivityShare addState(final byte value) {
+      bitField0_ |= 0x00000001;
+      state.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes State = 1;</code>
+     * @param values the state to add
+     * @return this
+     */
+    public ActivityShare addAllState(final byte... values) {
+      bitField0_ |= 0x00000001;
+      state.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes State = 1;</code>
+     * @param values the state to set
+     * @return this
+     */
+    public ActivityShare setState(final byte... values) {
+      bitField0_ |= 0x00000001;
+      state.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public ActivityShare clearNextPackage() {
+      bitField0_ &= ~0x00000002;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000002;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public ActivityShare addNextPackage(final byte value) {
+      bitField0_ |= 0x00000002;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public ActivityShare addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public ActivityShare setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public ActivityShare copyFrom(final ActivityShare other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        state.copyFrom(other.state);
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityShare mergeFrom(final ActivityShare other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasState()) {
+        getMutableState().copyFrom(other.state);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityShare clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      state.clear();
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public ActivityShare clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      state.clear();
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof ActivityShare)) {
+        return false;
+      }
+      ActivityShare other = (ActivityShare) o;
+      return bitField0_ == other.bitField0_
+        && (!hasState() || state.equals(other.state))
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 10);
+        output.writeBytesNoTag(state);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeBytesSizeNoTag(state);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public ActivityShare mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 10: {
+            // state
+            input.readBytes(state);
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeBytes(FieldNames.state, state);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public ActivityShare mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 80204913: {
+            if (input.isAtField(FieldNames.state)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(state);
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public ActivityShare clone() {
+      return new ActivityShare().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static ActivityShare parseFrom(final byte[] data) throws InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new ActivityShare(), data).checkInitialized();
+    }
+
+    public static ActivityShare parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityShare(), input).checkInitialized();
+    }
+
+    public static ActivityShare parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityShare(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating ActivityShare messages
+     */
+    public static MessageFactory<ActivityShare> getFactory() {
+      return ActivityShareFactory.INSTANCE;
+    }
+
+    private enum ActivityShareFactory implements MessageFactory<ActivityShare> {
+      INSTANCE;
+
+      @Override
+      public ActivityShare create() {
+        return ActivityShare.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName state = FieldName.forField("State");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code TraceHuntBossCollection}
+   */
+  public static final class TraceHuntBossCollection extends ProtoMessage<TraceHuntBossCollection> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     */
+    private int id;
+
+    /**
+     * <code>optional uint32 HuntCount = 2;</code>
+     */
+    private int huntCount;
+
+    /**
+     * <code>optional uint32 AssistHuntCount = 3;</code>
+     */
+    private int assistHuntCount;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private TraceHuntBossCollection() {
+    }
+
+    /**
+     * @return a new empty instance of {@code TraceHuntBossCollection}
+     */
+    public static TraceHuntBossCollection newInstance() {
+      return new TraceHuntBossCollection();
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @return whether the id field is set
+     */
+    public boolean hasId() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @return this
+     */
+    public TraceHuntBossCollection clearId() {
+      bitField0_ &= ~0x00000001;
+      id = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @return the id
+     */
+    public int getId() {
+      return id;
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @param value the id to set
+     * @return this
+     */
+    public TraceHuntBossCollection setId(final int value) {
+      bitField0_ |= 0x00000001;
+      id = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 HuntCount = 2;</code>
+     * @return whether the huntCount field is set
+     */
+    public boolean hasHuntCount() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint32 HuntCount = 2;</code>
+     * @return this
+     */
+    public TraceHuntBossCollection clearHuntCount() {
+      bitField0_ &= ~0x00000002;
+      huntCount = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 HuntCount = 2;</code>
+     * @return the huntCount
+     */
+    public int getHuntCount() {
+      return huntCount;
+    }
+
+    /**
+     * <code>optional uint32 HuntCount = 2;</code>
+     * @param value the huntCount to set
+     * @return this
+     */
+    public TraceHuntBossCollection setHuntCount(final int value) {
+      bitField0_ |= 0x00000002;
+      huntCount = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 AssistHuntCount = 3;</code>
+     * @return whether the assistHuntCount field is set
+     */
+    public boolean hasAssistHuntCount() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional uint32 AssistHuntCount = 3;</code>
+     * @return this
+     */
+    public TraceHuntBossCollection clearAssistHuntCount() {
+      bitField0_ &= ~0x00000004;
+      assistHuntCount = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 AssistHuntCount = 3;</code>
+     * @return the assistHuntCount
+     */
+    public int getAssistHuntCount() {
+      return assistHuntCount;
+    }
+
+    /**
+     * <code>optional uint32 AssistHuntCount = 3;</code>
+     * @param value the assistHuntCount to set
+     * @return this
+     */
+    public TraceHuntBossCollection setAssistHuntCount(final int value) {
+      bitField0_ |= 0x00000004;
+      assistHuntCount = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public TraceHuntBossCollection clearNextPackage() {
+      bitField0_ &= ~0x00000008;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000008;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public TraceHuntBossCollection addNextPackage(final byte value) {
+      bitField0_ |= 0x00000008;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public TraceHuntBossCollection addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000008;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public TraceHuntBossCollection setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000008;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public TraceHuntBossCollection copyFrom(final TraceHuntBossCollection other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        id = other.id;
+        huntCount = other.huntCount;
+        assistHuntCount = other.assistHuntCount;
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public TraceHuntBossCollection mergeFrom(final TraceHuntBossCollection other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasId()) {
+        setId(other.id);
+      }
+      if (other.hasHuntCount()) {
+        setHuntCount(other.huntCount);
+      }
+      if (other.hasAssistHuntCount()) {
+        setAssistHuntCount(other.assistHuntCount);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public TraceHuntBossCollection clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      id = 0;
+      huntCount = 0;
+      assistHuntCount = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public TraceHuntBossCollection clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof TraceHuntBossCollection)) {
+        return false;
+      }
+      TraceHuntBossCollection other = (TraceHuntBossCollection) o;
+      return bitField0_ == other.bitField0_
+        && (!hasId() || id == other.id)
+        && (!hasHuntCount() || huntCount == other.huntCount)
+        && (!hasAssistHuntCount() || assistHuntCount == other.assistHuntCount)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeUInt32NoTag(huntCount);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeUInt32NoTag(assistHuntCount);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(huntCount);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(assistHuntCount);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public TraceHuntBossCollection mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // id
+            id = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16) {
+              break;
+            }
+          }
+          case 16: {
+            // huntCount
+            huntCount = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
+            // assistHuntCount
+            assistHuntCount = input.readUInt32();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.id, id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeUInt32(FieldNames.huntCount, huntCount);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeUInt32(FieldNames.assistHuntCount, assistHuntCount);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public TraceHuntBossCollection mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 2363: {
+            if (input.isAtField(FieldNames.id)) {
+              if (!input.trySkipNullValue()) {
+                id = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1309886180: {
+            if (input.isAtField(FieldNames.huntCount)) {
+              if (!input.trySkipNullValue()) {
+                huntCount = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -637496141: {
+            if (input.isAtField(FieldNames.assistHuntCount)) {
+              if (!input.trySkipNullValue()) {
+                assistHuntCount = input.readUInt32();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public TraceHuntBossCollection clone() {
+      return new TraceHuntBossCollection().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static TraceHuntBossCollection parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new TraceHuntBossCollection(), data).checkInitialized();
+    }
+
+    public static TraceHuntBossCollection parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new TraceHuntBossCollection(), input).checkInitialized();
+    }
+
+    public static TraceHuntBossCollection parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new TraceHuntBossCollection(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating TraceHuntBossCollection messages
+     */
+    public static MessageFactory<TraceHuntBossCollection> getFactory() {
+      return TraceHuntBossCollectionFactory.INSTANCE;
+    }
+
+    private enum TraceHuntBossCollectionFactory implements MessageFactory<TraceHuntBossCollection> {
+      INSTANCE;
+
+      @Override
+      public TraceHuntBossCollection create() {
+        return TraceHuntBossCollection.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName id = FieldName.forField("Id");
+
+      static final FieldName huntCount = FieldName.forField("HuntCount");
+
+      static final FieldName assistHuntCount = FieldName.forField("AssistHuntCount");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code TraceHuntLogEntry}
+   */
+  public static final class TraceHuntLogEntry extends ProtoMessage<TraceHuntLogEntry> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     */
+    private int tid;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>repeated string args = 2;</code>
+     */
+    private final RepeatedString args = RepeatedString.newEmptyInstance();
+
+    private TraceHuntLogEntry() {
+    }
+
+    /**
+     * @return a new empty instance of {@code TraceHuntLogEntry}
+     */
+    public static TraceHuntLogEntry newInstance() {
+      return new TraceHuntLogEntry();
+    }
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     * @return whether the tid field is set
+     */
+    public boolean hasTid() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     * @return this
+     */
+    public TraceHuntLogEntry clearTid() {
+      bitField0_ &= ~0x00000001;
+      tid = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     * @return the tid
+     */
+    public int getTid() {
+      return tid;
+    }
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     * @param value the tid to set
+     * @return this
+     */
+    public TraceHuntLogEntry setTid(final int value) {
+      bitField0_ |= 0x00000001;
+      tid = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public TraceHuntLogEntry clearNextPackage() {
+      bitField0_ &= ~0x00000002;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000002;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public TraceHuntLogEntry addNextPackage(final byte value) {
+      bitField0_ |= 0x00000002;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public TraceHuntLogEntry addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public TraceHuntLogEntry setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated string args = 2;</code>
+     * @return whether the args field is set
+     */
+    public boolean hasArgs() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>repeated string args = 2;</code>
+     * @return this
+     */
+    public TraceHuntLogEntry clearArgs() {
+      bitField0_ &= ~0x00000004;
+      args.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated string args = 2;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableArgs()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedString getArgs() {
+      return args;
+    }
+
+    /**
+     * <code>repeated string args = 2;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedString getMutableArgs() {
+      bitField0_ |= 0x00000004;
+      return args;
+    }
+
+    /**
+     * <code>repeated string args = 2;</code>
+     * @param value the args to add
+     * @return this
+     */
+    public TraceHuntLogEntry addArgs(final CharSequence value) {
+      bitField0_ |= 0x00000004;
+      args.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated string args = 2;</code>
+     * @param values the args to add
+     * @return this
+     */
+    public TraceHuntLogEntry addAllArgs(final CharSequence... values) {
+      bitField0_ |= 0x00000004;
+      args.addAll(values);
+      return this;
+    }
+
+    @Override
+    public TraceHuntLogEntry copyFrom(final TraceHuntLogEntry other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        tid = other.tid;
+        nextPackage.copyFrom(other.nextPackage);
+        args.copyFrom(other.args);
+      }
+      return this;
+    }
+
+    @Override
+    public TraceHuntLogEntry mergeFrom(final TraceHuntLogEntry other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasTid()) {
+        setTid(other.tid);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasArgs()) {
+        getMutableArgs().addAll(other.args);
+      }
+      return this;
+    }
+
+    @Override
+    public TraceHuntLogEntry clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      tid = 0;
+      nextPackage.clear();
+      args.clear();
+      return this;
+    }
+
+    @Override
+    public TraceHuntLogEntry clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      args.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof TraceHuntLogEntry)) {
+        return false;
+      }
+      TraceHuntLogEntry other = (TraceHuntLogEntry) o;
+      return bitField0_ == other.bitField0_
+        && (!hasTid() || tid == other.tid)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasArgs() || args.equals(other.args));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(tid);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        for (int i = 0; i < args.length(); i++) {
+          output.writeRawByte((byte) 18);
+          output.writeStringNoTag(args.get(i));
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(tid);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += (1 * args.length()) + ProtoSink.computeRepeatedStringSizeNoTag(args);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public TraceHuntLogEntry mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // tid
+            tid = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 18) {
+              break;
+            }
+          }
+          case 18: {
+            // args
+            tag = input.readRepeatedString(args, tag);
+            bitField0_ |= 0x00000004;
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.tid, tid);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRepeatedString(FieldNames.args, args);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public TraceHuntLogEntry mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 84079: {
+            if (input.isAtField(FieldNames.tid)) {
+              if (!input.trySkipNullValue()) {
+                tid = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 3002589: {
+            if (input.isAtField(FieldNames.args)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedString(args);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public TraceHuntLogEntry clone() {
+      return new TraceHuntLogEntry().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static TraceHuntLogEntry parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new TraceHuntLogEntry(), data).checkInitialized();
+    }
+
+    public static TraceHuntLogEntry parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new TraceHuntLogEntry(), input).checkInitialized();
+    }
+
+    public static TraceHuntLogEntry parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new TraceHuntLogEntry(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating TraceHuntLogEntry messages
+     */
+    public static MessageFactory<TraceHuntLogEntry> getFactory() {
+      return TraceHuntLogEntryFactory.INSTANCE;
+    }
+
+    private enum TraceHuntLogEntryFactory implements MessageFactory<TraceHuntLogEntry> {
+      INSTANCE;
+
+      @Override
+      public TraceHuntLogEntry create() {
+        return TraceHuntLogEntry.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName tid = FieldName.forField("Tid");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName args = FieldName.forField("args");
+    }
+  }
+
+  /**
+   * Protobuf type {@code TraceHuntItemInfo}
+   */
+  public static final class TraceHuntItemInfo extends ProtoMessage<TraceHuntItemInfo> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     */
+    private int tid;
+
+    /**
+     * <code>optional uint32 EnergyOverflow = 2;</code>
+     */
+    private int energyOverflow;
+
+    /**
+     * <code>optional uint32 ConvertedCount = 3;</code>
+     */
+    private int convertedCount;
+
+    /**
+     * <code>optional uint32 GrantedCount = 4;</code>
+     */
+    private int grantedCount;
+
+    /**
+     * <code>optional uint32 DailyCount = 5;</code>
+     */
+    private int dailyCount;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private TraceHuntItemInfo() {
+    }
+
+    /**
+     * @return a new empty instance of {@code TraceHuntItemInfo}
+     */
+    public static TraceHuntItemInfo newInstance() {
+      return new TraceHuntItemInfo();
+    }
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     * @return whether the tid field is set
+     */
+    public boolean hasTid() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     * @return this
+     */
+    public TraceHuntItemInfo clearTid() {
+      bitField0_ &= ~0x00000001;
+      tid = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     * @return the tid
+     */
+    public int getTid() {
+      return tid;
+    }
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     * @param value the tid to set
+     * @return this
+     */
+    public TraceHuntItemInfo setTid(final int value) {
+      bitField0_ |= 0x00000001;
+      tid = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 EnergyOverflow = 2;</code>
+     * @return whether the energyOverflow field is set
+     */
+    public boolean hasEnergyOverflow() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint32 EnergyOverflow = 2;</code>
+     * @return this
+     */
+    public TraceHuntItemInfo clearEnergyOverflow() {
+      bitField0_ &= ~0x00000002;
+      energyOverflow = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 EnergyOverflow = 2;</code>
+     * @return the energyOverflow
+     */
+    public int getEnergyOverflow() {
+      return energyOverflow;
+    }
+
+    /**
+     * <code>optional uint32 EnergyOverflow = 2;</code>
+     * @param value the energyOverflow to set
+     * @return this
+     */
+    public TraceHuntItemInfo setEnergyOverflow(final int value) {
+      bitField0_ |= 0x00000002;
+      energyOverflow = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 ConvertedCount = 3;</code>
+     * @return whether the convertedCount field is set
+     */
+    public boolean hasConvertedCount() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional uint32 ConvertedCount = 3;</code>
+     * @return this
+     */
+    public TraceHuntItemInfo clearConvertedCount() {
+      bitField0_ &= ~0x00000004;
+      convertedCount = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 ConvertedCount = 3;</code>
+     * @return the convertedCount
+     */
+    public int getConvertedCount() {
+      return convertedCount;
+    }
+
+    /**
+     * <code>optional uint32 ConvertedCount = 3;</code>
+     * @param value the convertedCount to set
+     * @return this
+     */
+    public TraceHuntItemInfo setConvertedCount(final int value) {
+      bitField0_ |= 0x00000004;
+      convertedCount = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 GrantedCount = 4;</code>
+     * @return whether the grantedCount field is set
+     */
+    public boolean hasGrantedCount() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional uint32 GrantedCount = 4;</code>
+     * @return this
+     */
+    public TraceHuntItemInfo clearGrantedCount() {
+      bitField0_ &= ~0x00000008;
+      grantedCount = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 GrantedCount = 4;</code>
+     * @return the grantedCount
+     */
+    public int getGrantedCount() {
+      return grantedCount;
+    }
+
+    /**
+     * <code>optional uint32 GrantedCount = 4;</code>
+     * @param value the grantedCount to set
+     * @return this
+     */
+    public TraceHuntItemInfo setGrantedCount(final int value) {
+      bitField0_ |= 0x00000008;
+      grantedCount = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 DailyCount = 5;</code>
+     * @return whether the dailyCount field is set
+     */
+    public boolean hasDailyCount() {
+      return (bitField0_ & 0x00000010) != 0;
+    }
+
+    /**
+     * <code>optional uint32 DailyCount = 5;</code>
+     * @return this
+     */
+    public TraceHuntItemInfo clearDailyCount() {
+      bitField0_ &= ~0x00000010;
+      dailyCount = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 DailyCount = 5;</code>
+     * @return the dailyCount
+     */
+    public int getDailyCount() {
+      return dailyCount;
+    }
+
+    /**
+     * <code>optional uint32 DailyCount = 5;</code>
+     * @param value the dailyCount to set
+     * @return this
+     */
+    public TraceHuntItemInfo setDailyCount(final int value) {
+      bitField0_ |= 0x00000010;
+      dailyCount = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000020) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public TraceHuntItemInfo clearNextPackage() {
+      bitField0_ &= ~0x00000020;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000020;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public TraceHuntItemInfo addNextPackage(final byte value) {
+      bitField0_ |= 0x00000020;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public TraceHuntItemInfo addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000020;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public TraceHuntItemInfo setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000020;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public TraceHuntItemInfo copyFrom(final TraceHuntItemInfo other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        tid = other.tid;
+        energyOverflow = other.energyOverflow;
+        convertedCount = other.convertedCount;
+        grantedCount = other.grantedCount;
+        dailyCount = other.dailyCount;
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public TraceHuntItemInfo mergeFrom(final TraceHuntItemInfo other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasTid()) {
+        setTid(other.tid);
+      }
+      if (other.hasEnergyOverflow()) {
+        setEnergyOverflow(other.energyOverflow);
+      }
+      if (other.hasConvertedCount()) {
+        setConvertedCount(other.convertedCount);
+      }
+      if (other.hasGrantedCount()) {
+        setGrantedCount(other.grantedCount);
+      }
+      if (other.hasDailyCount()) {
+        setDailyCount(other.dailyCount);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public TraceHuntItemInfo clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      tid = 0;
+      energyOverflow = 0;
+      convertedCount = 0;
+      grantedCount = 0;
+      dailyCount = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public TraceHuntItemInfo clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof TraceHuntItemInfo)) {
+        return false;
+      }
+      TraceHuntItemInfo other = (TraceHuntItemInfo) o;
+      return bitField0_ == other.bitField0_
+        && (!hasTid() || tid == other.tid)
+        && (!hasEnergyOverflow() || energyOverflow == other.energyOverflow)
+        && (!hasConvertedCount() || convertedCount == other.convertedCount)
+        && (!hasGrantedCount() || grantedCount == other.grantedCount)
+        && (!hasDailyCount() || dailyCount == other.dailyCount)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(tid);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeUInt32NoTag(energyOverflow);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeUInt32NoTag(convertedCount);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawByte((byte) 32);
+        output.writeUInt32NoTag(grantedCount);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeRawByte((byte) 40);
+        output.writeUInt32NoTag(dailyCount);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(tid);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(energyOverflow);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(convertedCount);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(grantedCount);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(dailyCount);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public TraceHuntItemInfo mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // tid
+            tid = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16) {
+              break;
+            }
+          }
+          case 16: {
+            // energyOverflow
+            energyOverflow = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
+            // convertedCount
+            convertedCount = input.readUInt32();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 32) {
+              break;
+            }
+          }
+          case 32: {
+            // grantedCount
+            grantedCount = input.readUInt32();
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
+            if (tag != 40) {
+              break;
+            }
+          }
+          case 40: {
+            // dailyCount
+            dailyCount = input.readUInt32();
+            bitField0_ |= 0x00000010;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000020;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.tid, tid);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeUInt32(FieldNames.energyOverflow, energyOverflow);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeUInt32(FieldNames.convertedCount, convertedCount);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeUInt32(FieldNames.grantedCount, grantedCount);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeUInt32(FieldNames.dailyCount, dailyCount);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public TraceHuntItemInfo mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 84079: {
+            if (input.isAtField(FieldNames.tid)) {
+              if (!input.trySkipNullValue()) {
+                tid = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 894635722: {
+            if (input.isAtField(FieldNames.energyOverflow)) {
+              if (!input.trySkipNullValue()) {
+                energyOverflow = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 2121584317: {
+            if (input.isAtField(FieldNames.convertedCount)) {
+              if (!input.trySkipNullValue()) {
+                convertedCount = input.readUInt32();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 1421785908: {
+            if (input.isAtField(FieldNames.grantedCount)) {
+              if (!input.trySkipNullValue()) {
+                grantedCount = input.readUInt32();
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -800373098: {
+            if (input.isAtField(FieldNames.dailyCount)) {
+              if (!input.trySkipNullValue()) {
+                dailyCount = input.readUInt32();
+                bitField0_ |= 0x00000010;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000020;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public TraceHuntItemInfo clone() {
+      return new TraceHuntItemInfo().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static TraceHuntItemInfo parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new TraceHuntItemInfo(), data).checkInitialized();
+    }
+
+    public static TraceHuntItemInfo parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new TraceHuntItemInfo(), input).checkInitialized();
+    }
+
+    public static TraceHuntItemInfo parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new TraceHuntItemInfo(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating TraceHuntItemInfo messages
+     */
+    public static MessageFactory<TraceHuntItemInfo> getFactory() {
+      return TraceHuntItemInfoFactory.INSTANCE;
+    }
+
+    private enum TraceHuntItemInfoFactory implements MessageFactory<TraceHuntItemInfo> {
+      INSTANCE;
+
+      @Override
+      public TraceHuntItemInfo create() {
+        return TraceHuntItemInfo.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName tid = FieldName.forField("Tid");
+
+      static final FieldName energyOverflow = FieldName.forField("EnergyOverflow");
+
+      static final FieldName convertedCount = FieldName.forField("ConvertedCount");
+
+      static final FieldName grantedCount = FieldName.forField("GrantedCount");
+
+      static final FieldName dailyCount = FieldName.forField("DailyCount");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code TraceHuntItem}
+   */
+  public static final class TraceHuntItem extends ProtoMessage<TraceHuntItem> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional int32 PointQty = 2;</code>
+     */
+    private int pointQty;
+
+    /**
+     * <code>optional int32 ConvertQty = 3;</code>
+     */
+    private int convertQty;
+
+    /**
+     * <code>optional int32 GrantQty = 4;</code>
+     */
+    private int grantQty;
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     */
+    private int tid;
+
+    /**
+     * <code>optional uint32 DailyCount = 5;</code>
+     */
+    private int dailyCount;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private TraceHuntItem() {
+    }
+
+    /**
+     * @return a new empty instance of {@code TraceHuntItem}
+     */
+    public static TraceHuntItem newInstance() {
+      return new TraceHuntItem();
+    }
+
+    /**
+     * <code>optional int32 PointQty = 2;</code>
+     * @return whether the pointQty field is set
+     */
+    public boolean hasPointQty() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional int32 PointQty = 2;</code>
+     * @return this
+     */
+    public TraceHuntItem clearPointQty() {
+      bitField0_ &= ~0x00000001;
+      pointQty = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional int32 PointQty = 2;</code>
+     * @return the pointQty
+     */
+    public int getPointQty() {
+      return pointQty;
+    }
+
+    /**
+     * <code>optional int32 PointQty = 2;</code>
+     * @param value the pointQty to set
+     * @return this
+     */
+    public TraceHuntItem setPointQty(final int value) {
+      bitField0_ |= 0x00000001;
+      pointQty = value;
+      return this;
+    }
+
+    /**
+     * <code>optional int32 ConvertQty = 3;</code>
+     * @return whether the convertQty field is set
+     */
+    public boolean hasConvertQty() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional int32 ConvertQty = 3;</code>
+     * @return this
+     */
+    public TraceHuntItem clearConvertQty() {
+      bitField0_ &= ~0x00000002;
+      convertQty = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional int32 ConvertQty = 3;</code>
+     * @return the convertQty
+     */
+    public int getConvertQty() {
+      return convertQty;
+    }
+
+    /**
+     * <code>optional int32 ConvertQty = 3;</code>
+     * @param value the convertQty to set
+     * @return this
+     */
+    public TraceHuntItem setConvertQty(final int value) {
+      bitField0_ |= 0x00000002;
+      convertQty = value;
+      return this;
+    }
+
+    /**
+     * <code>optional int32 GrantQty = 4;</code>
+     * @return whether the grantQty field is set
+     */
+    public boolean hasGrantQty() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional int32 GrantQty = 4;</code>
+     * @return this
+     */
+    public TraceHuntItem clearGrantQty() {
+      bitField0_ &= ~0x00000004;
+      grantQty = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional int32 GrantQty = 4;</code>
+     * @return the grantQty
+     */
+    public int getGrantQty() {
+      return grantQty;
+    }
+
+    /**
+     * <code>optional int32 GrantQty = 4;</code>
+     * @param value the grantQty to set
+     * @return this
+     */
+    public TraceHuntItem setGrantQty(final int value) {
+      bitField0_ |= 0x00000004;
+      grantQty = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     * @return whether the tid field is set
+     */
+    public boolean hasTid() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     * @return this
+     */
+    public TraceHuntItem clearTid() {
+      bitField0_ &= ~0x00000008;
+      tid = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     * @return the tid
+     */
+    public int getTid() {
+      return tid;
+    }
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     * @param value the tid to set
+     * @return this
+     */
+    public TraceHuntItem setTid(final int value) {
+      bitField0_ |= 0x00000008;
+      tid = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 DailyCount = 5;</code>
+     * @return whether the dailyCount field is set
+     */
+    public boolean hasDailyCount() {
+      return (bitField0_ & 0x00000010) != 0;
+    }
+
+    /**
+     * <code>optional uint32 DailyCount = 5;</code>
+     * @return this
+     */
+    public TraceHuntItem clearDailyCount() {
+      bitField0_ &= ~0x00000010;
+      dailyCount = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 DailyCount = 5;</code>
+     * @return the dailyCount
+     */
+    public int getDailyCount() {
+      return dailyCount;
+    }
+
+    /**
+     * <code>optional uint32 DailyCount = 5;</code>
+     * @param value the dailyCount to set
+     * @return this
+     */
+    public TraceHuntItem setDailyCount(final int value) {
+      bitField0_ |= 0x00000010;
+      dailyCount = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000020) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public TraceHuntItem clearNextPackage() {
+      bitField0_ &= ~0x00000020;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000020;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public TraceHuntItem addNextPackage(final byte value) {
+      bitField0_ |= 0x00000020;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public TraceHuntItem addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000020;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public TraceHuntItem setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000020;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public TraceHuntItem copyFrom(final TraceHuntItem other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        pointQty = other.pointQty;
+        convertQty = other.convertQty;
+        grantQty = other.grantQty;
+        tid = other.tid;
+        dailyCount = other.dailyCount;
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public TraceHuntItem mergeFrom(final TraceHuntItem other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasPointQty()) {
+        setPointQty(other.pointQty);
+      }
+      if (other.hasConvertQty()) {
+        setConvertQty(other.convertQty);
+      }
+      if (other.hasGrantQty()) {
+        setGrantQty(other.grantQty);
+      }
+      if (other.hasTid()) {
+        setTid(other.tid);
+      }
+      if (other.hasDailyCount()) {
+        setDailyCount(other.dailyCount);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public TraceHuntItem clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      pointQty = 0;
+      convertQty = 0;
+      grantQty = 0;
+      tid = 0;
+      dailyCount = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public TraceHuntItem clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof TraceHuntItem)) {
+        return false;
+      }
+      TraceHuntItem other = (TraceHuntItem) o;
+      return bitField0_ == other.bitField0_
+        && (!hasPointQty() || pointQty == other.pointQty)
+        && (!hasConvertQty() || convertQty == other.convertQty)
+        && (!hasGrantQty() || grantQty == other.grantQty)
+        && (!hasTid() || tid == other.tid)
+        && (!hasDailyCount() || dailyCount == other.dailyCount)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeInt32NoTag(pointQty);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeInt32NoTag(convertQty);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 32);
+        output.writeInt32NoTag(grantQty);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(tid);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeRawByte((byte) 40);
+        output.writeUInt32NoTag(dailyCount);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeInt32SizeNoTag(pointQty);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeInt32SizeNoTag(convertQty);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeInt32SizeNoTag(grantQty);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(tid);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(dailyCount);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public TraceHuntItem mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 16: {
+            // pointQty
+            pointQty = input.readInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
+            // convertQty
+            convertQty = input.readInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 32) {
+              break;
+            }
+          }
+          case 32: {
+            // grantQty
+            grantQty = input.readInt32();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 8) {
+              break;
+            }
+          }
+          case 8: {
+            // tid
+            tid = input.readUInt32();
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
+            if (tag != 40) {
+              break;
+            }
+          }
+          case 40: {
+            // dailyCount
+            dailyCount = input.readUInt32();
+            bitField0_ |= 0x00000010;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000020;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeInt32(FieldNames.pointQty, pointQty);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeInt32(FieldNames.convertQty, convertQty);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeInt32(FieldNames.grantQty, grantQty);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeUInt32(FieldNames.tid, tid);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeUInt32(FieldNames.dailyCount, dailyCount);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public TraceHuntItem mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 530752294: {
+            if (input.isAtField(FieldNames.pointQty)) {
+              if (!input.trySkipNullValue()) {
+                pointQty = input.readInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -258261981: {
+            if (input.isAtField(FieldNames.convertQty)) {
+              if (!input.trySkipNullValue()) {
+                convertQty = input.readInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 163839002: {
+            if (input.isAtField(FieldNames.grantQty)) {
+              if (!input.trySkipNullValue()) {
+                grantQty = input.readInt32();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 84079: {
+            if (input.isAtField(FieldNames.tid)) {
+              if (!input.trySkipNullValue()) {
+                tid = input.readUInt32();
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -800373098: {
+            if (input.isAtField(FieldNames.dailyCount)) {
+              if (!input.trySkipNullValue()) {
+                dailyCount = input.readUInt32();
+                bitField0_ |= 0x00000010;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000020;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public TraceHuntItem clone() {
+      return new TraceHuntItem().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static TraceHuntItem parseFrom(final byte[] data) throws InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new TraceHuntItem(), data).checkInitialized();
+    }
+
+    public static TraceHuntItem parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new TraceHuntItem(), input).checkInitialized();
+    }
+
+    public static TraceHuntItem parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new TraceHuntItem(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating TraceHuntItem messages
+     */
+    public static MessageFactory<TraceHuntItem> getFactory() {
+      return TraceHuntItemFactory.INSTANCE;
+    }
+
+    private enum TraceHuntItemFactory implements MessageFactory<TraceHuntItem> {
+      INSTANCE;
+
+      @Override
+      public TraceHuntItem create() {
+        return TraceHuntItem.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName pointQty = FieldName.forField("PointQty");
+
+      static final FieldName convertQty = FieldName.forField("ConvertQty");
+
+      static final FieldName grantQty = FieldName.forField("GrantQty");
+
+      static final FieldName tid = FieldName.forField("Tid");
+
+      static final FieldName dailyCount = FieldName.forField("DailyCount");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code TraceHuntState}
+   */
+  public static final class TraceHuntState extends ProtoMessage<TraceHuntState> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional bool BossRewardCanReceive = 1;</code>
+     */
+    private boolean bossRewardCanReceive;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private TraceHuntState() {
+    }
+
+    /**
+     * @return a new empty instance of {@code TraceHuntState}
+     */
+    public static TraceHuntState newInstance() {
+      return new TraceHuntState();
+    }
+
+    /**
+     * <code>optional bool BossRewardCanReceive = 1;</code>
+     * @return whether the bossRewardCanReceive field is set
+     */
+    public boolean hasBossRewardCanReceive() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional bool BossRewardCanReceive = 1;</code>
+     * @return this
+     */
+    public TraceHuntState clearBossRewardCanReceive() {
+      bitField0_ &= ~0x00000001;
+      bossRewardCanReceive = false;
+      return this;
+    }
+
+    /**
+     * <code>optional bool BossRewardCanReceive = 1;</code>
+     * @return the bossRewardCanReceive
+     */
+    public boolean getBossRewardCanReceive() {
+      return bossRewardCanReceive;
+    }
+
+    /**
+     * <code>optional bool BossRewardCanReceive = 1;</code>
+     * @param value the bossRewardCanReceive to set
+     * @return this
+     */
+    public TraceHuntState setBossRewardCanReceive(final boolean value) {
+      bitField0_ |= 0x00000001;
+      bossRewardCanReceive = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public TraceHuntState clearNextPackage() {
+      bitField0_ &= ~0x00000002;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000002;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public TraceHuntState addNextPackage(final byte value) {
+      bitField0_ |= 0x00000002;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public TraceHuntState addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public TraceHuntState setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public TraceHuntState copyFrom(final TraceHuntState other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        bossRewardCanReceive = other.bossRewardCanReceive;
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public TraceHuntState mergeFrom(final TraceHuntState other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasBossRewardCanReceive()) {
+        setBossRewardCanReceive(other.bossRewardCanReceive);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public TraceHuntState clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      bossRewardCanReceive = false;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public TraceHuntState clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof TraceHuntState)) {
+        return false;
+      }
+      TraceHuntState other = (TraceHuntState) o;
+      return bitField0_ == other.bitField0_
+        && (!hasBossRewardCanReceive() || bossRewardCanReceive == other.bossRewardCanReceive)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeBoolNoTag(bossRewardCanReceive);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 2;
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public TraceHuntState mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // bossRewardCanReceive
+            bossRewardCanReceive = input.readBool();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeBool(FieldNames.bossRewardCanReceive, bossRewardCanReceive);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public TraceHuntState mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 2056099631: {
+            if (input.isAtField(FieldNames.bossRewardCanReceive)) {
+              if (!input.trySkipNullValue()) {
+                bossRewardCanReceive = input.readBool();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public TraceHuntState clone() {
+      return new TraceHuntState().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static TraceHuntState parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new TraceHuntState(), data).checkInitialized();
+    }
+
+    public static TraceHuntState parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new TraceHuntState(), input).checkInitialized();
+    }
+
+    public static TraceHuntState parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new TraceHuntState(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating TraceHuntState messages
+     */
+    public static MessageFactory<TraceHuntState> getFactory() {
+      return TraceHuntStateFactory.INSTANCE;
+    }
+
+    private enum TraceHuntStateFactory implements MessageFactory<TraceHuntState> {
+      INSTANCE;
+
+      @Override
+      public TraceHuntState create() {
+        return TraceHuntState.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName bossRewardCanReceive = FieldName.forField("BossRewardCanReceive");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code ActivityIceCreamLevel}
+   */
+  public static final class ActivityIceCreamLevel extends ProtoMessage<ActivityIceCreamLevel> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 LevelId = 1;</code>
+     */
+    private int levelId;
+
+    /**
+     * <code>optional uint32 Score = 2;</code>
+     */
+    private int score;
+
+    /**
+     * <code>optional bool FirstComplete = 3;</code>
+     */
+    private boolean firstComplete;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private ActivityIceCreamLevel() {
+    }
+
+    /**
+     * @return a new empty instance of {@code ActivityIceCreamLevel}
+     */
+    public static ActivityIceCreamLevel newInstance() {
+      return new ActivityIceCreamLevel();
+    }
+
+    /**
+     * <code>optional uint32 LevelId = 1;</code>
+     * @return whether the levelId field is set
+     */
+    public boolean hasLevelId() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 LevelId = 1;</code>
+     * @return this
+     */
+    public ActivityIceCreamLevel clearLevelId() {
+      bitField0_ &= ~0x00000001;
+      levelId = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 LevelId = 1;</code>
+     * @return the levelId
+     */
+    public int getLevelId() {
+      return levelId;
+    }
+
+    /**
+     * <code>optional uint32 LevelId = 1;</code>
+     * @param value the levelId to set
+     * @return this
+     */
+    public ActivityIceCreamLevel setLevelId(final int value) {
+      bitField0_ |= 0x00000001;
+      levelId = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Score = 2;</code>
+     * @return whether the score field is set
+     */
+    public boolean hasScore() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Score = 2;</code>
+     * @return this
+     */
+    public ActivityIceCreamLevel clearScore() {
+      bitField0_ &= ~0x00000002;
+      score = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Score = 2;</code>
+     * @return the score
+     */
+    public int getScore() {
+      return score;
+    }
+
+    /**
+     * <code>optional uint32 Score = 2;</code>
+     * @param value the score to set
+     * @return this
+     */
+    public ActivityIceCreamLevel setScore(final int value) {
+      bitField0_ |= 0x00000002;
+      score = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bool FirstComplete = 3;</code>
+     * @return whether the firstComplete field is set
+     */
+    public boolean hasFirstComplete() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional bool FirstComplete = 3;</code>
+     * @return this
+     */
+    public ActivityIceCreamLevel clearFirstComplete() {
+      bitField0_ &= ~0x00000004;
+      firstComplete = false;
+      return this;
+    }
+
+    /**
+     * <code>optional bool FirstComplete = 3;</code>
+     * @return the firstComplete
+     */
+    public boolean getFirstComplete() {
+      return firstComplete;
+    }
+
+    /**
+     * <code>optional bool FirstComplete = 3;</code>
+     * @param value the firstComplete to set
+     * @return this
+     */
+    public ActivityIceCreamLevel setFirstComplete(final boolean value) {
+      bitField0_ |= 0x00000004;
+      firstComplete = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public ActivityIceCreamLevel clearNextPackage() {
+      bitField0_ &= ~0x00000008;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000008;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public ActivityIceCreamLevel addNextPackage(final byte value) {
+      bitField0_ |= 0x00000008;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public ActivityIceCreamLevel addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000008;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public ActivityIceCreamLevel setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000008;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public ActivityIceCreamLevel copyFrom(final ActivityIceCreamLevel other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        levelId = other.levelId;
+        score = other.score;
+        firstComplete = other.firstComplete;
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityIceCreamLevel mergeFrom(final ActivityIceCreamLevel other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasLevelId()) {
+        setLevelId(other.levelId);
+      }
+      if (other.hasScore()) {
+        setScore(other.score);
+      }
+      if (other.hasFirstComplete()) {
+        setFirstComplete(other.firstComplete);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityIceCreamLevel clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      levelId = 0;
+      score = 0;
+      firstComplete = false;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public ActivityIceCreamLevel clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof ActivityIceCreamLevel)) {
+        return false;
+      }
+      ActivityIceCreamLevel other = (ActivityIceCreamLevel) o;
+      return bitField0_ == other.bitField0_
+        && (!hasLevelId() || levelId == other.levelId)
+        && (!hasScore() || score == other.score)
+        && (!hasFirstComplete() || firstComplete == other.firstComplete)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(levelId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeUInt32NoTag(score);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeBoolNoTag(firstComplete);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(levelId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(score);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 2;
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public ActivityIceCreamLevel mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // levelId
+            levelId = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16) {
+              break;
+            }
+          }
+          case 16: {
+            // score
+            score = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
+            // firstComplete
+            firstComplete = input.readBool();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.levelId, levelId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeUInt32(FieldNames.score, score);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeBool(FieldNames.firstComplete, firstComplete);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public ActivityIceCreamLevel mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 1734437791: {
+            if (input.isAtField(FieldNames.levelId)) {
+              if (!input.trySkipNullValue()) {
+                levelId = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 79711858: {
+            if (input.isAtField(FieldNames.score)) {
+              if (!input.trySkipNullValue()) {
+                score = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 2041047017: {
+            if (input.isAtField(FieldNames.firstComplete)) {
+              if (!input.trySkipNullValue()) {
+                firstComplete = input.readBool();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public ActivityIceCreamLevel clone() {
+      return new ActivityIceCreamLevel().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static ActivityIceCreamLevel parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new ActivityIceCreamLevel(), data).checkInitialized();
+    }
+
+    public static ActivityIceCreamLevel parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityIceCreamLevel(), input).checkInitialized();
+    }
+
+    public static ActivityIceCreamLevel parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityIceCreamLevel(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating ActivityIceCreamLevel messages
+     */
+    public static MessageFactory<ActivityIceCreamLevel> getFactory() {
+      return ActivityIceCreamLevelFactory.INSTANCE;
+    }
+
+    private enum ActivityIceCreamLevelFactory implements MessageFactory<ActivityIceCreamLevel> {
+      INSTANCE;
+
+      @Override
+      public ActivityIceCreamLevel create() {
+        return ActivityIceCreamLevel.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName levelId = FieldName.forField("LevelId");
+
+      static final FieldName score = FieldName.forField("Score");
+
+      static final FieldName firstComplete = FieldName.forField("FirstComplete");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code ActivityIceCream}
+   */
+  public static final class ActivityIceCream extends ProtoMessage<ActivityIceCream> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     */
+    private int activityId;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>repeated .ActivityIceCreamLevel Levels = 2;</code>
+     */
+    private final RepeatedMessage<ActivityIceCreamLevel> levels = RepeatedMessage.newEmptyInstance(ActivityIceCreamLevel.getFactory());
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     */
+    private final RepeatedMessage<ActivityQuest> quests = RepeatedMessage.newEmptyInstance(ActivityQuest.getFactory());
+
+    private ActivityIceCream() {
+    }
+
+    /**
+     * @return a new empty instance of {@code ActivityIceCream}
+     */
+    public static ActivityIceCream newInstance() {
+      return new ActivityIceCream();
+    }
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     * @return whether the activityId field is set
+     */
+    public boolean hasActivityId() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     * @return this
+     */
+    public ActivityIceCream clearActivityId() {
+      bitField0_ &= ~0x00000001;
+      activityId = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     * @return the activityId
+     */
+    public int getActivityId() {
+      return activityId;
+    }
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     * @param value the activityId to set
+     * @return this
+     */
+    public ActivityIceCream setActivityId(final int value) {
+      bitField0_ |= 0x00000001;
+      activityId = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public ActivityIceCream clearNextPackage() {
+      bitField0_ &= ~0x00000002;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000002;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public ActivityIceCream addNextPackage(final byte value) {
+      bitField0_ |= 0x00000002;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public ActivityIceCream addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public ActivityIceCream setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityIceCreamLevel Levels = 2;</code>
+     * @return whether the levels field is set
+     */
+    public boolean hasLevels() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>repeated .ActivityIceCreamLevel Levels = 2;</code>
+     * @return this
+     */
+    public ActivityIceCream clearLevels() {
+      bitField0_ &= ~0x00000004;
+      levels.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityIceCreamLevel Levels = 2;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableLevels()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<ActivityIceCreamLevel> getLevels() {
+      return levels;
+    }
+
+    /**
+     * <code>repeated .ActivityIceCreamLevel Levels = 2;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<ActivityIceCreamLevel> getMutableLevels() {
+      bitField0_ |= 0x00000004;
+      return levels;
+    }
+
+    /**
+     * <code>repeated .ActivityIceCreamLevel Levels = 2;</code>
+     * @param value the levels to add
+     * @return this
+     */
+    public ActivityIceCream addLevels(final ActivityIceCreamLevel value) {
+      bitField0_ |= 0x00000004;
+      levels.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityIceCreamLevel Levels = 2;</code>
+     * @param values the levels to add
+     * @return this
+     */
+    public ActivityIceCream addAllLevels(final ActivityIceCreamLevel... values) {
+      bitField0_ |= 0x00000004;
+      levels.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * @return whether the quests field is set
+     */
+    public boolean hasQuests() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * @return this
+     */
+    public ActivityIceCream clearQuests() {
+      bitField0_ &= ~0x00000008;
+      quests.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableQuests()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<ActivityQuest> getQuests() {
+      return quests;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<ActivityQuest> getMutableQuests() {
+      bitField0_ |= 0x00000008;
+      return quests;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * @param value the quests to add
+     * @return this
+     */
+    public ActivityIceCream addQuests(final ActivityQuest value) {
+      bitField0_ |= 0x00000008;
+      quests.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * @param values the quests to add
+     * @return this
+     */
+    public ActivityIceCream addAllQuests(final ActivityQuest... values) {
+      bitField0_ |= 0x00000008;
+      quests.addAll(values);
+      return this;
+    }
+
+    @Override
+    public ActivityIceCream copyFrom(final ActivityIceCream other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        activityId = other.activityId;
+        nextPackage.copyFrom(other.nextPackage);
+        levels.copyFrom(other.levels);
+        quests.copyFrom(other.quests);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityIceCream mergeFrom(final ActivityIceCream other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasActivityId()) {
+        setActivityId(other.activityId);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasLevels()) {
+        getMutableLevels().addAll(other.levels);
+      }
+      if (other.hasQuests()) {
+        getMutableQuests().addAll(other.quests);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityIceCream clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      activityId = 0;
+      nextPackage.clear();
+      levels.clear();
+      quests.clear();
+      return this;
+    }
+
+    @Override
+    public ActivityIceCream clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      levels.clearQuick();
+      quests.clearQuick();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof ActivityIceCream)) {
+        return false;
+      }
+      ActivityIceCream other = (ActivityIceCream) o;
+      return bitField0_ == other.bitField0_
+        && (!hasActivityId() || activityId == other.activityId)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasLevels() || levels.equals(other.levels))
+        && (!hasQuests() || quests.equals(other.quests));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(activityId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        for (int i = 0; i < levels.length(); i++) {
+          output.writeRawByte((byte) 18);
+          output.writeMessageNoTag(levels.get(i));
+        }
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        for (int i = 0; i < quests.length(); i++) {
+          output.writeRawByte((byte) 26);
+          output.writeMessageNoTag(quests.get(i));
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(activityId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += (1 * levels.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(levels);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += (1 * quests.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(quests);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public ActivityIceCream mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // activityId
+            activityId = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 18) {
+              break;
+            }
+          }
+          case 18: {
+            // levels
+            tag = input.readRepeatedMessage(levels, tag);
+            bitField0_ |= 0x00000004;
+            if (tag != 26) {
+              break;
+            }
+          }
+          case 26: {
+            // quests
+            tag = input.readRepeatedMessage(quests, tag);
+            bitField0_ |= 0x00000008;
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.activityId, activityId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRepeatedMessage(FieldNames.levels, levels);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRepeatedMessage(FieldNames.quests, quests);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public ActivityIceCream mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case -252882774: {
+            if (input.isAtField(FieldNames.activityId)) {
+              if (!input.trySkipNullValue()) {
+                activityId = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2022260337: {
+            if (input.isAtField(FieldNames.levels)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(levels);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1864830991: {
+            if (input.isAtField(FieldNames.quests)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(quests);
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public ActivityIceCream clone() {
+      return new ActivityIceCream().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static ActivityIceCream parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new ActivityIceCream(), data).checkInitialized();
+    }
+
+    public static ActivityIceCream parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityIceCream(), input).checkInitialized();
+    }
+
+    public static ActivityIceCream parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityIceCream(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating ActivityIceCream messages
+     */
+    public static MessageFactory<ActivityIceCream> getFactory() {
+      return ActivityIceCreamFactory.INSTANCE;
+    }
+
+    private enum ActivityIceCreamFactory implements MessageFactory<ActivityIceCream> {
+      INSTANCE;
+
+      @Override
+      public ActivityIceCream create() {
+        return ActivityIceCream.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName activityId = FieldName.forField("ActivityId");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName levels = FieldName.forField("Levels");
+
+      static final FieldName quests = FieldName.forField("Quests");
+    }
+  }
+
+  /**
+   * Protobuf type {@code ActivityIceCreamLevelSettleSucceed}
+   */
+  public static final class ActivityIceCreamLevelSettleSucceed extends ProtoMessage<ActivityIceCreamLevelSettleSucceed> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional bool Passed = 2;</code>
+     */
+    private boolean passed;
+
+    /**
+     * <code>optional .ChangeInfo Change = 1;</code>
+     */
+    private final ChangeInfo change = ChangeInfo.newInstance();
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private ActivityIceCreamLevelSettleSucceed() {
+    }
+
+    /**
+     * @return a new empty instance of {@code ActivityIceCreamLevelSettleSucceed}
+     */
+    public static ActivityIceCreamLevelSettleSucceed newInstance() {
+      return new ActivityIceCreamLevelSettleSucceed();
+    }
+
+    /**
+     * <code>optional bool Passed = 2;</code>
+     * @return whether the passed field is set
+     */
+    public boolean hasPassed() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional bool Passed = 2;</code>
+     * @return this
+     */
+    public ActivityIceCreamLevelSettleSucceed clearPassed() {
+      bitField0_ &= ~0x00000001;
+      passed = false;
+      return this;
+    }
+
+    /**
+     * <code>optional bool Passed = 2;</code>
+     * @return the passed
+     */
+    public boolean getPassed() {
+      return passed;
+    }
+
+    /**
+     * <code>optional bool Passed = 2;</code>
+     * @param value the passed to set
+     * @return this
+     */
+    public ActivityIceCreamLevelSettleSucceed setPassed(final boolean value) {
+      bitField0_ |= 0x00000001;
+      passed = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .ChangeInfo Change = 1;</code>
+     * @return whether the change field is set
+     */
+    public boolean hasChange() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional .ChangeInfo Change = 1;</code>
+     * @return this
+     */
+    public ActivityIceCreamLevelSettleSucceed clearChange() {
+      bitField0_ &= ~0x00000002;
+      change.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .ChangeInfo Change = 1;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableChange()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public ChangeInfo getChange() {
+      return change;
+    }
+
+    /**
+     * <code>optional .ChangeInfo Change = 1;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public ChangeInfo getMutableChange() {
+      bitField0_ |= 0x00000002;
+      return change;
+    }
+
+    /**
+     * <code>optional .ChangeInfo Change = 1;</code>
+     * @param value the change to set
+     * @return this
+     */
+    public ActivityIceCreamLevelSettleSucceed setChange(final ChangeInfo value) {
+      bitField0_ |= 0x00000002;
+      change.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public ActivityIceCreamLevelSettleSucceed clearNextPackage() {
+      bitField0_ &= ~0x00000004;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000004;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public ActivityIceCreamLevelSettleSucceed addNextPackage(final byte value) {
+      bitField0_ |= 0x00000004;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public ActivityIceCreamLevelSettleSucceed addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public ActivityIceCreamLevelSettleSucceed setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public ActivityIceCreamLevelSettleSucceed copyFrom(
+        final ActivityIceCreamLevelSettleSucceed other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        passed = other.passed;
+        change.copyFrom(other.change);
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityIceCreamLevelSettleSucceed mergeFrom(
+        final ActivityIceCreamLevelSettleSucceed other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasPassed()) {
+        setPassed(other.passed);
+      }
+      if (other.hasChange()) {
+        getMutableChange().mergeFrom(other.change);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityIceCreamLevelSettleSucceed clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      passed = false;
+      change.clear();
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public ActivityIceCreamLevelSettleSucceed clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      change.clearQuick();
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof ActivityIceCreamLevelSettleSucceed)) {
+        return false;
+      }
+      ActivityIceCreamLevelSettleSucceed other = (ActivityIceCreamLevelSettleSucceed) o;
+      return bitField0_ == other.bitField0_
+        && (!hasPassed() || passed == other.passed)
+        && (!hasChange() || change.equals(other.change))
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeBoolNoTag(passed);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 10);
+        output.writeMessageNoTag(change);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 2;
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(change);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public ActivityIceCreamLevelSettleSucceed mergeFrom(final ProtoSource input) throws
+        IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 16: {
+            // passed
+            passed = input.readBool();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 10) {
+              break;
+            }
+          }
+          case 10: {
+            // change
+            input.readMessage(change);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeBool(FieldNames.passed, passed);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeMessage(FieldNames.change, change);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public ActivityIceCreamLevelSettleSucceed mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case -1911513968: {
+            if (input.isAtField(FieldNames.passed)) {
+              if (!input.trySkipNullValue()) {
+                passed = input.readBool();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 2017198032: {
+            if (input.isAtField(FieldNames.change)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(change);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public ActivityIceCreamLevelSettleSucceed clone() {
+      return new ActivityIceCreamLevelSettleSucceed().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static ActivityIceCreamLevelSettleSucceed parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new ActivityIceCreamLevelSettleSucceed(), data).checkInitialized();
+    }
+
+    public static ActivityIceCreamLevelSettleSucceed parseFrom(final ProtoSource input) throws
+        IOException {
+      return ProtoMessage.mergeFrom(new ActivityIceCreamLevelSettleSucceed(), input).checkInitialized();
+    }
+
+    public static ActivityIceCreamLevelSettleSucceed parseFrom(final JsonSource input) throws
+        IOException {
+      return ProtoMessage.mergeFrom(new ActivityIceCreamLevelSettleSucceed(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating ActivityIceCreamLevelSettleSucceed messages
+     */
+    public static MessageFactory<ActivityIceCreamLevelSettleSucceed> getFactory() {
+      return ActivityIceCreamLevelSettleSucceedFactory.INSTANCE;
+    }
+
+    private enum ActivityIceCreamLevelSettleSucceedFactory implements MessageFactory<ActivityIceCreamLevelSettleSucceed> {
+      INSTANCE;
+
+      @Override
+      public ActivityIceCreamLevelSettleSucceed create() {
+        return ActivityIceCreamLevelSettleSucceed.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName passed = FieldName.forField("Passed");
+
+      static final FieldName change = FieldName.forField("Change");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code ActivitySoldier}
+   */
+  public static final class ActivitySoldier extends ProtoMessage<ActivitySoldier> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 CurGradeChallengeId = 1;</code>
+     */
+    private int curGradeChallengeId;
+
+    /**
+     * <code>optional uint32 Score = 2;</code>
+     */
+    private int score;
+
+    /**
+     * <code>optional uint32 GradeChallengeId = 3;</code>
+     */
+    private int gradeChallengeId;
+
+    /**
+     * <code>optional uint32 Stage = 4;</code>
+     */
+    private int stage;
+
+    /**
+     * <code>optional uint32 NodeIndex = 5;</code>
+     */
+    private int nodeIndex;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 6;</code>
+     */
+    private final RepeatedMessage<ActivityQuest> quests = RepeatedMessage.newEmptyInstance(ActivityQuest.getFactory());
+
+    private ActivitySoldier() {
+    }
+
+    /**
+     * @return a new empty instance of {@code ActivitySoldier}
+     */
+    public static ActivitySoldier newInstance() {
+      return new ActivitySoldier();
+    }
+
+    /**
+     * <code>optional uint32 CurGradeChallengeId = 1;</code>
+     * @return whether the curGradeChallengeId field is set
+     */
+    public boolean hasCurGradeChallengeId() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 CurGradeChallengeId = 1;</code>
+     * @return this
+     */
+    public ActivitySoldier clearCurGradeChallengeId() {
+      bitField0_ &= ~0x00000001;
+      curGradeChallengeId = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 CurGradeChallengeId = 1;</code>
+     * @return the curGradeChallengeId
+     */
+    public int getCurGradeChallengeId() {
+      return curGradeChallengeId;
+    }
+
+    /**
+     * <code>optional uint32 CurGradeChallengeId = 1;</code>
+     * @param value the curGradeChallengeId to set
+     * @return this
+     */
+    public ActivitySoldier setCurGradeChallengeId(final int value) {
+      bitField0_ |= 0x00000001;
+      curGradeChallengeId = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Score = 2;</code>
+     * @return whether the score field is set
+     */
+    public boolean hasScore() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Score = 2;</code>
+     * @return this
+     */
+    public ActivitySoldier clearScore() {
+      bitField0_ &= ~0x00000002;
+      score = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Score = 2;</code>
+     * @return the score
+     */
+    public int getScore() {
+      return score;
+    }
+
+    /**
+     * <code>optional uint32 Score = 2;</code>
+     * @param value the score to set
+     * @return this
+     */
+    public ActivitySoldier setScore(final int value) {
+      bitField0_ |= 0x00000002;
+      score = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 GradeChallengeId = 3;</code>
+     * @return whether the gradeChallengeId field is set
+     */
+    public boolean hasGradeChallengeId() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional uint32 GradeChallengeId = 3;</code>
+     * @return this
+     */
+    public ActivitySoldier clearGradeChallengeId() {
+      bitField0_ &= ~0x00000004;
+      gradeChallengeId = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 GradeChallengeId = 3;</code>
+     * @return the gradeChallengeId
+     */
+    public int getGradeChallengeId() {
+      return gradeChallengeId;
+    }
+
+    /**
+     * <code>optional uint32 GradeChallengeId = 3;</code>
+     * @param value the gradeChallengeId to set
+     * @return this
+     */
+    public ActivitySoldier setGradeChallengeId(final int value) {
+      bitField0_ |= 0x00000004;
+      gradeChallengeId = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Stage = 4;</code>
+     * @return whether the stage field is set
+     */
+    public boolean hasStage() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Stage = 4;</code>
+     * @return this
+     */
+    public ActivitySoldier clearStage() {
+      bitField0_ &= ~0x00000008;
+      stage = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Stage = 4;</code>
+     * @return the stage
+     */
+    public int getStage() {
+      return stage;
+    }
+
+    /**
+     * <code>optional uint32 Stage = 4;</code>
+     * @param value the stage to set
+     * @return this
+     */
+    public ActivitySoldier setStage(final int value) {
+      bitField0_ |= 0x00000008;
+      stage = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 NodeIndex = 5;</code>
+     * @return whether the nodeIndex field is set
+     */
+    public boolean hasNodeIndex() {
+      return (bitField0_ & 0x00000010) != 0;
+    }
+
+    /**
+     * <code>optional uint32 NodeIndex = 5;</code>
+     * @return this
+     */
+    public ActivitySoldier clearNodeIndex() {
+      bitField0_ &= ~0x00000010;
+      nodeIndex = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 NodeIndex = 5;</code>
+     * @return the nodeIndex
+     */
+    public int getNodeIndex() {
+      return nodeIndex;
+    }
+
+    /**
+     * <code>optional uint32 NodeIndex = 5;</code>
+     * @param value the nodeIndex to set
+     * @return this
+     */
+    public ActivitySoldier setNodeIndex(final int value) {
+      bitField0_ |= 0x00000010;
+      nodeIndex = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000020) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public ActivitySoldier clearNextPackage() {
+      bitField0_ &= ~0x00000020;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000020;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public ActivitySoldier addNextPackage(final byte value) {
+      bitField0_ |= 0x00000020;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public ActivitySoldier addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000020;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public ActivitySoldier setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000020;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 6;</code>
+     * @return whether the quests field is set
+     */
+    public boolean hasQuests() {
+      return (bitField0_ & 0x00000040) != 0;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 6;</code>
+     * @return this
+     */
+    public ActivitySoldier clearQuests() {
+      bitField0_ &= ~0x00000040;
+      quests.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 6;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableQuests()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<ActivityQuest> getQuests() {
+      return quests;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 6;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<ActivityQuest> getMutableQuests() {
+      bitField0_ |= 0x00000040;
+      return quests;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 6;</code>
+     * @param value the quests to add
+     * @return this
+     */
+    public ActivitySoldier addQuests(final ActivityQuest value) {
+      bitField0_ |= 0x00000040;
+      quests.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 6;</code>
+     * @param values the quests to add
+     * @return this
+     */
+    public ActivitySoldier addAllQuests(final ActivityQuest... values) {
+      bitField0_ |= 0x00000040;
+      quests.addAll(values);
+      return this;
+    }
+
+    @Override
+    public ActivitySoldier copyFrom(final ActivitySoldier other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        curGradeChallengeId = other.curGradeChallengeId;
+        score = other.score;
+        gradeChallengeId = other.gradeChallengeId;
+        stage = other.stage;
+        nodeIndex = other.nodeIndex;
+        nextPackage.copyFrom(other.nextPackage);
+        quests.copyFrom(other.quests);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivitySoldier mergeFrom(final ActivitySoldier other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasCurGradeChallengeId()) {
+        setCurGradeChallengeId(other.curGradeChallengeId);
+      }
+      if (other.hasScore()) {
+        setScore(other.score);
+      }
+      if (other.hasGradeChallengeId()) {
+        setGradeChallengeId(other.gradeChallengeId);
+      }
+      if (other.hasStage()) {
+        setStage(other.stage);
+      }
+      if (other.hasNodeIndex()) {
+        setNodeIndex(other.nodeIndex);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasQuests()) {
+        getMutableQuests().addAll(other.quests);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivitySoldier clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      curGradeChallengeId = 0;
+      score = 0;
+      gradeChallengeId = 0;
+      stage = 0;
+      nodeIndex = 0;
+      nextPackage.clear();
+      quests.clear();
+      return this;
+    }
+
+    @Override
+    public ActivitySoldier clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      quests.clearQuick();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof ActivitySoldier)) {
+        return false;
+      }
+      ActivitySoldier other = (ActivitySoldier) o;
+      return bitField0_ == other.bitField0_
+        && (!hasCurGradeChallengeId() || curGradeChallengeId == other.curGradeChallengeId)
+        && (!hasScore() || score == other.score)
+        && (!hasGradeChallengeId() || gradeChallengeId == other.gradeChallengeId)
+        && (!hasStage() || stage == other.stage)
+        && (!hasNodeIndex() || nodeIndex == other.nodeIndex)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasQuests() || quests.equals(other.quests));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(curGradeChallengeId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeUInt32NoTag(score);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeUInt32NoTag(gradeChallengeId);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawByte((byte) 32);
+        output.writeUInt32NoTag(stage);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeRawByte((byte) 40);
+        output.writeUInt32NoTag(nodeIndex);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000040) != 0) {
+        for (int i = 0; i < quests.length(); i++) {
+          output.writeRawByte((byte) 50);
+          output.writeMessageNoTag(quests.get(i));
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(curGradeChallengeId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(score);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(gradeChallengeId);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(stage);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(nodeIndex);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000040) != 0) {
+        size += (1 * quests.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(quests);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public ActivitySoldier mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // curGradeChallengeId
+            curGradeChallengeId = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16) {
+              break;
+            }
+          }
+          case 16: {
+            // score
+            score = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
+            // gradeChallengeId
+            gradeChallengeId = input.readUInt32();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 32) {
+              break;
+            }
+          }
+          case 32: {
+            // stage
+            stage = input.readUInt32();
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
+            if (tag != 40) {
+              break;
+            }
+          }
+          case 40: {
+            // nodeIndex
+            nodeIndex = input.readUInt32();
+            bitField0_ |= 0x00000010;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000020;
+            tag = input.readTag();
+            if (tag != 50) {
+              break;
+            }
+          }
+          case 50: {
+            // quests
+            tag = input.readRepeatedMessage(quests, tag);
+            bitField0_ |= 0x00000040;
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.curGradeChallengeId, curGradeChallengeId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeUInt32(FieldNames.score, score);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeUInt32(FieldNames.gradeChallengeId, gradeChallengeId);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeUInt32(FieldNames.stage, stage);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeUInt32(FieldNames.nodeIndex, nodeIndex);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000040) != 0) {
+        output.writeRepeatedMessage(FieldNames.quests, quests);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public ActivitySoldier mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 750219975: {
+            if (input.isAtField(FieldNames.curGradeChallengeId)) {
+              if (!input.trySkipNullValue()) {
+                curGradeChallengeId = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 79711858: {
+            if (input.isAtField(FieldNames.score)) {
+              if (!input.trySkipNullValue()) {
+                score = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1764841305: {
+            if (input.isAtField(FieldNames.gradeChallengeId)) {
+              if (!input.trySkipNullValue()) {
+                gradeChallengeId = input.readUInt32();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 80204510: {
+            if (input.isAtField(FieldNames.stage)) {
+              if (!input.trySkipNullValue()) {
+                stage = input.readUInt32();
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1845683248: {
+            if (input.isAtField(FieldNames.nodeIndex)) {
+              if (!input.trySkipNullValue()) {
+                nodeIndex = input.readUInt32();
+                bitField0_ |= 0x00000010;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000020;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1864830991: {
+            if (input.isAtField(FieldNames.quests)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(quests);
+                bitField0_ |= 0x00000040;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public ActivitySoldier clone() {
+      return new ActivitySoldier().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static ActivitySoldier parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new ActivitySoldier(), data).checkInitialized();
+    }
+
+    public static ActivitySoldier parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivitySoldier(), input).checkInitialized();
+    }
+
+    public static ActivitySoldier parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivitySoldier(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating ActivitySoldier messages
+     */
+    public static MessageFactory<ActivitySoldier> getFactory() {
+      return ActivitySoldierFactory.INSTANCE;
+    }
+
+    private enum ActivitySoldierFactory implements MessageFactory<ActivitySoldier> {
+      INSTANCE;
+
+      @Override
+      public ActivitySoldier create() {
+        return ActivitySoldier.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName curGradeChallengeId = FieldName.forField("CurGradeChallengeId");
+
+      static final FieldName score = FieldName.forField("Score");
+
+      static final FieldName gradeChallengeId = FieldName.forField("GradeChallengeId");
+
+      static final FieldName stage = FieldName.forField("Stage");
+
+      static final FieldName nodeIndex = FieldName.forField("NodeIndex");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName quests = FieldName.forField("Quests");
     }
   }
 }

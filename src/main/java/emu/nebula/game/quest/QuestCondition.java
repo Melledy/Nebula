@@ -97,6 +97,7 @@ public enum QuestCondition {
     DiscWithSpecificQuantityPhaseAndAttr                                          (122),
     WeekBossClearTotal                                                            (123),
     ActivityStoryReadStory                                                        (124),
+    ActivitySoldierScore                                                          (158),
     ClientReport                                                                  (200),
     TowerBattleTimes                                                              (501),
     TowerBossChallengeSpecificHighRewardWithTotal                                 (502),

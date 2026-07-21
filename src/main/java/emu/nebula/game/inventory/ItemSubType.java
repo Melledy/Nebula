@@ -37,7 +37,8 @@ public enum ItemSubType {
     PlayHead            (45),
     CharacterSkin       (46),
     SouvenirEnergyItem  (47),
-    Build               (48);
+    Build               (48),
+    Chess               (49);
 
     @Getter
     private final int value;

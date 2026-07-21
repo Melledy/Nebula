@@ -7,7 +7,7 @@ import emu.nebula.game.inventory.ItemParamMap;
 import emu.nebula.util.WeightedList;
 
 public class GameConstants {
-    public static final String VERSION = "1.12.0";
+    public static final String VERSION = "1.13.0";
     public static int DATA_VERSION = 0;
     
     public static final ZoneId UTC_ZONE = ZoneId.of("UTC");

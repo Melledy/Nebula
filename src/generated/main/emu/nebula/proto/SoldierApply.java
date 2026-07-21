@@ -13,151 +13,109 @@ import us.hebi.quickbuf.ProtoSource;
 import us.hebi.quickbuf.RepeatedByte;
 import us.hebi.quickbuf.RepeatedMessage;
 
-public final class ActivityMiningQuestRewardReceive {
+public final class SoldierApply {
   /**
-   * Protobuf type {@code ActivityMiningQuestRewardReceiveReq}
+   * Protobuf type {@code SoldierApplyReq}
    */
-  public static final class ActivityMiningQuestRewardReceiveReq extends ProtoMessage<ActivityMiningQuestRewardReceiveReq> implements Cloneable {
+  public static final class SoldierApplyReq extends ProtoMessage<SoldierApplyReq> implements Cloneable {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint32 ActivityId = 1;</code>
+     * <code>optional uint32 SeasonId = 1;</code>
      */
-    private int activityId;
+    private int seasonId;
 
     /**
-     * <code>optional uint32 QuestId = 2;</code>
+     * <code>optional uint32 GradeChallengeId = 2;</code>
      */
-    private int questId;
-
-    /**
-     * <code>optional uint32 GroupId = 3;</code>
-     */
-    private int groupId;
+    private int gradeChallengeId;
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
 
-    private ActivityMiningQuestRewardReceiveReq() {
+    private SoldierApplyReq() {
     }
 
     /**
-     * @return a new empty instance of {@code ActivityMiningQuestRewardReceiveReq}
+     * @return a new empty instance of {@code SoldierApplyReq}
      */
-    public static ActivityMiningQuestRewardReceiveReq newInstance() {
-      return new ActivityMiningQuestRewardReceiveReq();
+    public static SoldierApplyReq newInstance() {
+      return new SoldierApplyReq();
     }
 
     /**
-     * <code>optional uint32 ActivityId = 1;</code>
-     * @return whether the activityId field is set
+     * <code>optional uint32 SeasonId = 1;</code>
+     * @return whether the seasonId field is set
      */
-    public boolean hasActivityId() {
+    public boolean hasSeasonId() {
       return (bitField0_ & 0x00000001) != 0;
     }
 
     /**
-     * <code>optional uint32 ActivityId = 1;</code>
+     * <code>optional uint32 SeasonId = 1;</code>
      * @return this
      */
-    public ActivityMiningQuestRewardReceiveReq clearActivityId() {
+    public SoldierApplyReq clearSeasonId() {
       bitField0_ &= ~0x00000001;
-      activityId = 0;
+      seasonId = 0;
       return this;
     }
 
     /**
-     * <code>optional uint32 ActivityId = 1;</code>
-     * @return the activityId
+     * <code>optional uint32 SeasonId = 1;</code>
+     * @return the seasonId
      */
-    public int getActivityId() {
-      return activityId;
+    public int getSeasonId() {
+      return seasonId;
     }
 
     /**
-     * <code>optional uint32 ActivityId = 1;</code>
-     * @param value the activityId to set
+     * <code>optional uint32 SeasonId = 1;</code>
+     * @param value the seasonId to set
      * @return this
      */
-    public ActivityMiningQuestRewardReceiveReq setActivityId(final int value) {
+    public SoldierApplyReq setSeasonId(final int value) {
       bitField0_ |= 0x00000001;
-      activityId = value;
+      seasonId = value;
       return this;
     }
 
     /**
-     * <code>optional uint32 QuestId = 2;</code>
-     * @return whether the questId field is set
+     * <code>optional uint32 GradeChallengeId = 2;</code>
+     * @return whether the gradeChallengeId field is set
      */
-    public boolean hasQuestId() {
+    public boolean hasGradeChallengeId() {
       return (bitField0_ & 0x00000002) != 0;
     }
 
     /**
-     * <code>optional uint32 QuestId = 2;</code>
+     * <code>optional uint32 GradeChallengeId = 2;</code>
      * @return this
      */
-    public ActivityMiningQuestRewardReceiveReq clearQuestId() {
+    public SoldierApplyReq clearGradeChallengeId() {
       bitField0_ &= ~0x00000002;
-      questId = 0;
+      gradeChallengeId = 0;
       return this;
     }
 
     /**
-     * <code>optional uint32 QuestId = 2;</code>
-     * @return the questId
+     * <code>optional uint32 GradeChallengeId = 2;</code>
+     * @return the gradeChallengeId
      */
-    public int getQuestId() {
-      return questId;
+    public int getGradeChallengeId() {
+      return gradeChallengeId;
     }
 
     /**
-     * <code>optional uint32 QuestId = 2;</code>
-     * @param value the questId to set
+     * <code>optional uint32 GradeChallengeId = 2;</code>
+     * @param value the gradeChallengeId to set
      * @return this
      */
-    public ActivityMiningQuestRewardReceiveReq setQuestId(final int value) {
+    public SoldierApplyReq setGradeChallengeId(final int value) {
       bitField0_ |= 0x00000002;
-      questId = value;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 GroupId = 3;</code>
-     * @return whether the groupId field is set
-     */
-    public boolean hasGroupId() {
-      return (bitField0_ & 0x00000004) != 0;
-    }
-
-    /**
-     * <code>optional uint32 GroupId = 3;</code>
-     * @return this
-     */
-    public ActivityMiningQuestRewardReceiveReq clearGroupId() {
-      bitField0_ &= ~0x00000004;
-      groupId = 0;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 GroupId = 3;</code>
-     * @return the groupId
-     */
-    public int getGroupId() {
-      return groupId;
-    }
-
-    /**
-     * <code>optional uint32 GroupId = 3;</code>
-     * @param value the groupId to set
-     * @return this
-     */
-    public ActivityMiningQuestRewardReceiveReq setGroupId(final int value) {
-      bitField0_ |= 0x00000004;
-      groupId = value;
+      gradeChallengeId = value;
       return this;
     }
 
@@ -166,15 +124,15 @@ public final class ActivityMiningQuestRewardReceive {
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000008) != 0;
+      return (bitField0_ & 0x00000004) != 0;
     }
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return this
      */
-    public ActivityMiningQuestRewardReceiveReq clearNextPackage() {
-      bitField0_ &= ~0x00000008;
+    public SoldierApplyReq clearNextPackage() {
+      bitField0_ &= ~0x00000004;
       nextPackage.clear();
       return this;
     }
@@ -203,7 +161,7 @@ public final class ActivityMiningQuestRewardReceive {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000004;
       return nextPackage;
     }
 
@@ -212,8 +170,8 @@ public final class ActivityMiningQuestRewardReceive {
      * @param value the nextPackage to add
      * @return this
      */
-    public ActivityMiningQuestRewardReceiveReq addNextPackage(final byte value) {
-      bitField0_ |= 0x00000008;
+    public SoldierApplyReq addNextPackage(final byte value) {
+      bitField0_ |= 0x00000004;
       nextPackage.add(value);
       return this;
     }
@@ -223,8 +181,8 @@ public final class ActivityMiningQuestRewardReceive {
      * @param values the nextPackage to add
      * @return this
      */
-    public ActivityMiningQuestRewardReceiveReq addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000008;
+    public SoldierApplyReq addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
       nextPackage.addAll(values);
       return this;
     }
@@ -234,41 +192,35 @@ public final class ActivityMiningQuestRewardReceive {
      * @param values the nextPackage to set
      * @return this
      */
-    public ActivityMiningQuestRewardReceiveReq setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000008;
+    public SoldierApplyReq setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
       nextPackage.copyFrom(values);
       return this;
     }
 
     @Override
-    public ActivityMiningQuestRewardReceiveReq copyFrom(
-        final ActivityMiningQuestRewardReceiveReq other) {
+    public SoldierApplyReq copyFrom(final SoldierApplyReq other) {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
-        activityId = other.activityId;
-        questId = other.questId;
-        groupId = other.groupId;
+        seasonId = other.seasonId;
+        gradeChallengeId = other.gradeChallengeId;
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
     }
 
     @Override
-    public ActivityMiningQuestRewardReceiveReq mergeFrom(
-        final ActivityMiningQuestRewardReceiveReq other) {
+    public SoldierApplyReq mergeFrom(final SoldierApplyReq other) {
       if (other.isEmpty()) {
         return this;
       }
       cachedSize = -1;
-      if (other.hasActivityId()) {
-        setActivityId(other.activityId);
+      if (other.hasSeasonId()) {
+        setSeasonId(other.seasonId);
       }
-      if (other.hasQuestId()) {
-        setQuestId(other.questId);
-      }
-      if (other.hasGroupId()) {
-        setGroupId(other.groupId);
+      if (other.hasGradeChallengeId()) {
+        setGradeChallengeId(other.gradeChallengeId);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -277,21 +229,20 @@ public final class ActivityMiningQuestRewardReceive {
     }
 
     @Override
-    public ActivityMiningQuestRewardReceiveReq clear() {
+    public SoldierApplyReq clear() {
       if (isEmpty()) {
         return this;
       }
       cachedSize = -1;
       bitField0_ = 0;
-      activityId = 0;
-      questId = 0;
-      groupId = 0;
+      seasonId = 0;
+      gradeChallengeId = 0;
       nextPackage.clear();
       return this;
     }
 
     @Override
-    public ActivityMiningQuestRewardReceiveReq clearQuick() {
+    public SoldierApplyReq clearQuick() {
       if (isEmpty()) {
         return this;
       }
@@ -306,14 +257,13 @@ public final class ActivityMiningQuestRewardReceive {
       if (o == this) {
         return true;
       }
-      if (!(o instanceof ActivityMiningQuestRewardReceiveReq)) {
+      if (!(o instanceof SoldierApplyReq)) {
         return false;
       }
-      ActivityMiningQuestRewardReceiveReq other = (ActivityMiningQuestRewardReceiveReq) o;
+      SoldierApplyReq other = (SoldierApplyReq) o;
       return bitField0_ == other.bitField0_
-        && (!hasActivityId() || activityId == other.activityId)
-        && (!hasQuestId() || questId == other.questId)
-        && (!hasGroupId() || groupId == other.groupId)
+        && (!hasSeasonId() || seasonId == other.seasonId)
+        && (!hasGradeChallengeId() || gradeChallengeId == other.gradeChallengeId)
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
@@ -321,17 +271,13 @@ public final class ActivityMiningQuestRewardReceive {
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
         output.writeRawByte((byte) 8);
-        output.writeUInt32NoTag(activityId);
+        output.writeUInt32NoTag(seasonId);
       }
       if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 16);
-        output.writeUInt32NoTag(questId);
+        output.writeUInt32NoTag(gradeChallengeId);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        output.writeRawByte((byte) 24);
-        output.writeUInt32NoTag(groupId);
-      }
-      if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
@@ -341,15 +287,12 @@ public final class ActivityMiningQuestRewardReceive {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(activityId);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(seasonId);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(questId);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(gradeChallengeId);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(groupId);
-      }
-      if ((bitField0_ & 0x00000008) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       return size;
@@ -357,15 +300,14 @@ public final class ActivityMiningQuestRewardReceive {
 
     @Override
     @SuppressWarnings("fallthrough")
-    public ActivityMiningQuestRewardReceiveReq mergeFrom(final ProtoSource input) throws
-        IOException {
+    public SoldierApplyReq mergeFrom(final ProtoSource input) throws IOException {
       // Enabled Fall-Through Optimization (QuickBuffers)
       int tag = input.readTag();
       while (true) {
         switch (tag) {
           case 8: {
-            // activityId
-            activityId = input.readUInt32();
+            // seasonId
+            seasonId = input.readUInt32();
             bitField0_ |= 0x00000001;
             tag = input.readTag();
             if (tag != 16) {
@@ -373,18 +315,9 @@ public final class ActivityMiningQuestRewardReceive {
             }
           }
           case 16: {
-            // questId
-            questId = input.readUInt32();
+            // gradeChallengeId
+            gradeChallengeId = input.readUInt32();
             bitField0_ |= 0x00000002;
-            tag = input.readTag();
-            if (tag != 24) {
-              break;
-            }
-          }
-          case 24: {
-            // groupId
-            groupId = input.readUInt32();
-            bitField0_ |= 0x00000004;
             tag = input.readTag();
             if (tag != 16378) {
               break;
@@ -393,7 +326,7 @@ public final class ActivityMiningQuestRewardReceive {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000008;
+            bitField0_ |= 0x00000004;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -417,32 +350,28 @@ public final class ActivityMiningQuestRewardReceive {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt32(FieldNames.activityId, activityId);
+        output.writeUInt32(FieldNames.seasonId, seasonId);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeUInt32(FieldNames.questId, questId);
+        output.writeUInt32(FieldNames.gradeChallengeId, gradeChallengeId);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        output.writeUInt32(FieldNames.groupId, groupId);
-      }
-      if ((bitField0_ & 0x00000008) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       output.endObject();
     }
 
     @Override
-    public ActivityMiningQuestRewardReceiveReq mergeFrom(final JsonSource input) throws
-        IOException {
+    public SoldierApplyReq mergeFrom(final JsonSource input) throws IOException {
       if (!input.beginObject()) {
         return this;
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
-          case -252882774: {
-            if (input.isAtField(FieldNames.activityId)) {
+          case 954575742: {
+            if (input.isAtField(FieldNames.seasonId)) {
               if (!input.trySkipNullValue()) {
-                activityId = input.readUInt32();
+                seasonId = input.readUInt32();
                 bitField0_ |= 0x00000001;
               }
             } else {
@@ -450,22 +379,11 @@ public final class ActivityMiningQuestRewardReceive {
             }
             break;
           }
-          case -1975187075: {
-            if (input.isAtField(FieldNames.questId)) {
+          case -1764841305: {
+            if (input.isAtField(FieldNames.gradeChallengeId)) {
               if (!input.trySkipNullValue()) {
-                questId = input.readUInt32();
+                gradeChallengeId = input.readUInt32();
                 bitField0_ |= 0x00000002;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
-          case 1958081498: {
-            if (input.isAtField(FieldNames.groupId)) {
-              if (!input.trySkipNullValue()) {
-                groupId = input.readUInt32();
-                bitField0_ |= 0x00000004;
               }
             } else {
               input.skipUnknownField();
@@ -476,6 +394,586 @@ public final class ActivityMiningQuestRewardReceive {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public SoldierApplyReq clone() {
+      return new SoldierApplyReq().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static SoldierApplyReq parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new SoldierApplyReq(), data).checkInitialized();
+    }
+
+    public static SoldierApplyReq parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new SoldierApplyReq(), input).checkInitialized();
+    }
+
+    public static SoldierApplyReq parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new SoldierApplyReq(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating SoldierApplyReq messages
+     */
+    public static MessageFactory<SoldierApplyReq> getFactory() {
+      return SoldierApplyReqFactory.INSTANCE;
+    }
+
+    private enum SoldierApplyReqFactory implements MessageFactory<SoldierApplyReq> {
+      INSTANCE;
+
+      @Override
+      public SoldierApplyReq create() {
+        return SoldierApplyReq.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName seasonId = FieldName.forField("SeasonId");
+
+      static final FieldName gradeChallengeId = FieldName.forField("GradeChallengeId");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code SoldierApplyResp}
+   */
+  public static final class SoldierApplyResp extends ProtoMessage<SoldierApplyResp> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 CoinQty = 3;</code>
+     */
+    private int coinQty;
+
+    /**
+     * <code>optional .SoldierInfo Info = 1;</code>
+     */
+    private final PublicSoldier.SoldierInfo info = PublicSoldier.SoldierInfo.newInstance();
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>repeated .SoldierChess Chess = 2;</code>
+     */
+    private final RepeatedMessage<PublicSoldier.SoldierChess> chess = RepeatedMessage.newEmptyInstance(PublicSoldier.SoldierChess.getFactory());
+
+    private SoldierApplyResp() {
+    }
+
+    /**
+     * @return a new empty instance of {@code SoldierApplyResp}
+     */
+    public static SoldierApplyResp newInstance() {
+      return new SoldierApplyResp();
+    }
+
+    /**
+     * <code>optional uint32 CoinQty = 3;</code>
+     * @return whether the coinQty field is set
+     */
+    public boolean hasCoinQty() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 CoinQty = 3;</code>
+     * @return this
+     */
+    public SoldierApplyResp clearCoinQty() {
+      bitField0_ &= ~0x00000001;
+      coinQty = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 CoinQty = 3;</code>
+     * @return the coinQty
+     */
+    public int getCoinQty() {
+      return coinQty;
+    }
+
+    /**
+     * <code>optional uint32 CoinQty = 3;</code>
+     * @param value the coinQty to set
+     * @return this
+     */
+    public SoldierApplyResp setCoinQty(final int value) {
+      bitField0_ |= 0x00000001;
+      coinQty = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .SoldierInfo Info = 1;</code>
+     * @return whether the info field is set
+     */
+    public boolean hasInfo() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional .SoldierInfo Info = 1;</code>
+     * @return this
+     */
+    public SoldierApplyResp clearInfo() {
+      bitField0_ &= ~0x00000002;
+      info.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .SoldierInfo Info = 1;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableInfo()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public PublicSoldier.SoldierInfo getInfo() {
+      return info;
+    }
+
+    /**
+     * <code>optional .SoldierInfo Info = 1;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public PublicSoldier.SoldierInfo getMutableInfo() {
+      bitField0_ |= 0x00000002;
+      return info;
+    }
+
+    /**
+     * <code>optional .SoldierInfo Info = 1;</code>
+     * @param value the info to set
+     * @return this
+     */
+    public SoldierApplyResp setInfo(final PublicSoldier.SoldierInfo value) {
+      bitField0_ |= 0x00000002;
+      info.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public SoldierApplyResp clearNextPackage() {
+      bitField0_ &= ~0x00000004;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000004;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public SoldierApplyResp addNextPackage(final byte value) {
+      bitField0_ |= 0x00000004;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public SoldierApplyResp addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public SoldierApplyResp setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .SoldierChess Chess = 2;</code>
+     * @return whether the chess field is set
+     */
+    public boolean hasChess() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>repeated .SoldierChess Chess = 2;</code>
+     * @return this
+     */
+    public SoldierApplyResp clearChess() {
+      bitField0_ &= ~0x00000008;
+      chess.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .SoldierChess Chess = 2;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableChess()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<PublicSoldier.SoldierChess> getChess() {
+      return chess;
+    }
+
+    /**
+     * <code>repeated .SoldierChess Chess = 2;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<PublicSoldier.SoldierChess> getMutableChess() {
+      bitField0_ |= 0x00000008;
+      return chess;
+    }
+
+    /**
+     * <code>repeated .SoldierChess Chess = 2;</code>
+     * @param value the chess to add
+     * @return this
+     */
+    public SoldierApplyResp addChess(final PublicSoldier.SoldierChess value) {
+      bitField0_ |= 0x00000008;
+      chess.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .SoldierChess Chess = 2;</code>
+     * @param values the chess to add
+     * @return this
+     */
+    public SoldierApplyResp addAllChess(final PublicSoldier.SoldierChess... values) {
+      bitField0_ |= 0x00000008;
+      chess.addAll(values);
+      return this;
+    }
+
+    @Override
+    public SoldierApplyResp copyFrom(final SoldierApplyResp other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        coinQty = other.coinQty;
+        info.copyFrom(other.info);
+        nextPackage.copyFrom(other.nextPackage);
+        chess.copyFrom(other.chess);
+      }
+      return this;
+    }
+
+    @Override
+    public SoldierApplyResp mergeFrom(final SoldierApplyResp other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasCoinQty()) {
+        setCoinQty(other.coinQty);
+      }
+      if (other.hasInfo()) {
+        getMutableInfo().mergeFrom(other.info);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasChess()) {
+        getMutableChess().addAll(other.chess);
+      }
+      return this;
+    }
+
+    @Override
+    public SoldierApplyResp clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      coinQty = 0;
+      info.clear();
+      nextPackage.clear();
+      chess.clear();
+      return this;
+    }
+
+    @Override
+    public SoldierApplyResp clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      info.clearQuick();
+      nextPackage.clear();
+      chess.clearQuick();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof SoldierApplyResp)) {
+        return false;
+      }
+      SoldierApplyResp other = (SoldierApplyResp) o;
+      return bitField0_ == other.bitField0_
+        && (!hasCoinQty() || coinQty == other.coinQty)
+        && (!hasInfo() || info.equals(other.info))
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasChess() || chess.equals(other.chess));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeUInt32NoTag(coinQty);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 10);
+        output.writeMessageNoTag(info);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        for (int i = 0; i < chess.length(); i++) {
+          output.writeRawByte((byte) 18);
+          output.writeMessageNoTag(chess.get(i));
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(coinQty);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(info);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += (1 * chess.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(chess);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public SoldierApplyResp mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 24: {
+            // coinQty
+            coinQty = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 10) {
+              break;
+            }
+          }
+          case 10: {
+            // info
+            input.readMessage(info);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 18) {
+              break;
+            }
+          }
+          case 18: {
+            // chess
+            tag = input.readRepeatedMessage(chess, tag);
+            bitField0_ |= 0x00000008;
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.coinQty, coinQty);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeMessage(FieldNames.info, info);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRepeatedMessage(FieldNames.chess, chess);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public SoldierApplyResp mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case -1683598779: {
+            if (input.isAtField(FieldNames.coinQty)) {
+              if (!input.trySkipNullValue()) {
+                coinQty = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 2283726: {
+            if (input.isAtField(FieldNames.info)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(info);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 65074912: {
+            if (input.isAtField(FieldNames.chess)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(chess);
                 bitField0_ |= 0x00000008;
               }
             } else {
@@ -494,8 +992,8 @@ public final class ActivityMiningQuestRewardReceive {
     }
 
     @Override
-    public ActivityMiningQuestRewardReceiveReq clone() {
-      return new ActivityMiningQuestRewardReceiveReq().copyFrom(this);
+    public SoldierApplyResp clone() {
+      return new SoldierApplyResp().copyFrom(this);
     }
 
     @Override
@@ -503,34 +1001,32 @@ public final class ActivityMiningQuestRewardReceive {
       return ((bitField0_) == 0);
     }
 
-    public static ActivityMiningQuestRewardReceiveReq parseFrom(final byte[] data) throws
+    public static SoldierApplyResp parseFrom(final byte[] data) throws
         InvalidProtocolBufferException {
-      return ProtoMessage.mergeFrom(new ActivityMiningQuestRewardReceiveReq(), data).checkInitialized();
+      return ProtoMessage.mergeFrom(new SoldierApplyResp(), data).checkInitialized();
     }
 
-    public static ActivityMiningQuestRewardReceiveReq parseFrom(final ProtoSource input) throws
-        IOException {
-      return ProtoMessage.mergeFrom(new ActivityMiningQuestRewardReceiveReq(), input).checkInitialized();
+    public static SoldierApplyResp parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new SoldierApplyResp(), input).checkInitialized();
     }
 
-    public static ActivityMiningQuestRewardReceiveReq parseFrom(final JsonSource input) throws
-        IOException {
-      return ProtoMessage.mergeFrom(new ActivityMiningQuestRewardReceiveReq(), input).checkInitialized();
+    public static SoldierApplyResp parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new SoldierApplyResp(), input).checkInitialized();
     }
 
     /**
-     * @return factory for creating ActivityMiningQuestRewardReceiveReq messages
+     * @return factory for creating SoldierApplyResp messages
      */
-    public static MessageFactory<ActivityMiningQuestRewardReceiveReq> getFactory() {
-      return ActivityMiningQuestRewardReceiveReqFactory.INSTANCE;
+    public static MessageFactory<SoldierApplyResp> getFactory() {
+      return SoldierApplyRespFactory.INSTANCE;
     }
 
-    private enum ActivityMiningQuestRewardReceiveReqFactory implements MessageFactory<ActivityMiningQuestRewardReceiveReq> {
+    private enum SoldierApplyRespFactory implements MessageFactory<SoldierApplyResp> {
       INSTANCE;
 
       @Override
-      public ActivityMiningQuestRewardReceiveReq create() {
-        return ActivityMiningQuestRewardReceiveReq.newInstance();
+      public SoldierApplyResp create() {
+        return SoldierApplyResp.newInstance();
       }
     }
 
@@ -538,521 +1034,13 @@ public final class ActivityMiningQuestRewardReceive {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
-      static final FieldName activityId = FieldName.forField("ActivityId");
+      static final FieldName coinQty = FieldName.forField("CoinQty");
 
-      static final FieldName questId = FieldName.forField("QuestId");
-
-      static final FieldName groupId = FieldName.forField("GroupId");
-
-      static final FieldName nextPackage = FieldName.forField("NextPackage");
-    }
-  }
-
-  /**
-   * Protobuf type {@code ActivityMiningQuestRewardReceiveResp}
-   */
-  public static final class ActivityMiningQuestRewardReceiveResp extends ProtoMessage<ActivityMiningQuestRewardReceiveResp> implements Cloneable {
-    private static final long serialVersionUID = 0L;
-
-    /**
-     * <code>optional .ChangeInfo ChangeInfo = 2;</code>
-     */
-    private final Public.ChangeInfo changeInfo = Public.ChangeInfo.newInstance();
-
-    /**
-     * <code>optional bytes NextPackage = 2047;</code>
-     */
-    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
-
-    /**
-     * <code>repeated .ItemTpl QuestRewards = 1;</code>
-     */
-    private final RepeatedMessage<Public.ItemTpl> questRewards = RepeatedMessage.newEmptyInstance(Public.ItemTpl.getFactory());
-
-    private ActivityMiningQuestRewardReceiveResp() {
-    }
-
-    /**
-     * @return a new empty instance of {@code ActivityMiningQuestRewardReceiveResp}
-     */
-    public static ActivityMiningQuestRewardReceiveResp newInstance() {
-      return new ActivityMiningQuestRewardReceiveResp();
-    }
-
-    /**
-     * <code>optional .ChangeInfo ChangeInfo = 2;</code>
-     * @return whether the changeInfo field is set
-     */
-    public boolean hasChangeInfo() {
-      return (bitField0_ & 0x00000001) != 0;
-    }
-
-    /**
-     * <code>optional .ChangeInfo ChangeInfo = 2;</code>
-     * @return this
-     */
-    public ActivityMiningQuestRewardReceiveResp clearChangeInfo() {
-      bitField0_ &= ~0x00000001;
-      changeInfo.clear();
-      return this;
-    }
-
-    /**
-     * <code>optional .ChangeInfo ChangeInfo = 2;</code>
-     *
-     * This method returns the internal storage object without modifying any has state.
-     * The returned object should not be modified and be treated as read-only.
-     *
-     * Use {@link #getMutableChangeInfo()} if you want to modify it.
-     *
-     * @return internal storage object for reading
-     */
-    public Public.ChangeInfo getChangeInfo() {
-      return changeInfo;
-    }
-
-    /**
-     * <code>optional .ChangeInfo ChangeInfo = 2;</code>
-     *
-     * This method returns the internal storage object and sets the corresponding
-     * has state. The returned object will become part of this message and its
-     * contents may be modified as long as the has state is not cleared.
-     *
-     * @return internal storage object for modifications
-     */
-    public Public.ChangeInfo getMutableChangeInfo() {
-      bitField0_ |= 0x00000001;
-      return changeInfo;
-    }
-
-    /**
-     * <code>optional .ChangeInfo ChangeInfo = 2;</code>
-     * @param value the changeInfo to set
-     * @return this
-     */
-    public ActivityMiningQuestRewardReceiveResp setChangeInfo(final Public.ChangeInfo value) {
-      bitField0_ |= 0x00000001;
-      changeInfo.copyFrom(value);
-      return this;
-    }
-
-    /**
-     * <code>optional bytes NextPackage = 2047;</code>
-     * @return whether the nextPackage field is set
-     */
-    public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000002) != 0;
-    }
-
-    /**
-     * <code>optional bytes NextPackage = 2047;</code>
-     * @return this
-     */
-    public ActivityMiningQuestRewardReceiveResp clearNextPackage() {
-      bitField0_ &= ~0x00000002;
-      nextPackage.clear();
-      return this;
-    }
-
-    /**
-     * <code>optional bytes NextPackage = 2047;</code>
-     *
-     * This method returns the internal storage object without modifying any has state.
-     * The returned object should not be modified and be treated as read-only.
-     *
-     * Use {@link #getMutableNextPackage()} if you want to modify it.
-     *
-     * @return internal storage object for reading
-     */
-    public RepeatedByte getNextPackage() {
-      return nextPackage;
-    }
-
-    /**
-     * <code>optional bytes NextPackage = 2047;</code>
-     *
-     * This method returns the internal storage object and sets the corresponding
-     * has state. The returned object will become part of this message and its
-     * contents may be modified as long as the has state is not cleared.
-     *
-     * @return internal storage object for modifications
-     */
-    public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000002;
-      return nextPackage;
-    }
-
-    /**
-     * <code>optional bytes NextPackage = 2047;</code>
-     * @param value the nextPackage to add
-     * @return this
-     */
-    public ActivityMiningQuestRewardReceiveResp addNextPackage(final byte value) {
-      bitField0_ |= 0x00000002;
-      nextPackage.add(value);
-      return this;
-    }
-
-    /**
-     * <code>optional bytes NextPackage = 2047;</code>
-     * @param values the nextPackage to add
-     * @return this
-     */
-    public ActivityMiningQuestRewardReceiveResp addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000002;
-      nextPackage.addAll(values);
-      return this;
-    }
-
-    /**
-     * <code>optional bytes NextPackage = 2047;</code>
-     * @param values the nextPackage to set
-     * @return this
-     */
-    public ActivityMiningQuestRewardReceiveResp setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000002;
-      nextPackage.copyFrom(values);
-      return this;
-    }
-
-    /**
-     * <code>repeated .ItemTpl QuestRewards = 1;</code>
-     * @return whether the questRewards field is set
-     */
-    public boolean hasQuestRewards() {
-      return (bitField0_ & 0x00000004) != 0;
-    }
-
-    /**
-     * <code>repeated .ItemTpl QuestRewards = 1;</code>
-     * @return this
-     */
-    public ActivityMiningQuestRewardReceiveResp clearQuestRewards() {
-      bitField0_ &= ~0x00000004;
-      questRewards.clear();
-      return this;
-    }
-
-    /**
-     * <code>repeated .ItemTpl QuestRewards = 1;</code>
-     *
-     * This method returns the internal storage object without modifying any has state.
-     * The returned object should not be modified and be treated as read-only.
-     *
-     * Use {@link #getMutableQuestRewards()} if you want to modify it.
-     *
-     * @return internal storage object for reading
-     */
-    public RepeatedMessage<Public.ItemTpl> getQuestRewards() {
-      return questRewards;
-    }
-
-    /**
-     * <code>repeated .ItemTpl QuestRewards = 1;</code>
-     *
-     * This method returns the internal storage object and sets the corresponding
-     * has state. The returned object will become part of this message and its
-     * contents may be modified as long as the has state is not cleared.
-     *
-     * @return internal storage object for modifications
-     */
-    public RepeatedMessage<Public.ItemTpl> getMutableQuestRewards() {
-      bitField0_ |= 0x00000004;
-      return questRewards;
-    }
-
-    /**
-     * <code>repeated .ItemTpl QuestRewards = 1;</code>
-     * @param value the questRewards to add
-     * @return this
-     */
-    public ActivityMiningQuestRewardReceiveResp addQuestRewards(final Public.ItemTpl value) {
-      bitField0_ |= 0x00000004;
-      questRewards.add(value);
-      return this;
-    }
-
-    /**
-     * <code>repeated .ItemTpl QuestRewards = 1;</code>
-     * @param values the questRewards to add
-     * @return this
-     */
-    public ActivityMiningQuestRewardReceiveResp addAllQuestRewards(final Public.ItemTpl... values) {
-      bitField0_ |= 0x00000004;
-      questRewards.addAll(values);
-      return this;
-    }
-
-    @Override
-    public ActivityMiningQuestRewardReceiveResp copyFrom(
-        final ActivityMiningQuestRewardReceiveResp other) {
-      cachedSize = other.cachedSize;
-      if ((bitField0_ | other.bitField0_) != 0) {
-        bitField0_ = other.bitField0_;
-        changeInfo.copyFrom(other.changeInfo);
-        nextPackage.copyFrom(other.nextPackage);
-        questRewards.copyFrom(other.questRewards);
-      }
-      return this;
-    }
-
-    @Override
-    public ActivityMiningQuestRewardReceiveResp mergeFrom(
-        final ActivityMiningQuestRewardReceiveResp other) {
-      if (other.isEmpty()) {
-        return this;
-      }
-      cachedSize = -1;
-      if (other.hasChangeInfo()) {
-        getMutableChangeInfo().mergeFrom(other.changeInfo);
-      }
-      if (other.hasNextPackage()) {
-        getMutableNextPackage().copyFrom(other.nextPackage);
-      }
-      if (other.hasQuestRewards()) {
-        getMutableQuestRewards().addAll(other.questRewards);
-      }
-      return this;
-    }
-
-    @Override
-    public ActivityMiningQuestRewardReceiveResp clear() {
-      if (isEmpty()) {
-        return this;
-      }
-      cachedSize = -1;
-      bitField0_ = 0;
-      changeInfo.clear();
-      nextPackage.clear();
-      questRewards.clear();
-      return this;
-    }
-
-    @Override
-    public ActivityMiningQuestRewardReceiveResp clearQuick() {
-      if (isEmpty()) {
-        return this;
-      }
-      cachedSize = -1;
-      bitField0_ = 0;
-      changeInfo.clearQuick();
-      nextPackage.clear();
-      questRewards.clearQuick();
-      return this;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-      if (o == this) {
-        return true;
-      }
-      if (!(o instanceof ActivityMiningQuestRewardReceiveResp)) {
-        return false;
-      }
-      ActivityMiningQuestRewardReceiveResp other = (ActivityMiningQuestRewardReceiveResp) o;
-      return bitField0_ == other.bitField0_
-        && (!hasChangeInfo() || changeInfo.equals(other.changeInfo))
-        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
-        && (!hasQuestRewards() || questRewards.equals(other.questRewards));
-    }
-
-    @Override
-    public void writeTo(final ProtoSink output) throws IOException {
-      if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 18);
-        output.writeMessageNoTag(changeInfo);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
-        output.writeRawLittleEndian16((short) 32762);
-        output.writeBytesNoTag(nextPackage);
-      }
-      if ((bitField0_ & 0x00000004) != 0) {
-        for (int i = 0; i < questRewards.length(); i++) {
-          output.writeRawByte((byte) 10);
-          output.writeMessageNoTag(questRewards.get(i));
-        }
-      }
-    }
-
-    @Override
-    protected int computeSerializedSize() {
-      int size = 0;
-      if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(changeInfo);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
-        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
-      }
-      if ((bitField0_ & 0x00000004) != 0) {
-        size += (1 * questRewards.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(questRewards);
-      }
-      return size;
-    }
-
-    @Override
-    @SuppressWarnings("fallthrough")
-    public ActivityMiningQuestRewardReceiveResp mergeFrom(final ProtoSource input) throws
-        IOException {
-      // Enabled Fall-Through Optimization (QuickBuffers)
-      int tag = input.readTag();
-      while (true) {
-        switch (tag) {
-          case 18: {
-            // changeInfo
-            input.readMessage(changeInfo);
-            bitField0_ |= 0x00000001;
-            tag = input.readTag();
-            if (tag != 16378) {
-              break;
-            }
-          }
-          case 16378: {
-            // nextPackage
-            input.readBytes(nextPackage);
-            bitField0_ |= 0x00000002;
-            tag = input.readTag();
-            if (tag != 10) {
-              break;
-            }
-          }
-          case 10: {
-            // questRewards
-            tag = input.readRepeatedMessage(questRewards, tag);
-            bitField0_ |= 0x00000004;
-            if (tag != 0) {
-              break;
-            }
-          }
-          case 0: {
-            return this;
-          }
-          default: {
-            if (!input.skipField(tag)) {
-              return this;
-            }
-            tag = input.readTag();
-            break;
-          }
-        }
-      }
-    }
-
-    @Override
-    public void writeTo(final JsonSink output) throws IOException {
-      output.beginObject();
-      if ((bitField0_ & 0x00000001) != 0) {
-        output.writeMessage(FieldNames.changeInfo, changeInfo);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
-        output.writeBytes(FieldNames.nextPackage, nextPackage);
-      }
-      if ((bitField0_ & 0x00000004) != 0) {
-        output.writeRepeatedMessage(FieldNames.questRewards, questRewards);
-      }
-      output.endObject();
-    }
-
-    @Override
-    public ActivityMiningQuestRewardReceiveResp mergeFrom(final JsonSource input) throws
-        IOException {
-      if (!input.beginObject()) {
-        return this;
-      }
-      while (!input.isAtEnd()) {
-        switch (input.readFieldHash()) {
-          case -138776418: {
-            if (input.isAtField(FieldNames.changeInfo)) {
-              if (!input.trySkipNullValue()) {
-                input.readMessage(changeInfo);
-                bitField0_ |= 0x00000001;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
-          case -2082324045: {
-            if (input.isAtField(FieldNames.nextPackage)) {
-              if (!input.trySkipNullValue()) {
-                input.readBytes(nextPackage);
-                bitField0_ |= 0x00000002;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
-          case 776865794: {
-            if (input.isAtField(FieldNames.questRewards)) {
-              if (!input.trySkipNullValue()) {
-                input.readRepeatedMessage(questRewards);
-                bitField0_ |= 0x00000004;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
-          default: {
-            input.skipUnknownField();
-            break;
-          }
-        }
-      }
-      input.endObject();
-      return this;
-    }
-
-    @Override
-    public ActivityMiningQuestRewardReceiveResp clone() {
-      return new ActivityMiningQuestRewardReceiveResp().copyFrom(this);
-    }
-
-    @Override
-    public boolean isEmpty() {
-      return ((bitField0_) == 0);
-    }
-
-    public static ActivityMiningQuestRewardReceiveResp parseFrom(final byte[] data) throws
-        InvalidProtocolBufferException {
-      return ProtoMessage.mergeFrom(new ActivityMiningQuestRewardReceiveResp(), data).checkInitialized();
-    }
-
-    public static ActivityMiningQuestRewardReceiveResp parseFrom(final ProtoSource input) throws
-        IOException {
-      return ProtoMessage.mergeFrom(new ActivityMiningQuestRewardReceiveResp(), input).checkInitialized();
-    }
-
-    public static ActivityMiningQuestRewardReceiveResp parseFrom(final JsonSource input) throws
-        IOException {
-      return ProtoMessage.mergeFrom(new ActivityMiningQuestRewardReceiveResp(), input).checkInitialized();
-    }
-
-    /**
-     * @return factory for creating ActivityMiningQuestRewardReceiveResp messages
-     */
-    public static MessageFactory<ActivityMiningQuestRewardReceiveResp> getFactory() {
-      return ActivityMiningQuestRewardReceiveRespFactory.INSTANCE;
-    }
-
-    private enum ActivityMiningQuestRewardReceiveRespFactory implements MessageFactory<ActivityMiningQuestRewardReceiveResp> {
-      INSTANCE;
-
-      @Override
-      public ActivityMiningQuestRewardReceiveResp create() {
-        return ActivityMiningQuestRewardReceiveResp.newInstance();
-      }
-    }
-
-    /**
-     * Contains name constants used for serializing JSON
-     */
-    static class FieldNames {
-      static final FieldName changeInfo = FieldName.forField("ChangeInfo");
+      static final FieldName info = FieldName.forField("Info");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
-      static final FieldName questRewards = FieldName.forField("QuestRewards");
+      static final FieldName chess = FieldName.forField("Chess");
     }
   }
 }

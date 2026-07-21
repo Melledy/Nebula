@@ -131,6 +131,21 @@ public final class ActivityDetail {
     private final Public.ActivityHistoryStoryChapter historyStoryChapter = Public.ActivityHistoryStoryChapter.newInstance();
 
     /**
+     * <code>optional .ActivityShare Share = 23;</code>
+     */
+    private final Public.ActivityShare share = Public.ActivityShare.newInstance();
+
+    /**
+     * <code>optional .ActivityIceCream IceCream = 24;</code>
+     */
+    private final Public.ActivityIceCream iceCream = Public.ActivityIceCream.newInstance();
+
+    /**
+     * <code>optional .ActivitySoldier Soldier = 25;</code>
+     */
+    private final Public.ActivitySoldier soldier = Public.ActivitySoldier.newInstance();
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -1380,11 +1395,182 @@ public final class ActivityDetail {
     }
 
     /**
+     * <code>optional .ActivityShare Share = 23;</code>
+     * @return whether the share field is set
+     */
+    public boolean hasShare() {
+      return (bitField0_ & 0x00400000) != 0;
+    }
+
+    /**
+     * <code>optional .ActivityShare Share = 23;</code>
+     * @return this
+     */
+    public ActivityMsg clearShare() {
+      bitField0_ &= ~0x00400000;
+      share.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityShare Share = 23;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableShare()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.ActivityShare getShare() {
+      return share;
+    }
+
+    /**
+     * <code>optional .ActivityShare Share = 23;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.ActivityShare getMutableShare() {
+      bitField0_ |= 0x00400000;
+      return share;
+    }
+
+    /**
+     * <code>optional .ActivityShare Share = 23;</code>
+     * @param value the share to set
+     * @return this
+     */
+    public ActivityMsg setShare(final Public.ActivityShare value) {
+      bitField0_ |= 0x00400000;
+      share.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityIceCream IceCream = 24;</code>
+     * @return whether the iceCream field is set
+     */
+    public boolean hasIceCream() {
+      return (bitField0_ & 0x00800000) != 0;
+    }
+
+    /**
+     * <code>optional .ActivityIceCream IceCream = 24;</code>
+     * @return this
+     */
+    public ActivityMsg clearIceCream() {
+      bitField0_ &= ~0x00800000;
+      iceCream.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityIceCream IceCream = 24;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableIceCream()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.ActivityIceCream getIceCream() {
+      return iceCream;
+    }
+
+    /**
+     * <code>optional .ActivityIceCream IceCream = 24;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.ActivityIceCream getMutableIceCream() {
+      bitField0_ |= 0x00800000;
+      return iceCream;
+    }
+
+    /**
+     * <code>optional .ActivityIceCream IceCream = 24;</code>
+     * @param value the iceCream to set
+     * @return this
+     */
+    public ActivityMsg setIceCream(final Public.ActivityIceCream value) {
+      bitField0_ |= 0x00800000;
+      iceCream.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivitySoldier Soldier = 25;</code>
+     * @return whether the soldier field is set
+     */
+    public boolean hasSoldier() {
+      return (bitField0_ & 0x01000000) != 0;
+    }
+
+    /**
+     * <code>optional .ActivitySoldier Soldier = 25;</code>
+     * @return this
+     */
+    public ActivityMsg clearSoldier() {
+      bitField0_ &= ~0x01000000;
+      soldier.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivitySoldier Soldier = 25;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableSoldier()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.ActivitySoldier getSoldier() {
+      return soldier;
+    }
+
+    /**
+     * <code>optional .ActivitySoldier Soldier = 25;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.ActivitySoldier getMutableSoldier() {
+      bitField0_ |= 0x01000000;
+      return soldier;
+    }
+
+    /**
+     * <code>optional .ActivitySoldier Soldier = 25;</code>
+     * @param value the soldier to set
+     * @return this
+     */
+    public ActivityMsg setSoldier(final Public.ActivitySoldier value) {
+      bitField0_ |= 0x01000000;
+      soldier.copyFrom(value);
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00400000) != 0;
+      return (bitField0_ & 0x02000000) != 0;
     }
 
     /**
@@ -1392,7 +1578,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg clearNextPackage() {
-      bitField0_ &= ~0x00400000;
+      bitField0_ &= ~0x02000000;
       nextPackage.clear();
       return this;
     }
@@ -1421,7 +1607,7 @@ public final class ActivityDetail {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00400000;
+      bitField0_ |= 0x02000000;
       return nextPackage;
     }
 
@@ -1431,7 +1617,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg addNextPackage(final byte value) {
-      bitField0_ |= 0x00400000;
+      bitField0_ |= 0x02000000;
       nextPackage.add(value);
       return this;
     }
@@ -1442,7 +1628,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00400000;
+      bitField0_ |= 0x02000000;
       nextPackage.addAll(values);
       return this;
     }
@@ -1453,7 +1639,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg setNextPackage(final byte... values) {
-      bitField0_ |= 0x00400000;
+      bitField0_ |= 0x02000000;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -1485,6 +1671,9 @@ public final class ActivityDetail {
         gDS.copyFrom(other.gDS);
         double_.copyFrom(other.double_);
         historyStoryChapter.copyFrom(other.historyStoryChapter);
+        share.copyFrom(other.share);
+        iceCream.copyFrom(other.iceCream);
+        soldier.copyFrom(other.soldier);
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -1562,6 +1751,15 @@ public final class ActivityDetail {
       if (other.hasHistoryStoryChapter()) {
         getMutableHistoryStoryChapter().mergeFrom(other.historyStoryChapter);
       }
+      if (other.hasShare()) {
+        getMutableShare().mergeFrom(other.share);
+      }
+      if (other.hasIceCream()) {
+        getMutableIceCream().mergeFrom(other.iceCream);
+      }
+      if (other.hasSoldier()) {
+        getMutableSoldier().mergeFrom(other.soldier);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -1597,6 +1795,9 @@ public final class ActivityDetail {
       gDS.clear();
       double_.clear();
       historyStoryChapter.clear();
+      share.clear();
+      iceCream.clear();
+      soldier.clear();
       nextPackage.clear();
       return this;
     }
@@ -1629,6 +1830,9 @@ public final class ActivityDetail {
       gDS.clearQuick();
       double_.clearQuick();
       historyStoryChapter.clearQuick();
+      share.clearQuick();
+      iceCream.clearQuick();
+      soldier.clearQuick();
       nextPackage.clear();
       return this;
     }
@@ -1665,6 +1869,9 @@ public final class ActivityDetail {
         && (!hasGDS() || gDS.equals(other.gDS))
         && (!hasDouble() || double_.equals(other.double_))
         && (!hasHistoryStoryChapter() || historyStoryChapter.equals(other.historyStoryChapter))
+        && (!hasShare() || share.equals(other.share))
+        && (!hasIceCream() || iceCream.equals(other.iceCream))
+        && (!hasSoldier() || soldier.equals(other.soldier))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
@@ -1759,6 +1966,18 @@ public final class ActivityDetail {
         output.writeMessageNoTag(historyStoryChapter);
       }
       if ((bitField0_ & 0x00400000) != 0) {
+        output.writeRawLittleEndian16((short) 442);
+        output.writeMessageNoTag(share);
+      }
+      if ((bitField0_ & 0x00800000) != 0) {
+        output.writeRawLittleEndian16((short) 450);
+        output.writeMessageNoTag(iceCream);
+      }
+      if ((bitField0_ & 0x01000000) != 0) {
+        output.writeRawLittleEndian16((short) 458);
+        output.writeMessageNoTag(soldier);
+      }
+      if ((bitField0_ & 0x02000000) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
@@ -1834,6 +2053,15 @@ public final class ActivityDetail {
         size += 2 + ProtoSink.computeMessageSizeNoTag(historyStoryChapter);
       }
       if ((bitField0_ & 0x00400000) != 0) {
+        size += 2 + ProtoSink.computeMessageSizeNoTag(share);
+      }
+      if ((bitField0_ & 0x00800000) != 0) {
+        size += 2 + ProtoSink.computeMessageSizeNoTag(iceCream);
+      }
+      if ((bitField0_ & 0x01000000) != 0) {
+        size += 2 + ProtoSink.computeMessageSizeNoTag(soldier);
+      }
+      if ((bitField0_ & 0x02000000) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       return size;
@@ -2040,6 +2268,33 @@ public final class ActivityDetail {
             input.readMessage(historyStoryChapter);
             bitField0_ |= 0x00200000;
             tag = input.readTag();
+            if (tag != 186) {
+              break;
+            }
+          }
+          case 186: {
+            // share
+            input.readMessage(share);
+            bitField0_ |= 0x00400000;
+            tag = input.readTag();
+            if (tag != 194) {
+              break;
+            }
+          }
+          case 194: {
+            // iceCream
+            input.readMessage(iceCream);
+            bitField0_ |= 0x00800000;
+            tag = input.readTag();
+            if (tag != 202) {
+              break;
+            }
+          }
+          case 202: {
+            // soldier
+            input.readMessage(soldier);
+            bitField0_ |= 0x01000000;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -2047,7 +2302,7 @@ public final class ActivityDetail {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00400000;
+            bitField0_ |= 0x02000000;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -2137,6 +2392,15 @@ public final class ActivityDetail {
         output.writeMessage(FieldNames.historyStoryChapter, historyStoryChapter);
       }
       if ((bitField0_ & 0x00400000) != 0) {
+        output.writeMessage(FieldNames.share, share);
+      }
+      if ((bitField0_ & 0x00800000) != 0) {
+        output.writeMessage(FieldNames.iceCream, iceCream);
+      }
+      if ((bitField0_ & 0x01000000) != 0) {
+        output.writeMessage(FieldNames.soldier, soldier);
+      }
+      if ((bitField0_ & 0x02000000) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       output.endObject();
@@ -2391,11 +2655,44 @@ public final class ActivityDetail {
             }
             break;
           }
+          case 79847359: {
+            if (input.isAtField(FieldNames.share)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(share);
+                bitField0_ |= 0x00400000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -998396713: {
+            if (input.isAtField(FieldNames.iceCream)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(iceCream);
+                bitField0_ |= 0x00800000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -365946526: {
+            if (input.isAtField(FieldNames.soldier)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(soldier);
+                bitField0_ |= 0x01000000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00400000;
+                bitField0_ |= 0x02000000;
               }
             } else {
               input.skipUnknownField();
@@ -2497,6 +2794,12 @@ public final class ActivityDetail {
       static final FieldName double_ = FieldName.forField("Double");
 
       static final FieldName historyStoryChapter = FieldName.forField("HistoryStoryChapter");
+
+      static final FieldName share = FieldName.forField("Share");
+
+      static final FieldName iceCream = FieldName.forField("IceCream");
+
+      static final FieldName soldier = FieldName.forField("Soldier");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }

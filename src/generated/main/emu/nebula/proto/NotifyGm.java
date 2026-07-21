@@ -11551,4 +11551,814 @@ public final class NotifyGm {
       static final FieldName buildRewards = FieldName.forField("BuildRewards");
     }
   }
+
+  /**
+   * Protobuf type {@code SoldierEffectNtf}
+   */
+  public static final class SoldierEffectNtf extends ProtoMessage<SoldierEffectNtf> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>repeated .SoldierEffect Effects = 1;</code>
+     */
+    private final RepeatedMessage<PublicSoldier.SoldierEffect> effects = RepeatedMessage.newEmptyInstance(PublicSoldier.SoldierEffect.getFactory());
+
+    private SoldierEffectNtf() {
+    }
+
+    /**
+     * @return a new empty instance of {@code SoldierEffectNtf}
+     */
+    public static SoldierEffectNtf newInstance() {
+      return new SoldierEffectNtf();
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public SoldierEffectNtf clearNextPackage() {
+      bitField0_ &= ~0x00000001;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000001;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public SoldierEffectNtf addNextPackage(final byte value) {
+      bitField0_ |= 0x00000001;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public SoldierEffectNtf addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000001;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public SoldierEffectNtf setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000001;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .SoldierEffect Effects = 1;</code>
+     * @return whether the effects field is set
+     */
+    public boolean hasEffects() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>repeated .SoldierEffect Effects = 1;</code>
+     * @return this
+     */
+    public SoldierEffectNtf clearEffects() {
+      bitField0_ &= ~0x00000002;
+      effects.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .SoldierEffect Effects = 1;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableEffects()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<PublicSoldier.SoldierEffect> getEffects() {
+      return effects;
+    }
+
+    /**
+     * <code>repeated .SoldierEffect Effects = 1;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<PublicSoldier.SoldierEffect> getMutableEffects() {
+      bitField0_ |= 0x00000002;
+      return effects;
+    }
+
+    /**
+     * <code>repeated .SoldierEffect Effects = 1;</code>
+     * @param value the effects to add
+     * @return this
+     */
+    public SoldierEffectNtf addEffects(final PublicSoldier.SoldierEffect value) {
+      bitField0_ |= 0x00000002;
+      effects.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .SoldierEffect Effects = 1;</code>
+     * @param values the effects to add
+     * @return this
+     */
+    public SoldierEffectNtf addAllEffects(final PublicSoldier.SoldierEffect... values) {
+      bitField0_ |= 0x00000002;
+      effects.addAll(values);
+      return this;
+    }
+
+    @Override
+    public SoldierEffectNtf copyFrom(final SoldierEffectNtf other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        nextPackage.copyFrom(other.nextPackage);
+        effects.copyFrom(other.effects);
+      }
+      return this;
+    }
+
+    @Override
+    public SoldierEffectNtf mergeFrom(final SoldierEffectNtf other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasEffects()) {
+        getMutableEffects().addAll(other.effects);
+      }
+      return this;
+    }
+
+    @Override
+    public SoldierEffectNtf clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      effects.clear();
+      return this;
+    }
+
+    @Override
+    public SoldierEffectNtf clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      effects.clearQuick();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof SoldierEffectNtf)) {
+        return false;
+      }
+      SoldierEffectNtf other = (SoldierEffectNtf) o;
+      return bitField0_ == other.bitField0_
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasEffects() || effects.equals(other.effects));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        for (int i = 0; i < effects.length(); i++) {
+          output.writeRawByte((byte) 10);
+          output.writeMessageNoTag(effects.get(i));
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += (1 * effects.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(effects);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public SoldierEffectNtf mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 10) {
+              break;
+            }
+          }
+          case 10: {
+            // effects
+            tag = input.readRepeatedMessage(effects, tag);
+            bitField0_ |= 0x00000002;
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRepeatedMessage(FieldNames.effects, effects);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public SoldierEffectNtf mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -169275166: {
+            if (input.isAtField(FieldNames.effects)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(effects);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public SoldierEffectNtf clone() {
+      return new SoldierEffectNtf().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static SoldierEffectNtf parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new SoldierEffectNtf(), data).checkInitialized();
+    }
+
+    public static SoldierEffectNtf parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new SoldierEffectNtf(), input).checkInitialized();
+    }
+
+    public static SoldierEffectNtf parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new SoldierEffectNtf(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating SoldierEffectNtf messages
+     */
+    public static MessageFactory<SoldierEffectNtf> getFactory() {
+      return SoldierEffectNtfFactory.INSTANCE;
+    }
+
+    private enum SoldierEffectNtfFactory implements MessageFactory<SoldierEffectNtf> {
+      INSTANCE;
+
+      @Override
+      public SoldierEffectNtf create() {
+        return SoldierEffectNtf.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName effects = FieldName.forField("Effects");
+    }
+  }
+
+  /**
+   * Protobuf type {@code GmClearAllActivityIceCreamLevelsNotify}
+   */
+  public static final class GmClearAllActivityIceCreamLevelsNotify extends ProtoMessage<GmClearAllActivityIceCreamLevelsNotify> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>repeated .ActivityIceCreamLevel levels = 1;</code>
+     */
+    private final RepeatedMessage<Public.ActivityIceCreamLevel> levels = RepeatedMessage.newEmptyInstance(Public.ActivityIceCreamLevel.getFactory());
+
+    private GmClearAllActivityIceCreamLevelsNotify() {
+    }
+
+    /**
+     * @return a new empty instance of {@code GmClearAllActivityIceCreamLevelsNotify}
+     */
+    public static GmClearAllActivityIceCreamLevelsNotify newInstance() {
+      return new GmClearAllActivityIceCreamLevelsNotify();
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public GmClearAllActivityIceCreamLevelsNotify clearNextPackage() {
+      bitField0_ &= ~0x00000001;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000001;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public GmClearAllActivityIceCreamLevelsNotify addNextPackage(final byte value) {
+      bitField0_ |= 0x00000001;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public GmClearAllActivityIceCreamLevelsNotify addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000001;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public GmClearAllActivityIceCreamLevelsNotify setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000001;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityIceCreamLevel levels = 1;</code>
+     * @return whether the levels field is set
+     */
+    public boolean hasLevels() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>repeated .ActivityIceCreamLevel levels = 1;</code>
+     * @return this
+     */
+    public GmClearAllActivityIceCreamLevelsNotify clearLevels() {
+      bitField0_ &= ~0x00000002;
+      levels.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityIceCreamLevel levels = 1;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableLevels()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<Public.ActivityIceCreamLevel> getLevels() {
+      return levels;
+    }
+
+    /**
+     * <code>repeated .ActivityIceCreamLevel levels = 1;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<Public.ActivityIceCreamLevel> getMutableLevels() {
+      bitField0_ |= 0x00000002;
+      return levels;
+    }
+
+    /**
+     * <code>repeated .ActivityIceCreamLevel levels = 1;</code>
+     * @param value the levels to add
+     * @return this
+     */
+    public GmClearAllActivityIceCreamLevelsNotify addLevels(
+        final Public.ActivityIceCreamLevel value) {
+      bitField0_ |= 0x00000002;
+      levels.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityIceCreamLevel levels = 1;</code>
+     * @param values the levels to add
+     * @return this
+     */
+    public GmClearAllActivityIceCreamLevelsNotify addAllLevels(
+        final Public.ActivityIceCreamLevel... values) {
+      bitField0_ |= 0x00000002;
+      levels.addAll(values);
+      return this;
+    }
+
+    @Override
+    public GmClearAllActivityIceCreamLevelsNotify copyFrom(
+        final GmClearAllActivityIceCreamLevelsNotify other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        nextPackage.copyFrom(other.nextPackage);
+        levels.copyFrom(other.levels);
+      }
+      return this;
+    }
+
+    @Override
+    public GmClearAllActivityIceCreamLevelsNotify mergeFrom(
+        final GmClearAllActivityIceCreamLevelsNotify other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasLevels()) {
+        getMutableLevels().addAll(other.levels);
+      }
+      return this;
+    }
+
+    @Override
+    public GmClearAllActivityIceCreamLevelsNotify clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      levels.clear();
+      return this;
+    }
+
+    @Override
+    public GmClearAllActivityIceCreamLevelsNotify clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      levels.clearQuick();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof GmClearAllActivityIceCreamLevelsNotify)) {
+        return false;
+      }
+      GmClearAllActivityIceCreamLevelsNotify other = (GmClearAllActivityIceCreamLevelsNotify) o;
+      return bitField0_ == other.bitField0_
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasLevels() || levels.equals(other.levels));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        for (int i = 0; i < levels.length(); i++) {
+          output.writeRawByte((byte) 10);
+          output.writeMessageNoTag(levels.get(i));
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += (1 * levels.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(levels);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public GmClearAllActivityIceCreamLevelsNotify mergeFrom(final ProtoSource input) throws
+        IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 10) {
+              break;
+            }
+          }
+          case 10: {
+            // levels
+            tag = input.readRepeatedMessage(levels, tag);
+            bitField0_ |= 0x00000002;
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRepeatedMessage(FieldNames.levels, levels);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public GmClearAllActivityIceCreamLevelsNotify mergeFrom(final JsonSource input) throws
+        IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1106127505: {
+            if (input.isAtField(FieldNames.levels)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(levels);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public GmClearAllActivityIceCreamLevelsNotify clone() {
+      return new GmClearAllActivityIceCreamLevelsNotify().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static GmClearAllActivityIceCreamLevelsNotify parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new GmClearAllActivityIceCreamLevelsNotify(), data).checkInitialized();
+    }
+
+    public static GmClearAllActivityIceCreamLevelsNotify parseFrom(final ProtoSource input) throws
+        IOException {
+      return ProtoMessage.mergeFrom(new GmClearAllActivityIceCreamLevelsNotify(), input).checkInitialized();
+    }
+
+    public static GmClearAllActivityIceCreamLevelsNotify parseFrom(final JsonSource input) throws
+        IOException {
+      return ProtoMessage.mergeFrom(new GmClearAllActivityIceCreamLevelsNotify(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating GmClearAllActivityIceCreamLevelsNotify messages
+     */
+    public static MessageFactory<GmClearAllActivityIceCreamLevelsNotify> getFactory() {
+      return GmClearAllActivityIceCreamLevelsNotifyFactory.INSTANCE;
+    }
+
+    private enum GmClearAllActivityIceCreamLevelsNotifyFactory implements MessageFactory<GmClearAllActivityIceCreamLevelsNotify> {
+      INSTANCE;
+
+      @Override
+      public GmClearAllActivityIceCreamLevelsNotify create() {
+        return GmClearAllActivityIceCreamLevelsNotify.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName levels = FieldName.forField("levels");
+    }
+  }
 }

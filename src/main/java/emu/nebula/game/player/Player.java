@@ -1234,6 +1234,7 @@ public class Player implements GameDatabaseObject {
         state.getMutableStarTowerBook();
         state.getMutableScoreBoss();
         state.getMutableCharAffinityRewards();
+        state.getMutableTraceHunt();
         
         // Force complete tutorials
         for (var guide : GameData.getGuideGroupDataTable()) {
@@ -1304,6 +1305,10 @@ public class Player implements GameDatabaseObject {
         for (var activity : getActivityManager().getActivities().values()) {
             proto.addActivities(activity.toProto());
         }
+        
+        // Trace hunt
+        proto.getMutableHuntPermit();
+        proto.getMutableTraceRequest();
         
         // Complete
         return proto;

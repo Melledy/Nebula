@@ -1269,6 +1269,11 @@ public final class ScoreBossRank {
     private int levelId;
 
     /**
+     * <code>optional uint32 SkillScore = 9;</code>
+     */
+    private int skillScore;
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -1420,11 +1425,48 @@ public final class ScoreBossRank {
     }
 
     /**
+     * <code>optional uint32 SkillScore = 9;</code>
+     * @return whether the skillScore field is set
+     */
+    public boolean hasSkillScore() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional uint32 SkillScore = 9;</code>
+     * @return this
+     */
+    public ScoreBossRankTeam clearSkillScore() {
+      bitField0_ &= ~0x00000008;
+      skillScore = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 SkillScore = 9;</code>
+     * @return the skillScore
+     */
+    public int getSkillScore() {
+      return skillScore;
+    }
+
+    /**
+     * <code>optional uint32 SkillScore = 9;</code>
+     * @param value the skillScore to set
+     * @return this
+     */
+    public ScoreBossRankTeam setSkillScore(final int value) {
+      bitField0_ |= 0x00000008;
+      skillScore = value;
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000008) != 0;
+      return (bitField0_ & 0x00000010) != 0;
     }
 
     /**
@@ -1432,7 +1474,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam clearNextPackage() {
-      bitField0_ &= ~0x00000008;
+      bitField0_ &= ~0x00000010;
       nextPackage.clear();
       return this;
     }
@@ -1461,7 +1503,7 @@ public final class ScoreBossRank {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       return nextPackage;
     }
 
@@ -1471,7 +1513,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam addNextPackage(final byte value) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       nextPackage.add(value);
       return this;
     }
@@ -1482,7 +1524,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       nextPackage.addAll(values);
       return this;
     }
@@ -1493,7 +1535,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -1503,7 +1545,7 @@ public final class ScoreBossRank {
      * @return whether the discs field is set
      */
     public boolean hasDiscs() {
-      return (bitField0_ & 0x00000010) != 0;
+      return (bitField0_ & 0x00000020) != 0;
     }
 
     /**
@@ -1511,7 +1553,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam clearDiscs() {
-      bitField0_ &= ~0x00000010;
+      bitField0_ &= ~0x00000020;
       discs.clear();
       return this;
     }
@@ -1540,7 +1582,7 @@ public final class ScoreBossRank {
      * @return internal storage object for modifications
      */
     public RepeatedInt getMutableDiscs() {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       return discs;
     }
 
@@ -1550,7 +1592,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam addDiscs(final int value) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       discs.add(value);
       return this;
     }
@@ -1561,7 +1603,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam addAllDiscs(final int... values) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       discs.addAll(values);
       return this;
     }
@@ -1571,7 +1613,7 @@ public final class ScoreBossRank {
      * @return whether the activeSecondaryIds field is set
      */
     public boolean hasActiveSecondaryIds() {
-      return (bitField0_ & 0x00000020) != 0;
+      return (bitField0_ & 0x00000040) != 0;
     }
 
     /**
@@ -1579,7 +1621,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam clearActiveSecondaryIds() {
-      bitField0_ &= ~0x00000020;
+      bitField0_ &= ~0x00000040;
       activeSecondaryIds.clear();
       return this;
     }
@@ -1608,7 +1650,7 @@ public final class ScoreBossRank {
      * @return internal storage object for modifications
      */
     public RepeatedInt getMutableActiveSecondaryIds() {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000040;
       return activeSecondaryIds;
     }
 
@@ -1618,7 +1660,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam addActiveSecondaryIds(final int value) {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000040;
       activeSecondaryIds.add(value);
       return this;
     }
@@ -1629,7 +1671,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam addAllActiveSecondaryIds(final int... values) {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000040;
       activeSecondaryIds.addAll(values);
       return this;
     }
@@ -1639,7 +1681,7 @@ public final class ScoreBossRank {
      * @return whether the chars field is set
      */
     public boolean hasChars() {
-      return (bitField0_ & 0x00000040) != 0;
+      return (bitField0_ & 0x00000080) != 0;
     }
 
     /**
@@ -1647,7 +1689,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam clearChars() {
-      bitField0_ &= ~0x00000040;
+      bitField0_ &= ~0x00000080;
       chars.clear();
       return this;
     }
@@ -1676,7 +1718,7 @@ public final class ScoreBossRank {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<ScoreBossRankChar> getMutableChars() {
-      bitField0_ |= 0x00000040;
+      bitField0_ |= 0x00000080;
       return chars;
     }
 
@@ -1686,7 +1728,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam addChars(final ScoreBossRankChar value) {
-      bitField0_ |= 0x00000040;
+      bitField0_ |= 0x00000080;
       chars.add(value);
       return this;
     }
@@ -1697,7 +1739,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam addAllChars(final ScoreBossRankChar... values) {
-      bitField0_ |= 0x00000040;
+      bitField0_ |= 0x00000080;
       chars.addAll(values);
       return this;
     }
@@ -1707,7 +1749,7 @@ public final class ScoreBossRank {
      * @return whether the potentials field is set
      */
     public boolean hasPotentials() {
-      return (bitField0_ & 0x00000080) != 0;
+      return (bitField0_ & 0x00000100) != 0;
     }
 
     /**
@@ -1715,7 +1757,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam clearPotentials() {
-      bitField0_ &= ~0x00000080;
+      bitField0_ &= ~0x00000100;
       potentials.clear();
       return this;
     }
@@ -1744,7 +1786,7 @@ public final class ScoreBossRank {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<PublicStarTower.BuildPotential> getMutablePotentials() {
-      bitField0_ |= 0x00000080;
+      bitField0_ |= 0x00000100;
       return potentials;
     }
 
@@ -1754,7 +1796,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam addPotentials(final PublicStarTower.BuildPotential value) {
-      bitField0_ |= 0x00000080;
+      bitField0_ |= 0x00000100;
       potentials.add(value);
       return this;
     }
@@ -1765,7 +1807,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam addAllPotentials(final PublicStarTower.BuildPotential... values) {
-      bitField0_ |= 0x00000080;
+      bitField0_ |= 0x00000100;
       potentials.addAll(values);
       return this;
     }
@@ -1775,7 +1817,7 @@ public final class ScoreBossRank {
      * @return whether the notes field is set
      */
     public boolean hasNotes() {
-      return (bitField0_ & 0x00000100) != 0;
+      return (bitField0_ & 0x00000200) != 0;
     }
 
     /**
@@ -1783,7 +1825,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam clearNotes() {
-      bitField0_ &= ~0x00000100;
+      bitField0_ &= ~0x00000200;
       notes.clear();
       return this;
     }
@@ -1812,7 +1854,7 @@ public final class ScoreBossRank {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.ItemTpl> getMutableNotes() {
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000200;
       return notes;
     }
 
@@ -1822,7 +1864,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam addNotes(final Public.ItemTpl value) {
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000200;
       notes.add(value);
       return this;
     }
@@ -1833,7 +1875,7 @@ public final class ScoreBossRank {
      * @return this
      */
     public ScoreBossRankTeam addAllNotes(final Public.ItemTpl... values) {
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000200;
       notes.addAll(values);
       return this;
     }
@@ -1846,6 +1888,7 @@ public final class ScoreBossRank {
         buildScore = other.buildScore;
         levelScore = other.levelScore;
         levelId = other.levelId;
+        skillScore = other.skillScore;
         nextPackage.copyFrom(other.nextPackage);
         discs.copyFrom(other.discs);
         activeSecondaryIds.copyFrom(other.activeSecondaryIds);
@@ -1870,6 +1913,9 @@ public final class ScoreBossRank {
       }
       if (other.hasLevelId()) {
         setLevelId(other.levelId);
+      }
+      if (other.hasSkillScore()) {
+        setSkillScore(other.skillScore);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -1902,6 +1948,7 @@ public final class ScoreBossRank {
       buildScore = 0;
       levelScore = 0;
       levelId = 0;
+      skillScore = 0;
       nextPackage.clear();
       discs.clear();
       activeSecondaryIds.clear();
@@ -1940,6 +1987,7 @@ public final class ScoreBossRank {
         && (!hasBuildScore() || buildScore == other.buildScore)
         && (!hasLevelScore() || levelScore == other.levelScore)
         && (!hasLevelId() || levelId == other.levelId)
+        && (!hasSkillScore() || skillScore == other.skillScore)
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasDiscs() || discs.equals(other.discs))
         && (!hasActiveSecondaryIds() || activeSecondaryIds.equals(other.activeSecondaryIds))
@@ -1963,34 +2011,38 @@ public final class ScoreBossRank {
         output.writeUInt32NoTag(levelId);
       }
       if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawByte((byte) 72);
+        output.writeUInt32NoTag(skillScore);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000020) != 0) {
         for (int i = 0; i < discs.length(); i++) {
           output.writeRawByte((byte) 40);
           output.writeUInt32NoTag(discs.array()[i]);
         }
       }
-      if ((bitField0_ & 0x00000020) != 0) {
+      if ((bitField0_ & 0x00000040) != 0) {
         for (int i = 0; i < activeSecondaryIds.length(); i++) {
           output.writeRawByte((byte) 64);
           output.writeUInt32NoTag(activeSecondaryIds.array()[i]);
         }
       }
-      if ((bitField0_ & 0x00000040) != 0) {
+      if ((bitField0_ & 0x00000080) != 0) {
         for (int i = 0; i < chars.length(); i++) {
           output.writeRawByte((byte) 18);
           output.writeMessageNoTag(chars.get(i));
         }
       }
-      if ((bitField0_ & 0x00000080) != 0) {
+      if ((bitField0_ & 0x00000100) != 0) {
         for (int i = 0; i < potentials.length(); i++) {
           output.writeRawByte((byte) 50);
           output.writeMessageNoTag(potentials.get(i));
         }
       }
-      if ((bitField0_ & 0x00000100) != 0) {
+      if ((bitField0_ & 0x00000200) != 0) {
         for (int i = 0; i < notes.length(); i++) {
           output.writeRawByte((byte) 58);
           output.writeMessageNoTag(notes.get(i));
@@ -2011,21 +2063,24 @@ public final class ScoreBossRank {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(levelId);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(skillScore);
       }
       if ((bitField0_ & 0x00000010) != 0) {
-        size += (1 * discs.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(discs);
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       if ((bitField0_ & 0x00000020) != 0) {
-        size += (1 * activeSecondaryIds.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(activeSecondaryIds);
+        size += (1 * discs.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(discs);
       }
       if ((bitField0_ & 0x00000040) != 0) {
-        size += (1 * chars.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(chars);
+        size += (1 * activeSecondaryIds.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(activeSecondaryIds);
       }
       if ((bitField0_ & 0x00000080) != 0) {
-        size += (1 * potentials.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(potentials);
+        size += (1 * chars.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(chars);
       }
       if ((bitField0_ & 0x00000100) != 0) {
+        size += (1 * potentials.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(potentials);
+      }
+      if ((bitField0_ & 0x00000200) != 0) {
         size += (1 * notes.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(notes);
       }
       return size;
@@ -2061,6 +2116,15 @@ public final class ScoreBossRank {
             levelId = input.readUInt32();
             bitField0_ |= 0x00000004;
             tag = input.readTag();
+            if (tag != 72) {
+              break;
+            }
+          }
+          case 72: {
+            // skillScore
+            skillScore = input.readUInt32();
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -2068,7 +2132,7 @@ public final class ScoreBossRank {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000008;
+            bitField0_ |= 0x00000010;
             tag = input.readTag();
             if (tag != 42) {
               break;
@@ -2077,7 +2141,7 @@ public final class ScoreBossRank {
           case 42: {
             // discs [packed=true]
             input.readPackedUInt32(discs, tag);
-            bitField0_ |= 0x00000010;
+            bitField0_ |= 0x00000020;
             tag = input.readTag();
             if (tag != 66) {
               break;
@@ -2086,7 +2150,7 @@ public final class ScoreBossRank {
           case 66: {
             // activeSecondaryIds [packed=true]
             input.readPackedUInt32(activeSecondaryIds, tag);
-            bitField0_ |= 0x00000020;
+            bitField0_ |= 0x00000040;
             tag = input.readTag();
             if (tag != 18) {
               break;
@@ -2095,7 +2159,7 @@ public final class ScoreBossRank {
           case 18: {
             // chars
             tag = input.readRepeatedMessage(chars, tag);
-            bitField0_ |= 0x00000040;
+            bitField0_ |= 0x00000080;
             if (tag != 50) {
               break;
             }
@@ -2103,7 +2167,7 @@ public final class ScoreBossRank {
           case 50: {
             // potentials
             tag = input.readRepeatedMessage(potentials, tag);
-            bitField0_ |= 0x00000080;
+            bitField0_ |= 0x00000100;
             if (tag != 58) {
               break;
             }
@@ -2111,7 +2175,7 @@ public final class ScoreBossRank {
           case 58: {
             // notes
             tag = input.readRepeatedMessage(notes, tag);
-            bitField0_ |= 0x00000100;
+            bitField0_ |= 0x00000200;
             if (tag != 0) {
               break;
             }
@@ -2129,13 +2193,13 @@ public final class ScoreBossRank {
           case 40: {
             // discs [packed=false]
             tag = input.readRepeatedUInt32(discs, tag);
-            bitField0_ |= 0x00000010;
+            bitField0_ |= 0x00000020;
             break;
           }
           case 64: {
             // activeSecondaryIds [packed=false]
             tag = input.readRepeatedUInt32(activeSecondaryIds, tag);
-            bitField0_ |= 0x00000020;
+            bitField0_ |= 0x00000040;
             break;
           }
         }
@@ -2155,21 +2219,24 @@ public final class ScoreBossRank {
         output.writeUInt32(FieldNames.levelId, levelId);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        output.writeBytes(FieldNames.nextPackage, nextPackage);
+        output.writeUInt32(FieldNames.skillScore, skillScore);
       }
       if ((bitField0_ & 0x00000010) != 0) {
-        output.writeRepeatedUInt32(FieldNames.discs, discs);
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       if ((bitField0_ & 0x00000020) != 0) {
-        output.writeRepeatedUInt32(FieldNames.activeSecondaryIds, activeSecondaryIds);
+        output.writeRepeatedUInt32(FieldNames.discs, discs);
       }
       if ((bitField0_ & 0x00000040) != 0) {
-        output.writeRepeatedMessage(FieldNames.chars, chars);
+        output.writeRepeatedUInt32(FieldNames.activeSecondaryIds, activeSecondaryIds);
       }
       if ((bitField0_ & 0x00000080) != 0) {
-        output.writeRepeatedMessage(FieldNames.potentials, potentials);
+        output.writeRepeatedMessage(FieldNames.chars, chars);
       }
       if ((bitField0_ & 0x00000100) != 0) {
+        output.writeRepeatedMessage(FieldNames.potentials, potentials);
+      }
+      if ((bitField0_ & 0x00000200) != 0) {
         output.writeRepeatedMessage(FieldNames.notes, notes);
       }
       output.endObject();
@@ -2215,11 +2282,22 @@ public final class ScoreBossRank {
             }
             break;
           }
+          case -705549599: {
+            if (input.isAtField(FieldNames.skillScore)) {
+              if (!input.trySkipNullValue()) {
+                skillScore = input.readUInt32();
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000010;
               }
             } else {
               input.skipUnknownField();
@@ -2230,7 +2308,7 @@ public final class ScoreBossRank {
             if (input.isAtField(FieldNames.discs)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedUInt32(discs);
-                bitField0_ |= 0x00000010;
+                bitField0_ |= 0x00000020;
               }
             } else {
               input.skipUnknownField();
@@ -2241,7 +2319,7 @@ public final class ScoreBossRank {
             if (input.isAtField(FieldNames.activeSecondaryIds)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedUInt32(activeSecondaryIds);
-                bitField0_ |= 0x00000020;
+                bitField0_ |= 0x00000040;
               }
             } else {
               input.skipUnknownField();
@@ -2252,7 +2330,7 @@ public final class ScoreBossRank {
             if (input.isAtField(FieldNames.chars)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(chars);
-                bitField0_ |= 0x00000040;
+                bitField0_ |= 0x00000080;
               }
             } else {
               input.skipUnknownField();
@@ -2263,7 +2341,7 @@ public final class ScoreBossRank {
             if (input.isAtField(FieldNames.potentials)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(potentials);
-                bitField0_ |= 0x00000080;
+                bitField0_ |= 0x00000100;
               }
             } else {
               input.skipUnknownField();
@@ -2274,7 +2352,7 @@ public final class ScoreBossRank {
             if (input.isAtField(FieldNames.notes)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(notes);
-                bitField0_ |= 0x00000100;
+                bitField0_ |= 0x00000200;
               }
             } else {
               input.skipUnknownField();
@@ -2339,6 +2417,8 @@ public final class ScoreBossRank {
       static final FieldName levelScore = FieldName.forField("LevelScore");
 
       static final FieldName levelId = FieldName.forField("LevelId");
+
+      static final FieldName skillScore = FieldName.forField("SkillScore");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 

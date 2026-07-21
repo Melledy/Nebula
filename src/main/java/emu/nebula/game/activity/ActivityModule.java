@@ -65,9 +65,14 @@ public class ActivityModule extends GameContextModule {
         //this.activities.add(1010804);
         
         // A Sandstorm of Gunfire
-        this.activities.add(1010901);
-        this.activities.add(1010903);
-        this.activities.add(1010904);
+        //this.activities.add(1010901);
+        //this.activities.add(1010903);
+        //this.activities.add(1010904);
+        
+        // Checking In for A Cozy Summer
+        this.activities.add(2010301);
+        this.activities.add(2010303);
+        this.activities.add(2010304);
         
         // ===== Joint Drills (Finale Echoing) =====
         //this.activities.add(510003); // Causes soft lock in event screen
