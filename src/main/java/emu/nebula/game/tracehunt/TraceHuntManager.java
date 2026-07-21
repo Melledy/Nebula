@@ -85,6 +85,12 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
         return GameData.getTraceHuntControlDataTable().get(this.getControlId());
     }
     
+    public int getRandomMedals() {
+        int medals = Utils.randomRange(125, 150);
+        double rate = GameData.getTraceHuntLevelDataTable().get(this.getLevel()).getTokenRate() * 0.01D;
+        return (int) (medals * rate);
+    }
+    
     public int addTraceRequests(int amount) {
         // Add/remove requests
         this.traceRequests = Math.max(Math.min(this.traceRequests + amount, 60), 0);
@@ -158,9 +164,6 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
         if (this.getLevel() >= this.getMaxLevel()) {
             this.exp = 0;
         }
-        
-        // Save to database
-        this.save();
     }
     
     public boolean isHunting() {
@@ -214,9 +217,9 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
             int progress = 0;
             
             if (traceId >= 40) {
-                progress = 2000;
-            } else if (traceId >= 30) {
                 progress = 1000;
+            } else if (traceId >= 30) {
+                progress = 750;
             } else {
                 progress = 500;
             }
@@ -284,6 +287,9 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
         // Add logs to change info
         change.setExtraData(logs);
         
+        // Add exp
+        this.addExp(50);
+        
         // Calculate result
         if (this.huntPlayerUid == this.getPlayerUid()) {
             // Check if we have enough cost items
@@ -298,7 +304,7 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
             }
             
             // Our own hunts
-            int progress = stars * 500;
+            int progress = 3500;
             
             logs.add(new TraceHuntLog(11, this.getPlayer().getName(), Integer.toString(progress)));
             
@@ -313,6 +319,9 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
             // Other player's hunts are not supported yet TODO
             return null;
         }
+        
+        // Add medals
+        this.getPlayer().getInventory().addItem(37, this.getRandomMedals(), change);
         
         // Success
         return change;
@@ -342,12 +351,14 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
             break;
         }
         
+        // Add exp
+        this.addExp(250);
+        
         // Save
         this.save();
         
         // Success
-        // Test amount of items
-        return this.getPlayer().getInventory().addItem(37, 1000);
+        return this.getPlayer().getInventory().addItem(37, this.getRandomMedals());
     }
     
     // Proto
