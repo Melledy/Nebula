@@ -591,32 +591,10 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
                 }
             }
             case TraceRequest -> {
-                int oldAmount = this.getPlayer().getTraceHuntManager().getTraceRequests();
-                int newAmount = oldAmount;
-                int diff = 0;
-                
-                newAmount = this.getPlayer().getTraceHuntManager().addTraceRequests(amount);
-                diff = newAmount - oldAmount;
-                
-                var proto = TraceHuntItem.newInstance()
-                        .setTid(id)
-                        .setGrantQty(diff);
-
-                change.add(proto);
+                this.getPlayer().getTraceHuntManager().addTraceRequests(amount, change, true);
             }
             case HuntPermit -> {
-                int oldAmount = this.getPlayer().getTraceHuntManager().getHuntPermits();
-                int newAmount = oldAmount;
-                int diff = 0;
-                
-                newAmount = this.getPlayer().getTraceHuntManager().addHuntPermits(amount);
-                diff = newAmount - oldAmount;
-                
-                var proto = TraceHuntItem.newInstance()
-                        .setTid(id)
-                        .setGrantQty(diff);
-
-                change.add(proto);
+                this.getPlayer().getTraceHuntManager().addHuntPermits(amount, change, true);
             }
             default -> {
                 // Not implemented

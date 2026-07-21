@@ -609,6 +609,9 @@ public class Player implements GameDatabaseObject {
         // Trigger quest
         this.trigger(QuestCondition.EnergyDeplete, amount);
         
+        // Trigger trace hunt
+        this.getTraceHuntManager().onSpendEnergy(amount, change);
+        
         // Complete
         return change;
     }
@@ -726,6 +729,9 @@ public class Player implements GameDatabaseObject {
         if (tickets < 3) {
             this.getInventory().addItem(GameConstants.JOINT_DRILL_TICKET_ID, 3 - tickets);
         }
+        
+        // Reset daily trace hunt items
+        this.getTraceHuntManager().resetDailyQuota();
         
         // Check to reset weeklies
         if (resetWeekly) {
@@ -1312,10 +1318,12 @@ public class Player implements GameDatabaseObject {
         // Trace hunt
         proto.getMutableHuntPermit()
             .setTid(GameConstants.TRACE_HUNT_PERMIT_ITEM_ID)
+            .setDailyCount(this.getTraceHuntManager().getDailyPermits())
             .setGrantedCount(this.getTraceHuntManager().getHuntPermits());
         
         proto.getMutableTraceRequest()
             .setTid(GameConstants.TRACE_HUNT_REQUEST_ITEM_ID)
+            .setDailyCount(this.getTraceHuntManager().getDailyRequests())
             .setGrantedCount(this.getTraceHuntManager().getTraceRequests());
         
         // Complete

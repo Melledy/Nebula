@@ -16,6 +16,7 @@ import emu.nebula.database.GameDatabaseObject;
 import emu.nebula.game.player.Player;
 import emu.nebula.game.player.PlayerChangeInfo;
 import emu.nebula.game.player.PlayerManager;
+import emu.nebula.proto.Public.TraceHuntItem;
 import emu.nebula.proto.TraceHuntInfoOuterClass.TraceHuntInfo;
 import emu.nebula.util.Utils;
 import lombok.Getter;
@@ -32,9 +33,12 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
     
     // Requests/Hunt items
     private int traceRequests;
-    private int dailyRequests; // Max of 20 daily
+    private int dailyRequestProgress;   // Every 10 energy used = +1 trace request
+    private int dailyRequests;          // Max of 20 daily
     
     private int huntPermits;
+    private int dailyPermitProgress;    // Every 50 energy used = +1 hunting permit
+    private int dailyPermits;           // Max of 4 daily
     
     // Current boss
     private int bossId;
@@ -91,26 +95,98 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
         return (int) (medals * rate);
     }
     
-    public int addTraceRequests(int amount) {
+    public void onSpendEnergy(int amount, PlayerChangeInfo change) {
+        // Save flag
+        boolean save = true;
+        
+        // Calculate daily request/permits to add
+        this.dailyRequestProgress += amount;
+        this.dailyPermitProgress += amount;
+        
+        int newRequests = (int) Math.floor(this.dailyRequestProgress / 10D);
+        this.dailyRequestProgress = this.dailyRequestProgress % 10;
+        
+        int newPermits = (int) Math.floor(this.dailyPermitProgress / 50D);
+        this.dailyPermitProgress = this.dailyPermitProgress % 50;
+        
+        // Add
+        if (newRequests > 0) {
+            int max = Math.max(Math.min(60 - this.getTraceRequests(), 20 - this.getDailyRequests()), 0);
+            int add = Math.min(newRequests, max);
+            
+            if (add > 0) {
+                this.dailyRequests += add;
+                this.addTraceRequests(add, change, false);
+            }
+        }
+        
+        if (newPermits > 0) {
+            int max = Math.max(Math.min(12 - this.getHuntPermits(), 4 - this.getDailyPermits()), 0);
+            int add = Math.min(newPermits, max);
+            
+            if (add > 0) {
+                this.dailyPermits += add;
+                this.addHuntPermits(add, change, false);
+            }
+        }
+        
+        // Save to database
+        if (save) {
+            this.save();
+        }
+    }
+    
+    public void resetDailyQuota() {
+        // Reset progress and limits
+        this.dailyRequestProgress = 0;
+        this.dailyRequests = 0;
+        this.dailyPermitProgress = 0;
+        this.dailyPermits = 0;
+        
+        // Save to database
+        this.save();
+    }
+    
+    public void addTraceRequests(int amount, PlayerChangeInfo change, boolean shouldSave) {
+        // Save old value to check if we need to save this to the database
+        int oldValue = this.traceRequests;
+        
         // Add/remove requests
         this.traceRequests = Math.max(Math.min(this.traceRequests + amount, 60), 0);
         
         // Save to database
-        this.save();
+        if (shouldSave && oldValue != this.traceRequests) {
+            this.save();
+        }
         
-        // Return amount
-        return this.traceRequests;
+        // Add to change info
+        var proto = TraceHuntItem.newInstance()
+                .setTid(GameConstants.TRACE_HUNT_REQUEST_ITEM_ID)
+                .setGrantQty(this.getTraceRequests() - oldValue)
+                .setDailyCount(this.getDailyRequests());
+
+        change.add(proto);
     }
 
-    public int addHuntPermits(int amount) {
+    public void addHuntPermits(int amount, PlayerChangeInfo change, boolean shouldSave) {
+        // Save old value to check if we need to save this to the database
+        int oldValue = this.huntPermits;
+        
         // Add/remove permits
-        this.huntPermits = Math.max(this.huntPermits + amount, 0);
+        this.huntPermits = Math.max(Math.min(this.huntPermits + amount, 12), 0);
 
         // Save to database
-        this.save();
+        if (shouldSave && oldValue != this.huntPermits) {
+            this.save();
+        }
         
-        // Return amount
-        return this.huntPermits;
+        // Add to change info
+        var proto = TraceHuntItem.newInstance()
+                .setTid(GameConstants.TRACE_HUNT_PERMIT_ITEM_ID)
+                .setGrantQty(this.getHuntPermits() - oldValue)
+                .setDailyCount(this.getDailyPermits());
+
+        change.add(proto);
     }
     
     public int getMaxGainableExp() {
