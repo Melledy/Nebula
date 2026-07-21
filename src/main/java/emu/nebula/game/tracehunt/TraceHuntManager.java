@@ -74,7 +74,6 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
         this.level = 1;
 
         this.bossId = this.getControlData().getBossList()[0];
-        this.bossCreateTime = Nebula.getCurrentServerTime();
         this.traceLogs = new ArrayList<>();
         this.huntLogs = new ArrayList<>();
         
@@ -311,6 +310,7 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
             
             // Complete
             if (this.isHunting()) {
+                this.bossCreateTime = Nebula.getCurrentServerTime();
                 logs.add(new TraceHuntLog(5));
                 break;
             }
