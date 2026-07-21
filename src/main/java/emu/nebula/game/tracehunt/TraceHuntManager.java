@@ -338,6 +338,13 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
             return false;
         }
         
+        // Check if we have enough cost items
+        var cost = this.getHuntCost();
+        
+        if (cost != null && !getPlayer().getInventory().hasItem(cost.getExtraCost1Tid(), cost.getExtraCost1Qty())) {
+            return false;
+        }
+        
         // Set build
         this.huntPlayerUid = (int) ownerUid;
         this.huntBossId = bossId;
@@ -362,9 +369,6 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
         
         // Add logs to change info
         change.setExtraData(logs);
-        
-        // Add exp
-        this.addExp(50);
         
         // Calculate result
         if (this.huntPlayerUid == this.getPlayerUid()) {
@@ -395,6 +399,9 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
             // Other player's hunts are not supported yet TODO
             return null;
         }
+        
+        // Add exp
+        this.addExp(50);
         
         // Add medals
         this.getPlayer().getInventory().addItem(37, this.getRandomMedals(), change);

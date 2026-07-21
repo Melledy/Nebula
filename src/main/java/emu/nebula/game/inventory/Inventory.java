@@ -721,6 +721,12 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
             case Title -> {
                 yield this.getTitles().contains(id);
             }
+            case TraceRequest -> {
+                yield this.getPlayer().getTraceHuntManager().getTraceRequests() >= count;
+            }
+            case HuntPermit -> {
+                yield this.getPlayer().getTraceHuntManager().getHuntPermits() >= count;
+            }
             default -> {
                 // Not implemented
                 yield false;
