@@ -54,7 +54,14 @@ public class GameConstants {
     public static final int[] TOWER_EVENTS_IDS = new int[] {
         101, 102, 104, 105, 106, 107, 108, 114, 115, 116, 126, 127, 128
     };
-
+    
+    public static final int TRACE_HUNT_TOKEN_ID = 37;
+    public static final int TRACE_HUNT_REQUEST_ITEM_ID = 38;
+    public static final int TRACE_HUNT_PERMIT_ITEM_ID = 39;
+    public static final int[] TRACE_HUNT_TRACE_IDS = {21, 22, 23, 31, 41};
+    public static final int TRACE_HUNT_MAX_TRACE_PROGRESS = 10_000;
+    public static final int TRACE_HUNT_MAX_HUNT_PROGRESS = 10_000;
+    
     public static final int REFRESH_TYPE_DAILY = 1;
     public static final int REFRESH_TYPE_WEEKLY = 2;
     public static final int REFRESH_TYPE_MONTHLY = 3;

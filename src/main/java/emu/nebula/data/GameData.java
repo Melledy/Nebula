@@ -139,6 +139,11 @@ public class GameData {
     @Getter private static DataTable<ScoreBossControlDef> ScoreBossControlDataTable = new DataTable<>();
     @Getter private static DataTable<ScoreBossRewardDef> ScoreBossRewardDataTable = new DataTable<>();
     
+    // ===== Trace Hunt =====
+    @Getter private static DataTable<TraceHuntControlDef> TraceHuntControlDataTable = new DataTable<>();
+    @Getter private static DataTable<TraceHuntLevelDef> TraceHuntLevelDataTable = new DataTable<>();
+    @Getter private static DataTable<TraceHuntSelfHuntExtraCostDef> TraceHuntSelfHuntExtraCostDataTable = new DataTable<>();
+    
     // ===== Misc =====
     @Getter private static DataTable<WorldClassDef> WorldClassDataTable = new DataTable<>();
     @Getter private static DataTable<GuideGroupDef> GuideGroupDataTable = new DataTable<>();

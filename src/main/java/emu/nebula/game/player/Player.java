@@ -29,6 +29,7 @@ import emu.nebula.game.quest.QuestManager;
 import emu.nebula.game.scoreboss.ScoreBossManager;
 import emu.nebula.game.story.StoryManager;
 import emu.nebula.game.tower.StarTowerManager;
+import emu.nebula.game.tracehunt.TraceHuntManager;
 import emu.nebula.game.vampire.VampireSurvivorManager;
 import emu.nebula.net.GameSession;
 import emu.nebula.net.NetMsgId;
@@ -110,6 +111,7 @@ public class Player implements GameDatabaseObject {
     private transient QuestManager questManager;
     private transient AchievementManager achievementManager;
     private transient AgentManager agentManager;
+    private transient TraceHuntManager traceHuntManager;
     private transient ActivityManager activityManager;
     
     // Extra
@@ -814,6 +816,7 @@ public class Player implements GameDatabaseObject {
         this.questManager = this.loadManagerFromDatabase(QuestManager.class);
         this.achievementManager = this.loadManagerFromDatabase(AchievementManager.class);
         this.agentManager = this.loadManagerFromDatabase(AgentManager.class);
+        this.traceHuntManager = this.loadManagerFromDatabase(TraceHuntManager.class);
         this.activityManager = this.loadManagerFromDatabase(ActivityManager.class);
         
         // Database fixes
@@ -1234,7 +1237,7 @@ public class Player implements GameDatabaseObject {
         state.getMutableStarTowerBook();
         state.getMutableScoreBoss();
         state.getMutableCharAffinityRewards();
-        state.getMutableTraceHunt();
+        state.getMutableTraceHunt().setBossRewardCanReceive(this.getTraceHuntManager().isHuntComplete());
         
         // Force complete tutorials
         for (var guide : GameData.getGuideGroupDataTable()) {
@@ -1307,8 +1310,13 @@ public class Player implements GameDatabaseObject {
         }
         
         // Trace hunt
-        proto.getMutableHuntPermit();
-        proto.getMutableTraceRequest();
+        proto.getMutableHuntPermit()
+            .setTid(GameConstants.TRACE_HUNT_PERMIT_ITEM_ID)
+            .setGrantedCount(this.getTraceHuntManager().getHuntPermits());
+        
+        proto.getMutableTraceRequest()
+            .setTid(GameConstants.TRACE_HUNT_REQUEST_ITEM_ID)
+            .setGrantedCount(this.getTraceHuntManager().getTraceRequests());
         
         // Complete
         return proto;

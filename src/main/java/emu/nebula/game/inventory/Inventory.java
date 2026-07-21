@@ -46,6 +46,7 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
     private ItemParamMap shopBuyCount;
     private String2IntMap mallBuyCount;
     private String2IntMap mallPackageBuyCount;
+    
     /**
      * Tracks whether a MallGem pack has already consumed its maiden bonus.
      * This is the only persisted state MallGem recharge still needs now that
@@ -588,6 +589,34 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
 
                     change.add(proto);
                 }
+            }
+            case TraceRequest -> {
+                int oldAmount = this.getPlayer().getTraceHuntManager().getTraceRequests();
+                int newAmount = oldAmount;
+                int diff = 0;
+                
+                newAmount = this.getPlayer().getTraceHuntManager().addTraceRequests(amount);
+                diff = newAmount - oldAmount;
+                
+                var proto = TraceHuntItem.newInstance()
+                        .setTid(id)
+                        .setGrantQty(diff);
+
+                change.add(proto);
+            }
+            case HuntPermit -> {
+                int oldAmount = this.getPlayer().getTraceHuntManager().getHuntPermits();
+                int newAmount = oldAmount;
+                int diff = 0;
+                
+                newAmount = this.getPlayer().getTraceHuntManager().addHuntPermits(amount);
+                diff = newAmount - oldAmount;
+                
+                var proto = TraceHuntItem.newInstance()
+                        .setTid(id)
+                        .setGrantQty(diff);
+
+                change.add(proto);
             }
             default -> {
                 // Not implemented
