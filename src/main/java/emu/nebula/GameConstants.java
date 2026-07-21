@@ -58,6 +58,8 @@ public class GameConstants {
     public static final int TRACE_HUNT_TOKEN_ID = 37;
     public static final int TRACE_HUNT_REQUEST_ITEM_ID = 38;
     public static final int TRACE_HUNT_PERMIT_ITEM_ID = 39;
+    public static final int TRACE_HUNT_MAX_DAILY_REQUESTS = 20;
+    public static final int TRACE_HUNT_MAX_DAILY_PERMITS = 4;
     public static final int[] TRACE_HUNT_TRACE_IDS = {21, 22, 23, 31, 41};
     public static final int TRACE_HUNT_MAX_TRACE_PROGRESS = 10_000;
     public static final int TRACE_HUNT_MAX_HUNT_PROGRESS = 10_000;

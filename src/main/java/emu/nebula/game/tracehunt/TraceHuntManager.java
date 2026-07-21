@@ -95,8 +95,10 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
     }
     
     public void onSpendEnergy(int amount, PlayerChangeInfo change) {
-        // Save flag
-        boolean save = true;
+        // Optimization: Skip if we already have the max daily requests/permits
+        if (this.dailyRequests >= GameConstants.TRACE_HUNT_MAX_DAILY_REQUESTS && this.dailyPermits >= GameConstants.TRACE_HUNT_MAX_DAILY_PERMITS) {
+            return;
+        }
         
         // Calculate daily request/permits to add
         this.dailyRequestProgress += amount;
@@ -110,29 +112,27 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
         
         // Add
         if (newRequests > 0) {
-            int max = Math.max(Math.min(60 - this.getTraceRequests(), 20 - this.getDailyRequests()), 0);
+            int max = Math.max(Math.min(60 - this.getTraceRequests(), GameConstants.TRACE_HUNT_MAX_DAILY_REQUESTS - this.getDailyRequests()), 0);
             int add = Math.min(newRequests, max);
             
             if (add > 0) {
                 this.dailyRequests += add;
-                this.addTraceRequests(add, change, false);
+                this.addTraceRequests(add, add, change, false);
             }
         }
         
         if (newPermits > 0) {
-            int max = Math.max(Math.min(12 - this.getHuntPermits(), 4 - this.getDailyPermits()), 0);
+            int max = Math.max(Math.min(12 - this.getHuntPermits(), GameConstants.TRACE_HUNT_MAX_DAILY_PERMITS - this.getDailyPermits()), 0);
             int add = Math.min(newPermits, max);
             
             if (add > 0) {
                 this.dailyPermits += add;
-                this.addHuntPermits(add, change, false);
+                this.addHuntPermits(add, add, change, false);
             }
         }
         
         // Save to database
-        if (save) {
-            this.save();
-        }
+        this.save();
     }
     
     public void resetDailyQuota() {
@@ -146,7 +146,7 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
         this.save();
     }
     
-    public void addTraceRequests(int amount, PlayerChangeInfo change, boolean shouldSave) {
+    public void addTraceRequests(int amount, int daily, PlayerChangeInfo change, boolean shouldSave) {
         // Save old value to check if we need to save this to the database
         int oldValue = this.traceRequests;
         
@@ -162,12 +162,12 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
         var proto = TraceHuntItem.newInstance()
                 .setTid(GameConstants.TRACE_HUNT_REQUEST_ITEM_ID)
                 .setGrantQty(this.getTraceRequests() - oldValue)
-                .setDailyCount(this.getDailyRequests());
+                .setDailyCount(daily);
 
         change.add(proto);
     }
 
-    public void addHuntPermits(int amount, PlayerChangeInfo change, boolean shouldSave) {
+    public void addHuntPermits(int amount, int daily, PlayerChangeInfo change, boolean shouldSave) {
         // Save old value to check if we need to save this to the database
         int oldValue = this.huntPermits;
         
@@ -183,7 +183,7 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
         var proto = TraceHuntItem.newInstance()
                 .setTid(GameConstants.TRACE_HUNT_PERMIT_ITEM_ID)
                 .setGrantQty(this.getHuntPermits() - oldValue)
-                .setDailyCount(this.getDailyPermits());
+                .setDailyCount(daily);
 
         change.add(proto);
     }

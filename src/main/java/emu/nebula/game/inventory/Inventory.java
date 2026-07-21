@@ -591,10 +591,10 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
                 }
             }
             case TraceRequest -> {
-                this.getPlayer().getTraceHuntManager().addTraceRequests(amount, change, true);
+                this.getPlayer().getTraceHuntManager().addTraceRequests(amount, 0, change, true);
             }
             case HuntPermit -> {
-                this.getPlayer().getTraceHuntManager().addHuntPermits(amount, change, true);
+                this.getPlayer().getTraceHuntManager().addHuntPermits(amount, 0, change, true);
             }
             default -> {
                 // Not implemented
