@@ -3,6 +3,7 @@ package emu.nebula.game.account;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.Base64;
+import java.util.List;
 
 import emu.nebula.Nebula;
 import emu.nebula.game.player.Player;
@@ -39,6 +40,10 @@ public class AccountHelper {
         }
         
         return Nebula.getAccountDatabase().getObjectByField(Account.class, "loginToken", token);
+    }
+    
+    public static List<Account> getAccountList() {
+        return Nebula.getAccountDatabase().getObjects(Account.class).toList();
     }
     
     public static boolean deleteAccount(String email) {
