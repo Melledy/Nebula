@@ -24,7 +24,7 @@ public class HandlerTraceHuntTraceReq extends NetHandler {
         
         // Sanity check
         if (change == null) {
-            return session.encodeMsg(NetMsgId.trace_hunt_apply_failed_ack);
+            return session.encodeMsg(NetMsgId.trace_hunt_trace_failed_ack);
         }
         
         // Build response
@@ -39,7 +39,7 @@ public class HandlerTraceHuntTraceReq extends NetHandler {
         }
         
         // Encode and send
-        return session.encodeMsg(NetMsgId.trace_hunt_apply_succeed_ack, rsp);
+        return session.encodeMsg(NetMsgId.trace_hunt_trace_succeed_ack, rsp);
     }
 
 }
