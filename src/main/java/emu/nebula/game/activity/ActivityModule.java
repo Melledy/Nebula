@@ -94,6 +94,9 @@ public class ActivityModule extends GameContextModule {
         
         // Fatebound Stellar Deck
         //this.activities.add(800001); // Causes soft lock in event screen
+
+        // Through Hostile Depths (beta)
+        this.activities.add(900001);
         
         // Trekker versus (broken)
         //this.activities.add(600001);

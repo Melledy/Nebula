@@ -158,6 +158,21 @@ public class GameData {
 
     // Activity: Tower Defense
     @Getter private static DataTable<TowerDefenseLevelDef> TowerDefenseLevelDataTable = new DataTable<>();
+
+    // Activity: Soldier
+    @Getter private static DataTable<SoldierGradeChallengeDef> SoldierGradeChallengeDataTable = new DataTable<>();
+    @Getter private static DataTable<SoldierSeasonDef> SoldierSeasonDataTable = new DataTable<>();
+    @Getter private static DataTable<SoldierNodePlanDef> SoldierNodePlanDataTable = new DataTable<>();
+    @Getter private static DataTable<SoldierCharacterDef> SoldierCharacterDataTable = new DataTable<>();
+    @Getter private static DataTable<SoldierStarterCardDef> SoldierStarterCardDataTable = new DataTable<>();
+    @Getter private static DataTable<SoldierFloorDef> SoldierFloorDataTable = new DataTable<>();
+    @Getter private static DataTable<SoldierShopPoolDef> SoldierShopPoolDataTable = new DataTable<>();
+    @Getter private static DataTable<SoldierShopLevelDef> SoldierShopLevelDataTable = new DataTable<>();
+    @Getter private static DataTable<SoldierEventPlanDef> SoldierEventPlanDataTable = new DataTable<>();
+    @Getter private static DataTable<SoldierEventBattlePoolDef> SoldierEventBattlePoolDataTable = new DataTable<>();
+    @Getter private static DataTable<SoldierStrategyCardDef> SoldierStrategyCardDataTable = new DataTable<>();
+    @Getter private static DataTable<SoldierCardEffectDef> SoldierCardEffectDataTable = new DataTable<>();
+    @Getter private static DataTable<SoldierBuffDef> SoldierBuffDataTable = new DataTable<>();
     
     // Activity: Trials
     @Getter private static DataTable<TrialControlDef> TrialControlDataTable = new DataTable<>();

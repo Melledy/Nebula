@@ -138,6 +138,7 @@ public class ActivityManager extends PlayerManager implements GameDatabaseObject
             case Shop -> new ShopActivity(this, data);
             case TrekkerVersus -> new TrekkerVersusActivity(this, data);
             case PenguinCard -> new PenguinCardActivity(this, data);
+            case Soldier -> new SoldierActivity(this, data);
             default -> null;
         };
         
