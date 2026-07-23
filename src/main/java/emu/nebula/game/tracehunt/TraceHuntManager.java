@@ -16,6 +16,7 @@ import emu.nebula.database.GameDatabaseObject;
 import emu.nebula.game.player.Player;
 import emu.nebula.game.player.PlayerChangeInfo;
 import emu.nebula.game.player.PlayerManager;
+import emu.nebula.net.NetMsgId;
 import emu.nebula.proto.Public.TraceHuntItem;
 import emu.nebula.proto.TraceHuntInfoOuterClass.TraceHuntInfo;
 import emu.nebula.util.Utils;
@@ -164,7 +165,7 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
                 .setGrantQty(this.getTraceRequests() - oldValue)
                 .setDailyCount(daily);
 
-        change.add(proto);
+        this.getPlayer().addNextPackage(NetMsgId.trace_hunt_item_change_notify, proto);
     }
 
     public void addHuntPermits(int amount, int daily, PlayerChangeInfo change, boolean shouldSave) {
@@ -185,7 +186,7 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
                 .setGrantQty(this.getHuntPermits() - oldValue)
                 .setDailyCount(daily);
 
-        change.add(proto);
+        this.getPlayer().addNextPackage(NetMsgId.trace_hunt_item_change_notify, proto);
     }
     
     public int getMaxGainableExp() {
@@ -267,6 +268,18 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
         this.huntLogs.clear();
     }
     
+    // Log collection
+    
+    public void incrementHuntCount(int bossId) {
+        var log = this.getBosses().computeIfAbsent(bossId, i -> new TraceHuntBoss(this.getBossId()));
+        log.incrementHuntCount();
+    }
+    
+    public void incrementAssistCount(int bossId) {
+        var log = this.getBosses().computeIfAbsent(bossId, i -> new TraceHuntBoss(this.getBossId()));
+        log.incrementAssistCount();
+    }
+    
     // Game logic
     
     public PlayerChangeInfo trace(int count) {
@@ -310,7 +323,6 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
             
             // Complete
             if (this.isHunting()) {
-                this.bossCreateTime = Nebula.getCurrentServerTime();
                 logs.add(new TraceHuntLog(5));
                 break;
             }
@@ -388,6 +400,12 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
             
             logs.add(new TraceHuntLog(11, this.getPlayer().getName(), Integer.toString(progress)));
             
+            // Start the timer
+            if (this.bossCreateTime == 0) {
+                this.bossCreateTime = Nebula.getCurrentServerTime();
+                logs.add(new TraceHuntLog(17));
+            }
+            
             // Add to logs
             this.huntProgress = Math.min(this.huntProgress + progress, GameConstants.TRACE_HUNT_MAX_HUNT_PROGRESS);
             this.huntCount++;
@@ -416,8 +434,7 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
         }
         
         // Add boss log
-        var bossLog = new TraceHuntBoss(this.getBossId(), this.getHuntCount(), this.getAssistCount());
-        this.getBosses().put(this.getBossId(), bossLog);
+        this.incrementHuntCount(this.getBossId());
         
         // Reset boss
         this.resetBoss();
@@ -435,7 +452,7 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
         }
         
         // Add exp
-        this.addExp(250);
+        this.addExp(150);
         
         // Save
         this.save();

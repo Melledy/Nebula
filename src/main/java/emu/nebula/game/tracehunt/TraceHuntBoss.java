@@ -16,10 +16,16 @@ public class TraceHuntBoss {
         
     }
     
-    public TraceHuntBoss(int bossId, int hunts, int assists) {
+    public TraceHuntBoss(int bossId) {
         this.id = bossId;
-        this.hunts = hunts;
-        this.assists = assists;
+    }
+
+    public void incrementHuntCount() {
+        this.hunts++;
+    }
+
+    public void incrementAssistCount() {
+        this.assists++;
     }
     
     // Proto
