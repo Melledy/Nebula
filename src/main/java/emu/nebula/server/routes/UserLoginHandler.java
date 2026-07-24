@@ -68,11 +68,11 @@ public class UserLoginHandler implements Handler {
             response.Data.IsTestAccount = false;
             response.Data.Keys = new ArrayList<>();
             response.Data.User = new ChinaUserLoginEntity.UserJson();
-            response.Data.Yostar = new ChinaUserLoginEntity.LoginYostarJson();
+            response.Data.Pass = new ChinaUserLoginEntity.LoginPassJson();
             response.Data.Identity = new ChinaUserLoginEntity.IdentityJson();
             response.Data.TaptapProfile = null;
             response.Data.Destroy = new ChinaUserLoginEntity.DestroyJson();
-            response.Data.YostarDestroy = new ChinaUserLoginEntity.YostarDestroyJson();
+            response.Data.PassDestroy = new ChinaUserLoginEntity.PassDestroyJson();
 
             response.Data.User.ID = Long.parseLong(account.getUid());
             response.Data.User.PID = "NEBULA";
@@ -81,12 +81,12 @@ public class UserLoginHandler implements Handler {
             response.Data.User.RegChannel = "pc_official";
             response.Data.User.DestroyState = 0;
 
-            response.Data.Yostar.ID = Long.parseLong(account.getUid());
-            response.Data.Yostar.NickName = account.getNickname();
-            response.Data.Yostar.Picture = account.getPicture();
-            response.Data.Yostar.State = 1;
-            response.Data.Yostar.CreatedAt = account.getCreatedAt();
-            response.Data.Yostar.DefaultNickName = "";
+            response.Data.Pass.ID = Long.parseLong(account.getUid());
+            response.Data.Pass.NickName = account.getNickname();
+            response.Data.Pass.Picture = account.getPicture();
+            response.Data.Pass.State = 1;
+            response.Data.Pass.CreatedAt = account.getCreatedAt();
+            response.Data.Pass.DefaultNickName = "";
 
             response.Data.Identity.Type = 0;
             response.Data.Identity.RealName = "***";
@@ -97,7 +97,7 @@ public class UserLoginHandler implements Handler {
             response.Data.Identity.State = 1;
 
             response.Data.Destroy.DestroyAt = 0;
-            response.Data.YostarDestroy.DestroyAt = 0;
+            response.Data.PassDestroy.DestroyAt = 0;
 
             var key = new ChinaUserLoginEntity.UserKeyJson();
             key.Type = "mobile";

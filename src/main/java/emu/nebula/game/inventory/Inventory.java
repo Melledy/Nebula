@@ -1245,9 +1245,48 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
             save = true;
         }
 
+        // Remove malformed/obsolete entries before the full player snapshot is sent.
+        // A Tid=0 or a row missing from Item.json makes the CN client crash when opening Depot.
+        save |= this.pruneInvalidItemParams(this.items, "items", false);
+        save |= this.pruneInvalidItemParams(this.resources, "resources", true);
+
         // Update in database
         if (save) {
             this.save();
         }
+    }
+
+    private boolean pruneInvalidItemParams(ItemParamMap map, String databaseField, boolean resourceBag) {
+        if (map == null || map.isEmpty()) {
+            return false;
+        }
+
+        boolean changed = false;
+        var iterator = map.int2IntEntrySet().iterator();
+        while (iterator.hasNext()) {
+            var entry = iterator.next();
+            int id = entry.getIntKey();
+            int count = entry.getIntValue();
+            var data = GameData.getItemDataTable().get(id);
+
+            boolean invalid = id <= 0 || count <= 0 || data == null;
+            if (!invalid) {
+                invalid = resourceBag
+                        ? data.getItemType() != ItemType.Res
+                        : data.getItemType() != ItemType.Item;
+            }
+
+            if (!invalid) {
+                continue;
+            }
+
+            iterator.remove();
+            changed = true;
+            Nebula.getGameDatabase().updateUnset(this, this.getPlayerUid(), databaseField + "." + id);
+            Nebula.getLogger().warn("Removed invalid inventory {} entry for uid {}: tid={}, count={}",
+                    databaseField, this.getPlayerUid(), id, count);
+        }
+
+        return changed;
     }
 }
