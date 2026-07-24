@@ -1198,17 +1198,31 @@ public class Player implements GameDatabaseObject {
         }
         
         for (var item : getInventory().getItems().int2IntEntrySet()) {
+            int tid = item.getIntKey();
+            int qty = item.getIntValue();
+            var data = GameData.getItemDataTable().get(tid);
+            if (tid <= 0 || qty <= 0 || data == null) {
+                continue;
+            }
+
             var info = Item.newInstance()
-                    .setTid(item.getIntKey())
-                    .setQty(item.getIntValue());
+                    .setTid(tid)
+                    .setQty(qty);
             
             proto.addItems(info);
         }
         
         for (var res : getInventory().getResources().int2IntEntrySet()) {
+            int tid = res.getIntKey();
+            int qty = res.getIntValue();
+            var data = GameData.getItemDataTable().get(tid);
+            if (tid <= 0 || qty <= 0 || data == null) {
+                continue;
+            }
+
             var info = Res.newInstance()
-                    .setTid(res.getIntKey())
-                    .setQty(res.getIntValue());
+                    .setTid(tid)
+                    .setQty(qty);
             
             proto.addRes(info);
         }

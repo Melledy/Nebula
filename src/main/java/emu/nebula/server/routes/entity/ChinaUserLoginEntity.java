@@ -12,11 +12,11 @@ public class ChinaUserLoginEntity {
         public boolean IsTestAccount;
         public List<UserKeyJson> Keys;
         public UserJson User;
-        public LoginYostarJson Yostar;
+        public LoginPassJson Pass;
         public Object TaptapProfile;
         public IdentityJson Identity;
         public DestroyJson Destroy;
-        public YostarDestroyJson YostarDestroy;
+        public PassDestroyJson PassDestroy;
     }
 
     public static class UserJson {
@@ -34,7 +34,7 @@ public class ChinaUserLoginEntity {
         public String NickNameEnc;
     }
 
-    public static class LoginYostarJson {
+    public static class LoginPassJson {
         public long ID;
         public String NickName;
         public String Picture;
@@ -57,7 +57,7 @@ public class ChinaUserLoginEntity {
         public int DestroyAt;
     }
 
-    public static class YostarDestroyJson {
+    public static class PassDestroyJson {
         public int DestroyAt;
     }
 }
