@@ -15,6 +15,7 @@ import dev.morphia.annotations.PreLoad;
 import emu.nebula.GameConstants;
 import emu.nebula.Nebula;
 import emu.nebula.data.GameData;
+import emu.nebula.data.resources.CharacterArchiveDef;
 import emu.nebula.data.resources.CharacterDef;
 import emu.nebula.data.resources.TalentGroupDef;
 import emu.nebula.database.GameDatabaseObject;
@@ -65,13 +66,20 @@ public class GameCharacter implements GameDatabaseObject {
     private int skin;
     private int[] skills;
     private Bitset talents;
-    private IntSet plots;
     private long createTime;
     
+    // Archive stories
+    private IntSet archives;
+    
+    // Affinity stories (Memory recollection)
+    private IntSet plots;
+    
+    // Gems
     private int gemPresetIndex;
     private List<CharacterGemPreset> gemPresets;
     private CharacterGemSlot[] gemSlots;
     
+    // Phone/Heartlink
     private CharacterContact contact;
     
     @Deprecated // Morphia only!
@@ -532,6 +540,36 @@ public class GameCharacter implements GameDatabaseObject {
         return change;
     }
     
+    public PlayerChangeInfo recvArchiveReward(CharacterArchiveDef archive) {
+        // Sanity check to prevent players from recving rewards over and over again from the same archive
+        if (this.getArchives() != null && this.getArchives().contains(archive.getId())) {
+            return null;
+        }
+        
+        // Sanity check to make sure we can complete this archive
+        if (archive.getUnlockAffinityLevel() > this.getAffinityLevel()) {
+            return null;
+        }
+        
+        // Make sure archive has rewards
+        if (archive.getArchReward() == 0) {
+            return null;
+        }
+        
+        // Complete archive
+        if (this.archives == null) {
+            this.archives = new IntOpenHashSet();
+        }
+        
+        this.getArchives().add(archive.getId());
+        
+        // Update to database
+        this.save();
+        
+        // Add items
+        return this.getPlayer().getInventory().addItem(archive.getArchReward(), archive.getArchRewardQuantity());
+    }
+    
     // Gems
     
     public boolean hasGemPreset(int index) {
@@ -953,6 +991,11 @@ public class GameCharacter implements GameDatabaseObject {
         // Encode plots
         if (this.getPlots() != null) {
             this.getPlots().forEach(proto::addPlots);
+        }
+        
+        // Encode archives
+        if (this.getArchives() != null) {
+            this.getArchives().forEach(proto::addArchiveRewardIds);
         }
         
         // Finish
