@@ -70,9 +70,14 @@ public class ActivityModule extends GameContextModule {
         //this.activities.add(1010904);
         
         // Checking In for A Cozy Summer
-        this.activities.add(2010301);
-        this.activities.add(2010303);
-        this.activities.add(2010304);
+        //this.activities.add(2010301);
+        //this.activities.add(2010303);
+        //this.activities.add(2010304);
+        
+        // Surfing Splash: A Sparkling Holiday Adventure!
+        this.activities.add(1011001);
+        this.activities.add(1011003);
+        this.activities.add(1011004);
         
         // ===== Joint Drills (Finale Echoing) =====
         //this.activities.add(510003); // Causes soft lock in event screen
@@ -80,8 +85,8 @@ public class ActivityModule extends GameContextModule {
         // ===== Etc Events =====
         
         // Trial activities
-        this.activities.add(700123);
-        this.activities.add(700124);
+        this.activities.add(700127);
+        this.activities.add(700128);
 
         // Tower defense activity
         this.activities.add(102002); // Broken

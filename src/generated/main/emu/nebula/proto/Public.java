@@ -53534,9 +53534,19 @@ public final class Public {
     private int score;
 
     /**
+     * <code>optional uint32 Difficulty = 4;</code>
+     */
+    private int difficulty;
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>optional string Data = 5;</code>
+     */
+    private final Utf8String data = Utf8String.newEmptyInstance();
 
     private ActivityPenguinCardLevel() {
     }
@@ -53660,11 +53670,48 @@ public final class Public {
     }
 
     /**
+     * <code>optional uint32 Difficulty = 4;</code>
+     * @return whether the difficulty field is set
+     */
+    public boolean hasDifficulty() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Difficulty = 4;</code>
+     * @return this
+     */
+    public ActivityPenguinCardLevel clearDifficulty() {
+      bitField0_ &= ~0x00000008;
+      difficulty = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Difficulty = 4;</code>
+     * @return the difficulty
+     */
+    public int getDifficulty() {
+      return difficulty;
+    }
+
+    /**
+     * <code>optional uint32 Difficulty = 4;</code>
+     * @param value the difficulty to set
+     * @return this
+     */
+    public ActivityPenguinCardLevel setDifficulty(final int value) {
+      bitField0_ |= 0x00000008;
+      difficulty = value;
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000008) != 0;
+      return (bitField0_ & 0x00000010) != 0;
     }
 
     /**
@@ -53672,7 +53719,7 @@ public final class Public {
      * @return this
      */
     public ActivityPenguinCardLevel clearNextPackage() {
-      bitField0_ &= ~0x00000008;
+      bitField0_ &= ~0x00000010;
       nextPackage.clear();
       return this;
     }
@@ -53701,7 +53748,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       return nextPackage;
     }
 
@@ -53711,7 +53758,7 @@ public final class Public {
      * @return this
      */
     public ActivityPenguinCardLevel addNextPackage(final byte value) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       nextPackage.add(value);
       return this;
     }
@@ -53722,7 +53769,7 @@ public final class Public {
      * @return this
      */
     public ActivityPenguinCardLevel addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       nextPackage.addAll(values);
       return this;
     }
@@ -53733,8 +53780,73 @@ public final class Public {
      * @return this
      */
     public ActivityPenguinCardLevel setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>optional string Data = 5;</code>
+     * @return whether the data field is set
+     */
+    public boolean hasData() {
+      return (bitField0_ & 0x00000020) != 0;
+    }
+
+    /**
+     * <code>optional string Data = 5;</code>
+     * @return this
+     */
+    public ActivityPenguinCardLevel clearData() {
+      bitField0_ &= ~0x00000020;
+      data.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional string Data = 5;</code>
+     * @return the data
+     */
+    public java.lang.String getData() {
+      return data.getString();
+    }
+
+    /**
+     * <code>optional string Data = 5;</code>
+     * @return internal {@code Utf8String} representation of data for reading
+     */
+    public Utf8String getDataBytes() {
+      return this.data;
+    }
+
+    /**
+     * <code>optional string Data = 5;</code>
+     * @return internal {@code Utf8String} representation of data for modifications
+     */
+    public Utf8String getMutableDataBytes() {
+      bitField0_ |= 0x00000020;
+      return this.data;
+    }
+
+    /**
+     * <code>optional string Data = 5;</code>
+     * @param value the data to set
+     * @return this
+     */
+    public ActivityPenguinCardLevel setData(final CharSequence value) {
+      bitField0_ |= 0x00000020;
+      data.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional string Data = 5;</code>
+     * @param value the data to set
+     * @return this
+     */
+    public ActivityPenguinCardLevel setData(final Utf8String value) {
+      bitField0_ |= 0x00000020;
+      data.copyFrom(value);
       return this;
     }
 
@@ -53746,7 +53858,9 @@ public final class Public {
         id = other.id;
         star = other.star;
         score = other.score;
+        difficulty = other.difficulty;
         nextPackage.copyFrom(other.nextPackage);
+        data.copyFrom(other.data);
       }
       return this;
     }
@@ -53766,8 +53880,14 @@ public final class Public {
       if (other.hasScore()) {
         setScore(other.score);
       }
+      if (other.hasDifficulty()) {
+        setDifficulty(other.difficulty);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasData()) {
+        getMutableDataBytes().copyFrom(other.data);
       }
       return this;
     }
@@ -53782,7 +53902,9 @@ public final class Public {
       id = 0;
       star = 0;
       score = 0;
+      difficulty = 0;
       nextPackage.clear();
+      data.clear();
       return this;
     }
 
@@ -53794,6 +53916,7 @@ public final class Public {
       cachedSize = -1;
       bitField0_ = 0;
       nextPackage.clear();
+      data.clear();
       return this;
     }
 
@@ -53810,7 +53933,9 @@ public final class Public {
         && (!hasId() || id == other.id)
         && (!hasStar() || star == other.star)
         && (!hasScore() || score == other.score)
-        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+        && (!hasDifficulty() || difficulty == other.difficulty)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasData() || data.equals(other.data));
     }
 
     @Override
@@ -53828,8 +53953,16 @@ public final class Public {
         output.writeUInt32NoTag(score);
       }
       if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawByte((byte) 32);
+        output.writeUInt32NoTag(difficulty);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        output.writeRawByte((byte) 42);
+        output.writeStringNoTag(data);
       }
     }
 
@@ -53846,7 +53979,13 @@ public final class Public {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(score);
       }
       if ((bitField0_ & 0x00000008) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(difficulty);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        size += 1 + ProtoSink.computeStringSizeNoTag(data);
       }
       return size;
     }
@@ -53881,6 +54020,15 @@ public final class Public {
             score = input.readUInt32();
             bitField0_ |= 0x00000004;
             tag = input.readTag();
+            if (tag != 32) {
+              break;
+            }
+          }
+          case 32: {
+            // difficulty
+            difficulty = input.readUInt32();
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -53888,7 +54036,16 @@ public final class Public {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000008;
+            bitField0_ |= 0x00000010;
+            tag = input.readTag();
+            if (tag != 42) {
+              break;
+            }
+          }
+          case 42: {
+            // data
+            input.readString(data);
+            bitField0_ |= 0x00000020;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -53921,7 +54078,13 @@ public final class Public {
         output.writeUInt32(FieldNames.score, score);
       }
       if ((bitField0_ & 0x00000008) != 0) {
+        output.writeUInt32(FieldNames.difficulty, difficulty);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        output.writeString(FieldNames.data, data);
       }
       output.endObject();
     }
@@ -53966,11 +54129,33 @@ public final class Public {
             }
             break;
           }
+          case -472001573: {
+            if (input.isAtField(FieldNames.difficulty)) {
+              if (!input.trySkipNullValue()) {
+                difficulty = input.readUInt32();
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000010;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 2122698: {
+            if (input.isAtField(FieldNames.data)) {
+              if (!input.trySkipNullValue()) {
+                input.readString(data);
+                bitField0_ |= 0x00000020;
               }
             } else {
               input.skipUnknownField();
@@ -54036,7 +54221,11 @@ public final class Public {
 
       static final FieldName score = FieldName.forField("Score");
 
+      static final FieldName difficulty = FieldName.forField("Difficulty");
+
       static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName data = FieldName.forField("Data");
     }
   }
 

@@ -940,6 +940,7 @@ public class NetMsgId {
     public static final int trace_hunt_new_control_notify = 10057;
     public static final int trace_hunt_state_notify = 10058;
     public static final int trace_hunt_item_change_notify = 10060;
+    public static final int score_boss_reset_score_notify = 10061;
     public static final int activity_mining_apply_req = 11001;
     public static final int activity_mining_apply_succeed_ack = 11002;
     public static final int activity_mining_apply_failed_ack = 11003;

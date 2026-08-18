@@ -452,7 +452,7 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
         }
         
         // Add exp
-        this.addExp(150);
+        this.addExp(100);
         
         // Save
         this.save();
