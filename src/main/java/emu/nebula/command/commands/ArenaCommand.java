@@ -12,7 +12,6 @@ import emu.nebula.util.Utils;
 public class ArenaCommand implements CommandHandler {
     private static final String RELOG_HINT = " Restart the game to see the change.";
 
-    // Single source of truth: tower id, canonical element name, aliases
     private record Element(int towerId, String name, String... aliases) {}
     private static final Element[] ELEMENTS = {
         new Element(1, "generic", "none"),
@@ -26,7 +25,6 @@ public class ArenaCommand implements CommandHandler {
 
     @Override
     public String execute(CommandArgs args) {
-        // Get target (null when run from console without @UID, or player offline)
         var target = args.getTarget();
 
         // @UID given but player not found/offline
@@ -39,7 +37,6 @@ public class ArenaCommand implements CommandHandler {
             var sb = new StringBuilder("No @id specified. Run in-game or add @UID to target someone from console.");
             sb.append("\nUsage: !arena [element] [floor] [level] [@id] | !arena clear");
             sb.append("\nElements: generic, ignis, ventus, lux, aqua, terra, umbra");
-            sb.append("\nTip: 1 1 clears that element's progress.");
             return sb.toString();
         }
 
@@ -56,7 +53,6 @@ public class ArenaCommand implements CommandHandler {
             }
             sb.append("\nUsage: !arena [element] [floor] [level] [@id] | !arena clear");
             sb.append("\nElements: generic, ignis, ventus, lux, aqua, terra, umbra");
-            sb.append("\nTip: 1 1 clears that element's progress.");
             return sb.toString();
         }
 
@@ -71,7 +67,7 @@ public class ArenaCommand implements CommandHandler {
         // Parse element -> tower id
         int towerId = parseTowerId(args.get(0));
         if (towerId <= 0) {
-            return "Unknown element " + args.get(0) + ". Use generic, ignis, ventus, lux, aqua, terra, umbra.";
+            return "Unknown element '" + args.get(0) + "'. Use [generic, ignis, ventus, lux, aqua, terra, umbra].";
         }
 
         // Parse section (floor) and position (level): both 1-based as displayed in-game.
@@ -114,7 +110,7 @@ public class ArenaCommand implements CommandHandler {
         }
         InfinityTowerLevelDef selected = levels.get(position - 1);
 
-        // The save holds the last BEATEN level, but input is the level to face:
+        // The save holds the last beaten level, but input is the level to face:
         // back up one. Input 1 1 is the very first level, so it clears the tower instead.
         var towerLevels = GameData.getInfinityTowerLevelDataTable().stream()
                 .filter(l -> l.getTowerId() == towerId)
@@ -145,7 +141,7 @@ public class ArenaCommand implements CommandHandler {
         return "tower" + towerId;
     }
 
-    // Decode a saved level id back to "element section position" as typed
+    // Decode a saved level id back to "element section position"
     private String describeLevel(int towerId, int levelId) {
         var level = GameData.getInfinityTowerLevelDataTable().get(levelId);
         if (level == null) {
