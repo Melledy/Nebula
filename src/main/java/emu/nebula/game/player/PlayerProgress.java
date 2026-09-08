@@ -173,7 +173,7 @@ public class PlayerProgress extends PlayerManager implements GameDatabaseObject 
         // Add & Save to database
         if (levelId > highestClearId) {
             this.getInfinityTowerLog().put(towerId, levelId);
-            Nebula.getGameDatabase().update(this, this.getUid(), "infinityArenaLog." + towerId, levelId);
+            Nebula.getGameDatabase().update(this, this.getUid(), "infinityTowerLog." + towerId, levelId);
         }
     }
     
