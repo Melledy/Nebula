@@ -40,6 +40,11 @@ public final class TraceHuntApply {
     private int bossID;
 
     /**
+     * <code>optional uint32 Difficulty = 5;</code>
+     */
+    private int difficulty;
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -203,11 +208,48 @@ public final class TraceHuntApply {
     }
 
     /**
+     * <code>optional uint32 Difficulty = 5;</code>
+     * @return whether the difficulty field is set
+     */
+    public boolean hasDifficulty() {
+      return (bitField0_ & 0x00000010) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Difficulty = 5;</code>
+     * @return this
+     */
+    public TraceHuntApplyReq clearDifficulty() {
+      bitField0_ &= ~0x00000010;
+      difficulty = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Difficulty = 5;</code>
+     * @return the difficulty
+     */
+    public int getDifficulty() {
+      return difficulty;
+    }
+
+    /**
+     * <code>optional uint32 Difficulty = 5;</code>
+     * @param value the difficulty to set
+     * @return this
+     */
+    public TraceHuntApplyReq setDifficulty(final int value) {
+      bitField0_ |= 0x00000010;
+      difficulty = value;
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000010) != 0;
+      return (bitField0_ & 0x00000020) != 0;
     }
 
     /**
@@ -215,7 +257,7 @@ public final class TraceHuntApply {
      * @return this
      */
     public TraceHuntApplyReq clearNextPackage() {
-      bitField0_ &= ~0x00000010;
+      bitField0_ &= ~0x00000020;
       nextPackage.clear();
       return this;
     }
@@ -244,7 +286,7 @@ public final class TraceHuntApply {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       return nextPackage;
     }
 
@@ -254,7 +296,7 @@ public final class TraceHuntApply {
      * @return this
      */
     public TraceHuntApplyReq addNextPackage(final byte value) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       nextPackage.add(value);
       return this;
     }
@@ -265,7 +307,7 @@ public final class TraceHuntApply {
      * @return this
      */
     public TraceHuntApplyReq addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       nextPackage.addAll(values);
       return this;
     }
@@ -276,7 +318,7 @@ public final class TraceHuntApply {
      * @return this
      */
     public TraceHuntApplyReq setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -290,6 +332,7 @@ public final class TraceHuntApply {
         ownerUID = other.ownerUID;
         buildID = other.buildID;
         bossID = other.bossID;
+        difficulty = other.difficulty;
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -313,6 +356,9 @@ public final class TraceHuntApply {
       if (other.hasBossID()) {
         setBossID(other.bossID);
       }
+      if (other.hasDifficulty()) {
+        setDifficulty(other.difficulty);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -330,6 +376,7 @@ public final class TraceHuntApply {
       ownerUID = 0L;
       buildID = 0L;
       bossID = 0;
+      difficulty = 0;
       nextPackage.clear();
       return this;
     }
@@ -359,6 +406,7 @@ public final class TraceHuntApply {
         && (!hasOwnerUID() || ownerUID == other.ownerUID)
         && (!hasBuildID() || buildID == other.buildID)
         && (!hasBossID() || bossID == other.bossID)
+        && (!hasDifficulty() || difficulty == other.difficulty)
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
@@ -381,6 +429,10 @@ public final class TraceHuntApply {
         output.writeUInt32NoTag(bossID);
       }
       if ((bitField0_ & 0x00000010) != 0) {
+        output.writeRawByte((byte) 40);
+        output.writeUInt32NoTag(difficulty);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
@@ -402,6 +454,9 @@ public final class TraceHuntApply {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(bossID);
       }
       if ((bitField0_ & 0x00000010) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(difficulty);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       return size;
@@ -446,6 +501,15 @@ public final class TraceHuntApply {
             bossID = input.readUInt32();
             bitField0_ |= 0x00000008;
             tag = input.readTag();
+            if (tag != 40) {
+              break;
+            }
+          }
+          case 40: {
+            // difficulty
+            difficulty = input.readUInt32();
+            bitField0_ |= 0x00000010;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -453,7 +517,7 @@ public final class TraceHuntApply {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000010;
+            bitField0_ |= 0x00000020;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -489,6 +553,9 @@ public final class TraceHuntApply {
         output.writeUInt32(FieldNames.bossID, bossID);
       }
       if ((bitField0_ & 0x00000010) != 0) {
+        output.writeUInt32(FieldNames.difficulty, difficulty);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       output.endObject();
@@ -545,11 +612,22 @@ public final class TraceHuntApply {
             }
             break;
           }
+          case -472001573: {
+            if (input.isAtField(FieldNames.difficulty)) {
+              if (!input.trySkipNullValue()) {
+                difficulty = input.readUInt32();
+                bitField0_ |= 0x00000010;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000010;
+                bitField0_ |= 0x00000020;
               }
             } else {
               input.skipUnknownField();
@@ -616,6 +694,8 @@ public final class TraceHuntApply {
       static final FieldName buildID = FieldName.forField("BuildID");
 
       static final FieldName bossID = FieldName.forField("BossID");
+
+      static final FieldName difficulty = FieldName.forField("Difficulty");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }

@@ -75,9 +75,14 @@ public class ActivityModule extends GameContextModule {
         //this.activities.add(2010304);
         
         // Surfing Splash: A Sparkling Holiday Adventure!
-        this.activities.add(1011001);
-        this.activities.add(1011003);
-        this.activities.add(1011004);
+        //this.activities.add(1011001);
+        //this.activities.add(1011003);
+        //this.activities.add(1011004);
+        
+        // Go, My Lady! Training Handbook Plus!
+        this.activities.add(1011101);
+        this.activities.add(1011103);
+        this.activities.add(1011104);
         
         // ===== Joint Drills (Finale Echoing) =====
         //this.activities.add(510003); // Causes soft lock in event screen
@@ -85,11 +90,11 @@ public class ActivityModule extends GameContextModule {
         // ===== Etc Events =====
         
         // Trial activities
-        this.activities.add(700127);
         this.activities.add(700128);
+        this.activities.add(700129);
 
         // Tower defense activity
-        this.activities.add(102002); // Broken
+        //this.activities.add(102002); // Missing image on client - probably removed
         
         // Login events
         //this.activities.add(301011);  // Christmas 2025

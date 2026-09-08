@@ -31,6 +31,11 @@ public final class CharGemInstanceSweep {
     private int times;
 
     /**
+     * <code>optional uint32 RewardType = 3;</code>
+     */
+    private int rewardType;
+
+    /**
      * <code>optional .Events Events = 15;</code>
      */
     private final Public.Events events = Public.Events.newInstance();
@@ -125,11 +130,48 @@ public final class CharGemInstanceSweep {
     }
 
     /**
+     * <code>optional uint32 RewardType = 3;</code>
+     * @return whether the rewardType field is set
+     */
+    public boolean hasRewardType() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional uint32 RewardType = 3;</code>
+     * @return this
+     */
+    public CharGemInstanceSweepReq clearRewardType() {
+      bitField0_ &= ~0x00000004;
+      rewardType = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 RewardType = 3;</code>
+     * @return the rewardType
+     */
+    public int getRewardType() {
+      return rewardType;
+    }
+
+    /**
+     * <code>optional uint32 RewardType = 3;</code>
+     * @param value the rewardType to set
+     * @return this
+     */
+    public CharGemInstanceSweepReq setRewardType(final int value) {
+      bitField0_ |= 0x00000004;
+      rewardType = value;
+      return this;
+    }
+
+    /**
      * <code>optional .Events Events = 15;</code>
      * @return whether the events field is set
      */
     public boolean hasEvents() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
@@ -137,7 +179,7 @@ public final class CharGemInstanceSweep {
      * @return this
      */
     public CharGemInstanceSweepReq clearEvents() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000008;
       events.clear();
       return this;
     }
@@ -166,7 +208,7 @@ public final class CharGemInstanceSweep {
      * @return internal storage object for modifications
      */
     public Public.Events getMutableEvents() {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       return events;
     }
 
@@ -176,7 +218,7 @@ public final class CharGemInstanceSweep {
      * @return this
      */
     public CharGemInstanceSweepReq setEvents(final Public.Events value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       events.copyFrom(value);
       return this;
     }
@@ -186,7 +228,7 @@ public final class CharGemInstanceSweep {
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000008) != 0;
+      return (bitField0_ & 0x00000010) != 0;
     }
 
     /**
@@ -194,7 +236,7 @@ public final class CharGemInstanceSweep {
      * @return this
      */
     public CharGemInstanceSweepReq clearNextPackage() {
-      bitField0_ &= ~0x00000008;
+      bitField0_ &= ~0x00000010;
       nextPackage.clear();
       return this;
     }
@@ -223,7 +265,7 @@ public final class CharGemInstanceSweep {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       return nextPackage;
     }
 
@@ -233,7 +275,7 @@ public final class CharGemInstanceSweep {
      * @return this
      */
     public CharGemInstanceSweepReq addNextPackage(final byte value) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       nextPackage.add(value);
       return this;
     }
@@ -244,7 +286,7 @@ public final class CharGemInstanceSweep {
      * @return this
      */
     public CharGemInstanceSweepReq addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       nextPackage.addAll(values);
       return this;
     }
@@ -255,7 +297,7 @@ public final class CharGemInstanceSweep {
      * @return this
      */
     public CharGemInstanceSweepReq setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -267,6 +309,7 @@ public final class CharGemInstanceSweep {
         bitField0_ = other.bitField0_;
         id = other.id;
         times = other.times;
+        rewardType = other.rewardType;
         events.copyFrom(other.events);
         nextPackage.copyFrom(other.nextPackage);
       }
@@ -284,6 +327,9 @@ public final class CharGemInstanceSweep {
       }
       if (other.hasTimes()) {
         setTimes(other.times);
+      }
+      if (other.hasRewardType()) {
+        setRewardType(other.rewardType);
       }
       if (other.hasEvents()) {
         getMutableEvents().mergeFrom(other.events);
@@ -303,6 +349,7 @@ public final class CharGemInstanceSweep {
       bitField0_ = 0;
       id = 0;
       times = 0;
+      rewardType = 0;
       events.clear();
       nextPackage.clear();
       return this;
@@ -332,6 +379,7 @@ public final class CharGemInstanceSweep {
       return bitField0_ == other.bitField0_
         && (!hasId() || id == other.id)
         && (!hasTimes() || times == other.times)
+        && (!hasRewardType() || rewardType == other.rewardType)
         && (!hasEvents() || events.equals(other.events))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
@@ -347,10 +395,14 @@ public final class CharGemInstanceSweep {
         output.writeUInt32NoTag(times);
       }
       if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeUInt32NoTag(rewardType);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawByte((byte) 122);
         output.writeMessageNoTag(events);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000010) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
@@ -366,9 +418,12 @@ public final class CharGemInstanceSweep {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(times);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(events);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(rewardType);
       }
       if ((bitField0_ & 0x00000008) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(events);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       return size;
@@ -395,6 +450,15 @@ public final class CharGemInstanceSweep {
             times = input.readUInt32();
             bitField0_ |= 0x00000002;
             tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
+            // rewardType
+            rewardType = input.readUInt32();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
             if (tag != 122) {
               break;
             }
@@ -402,7 +466,7 @@ public final class CharGemInstanceSweep {
           case 122: {
             // events
             input.readMessage(events);
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000008;
             tag = input.readTag();
             if (tag != 16378) {
               break;
@@ -411,7 +475,7 @@ public final class CharGemInstanceSweep {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000008;
+            bitField0_ |= 0x00000010;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -441,9 +505,12 @@ public final class CharGemInstanceSweep {
         output.writeUInt32(FieldNames.times, times);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        output.writeMessage(FieldNames.events, events);
+        output.writeUInt32(FieldNames.rewardType, rewardType);
       }
       if ((bitField0_ & 0x00000008) != 0) {
+        output.writeMessage(FieldNames.events, events);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       output.endObject();
@@ -478,11 +545,22 @@ public final class CharGemInstanceSweep {
             }
             break;
           }
+          case -610271447: {
+            if (input.isAtField(FieldNames.rewardType)) {
+              if (!input.trySkipNullValue()) {
+                rewardType = input.readUInt32();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case 2087505209: {
             if (input.isAtField(FieldNames.events)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(events);
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -493,7 +571,7 @@ public final class CharGemInstanceSweep {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000010;
               }
             } else {
               input.skipUnknownField();
@@ -556,6 +634,8 @@ public final class CharGemInstanceSweep {
       static final FieldName id = FieldName.forField("Id");
 
       static final FieldName times = FieldName.forField("Times");
+
+      static final FieldName rewardType = FieldName.forField("RewardType");
 
       static final FieldName events = FieldName.forField("Events");
 

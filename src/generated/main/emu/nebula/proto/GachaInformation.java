@@ -66,6 +66,11 @@ public final class GachaInformation {
     private boolean recvGuaranteeReward;
 
     /**
+     * <code>optional bytes RewardsRecords = 10;</code>
+     */
+    private final RepeatedByte rewardsRecords = RepeatedByte.newEmptyInstance();
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -414,11 +419,90 @@ public final class GachaInformation {
     }
 
     /**
+     * <code>optional bytes RewardsRecords = 10;</code>
+     * @return whether the rewardsRecords field is set
+     */
+    public boolean hasRewardsRecords() {
+      return (bitField0_ & 0x00000200) != 0;
+    }
+
+    /**
+     * <code>optional bytes RewardsRecords = 10;</code>
+     * @return this
+     */
+    public GachaInfo clearRewardsRecords() {
+      bitField0_ &= ~0x00000200;
+      rewardsRecords.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes RewardsRecords = 10;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableRewardsRecords()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getRewardsRecords() {
+      return rewardsRecords;
+    }
+
+    /**
+     * <code>optional bytes RewardsRecords = 10;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableRewardsRecords() {
+      bitField0_ |= 0x00000200;
+      return rewardsRecords;
+    }
+
+    /**
+     * <code>optional bytes RewardsRecords = 10;</code>
+     * @param value the rewardsRecords to add
+     * @return this
+     */
+    public GachaInfo addRewardsRecords(final byte value) {
+      bitField0_ |= 0x00000200;
+      rewardsRecords.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes RewardsRecords = 10;</code>
+     * @param values the rewardsRecords to add
+     * @return this
+     */
+    public GachaInfo addAllRewardsRecords(final byte... values) {
+      bitField0_ |= 0x00000200;
+      rewardsRecords.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes RewardsRecords = 10;</code>
+     * @param values the rewardsRecords to set
+     * @return this
+     */
+    public GachaInfo setRewardsRecords(final byte... values) {
+      bitField0_ |= 0x00000200;
+      rewardsRecords.copyFrom(values);
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000200) != 0;
+      return (bitField0_ & 0x00000400) != 0;
     }
 
     /**
@@ -426,7 +510,7 @@ public final class GachaInformation {
      * @return this
      */
     public GachaInfo clearNextPackage() {
-      bitField0_ &= ~0x00000200;
+      bitField0_ &= ~0x00000400;
       nextPackage.clear();
       return this;
     }
@@ -455,7 +539,7 @@ public final class GachaInformation {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000400;
       return nextPackage;
     }
 
@@ -465,7 +549,7 @@ public final class GachaInformation {
      * @return this
      */
     public GachaInfo addNextPackage(final byte value) {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000400;
       nextPackage.add(value);
       return this;
     }
@@ -476,7 +560,7 @@ public final class GachaInformation {
      * @return this
      */
     public GachaInfo addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000400;
       nextPackage.addAll(values);
       return this;
     }
@@ -487,7 +571,7 @@ public final class GachaInformation {
      * @return this
      */
     public GachaInfo setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000400;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -506,6 +590,7 @@ public final class GachaInformation {
         aupGuaranteeTimes = other.aupGuaranteeTimes;
         reveFirstTenReward = other.reveFirstTenReward;
         recvGuaranteeReward = other.recvGuaranteeReward;
+        rewardsRecords.copyFrom(other.rewardsRecords);
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -544,6 +629,9 @@ public final class GachaInformation {
       if (other.hasRecvGuaranteeReward()) {
         setRecvGuaranteeReward(other.recvGuaranteeReward);
       }
+      if (other.hasRewardsRecords()) {
+        getMutableRewardsRecords().copyFrom(other.rewardsRecords);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -566,6 +654,7 @@ public final class GachaInformation {
       aupGuaranteeTimes = 0;
       reveFirstTenReward = false;
       recvGuaranteeReward = false;
+      rewardsRecords.clear();
       nextPackage.clear();
       return this;
     }
@@ -577,6 +666,7 @@ public final class GachaInformation {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      rewardsRecords.clear();
       nextPackage.clear();
       return this;
     }
@@ -600,6 +690,7 @@ public final class GachaInformation {
         && (!hasAupGuaranteeTimes() || aupGuaranteeTimes == other.aupGuaranteeTimes)
         && (!hasReveFirstTenReward() || reveFirstTenReward == other.reveFirstTenReward)
         && (!hasRecvGuaranteeReward() || recvGuaranteeReward == other.recvGuaranteeReward)
+        && (!hasRewardsRecords() || rewardsRecords.equals(other.rewardsRecords))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
@@ -642,6 +733,10 @@ public final class GachaInformation {
         output.writeBoolNoTag(recvGuaranteeReward);
       }
       if ((bitField0_ & 0x00000200) != 0) {
+        output.writeRawByte((byte) 82);
+        output.writeBytesNoTag(rewardsRecords);
+      }
+      if ((bitField0_ & 0x00000400) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
@@ -678,6 +773,9 @@ public final class GachaInformation {
         size += 2;
       }
       if ((bitField0_ & 0x00000200) != 0) {
+        size += 1 + ProtoSink.computeBytesSizeNoTag(rewardsRecords);
+      }
+      if ((bitField0_ & 0x00000400) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       return size;
@@ -767,6 +865,15 @@ public final class GachaInformation {
             recvGuaranteeReward = input.readBool();
             bitField0_ |= 0x00000100;
             tag = input.readTag();
+            if (tag != 82) {
+              break;
+            }
+          }
+          case 82: {
+            // rewardsRecords
+            input.readBytes(rewardsRecords);
+            bitField0_ |= 0x00000200;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -774,7 +881,7 @@ public final class GachaInformation {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000200;
+            bitField0_ |= 0x00000400;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -825,6 +932,9 @@ public final class GachaInformation {
         output.writeBool(FieldNames.recvGuaranteeReward, recvGuaranteeReward);
       }
       if ((bitField0_ & 0x00000200) != 0) {
+        output.writeBytes(FieldNames.rewardsRecords, rewardsRecords);
+      }
+      if ((bitField0_ & 0x00000400) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       output.endObject();
@@ -936,11 +1046,22 @@ public final class GachaInformation {
             }
             break;
           }
+          case 1917737630: {
+            if (input.isAtField(FieldNames.rewardsRecords)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(rewardsRecords);
+                bitField0_ |= 0x00000200;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000200;
+                bitField0_ |= 0x00000400;
               }
             } else {
               input.skipUnknownField();
@@ -1016,6 +1137,8 @@ public final class GachaInformation {
       static final FieldName reveFirstTenReward = FieldName.forField("ReveFirstTenReward");
 
       static final FieldName recvGuaranteeReward = FieldName.forField("RecvGuaranteeReward");
+
+      static final FieldName rewardsRecords = FieldName.forField("RewardsRecords");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }

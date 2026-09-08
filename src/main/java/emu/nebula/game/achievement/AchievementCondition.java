@@ -99,6 +99,8 @@ public enum AchievementCondition {
     TutorialLevelSpecificClearTotal                            (121),
     DiscWithSpecificQuantityPhaseAndAttr                       (122),
     WeekBossClearTotal                                         (123),
+    TraceHuntTraceComplete                                     (159),
+    TraceHuntAssistHunt                                        (160),
     ClientReport                                               (200),
     TowerBattleTimes                                           (501),
     TowerBossChallengeSpecificHighRewardWithTotal              (502),

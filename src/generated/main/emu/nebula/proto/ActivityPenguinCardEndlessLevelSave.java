@@ -11,12 +11,13 @@ import us.hebi.quickbuf.ProtoMessage;
 import us.hebi.quickbuf.ProtoSink;
 import us.hebi.quickbuf.ProtoSource;
 import us.hebi.quickbuf.RepeatedByte;
+import us.hebi.quickbuf.Utf8String;
 
-public final class ActivityPenguinCardLevelSettle {
+public final class ActivityPenguinCardEndlessLevelSave {
   /**
-   * Protobuf type {@code ActivityPenguinCardSettleReq}
+   * Protobuf type {@code ActivityPenguinCardEndlessLevelSaveReq}
    */
-  public static final class ActivityPenguinCardSettleReq extends ProtoMessage<ActivityPenguinCardSettleReq> implements Cloneable {
+  public static final class ActivityPenguinCardEndlessLevelSaveReq extends ProtoMessage<ActivityPenguinCardEndlessLevelSaveReq> implements Cloneable {
     private static final long serialVersionUID = 0L;
 
     /**
@@ -25,33 +26,28 @@ public final class ActivityPenguinCardLevelSettle {
     private int levelId;
 
     /**
-     * <code>optional uint32 Star = 2;</code>
-     */
-    private int star;
-
-    /**
      * <code>optional uint32 Score = 3;</code>
      */
     private int score;
-
-    /**
-     * <code>optional uint32 Difficulty = 4;</code>
-     */
-    private int difficulty;
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
 
-    private ActivityPenguinCardSettleReq() {
+    /**
+     * <code>optional string Data = 2;</code>
+     */
+    private final Utf8String data = Utf8String.newEmptyInstance();
+
+    private ActivityPenguinCardEndlessLevelSaveReq() {
     }
 
     /**
-     * @return a new empty instance of {@code ActivityPenguinCardSettleReq}
+     * @return a new empty instance of {@code ActivityPenguinCardEndlessLevelSaveReq}
      */
-    public static ActivityPenguinCardSettleReq newInstance() {
-      return new ActivityPenguinCardSettleReq();
+    public static ActivityPenguinCardEndlessLevelSaveReq newInstance() {
+      return new ActivityPenguinCardEndlessLevelSaveReq();
     }
 
     /**
@@ -66,7 +62,7 @@ public final class ActivityPenguinCardLevelSettle {
      * <code>optional uint32 LevelId = 1;</code>
      * @return this
      */
-    public ActivityPenguinCardSettleReq clearLevelId() {
+    public ActivityPenguinCardEndlessLevelSaveReq clearLevelId() {
       bitField0_ &= ~0x00000001;
       levelId = 0;
       return this;
@@ -85,46 +81,9 @@ public final class ActivityPenguinCardLevelSettle {
      * @param value the levelId to set
      * @return this
      */
-    public ActivityPenguinCardSettleReq setLevelId(final int value) {
+    public ActivityPenguinCardEndlessLevelSaveReq setLevelId(final int value) {
       bitField0_ |= 0x00000001;
       levelId = value;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 Star = 2;</code>
-     * @return whether the star field is set
-     */
-    public boolean hasStar() {
-      return (bitField0_ & 0x00000002) != 0;
-    }
-
-    /**
-     * <code>optional uint32 Star = 2;</code>
-     * @return this
-     */
-    public ActivityPenguinCardSettleReq clearStar() {
-      bitField0_ &= ~0x00000002;
-      star = 0;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 Star = 2;</code>
-     * @return the star
-     */
-    public int getStar() {
-      return star;
-    }
-
-    /**
-     * <code>optional uint32 Star = 2;</code>
-     * @param value the star to set
-     * @return this
-     */
-    public ActivityPenguinCardSettleReq setStar(final int value) {
-      bitField0_ |= 0x00000002;
-      star = value;
       return this;
     }
 
@@ -133,15 +92,15 @@ public final class ActivityPenguinCardLevelSettle {
      * @return whether the score field is set
      */
     public boolean hasScore() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000002) != 0;
     }
 
     /**
      * <code>optional uint32 Score = 3;</code>
      * @return this
      */
-    public ActivityPenguinCardSettleReq clearScore() {
-      bitField0_ &= ~0x00000004;
+    public ActivityPenguinCardEndlessLevelSaveReq clearScore() {
+      bitField0_ &= ~0x00000002;
       score = 0;
       return this;
     }
@@ -159,46 +118,9 @@ public final class ActivityPenguinCardLevelSettle {
      * @param value the score to set
      * @return this
      */
-    public ActivityPenguinCardSettleReq setScore(final int value) {
-      bitField0_ |= 0x00000004;
+    public ActivityPenguinCardEndlessLevelSaveReq setScore(final int value) {
+      bitField0_ |= 0x00000002;
       score = value;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 Difficulty = 4;</code>
-     * @return whether the difficulty field is set
-     */
-    public boolean hasDifficulty() {
-      return (bitField0_ & 0x00000008) != 0;
-    }
-
-    /**
-     * <code>optional uint32 Difficulty = 4;</code>
-     * @return this
-     */
-    public ActivityPenguinCardSettleReq clearDifficulty() {
-      bitField0_ &= ~0x00000008;
-      difficulty = 0;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 Difficulty = 4;</code>
-     * @return the difficulty
-     */
-    public int getDifficulty() {
-      return difficulty;
-    }
-
-    /**
-     * <code>optional uint32 Difficulty = 4;</code>
-     * @param value the difficulty to set
-     * @return this
-     */
-    public ActivityPenguinCardSettleReq setDifficulty(final int value) {
-      bitField0_ |= 0x00000008;
-      difficulty = value;
       return this;
     }
 
@@ -207,15 +129,15 @@ public final class ActivityPenguinCardLevelSettle {
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000010) != 0;
+      return (bitField0_ & 0x00000004) != 0;
     }
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return this
      */
-    public ActivityPenguinCardSettleReq clearNextPackage() {
-      bitField0_ &= ~0x00000010;
+    public ActivityPenguinCardEndlessLevelSaveReq clearNextPackage() {
+      bitField0_ &= ~0x00000004;
       nextPackage.clear();
       return this;
     }
@@ -244,7 +166,7 @@ public final class ActivityPenguinCardLevelSettle {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000004;
       return nextPackage;
     }
 
@@ -253,8 +175,8 @@ public final class ActivityPenguinCardLevelSettle {
      * @param value the nextPackage to add
      * @return this
      */
-    public ActivityPenguinCardSettleReq addNextPackage(final byte value) {
-      bitField0_ |= 0x00000010;
+    public ActivityPenguinCardEndlessLevelSaveReq addNextPackage(final byte value) {
+      bitField0_ |= 0x00000004;
       nextPackage.add(value);
       return this;
     }
@@ -264,8 +186,8 @@ public final class ActivityPenguinCardLevelSettle {
      * @param values the nextPackage to add
      * @return this
      */
-    public ActivityPenguinCardSettleReq addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000010;
+    public ActivityPenguinCardEndlessLevelSaveReq addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
       nextPackage.addAll(values);
       return this;
     }
@@ -275,28 +197,94 @@ public final class ActivityPenguinCardLevelSettle {
      * @param values the nextPackage to set
      * @return this
      */
-    public ActivityPenguinCardSettleReq setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000010;
+    public ActivityPenguinCardEndlessLevelSaveReq setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
       nextPackage.copyFrom(values);
       return this;
     }
 
+    /**
+     * <code>optional string Data = 2;</code>
+     * @return whether the data field is set
+     */
+    public boolean hasData() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional string Data = 2;</code>
+     * @return this
+     */
+    public ActivityPenguinCardEndlessLevelSaveReq clearData() {
+      bitField0_ &= ~0x00000008;
+      data.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional string Data = 2;</code>
+     * @return the data
+     */
+    public String getData() {
+      return data.getString();
+    }
+
+    /**
+     * <code>optional string Data = 2;</code>
+     * @return internal {@code Utf8String} representation of data for reading
+     */
+    public Utf8String getDataBytes() {
+      return this.data;
+    }
+
+    /**
+     * <code>optional string Data = 2;</code>
+     * @return internal {@code Utf8String} representation of data for modifications
+     */
+    public Utf8String getMutableDataBytes() {
+      bitField0_ |= 0x00000008;
+      return this.data;
+    }
+
+    /**
+     * <code>optional string Data = 2;</code>
+     * @param value the data to set
+     * @return this
+     */
+    public ActivityPenguinCardEndlessLevelSaveReq setData(final CharSequence value) {
+      bitField0_ |= 0x00000008;
+      data.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional string Data = 2;</code>
+     * @param value the data to set
+     * @return this
+     */
+    public ActivityPenguinCardEndlessLevelSaveReq setData(final Utf8String value) {
+      bitField0_ |= 0x00000008;
+      data.copyFrom(value);
+      return this;
+    }
+
     @Override
-    public ActivityPenguinCardSettleReq copyFrom(final ActivityPenguinCardSettleReq other) {
+    public ActivityPenguinCardEndlessLevelSaveReq copyFrom(
+        final ActivityPenguinCardEndlessLevelSaveReq other) {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
         levelId = other.levelId;
-        star = other.star;
         score = other.score;
-        difficulty = other.difficulty;
         nextPackage.copyFrom(other.nextPackage);
+        data.copyFrom(other.data);
       }
       return this;
     }
 
     @Override
-    public ActivityPenguinCardSettleReq mergeFrom(final ActivityPenguinCardSettleReq other) {
+    public ActivityPenguinCardEndlessLevelSaveReq mergeFrom(
+        final ActivityPenguinCardEndlessLevelSaveReq other) {
       if (other.isEmpty()) {
         return this;
       }
@@ -304,44 +292,41 @@ public final class ActivityPenguinCardLevelSettle {
       if (other.hasLevelId()) {
         setLevelId(other.levelId);
       }
-      if (other.hasStar()) {
-        setStar(other.star);
-      }
       if (other.hasScore()) {
         setScore(other.score);
       }
-      if (other.hasDifficulty()) {
-        setDifficulty(other.difficulty);
-      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasData()) {
+        getMutableDataBytes().copyFrom(other.data);
       }
       return this;
     }
 
     @Override
-    public ActivityPenguinCardSettleReq clear() {
+    public ActivityPenguinCardEndlessLevelSaveReq clear() {
       if (isEmpty()) {
         return this;
       }
       cachedSize = -1;
       bitField0_ = 0;
       levelId = 0;
-      star = 0;
       score = 0;
-      difficulty = 0;
       nextPackage.clear();
+      data.clear();
       return this;
     }
 
     @Override
-    public ActivityPenguinCardSettleReq clearQuick() {
+    public ActivityPenguinCardEndlessLevelSaveReq clearQuick() {
       if (isEmpty()) {
         return this;
       }
       cachedSize = -1;
       bitField0_ = 0;
       nextPackage.clear();
+      data.clear();
       return this;
     }
 
@@ -350,16 +335,15 @@ public final class ActivityPenguinCardLevelSettle {
       if (o == this) {
         return true;
       }
-      if (!(o instanceof ActivityPenguinCardSettleReq)) {
+      if (!(o instanceof ActivityPenguinCardEndlessLevelSaveReq)) {
         return false;
       }
-      ActivityPenguinCardSettleReq other = (ActivityPenguinCardSettleReq) o;
+      ActivityPenguinCardEndlessLevelSaveReq other = (ActivityPenguinCardEndlessLevelSaveReq) o;
       return bitField0_ == other.bitField0_
         && (!hasLevelId() || levelId == other.levelId)
-        && (!hasStar() || star == other.star)
         && (!hasScore() || score == other.score)
-        && (!hasDifficulty() || difficulty == other.difficulty)
-        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasData() || data.equals(other.data));
     }
 
     @Override
@@ -369,20 +353,16 @@ public final class ActivityPenguinCardLevelSettle {
         output.writeUInt32NoTag(levelId);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeRawByte((byte) 16);
-        output.writeUInt32NoTag(star);
-      }
-      if ((bitField0_ & 0x00000004) != 0) {
         output.writeRawByte((byte) 24);
         output.writeUInt32NoTag(score);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
-        output.writeRawByte((byte) 32);
-        output.writeUInt32NoTag(difficulty);
-      }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawByte((byte) 18);
+        output.writeStringNoTag(data);
       }
     }
 
@@ -393,23 +373,21 @@ public final class ActivityPenguinCardLevelSettle {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(levelId);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(star);
-      }
-      if ((bitField0_ & 0x00000004) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(score);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(difficulty);
-      }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += 1 + ProtoSink.computeStringSizeNoTag(data);
       }
       return size;
     }
 
     @Override
     @SuppressWarnings("fallthrough")
-    public ActivityPenguinCardSettleReq mergeFrom(final ProtoSource input) throws IOException {
+    public ActivityPenguinCardEndlessLevelSaveReq mergeFrom(final ProtoSource input) throws
+        IOException {
       // Enabled Fall-Through Optimization (QuickBuffers)
       int tag = input.readTag();
       while (true) {
@@ -419,15 +397,6 @@ public final class ActivityPenguinCardLevelSettle {
             levelId = input.readUInt32();
             bitField0_ |= 0x00000001;
             tag = input.readTag();
-            if (tag != 16) {
-              break;
-            }
-          }
-          case 16: {
-            // star
-            star = input.readUInt32();
-            bitField0_ |= 0x00000002;
-            tag = input.readTag();
             if (tag != 24) {
               break;
             }
@@ -435,16 +404,7 @@ public final class ActivityPenguinCardLevelSettle {
           case 24: {
             // score
             score = input.readUInt32();
-            bitField0_ |= 0x00000004;
-            tag = input.readTag();
-            if (tag != 32) {
-              break;
-            }
-          }
-          case 32: {
-            // difficulty
-            difficulty = input.readUInt32();
-            bitField0_ |= 0x00000008;
+            bitField0_ |= 0x00000002;
             tag = input.readTag();
             if (tag != 16378) {
               break;
@@ -453,7 +413,16 @@ public final class ActivityPenguinCardLevelSettle {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000010;
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 18) {
+              break;
+            }
+          }
+          case 18: {
+            // data
+            input.readString(data);
+            bitField0_ |= 0x00000008;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -480,22 +449,20 @@ public final class ActivityPenguinCardLevelSettle {
         output.writeUInt32(FieldNames.levelId, levelId);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeUInt32(FieldNames.star, star);
-      }
-      if ((bitField0_ & 0x00000004) != 0) {
         output.writeUInt32(FieldNames.score, score);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
-        output.writeUInt32(FieldNames.difficulty, difficulty);
-      }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeString(FieldNames.data, data);
       }
       output.endObject();
     }
 
     @Override
-    public ActivityPenguinCardSettleReq mergeFrom(final JsonSource input) throws IOException {
+    public ActivityPenguinCardEndlessLevelSaveReq mergeFrom(final JsonSource input) throws
+        IOException {
       if (!input.beginObject()) {
         return this;
       }
@@ -512,33 +479,11 @@ public final class ActivityPenguinCardLevelSettle {
             }
             break;
           }
-          case 2587250: {
-            if (input.isAtField(FieldNames.star)) {
-              if (!input.trySkipNullValue()) {
-                star = input.readUInt32();
-                bitField0_ |= 0x00000002;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
           case 79711858: {
             if (input.isAtField(FieldNames.score)) {
               if (!input.trySkipNullValue()) {
                 score = input.readUInt32();
-                bitField0_ |= 0x00000004;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
-          case -472001573: {
-            if (input.isAtField(FieldNames.difficulty)) {
-              if (!input.trySkipNullValue()) {
-                difficulty = input.readUInt32();
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000002;
               }
             } else {
               input.skipUnknownField();
@@ -549,7 +494,18 @@ public final class ActivityPenguinCardLevelSettle {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000010;
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 2122698: {
+            if (input.isAtField(FieldNames.data)) {
+              if (!input.trySkipNullValue()) {
+                input.readString(data);
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -567,8 +523,8 @@ public final class ActivityPenguinCardLevelSettle {
     }
 
     @Override
-    public ActivityPenguinCardSettleReq clone() {
-      return new ActivityPenguinCardSettleReq().copyFrom(this);
+    public ActivityPenguinCardEndlessLevelSaveReq clone() {
+      return new ActivityPenguinCardEndlessLevelSaveReq().copyFrom(this);
     }
 
     @Override
@@ -576,34 +532,34 @@ public final class ActivityPenguinCardLevelSettle {
       return ((bitField0_) == 0);
     }
 
-    public static ActivityPenguinCardSettleReq parseFrom(final byte[] data) throws
+    public static ActivityPenguinCardEndlessLevelSaveReq parseFrom(final byte[] data) throws
         InvalidProtocolBufferException {
-      return ProtoMessage.mergeFrom(new ActivityPenguinCardSettleReq(), data).checkInitialized();
+      return ProtoMessage.mergeFrom(new ActivityPenguinCardEndlessLevelSaveReq(), data).checkInitialized();
     }
 
-    public static ActivityPenguinCardSettleReq parseFrom(final ProtoSource input) throws
+    public static ActivityPenguinCardEndlessLevelSaveReq parseFrom(final ProtoSource input) throws
         IOException {
-      return ProtoMessage.mergeFrom(new ActivityPenguinCardSettleReq(), input).checkInitialized();
+      return ProtoMessage.mergeFrom(new ActivityPenguinCardEndlessLevelSaveReq(), input).checkInitialized();
     }
 
-    public static ActivityPenguinCardSettleReq parseFrom(final JsonSource input) throws
+    public static ActivityPenguinCardEndlessLevelSaveReq parseFrom(final JsonSource input) throws
         IOException {
-      return ProtoMessage.mergeFrom(new ActivityPenguinCardSettleReq(), input).checkInitialized();
+      return ProtoMessage.mergeFrom(new ActivityPenguinCardEndlessLevelSaveReq(), input).checkInitialized();
     }
 
     /**
-     * @return factory for creating ActivityPenguinCardSettleReq messages
+     * @return factory for creating ActivityPenguinCardEndlessLevelSaveReq messages
      */
-    public static MessageFactory<ActivityPenguinCardSettleReq> getFactory() {
-      return ActivityPenguinCardSettleReqFactory.INSTANCE;
+    public static MessageFactory<ActivityPenguinCardEndlessLevelSaveReq> getFactory() {
+      return ActivityPenguinCardEndlessLevelSaveReqFactory.INSTANCE;
     }
 
-    private enum ActivityPenguinCardSettleReqFactory implements MessageFactory<ActivityPenguinCardSettleReq> {
+    private enum ActivityPenguinCardEndlessLevelSaveReqFactory implements MessageFactory<ActivityPenguinCardEndlessLevelSaveReq> {
       INSTANCE;
 
       @Override
-      public ActivityPenguinCardSettleReq create() {
-        return ActivityPenguinCardSettleReq.newInstance();
+      public ActivityPenguinCardEndlessLevelSaveReq create() {
+        return ActivityPenguinCardEndlessLevelSaveReq.newInstance();
       }
     }
 
@@ -613,13 +569,11 @@ public final class ActivityPenguinCardLevelSettle {
     static class FieldNames {
       static final FieldName levelId = FieldName.forField("LevelId");
 
-      static final FieldName star = FieldName.forField("Star");
-
       static final FieldName score = FieldName.forField("Score");
 
-      static final FieldName difficulty = FieldName.forField("Difficulty");
-
       static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName data = FieldName.forField("Data");
     }
   }
 }

@@ -30,7 +30,8 @@ public enum ActivityType {
     HistoryStory      (22),
     IceCream          (23),
     FollowSocialMedia (24),
-    Soldier           (25);
+    Soldier           (25),
+    NewStory          (30);
 
     @Getter
     private final int value;

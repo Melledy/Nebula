@@ -532,6 +532,9 @@ public class NetMsgId {
     public static final int gacha_newbie_info_succeed_ack = 6023;
     public static final int gacha_newbie_info_failed_ack = 6024;
     public static final int gacha_spin_sync_ack = 6025;
+    public static final int gacha_reward_get_req = 6026;
+    public static final int gacha_reward_get_succeed_ack = 6027;
+    public static final int gacha_reward_get_failed_ack = 6028;
     public static final int tower_book_fate_card_detail_req = 6101;
     public static final int tower_book_fate_card_detail_succeed_ack = 6102;
     public static final int tower_book_fate_card_detail_failed_ack = 6103;
@@ -751,6 +754,9 @@ public class NetMsgId {
     public static final int activity_ice_cream_level_settle_req = 8411;
     public static final int activity_ice_cream_level_settle_succeed_ack = 8412;
     public static final int activity_ice_cream_level_settle_failed_ack = 8413;
+    public static final int activity_penguin_card_endless_level_save_req = 8416;
+    public static final int activity_penguin_card_endless_level_save_succeed_ack = 8417;
+    public static final int activity_penguin_card_endless_level_save_failed_ack = 8418;
     public static final int mail_list_req = 9001;
     public static final int mail_list_succeed_ack = 9002;
     public static final int mail_list_failed_ack = 9003;

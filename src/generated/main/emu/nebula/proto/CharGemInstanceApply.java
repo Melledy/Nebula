@@ -30,6 +30,11 @@ public final class CharGemInstanceApply {
     private int id;
 
     /**
+     * <code>optional uint32 RewardType = 3;</code>
+     */
+    private int rewardType;
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -119,11 +124,48 @@ public final class CharGemInstanceApply {
     }
 
     /**
+     * <code>optional uint32 RewardType = 3;</code>
+     * @return whether the rewardType field is set
+     */
+    public boolean hasRewardType() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional uint32 RewardType = 3;</code>
+     * @return this
+     */
+    public CharGemInstanceApplyReq clearRewardType() {
+      bitField0_ &= ~0x00000004;
+      rewardType = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 RewardType = 3;</code>
+     * @return the rewardType
+     */
+    public int getRewardType() {
+      return rewardType;
+    }
+
+    /**
+     * <code>optional uint32 RewardType = 3;</code>
+     * @param value the rewardType to set
+     * @return this
+     */
+    public CharGemInstanceApplyReq setRewardType(final int value) {
+      bitField0_ |= 0x00000004;
+      rewardType = value;
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
@@ -131,7 +173,7 @@ public final class CharGemInstanceApply {
      * @return this
      */
     public CharGemInstanceApplyReq clearNextPackage() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000008;
       nextPackage.clear();
       return this;
     }
@@ -160,7 +202,7 @@ public final class CharGemInstanceApply {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       return nextPackage;
     }
 
@@ -170,7 +212,7 @@ public final class CharGemInstanceApply {
      * @return this
      */
     public CharGemInstanceApplyReq addNextPackage(final byte value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       nextPackage.add(value);
       return this;
     }
@@ -181,7 +223,7 @@ public final class CharGemInstanceApply {
      * @return this
      */
     public CharGemInstanceApplyReq addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       nextPackage.addAll(values);
       return this;
     }
@@ -192,7 +234,7 @@ public final class CharGemInstanceApply {
      * @return this
      */
     public CharGemInstanceApplyReq setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -204,6 +246,7 @@ public final class CharGemInstanceApply {
         bitField0_ = other.bitField0_;
         buildId = other.buildId;
         id = other.id;
+        rewardType = other.rewardType;
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -221,6 +264,9 @@ public final class CharGemInstanceApply {
       if (other.hasId()) {
         setId(other.id);
       }
+      if (other.hasRewardType()) {
+        setRewardType(other.rewardType);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -236,6 +282,7 @@ public final class CharGemInstanceApply {
       bitField0_ = 0;
       buildId = 0L;
       id = 0;
+      rewardType = 0;
       nextPackage.clear();
       return this;
     }
@@ -263,6 +310,7 @@ public final class CharGemInstanceApply {
       return bitField0_ == other.bitField0_
         && (!hasBuildId() || buildId == other.buildId)
         && (!hasId() || id == other.id)
+        && (!hasRewardType() || rewardType == other.rewardType)
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
@@ -277,6 +325,10 @@ public final class CharGemInstanceApply {
         output.writeUInt32NoTag(id);
       }
       if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeUInt32NoTag(rewardType);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
@@ -292,6 +344,9 @@ public final class CharGemInstanceApply {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(id);
       }
       if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(rewardType);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       return size;
@@ -318,6 +373,15 @@ public final class CharGemInstanceApply {
             id = input.readUInt32();
             bitField0_ |= 0x00000002;
             tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
+            // rewardType
+            rewardType = input.readUInt32();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -325,7 +389,7 @@ public final class CharGemInstanceApply {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000008;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -355,6 +419,9 @@ public final class CharGemInstanceApply {
         output.writeUInt32(FieldNames.id, id);
       }
       if ((bitField0_ & 0x00000004) != 0) {
+        output.writeUInt32(FieldNames.rewardType, rewardType);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       output.endObject();
@@ -389,11 +456,22 @@ public final class CharGemInstanceApply {
             }
             break;
           }
+          case -610271447: {
+            if (input.isAtField(FieldNames.rewardType)) {
+              if (!input.trySkipNullValue()) {
+                rewardType = input.readUInt32();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -456,6 +534,8 @@ public final class CharGemInstanceApply {
       static final FieldName buildId = FieldName.forField("BuildId");
 
       static final FieldName id = FieldName.forField("Id");
+
+      static final FieldName rewardType = FieldName.forField("RewardType");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }

@@ -68971,6 +68971,11 @@ public final class Public {
     private int star;
 
     /**
+     * <code>optional uint32 RewardType = 6;</code>
+     */
+    private int rewardType;
+
+    /**
      * <code>optional bool First = 3;</code>
      */
     private boolean first;
@@ -69107,11 +69112,48 @@ public final class Public {
     }
 
     /**
+     * <code>optional uint32 RewardType = 6;</code>
+     * @return whether the rewardType field is set
+     */
+    public boolean hasRewardType() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional uint32 RewardType = 6;</code>
+     * @return this
+     */
+    public CharGemInstance clearRewardType() {
+      bitField0_ &= ~0x00000008;
+      rewardType = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 RewardType = 6;</code>
+     * @return the rewardType
+     */
+    public int getRewardType() {
+      return rewardType;
+    }
+
+    /**
+     * <code>optional uint32 RewardType = 6;</code>
+     * @param value the rewardType to set
+     * @return this
+     */
+    public CharGemInstance setRewardType(final int value) {
+      bitField0_ |= 0x00000008;
+      rewardType = value;
+      return this;
+    }
+
+    /**
      * <code>optional bool First = 3;</code>
      * @return whether the first field is set
      */
     public boolean hasFirst() {
-      return (bitField0_ & 0x00000008) != 0;
+      return (bitField0_ & 0x00000010) != 0;
     }
 
     /**
@@ -69119,7 +69161,7 @@ public final class Public {
      * @return this
      */
     public CharGemInstance clearFirst() {
-      bitField0_ &= ~0x00000008;
+      bitField0_ &= ~0x00000010;
       first = false;
       return this;
     }
@@ -69138,7 +69180,7 @@ public final class Public {
      * @return this
      */
     public CharGemInstance setFirst(final boolean value) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       first = value;
       return this;
     }
@@ -69148,7 +69190,7 @@ public final class Public {
      * @return whether the threeStar field is set
      */
     public boolean hasThreeStar() {
-      return (bitField0_ & 0x00000010) != 0;
+      return (bitField0_ & 0x00000020) != 0;
     }
 
     /**
@@ -69156,7 +69198,7 @@ public final class Public {
      * @return this
      */
     public CharGemInstance clearThreeStar() {
-      bitField0_ &= ~0x00000010;
+      bitField0_ &= ~0x00000020;
       threeStar = false;
       return this;
     }
@@ -69175,7 +69217,7 @@ public final class Public {
      * @return this
      */
     public CharGemInstance setThreeStar(final boolean value) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       threeStar = value;
       return this;
     }
@@ -69185,7 +69227,7 @@ public final class Public {
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000020) != 0;
+      return (bitField0_ & 0x00000040) != 0;
     }
 
     /**
@@ -69193,7 +69235,7 @@ public final class Public {
      * @return this
      */
     public CharGemInstance clearNextPackage() {
-      bitField0_ &= ~0x00000020;
+      bitField0_ &= ~0x00000040;
       nextPackage.clear();
       return this;
     }
@@ -69222,7 +69264,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000040;
       return nextPackage;
     }
 
@@ -69232,7 +69274,7 @@ public final class Public {
      * @return this
      */
     public CharGemInstance addNextPackage(final byte value) {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000040;
       nextPackage.add(value);
       return this;
     }
@@ -69243,7 +69285,7 @@ public final class Public {
      * @return this
      */
     public CharGemInstance addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000040;
       nextPackage.addAll(values);
       return this;
     }
@@ -69254,7 +69296,7 @@ public final class Public {
      * @return this
      */
     public CharGemInstance setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000040;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -69267,6 +69309,7 @@ public final class Public {
         buildId = other.buildId;
         id = other.id;
         star = other.star;
+        rewardType = other.rewardType;
         first = other.first;
         threeStar = other.threeStar;
         nextPackage.copyFrom(other.nextPackage);
@@ -69288,6 +69331,9 @@ public final class Public {
       }
       if (other.hasStar()) {
         setStar(other.star);
+      }
+      if (other.hasRewardType()) {
+        setRewardType(other.rewardType);
       }
       if (other.hasFirst()) {
         setFirst(other.first);
@@ -69311,6 +69357,7 @@ public final class Public {
       buildId = 0L;
       id = 0;
       star = 0;
+      rewardType = 0;
       first = false;
       threeStar = false;
       nextPackage.clear();
@@ -69341,6 +69388,7 @@ public final class Public {
         && (!hasBuildId() || buildId == other.buildId)
         && (!hasId() || id == other.id)
         && (!hasStar() || star == other.star)
+        && (!hasRewardType() || rewardType == other.rewardType)
         && (!hasFirst() || first == other.first)
         && (!hasThreeStar() || threeStar == other.threeStar)
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
@@ -69361,14 +69409,18 @@ public final class Public {
         output.writeUInt32NoTag(star);
       }
       if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawByte((byte) 48);
+        output.writeUInt32NoTag(rewardType);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
         output.writeRawByte((byte) 24);
         output.writeBoolNoTag(first);
       }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000020) != 0) {
         output.writeRawByte((byte) 32);
         output.writeBoolNoTag(threeStar);
       }
-      if ((bitField0_ & 0x00000020) != 0) {
+      if ((bitField0_ & 0x00000040) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
@@ -69387,12 +69439,15 @@ public final class Public {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(star);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        size += 2;
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(rewardType);
       }
       if ((bitField0_ & 0x00000010) != 0) {
         size += 2;
       }
       if ((bitField0_ & 0x00000020) != 0) {
+        size += 2;
+      }
+      if ((bitField0_ & 0x00000040) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       return size;
@@ -69428,6 +69483,15 @@ public final class Public {
             star = input.readUInt32();
             bitField0_ |= 0x00000004;
             tag = input.readTag();
+            if (tag != 48) {
+              break;
+            }
+          }
+          case 48: {
+            // rewardType
+            rewardType = input.readUInt32();
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
             if (tag != 24) {
               break;
             }
@@ -69435,7 +69499,7 @@ public final class Public {
           case 24: {
             // first
             first = input.readBool();
-            bitField0_ |= 0x00000008;
+            bitField0_ |= 0x00000010;
             tag = input.readTag();
             if (tag != 32) {
               break;
@@ -69444,7 +69508,7 @@ public final class Public {
           case 32: {
             // threeStar
             threeStar = input.readBool();
-            bitField0_ |= 0x00000010;
+            bitField0_ |= 0x00000020;
             tag = input.readTag();
             if (tag != 16378) {
               break;
@@ -69453,7 +69517,7 @@ public final class Public {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000020;
+            bitField0_ |= 0x00000040;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -69486,12 +69550,15 @@ public final class Public {
         output.writeUInt32(FieldNames.star, star);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        output.writeBool(FieldNames.first, first);
+        output.writeUInt32(FieldNames.rewardType, rewardType);
       }
       if ((bitField0_ & 0x00000010) != 0) {
-        output.writeBool(FieldNames.threeStar, threeStar);
+        output.writeBool(FieldNames.first, first);
       }
       if ((bitField0_ & 0x00000020) != 0) {
+        output.writeBool(FieldNames.threeStar, threeStar);
+      }
+      if ((bitField0_ & 0x00000040) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       output.endObject();
@@ -69537,11 +69604,22 @@ public final class Public {
             }
             break;
           }
+          case -610271447: {
+            if (input.isAtField(FieldNames.rewardType)) {
+              if (!input.trySkipNullValue()) {
+                rewardType = input.readUInt32();
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case 67887760: {
             if (input.isAtField(FieldNames.first)) {
               if (!input.trySkipNullValue()) {
                 first = input.readBool();
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000010;
               }
             } else {
               input.skipUnknownField();
@@ -69552,7 +69630,7 @@ public final class Public {
             if (input.isAtField(FieldNames.threeStar)) {
               if (!input.trySkipNullValue()) {
                 threeStar = input.readBool();
-                bitField0_ |= 0x00000010;
+                bitField0_ |= 0x00000020;
               }
             } else {
               input.skipUnknownField();
@@ -69563,7 +69641,7 @@ public final class Public {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000020;
+                bitField0_ |= 0x00000040;
               }
             } else {
               input.skipUnknownField();
@@ -69628,6 +69706,8 @@ public final class Public {
       static final FieldName id = FieldName.forField("Id");
 
       static final FieldName star = FieldName.forField("Star");
+
+      static final FieldName rewardType = FieldName.forField("RewardType");
 
       static final FieldName first = FieldName.forField("First");
 
