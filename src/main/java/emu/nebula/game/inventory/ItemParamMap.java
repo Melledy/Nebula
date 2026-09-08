@@ -149,8 +149,10 @@ public class ItemParamMap extends Int2IntLinkedOpenHashMap implements ObjectBidi
         var map = new ItemParamMap();
         var json = JsonUtils.decodeMap(jsonString, Integer.class, Integer.class);
         
-        for (var entry : json.entrySet()) {
-            map.add(entry.getKey(), entry.getValue());
+        if (json != null) {
+            for (var entry : json.entrySet()) {
+                map.add(entry.getKey(), entry.getValue());
+            }
         }
         
         return map;

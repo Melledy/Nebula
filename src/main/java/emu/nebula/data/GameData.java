@@ -188,6 +188,9 @@ public class GameData {
     // Activity: Task
     @Getter private static DataTable<ActivityTaskDef> ActivityTaskDataTable = new DataTable<>();
     @Getter private static DataTable<ActivityTaskGroupDef> ActivityTaskGroupDataTable = new DataTable<>();
+    
+    // Activity: Story
+    @Getter private static DataTable<ActivityStoryDef> ActivityStoryDataTable = new DataTable<>();
 
     // Activity: Shop
     @Getter private static DataTable<ActivityShopDef> ActivityShopDataTable = new DataTable<>();

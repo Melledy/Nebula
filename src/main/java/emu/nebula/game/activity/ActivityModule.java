@@ -81,6 +81,7 @@ public class ActivityModule extends GameContextModule {
         
         // Go, My Lady! Training Handbook Plus!
         this.activities.add(1011101);
+        this.activities.add(1011102);
         this.activities.add(1011103);
         this.activities.add(1011104);
         
