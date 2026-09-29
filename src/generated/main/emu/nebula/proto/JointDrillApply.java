@@ -25,19 +25,19 @@ public final class JointDrillApply {
     private long buildId;
 
     /**
+     * <code>optional uint64 BossHp = 3;</code>
+     */
+    private long bossHp;
+
+    /**
+     * <code>optional uint64 BossHpMax = 4;</code>
+     */
+    private long bossHpMax;
+
+    /**
      * <code>optional uint32 LevelId = 1;</code>
      */
     private int levelId;
-
-    /**
-     * <code>optional uint32 BossHp = 3;</code>
-     */
-    private int bossHp;
-
-    /**
-     * <code>optional uint32 BossHpMax = 4;</code>
-     */
-    private int bossHpMax;
 
     /**
      * <code>optional bool Simulate = 5;</code>
@@ -97,11 +97,85 @@ public final class JointDrillApply {
     }
 
     /**
+     * <code>optional uint64 BossHp = 3;</code>
+     * @return whether the bossHp field is set
+     */
+    public boolean hasBossHp() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint64 BossHp = 3;</code>
+     * @return this
+     */
+    public JointDrillApplyReq clearBossHp() {
+      bitField0_ &= ~0x00000002;
+      bossHp = 0L;
+      return this;
+    }
+
+    /**
+     * <code>optional uint64 BossHp = 3;</code>
+     * @return the bossHp
+     */
+    public long getBossHp() {
+      return bossHp;
+    }
+
+    /**
+     * <code>optional uint64 BossHp = 3;</code>
+     * @param value the bossHp to set
+     * @return this
+     */
+    public JointDrillApplyReq setBossHp(final long value) {
+      bitField0_ |= 0x00000002;
+      bossHp = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint64 BossHpMax = 4;</code>
+     * @return whether the bossHpMax field is set
+     */
+    public boolean hasBossHpMax() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional uint64 BossHpMax = 4;</code>
+     * @return this
+     */
+    public JointDrillApplyReq clearBossHpMax() {
+      bitField0_ &= ~0x00000004;
+      bossHpMax = 0L;
+      return this;
+    }
+
+    /**
+     * <code>optional uint64 BossHpMax = 4;</code>
+     * @return the bossHpMax
+     */
+    public long getBossHpMax() {
+      return bossHpMax;
+    }
+
+    /**
+     * <code>optional uint64 BossHpMax = 4;</code>
+     * @param value the bossHpMax to set
+     * @return this
+     */
+    public JointDrillApplyReq setBossHpMax(final long value) {
+      bitField0_ |= 0x00000004;
+      bossHpMax = value;
+      return this;
+    }
+
+    /**
      * <code>optional uint32 LevelId = 1;</code>
      * @return whether the levelId field is set
      */
     public boolean hasLevelId() {
-      return (bitField0_ & 0x00000002) != 0;
+      return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
@@ -109,7 +183,7 @@ public final class JointDrillApply {
      * @return this
      */
     public JointDrillApplyReq clearLevelId() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000008;
       levelId = 0;
       return this;
     }
@@ -128,82 +202,8 @@ public final class JointDrillApply {
      * @return this
      */
     public JointDrillApplyReq setLevelId(final int value) {
-      bitField0_ |= 0x00000002;
-      levelId = value;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 BossHp = 3;</code>
-     * @return whether the bossHp field is set
-     */
-    public boolean hasBossHp() {
-      return (bitField0_ & 0x00000004) != 0;
-    }
-
-    /**
-     * <code>optional uint32 BossHp = 3;</code>
-     * @return this
-     */
-    public JointDrillApplyReq clearBossHp() {
-      bitField0_ &= ~0x00000004;
-      bossHp = 0;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 BossHp = 3;</code>
-     * @return the bossHp
-     */
-    public int getBossHp() {
-      return bossHp;
-    }
-
-    /**
-     * <code>optional uint32 BossHp = 3;</code>
-     * @param value the bossHp to set
-     * @return this
-     */
-    public JointDrillApplyReq setBossHp(final int value) {
-      bitField0_ |= 0x00000004;
-      bossHp = value;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 BossHpMax = 4;</code>
-     * @return whether the bossHpMax field is set
-     */
-    public boolean hasBossHpMax() {
-      return (bitField0_ & 0x00000008) != 0;
-    }
-
-    /**
-     * <code>optional uint32 BossHpMax = 4;</code>
-     * @return this
-     */
-    public JointDrillApplyReq clearBossHpMax() {
-      bitField0_ &= ~0x00000008;
-      bossHpMax = 0;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 BossHpMax = 4;</code>
-     * @return the bossHpMax
-     */
-    public int getBossHpMax() {
-      return bossHpMax;
-    }
-
-    /**
-     * <code>optional uint32 BossHpMax = 4;</code>
-     * @param value the bossHpMax to set
-     * @return this
-     */
-    public JointDrillApplyReq setBossHpMax(final int value) {
       bitField0_ |= 0x00000008;
-      bossHpMax = value;
+      levelId = value;
       return this;
     }
 
@@ -329,9 +329,9 @@ public final class JointDrillApply {
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
         buildId = other.buildId;
-        levelId = other.levelId;
         bossHp = other.bossHp;
         bossHpMax = other.bossHpMax;
+        levelId = other.levelId;
         simulate = other.simulate;
         nextPackage.copyFrom(other.nextPackage);
       }
@@ -347,14 +347,14 @@ public final class JointDrillApply {
       if (other.hasBuildId()) {
         setBuildId(other.buildId);
       }
-      if (other.hasLevelId()) {
-        setLevelId(other.levelId);
-      }
       if (other.hasBossHp()) {
         setBossHp(other.bossHp);
       }
       if (other.hasBossHpMax()) {
         setBossHpMax(other.bossHpMax);
+      }
+      if (other.hasLevelId()) {
+        setLevelId(other.levelId);
       }
       if (other.hasSimulate()) {
         setSimulate(other.simulate);
@@ -373,9 +373,9 @@ public final class JointDrillApply {
       cachedSize = -1;
       bitField0_ = 0;
       buildId = 0L;
+      bossHp = 0L;
+      bossHpMax = 0L;
       levelId = 0;
-      bossHp = 0;
-      bossHpMax = 0;
       simulate = false;
       nextPackage.clear();
       return this;
@@ -403,9 +403,9 @@ public final class JointDrillApply {
       JointDrillApplyReq other = (JointDrillApplyReq) o;
       return bitField0_ == other.bitField0_
         && (!hasBuildId() || buildId == other.buildId)
-        && (!hasLevelId() || levelId == other.levelId)
         && (!hasBossHp() || bossHp == other.bossHp)
         && (!hasBossHpMax() || bossHpMax == other.bossHpMax)
+        && (!hasLevelId() || levelId == other.levelId)
         && (!hasSimulate() || simulate == other.simulate)
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
@@ -417,16 +417,16 @@ public final class JointDrillApply {
         output.writeUInt64NoTag(buildId);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeRawByte((byte) 8);
-        output.writeUInt32NoTag(levelId);
+        output.writeRawByte((byte) 24);
+        output.writeUInt64NoTag(bossHp);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        output.writeRawByte((byte) 24);
-        output.writeUInt32NoTag(bossHp);
+        output.writeRawByte((byte) 32);
+        output.writeUInt64NoTag(bossHpMax);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        output.writeRawByte((byte) 32);
-        output.writeUInt32NoTag(bossHpMax);
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(levelId);
       }
       if ((bitField0_ & 0x00000010) != 0) {
         output.writeRawByte((byte) 40);
@@ -445,13 +445,13 @@ public final class JointDrillApply {
         size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(levelId);
+        size += 1 + ProtoSink.computeUInt64SizeNoTag(bossHp);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(bossHp);
+        size += 1 + ProtoSink.computeUInt64SizeNoTag(bossHpMax);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(bossHpMax);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(levelId);
       }
       if ((bitField0_ & 0x00000010) != 0) {
         size += 2;
@@ -474,23 +474,14 @@ public final class JointDrillApply {
             buildId = input.readUInt64();
             bitField0_ |= 0x00000001;
             tag = input.readTag();
-            if (tag != 8) {
-              break;
-            }
-          }
-          case 8: {
-            // levelId
-            levelId = input.readUInt32();
-            bitField0_ |= 0x00000002;
-            tag = input.readTag();
             if (tag != 24) {
               break;
             }
           }
           case 24: {
             // bossHp
-            bossHp = input.readUInt32();
-            bitField0_ |= 0x00000004;
+            bossHp = input.readUInt64();
+            bitField0_ |= 0x00000002;
             tag = input.readTag();
             if (tag != 32) {
               break;
@@ -498,7 +489,16 @@ public final class JointDrillApply {
           }
           case 32: {
             // bossHpMax
-            bossHpMax = input.readUInt32();
+            bossHpMax = input.readUInt64();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 8) {
+              break;
+            }
+          }
+          case 8: {
+            // levelId
+            levelId = input.readUInt32();
             bitField0_ |= 0x00000008;
             tag = input.readTag();
             if (tag != 40) {
@@ -544,13 +544,13 @@ public final class JointDrillApply {
         output.writeUInt64(FieldNames.buildId, buildId);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeUInt32(FieldNames.levelId, levelId);
+        output.writeUInt64(FieldNames.bossHp, bossHp);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        output.writeUInt32(FieldNames.bossHp, bossHp);
+        output.writeUInt64(FieldNames.bossHpMax, bossHpMax);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        output.writeUInt32(FieldNames.bossHpMax, bossHpMax);
+        output.writeUInt32(FieldNames.levelId, levelId);
       }
       if ((bitField0_ & 0x00000010) != 0) {
         output.writeBool(FieldNames.simulate, simulate);
@@ -579,22 +579,11 @@ public final class JointDrillApply {
             }
             break;
           }
-          case 1734437791: {
-            if (input.isAtField(FieldNames.levelId)) {
-              if (!input.trySkipNullValue()) {
-                levelId = input.readUInt32();
-                bitField0_ |= 0x00000002;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
           case 1995573621: {
             if (input.isAtField(FieldNames.bossHp)) {
               if (!input.trySkipNullValue()) {
-                bossHp = input.readUInt32();
-                bitField0_ |= 0x00000004;
+                bossHp = input.readUInt64();
+                bitField0_ |= 0x00000002;
               }
             } else {
               input.skipUnknownField();
@@ -604,7 +593,18 @@ public final class JointDrillApply {
           case -803490897: {
             if (input.isAtField(FieldNames.bossHpMax)) {
               if (!input.trySkipNullValue()) {
-                bossHpMax = input.readUInt32();
+                bossHpMax = input.readUInt64();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 1734437791: {
+            if (input.isAtField(FieldNames.levelId)) {
+              if (!input.trySkipNullValue()) {
+                levelId = input.readUInt32();
                 bitField0_ |= 0x00000008;
               }
             } else {
@@ -689,11 +689,11 @@ public final class JointDrillApply {
     static class FieldNames {
       static final FieldName buildId = FieldName.forField("BuildId");
 
-      static final FieldName levelId = FieldName.forField("LevelId");
-
       static final FieldName bossHp = FieldName.forField("BossHp");
 
       static final FieldName bossHpMax = FieldName.forField("BossHpMax");
+
+      static final FieldName levelId = FieldName.forField("LevelId");
 
       static final FieldName simulate = FieldName.forField("Simulate");
 

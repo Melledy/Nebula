@@ -20,6 +20,16 @@ public final class JointDrillSync {
     private static final long serialVersionUID = 0L;
 
     /**
+     * <code>optional uint64 BossHp = 4;</code>
+     */
+    private long bossHp;
+
+    /**
+     * <code>optional uint64 BossHpMax = 5;</code>
+     */
+    private long bossHpMax;
+
+    /**
      * <code>optional uint32 Floor = 1;</code>
      */
     private int floor;
@@ -33,16 +43,6 @@ public final class JointDrillSync {
      * <code>optional uint32 Damage = 3;</code>
      */
     private int damage;
-
-    /**
-     * <code>optional uint32 BossHp = 4;</code>
-     */
-    private int bossHp;
-
-    /**
-     * <code>optional uint32 BossHpMax = 5;</code>
-     */
-    private int bossHpMax;
 
     /**
      * <code>optional bytes Record = 6;</code>
@@ -65,11 +65,85 @@ public final class JointDrillSync {
     }
 
     /**
+     * <code>optional uint64 BossHp = 4;</code>
+     * @return whether the bossHp field is set
+     */
+    public boolean hasBossHp() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint64 BossHp = 4;</code>
+     * @return this
+     */
+    public JointDrillSyncReq clearBossHp() {
+      bitField0_ &= ~0x00000001;
+      bossHp = 0L;
+      return this;
+    }
+
+    /**
+     * <code>optional uint64 BossHp = 4;</code>
+     * @return the bossHp
+     */
+    public long getBossHp() {
+      return bossHp;
+    }
+
+    /**
+     * <code>optional uint64 BossHp = 4;</code>
+     * @param value the bossHp to set
+     * @return this
+     */
+    public JointDrillSyncReq setBossHp(final long value) {
+      bitField0_ |= 0x00000001;
+      bossHp = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint64 BossHpMax = 5;</code>
+     * @return whether the bossHpMax field is set
+     */
+    public boolean hasBossHpMax() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint64 BossHpMax = 5;</code>
+     * @return this
+     */
+    public JointDrillSyncReq clearBossHpMax() {
+      bitField0_ &= ~0x00000002;
+      bossHpMax = 0L;
+      return this;
+    }
+
+    /**
+     * <code>optional uint64 BossHpMax = 5;</code>
+     * @return the bossHpMax
+     */
+    public long getBossHpMax() {
+      return bossHpMax;
+    }
+
+    /**
+     * <code>optional uint64 BossHpMax = 5;</code>
+     * @param value the bossHpMax to set
+     * @return this
+     */
+    public JointDrillSyncReq setBossHpMax(final long value) {
+      bitField0_ |= 0x00000002;
+      bossHpMax = value;
+      return this;
+    }
+
+    /**
      * <code>optional uint32 Floor = 1;</code>
      * @return whether the floor field is set
      */
     public boolean hasFloor() {
-      return (bitField0_ & 0x00000001) != 0;
+      return (bitField0_ & 0x00000004) != 0;
     }
 
     /**
@@ -77,7 +151,7 @@ public final class JointDrillSync {
      * @return this
      */
     public JointDrillSyncReq clearFloor() {
-      bitField0_ &= ~0x00000001;
+      bitField0_ &= ~0x00000004;
       floor = 0;
       return this;
     }
@@ -96,7 +170,7 @@ public final class JointDrillSync {
      * @return this
      */
     public JointDrillSyncReq setFloor(final int value) {
-      bitField0_ |= 0x00000001;
+      bitField0_ |= 0x00000004;
       floor = value;
       return this;
     }
@@ -106,7 +180,7 @@ public final class JointDrillSync {
      * @return whether the time field is set
      */
     public boolean hasTime() {
-      return (bitField0_ & 0x00000002) != 0;
+      return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
@@ -114,7 +188,7 @@ public final class JointDrillSync {
      * @return this
      */
     public JointDrillSyncReq clearTime() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000008;
       time = 0;
       return this;
     }
@@ -133,7 +207,7 @@ public final class JointDrillSync {
      * @return this
      */
     public JointDrillSyncReq setTime(final int value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000008;
       time = value;
       return this;
     }
@@ -143,7 +217,7 @@ public final class JointDrillSync {
      * @return whether the damage field is set
      */
     public boolean hasDamage() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000010) != 0;
     }
 
     /**
@@ -151,7 +225,7 @@ public final class JointDrillSync {
      * @return this
      */
     public JointDrillSyncReq clearDamage() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000010;
       damage = 0;
       return this;
     }
@@ -170,82 +244,8 @@ public final class JointDrillSync {
      * @return this
      */
     public JointDrillSyncReq setDamage(final int value) {
-      bitField0_ |= 0x00000004;
-      damage = value;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 BossHp = 4;</code>
-     * @return whether the bossHp field is set
-     */
-    public boolean hasBossHp() {
-      return (bitField0_ & 0x00000008) != 0;
-    }
-
-    /**
-     * <code>optional uint32 BossHp = 4;</code>
-     * @return this
-     */
-    public JointDrillSyncReq clearBossHp() {
-      bitField0_ &= ~0x00000008;
-      bossHp = 0;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 BossHp = 4;</code>
-     * @return the bossHp
-     */
-    public int getBossHp() {
-      return bossHp;
-    }
-
-    /**
-     * <code>optional uint32 BossHp = 4;</code>
-     * @param value the bossHp to set
-     * @return this
-     */
-    public JointDrillSyncReq setBossHp(final int value) {
-      bitField0_ |= 0x00000008;
-      bossHp = value;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 BossHpMax = 5;</code>
-     * @return whether the bossHpMax field is set
-     */
-    public boolean hasBossHpMax() {
-      return (bitField0_ & 0x00000010) != 0;
-    }
-
-    /**
-     * <code>optional uint32 BossHpMax = 5;</code>
-     * @return this
-     */
-    public JointDrillSyncReq clearBossHpMax() {
-      bitField0_ &= ~0x00000010;
-      bossHpMax = 0;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 BossHpMax = 5;</code>
-     * @return the bossHpMax
-     */
-    public int getBossHpMax() {
-      return bossHpMax;
-    }
-
-    /**
-     * <code>optional uint32 BossHpMax = 5;</code>
-     * @param value the bossHpMax to set
-     * @return this
-     */
-    public JointDrillSyncReq setBossHpMax(final int value) {
       bitField0_ |= 0x00000010;
-      bossHpMax = value;
+      damage = value;
       return this;
     }
 
@@ -412,11 +412,11 @@ public final class JointDrillSync {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
+        bossHp = other.bossHp;
+        bossHpMax = other.bossHpMax;
         floor = other.floor;
         time = other.time;
         damage = other.damage;
-        bossHp = other.bossHp;
-        bossHpMax = other.bossHpMax;
         record.copyFrom(other.record);
         nextPackage.copyFrom(other.nextPackage);
       }
@@ -429,6 +429,12 @@ public final class JointDrillSync {
         return this;
       }
       cachedSize = -1;
+      if (other.hasBossHp()) {
+        setBossHp(other.bossHp);
+      }
+      if (other.hasBossHpMax()) {
+        setBossHpMax(other.bossHpMax);
+      }
       if (other.hasFloor()) {
         setFloor(other.floor);
       }
@@ -437,12 +443,6 @@ public final class JointDrillSync {
       }
       if (other.hasDamage()) {
         setDamage(other.damage);
-      }
-      if (other.hasBossHp()) {
-        setBossHp(other.bossHp);
-      }
-      if (other.hasBossHpMax()) {
-        setBossHpMax(other.bossHpMax);
       }
       if (other.hasRecord()) {
         getMutableRecord().copyFrom(other.record);
@@ -460,11 +460,11 @@ public final class JointDrillSync {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      bossHp = 0L;
+      bossHpMax = 0L;
       floor = 0;
       time = 0;
       damage = 0;
-      bossHp = 0;
-      bossHpMax = 0;
       record.clear();
       nextPackage.clear();
       return this;
@@ -492,11 +492,11 @@ public final class JointDrillSync {
       }
       JointDrillSyncReq other = (JointDrillSyncReq) o;
       return bitField0_ == other.bitField0_
+        && (!hasBossHp() || bossHp == other.bossHp)
+        && (!hasBossHpMax() || bossHpMax == other.bossHpMax)
         && (!hasFloor() || floor == other.floor)
         && (!hasTime() || time == other.time)
         && (!hasDamage() || damage == other.damage)
-        && (!hasBossHp() || bossHp == other.bossHp)
-        && (!hasBossHpMax() || bossHpMax == other.bossHpMax)
         && (!hasRecord() || record.equals(other.record))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
@@ -504,24 +504,24 @@ public final class JointDrillSync {
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 32);
+        output.writeUInt64NoTag(bossHp);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 40);
+        output.writeUInt64NoTag(bossHpMax);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
         output.writeRawByte((byte) 8);
         output.writeUInt32NoTag(floor);
       }
-      if ((bitField0_ & 0x00000002) != 0) {
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawByte((byte) 16);
         output.writeUInt32NoTag(time);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000010) != 0) {
         output.writeRawByte((byte) 24);
         output.writeUInt32NoTag(damage);
-      }
-      if ((bitField0_ & 0x00000008) != 0) {
-        output.writeRawByte((byte) 32);
-        output.writeUInt32NoTag(bossHp);
-      }
-      if ((bitField0_ & 0x00000010) != 0) {
-        output.writeRawByte((byte) 40);
-        output.writeUInt32NoTag(bossHpMax);
       }
       if ((bitField0_ & 0x00000020) != 0) {
         output.writeRawByte((byte) 50);
@@ -537,19 +537,19 @@ public final class JointDrillSync {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(floor);
+        size += 1 + ProtoSink.computeUInt64SizeNoTag(bossHp);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(time);
+        size += 1 + ProtoSink.computeUInt64SizeNoTag(bossHpMax);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(damage);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(floor);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(bossHp);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(time);
       }
       if ((bitField0_ & 0x00000010) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(bossHpMax);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(damage);
       }
       if ((bitField0_ & 0x00000020) != 0) {
         size += 1 + ProtoSink.computeBytesSizeNoTag(record);
@@ -567,10 +567,28 @@ public final class JointDrillSync {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
+          case 32: {
+            // bossHp
+            bossHp = input.readUInt64();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 40) {
+              break;
+            }
+          }
+          case 40: {
+            // bossHpMax
+            bossHpMax = input.readUInt64();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 8) {
+              break;
+            }
+          }
           case 8: {
             // floor
             floor = input.readUInt32();
-            bitField0_ |= 0x00000001;
+            bitField0_ |= 0x00000004;
             tag = input.readTag();
             if (tag != 16) {
               break;
@@ -579,7 +597,7 @@ public final class JointDrillSync {
           case 16: {
             // time
             time = input.readUInt32();
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000008;
             tag = input.readTag();
             if (tag != 24) {
               break;
@@ -588,24 +606,6 @@ public final class JointDrillSync {
           case 24: {
             // damage
             damage = input.readUInt32();
-            bitField0_ |= 0x00000004;
-            tag = input.readTag();
-            if (tag != 32) {
-              break;
-            }
-          }
-          case 32: {
-            // bossHp
-            bossHp = input.readUInt32();
-            bitField0_ |= 0x00000008;
-            tag = input.readTag();
-            if (tag != 40) {
-              break;
-            }
-          }
-          case 40: {
-            // bossHpMax
-            bossHpMax = input.readUInt32();
             bitField0_ |= 0x00000010;
             tag = input.readTag();
             if (tag != 50) {
@@ -648,19 +648,19 @@ public final class JointDrillSync {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt32(FieldNames.floor, floor);
+        output.writeUInt64(FieldNames.bossHp, bossHp);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeUInt32(FieldNames.time, time);
+        output.writeUInt64(FieldNames.bossHpMax, bossHpMax);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        output.writeUInt32(FieldNames.damage, damage);
+        output.writeUInt32(FieldNames.floor, floor);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        output.writeUInt32(FieldNames.bossHp, bossHp);
+        output.writeUInt32(FieldNames.time, time);
       }
       if ((bitField0_ & 0x00000010) != 0) {
-        output.writeUInt32(FieldNames.bossHpMax, bossHpMax);
+        output.writeUInt32(FieldNames.damage, damage);
       }
       if ((bitField0_ & 0x00000020) != 0) {
         output.writeBytes(FieldNames.record, record);
@@ -678,11 +678,33 @@ public final class JointDrillSync {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
+          case 1995573621: {
+            if (input.isAtField(FieldNames.bossHp)) {
+              if (!input.trySkipNullValue()) {
+                bossHp = input.readUInt64();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -803490897: {
+            if (input.isAtField(FieldNames.bossHpMax)) {
+              if (!input.trySkipNullValue()) {
+                bossHpMax = input.readUInt64();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case 67974124: {
             if (input.isAtField(FieldNames.floor)) {
               if (!input.trySkipNullValue()) {
                 floor = input.readUInt32();
-                bitField0_ |= 0x00000001;
+                bitField0_ |= 0x00000004;
               }
             } else {
               input.skipUnknownField();
@@ -693,7 +715,7 @@ public final class JointDrillSync {
             if (input.isAtField(FieldNames.time)) {
               if (!input.trySkipNullValue()) {
                 time = input.readUInt32();
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -704,28 +726,6 @@ public final class JointDrillSync {
             if (input.isAtField(FieldNames.damage)) {
               if (!input.trySkipNullValue()) {
                 damage = input.readUInt32();
-                bitField0_ |= 0x00000004;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
-          case 1995573621: {
-            if (input.isAtField(FieldNames.bossHp)) {
-              if (!input.trySkipNullValue()) {
-                bossHp = input.readUInt32();
-                bitField0_ |= 0x00000008;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
-          case -803490897: {
-            if (input.isAtField(FieldNames.bossHpMax)) {
-              if (!input.trySkipNullValue()) {
-                bossHpMax = input.readUInt32();
                 bitField0_ |= 0x00000010;
               }
             } else {
@@ -808,15 +808,15 @@ public final class JointDrillSync {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
+      static final FieldName bossHp = FieldName.forField("BossHp");
+
+      static final FieldName bossHpMax = FieldName.forField("BossHpMax");
+
       static final FieldName floor = FieldName.forField("Floor");
 
       static final FieldName time = FieldName.forField("Time");
 
       static final FieldName damage = FieldName.forField("Damage");
-
-      static final FieldName bossHp = FieldName.forField("BossHp");
-
-      static final FieldName bossHpMax = FieldName.forField("BossHpMax");
 
       static final FieldName record = FieldName.forField("Record");
 

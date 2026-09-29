@@ -7,7 +7,7 @@ import emu.nebula.game.inventory.ItemParamMap;
 import emu.nebula.util.WeightedList;
 
 public class GameConstants {
-    public static final String VERSION = "1.15.1";
+    public static final String VERSION = "1.16.0";
     public static int DATA_VERSION = 0;
     
     public static final ZoneId UTC_ZONE = ZoneId.of("UTC");
@@ -45,7 +45,8 @@ public class GameConstants {
     public static final int MAX_BUILDS = 100;
     public static final int MAX_PRESETS = 50;
     
-    public static final int BATTLE_PASS_ID = 9;
+    public static final int BATTLE_PASS_ID = 1; // Default battle pass
+    public static final int BATTLE_PASS_UNLOCK_LEVEL = 3;
     
     public static final int MAX_FRIENDSHIPS = 50;
     public static final int MAX_PENDING_FRIENDSHIPS = 30;
@@ -69,12 +70,9 @@ public class GameConstants {
     public static final int REFRESH_TYPE_MONTHLY = 3;
 
     public static final int CURRENCY_TYPE_CASH = 1;
-    // Stellanite Lumina
-    public static final int CURRENCY_TYPE_ITEM = 2;
+    public static final int CURRENCY_TYPE_ITEM = 2; // Stellanite Lumina
     public static final int CURRENCY_TYPE_FREE = 3;
     public static final int TAG_SKIN = 2;
-
-    public static final int BATTLE_PASS_UNLOCK_LEVEL = 3;
     
     public static int[][] VAMPIRE_SURVIVOR_BONUS_POWER = new int[][] {
         new int[] {100, 120},

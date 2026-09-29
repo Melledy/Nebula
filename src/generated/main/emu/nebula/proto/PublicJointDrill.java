@@ -1640,14 +1640,14 @@ public final class PublicJointDrill {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint32 BossHp = 1;</code>
+     * <code>optional uint64 BossHp = 1;</code>
      */
-    private int bossHp;
+    private long bossHp;
 
     /**
-     * <code>optional uint32 BossHpMax = 2;</code>
+     * <code>optional uint64 BossHpMax = 2;</code>
      */
-    private int bossHpMax;
+    private long bossHpMax;
 
     /**
      * <code>optional bytes Record = 3;</code>
@@ -1670,7 +1670,7 @@ public final class PublicJointDrill {
     }
 
     /**
-     * <code>optional uint32 BossHp = 1;</code>
+     * <code>optional uint64 BossHp = 1;</code>
      * @return whether the bossHp field is set
      */
     public boolean hasBossHp() {
@@ -1678,36 +1678,36 @@ public final class PublicJointDrill {
     }
 
     /**
-     * <code>optional uint32 BossHp = 1;</code>
+     * <code>optional uint64 BossHp = 1;</code>
      * @return this
      */
     public Mode1Meta clearBossHp() {
       bitField0_ &= ~0x00000001;
-      bossHp = 0;
+      bossHp = 0L;
       return this;
     }
 
     /**
-     * <code>optional uint32 BossHp = 1;</code>
+     * <code>optional uint64 BossHp = 1;</code>
      * @return the bossHp
      */
-    public int getBossHp() {
+    public long getBossHp() {
       return bossHp;
     }
 
     /**
-     * <code>optional uint32 BossHp = 1;</code>
+     * <code>optional uint64 BossHp = 1;</code>
      * @param value the bossHp to set
      * @return this
      */
-    public Mode1Meta setBossHp(final int value) {
+    public Mode1Meta setBossHp(final long value) {
       bitField0_ |= 0x00000001;
       bossHp = value;
       return this;
     }
 
     /**
-     * <code>optional uint32 BossHpMax = 2;</code>
+     * <code>optional uint64 BossHpMax = 2;</code>
      * @return whether the bossHpMax field is set
      */
     public boolean hasBossHpMax() {
@@ -1715,29 +1715,29 @@ public final class PublicJointDrill {
     }
 
     /**
-     * <code>optional uint32 BossHpMax = 2;</code>
+     * <code>optional uint64 BossHpMax = 2;</code>
      * @return this
      */
     public Mode1Meta clearBossHpMax() {
       bitField0_ &= ~0x00000002;
-      bossHpMax = 0;
+      bossHpMax = 0L;
       return this;
     }
 
     /**
-     * <code>optional uint32 BossHpMax = 2;</code>
+     * <code>optional uint64 BossHpMax = 2;</code>
      * @return the bossHpMax
      */
-    public int getBossHpMax() {
+    public long getBossHpMax() {
       return bossHpMax;
     }
 
     /**
-     * <code>optional uint32 BossHpMax = 2;</code>
+     * <code>optional uint64 BossHpMax = 2;</code>
      * @param value the bossHpMax to set
      * @return this
      */
-    public Mode1Meta setBossHpMax(final int value) {
+    public Mode1Meta setBossHpMax(final long value) {
       bitField0_ |= 0x00000002;
       bossHpMax = value;
       return this;
@@ -1942,8 +1942,8 @@ public final class PublicJointDrill {
       }
       cachedSize = -1;
       bitField0_ = 0;
-      bossHp = 0;
-      bossHpMax = 0;
+      bossHp = 0L;
+      bossHpMax = 0L;
       record.clear();
       nextPackage.clear();
       return this;
@@ -1981,11 +1981,11 @@ public final class PublicJointDrill {
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
         output.writeRawByte((byte) 8);
-        output.writeUInt32NoTag(bossHp);
+        output.writeUInt64NoTag(bossHp);
       }
       if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 16);
-        output.writeUInt32NoTag(bossHpMax);
+        output.writeUInt64NoTag(bossHpMax);
       }
       if ((bitField0_ & 0x00000004) != 0) {
         output.writeRawByte((byte) 26);
@@ -2001,10 +2001,10 @@ public final class PublicJointDrill {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(bossHp);
+        size += 1 + ProtoSink.computeUInt64SizeNoTag(bossHp);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(bossHpMax);
+        size += 1 + ProtoSink.computeUInt64SizeNoTag(bossHpMax);
       }
       if ((bitField0_ & 0x00000004) != 0) {
         size += 1 + ProtoSink.computeBytesSizeNoTag(record);
@@ -2024,7 +2024,7 @@ public final class PublicJointDrill {
         switch (tag) {
           case 8: {
             // bossHp
-            bossHp = input.readUInt32();
+            bossHp = input.readUInt64();
             bitField0_ |= 0x00000001;
             tag = input.readTag();
             if (tag != 16) {
@@ -2033,7 +2033,7 @@ public final class PublicJointDrill {
           }
           case 16: {
             // bossHpMax
-            bossHpMax = input.readUInt32();
+            bossHpMax = input.readUInt64();
             bitField0_ |= 0x00000002;
             tag = input.readTag();
             if (tag != 26) {
@@ -2076,10 +2076,10 @@ public final class PublicJointDrill {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt32(FieldNames.bossHp, bossHp);
+        output.writeUInt64(FieldNames.bossHp, bossHp);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeUInt32(FieldNames.bossHpMax, bossHpMax);
+        output.writeUInt64(FieldNames.bossHpMax, bossHpMax);
       }
       if ((bitField0_ & 0x00000004) != 0) {
         output.writeBytes(FieldNames.record, record);
@@ -2100,7 +2100,7 @@ public final class PublicJointDrill {
           case 1995573621: {
             if (input.isAtField(FieldNames.bossHp)) {
               if (!input.trySkipNullValue()) {
-                bossHp = input.readUInt32();
+                bossHp = input.readUInt64();
                 bitField0_ |= 0x00000001;
               }
             } else {
@@ -2111,7 +2111,7 @@ public final class PublicJointDrill {
           case -803490897: {
             if (input.isAtField(FieldNames.bossHpMax)) {
               if (!input.trySkipNullValue()) {
-                bossHpMax = input.readUInt32();
+                bossHpMax = input.readUInt64();
                 bitField0_ |= 0x00000002;
               }
             } else {
@@ -2846,14 +2846,14 @@ public final class PublicJointDrill {
     private static final long serialVersionUID = 0L;
 
     /**
+     * <code>optional uint64 Hp = 2;</code>
+     */
+    private long hp;
+
+    /**
      * <code>optional uint32 Id = 1;</code>
      */
     private int id;
-
-    /**
-     * <code>optional uint32 Hp = 2;</code>
-     */
-    private int hp;
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
@@ -2871,11 +2871,48 @@ public final class PublicJointDrill {
     }
 
     /**
+     * <code>optional uint64 Hp = 2;</code>
+     * @return whether the hp field is set
+     */
+    public boolean hasHp() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint64 Hp = 2;</code>
+     * @return this
+     */
+    public JointDrillBossHp clearHp() {
+      bitField0_ &= ~0x00000001;
+      hp = 0L;
+      return this;
+    }
+
+    /**
+     * <code>optional uint64 Hp = 2;</code>
+     * @return the hp
+     */
+    public long getHp() {
+      return hp;
+    }
+
+    /**
+     * <code>optional uint64 Hp = 2;</code>
+     * @param value the hp to set
+     * @return this
+     */
+    public JointDrillBossHp setHp(final long value) {
+      bitField0_ |= 0x00000001;
+      hp = value;
+      return this;
+    }
+
+    /**
      * <code>optional uint32 Id = 1;</code>
      * @return whether the id field is set
      */
     public boolean hasId() {
-      return (bitField0_ & 0x00000001) != 0;
+      return (bitField0_ & 0x00000002) != 0;
     }
 
     /**
@@ -2883,7 +2920,7 @@ public final class PublicJointDrill {
      * @return this
      */
     public JointDrillBossHp clearId() {
-      bitField0_ &= ~0x00000001;
+      bitField0_ &= ~0x00000002;
       id = 0;
       return this;
     }
@@ -2902,45 +2939,8 @@ public final class PublicJointDrill {
      * @return this
      */
     public JointDrillBossHp setId(final int value) {
-      bitField0_ |= 0x00000001;
-      id = value;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 Hp = 2;</code>
-     * @return whether the hp field is set
-     */
-    public boolean hasHp() {
-      return (bitField0_ & 0x00000002) != 0;
-    }
-
-    /**
-     * <code>optional uint32 Hp = 2;</code>
-     * @return this
-     */
-    public JointDrillBossHp clearHp() {
-      bitField0_ &= ~0x00000002;
-      hp = 0;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 Hp = 2;</code>
-     * @return the hp
-     */
-    public int getHp() {
-      return hp;
-    }
-
-    /**
-     * <code>optional uint32 Hp = 2;</code>
-     * @param value the hp to set
-     * @return this
-     */
-    public JointDrillBossHp setHp(final int value) {
       bitField0_ |= 0x00000002;
-      hp = value;
+      id = value;
       return this;
     }
 
@@ -3028,8 +3028,8 @@ public final class PublicJointDrill {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
-        id = other.id;
         hp = other.hp;
+        id = other.id;
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -3041,11 +3041,11 @@ public final class PublicJointDrill {
         return this;
       }
       cachedSize = -1;
-      if (other.hasId()) {
-        setId(other.id);
-      }
       if (other.hasHp()) {
         setHp(other.hp);
+      }
+      if (other.hasId()) {
+        setId(other.id);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -3060,8 +3060,8 @@ public final class PublicJointDrill {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      hp = 0L;
       id = 0;
-      hp = 0;
       nextPackage.clear();
       return this;
     }
@@ -3087,20 +3087,20 @@ public final class PublicJointDrill {
       }
       JointDrillBossHp other = (JointDrillBossHp) o;
       return bitField0_ == other.bitField0_
-        && (!hasId() || id == other.id)
         && (!hasHp() || hp == other.hp)
+        && (!hasId() || id == other.id)
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 8);
-        output.writeUInt32NoTag(id);
+        output.writeRawByte((byte) 16);
+        output.writeUInt64NoTag(hp);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeRawByte((byte) 16);
-        output.writeUInt32NoTag(hp);
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(id);
       }
       if ((bitField0_ & 0x00000004) != 0) {
         output.writeRawLittleEndian16((short) 32762);
@@ -3112,10 +3112,10 @@ public final class PublicJointDrill {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(id);
+        size += 1 + ProtoSink.computeUInt64SizeNoTag(hp);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(hp);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(id);
       }
       if ((bitField0_ & 0x00000004) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
@@ -3130,18 +3130,18 @@ public final class PublicJointDrill {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 8: {
-            // id
-            id = input.readUInt32();
+          case 16: {
+            // hp
+            hp = input.readUInt64();
             bitField0_ |= 0x00000001;
             tag = input.readTag();
-            if (tag != 16) {
+            if (tag != 8) {
               break;
             }
           }
-          case 16: {
-            // hp
-            hp = input.readUInt32();
+          case 8: {
+            // id
+            id = input.readUInt32();
             bitField0_ |= 0x00000002;
             tag = input.readTag();
             if (tag != 16378) {
@@ -3175,10 +3175,10 @@ public final class PublicJointDrill {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt32(FieldNames.id, id);
+        output.writeUInt64(FieldNames.hp, hp);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeUInt32(FieldNames.hp, hp);
+        output.writeUInt32(FieldNames.id, id);
       }
       if ((bitField0_ & 0x00000004) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
@@ -3193,10 +3193,10 @@ public final class PublicJointDrill {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
-          case 2363: {
-            if (input.isAtField(FieldNames.id)) {
+          case 2344: {
+            if (input.isAtField(FieldNames.hp)) {
               if (!input.trySkipNullValue()) {
-                id = input.readUInt32();
+                hp = input.readUInt64();
                 bitField0_ |= 0x00000001;
               }
             } else {
@@ -3204,10 +3204,10 @@ public final class PublicJointDrill {
             }
             break;
           }
-          case 2344: {
-            if (input.isAtField(FieldNames.hp)) {
+          case 2363: {
+            if (input.isAtField(FieldNames.id)) {
               if (!input.trySkipNullValue()) {
-                hp = input.readUInt32();
+                id = input.readUInt32();
                 bitField0_ |= 0x00000002;
               }
             } else {
@@ -3279,9 +3279,9 @@ public final class PublicJointDrill {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
-      static final FieldName id = FieldName.forField("Id");
-
       static final FieldName hp = FieldName.forField("Hp");
+
+      static final FieldName id = FieldName.forField("Id");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }
