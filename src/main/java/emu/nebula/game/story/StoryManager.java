@@ -83,14 +83,15 @@ public class StoryManager extends PlayerManager implements GameDatabaseObject {
         
         // Handle regular story
         for (var settle : list) {
-            // Get id
+            // Get story id
             int id = settle.getIdx();
             
             // Get story data
             var data = GameData.getStoryDataTable().get(id);
             if (data == null) continue;
             
-            // Settle options (Must be before the completion check as we need to do the same story multiple times to get all the endings)
+            // Settle options
+            // Important: Must be before the completion check as we need to do the same story multiple times to get all the endings
             this.settleOptions(settle);
             
             // Check if we already completed the story
@@ -121,6 +122,9 @@ public class StoryManager extends PlayerManager implements GameDatabaseObject {
             if (this.getEvidences().contains(id)) {
                 continue;
             }
+            
+            // Add evidence
+            this.getEvidences().add(id);
             
             // Save to db
             Nebula.getGameDatabase().addToSet(this, this.getPlayerUid(), "evidences", id);
@@ -252,8 +256,10 @@ public class StoryManager extends PlayerManager implements GameDatabaseObject {
     
     @PostLoad
     public void onLoad() {
+        // Simple flag to check if we need to save this manager to the database
         boolean save = false;
         
+        // Create evidences/option data if we are missing them
         if (this.evidences == null) {
             this.evidences = new IntOpenHashSet();
             save = true;
@@ -264,6 +270,19 @@ public class StoryManager extends PlayerManager implements GameDatabaseObject {
             save = true;
         }
         
+        // Hardcoded fix if the player is missing the last option in main story chapter 9
+        if (this.getCompletedStories().contains(1025)) {
+            if (!this.getEvidences().contains(1004)) {
+                this.getEvidences().add(1004);
+                save = true;
+            }
+            if (!this.getEvidences().contains(1007)) {
+                this.getEvidences().add(1007);
+                save = true;
+            }
+        }
+        
+        // Save to database
         if (save) {
             this.save();
         }

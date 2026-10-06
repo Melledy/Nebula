@@ -12,7 +12,7 @@ Latest nightly compiled server jar: [Nightly](https://nightly.link/Melledy/Nebul
 - Inventory/Discs working
 - Energy system
 - Mail system
-- Story (untested)
+- Story
 - Daily quests
 - Battle pass
 - Gacha
@@ -27,7 +27,7 @@ Latest nightly compiled server jar: [Nightly](https://nightly.link/Melledy/Nebul
 - Proving Grounds
 - Catacylsm Survivor (talents not fully working)
 - Boss Blitz
-- Events (Only tower defense and trials)
+- Events (Only tower defense and trials. Other events may work)
 
 ### Supported regions
 
