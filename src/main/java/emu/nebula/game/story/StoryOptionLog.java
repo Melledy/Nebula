@@ -6,8 +6,9 @@ import java.util.List;
 import dev.morphia.annotations.Entity;
 
 import emu.nebula.proto.Public.Story;
+import emu.nebula.proto.Public.StoryChoice;
 import emu.nebula.proto.StorySett.StoryOptions;
-
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import lombok.Getter;
 
 import us.hebi.quickbuf.RepeatedMessage;
@@ -81,23 +82,23 @@ public class StoryOptionLog {
         return this.personality.size();
     }
     
-    public boolean hasPersonalityOption(int group, int choice) {
-        if (this.personality == null) {
-            return false;
-        }
-        
-        return this.personality.stream()
-                .filter(c -> c.getGroup() == group && c.getValue() == choice)
-                .findFirst()
-                .isPresent();
-    }
-    
-    public boolean addPersonalityOption(int group, int choice) {
+    public void addPersonalityOption(int group, int choice) {
         if (this.personality == null) {
             this.personality = new ArrayList<>();
         }
         
-        return this.personality.add(new StoryChoiceInfo(group, choice));
+        // Try and get existing group option
+        var option = this.personality.stream()
+            .filter(c -> c.getGroup() == group)
+            .findFirst()
+            .orElseGet(null);
+        
+        // Set value for choice option
+        if (option == null) {
+            this.personality.add(new StoryChoiceInfo(group, choice));
+        } else {
+            option.setValue(choice);
+        }
     }
 
     public boolean settlePersonality(RepeatedMessage<StoryOptions> options) {
@@ -109,10 +110,7 @@ public class StoryOptionLog {
                 break;
             }
             
-            // Skip if we already have this choice
-            if (this.hasPersonalityOption(option.getGroup(), option.getChoice())) {
-                continue;
-            }
+            // TODO fix old accounts with multiple of the same personality groups
             
             // Add
             this.addPersonalityOption(option.getGroup(), option.getChoice());
@@ -128,14 +126,38 @@ public class StoryOptionLog {
 
     public void encodeStoryProto(Story proto) {
         if (this.major != null) {
+            var chosen = new Int2IntOpenHashMap();
+            
             for (var choice : this.major) {
-                proto.addMajor(choice.toProto());
+                var value = chosen.get(choice.getGroup()) | choice.getValue();
+                chosen.put(choice.getGroup(), value);
+            }
+            
+            for (var entry : chosen.int2IntEntrySet()) {
+                var choice = StoryChoice.newInstance()
+                    .setGroup(entry.getIntKey())
+                    .setValue(entry.getIntValue());
+                
+                proto.addMajor(choice);
             }
         }
         
         if (this.personality != null) {
+            var chosen = new Int2IntOpenHashMap();
+            
             for (var choice : this.personality) {
-                proto.addMajor(choice.toProto());
+                chosen.put(choice.getGroup(), choice.getValue());
+            }
+            
+            for (var entry : chosen.int2IntEntrySet()) {
+                int factor = 5; // Guessed value
+                int value = (entry.getIntValue() << 4) + (factor << 8);
+                
+                var choice = StoryChoice.newInstance()
+                    .setGroup(entry.getIntKey())
+                    .setValue(value);
+                
+                proto.addPersonality(choice);
             }
         }
     }

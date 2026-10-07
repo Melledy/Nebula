@@ -1,7 +1,6 @@
 package emu.nebula.game.story;
 
 import dev.morphia.annotations.Entity;
-import emu.nebula.proto.Public.StoryChoice;
 import lombok.Getter;
 
 @Getter
@@ -19,14 +18,9 @@ public class StoryChoiceInfo {
         this.group = group;
         this.value = value;
     }
-    
-    // Proto
-    
-    public StoryChoice toProto() {
-        var proto = StoryChoice.newInstance()
-                .setGroup(this.getGroup())
-                .setValue(this.getValue());
-        
-        return proto;
+
+    public StoryChoiceInfo setValue(int value) {
+        this.value = value;
+        return this;
     }
 }

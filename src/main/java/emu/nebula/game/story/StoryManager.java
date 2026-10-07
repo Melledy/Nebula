@@ -270,18 +270,6 @@ public class StoryManager extends PlayerManager implements GameDatabaseObject {
             save = true;
         }
         
-        // Hardcoded fix if the player is missing the last option in main story chapter 9
-        if (this.getCompletedStories().contains(1025)) {
-            if (!this.getEvidences().contains(1004)) {
-                this.getEvidences().add(1004);
-                save = true;
-            }
-            if (!this.getEvidences().contains(1007)) {
-                this.getEvidences().add(1007);
-                save = true;
-            }
-        }
-        
         // Save to database
         if (save) {
             this.save();
