@@ -202,6 +202,14 @@ public class StarTowerGame {
         return this.getPotentials().values().intStream().reduce(0, Integer::sum);
     }
     
+    public boolean isNewPotential(int id) {
+        if (this.getPotentials().containsKey(id)) {
+            return false;
+        }
+        
+        return this.getPlayer().getProgress().isNewPotential(id);
+    }
+    
     /**
      * Gets the team element, if the team has 2+ or more elements, then returns null
      */

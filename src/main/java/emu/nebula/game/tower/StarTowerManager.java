@@ -1,10 +1,13 @@
 package emu.nebula.game.tower;
 
+import java.util.HashSet;
+
 import emu.nebula.GameConstants;
 import emu.nebula.Nebula;
 import emu.nebula.data.GameData;
 import emu.nebula.data.resources.StarTowerGrowthNodeDef;
 import emu.nebula.game.achievement.AchievementCondition;
+import emu.nebula.game.character.GameCharacter;
 import emu.nebula.game.player.Player;
 import emu.nebula.game.player.PlayerChangeInfo;
 import emu.nebula.game.player.PlayerManager;
@@ -215,7 +218,10 @@ public class StarTowerManager extends PlayerManager {
             return null;
         }
         
-        // Add build
+        // Update seen potentials
+        this.updateSeenPotentials(build);
+        
+        // Add build for player
         this.addBuild(build);
         
         // Success
@@ -261,6 +267,32 @@ public class StarTowerManager extends PlayerManager {
         
         // Success
         return change;
+    }
+    
+    // Seen potentials
+    
+    public void updateSeenPotentials(StarTowerBuild build) {
+        var updateChars = new HashSet<GameCharacter>();
+        
+        for (var entry : build.getPotentials().int2IntEntrySet()) {
+            int potentialId = entry.getIntKey();
+            int level = entry.getIntValue();
+            
+            var character = this.getPlayer().getCharacters().getCharacterFromPotential(potentialId);
+            if (character == null) continue;
+            
+            boolean success = character.setSeenPotential(potentialId, level);
+            
+            if (success) {
+                updateChars.add(character);
+            }
+        }
+        
+        if (updateChars.size() > 0) {
+            for (var character : updateChars) {
+                character.save();
+            }
+        }
     }
     
     // Presets
@@ -484,5 +516,16 @@ public class StarTowerManager extends PlayerManager {
             // Add preset
             this.presets.put(preset.getUid(), preset);
         });
+        
+        // Migration: Check if we need to update any seen potentials
+        boolean needsPotentialMigration = this.builds.size() > 0 && this.getPlayer().getCharacters().getCharacterCollection()
+                .stream()
+                .allMatch(c -> c.getSeenPotentials().isEmpty());
+        
+        if (needsPotentialMigration) {
+            for (var build : this.getBuilds().values()) {
+                this.updateSeenPotentials(build);
+            }
+        }
     }
 }

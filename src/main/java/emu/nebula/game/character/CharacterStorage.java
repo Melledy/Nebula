@@ -50,6 +50,11 @@ public class CharacterStorage extends PlayerManager {
         return this.characters.get(id);
     }
     
+    public GameCharacter getCharacterFromPotential(int potentialId) {
+        int charId = (potentialId / 100) % 1000;
+        return this.getCharacterById(charId);
+    }
+    
     public boolean hasCharacter(int id) {
         return this.characters.containsKey(id);
     }

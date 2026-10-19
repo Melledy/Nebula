@@ -191,6 +191,18 @@ public class PlayerProgress extends PlayerManager implements GameDatabaseObject 
         Nebula.getGameDatabase().update(this, this.getUid(), logName + "." + id, newStar);
     }
     
+    public boolean isNewPotential(int id) {
+        // Get character that uses this potential
+        var character = this.getPlayer().getCharacters().getCharacterFromPotential(id);
+        
+        if (character == null) {
+            return true;
+        }
+        
+        // Checks if the character has seen the potential yet or not
+        return !character.hasSeenPotential(id);
+    }
+    
     // Proto
     
     public void encodePlayerInfo(PlayerInfo proto) {

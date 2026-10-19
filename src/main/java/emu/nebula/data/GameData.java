@@ -118,6 +118,7 @@ public class GameData {
     @Getter private static DataTable<StarTowerTeamExpDef> StarTowerTeamExpDataTable = new DataTable<>();
     @Getter private static DataTable<StarTowerEventDef> StarTowerEventDataTable = new DataTable<>();
     @Getter private static DataTable<StarTowerBuildRankDef> StarTowerBuildRankDataTable = new DataTable<>();
+    @Getter private static DataTable<StarTowerBookPotentialRewardDef> StarTowerBookPotentialRewardDataTable = new DataTable<>();
     @Getter private static DataTable<SubNoteSkillPromoteGroupDef> SubNoteSkillPromoteGroupDataTable = new DataTable<>();
     
     @Getter private static DataTable<PotentialDef> PotentialDataTable = new DataTable<>();

@@ -1254,10 +1254,18 @@ public class Player implements GameDatabaseObject {
         state.getMutableTravelerDuelQuest()
             .setType(QuestType.TravelerDuel);
         state.getMutableStarTower();
-        state.getMutableStarTowerBook();
         state.getMutableScoreBoss();
         state.getMutableCharAffinityRewards();
         state.getMutableTraceHunt().setBossRewardCanReceive(this.getTraceHuntManager().isHuntComplete());
+        
+        // Star tower potential book state
+        var book = state.getMutableStarTowerBook();
+        for (var character : this.getCharacters().getCharacterCollection()) {
+            // Set red dot if character has pending rewards
+            if (character.hasPendingPotentialBookRewards()) {
+                book.addCharIds(character.getCharId());
+            }
+        }
         
         // Force complete tutorials
         for (var guide : GameData.getGuideGroupDataTable()) {

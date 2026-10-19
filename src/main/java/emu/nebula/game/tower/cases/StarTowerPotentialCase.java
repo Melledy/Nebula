@@ -174,6 +174,10 @@ public class StarTowerPotentialCase extends StarTowerBaseCase {
             if (potential.getLevel() > 1) {
                 select.addLuckyIds(potential.getId());
             }
+            
+            if (this.getGame().isNewPotential(potential.getId())) {
+                select.addNewIds(potential.getId());
+            }
         }
         
         if (this.canReroll()) {

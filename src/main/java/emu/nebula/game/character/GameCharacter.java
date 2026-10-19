@@ -39,6 +39,8 @@ import emu.nebula.server.error.ErrorCode;
 import emu.nebula.server.error.NebulaException;
 import emu.nebula.util.Bitset;
 import emu.nebula.util.ints.CustomIntArray;
+import it.unimi.dsi.fastutil.ints.Int2IntMap;
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
@@ -74,6 +76,10 @@ public class GameCharacter implements GameDatabaseObject {
     // Affinity stories (Memory recollection)
     private IntSet plots;
     
+    // Seen potentials
+    private Int2IntMap seenPotentials;
+    private IntSet receivedPotentialRewards;
+    
     // Gems
     private int gemPresetIndex;
     private List<CharacterGemPreset> gemPresets;
@@ -103,9 +109,12 @@ public class GameCharacter implements GameDatabaseObject {
         this.talents = new Bitset();
         this.gemPresets = new ArrayList<>();
         this.gemSlots = new CharacterGemSlot[GameConstants.CHARACTER_MAX_GEM_SLOTS];
-        this.createTime = Nebula.getCurrentServerTime();
         
+        this.seenPotentials = new Int2IntOpenHashMap();
+        this.receivedPotentialRewards = new IntOpenHashSet();
         this.contact = new CharacterContact(this);
+        
+        this.createTime = Nebula.getCurrentServerTime();
     }
     
     public void setPlayer(Player player) {
@@ -940,6 +949,113 @@ public class GameCharacter implements GameDatabaseObject {
         
         // Success
         return new PlayerChangeInfo();
+    }
+    
+    // Potential book
+    
+    public Int2IntMap getSeenPotentials() {
+        if (this.seenPotentials == null) {
+            this.seenPotentials = new Int2IntOpenHashMap();
+        }
+        
+        return this.seenPotentials;
+    }
+    
+    public int getSeenPotentialLevel(int potentialId) {
+        return this.getSeenPotentials().getOrDefault(potentialId, 0);
+    }
+    
+    public boolean hasSeenPotential(int potentialId) {
+        return this.getSeenPotentials().containsKey(potentialId);
+    }
+    
+    public boolean setSeenPotential(int potentialId, int newLevel) {
+        // Make sure potential is owned by this character
+        int charId = (potentialId / 100) % 1000;
+        if (charId != this.getCharId()) {
+            return false;
+        }
+        
+        // Check if we already have an equal or higher level
+        int curLevel = this.getSeenPotentialLevel(potentialId);
+        
+        // Skip if new level is lower than current recorded level
+        if (newLevel <= curLevel) {
+            return false;
+        }
+        
+        // Set the max seen level
+        this.getSeenPotentials().put(potentialId, newLevel);
+        
+        // Success
+        return true;
+    }
+    
+    public int getTotalSeenPotentials() {
+        return this.getSeenPotentials().size();
+    }
+    
+    public IntSet getReceivedPotentialRewards() {
+        if (this.receivedPotentialRewards == null) {
+            this.receivedPotentialRewards = new IntOpenHashSet();
+        }
+        
+        return this.receivedPotentialRewards;
+    }
+    
+    public PlayerChangeInfo claimPotentialBookRewards() {
+        var rewards = new ItemParamMap();
+        var received = new IntArrayList();
+        int potentials = this.getTotalSeenPotentials();
+        
+        for (var reward : this.getData().getPotentialBookRewards().values()) {
+            // Skip if reward is already claimed
+            if (this.getReceivedPotentialRewards().contains(reward.getId())) {
+                continue;
+            }
+            
+            // Check if we meet criteria for claiming the reward
+            if (potentials >= reward.getRequiredPotentials()) {
+                // Mark as received
+                this.getReceivedPotentialRewards().add(reward.getId());
+                
+                // Add to lists
+                received.add(reward.getId());
+                rewards.add(reward.getItemId(), reward.getItemQty());
+            }
+        }
+        
+        if (rewards.isEmpty()) {
+            return null;
+        }
+        
+        // Add rewards
+        var change = this.getPlayer().getInventory().addItems(rewards);
+        change.setExtraData(received);
+        
+        // Save to db
+        this.save();
+        
+        // Success
+        return change;
+    }
+    
+    public boolean hasPendingPotentialBookRewards() {
+        int potentials = this.getTotalSeenPotentials();
+        
+        for (var reward : this.getData().getPotentialBookRewards().values()) {
+            // Skip if reward is already claimed
+            if (this.getReceivedPotentialRewards().contains(reward.getId())) {
+                continue;
+            }
+            
+            // Check if we meet criteria for claiming the reward
+            if (potentials >= reward.getRequiredPotentials()) {
+                return true;
+            }
+        }
+        
+        return false;
     }
     
     // Proto

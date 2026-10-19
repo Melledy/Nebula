@@ -6,7 +6,11 @@ import emu.nebula.data.BaseDef;
 import emu.nebula.data.GameData;
 import emu.nebula.data.ResourceType;
 import emu.nebula.game.character.ElementType;
+
+import it.unimi.dsi.fastutil.ints.Int2ObjectLinkedOpenHashMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+
 import lombok.Getter;
 
 @Getter
@@ -36,6 +40,7 @@ public class CharacterDef extends BaseDef {
     private transient HonorDef honor;
     private transient ElementType elementType;
     private transient List<ChatDef> chats;
+    private transient Int2ObjectMap<StarTowerBookPotentialRewardDef> potentialBookRewards;
     
     @Override
     public int getId() {
@@ -67,5 +72,6 @@ public class CharacterDef extends BaseDef {
     public void onLoad() {
         this.elementType = ElementType.getByValue(this.EET);
         this.chats = new ObjectArrayList<>();
+        this.potentialBookRewards = new Int2ObjectLinkedOpenHashMap<>();
     }
 }

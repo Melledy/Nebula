@@ -33,6 +33,10 @@ public class StarTowerSelectSpecialPotentialCase extends StarTowerPotentialCase 
         
         for (var potential : this.getPotentials()) {
             select.addIds(potential.getId());
+            
+            if (this.getGame().isNewPotential(potential.getId())) {
+                select.addNewIds(potential.getId());
+            }
         }
         
         if (this.canReroll()) {
