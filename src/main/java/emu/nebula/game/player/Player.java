@@ -857,6 +857,11 @@ public class Player implements GameDatabaseObject {
         // See if we need to reset dailies
         this.checkResetDailies();
         
+        // Try to update trace hunt control
+        if (this.getTraceHuntManager().updateControl()) {
+            this.getTraceHuntManager().save();
+        }
+        
         // Fix any broken honor ids
         this.checkBrokenHonor();
         

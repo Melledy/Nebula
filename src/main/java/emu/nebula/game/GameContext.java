@@ -12,6 +12,7 @@ import emu.nebula.game.jointdrill.JointDrillModule;
 import emu.nebula.game.mall.PayModule;
 import emu.nebula.game.player.PlayerModule;
 import emu.nebula.game.scoreboss.ScoreBossModule;
+import emu.nebula.game.tracehunt.TraceHuntModule;
 import emu.nebula.game.tutorial.TutorialModule;
 import emu.nebula.net.GameSession;
 import emu.nebula.util.ResetCycle;
@@ -31,6 +32,7 @@ public class GameContext implements Runnable {
     private final TutorialModule tutorialModule;
     private final ActivityModule activityModule;
     private final ScoreBossModule scoreBossModule;
+    private final TraceHuntModule traceHuntModule;
     private final JointDrillModule jointDrillModule;
     private final BanModule banModule;
     private final PayModule payModule;
@@ -53,6 +55,7 @@ public class GameContext implements Runnable {
         this.tutorialModule = new TutorialModule(this);
         this.activityModule = new ActivityModule(this);
         this.scoreBossModule = new ScoreBossModule(this);
+        this.traceHuntModule = new TraceHuntModule(this);
         this.jointDrillModule = new JointDrillModule(this);
         this.banModule = new BanModule(this);
         this.payModule = new PayModule(this);
@@ -119,6 +122,9 @@ public class GameContext implements Runnable {
             
             // Update score boss season
             this.getScoreBossModule().updateSeason();
+            
+            // Update trace hunt control
+            this.getTraceHuntModule().updateControl();
             
             // Reset dailies for players
             this.resetDailies();

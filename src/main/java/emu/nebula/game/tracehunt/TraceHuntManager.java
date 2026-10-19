@@ -89,6 +89,36 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
         return GameData.getTraceHuntControlDataTable().get(this.getControlId());
     }
     
+    /**
+     * Tries to update the player's trace hunt control.
+     * Changing control resets all of the player's trace hunt progress.
+     */
+    public boolean updateControl() {
+        // Get the current control id from the module
+        int controlId = Nebula.getGameContext().getTraceHuntModule().getControlId();
+        
+        // Nothing to do if the control hasnt changed
+        if (this.controlId == controlId) {
+            return false;
+        }
+        
+        // Update to the new control
+        this.controlId = controlId;
+        
+        // Reset all progress from the previous control
+        this.getBosses().clear();
+        this.resetBoss();
+        
+        // Set the first boss of the new control
+        var control = this.getControlData();
+        if (control != null && control.getBossList().length > 0) {
+            this.bossId = control.getBossList()[0];
+        }
+        
+        // Success
+        return true;
+    }
+    
     public int getRandomMedals() {
         int medals = Utils.randomRange(125, 150);
         double rate = GameData.getTraceHuntLevelDataTable().get(this.getLevel()).getTokenRate() * 0.01D;
@@ -142,6 +172,9 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
         this.dailyRequests = 0;
         this.dailyPermitProgress = 0;
         this.dailyPermits = 0;
+        
+        // Tries to update control
+        this.updateControl();
         
         // Save to database
         this.save();
