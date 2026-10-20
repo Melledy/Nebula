@@ -8528,6 +8528,11 @@ public final class Notify {
     private int useTimes;
 
     /**
+     * <code>optional uint32 ReturneeTimes = 3;</code>
+     */
+    private int returneeTimes;
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -8617,11 +8622,48 @@ public final class Notify {
     }
 
     /**
+     * <code>optional uint32 ReturneeTimes = 3;</code>
+     * @return whether the returneeTimes field is set
+     */
+    public boolean hasReturneeTimes() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional uint32 ReturneeTimes = 3;</code>
+     * @return this
+     */
+    public ActivityDoubleRewardTimesNotify clearReturneeTimes() {
+      bitField0_ &= ~0x00000004;
+      returneeTimes = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 ReturneeTimes = 3;</code>
+     * @return the returneeTimes
+     */
+    public int getReturneeTimes() {
+      return returneeTimes;
+    }
+
+    /**
+     * <code>optional uint32 ReturneeTimes = 3;</code>
+     * @param value the returneeTimes to set
+     * @return this
+     */
+    public ActivityDoubleRewardTimesNotify setReturneeTimes(final int value) {
+      bitField0_ |= 0x00000004;
+      returneeTimes = value;
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
@@ -8629,7 +8671,7 @@ public final class Notify {
      * @return this
      */
     public ActivityDoubleRewardTimesNotify clearNextPackage() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000008;
       nextPackage.clear();
       return this;
     }
@@ -8658,7 +8700,7 @@ public final class Notify {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       return nextPackage;
     }
 
@@ -8668,7 +8710,7 @@ public final class Notify {
      * @return this
      */
     public ActivityDoubleRewardTimesNotify addNextPackage(final byte value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       nextPackage.add(value);
       return this;
     }
@@ -8679,7 +8721,7 @@ public final class Notify {
      * @return this
      */
     public ActivityDoubleRewardTimesNotify addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       nextPackage.addAll(values);
       return this;
     }
@@ -8690,7 +8732,7 @@ public final class Notify {
      * @return this
      */
     public ActivityDoubleRewardTimesNotify setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -8702,6 +8744,7 @@ public final class Notify {
         bitField0_ = other.bitField0_;
         activityId = other.activityId;
         useTimes = other.useTimes;
+        returneeTimes = other.returneeTimes;
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -8719,6 +8762,9 @@ public final class Notify {
       if (other.hasUseTimes()) {
         setUseTimes(other.useTimes);
       }
+      if (other.hasReturneeTimes()) {
+        setReturneeTimes(other.returneeTimes);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -8734,6 +8780,7 @@ public final class Notify {
       bitField0_ = 0;
       activityId = 0;
       useTimes = 0;
+      returneeTimes = 0;
       nextPackage.clear();
       return this;
     }
@@ -8761,6 +8808,7 @@ public final class Notify {
       return bitField0_ == other.bitField0_
         && (!hasActivityId() || activityId == other.activityId)
         && (!hasUseTimes() || useTimes == other.useTimes)
+        && (!hasReturneeTimes() || returneeTimes == other.returneeTimes)
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
@@ -8775,6 +8823,10 @@ public final class Notify {
         output.writeUInt32NoTag(useTimes);
       }
       if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeUInt32NoTag(returneeTimes);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
@@ -8790,6 +8842,9 @@ public final class Notify {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(useTimes);
       }
       if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(returneeTimes);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       return size;
@@ -8816,6 +8871,15 @@ public final class Notify {
             useTimes = input.readUInt32();
             bitField0_ |= 0x00000002;
             tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
+            // returneeTimes
+            returneeTimes = input.readUInt32();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -8823,7 +8887,7 @@ public final class Notify {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000008;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -8853,6 +8917,9 @@ public final class Notify {
         output.writeUInt32(FieldNames.useTimes, useTimes);
       }
       if ((bitField0_ & 0x00000004) != 0) {
+        output.writeUInt32(FieldNames.returneeTimes, returneeTimes);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       output.endObject();
@@ -8887,11 +8954,22 @@ public final class Notify {
             }
             break;
           }
+          case -981816522: {
+            if (input.isAtField(FieldNames.returneeTimes)) {
+              if (!input.trySkipNullValue()) {
+                returneeTimes = input.readUInt32();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -8956,6 +9034,8 @@ public final class Notify {
       static final FieldName activityId = FieldName.forField("ActivityId");
 
       static final FieldName useTimes = FieldName.forField("UseTimes");
+
+      static final FieldName returneeTimes = FieldName.forField("ReturneeTimes");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }

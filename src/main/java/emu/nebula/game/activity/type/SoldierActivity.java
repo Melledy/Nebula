@@ -21,7 +21,6 @@ import emu.nebula.game.player.PlayerChangeInfo;
 import emu.nebula.proto.ActivityDetail.ActivityMsg;
 import emu.nebula.proto.PublicSoldier;
 import emu.nebula.proto.SoldierApply.SoldierApplyResp;
-import emu.nebula.proto.SoldierGiveUp.SoldierGiveUpResp;
 import emu.nebula.proto.SoldierInteract.SoldierInteractReq;
 import emu.nebula.proto.SoldierInteract.SoldierInteractResp;
 import emu.nebula.util.Utils;
@@ -164,9 +163,12 @@ public class SoldierActivity extends GameActivity {
 
     @Override
     public synchronized void onLogin() {
-        if (inProgress() && migrateLegacyRun()) save();
+        // TODO fix later
+        //if (inProgress() && migrateLegacyRun()) save();
     }
 
+    // TODO fix later
+    /*
     public synchronized SoldierApplyResp apply(int seasonId, int challengeId) {
         if (inProgress() || seasonId != getId()) return null;
 
@@ -1194,6 +1196,8 @@ public class SoldierActivity extends GameActivity {
         return PublicSoldier.SoldierCard.newInstance().setId(id)
                 .setType(PublicSoldier.SoldierCardType.Strategy);
     }
+    
+    */
 
     @Override
     public void encodeActivityMsg(ActivityMsg msg) {

@@ -11,417 +11,9 @@ import us.hebi.quickbuf.ProtoMessage;
 import us.hebi.quickbuf.ProtoSink;
 import us.hebi.quickbuf.ProtoSource;
 import us.hebi.quickbuf.RepeatedByte;
-import us.hebi.quickbuf.RepeatedInt;
 import us.hebi.quickbuf.RepeatedMessage;
 
 public final class GachaNewbieInfoOuterClass {
-  /**
-   * Protobuf type {@code UI32s}
-   */
-  public static final class UI32s extends ProtoMessage<UI32s> implements Cloneable {
-    private static final long serialVersionUID = 0L;
-
-    /**
-     * <code>optional bytes NextPackage = 2047;</code>
-     */
-    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
-
-    /**
-     * <code>repeated uint32 Values = 1;</code>
-     */
-    private final RepeatedInt values_ = RepeatedInt.newEmptyInstance();
-
-    private UI32s() {
-    }
-
-    /**
-     * @return a new empty instance of {@code UI32s}
-     */
-    public static UI32s newInstance() {
-      return new UI32s();
-    }
-
-    /**
-     * <code>optional bytes NextPackage = 2047;</code>
-     * @return whether the nextPackage field is set
-     */
-    public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000001) != 0;
-    }
-
-    /**
-     * <code>optional bytes NextPackage = 2047;</code>
-     * @return this
-     */
-    public UI32s clearNextPackage() {
-      bitField0_ &= ~0x00000001;
-      nextPackage.clear();
-      return this;
-    }
-
-    /**
-     * <code>optional bytes NextPackage = 2047;</code>
-     *
-     * This method returns the internal storage object without modifying any has state.
-     * The returned object should not be modified and be treated as read-only.
-     *
-     * Use {@link #getMutableNextPackage()} if you want to modify it.
-     *
-     * @return internal storage object for reading
-     */
-    public RepeatedByte getNextPackage() {
-      return nextPackage;
-    }
-
-    /**
-     * <code>optional bytes NextPackage = 2047;</code>
-     *
-     * This method returns the internal storage object and sets the corresponding
-     * has state. The returned object will become part of this message and its
-     * contents may be modified as long as the has state is not cleared.
-     *
-     * @return internal storage object for modifications
-     */
-    public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000001;
-      return nextPackage;
-    }
-
-    /**
-     * <code>optional bytes NextPackage = 2047;</code>
-     * @param value the nextPackage to add
-     * @return this
-     */
-    public UI32s addNextPackage(final byte value) {
-      bitField0_ |= 0x00000001;
-      nextPackage.add(value);
-      return this;
-    }
-
-    /**
-     * <code>optional bytes NextPackage = 2047;</code>
-     * @param values the nextPackage to add
-     * @return this
-     */
-    public UI32s addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000001;
-      nextPackage.addAll(values);
-      return this;
-    }
-
-    /**
-     * <code>optional bytes NextPackage = 2047;</code>
-     * @param values the nextPackage to set
-     * @return this
-     */
-    public UI32s setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000001;
-      nextPackage.copyFrom(values);
-      return this;
-    }
-
-    /**
-     * <code>repeated uint32 Values = 1;</code>
-     * @return whether the values_ field is set
-     */
-    public boolean hasValues() {
-      return (bitField0_ & 0x00000002) != 0;
-    }
-
-    /**
-     * <code>repeated uint32 Values = 1;</code>
-     * @return this
-     */
-    public UI32s clearValues() {
-      bitField0_ &= ~0x00000002;
-      values_.clear();
-      return this;
-    }
-
-    /**
-     * <code>repeated uint32 Values = 1;</code>
-     *
-     * This method returns the internal storage object without modifying any has state.
-     * The returned object should not be modified and be treated as read-only.
-     *
-     * Use {@link #getMutableValues()} if you want to modify it.
-     *
-     * @return internal storage object for reading
-     */
-    public RepeatedInt getValues() {
-      return values_;
-    }
-
-    /**
-     * <code>repeated uint32 Values = 1;</code>
-     *
-     * This method returns the internal storage object and sets the corresponding
-     * has state. The returned object will become part of this message and its
-     * contents may be modified as long as the has state is not cleared.
-     *
-     * @return internal storage object for modifications
-     */
-    public RepeatedInt getMutableValues() {
-      bitField0_ |= 0x00000002;
-      return values_;
-    }
-
-    /**
-     * <code>repeated uint32 Values = 1;</code>
-     * @param value the values_ to add
-     * @return this
-     */
-    public UI32s addValues(final int value) {
-      bitField0_ |= 0x00000002;
-      values_.add(value);
-      return this;
-    }
-
-    /**
-     * <code>repeated uint32 Values = 1;</code>
-     * @param values the values_ to add
-     * @return this
-     */
-    public UI32s addAllValues(final int... values) {
-      bitField0_ |= 0x00000002;
-      values_.addAll(values);
-      return this;
-    }
-
-    @Override
-    public UI32s copyFrom(final UI32s other) {
-      cachedSize = other.cachedSize;
-      if ((bitField0_ | other.bitField0_) != 0) {
-        bitField0_ = other.bitField0_;
-        nextPackage.copyFrom(other.nextPackage);
-        values_.copyFrom(other.values_);
-      }
-      return this;
-    }
-
-    @Override
-    public UI32s mergeFrom(final UI32s other) {
-      if (other.isEmpty()) {
-        return this;
-      }
-      cachedSize = -1;
-      if (other.hasNextPackage()) {
-        getMutableNextPackage().copyFrom(other.nextPackage);
-      }
-      if (other.hasValues()) {
-        getMutableValues().addAll(other.values_);
-      }
-      return this;
-    }
-
-    @Override
-    public UI32s clear() {
-      if (isEmpty()) {
-        return this;
-      }
-      cachedSize = -1;
-      bitField0_ = 0;
-      nextPackage.clear();
-      values_.clear();
-      return this;
-    }
-
-    @Override
-    public UI32s clearQuick() {
-      if (isEmpty()) {
-        return this;
-      }
-      cachedSize = -1;
-      bitField0_ = 0;
-      nextPackage.clear();
-      values_.clear();
-      return this;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-      if (o == this) {
-        return true;
-      }
-      if (!(o instanceof UI32s)) {
-        return false;
-      }
-      UI32s other = (UI32s) o;
-      return bitField0_ == other.bitField0_
-        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
-        && (!hasValues() || values_.equals(other.values_));
-    }
-
-    @Override
-    public void writeTo(final ProtoSink output) throws IOException {
-      if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawLittleEndian16((short) 32762);
-        output.writeBytesNoTag(nextPackage);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
-        for (int i = 0; i < values_.length(); i++) {
-          output.writeRawByte((byte) 8);
-          output.writeUInt32NoTag(values_.array()[i]);
-        }
-      }
-    }
-
-    @Override
-    protected int computeSerializedSize() {
-      int size = 0;
-      if ((bitField0_ & 0x00000001) != 0) {
-        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
-        size += (1 * values_.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(values_);
-      }
-      return size;
-    }
-
-    @Override
-    @SuppressWarnings("fallthrough")
-    public UI32s mergeFrom(final ProtoSource input) throws IOException {
-      // Enabled Fall-Through Optimization (QuickBuffers)
-      int tag = input.readTag();
-      while (true) {
-        switch (tag) {
-          case 16378: {
-            // nextPackage
-            input.readBytes(nextPackage);
-            bitField0_ |= 0x00000001;
-            tag = input.readTag();
-            if (tag != 10) {
-              break;
-            }
-          }
-          case 10: {
-            // values_ [packed=true]
-            input.readPackedUInt32(values_, tag);
-            bitField0_ |= 0x00000002;
-            tag = input.readTag();
-            if (tag != 0) {
-              break;
-            }
-          }
-          case 0: {
-            return this;
-          }
-          default: {
-            if (!input.skipField(tag)) {
-              return this;
-            }
-            tag = input.readTag();
-            break;
-          }
-          case 8: {
-            // values_ [packed=false]
-            tag = input.readRepeatedUInt32(values_, tag);
-            bitField0_ |= 0x00000002;
-            break;
-          }
-        }
-      }
-    }
-
-    @Override
-    public void writeTo(final JsonSink output) throws IOException {
-      output.beginObject();
-      if ((bitField0_ & 0x00000001) != 0) {
-        output.writeBytes(FieldNames.nextPackage, nextPackage);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
-        output.writeRepeatedUInt32(FieldNames.values_, values_);
-      }
-      output.endObject();
-    }
-
-    @Override
-    public UI32s mergeFrom(final JsonSource input) throws IOException {
-      if (!input.beginObject()) {
-        return this;
-      }
-      while (!input.isAtEnd()) {
-        switch (input.readFieldHash()) {
-          case -2082324045: {
-            if (input.isAtField(FieldNames.nextPackage)) {
-              if (!input.trySkipNullValue()) {
-                input.readBytes(nextPackage);
-                bitField0_ |= 0x00000001;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
-          case -1739945662: {
-            if (input.isAtField(FieldNames.values_)) {
-              if (!input.trySkipNullValue()) {
-                input.readRepeatedUInt32(values_);
-                bitField0_ |= 0x00000002;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
-          default: {
-            input.skipUnknownField();
-            break;
-          }
-        }
-      }
-      input.endObject();
-      return this;
-    }
-
-    @Override
-    public UI32s clone() {
-      return new UI32s().copyFrom(this);
-    }
-
-    @Override
-    public boolean isEmpty() {
-      return ((bitField0_) == 0);
-    }
-
-    public static UI32s parseFrom(final byte[] data) throws InvalidProtocolBufferException {
-      return ProtoMessage.mergeFrom(new UI32s(), data).checkInitialized();
-    }
-
-    public static UI32s parseFrom(final ProtoSource input) throws IOException {
-      return ProtoMessage.mergeFrom(new UI32s(), input).checkInitialized();
-    }
-
-    public static UI32s parseFrom(final JsonSource input) throws IOException {
-      return ProtoMessage.mergeFrom(new UI32s(), input).checkInitialized();
-    }
-
-    /**
-     * @return factory for creating UI32s messages
-     */
-    public static MessageFactory<UI32s> getFactory() {
-      return UI32sFactory.INSTANCE;
-    }
-
-    private enum UI32sFactory implements MessageFactory<UI32s> {
-      INSTANCE;
-
-      @Override
-      public UI32s create() {
-        return UI32s.newInstance();
-      }
-    }
-
-    /**
-     * Contains name constants used for serializing JSON
-     */
-    static class FieldNames {
-      static final FieldName nextPackage = FieldName.forField("NextPackage");
-
-      static final FieldName values_ = FieldName.forField("Values");
-    }
-  }
-
   /**
    * Protobuf type {@code GachaNewbieInfo}
    */
@@ -446,7 +38,7 @@ public final class GachaNewbieInfoOuterClass {
     /**
      * <code>optional .UI32s Temp = 15;</code>
      */
-    private final UI32s temp = UI32s.newInstance();
+    private final Public.UI32s temp = Public.UI32s.newInstance();
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
@@ -456,7 +48,7 @@ public final class GachaNewbieInfoOuterClass {
     /**
      * <code>repeated .UI32s Cards = 14;</code>
      */
-    private final RepeatedMessage<UI32s> cards = RepeatedMessage.newEmptyInstance(UI32s.getFactory());
+    private final RepeatedMessage<Public.UI32s> cards = RepeatedMessage.newEmptyInstance(Public.UI32s.getFactory());
 
     private GachaNewbieInfo() {
     }
@@ -607,7 +199,7 @@ public final class GachaNewbieInfoOuterClass {
      *
      * @return internal storage object for reading
      */
-    public UI32s getTemp() {
+    public Public.UI32s getTemp() {
       return temp;
     }
 
@@ -620,7 +212,7 @@ public final class GachaNewbieInfoOuterClass {
      *
      * @return internal storage object for modifications
      */
-    public UI32s getMutableTemp() {
+    public Public.UI32s getMutableTemp() {
       bitField0_ |= 0x00000008;
       return temp;
     }
@@ -630,7 +222,7 @@ public final class GachaNewbieInfoOuterClass {
      * @param value the temp to set
      * @return this
      */
-    public GachaNewbieInfo setTemp(final UI32s value) {
+    public GachaNewbieInfo setTemp(final Public.UI32s value) {
       bitField0_ |= 0x00000008;
       temp.copyFrom(value);
       return this;
@@ -743,7 +335,7 @@ public final class GachaNewbieInfoOuterClass {
      *
      * @return internal storage object for reading
      */
-    public RepeatedMessage<UI32s> getCards() {
+    public RepeatedMessage<Public.UI32s> getCards() {
       return cards;
     }
 
@@ -756,7 +348,7 @@ public final class GachaNewbieInfoOuterClass {
      *
      * @return internal storage object for modifications
      */
-    public RepeatedMessage<UI32s> getMutableCards() {
+    public RepeatedMessage<Public.UI32s> getMutableCards() {
       bitField0_ |= 0x00000020;
       return cards;
     }
@@ -766,7 +358,7 @@ public final class GachaNewbieInfoOuterClass {
      * @param value the cards to add
      * @return this
      */
-    public GachaNewbieInfo addCards(final UI32s value) {
+    public GachaNewbieInfo addCards(final Public.UI32s value) {
       bitField0_ |= 0x00000020;
       cards.add(value);
       return this;
@@ -777,7 +369,7 @@ public final class GachaNewbieInfoOuterClass {
      * @param values the cards to add
      * @return this
      */
-    public GachaNewbieInfo addAllCards(final UI32s... values) {
+    public GachaNewbieInfo addAllCards(final Public.UI32s... values) {
       bitField0_ |= 0x00000020;
       cards.addAll(values);
       return this;

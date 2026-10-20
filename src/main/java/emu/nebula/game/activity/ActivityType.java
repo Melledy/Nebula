@@ -31,7 +31,12 @@ public enum ActivityType {
     IceCream          (23),
     FollowSocialMedia (24),
     Soldier           (25),
-    NewStory          (30);
+    Reengagement      (26),
+    MathParkour       (27),
+    MailBind          (28),
+    NewStory          (30),
+    MallLogin         (31),
+    SignIn            (32);
 
     @Getter
     private final int value;

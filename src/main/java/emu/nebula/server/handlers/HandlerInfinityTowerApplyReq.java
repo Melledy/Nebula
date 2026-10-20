@@ -15,7 +15,7 @@ public class HandlerInfinityTowerApplyReq extends NetHandler {
         var req = InfinityTowerApplyReq.parseFrom(message);
         
         // Apply
-        boolean success = session.getPlayer().getInfinityTowerManager().apply(req.getLevelId(), req.getBuildId());
+        boolean success = session.getPlayer().getInfinityTowerManager().apply(req.getLevelId(), req.getBuild().getBuildId());
         
         if (!success) {
             return session.encodeMsg(NetMsgId.infinity_tower_apply_failed_ack);

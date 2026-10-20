@@ -18,7 +18,7 @@ import emu.nebula.game.player.PlayerChangeInfo;
 import emu.nebula.game.quest.QuestCondition;
 import emu.nebula.proto.ActivityDetail.ActivityMsg;
 import emu.nebula.proto.Public.ActivityLevel;
-
+import emu.nebula.proto.Public.UseBuild;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -201,7 +201,7 @@ public class LevelsActivity extends GameActivity {
         public ActivityLevel toProto() {
             var proto = ActivityLevel.newInstance()
                     .setStar(this.getStar())
-                    .setBuildId(this.getBuildId());
+                    .setBuild(UseBuild.newInstance().setBuildId(this.getBuildId()).setTypeValue(1));
             
             return proto;
         }

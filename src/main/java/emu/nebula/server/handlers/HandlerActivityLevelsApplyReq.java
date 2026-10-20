@@ -23,7 +23,7 @@ public class HandlerActivityLevelsApplyReq extends NetHandler {
         }
         
         // Apply
-        boolean success = activity.apply(req.getLevelId(), req.getBuildId());
+        boolean success = activity.apply(req.getLevelId(), req.getBuild().getBuildId());
 
         if (success == false) {
             return session.encodeMsg(NetMsgId.activity_levels_apply_failed_ack);

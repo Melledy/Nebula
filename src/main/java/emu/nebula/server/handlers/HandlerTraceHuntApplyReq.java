@@ -15,7 +15,7 @@ public class HandlerTraceHuntApplyReq extends NetHandler {
         var req = TraceHuntApplyReq.parseFrom(message);
         
         // Hunt
-        boolean success = session.getPlayer().getTraceHuntManager().apply(req.getOwnerUID(), req.getBossID(), req.getBuildID());
+        boolean success = session.getPlayer().getTraceHuntManager().apply(req.getOwnerUID(), req.getBossID(), req.getBuild().getBuildId());
         
         if (!success) {
             return session.encodeMsg(NetMsgId.trace_hunt_apply_failed_ack);

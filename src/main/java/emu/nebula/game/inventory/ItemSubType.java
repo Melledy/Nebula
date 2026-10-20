@@ -38,7 +38,15 @@ public enum ItemSubType {
     CharacterSkin       (46),
     SouvenirEnergyItem  (47),
     Build               (48),
-    Chess               (49);
+    Chess               (49),
+    DormHonor           (50),
+    DormFurniture       (51),
+    DormKit             (52),
+    DormScene           (53),
+    DormSkin            (54),
+    DormRoom            (55),
+    DormLayout          (56),
+    TokenItem           (57);
 
     @Getter
     private final int value;

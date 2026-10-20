@@ -14,7 +14,7 @@ import emu.nebula.proto.ActivityDetail.ActivityMsg;
 import emu.nebula.proto.ActivityStorySettleOuterClass.ActivityStorySettle;
 import emu.nebula.proto.Public.ActivityStory;
 import emu.nebula.proto.Public.ActivityStoryChoice;
-
+import emu.nebula.proto.Public.UseBuild;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
@@ -128,7 +128,7 @@ public class StoryActivity extends GameActivity {
     @Override
     public void encodeActivityMsg(ActivityMsg msg) {
         var proto = msg.getMutableStoryChapter()
-                .setBuildId(this.getBuildId());
+                .setBuild(UseBuild.newInstance().setBuildId(this.getBuildId()).setTypeValue(1));
 
         for (int i : this.getEvidences()) {
             proto.addEvidences(i);

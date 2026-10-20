@@ -21,11 +21,6 @@ public final class ActivityTrekkerVersusApply {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint64 BuildId = 3;</code>
-     */
-    private long buildId;
-
-    /**
      * <code>optional uint32 ActivityId = 1;</code>
      */
     private int activityId;
@@ -34,6 +29,11 @@ public final class ActivityTrekkerVersusApply {
      * <code>optional uint32 LevelId = 2;</code>
      */
     private int levelId;
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     */
+    private final Public.UseBuild build = Public.UseBuild.newInstance();
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
@@ -56,48 +56,11 @@ public final class ActivityTrekkerVersusApply {
     }
 
     /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @return whether the buildId field is set
-     */
-    public boolean hasBuildId() {
-      return (bitField0_ & 0x00000001) != 0;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @return this
-     */
-    public ActivityTrekkerVersusApplyReq clearBuildId() {
-      bitField0_ &= ~0x00000001;
-      buildId = 0L;
-      return this;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @return the buildId
-     */
-    public long getBuildId() {
-      return buildId;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @param value the buildId to set
-     * @return this
-     */
-    public ActivityTrekkerVersusApplyReq setBuildId(final long value) {
-      bitField0_ |= 0x00000001;
-      buildId = value;
-      return this;
-    }
-
-    /**
      * <code>optional uint32 ActivityId = 1;</code>
      * @return whether the activityId field is set
      */
     public boolean hasActivityId() {
-      return (bitField0_ & 0x00000002) != 0;
+      return (bitField0_ & 0x00000001) != 0;
     }
 
     /**
@@ -105,7 +68,7 @@ public final class ActivityTrekkerVersusApply {
      * @return this
      */
     public ActivityTrekkerVersusApplyReq clearActivityId() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000001;
       activityId = 0;
       return this;
     }
@@ -124,7 +87,7 @@ public final class ActivityTrekkerVersusApply {
      * @return this
      */
     public ActivityTrekkerVersusApplyReq setActivityId(final int value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000001;
       activityId = value;
       return this;
     }
@@ -134,7 +97,7 @@ public final class ActivityTrekkerVersusApply {
      * @return whether the levelId field is set
      */
     public boolean hasLevelId() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000002) != 0;
     }
 
     /**
@@ -142,7 +105,7 @@ public final class ActivityTrekkerVersusApply {
      * @return this
      */
     public ActivityTrekkerVersusApplyReq clearLevelId() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000002;
       levelId = 0;
       return this;
     }
@@ -161,8 +124,65 @@ public final class ActivityTrekkerVersusApply {
      * @return this
      */
     public ActivityTrekkerVersusApplyReq setLevelId(final int value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       levelId = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @return whether the build field is set
+     */
+    public boolean hasBuild() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @return this
+     */
+    public ActivityTrekkerVersusApplyReq clearBuild() {
+      bitField0_ &= ~0x00000004;
+      build.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBuild()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.UseBuild getBuild() {
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.UseBuild getMutableBuild() {
+      bitField0_ |= 0x00000004;
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @param value the build to set
+     * @return this
+     */
+    public ActivityTrekkerVersusApplyReq setBuild(final Public.UseBuild value) {
+      bitField0_ |= 0x00000004;
+      build.copyFrom(value);
       return this;
     }
 
@@ -318,9 +338,9 @@ public final class ActivityTrekkerVersusApply {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
-        buildId = other.buildId;
         activityId = other.activityId;
         levelId = other.levelId;
+        build.copyFrom(other.build);
         nextPackage.copyFrom(other.nextPackage);
         affixIds.copyFrom(other.affixIds);
       }
@@ -333,14 +353,14 @@ public final class ActivityTrekkerVersusApply {
         return this;
       }
       cachedSize = -1;
-      if (other.hasBuildId()) {
-        setBuildId(other.buildId);
-      }
       if (other.hasActivityId()) {
         setActivityId(other.activityId);
       }
       if (other.hasLevelId()) {
         setLevelId(other.levelId);
+      }
+      if (other.hasBuild()) {
+        getMutableBuild().mergeFrom(other.build);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -358,9 +378,9 @@ public final class ActivityTrekkerVersusApply {
       }
       cachedSize = -1;
       bitField0_ = 0;
-      buildId = 0L;
       activityId = 0;
       levelId = 0;
+      build.clear();
       nextPackage.clear();
       affixIds.clear();
       return this;
@@ -373,6 +393,7 @@ public final class ActivityTrekkerVersusApply {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      build.clearQuick();
       nextPackage.clear();
       affixIds.clear();
       return this;
@@ -388,9 +409,9 @@ public final class ActivityTrekkerVersusApply {
       }
       ActivityTrekkerVersusApplyReq other = (ActivityTrekkerVersusApplyReq) o;
       return bitField0_ == other.bitField0_
-        && (!hasBuildId() || buildId == other.buildId)
         && (!hasActivityId() || activityId == other.activityId)
         && (!hasLevelId() || levelId == other.levelId)
+        && (!hasBuild() || build.equals(other.build))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasAffixIds() || affixIds.equals(other.affixIds));
     }
@@ -398,16 +419,16 @@ public final class ActivityTrekkerVersusApply {
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 24);
-        output.writeUInt64NoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 8);
         output.writeUInt32NoTag(activityId);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 16);
         output.writeUInt32NoTag(levelId);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 26);
+        output.writeMessageNoTag(build);
       }
       if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawLittleEndian16((short) 32762);
@@ -425,13 +446,13 @@ public final class ActivityTrekkerVersusApply {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(activityId);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(levelId);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(build);
       }
       if ((bitField0_ & 0x00000008) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
@@ -449,19 +470,10 @@ public final class ActivityTrekkerVersusApply {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 24: {
-            // buildId
-            buildId = input.readUInt64();
-            bitField0_ |= 0x00000001;
-            tag = input.readTag();
-            if (tag != 8) {
-              break;
-            }
-          }
           case 8: {
             // activityId
             activityId = input.readUInt32();
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000001;
             tag = input.readTag();
             if (tag != 16) {
               break;
@@ -470,6 +482,15 @@ public final class ActivityTrekkerVersusApply {
           case 16: {
             // levelId
             levelId = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 26) {
+              break;
+            }
+          }
+          case 26: {
+            // build
+            input.readMessage(build);
             bitField0_ |= 0x00000004;
             tag = input.readTag();
             if (tag != 16378) {
@@ -518,13 +539,13 @@ public final class ActivityTrekkerVersusApply {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt64(FieldNames.buildId, buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.activityId, activityId);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.levelId, levelId);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeMessage(FieldNames.build, build);
       }
       if ((bitField0_ & 0x00000008) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
@@ -542,22 +563,11 @@ public final class ActivityTrekkerVersusApply {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
-          case 1895597065: {
-            if (input.isAtField(FieldNames.buildId)) {
-              if (!input.trySkipNullValue()) {
-                buildId = input.readUInt64();
-                bitField0_ |= 0x00000001;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
           case -252882774: {
             if (input.isAtField(FieldNames.activityId)) {
               if (!input.trySkipNullValue()) {
                 activityId = input.readUInt32();
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000001;
               }
             } else {
               input.skipUnknownField();
@@ -568,6 +578,17 @@ public final class ActivityTrekkerVersusApply {
             if (input.isAtField(FieldNames.levelId)) {
               if (!input.trySkipNullValue()) {
                 levelId = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 64542286: {
+            if (input.isAtField(FieldNames.build)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(build);
                 bitField0_ |= 0x00000004;
               }
             } else {
@@ -652,11 +673,11 @@ public final class ActivityTrekkerVersusApply {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
-      static final FieldName buildId = FieldName.forField("BuildId");
-
       static final FieldName activityId = FieldName.forField("ActivityId");
 
       static final FieldName levelId = FieldName.forField("LevelId");
+
+      static final FieldName build = FieldName.forField("Build");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 

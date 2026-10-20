@@ -23,7 +23,7 @@ public class HandlerActivityTrekkerVersusApplyReq extends NetHandler {
         }
         
         // Apply
-        boolean result = activity.apply(req.getBuildId(), req.getAffixIds());
+        boolean result = activity.apply(req.getBuild().getBuildId(), req.getAffixIds());
         
         if (result == false) {
             return session.encodeMsg(NetMsgId.activity_trekker_versus_apply_failed_ack);

@@ -146,6 +146,21 @@ public final class ActivityDetail {
     private final Public.ActivitySoldier soldier = Public.ActivitySoldier.newInstance();
 
     /**
+     * <code>optional .ActivityMathParkour MathParkour = 26;</code>
+     */
+    private final Public.ActivityMathParkour mathParkour = Public.ActivityMathParkour.newInstance();
+
+    /**
+     * <code>optional .ActivityMailBind MailBind = 27;</code>
+     */
+    private final Public.ActivityMailBind mailBind = Public.ActivityMailBind.newInstance();
+
+    /**
+     * <code>optional .ActivityMallLogin MallLogin = 28;</code>
+     */
+    private final Public.ActivityMallLogin mallLogin = Public.ActivityMallLogin.newInstance();
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -1566,11 +1581,182 @@ public final class ActivityDetail {
     }
 
     /**
+     * <code>optional .ActivityMathParkour MathParkour = 26;</code>
+     * @return whether the mathParkour field is set
+     */
+    public boolean hasMathParkour() {
+      return (bitField0_ & 0x02000000) != 0;
+    }
+
+    /**
+     * <code>optional .ActivityMathParkour MathParkour = 26;</code>
+     * @return this
+     */
+    public ActivityMsg clearMathParkour() {
+      bitField0_ &= ~0x02000000;
+      mathParkour.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityMathParkour MathParkour = 26;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableMathParkour()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.ActivityMathParkour getMathParkour() {
+      return mathParkour;
+    }
+
+    /**
+     * <code>optional .ActivityMathParkour MathParkour = 26;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.ActivityMathParkour getMutableMathParkour() {
+      bitField0_ |= 0x02000000;
+      return mathParkour;
+    }
+
+    /**
+     * <code>optional .ActivityMathParkour MathParkour = 26;</code>
+     * @param value the mathParkour to set
+     * @return this
+     */
+    public ActivityMsg setMathParkour(final Public.ActivityMathParkour value) {
+      bitField0_ |= 0x02000000;
+      mathParkour.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityMailBind MailBind = 27;</code>
+     * @return whether the mailBind field is set
+     */
+    public boolean hasMailBind() {
+      return (bitField0_ & 0x04000000) != 0;
+    }
+
+    /**
+     * <code>optional .ActivityMailBind MailBind = 27;</code>
+     * @return this
+     */
+    public ActivityMsg clearMailBind() {
+      bitField0_ &= ~0x04000000;
+      mailBind.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityMailBind MailBind = 27;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableMailBind()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.ActivityMailBind getMailBind() {
+      return mailBind;
+    }
+
+    /**
+     * <code>optional .ActivityMailBind MailBind = 27;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.ActivityMailBind getMutableMailBind() {
+      bitField0_ |= 0x04000000;
+      return mailBind;
+    }
+
+    /**
+     * <code>optional .ActivityMailBind MailBind = 27;</code>
+     * @param value the mailBind to set
+     * @return this
+     */
+    public ActivityMsg setMailBind(final Public.ActivityMailBind value) {
+      bitField0_ |= 0x04000000;
+      mailBind.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityMallLogin MallLogin = 28;</code>
+     * @return whether the mallLogin field is set
+     */
+    public boolean hasMallLogin() {
+      return (bitField0_ & 0x08000000) != 0;
+    }
+
+    /**
+     * <code>optional .ActivityMallLogin MallLogin = 28;</code>
+     * @return this
+     */
+    public ActivityMsg clearMallLogin() {
+      bitField0_ &= ~0x08000000;
+      mallLogin.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityMallLogin MallLogin = 28;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableMallLogin()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.ActivityMallLogin getMallLogin() {
+      return mallLogin;
+    }
+
+    /**
+     * <code>optional .ActivityMallLogin MallLogin = 28;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.ActivityMallLogin getMutableMallLogin() {
+      bitField0_ |= 0x08000000;
+      return mallLogin;
+    }
+
+    /**
+     * <code>optional .ActivityMallLogin MallLogin = 28;</code>
+     * @param value the mallLogin to set
+     * @return this
+     */
+    public ActivityMsg setMallLogin(final Public.ActivityMallLogin value) {
+      bitField0_ |= 0x08000000;
+      mallLogin.copyFrom(value);
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x02000000) != 0;
+      return (bitField0_ & 0x10000000) != 0;
     }
 
     /**
@@ -1578,7 +1764,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg clearNextPackage() {
-      bitField0_ &= ~0x02000000;
+      bitField0_ &= ~0x10000000;
       nextPackage.clear();
       return this;
     }
@@ -1607,7 +1793,7 @@ public final class ActivityDetail {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x02000000;
+      bitField0_ |= 0x10000000;
       return nextPackage;
     }
 
@@ -1617,7 +1803,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg addNextPackage(final byte value) {
-      bitField0_ |= 0x02000000;
+      bitField0_ |= 0x10000000;
       nextPackage.add(value);
       return this;
     }
@@ -1628,7 +1814,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x02000000;
+      bitField0_ |= 0x10000000;
       nextPackage.addAll(values);
       return this;
     }
@@ -1639,7 +1825,7 @@ public final class ActivityDetail {
      * @return this
      */
     public ActivityMsg setNextPackage(final byte... values) {
-      bitField0_ |= 0x02000000;
+      bitField0_ |= 0x10000000;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -1674,6 +1860,9 @@ public final class ActivityDetail {
         share.copyFrom(other.share);
         iceCream.copyFrom(other.iceCream);
         soldier.copyFrom(other.soldier);
+        mathParkour.copyFrom(other.mathParkour);
+        mailBind.copyFrom(other.mailBind);
+        mallLogin.copyFrom(other.mallLogin);
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -1760,6 +1949,15 @@ public final class ActivityDetail {
       if (other.hasSoldier()) {
         getMutableSoldier().mergeFrom(other.soldier);
       }
+      if (other.hasMathParkour()) {
+        getMutableMathParkour().mergeFrom(other.mathParkour);
+      }
+      if (other.hasMailBind()) {
+        getMutableMailBind().mergeFrom(other.mailBind);
+      }
+      if (other.hasMallLogin()) {
+        getMutableMallLogin().mergeFrom(other.mallLogin);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -1798,6 +1996,9 @@ public final class ActivityDetail {
       share.clear();
       iceCream.clear();
       soldier.clear();
+      mathParkour.clear();
+      mailBind.clear();
+      mallLogin.clear();
       nextPackage.clear();
       return this;
     }
@@ -1833,6 +2034,9 @@ public final class ActivityDetail {
       share.clearQuick();
       iceCream.clearQuick();
       soldier.clearQuick();
+      mathParkour.clearQuick();
+      mailBind.clearQuick();
+      mallLogin.clearQuick();
       nextPackage.clear();
       return this;
     }
@@ -1872,6 +2076,9 @@ public final class ActivityDetail {
         && (!hasShare() || share.equals(other.share))
         && (!hasIceCream() || iceCream.equals(other.iceCream))
         && (!hasSoldier() || soldier.equals(other.soldier))
+        && (!hasMathParkour() || mathParkour.equals(other.mathParkour))
+        && (!hasMailBind() || mailBind.equals(other.mailBind))
+        && (!hasMallLogin() || mallLogin.equals(other.mallLogin))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
@@ -1978,6 +2185,18 @@ public final class ActivityDetail {
         output.writeMessageNoTag(soldier);
       }
       if ((bitField0_ & 0x02000000) != 0) {
+        output.writeRawLittleEndian16((short) 466);
+        output.writeMessageNoTag(mathParkour);
+      }
+      if ((bitField0_ & 0x04000000) != 0) {
+        output.writeRawLittleEndian16((short) 474);
+        output.writeMessageNoTag(mailBind);
+      }
+      if ((bitField0_ & 0x08000000) != 0) {
+        output.writeRawLittleEndian16((short) 482);
+        output.writeMessageNoTag(mallLogin);
+      }
+      if ((bitField0_ & 0x10000000) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
@@ -2062,6 +2281,15 @@ public final class ActivityDetail {
         size += 2 + ProtoSink.computeMessageSizeNoTag(soldier);
       }
       if ((bitField0_ & 0x02000000) != 0) {
+        size += 2 + ProtoSink.computeMessageSizeNoTag(mathParkour);
+      }
+      if ((bitField0_ & 0x04000000) != 0) {
+        size += 2 + ProtoSink.computeMessageSizeNoTag(mailBind);
+      }
+      if ((bitField0_ & 0x08000000) != 0) {
+        size += 2 + ProtoSink.computeMessageSizeNoTag(mallLogin);
+      }
+      if ((bitField0_ & 0x10000000) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       return size;
@@ -2295,6 +2523,33 @@ public final class ActivityDetail {
             input.readMessage(soldier);
             bitField0_ |= 0x01000000;
             tag = input.readTag();
+            if (tag != 210) {
+              break;
+            }
+          }
+          case 210: {
+            // mathParkour
+            input.readMessage(mathParkour);
+            bitField0_ |= 0x02000000;
+            tag = input.readTag();
+            if (tag != 218) {
+              break;
+            }
+          }
+          case 218: {
+            // mailBind
+            input.readMessage(mailBind);
+            bitField0_ |= 0x04000000;
+            tag = input.readTag();
+            if (tag != 226) {
+              break;
+            }
+          }
+          case 226: {
+            // mallLogin
+            input.readMessage(mallLogin);
+            bitField0_ |= 0x08000000;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -2302,7 +2557,7 @@ public final class ActivityDetail {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x02000000;
+            bitField0_ |= 0x10000000;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -2401,6 +2656,15 @@ public final class ActivityDetail {
         output.writeMessage(FieldNames.soldier, soldier);
       }
       if ((bitField0_ & 0x02000000) != 0) {
+        output.writeMessage(FieldNames.mathParkour, mathParkour);
+      }
+      if ((bitField0_ & 0x04000000) != 0) {
+        output.writeMessage(FieldNames.mailBind, mailBind);
+      }
+      if ((bitField0_ & 0x08000000) != 0) {
+        output.writeMessage(FieldNames.mallLogin, mallLogin);
+      }
+      if ((bitField0_ & 0x10000000) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       output.endObject();
@@ -2688,11 +2952,44 @@ public final class ActivityDetail {
             }
             break;
           }
+          case -284456230: {
+            if (input.isAtField(FieldNames.mathParkour)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(mathParkour);
+                bitField0_ |= 0x02000000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 53825204: {
+            if (input.isAtField(FieldNames.mailBind)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(mailBind);
+                bitField0_ |= 0x04000000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 45532565: {
+            if (input.isAtField(FieldNames.mallLogin)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(mallLogin);
+                bitField0_ |= 0x08000000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x02000000;
+                bitField0_ |= 0x10000000;
               }
             } else {
               input.skipUnknownField();
@@ -2800,6 +3097,12 @@ public final class ActivityDetail {
       static final FieldName iceCream = FieldName.forField("IceCream");
 
       static final FieldName soldier = FieldName.forField("Soldier");
+
+      static final FieldName mathParkour = FieldName.forField("MathParkour");
+
+      static final FieldName mailBind = FieldName.forField("MailBind");
+
+      static final FieldName mallLogin = FieldName.forField("MallLogin");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }

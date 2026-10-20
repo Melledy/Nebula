@@ -11,7 +11,6 @@ import us.hebi.quickbuf.ProtoMessage;
 import us.hebi.quickbuf.ProtoSink;
 import us.hebi.quickbuf.ProtoSource;
 import us.hebi.quickbuf.RepeatedByte;
-import us.hebi.quickbuf.RepeatedLong;
 import us.hebi.quickbuf.RepeatedMessage;
 
 public final class VampireSurvivorApply {
@@ -32,9 +31,9 @@ public final class VampireSurvivorApply {
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
 
     /**
-     * <code>repeated uint64 BuildIds = 2;</code>
+     * <code>repeated .UseBuild Builds = 2;</code>
      */
-    private final RepeatedLong buildIds = RepeatedLong.newEmptyInstance();
+    private final RepeatedMessage<Public.UseBuild> builds = RepeatedMessage.newEmptyInstance(Public.UseBuild.getFactory());
 
     private VampireSurvivorApplyReq() {
     }
@@ -163,39 +162,39 @@ public final class VampireSurvivorApply {
     }
 
     /**
-     * <code>repeated uint64 BuildIds = 2;</code>
-     * @return whether the buildIds field is set
+     * <code>repeated .UseBuild Builds = 2;</code>
+     * @return whether the builds field is set
      */
-    public boolean hasBuildIds() {
+    public boolean hasBuilds() {
       return (bitField0_ & 0x00000004) != 0;
     }
 
     /**
-     * <code>repeated uint64 BuildIds = 2;</code>
+     * <code>repeated .UseBuild Builds = 2;</code>
      * @return this
      */
-    public VampireSurvivorApplyReq clearBuildIds() {
+    public VampireSurvivorApplyReq clearBuilds() {
       bitField0_ &= ~0x00000004;
-      buildIds.clear();
+      builds.clear();
       return this;
     }
 
     /**
-     * <code>repeated uint64 BuildIds = 2;</code>
+     * <code>repeated .UseBuild Builds = 2;</code>
      *
      * This method returns the internal storage object without modifying any has state.
      * The returned object should not be modified and be treated as read-only.
      *
-     * Use {@link #getMutableBuildIds()} if you want to modify it.
+     * Use {@link #getMutableBuilds()} if you want to modify it.
      *
      * @return internal storage object for reading
      */
-    public RepeatedLong getBuildIds() {
-      return buildIds;
+    public RepeatedMessage<Public.UseBuild> getBuilds() {
+      return builds;
     }
 
     /**
-     * <code>repeated uint64 BuildIds = 2;</code>
+     * <code>repeated .UseBuild Builds = 2;</code>
      *
      * This method returns the internal storage object and sets the corresponding
      * has state. The returned object will become part of this message and its
@@ -203,30 +202,30 @@ public final class VampireSurvivorApply {
      *
      * @return internal storage object for modifications
      */
-    public RepeatedLong getMutableBuildIds() {
+    public RepeatedMessage<Public.UseBuild> getMutableBuilds() {
       bitField0_ |= 0x00000004;
-      return buildIds;
+      return builds;
     }
 
     /**
-     * <code>repeated uint64 BuildIds = 2;</code>
-     * @param value the buildIds to add
+     * <code>repeated .UseBuild Builds = 2;</code>
+     * @param value the builds to add
      * @return this
      */
-    public VampireSurvivorApplyReq addBuildIds(final long value) {
+    public VampireSurvivorApplyReq addBuilds(final Public.UseBuild value) {
       bitField0_ |= 0x00000004;
-      buildIds.add(value);
+      builds.add(value);
       return this;
     }
 
     /**
-     * <code>repeated uint64 BuildIds = 2;</code>
-     * @param values the buildIds to add
+     * <code>repeated .UseBuild Builds = 2;</code>
+     * @param values the builds to add
      * @return this
      */
-    public VampireSurvivorApplyReq addAllBuildIds(final long... values) {
+    public VampireSurvivorApplyReq addAllBuilds(final Public.UseBuild... values) {
       bitField0_ |= 0x00000004;
-      buildIds.addAll(values);
+      builds.addAll(values);
       return this;
     }
 
@@ -237,7 +236,7 @@ public final class VampireSurvivorApply {
         bitField0_ = other.bitField0_;
         id = other.id;
         nextPackage.copyFrom(other.nextPackage);
-        buildIds.copyFrom(other.buildIds);
+        builds.copyFrom(other.builds);
       }
       return this;
     }
@@ -254,8 +253,8 @@ public final class VampireSurvivorApply {
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
-      if (other.hasBuildIds()) {
-        getMutableBuildIds().addAll(other.buildIds);
+      if (other.hasBuilds()) {
+        getMutableBuilds().addAll(other.builds);
       }
       return this;
     }
@@ -269,7 +268,7 @@ public final class VampireSurvivorApply {
       bitField0_ = 0;
       id = 0;
       nextPackage.clear();
-      buildIds.clear();
+      builds.clear();
       return this;
     }
 
@@ -281,7 +280,7 @@ public final class VampireSurvivorApply {
       cachedSize = -1;
       bitField0_ = 0;
       nextPackage.clear();
-      buildIds.clear();
+      builds.clearQuick();
       return this;
     }
 
@@ -297,7 +296,7 @@ public final class VampireSurvivorApply {
       return bitField0_ == other.bitField0_
         && (!hasId() || id == other.id)
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
-        && (!hasBuildIds() || buildIds.equals(other.buildIds));
+        && (!hasBuilds() || builds.equals(other.builds));
     }
 
     @Override
@@ -311,9 +310,9 @@ public final class VampireSurvivorApply {
         output.writeBytesNoTag(nextPackage);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        for (int i = 0; i < buildIds.length(); i++) {
-          output.writeRawByte((byte) 16);
-          output.writeUInt64NoTag(buildIds.array()[i]);
+        for (int i = 0; i < builds.length(); i++) {
+          output.writeRawByte((byte) 18);
+          output.writeMessageNoTag(builds.get(i));
         }
       }
     }
@@ -328,7 +327,7 @@ public final class VampireSurvivorApply {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        size += (1 * buildIds.length()) + ProtoSink.computeRepeatedUInt64SizeNoTag(buildIds);
+        size += (1 * builds.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(builds);
       }
       return size;
     }
@@ -359,10 +358,9 @@ public final class VampireSurvivorApply {
             }
           }
           case 18: {
-            // buildIds [packed=true]
-            input.readPackedUInt64(buildIds, tag);
+            // builds
+            tag = input.readRepeatedMessage(builds, tag);
             bitField0_ |= 0x00000004;
-            tag = input.readTag();
             if (tag != 0) {
               break;
             }
@@ -375,12 +373,6 @@ public final class VampireSurvivorApply {
               return this;
             }
             tag = input.readTag();
-            break;
-          }
-          case 16: {
-            // buildIds [packed=false]
-            tag = input.readRepeatedUInt64(buildIds, tag);
-            bitField0_ |= 0x00000004;
             break;
           }
         }
@@ -397,7 +389,7 @@ public final class VampireSurvivorApply {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        output.writeRepeatedUInt64(FieldNames.buildIds, buildIds);
+        output.writeRepeatedMessage(FieldNames.builds, builds);
       }
       output.endObject();
     }
@@ -431,10 +423,10 @@ public final class VampireSurvivorApply {
             }
             break;
           }
-          case -1366033014: {
-            if (input.isAtField(FieldNames.buildIds)) {
+          case 2000810981: {
+            if (input.isAtField(FieldNames.builds)) {
               if (!input.trySkipNullValue()) {
-                input.readRepeatedUInt64(buildIds);
+                input.readRepeatedMessage(builds);
                 bitField0_ |= 0x00000004;
               }
             } else {
@@ -499,7 +491,7 @@ public final class VampireSurvivorApply {
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
-      static final FieldName buildIds = FieldName.forField("BuildIds");
+      static final FieldName builds = FieldName.forField("Builds");
     }
   }
 

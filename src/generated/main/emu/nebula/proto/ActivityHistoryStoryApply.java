@@ -20,11 +20,6 @@ public final class ActivityHistoryStoryApply {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint64 BuildId = 3;</code>
-     */
-    private long buildId;
-
-    /**
      * <code>optional uint32 ActivityId = 1;</code>
      */
     private int activityId;
@@ -33,6 +28,11 @@ public final class ActivityHistoryStoryApply {
      * <code>optional uint32 StoryId = 2;</code>
      */
     private int storyId;
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     */
+    private final Public.UseBuild build = Public.UseBuild.newInstance();
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
@@ -50,48 +50,11 @@ public final class ActivityHistoryStoryApply {
     }
 
     /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @return whether the buildId field is set
-     */
-    public boolean hasBuildId() {
-      return (bitField0_ & 0x00000001) != 0;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @return this
-     */
-    public ActivityHistoryStoryApplyReq clearBuildId() {
-      bitField0_ &= ~0x00000001;
-      buildId = 0L;
-      return this;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @return the buildId
-     */
-    public long getBuildId() {
-      return buildId;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @param value the buildId to set
-     * @return this
-     */
-    public ActivityHistoryStoryApplyReq setBuildId(final long value) {
-      bitField0_ |= 0x00000001;
-      buildId = value;
-      return this;
-    }
-
-    /**
      * <code>optional uint32 ActivityId = 1;</code>
      * @return whether the activityId field is set
      */
     public boolean hasActivityId() {
-      return (bitField0_ & 0x00000002) != 0;
+      return (bitField0_ & 0x00000001) != 0;
     }
 
     /**
@@ -99,7 +62,7 @@ public final class ActivityHistoryStoryApply {
      * @return this
      */
     public ActivityHistoryStoryApplyReq clearActivityId() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000001;
       activityId = 0;
       return this;
     }
@@ -118,7 +81,7 @@ public final class ActivityHistoryStoryApply {
      * @return this
      */
     public ActivityHistoryStoryApplyReq setActivityId(final int value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000001;
       activityId = value;
       return this;
     }
@@ -128,7 +91,7 @@ public final class ActivityHistoryStoryApply {
      * @return whether the storyId field is set
      */
     public boolean hasStoryId() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000002) != 0;
     }
 
     /**
@@ -136,7 +99,7 @@ public final class ActivityHistoryStoryApply {
      * @return this
      */
     public ActivityHistoryStoryApplyReq clearStoryId() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000002;
       storyId = 0;
       return this;
     }
@@ -155,8 +118,65 @@ public final class ActivityHistoryStoryApply {
      * @return this
      */
     public ActivityHistoryStoryApplyReq setStoryId(final int value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       storyId = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @return whether the build field is set
+     */
+    public boolean hasBuild() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @return this
+     */
+    public ActivityHistoryStoryApplyReq clearBuild() {
+      bitField0_ &= ~0x00000004;
+      build.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBuild()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.UseBuild getBuild() {
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.UseBuild getMutableBuild() {
+      bitField0_ |= 0x00000004;
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @param value the build to set
+     * @return this
+     */
+    public ActivityHistoryStoryApplyReq setBuild(final Public.UseBuild value) {
+      bitField0_ |= 0x00000004;
+      build.copyFrom(value);
       return this;
     }
 
@@ -244,9 +264,9 @@ public final class ActivityHistoryStoryApply {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
-        buildId = other.buildId;
         activityId = other.activityId;
         storyId = other.storyId;
+        build.copyFrom(other.build);
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -258,14 +278,14 @@ public final class ActivityHistoryStoryApply {
         return this;
       }
       cachedSize = -1;
-      if (other.hasBuildId()) {
-        setBuildId(other.buildId);
-      }
       if (other.hasActivityId()) {
         setActivityId(other.activityId);
       }
       if (other.hasStoryId()) {
         setStoryId(other.storyId);
+      }
+      if (other.hasBuild()) {
+        getMutableBuild().mergeFrom(other.build);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -280,9 +300,9 @@ public final class ActivityHistoryStoryApply {
       }
       cachedSize = -1;
       bitField0_ = 0;
-      buildId = 0L;
       activityId = 0;
       storyId = 0;
+      build.clear();
       nextPackage.clear();
       return this;
     }
@@ -294,6 +314,7 @@ public final class ActivityHistoryStoryApply {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      build.clearQuick();
       nextPackage.clear();
       return this;
     }
@@ -308,25 +329,25 @@ public final class ActivityHistoryStoryApply {
       }
       ActivityHistoryStoryApplyReq other = (ActivityHistoryStoryApplyReq) o;
       return bitField0_ == other.bitField0_
-        && (!hasBuildId() || buildId == other.buildId)
         && (!hasActivityId() || activityId == other.activityId)
         && (!hasStoryId() || storyId == other.storyId)
+        && (!hasBuild() || build.equals(other.build))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 24);
-        output.writeUInt64NoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 8);
         output.writeUInt32NoTag(activityId);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 16);
         output.writeUInt32NoTag(storyId);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 26);
+        output.writeMessageNoTag(build);
       }
       if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawLittleEndian16((short) 32762);
@@ -338,13 +359,13 @@ public final class ActivityHistoryStoryApply {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(activityId);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(storyId);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(build);
       }
       if ((bitField0_ & 0x00000008) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
@@ -359,19 +380,10 @@ public final class ActivityHistoryStoryApply {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 24: {
-            // buildId
-            buildId = input.readUInt64();
-            bitField0_ |= 0x00000001;
-            tag = input.readTag();
-            if (tag != 8) {
-              break;
-            }
-          }
           case 8: {
             // activityId
             activityId = input.readUInt32();
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000001;
             tag = input.readTag();
             if (tag != 16) {
               break;
@@ -380,6 +392,15 @@ public final class ActivityHistoryStoryApply {
           case 16: {
             // storyId
             storyId = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 26) {
+              break;
+            }
+          }
+          case 26: {
+            // build
+            input.readMessage(build);
             bitField0_ |= 0x00000004;
             tag = input.readTag();
             if (tag != 16378) {
@@ -413,13 +434,13 @@ public final class ActivityHistoryStoryApply {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt64(FieldNames.buildId, buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.activityId, activityId);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.storyId, storyId);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeMessage(FieldNames.build, build);
       }
       if ((bitField0_ & 0x00000008) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
@@ -434,22 +455,11 @@ public final class ActivityHistoryStoryApply {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
-          case 1895597065: {
-            if (input.isAtField(FieldNames.buildId)) {
-              if (!input.trySkipNullValue()) {
-                buildId = input.readUInt64();
-                bitField0_ |= 0x00000001;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
           case -252882774: {
             if (input.isAtField(FieldNames.activityId)) {
               if (!input.trySkipNullValue()) {
                 activityId = input.readUInt32();
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000001;
               }
             } else {
               input.skipUnknownField();
@@ -460,6 +470,17 @@ public final class ActivityHistoryStoryApply {
             if (input.isAtField(FieldNames.storyId)) {
               if (!input.trySkipNullValue()) {
                 storyId = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 64542286: {
+            if (input.isAtField(FieldNames.build)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(build);
                 bitField0_ |= 0x00000004;
               }
             } else {
@@ -533,11 +554,11 @@ public final class ActivityHistoryStoryApply {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
-      static final FieldName buildId = FieldName.forField("BuildId");
-
       static final FieldName activityId = FieldName.forField("ActivityId");
 
       static final FieldName storyId = FieldName.forField("StoryId");
+
+      static final FieldName build = FieldName.forField("Build");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }

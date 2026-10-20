@@ -12361,4 +12361,814 @@ public final class NotifyGm {
       static final FieldName levels = FieldName.forField("levels");
     }
   }
+
+  /**
+   * Protobuf type {@code GmClearAllActivityMathParkourLevelsNotify}
+   */
+  public static final class GmClearAllActivityMathParkourLevelsNotify extends ProtoMessage<GmClearAllActivityMathParkourLevelsNotify> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>repeated .ActivityMathParkourLevel levels = 1;</code>
+     */
+    private final RepeatedMessage<Public.ActivityMathParkourLevel> levels = RepeatedMessage.newEmptyInstance(Public.ActivityMathParkourLevel.getFactory());
+
+    private GmClearAllActivityMathParkourLevelsNotify() {
+    }
+
+    /**
+     * @return a new empty instance of {@code GmClearAllActivityMathParkourLevelsNotify}
+     */
+    public static GmClearAllActivityMathParkourLevelsNotify newInstance() {
+      return new GmClearAllActivityMathParkourLevelsNotify();
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public GmClearAllActivityMathParkourLevelsNotify clearNextPackage() {
+      bitField0_ &= ~0x00000001;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000001;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public GmClearAllActivityMathParkourLevelsNotify addNextPackage(final byte value) {
+      bitField0_ |= 0x00000001;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public GmClearAllActivityMathParkourLevelsNotify addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000001;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public GmClearAllActivityMathParkourLevelsNotify setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000001;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityMathParkourLevel levels = 1;</code>
+     * @return whether the levels field is set
+     */
+    public boolean hasLevels() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>repeated .ActivityMathParkourLevel levels = 1;</code>
+     * @return this
+     */
+    public GmClearAllActivityMathParkourLevelsNotify clearLevels() {
+      bitField0_ &= ~0x00000002;
+      levels.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityMathParkourLevel levels = 1;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableLevels()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<Public.ActivityMathParkourLevel> getLevels() {
+      return levels;
+    }
+
+    /**
+     * <code>repeated .ActivityMathParkourLevel levels = 1;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<Public.ActivityMathParkourLevel> getMutableLevels() {
+      bitField0_ |= 0x00000002;
+      return levels;
+    }
+
+    /**
+     * <code>repeated .ActivityMathParkourLevel levels = 1;</code>
+     * @param value the levels to add
+     * @return this
+     */
+    public GmClearAllActivityMathParkourLevelsNotify addLevels(
+        final Public.ActivityMathParkourLevel value) {
+      bitField0_ |= 0x00000002;
+      levels.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityMathParkourLevel levels = 1;</code>
+     * @param values the levels to add
+     * @return this
+     */
+    public GmClearAllActivityMathParkourLevelsNotify addAllLevels(
+        final Public.ActivityMathParkourLevel... values) {
+      bitField0_ |= 0x00000002;
+      levels.addAll(values);
+      return this;
+    }
+
+    @Override
+    public GmClearAllActivityMathParkourLevelsNotify copyFrom(
+        final GmClearAllActivityMathParkourLevelsNotify other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        nextPackage.copyFrom(other.nextPackage);
+        levels.copyFrom(other.levels);
+      }
+      return this;
+    }
+
+    @Override
+    public GmClearAllActivityMathParkourLevelsNotify mergeFrom(
+        final GmClearAllActivityMathParkourLevelsNotify other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasLevels()) {
+        getMutableLevels().addAll(other.levels);
+      }
+      return this;
+    }
+
+    @Override
+    public GmClearAllActivityMathParkourLevelsNotify clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      levels.clear();
+      return this;
+    }
+
+    @Override
+    public GmClearAllActivityMathParkourLevelsNotify clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      levels.clearQuick();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof GmClearAllActivityMathParkourLevelsNotify)) {
+        return false;
+      }
+      GmClearAllActivityMathParkourLevelsNotify other = (GmClearAllActivityMathParkourLevelsNotify) o;
+      return bitField0_ == other.bitField0_
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasLevels() || levels.equals(other.levels));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        for (int i = 0; i < levels.length(); i++) {
+          output.writeRawByte((byte) 10);
+          output.writeMessageNoTag(levels.get(i));
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += (1 * levels.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(levels);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public GmClearAllActivityMathParkourLevelsNotify mergeFrom(final ProtoSource input) throws
+        IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 10) {
+              break;
+            }
+          }
+          case 10: {
+            // levels
+            tag = input.readRepeatedMessage(levels, tag);
+            bitField0_ |= 0x00000002;
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRepeatedMessage(FieldNames.levels, levels);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public GmClearAllActivityMathParkourLevelsNotify mergeFrom(final JsonSource input) throws
+        IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1106127505: {
+            if (input.isAtField(FieldNames.levels)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(levels);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public GmClearAllActivityMathParkourLevelsNotify clone() {
+      return new GmClearAllActivityMathParkourLevelsNotify().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static GmClearAllActivityMathParkourLevelsNotify parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new GmClearAllActivityMathParkourLevelsNotify(), data).checkInitialized();
+    }
+
+    public static GmClearAllActivityMathParkourLevelsNotify parseFrom(final ProtoSource input)
+        throws IOException {
+      return ProtoMessage.mergeFrom(new GmClearAllActivityMathParkourLevelsNotify(), input).checkInitialized();
+    }
+
+    public static GmClearAllActivityMathParkourLevelsNotify parseFrom(final JsonSource input) throws
+        IOException {
+      return ProtoMessage.mergeFrom(new GmClearAllActivityMathParkourLevelsNotify(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating GmClearAllActivityMathParkourLevelsNotify messages
+     */
+    public static MessageFactory<GmClearAllActivityMathParkourLevelsNotify> getFactory() {
+      return GmClearAllActivityMathParkourLevelsNotifyFactory.INSTANCE;
+    }
+
+    private enum GmClearAllActivityMathParkourLevelsNotifyFactory implements MessageFactory<GmClearAllActivityMathParkourLevelsNotify> {
+      INSTANCE;
+
+      @Override
+      public GmClearAllActivityMathParkourLevelsNotify create() {
+        return GmClearAllActivityMathParkourLevelsNotify.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName levels = FieldName.forField("levels");
+    }
+  }
+
+  /**
+   * Protobuf type {@code GmHandbookCompleteNotify}
+   */
+  public static final class GmHandbookCompleteNotify extends ProtoMessage<GmHandbookCompleteNotify> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>repeated .HandbookInfo Handbook = 1;</code>
+     */
+    private final RepeatedMessage<Public.HandbookInfo> handbook = RepeatedMessage.newEmptyInstance(Public.HandbookInfo.getFactory());
+
+    private GmHandbookCompleteNotify() {
+    }
+
+    /**
+     * @return a new empty instance of {@code GmHandbookCompleteNotify}
+     */
+    public static GmHandbookCompleteNotify newInstance() {
+      return new GmHandbookCompleteNotify();
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public GmHandbookCompleteNotify clearNextPackage() {
+      bitField0_ &= ~0x00000001;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000001;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public GmHandbookCompleteNotify addNextPackage(final byte value) {
+      bitField0_ |= 0x00000001;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public GmHandbookCompleteNotify addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000001;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public GmHandbookCompleteNotify setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000001;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .HandbookInfo Handbook = 1;</code>
+     * @return whether the handbook field is set
+     */
+    public boolean hasHandbook() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>repeated .HandbookInfo Handbook = 1;</code>
+     * @return this
+     */
+    public GmHandbookCompleteNotify clearHandbook() {
+      bitField0_ &= ~0x00000002;
+      handbook.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .HandbookInfo Handbook = 1;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableHandbook()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<Public.HandbookInfo> getHandbook() {
+      return handbook;
+    }
+
+    /**
+     * <code>repeated .HandbookInfo Handbook = 1;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<Public.HandbookInfo> getMutableHandbook() {
+      bitField0_ |= 0x00000002;
+      return handbook;
+    }
+
+    /**
+     * <code>repeated .HandbookInfo Handbook = 1;</code>
+     * @param value the handbook to add
+     * @return this
+     */
+    public GmHandbookCompleteNotify addHandbook(final Public.HandbookInfo value) {
+      bitField0_ |= 0x00000002;
+      handbook.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .HandbookInfo Handbook = 1;</code>
+     * @param values the handbook to add
+     * @return this
+     */
+    public GmHandbookCompleteNotify addAllHandbook(final Public.HandbookInfo... values) {
+      bitField0_ |= 0x00000002;
+      handbook.addAll(values);
+      return this;
+    }
+
+    @Override
+    public GmHandbookCompleteNotify copyFrom(final GmHandbookCompleteNotify other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        nextPackage.copyFrom(other.nextPackage);
+        handbook.copyFrom(other.handbook);
+      }
+      return this;
+    }
+
+    @Override
+    public GmHandbookCompleteNotify mergeFrom(final GmHandbookCompleteNotify other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasHandbook()) {
+        getMutableHandbook().addAll(other.handbook);
+      }
+      return this;
+    }
+
+    @Override
+    public GmHandbookCompleteNotify clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      handbook.clear();
+      return this;
+    }
+
+    @Override
+    public GmHandbookCompleteNotify clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      handbook.clearQuick();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof GmHandbookCompleteNotify)) {
+        return false;
+      }
+      GmHandbookCompleteNotify other = (GmHandbookCompleteNotify) o;
+      return bitField0_ == other.bitField0_
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasHandbook() || handbook.equals(other.handbook));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        for (int i = 0; i < handbook.length(); i++) {
+          output.writeRawByte((byte) 10);
+          output.writeMessageNoTag(handbook.get(i));
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += (1 * handbook.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(handbook);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public GmHandbookCompleteNotify mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 10) {
+              break;
+            }
+          }
+          case 10: {
+            // handbook
+            tag = input.readRepeatedMessage(handbook, tag);
+            bitField0_ |= 0x00000002;
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRepeatedMessage(FieldNames.handbook, handbook);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public GmHandbookCompleteNotify mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 66424824: {
+            if (input.isAtField(FieldNames.handbook)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(handbook);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public GmHandbookCompleteNotify clone() {
+      return new GmHandbookCompleteNotify().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static GmHandbookCompleteNotify parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new GmHandbookCompleteNotify(), data).checkInitialized();
+    }
+
+    public static GmHandbookCompleteNotify parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new GmHandbookCompleteNotify(), input).checkInitialized();
+    }
+
+    public static GmHandbookCompleteNotify parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new GmHandbookCompleteNotify(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating GmHandbookCompleteNotify messages
+     */
+    public static MessageFactory<GmHandbookCompleteNotify> getFactory() {
+      return GmHandbookCompleteNotifyFactory.INSTANCE;
+    }
+
+    private enum GmHandbookCompleteNotifyFactory implements MessageFactory<GmHandbookCompleteNotify> {
+      INSTANCE;
+
+      @Override
+      public GmHandbookCompleteNotify create() {
+        return GmHandbookCompleteNotify.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName handbook = FieldName.forField("Handbook");
+    }
+  }
 }

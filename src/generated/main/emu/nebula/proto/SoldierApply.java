@@ -479,6 +479,11 @@ public final class SoldierApply {
     private final PublicSoldier.SoldierInfo info = PublicSoldier.SoldierInfo.newInstance();
 
     /**
+     * <code>optional .ChangeInfo Change = 4;</code>
+     */
+    private final Public.ChangeInfo change = Public.ChangeInfo.newInstance();
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -593,11 +598,68 @@ public final class SoldierApply {
     }
 
     /**
+     * <code>optional .ChangeInfo Change = 4;</code>
+     * @return whether the change field is set
+     */
+    public boolean hasChange() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional .ChangeInfo Change = 4;</code>
+     * @return this
+     */
+    public SoldierApplyResp clearChange() {
+      bitField0_ &= ~0x00000004;
+      change.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .ChangeInfo Change = 4;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableChange()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.ChangeInfo getChange() {
+      return change;
+    }
+
+    /**
+     * <code>optional .ChangeInfo Change = 4;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.ChangeInfo getMutableChange() {
+      bitField0_ |= 0x00000004;
+      return change;
+    }
+
+    /**
+     * <code>optional .ChangeInfo Change = 4;</code>
+     * @param value the change to set
+     * @return this
+     */
+    public SoldierApplyResp setChange(final Public.ChangeInfo value) {
+      bitField0_ |= 0x00000004;
+      change.copyFrom(value);
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
@@ -605,7 +667,7 @@ public final class SoldierApply {
      * @return this
      */
     public SoldierApplyResp clearNextPackage() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000008;
       nextPackage.clear();
       return this;
     }
@@ -634,7 +696,7 @@ public final class SoldierApply {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       return nextPackage;
     }
 
@@ -644,7 +706,7 @@ public final class SoldierApply {
      * @return this
      */
     public SoldierApplyResp addNextPackage(final byte value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       nextPackage.add(value);
       return this;
     }
@@ -655,7 +717,7 @@ public final class SoldierApply {
      * @return this
      */
     public SoldierApplyResp addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       nextPackage.addAll(values);
       return this;
     }
@@ -666,7 +728,7 @@ public final class SoldierApply {
      * @return this
      */
     public SoldierApplyResp setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -676,7 +738,7 @@ public final class SoldierApply {
      * @return whether the chess field is set
      */
     public boolean hasChess() {
-      return (bitField0_ & 0x00000008) != 0;
+      return (bitField0_ & 0x00000010) != 0;
     }
 
     /**
@@ -684,7 +746,7 @@ public final class SoldierApply {
      * @return this
      */
     public SoldierApplyResp clearChess() {
-      bitField0_ &= ~0x00000008;
+      bitField0_ &= ~0x00000010;
       chess.clear();
       return this;
     }
@@ -713,7 +775,7 @@ public final class SoldierApply {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<PublicSoldier.SoldierChess> getMutableChess() {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       return chess;
     }
 
@@ -723,7 +785,7 @@ public final class SoldierApply {
      * @return this
      */
     public SoldierApplyResp addChess(final PublicSoldier.SoldierChess value) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       chess.add(value);
       return this;
     }
@@ -734,7 +796,7 @@ public final class SoldierApply {
      * @return this
      */
     public SoldierApplyResp addAllChess(final PublicSoldier.SoldierChess... values) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       chess.addAll(values);
       return this;
     }
@@ -746,6 +808,7 @@ public final class SoldierApply {
         bitField0_ = other.bitField0_;
         coinQty = other.coinQty;
         info.copyFrom(other.info);
+        change.copyFrom(other.change);
         nextPackage.copyFrom(other.nextPackage);
         chess.copyFrom(other.chess);
       }
@@ -763,6 +826,9 @@ public final class SoldierApply {
       }
       if (other.hasInfo()) {
         getMutableInfo().mergeFrom(other.info);
+      }
+      if (other.hasChange()) {
+        getMutableChange().mergeFrom(other.change);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -782,6 +848,7 @@ public final class SoldierApply {
       bitField0_ = 0;
       coinQty = 0;
       info.clear();
+      change.clear();
       nextPackage.clear();
       chess.clear();
       return this;
@@ -795,6 +862,7 @@ public final class SoldierApply {
       cachedSize = -1;
       bitField0_ = 0;
       info.clearQuick();
+      change.clearQuick();
       nextPackage.clear();
       chess.clearQuick();
       return this;
@@ -812,6 +880,7 @@ public final class SoldierApply {
       return bitField0_ == other.bitField0_
         && (!hasCoinQty() || coinQty == other.coinQty)
         && (!hasInfo() || info.equals(other.info))
+        && (!hasChange() || change.equals(other.change))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasChess() || chess.equals(other.chess));
     }
@@ -827,10 +896,14 @@ public final class SoldierApply {
         output.writeMessageNoTag(info);
       }
       if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 34);
+        output.writeMessageNoTag(change);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000010) != 0) {
         for (int i = 0; i < chess.length(); i++) {
           output.writeRawByte((byte) 18);
           output.writeMessageNoTag(chess.get(i));
@@ -848,9 +921,12 @@ public final class SoldierApply {
         size += 1 + ProtoSink.computeMessageSizeNoTag(info);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(change);
       }
       if ((bitField0_ & 0x00000008) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
         size += (1 * chess.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(chess);
       }
       return size;
@@ -877,6 +953,15 @@ public final class SoldierApply {
             input.readMessage(info);
             bitField0_ |= 0x00000002;
             tag = input.readTag();
+            if (tag != 34) {
+              break;
+            }
+          }
+          case 34: {
+            // change
+            input.readMessage(change);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -884,7 +969,7 @@ public final class SoldierApply {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000008;
             tag = input.readTag();
             if (tag != 18) {
               break;
@@ -893,7 +978,7 @@ public final class SoldierApply {
           case 18: {
             // chess
             tag = input.readRepeatedMessage(chess, tag);
-            bitField0_ |= 0x00000008;
+            bitField0_ |= 0x00000010;
             if (tag != 0) {
               break;
             }
@@ -922,9 +1007,12 @@ public final class SoldierApply {
         output.writeMessage(FieldNames.info, info);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        output.writeBytes(FieldNames.nextPackage, nextPackage);
+        output.writeMessage(FieldNames.change, change);
       }
       if ((bitField0_ & 0x00000008) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
         output.writeRepeatedMessage(FieldNames.chess, chess);
       }
       output.endObject();
@@ -959,11 +1047,22 @@ public final class SoldierApply {
             }
             break;
           }
+          case 2017198032: {
+            if (input.isAtField(FieldNames.change)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(change);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -974,7 +1073,7 @@ public final class SoldierApply {
             if (input.isAtField(FieldNames.chess)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(chess);
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000010;
               }
             } else {
               input.skipUnknownField();
@@ -1037,6 +1136,8 @@ public final class SoldierApply {
       static final FieldName coinQty = FieldName.forField("CoinQty");
 
       static final FieldName info = FieldName.forField("Info");
+
+      static final FieldName change = FieldName.forField("Change");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 

@@ -86,9 +86,14 @@ public class ActivityModule extends GameContextModule {
         //this.activities.add(1011104);
         
         // A Monolith Too Far
-        this.activities.add(1011201);
-        this.activities.add(1011203);
-        this.activities.add(1011204);
+        //this.activities.add(1011201);
+        //this.activities.add(1011203);
+        //this.activities.add(1011204);
+        
+        // Wholeness at Reunion's Dawn
+        this.activities.add(2010401);
+        this.activities.add(2010403);
+        this.activities.add(2010404);
         
         // ===== Joint Drills (Finale Echoing) =====
         //this.activities.add(510003); // Causes soft lock in event screen
@@ -96,9 +101,10 @@ public class ActivityModule extends GameContextModule {
         // ===== Etc Events =====
         
         // Trial activities
-        this.activities.add(700128);
-        this.activities.add(700129);
-
+        this.activities.add(700131);
+        this.activities.add(700132);
+        this.activities.add(700133);
+        
         // Tower defense activity
         //this.activities.add(102002); // Missing image on client - probably removed
         
@@ -112,7 +118,7 @@ public class ActivityModule extends GameContextModule {
         //this.activities.add(800001); // Causes soft lock in event screen
 
         // Through Hostile Depths (beta)
-        this.activities.add(900001);
+        //this.activities.add(900001); // Causes soft lock in event screen
         
         // Trekker versus (broken)
         //this.activities.add(600001);

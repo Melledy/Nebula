@@ -56,6 +56,21 @@ public final class SoldierInteract {
     private final PublicSoldier.InteractEventSettlementOfDisputeBattleReq eventSettlementOfDisputeBattleReq = PublicSoldier.InteractEventSettlementOfDisputeBattleReq.newInstance();
 
     /**
+     * <code>optional .InteractSelectBossAbilityReq SelectBossAbilityReq = 8;</code>
+     */
+    private final PublicSoldier.InteractSelectBossAbilityReq selectBossAbilityReq = PublicSoldier.InteractSelectBossAbilityReq.newInstance();
+
+    /**
+     * <code>optional .InteractCheckStageSettleReq CheckStageSettleReq = 9;</code>
+     */
+    private final PublicSoldier.InteractCheckStageSettleReq checkStageSettleReq = PublicSoldier.InteractCheckStageSettleReq.newInstance();
+
+    /**
+     * <code>optional .InteractStoryEventOfPersonalitySelectReq StoryEventOfPersonalitySelectReq = 10;</code>
+     */
+    private final PublicSoldier.InteractStoryEventOfPersonalitySelectReq storyEventOfPersonalitySelectReq = PublicSoldier.InteractStoryEventOfPersonalitySelectReq.newInstance();
+
+    /**
      * <code>optional .InteractDeploySyncReq DeploySyncReq = 14;</code>
      */
     private final PublicSoldier.InteractDeploySyncReq deploySyncReq = PublicSoldier.InteractDeploySyncReq.newInstance();
@@ -465,11 +480,187 @@ public final class SoldierInteract {
     }
 
     /**
+     * <code>optional .InteractSelectBossAbilityReq SelectBossAbilityReq = 8;</code>
+     * @return whether the selectBossAbilityReq field is set
+     */
+    public boolean hasSelectBossAbilityReq() {
+      return (bitField0_ & 0x00000080) != 0;
+    }
+
+    /**
+     * <code>optional .InteractSelectBossAbilityReq SelectBossAbilityReq = 8;</code>
+     * @return this
+     */
+    public SoldierInteractReq clearSelectBossAbilityReq() {
+      bitField0_ &= ~0x00000080;
+      selectBossAbilityReq.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .InteractSelectBossAbilityReq SelectBossAbilityReq = 8;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableSelectBossAbilityReq()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public PublicSoldier.InteractSelectBossAbilityReq getSelectBossAbilityReq() {
+      return selectBossAbilityReq;
+    }
+
+    /**
+     * <code>optional .InteractSelectBossAbilityReq SelectBossAbilityReq = 8;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public PublicSoldier.InteractSelectBossAbilityReq getMutableSelectBossAbilityReq() {
+      bitField0_ |= 0x00000080;
+      return selectBossAbilityReq;
+    }
+
+    /**
+     * <code>optional .InteractSelectBossAbilityReq SelectBossAbilityReq = 8;</code>
+     * @param value the selectBossAbilityReq to set
+     * @return this
+     */
+    public SoldierInteractReq setSelectBossAbilityReq(
+        final PublicSoldier.InteractSelectBossAbilityReq value) {
+      bitField0_ |= 0x00000080;
+      selectBossAbilityReq.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional .InteractCheckStageSettleReq CheckStageSettleReq = 9;</code>
+     * @return whether the checkStageSettleReq field is set
+     */
+    public boolean hasCheckStageSettleReq() {
+      return (bitField0_ & 0x00000100) != 0;
+    }
+
+    /**
+     * <code>optional .InteractCheckStageSettleReq CheckStageSettleReq = 9;</code>
+     * @return this
+     */
+    public SoldierInteractReq clearCheckStageSettleReq() {
+      bitField0_ &= ~0x00000100;
+      checkStageSettleReq.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .InteractCheckStageSettleReq CheckStageSettleReq = 9;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableCheckStageSettleReq()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public PublicSoldier.InteractCheckStageSettleReq getCheckStageSettleReq() {
+      return checkStageSettleReq;
+    }
+
+    /**
+     * <code>optional .InteractCheckStageSettleReq CheckStageSettleReq = 9;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public PublicSoldier.InteractCheckStageSettleReq getMutableCheckStageSettleReq() {
+      bitField0_ |= 0x00000100;
+      return checkStageSettleReq;
+    }
+
+    /**
+     * <code>optional .InteractCheckStageSettleReq CheckStageSettleReq = 9;</code>
+     * @param value the checkStageSettleReq to set
+     * @return this
+     */
+    public SoldierInteractReq setCheckStageSettleReq(
+        final PublicSoldier.InteractCheckStageSettleReq value) {
+      bitField0_ |= 0x00000100;
+      checkStageSettleReq.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional .InteractStoryEventOfPersonalitySelectReq StoryEventOfPersonalitySelectReq = 10;</code>
+     * @return whether the storyEventOfPersonalitySelectReq field is set
+     */
+    public boolean hasStoryEventOfPersonalitySelectReq() {
+      return (bitField0_ & 0x00000200) != 0;
+    }
+
+    /**
+     * <code>optional .InteractStoryEventOfPersonalitySelectReq StoryEventOfPersonalitySelectReq = 10;</code>
+     * @return this
+     */
+    public SoldierInteractReq clearStoryEventOfPersonalitySelectReq() {
+      bitField0_ &= ~0x00000200;
+      storyEventOfPersonalitySelectReq.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .InteractStoryEventOfPersonalitySelectReq StoryEventOfPersonalitySelectReq = 10;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableStoryEventOfPersonalitySelectReq()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public PublicSoldier.InteractStoryEventOfPersonalitySelectReq getStoryEventOfPersonalitySelectReq(
+        ) {
+      return storyEventOfPersonalitySelectReq;
+    }
+
+    /**
+     * <code>optional .InteractStoryEventOfPersonalitySelectReq StoryEventOfPersonalitySelectReq = 10;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public PublicSoldier.InteractStoryEventOfPersonalitySelectReq getMutableStoryEventOfPersonalitySelectReq(
+        ) {
+      bitField0_ |= 0x00000200;
+      return storyEventOfPersonalitySelectReq;
+    }
+
+    /**
+     * <code>optional .InteractStoryEventOfPersonalitySelectReq StoryEventOfPersonalitySelectReq = 10;</code>
+     * @param value the storyEventOfPersonalitySelectReq to set
+     * @return this
+     */
+    public SoldierInteractReq setStoryEventOfPersonalitySelectReq(
+        final PublicSoldier.InteractStoryEventOfPersonalitySelectReq value) {
+      bitField0_ |= 0x00000200;
+      storyEventOfPersonalitySelectReq.copyFrom(value);
+      return this;
+    }
+
+    /**
      * <code>optional .InteractDeploySyncReq DeploySyncReq = 14;</code>
      * @return whether the deploySyncReq field is set
      */
     public boolean hasDeploySyncReq() {
-      return (bitField0_ & 0x00000080) != 0;
+      return (bitField0_ & 0x00000400) != 0;
     }
 
     /**
@@ -477,7 +668,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractReq clearDeploySyncReq() {
-      bitField0_ &= ~0x00000080;
+      bitField0_ &= ~0x00000400;
       deploySyncReq.clear();
       return this;
     }
@@ -506,7 +697,7 @@ public final class SoldierInteract {
      * @return internal storage object for modifications
      */
     public PublicSoldier.InteractDeploySyncReq getMutableDeploySyncReq() {
-      bitField0_ |= 0x00000080;
+      bitField0_ |= 0x00000400;
       return deploySyncReq;
     }
 
@@ -516,7 +707,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractReq setDeploySyncReq(final PublicSoldier.InteractDeploySyncReq value) {
-      bitField0_ |= 0x00000080;
+      bitField0_ |= 0x00000400;
       deploySyncReq.copyFrom(value);
       return this;
     }
@@ -526,7 +717,7 @@ public final class SoldierInteract {
      * @return whether the clientEventReq field is set
      */
     public boolean hasClientEventReq() {
-      return (bitField0_ & 0x00000100) != 0;
+      return (bitField0_ & 0x00000800) != 0;
     }
 
     /**
@@ -534,7 +725,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractReq clearClientEventReq() {
-      bitField0_ &= ~0x00000100;
+      bitField0_ &= ~0x00000800;
       clientEventReq.clear();
       return this;
     }
@@ -563,7 +754,7 @@ public final class SoldierInteract {
      * @return internal storage object for modifications
      */
     public PublicSoldier.InteractClientEventReq getMutableClientEventReq() {
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000800;
       return clientEventReq;
     }
 
@@ -573,7 +764,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractReq setClientEventReq(final PublicSoldier.InteractClientEventReq value) {
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000800;
       clientEventReq.copyFrom(value);
       return this;
     }
@@ -583,7 +774,7 @@ public final class SoldierInteract {
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000200) != 0;
+      return (bitField0_ & 0x00001000) != 0;
     }
 
     /**
@@ -591,7 +782,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractReq clearNextPackage() {
-      bitField0_ &= ~0x00000200;
+      bitField0_ &= ~0x00001000;
       nextPackage.clear();
       return this;
     }
@@ -620,7 +811,7 @@ public final class SoldierInteract {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00001000;
       return nextPackage;
     }
 
@@ -630,7 +821,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractReq addNextPackage(final byte value) {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00001000;
       nextPackage.add(value);
       return this;
     }
@@ -641,7 +832,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractReq addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00001000;
       nextPackage.addAll(values);
       return this;
     }
@@ -652,7 +843,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractReq setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00001000;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -669,6 +860,9 @@ public final class SoldierInteract {
         selectReq.copyFrom(other.selectReq);
         eventSettlementOfDisputeReq.copyFrom(other.eventSettlementOfDisputeReq);
         eventSettlementOfDisputeBattleReq.copyFrom(other.eventSettlementOfDisputeBattleReq);
+        selectBossAbilityReq.copyFrom(other.selectBossAbilityReq);
+        checkStageSettleReq.copyFrom(other.checkStageSettleReq);
+        storyEventOfPersonalitySelectReq.copyFrom(other.storyEventOfPersonalitySelectReq);
         deploySyncReq.copyFrom(other.deploySyncReq);
         clientEventReq.copyFrom(other.clientEventReq);
         nextPackage.copyFrom(other.nextPackage);
@@ -703,6 +897,15 @@ public final class SoldierInteract {
       if (other.hasEventSettlementOfDisputeBattleReq()) {
         getMutableEventSettlementOfDisputeBattleReq().mergeFrom(other.eventSettlementOfDisputeBattleReq);
       }
+      if (other.hasSelectBossAbilityReq()) {
+        getMutableSelectBossAbilityReq().mergeFrom(other.selectBossAbilityReq);
+      }
+      if (other.hasCheckStageSettleReq()) {
+        getMutableCheckStageSettleReq().mergeFrom(other.checkStageSettleReq);
+      }
+      if (other.hasStoryEventOfPersonalitySelectReq()) {
+        getMutableStoryEventOfPersonalitySelectReq().mergeFrom(other.storyEventOfPersonalitySelectReq);
+      }
       if (other.hasDeploySyncReq()) {
         getMutableDeploySyncReq().mergeFrom(other.deploySyncReq);
       }
@@ -729,6 +932,9 @@ public final class SoldierInteract {
       selectReq.clear();
       eventSettlementOfDisputeReq.clear();
       eventSettlementOfDisputeBattleReq.clear();
+      selectBossAbilityReq.clear();
+      checkStageSettleReq.clear();
+      storyEventOfPersonalitySelectReq.clear();
       deploySyncReq.clear();
       clientEventReq.clear();
       nextPackage.clear();
@@ -748,6 +954,9 @@ public final class SoldierInteract {
       selectReq.clearQuick();
       eventSettlementOfDisputeReq.clearQuick();
       eventSettlementOfDisputeBattleReq.clearQuick();
+      selectBossAbilityReq.clearQuick();
+      checkStageSettleReq.clearQuick();
+      storyEventOfPersonalitySelectReq.clearQuick();
       deploySyncReq.clearQuick();
       clientEventReq.clearQuick();
       nextPackage.clear();
@@ -771,6 +980,9 @@ public final class SoldierInteract {
         && (!hasSelectReq() || selectReq.equals(other.selectReq))
         && (!hasEventSettlementOfDisputeReq() || eventSettlementOfDisputeReq.equals(other.eventSettlementOfDisputeReq))
         && (!hasEventSettlementOfDisputeBattleReq() || eventSettlementOfDisputeBattleReq.equals(other.eventSettlementOfDisputeBattleReq))
+        && (!hasSelectBossAbilityReq() || selectBossAbilityReq.equals(other.selectBossAbilityReq))
+        && (!hasCheckStageSettleReq() || checkStageSettleReq.equals(other.checkStageSettleReq))
+        && (!hasStoryEventOfPersonalitySelectReq() || storyEventOfPersonalitySelectReq.equals(other.storyEventOfPersonalitySelectReq))
         && (!hasDeploySyncReq() || deploySyncReq.equals(other.deploySyncReq))
         && (!hasClientEventReq() || clientEventReq.equals(other.clientEventReq))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
@@ -807,14 +1019,26 @@ public final class SoldierInteract {
         output.writeMessageNoTag(eventSettlementOfDisputeBattleReq);
       }
       if ((bitField0_ & 0x00000080) != 0) {
+        output.writeRawByte((byte) 66);
+        output.writeMessageNoTag(selectBossAbilityReq);
+      }
+      if ((bitField0_ & 0x00000100) != 0) {
+        output.writeRawByte((byte) 74);
+        output.writeMessageNoTag(checkStageSettleReq);
+      }
+      if ((bitField0_ & 0x00000200) != 0) {
+        output.writeRawByte((byte) 82);
+        output.writeMessageNoTag(storyEventOfPersonalitySelectReq);
+      }
+      if ((bitField0_ & 0x00000400) != 0) {
         output.writeRawByte((byte) 114);
         output.writeMessageNoTag(deploySyncReq);
       }
-      if ((bitField0_ & 0x00000100) != 0) {
+      if ((bitField0_ & 0x00000800) != 0) {
         output.writeRawByte((byte) 122);
         output.writeMessageNoTag(clientEventReq);
       }
-      if ((bitField0_ & 0x00000200) != 0) {
+      if ((bitField0_ & 0x00001000) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
@@ -845,12 +1069,21 @@ public final class SoldierInteract {
         size += 1 + ProtoSink.computeMessageSizeNoTag(eventSettlementOfDisputeBattleReq);
       }
       if ((bitField0_ & 0x00000080) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(deploySyncReq);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(selectBossAbilityReq);
       }
       if ((bitField0_ & 0x00000100) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(clientEventReq);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(checkStageSettleReq);
       }
       if ((bitField0_ & 0x00000200) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(storyEventOfPersonalitySelectReq);
+      }
+      if ((bitField0_ & 0x00000400) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(deploySyncReq);
+      }
+      if ((bitField0_ & 0x00000800) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(clientEventReq);
+      }
+      if ((bitField0_ & 0x00001000) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       return size;
@@ -922,6 +1155,33 @@ public final class SoldierInteract {
             input.readMessage(eventSettlementOfDisputeBattleReq);
             bitField0_ |= 0x00000040;
             tag = input.readTag();
+            if (tag != 66) {
+              break;
+            }
+          }
+          case 66: {
+            // selectBossAbilityReq
+            input.readMessage(selectBossAbilityReq);
+            bitField0_ |= 0x00000080;
+            tag = input.readTag();
+            if (tag != 74) {
+              break;
+            }
+          }
+          case 74: {
+            // checkStageSettleReq
+            input.readMessage(checkStageSettleReq);
+            bitField0_ |= 0x00000100;
+            tag = input.readTag();
+            if (tag != 82) {
+              break;
+            }
+          }
+          case 82: {
+            // storyEventOfPersonalitySelectReq
+            input.readMessage(storyEventOfPersonalitySelectReq);
+            bitField0_ |= 0x00000200;
+            tag = input.readTag();
             if (tag != 114) {
               break;
             }
@@ -929,7 +1189,7 @@ public final class SoldierInteract {
           case 114: {
             // deploySyncReq
             input.readMessage(deploySyncReq);
-            bitField0_ |= 0x00000080;
+            bitField0_ |= 0x00000400;
             tag = input.readTag();
             if (tag != 122) {
               break;
@@ -938,7 +1198,7 @@ public final class SoldierInteract {
           case 122: {
             // clientEventReq
             input.readMessage(clientEventReq);
-            bitField0_ |= 0x00000100;
+            bitField0_ |= 0x00000800;
             tag = input.readTag();
             if (tag != 16378) {
               break;
@@ -947,7 +1207,7 @@ public final class SoldierInteract {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000200;
+            bitField0_ |= 0x00001000;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -992,12 +1252,21 @@ public final class SoldierInteract {
         output.writeMessage(FieldNames.eventSettlementOfDisputeBattleReq, eventSettlementOfDisputeBattleReq);
       }
       if ((bitField0_ & 0x00000080) != 0) {
-        output.writeMessage(FieldNames.deploySyncReq, deploySyncReq);
+        output.writeMessage(FieldNames.selectBossAbilityReq, selectBossAbilityReq);
       }
       if ((bitField0_ & 0x00000100) != 0) {
-        output.writeMessage(FieldNames.clientEventReq, clientEventReq);
+        output.writeMessage(FieldNames.checkStageSettleReq, checkStageSettleReq);
       }
       if ((bitField0_ & 0x00000200) != 0) {
+        output.writeMessage(FieldNames.storyEventOfPersonalitySelectReq, storyEventOfPersonalitySelectReq);
+      }
+      if ((bitField0_ & 0x00000400) != 0) {
+        output.writeMessage(FieldNames.deploySyncReq, deploySyncReq);
+      }
+      if ((bitField0_ & 0x00000800) != 0) {
+        output.writeMessage(FieldNames.clientEventReq, clientEventReq);
+      }
+      if ((bitField0_ & 0x00001000) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       output.endObject();
@@ -1087,11 +1356,44 @@ public final class SoldierInteract {
             }
             break;
           }
+          case 1572455069: {
+            if (input.isAtField(FieldNames.selectBossAbilityReq)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(selectBossAbilityReq);
+                bitField0_ |= 0x00000080;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1610642179: {
+            if (input.isAtField(FieldNames.checkStageSettleReq)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(checkStageSettleReq);
+                bitField0_ |= 0x00000100;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 437521616: {
+            if (input.isAtField(FieldNames.storyEventOfPersonalitySelectReq)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(storyEventOfPersonalitySelectReq);
+                bitField0_ |= 0x00000200;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -177983236: {
             if (input.isAtField(FieldNames.deploySyncReq)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(deploySyncReq);
-                bitField0_ |= 0x00000080;
+                bitField0_ |= 0x00000400;
               }
             } else {
               input.skipUnknownField();
@@ -1102,7 +1404,7 @@ public final class SoldierInteract {
             if (input.isAtField(FieldNames.clientEventReq)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(clientEventReq);
-                bitField0_ |= 0x00000100;
+                bitField0_ |= 0x00000800;
               }
             } else {
               input.skipUnknownField();
@@ -1113,7 +1415,7 @@ public final class SoldierInteract {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000200;
+                bitField0_ |= 0x00001000;
               }
             } else {
               input.skipUnknownField();
@@ -1187,6 +1489,12 @@ public final class SoldierInteract {
 
       static final FieldName eventSettlementOfDisputeBattleReq = FieldName.forField("EventSettlementOfDisputeBattleReq");
 
+      static final FieldName selectBossAbilityReq = FieldName.forField("SelectBossAbilityReq");
+
+      static final FieldName checkStageSettleReq = FieldName.forField("CheckStageSettleReq");
+
+      static final FieldName storyEventOfPersonalitySelectReq = FieldName.forField("StoryEventOfPersonalitySelectReq");
+
       static final FieldName deploySyncReq = FieldName.forField("DeploySyncReq");
 
       static final FieldName clientEventReq = FieldName.forField("ClientEventReq");
@@ -1222,6 +1530,11 @@ public final class SoldierInteract {
     private final PublicSoldier.SoldierSyncData syncData = PublicSoldier.SoldierSyncData.newInstance();
 
     /**
+     * <code>optional .SoldierSettleDataResp Settle = 7;</code>
+     */
+    private final PublicSoldier.SoldierSettleDataResp settle = PublicSoldier.SoldierSettleDataResp.newInstance();
+
+    /**
      * <code>optional .InteractShopResp ShopResp = 8;</code>
      */
     private final PublicSoldier.InteractShopResp shopResp = PublicSoldier.InteractShopResp.newInstance();
@@ -1237,24 +1550,34 @@ public final class SoldierInteract {
     private final PublicSoldier.InteractSoldierSelectResp selectResp = PublicSoldier.InteractSoldierSelectResp.newInstance();
 
     /**
-     * <code>optional .InteractEventSettlementOfDisputeResp EventSettlementOfDisputeResp = 11;</code>
-     */
-    private final PublicSoldier.InteractEventSettlementOfDisputeResp eventSettlementOfDisputeResp = PublicSoldier.InteractEventSettlementOfDisputeResp.newInstance();
-
-    /**
-     * <code>optional .InteractEventSettlementOfDisputeBattleResp EventSettlementOfDisputeBattleResp = 12;</code>
+     * <code>optional .InteractEventSettlementOfDisputeBattleResp EventSettlementOfDisputeBattleResp = 11;</code>
      */
     private final PublicSoldier.InteractEventSettlementOfDisputeBattleResp eventSettlementOfDisputeBattleResp = PublicSoldier.InteractEventSettlementOfDisputeBattleResp.newInstance();
 
     /**
-     * <code>optional .Nil NilResp = 14;</code>
+     * <code>optional .InteractCheckStageSettleResp CheckStageSettleResp = 12;</code>
+     */
+    private final PublicSoldier.InteractCheckStageSettleResp checkStageSettleResp = PublicSoldier.InteractCheckStageSettleResp.newInstance();
+
+    /**
+     * <code>optional .InteractDeploySyncResp DeploySyncResp = 13;</code>
+     */
+    private final PublicSoldier.InteractDeploySyncResp deploySyncResp = PublicSoldier.InteractDeploySyncResp.newInstance();
+
+    /**
+     * <code>optional .InteractStoryEventOfPersonalitySelectResp StoryEventOfPersonalitySelectResp = 14;</code>
+     */
+    private final PublicSoldier.InteractStoryEventOfPersonalitySelectResp storyEventOfPersonalitySelectResp = PublicSoldier.InteractStoryEventOfPersonalitySelectResp.newInstance();
+
+    /**
+     * <code>optional .Nil NilResp = 16;</code>
      */
     private final Public.Nil nilResp = Public.Nil.newInstance();
 
     /**
-     * <code>optional .SoldierSettleDataResp Settle = 15;</code>
+     * <code>optional .InteractStoryEventOfCostlySelectResp StoryEventOfCostlySelectResp = 17;</code>
      */
-    private final PublicSoldier.SoldierSettleDataResp settle = PublicSoldier.SoldierSettleDataResp.newInstance();
+    private final PublicSoldier.InteractStoryEventOfCostlySelectResp storyEventOfCostlySelectResp = PublicSoldier.InteractStoryEventOfCostlySelectResp.newInstance();
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
@@ -1270,6 +1593,11 @@ public final class SoldierInteract {
      * <code>repeated .SoldierEffect Effects = 6;</code>
      */
     private final RepeatedMessage<PublicSoldier.SoldierEffect> effects = RepeatedMessage.newEmptyInstance(PublicSoldier.SoldierEffect.getFactory());
+
+    /**
+     * <code>repeated .SoldierBuffProgress Progress = 15;</code>
+     */
+    private final RepeatedMessage<PublicSoldier.SoldierBuffProgress> progress = RepeatedMessage.newEmptyInstance(PublicSoldier.SoldierBuffProgress.getFactory());
 
     private SoldierInteractResp() {
     }
@@ -1490,11 +1818,68 @@ public final class SoldierInteract {
     }
 
     /**
+     * <code>optional .SoldierSettleDataResp Settle = 7;</code>
+     * @return whether the settle field is set
+     */
+    public boolean hasSettle() {
+      return (bitField0_ & 0x00000010) != 0;
+    }
+
+    /**
+     * <code>optional .SoldierSettleDataResp Settle = 7;</code>
+     * @return this
+     */
+    public SoldierInteractResp clearSettle() {
+      bitField0_ &= ~0x00000010;
+      settle.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .SoldierSettleDataResp Settle = 7;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableSettle()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public PublicSoldier.SoldierSettleDataResp getSettle() {
+      return settle;
+    }
+
+    /**
+     * <code>optional .SoldierSettleDataResp Settle = 7;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public PublicSoldier.SoldierSettleDataResp getMutableSettle() {
+      bitField0_ |= 0x00000010;
+      return settle;
+    }
+
+    /**
+     * <code>optional .SoldierSettleDataResp Settle = 7;</code>
+     * @param value the settle to set
+     * @return this
+     */
+    public SoldierInteractResp setSettle(final PublicSoldier.SoldierSettleDataResp value) {
+      bitField0_ |= 0x00000010;
+      settle.copyFrom(value);
+      return this;
+    }
+
+    /**
      * <code>optional .InteractShopResp ShopResp = 8;</code>
      * @return whether the shopResp field is set
      */
     public boolean hasShopResp() {
-      return (bitField0_ & 0x00000010) != 0;
+      return (bitField0_ & 0x00000020) != 0;
     }
 
     /**
@@ -1502,7 +1887,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractResp clearShopResp() {
-      bitField0_ &= ~0x00000010;
+      bitField0_ &= ~0x00000020;
       shopResp.clear();
       return this;
     }
@@ -1531,7 +1916,7 @@ public final class SoldierInteract {
      * @return internal storage object for modifications
      */
     public PublicSoldier.InteractShopResp getMutableShopResp() {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       return shopResp;
     }
 
@@ -1541,7 +1926,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractResp setShopResp(final PublicSoldier.InteractShopResp value) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       shopResp.copyFrom(value);
       return this;
     }
@@ -1551,7 +1936,7 @@ public final class SoldierInteract {
      * @return whether the battleResp field is set
      */
     public boolean hasBattleResp() {
-      return (bitField0_ & 0x00000020) != 0;
+      return (bitField0_ & 0x00000040) != 0;
     }
 
     /**
@@ -1559,7 +1944,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractResp clearBattleResp() {
-      bitField0_ &= ~0x00000020;
+      bitField0_ &= ~0x00000040;
       battleResp.clear();
       return this;
     }
@@ -1588,7 +1973,7 @@ public final class SoldierInteract {
      * @return internal storage object for modifications
      */
     public PublicSoldier.InteractSoldierBattleResp getMutableBattleResp() {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000040;
       return battleResp;
     }
 
@@ -1598,7 +1983,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractResp setBattleResp(final PublicSoldier.InteractSoldierBattleResp value) {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000040;
       battleResp.copyFrom(value);
       return this;
     }
@@ -1608,7 +1993,7 @@ public final class SoldierInteract {
      * @return whether the selectResp field is set
      */
     public boolean hasSelectResp() {
-      return (bitField0_ & 0x00000040) != 0;
+      return (bitField0_ & 0x00000080) != 0;
     }
 
     /**
@@ -1616,7 +2001,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractResp clearSelectResp() {
-      bitField0_ &= ~0x00000040;
+      bitField0_ &= ~0x00000080;
       selectResp.clear();
       return this;
     }
@@ -1645,7 +2030,7 @@ public final class SoldierInteract {
      * @return internal storage object for modifications
      */
     public PublicSoldier.InteractSoldierSelectResp getMutableSelectResp() {
-      bitField0_ |= 0x00000040;
+      bitField0_ |= 0x00000080;
       return selectResp;
     }
 
@@ -1655,72 +2040,13 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractResp setSelectResp(final PublicSoldier.InteractSoldierSelectResp value) {
-      bitField0_ |= 0x00000040;
+      bitField0_ |= 0x00000080;
       selectResp.copyFrom(value);
       return this;
     }
 
     /**
-     * <code>optional .InteractEventSettlementOfDisputeResp EventSettlementOfDisputeResp = 11;</code>
-     * @return whether the eventSettlementOfDisputeResp field is set
-     */
-    public boolean hasEventSettlementOfDisputeResp() {
-      return (bitField0_ & 0x00000080) != 0;
-    }
-
-    /**
-     * <code>optional .InteractEventSettlementOfDisputeResp EventSettlementOfDisputeResp = 11;</code>
-     * @return this
-     */
-    public SoldierInteractResp clearEventSettlementOfDisputeResp() {
-      bitField0_ &= ~0x00000080;
-      eventSettlementOfDisputeResp.clear();
-      return this;
-    }
-
-    /**
-     * <code>optional .InteractEventSettlementOfDisputeResp EventSettlementOfDisputeResp = 11;</code>
-     *
-     * This method returns the internal storage object without modifying any has state.
-     * The returned object should not be modified and be treated as read-only.
-     *
-     * Use {@link #getMutableEventSettlementOfDisputeResp()} if you want to modify it.
-     *
-     * @return internal storage object for reading
-     */
-    public PublicSoldier.InteractEventSettlementOfDisputeResp getEventSettlementOfDisputeResp() {
-      return eventSettlementOfDisputeResp;
-    }
-
-    /**
-     * <code>optional .InteractEventSettlementOfDisputeResp EventSettlementOfDisputeResp = 11;</code>
-     *
-     * This method returns the internal storage object and sets the corresponding
-     * has state. The returned object will become part of this message and its
-     * contents may be modified as long as the has state is not cleared.
-     *
-     * @return internal storage object for modifications
-     */
-    public PublicSoldier.InteractEventSettlementOfDisputeResp getMutableEventSettlementOfDisputeResp(
-        ) {
-      bitField0_ |= 0x00000080;
-      return eventSettlementOfDisputeResp;
-    }
-
-    /**
-     * <code>optional .InteractEventSettlementOfDisputeResp EventSettlementOfDisputeResp = 11;</code>
-     * @param value the eventSettlementOfDisputeResp to set
-     * @return this
-     */
-    public SoldierInteractResp setEventSettlementOfDisputeResp(
-        final PublicSoldier.InteractEventSettlementOfDisputeResp value) {
-      bitField0_ |= 0x00000080;
-      eventSettlementOfDisputeResp.copyFrom(value);
-      return this;
-    }
-
-    /**
-     * <code>optional .InteractEventSettlementOfDisputeBattleResp EventSettlementOfDisputeBattleResp = 12;</code>
+     * <code>optional .InteractEventSettlementOfDisputeBattleResp EventSettlementOfDisputeBattleResp = 11;</code>
      * @return whether the eventSettlementOfDisputeBattleResp field is set
      */
     public boolean hasEventSettlementOfDisputeBattleResp() {
@@ -1728,7 +2054,7 @@ public final class SoldierInteract {
     }
 
     /**
-     * <code>optional .InteractEventSettlementOfDisputeBattleResp EventSettlementOfDisputeBattleResp = 12;</code>
+     * <code>optional .InteractEventSettlementOfDisputeBattleResp EventSettlementOfDisputeBattleResp = 11;</code>
      * @return this
      */
     public SoldierInteractResp clearEventSettlementOfDisputeBattleResp() {
@@ -1738,7 +2064,7 @@ public final class SoldierInteract {
     }
 
     /**
-     * <code>optional .InteractEventSettlementOfDisputeBattleResp EventSettlementOfDisputeBattleResp = 12;</code>
+     * <code>optional .InteractEventSettlementOfDisputeBattleResp EventSettlementOfDisputeBattleResp = 11;</code>
      *
      * This method returns the internal storage object without modifying any has state.
      * The returned object should not be modified and be treated as read-only.
@@ -1753,7 +2079,7 @@ public final class SoldierInteract {
     }
 
     /**
-     * <code>optional .InteractEventSettlementOfDisputeBattleResp EventSettlementOfDisputeBattleResp = 12;</code>
+     * <code>optional .InteractEventSettlementOfDisputeBattleResp EventSettlementOfDisputeBattleResp = 11;</code>
      *
      * This method returns the internal storage object and sets the corresponding
      * has state. The returned object will become part of this message and its
@@ -1768,7 +2094,7 @@ public final class SoldierInteract {
     }
 
     /**
-     * <code>optional .InteractEventSettlementOfDisputeBattleResp EventSettlementOfDisputeBattleResp = 12;</code>
+     * <code>optional .InteractEventSettlementOfDisputeBattleResp EventSettlementOfDisputeBattleResp = 11;</code>
      * @param value the eventSettlementOfDisputeBattleResp to set
      * @return this
      */
@@ -1780,25 +2106,200 @@ public final class SoldierInteract {
     }
 
     /**
-     * <code>optional .Nil NilResp = 14;</code>
-     * @return whether the nilResp field is set
+     * <code>optional .InteractCheckStageSettleResp CheckStageSettleResp = 12;</code>
+     * @return whether the checkStageSettleResp field is set
      */
-    public boolean hasNilResp() {
+    public boolean hasCheckStageSettleResp() {
       return (bitField0_ & 0x00000200) != 0;
     }
 
     /**
-     * <code>optional .Nil NilResp = 14;</code>
+     * <code>optional .InteractCheckStageSettleResp CheckStageSettleResp = 12;</code>
+     * @return this
+     */
+    public SoldierInteractResp clearCheckStageSettleResp() {
+      bitField0_ &= ~0x00000200;
+      checkStageSettleResp.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .InteractCheckStageSettleResp CheckStageSettleResp = 12;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableCheckStageSettleResp()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public PublicSoldier.InteractCheckStageSettleResp getCheckStageSettleResp() {
+      return checkStageSettleResp;
+    }
+
+    /**
+     * <code>optional .InteractCheckStageSettleResp CheckStageSettleResp = 12;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public PublicSoldier.InteractCheckStageSettleResp getMutableCheckStageSettleResp() {
+      bitField0_ |= 0x00000200;
+      return checkStageSettleResp;
+    }
+
+    /**
+     * <code>optional .InteractCheckStageSettleResp CheckStageSettleResp = 12;</code>
+     * @param value the checkStageSettleResp to set
+     * @return this
+     */
+    public SoldierInteractResp setCheckStageSettleResp(
+        final PublicSoldier.InteractCheckStageSettleResp value) {
+      bitField0_ |= 0x00000200;
+      checkStageSettleResp.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional .InteractDeploySyncResp DeploySyncResp = 13;</code>
+     * @return whether the deploySyncResp field is set
+     */
+    public boolean hasDeploySyncResp() {
+      return (bitField0_ & 0x00000400) != 0;
+    }
+
+    /**
+     * <code>optional .InteractDeploySyncResp DeploySyncResp = 13;</code>
+     * @return this
+     */
+    public SoldierInteractResp clearDeploySyncResp() {
+      bitField0_ &= ~0x00000400;
+      deploySyncResp.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .InteractDeploySyncResp DeploySyncResp = 13;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableDeploySyncResp()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public PublicSoldier.InteractDeploySyncResp getDeploySyncResp() {
+      return deploySyncResp;
+    }
+
+    /**
+     * <code>optional .InteractDeploySyncResp DeploySyncResp = 13;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public PublicSoldier.InteractDeploySyncResp getMutableDeploySyncResp() {
+      bitField0_ |= 0x00000400;
+      return deploySyncResp;
+    }
+
+    /**
+     * <code>optional .InteractDeploySyncResp DeploySyncResp = 13;</code>
+     * @param value the deploySyncResp to set
+     * @return this
+     */
+    public SoldierInteractResp setDeploySyncResp(final PublicSoldier.InteractDeploySyncResp value) {
+      bitField0_ |= 0x00000400;
+      deploySyncResp.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional .InteractStoryEventOfPersonalitySelectResp StoryEventOfPersonalitySelectResp = 14;</code>
+     * @return whether the storyEventOfPersonalitySelectResp field is set
+     */
+    public boolean hasStoryEventOfPersonalitySelectResp() {
+      return (bitField0_ & 0x00000800) != 0;
+    }
+
+    /**
+     * <code>optional .InteractStoryEventOfPersonalitySelectResp StoryEventOfPersonalitySelectResp = 14;</code>
+     * @return this
+     */
+    public SoldierInteractResp clearStoryEventOfPersonalitySelectResp() {
+      bitField0_ &= ~0x00000800;
+      storyEventOfPersonalitySelectResp.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .InteractStoryEventOfPersonalitySelectResp StoryEventOfPersonalitySelectResp = 14;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableStoryEventOfPersonalitySelectResp()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public PublicSoldier.InteractStoryEventOfPersonalitySelectResp getStoryEventOfPersonalitySelectResp(
+        ) {
+      return storyEventOfPersonalitySelectResp;
+    }
+
+    /**
+     * <code>optional .InteractStoryEventOfPersonalitySelectResp StoryEventOfPersonalitySelectResp = 14;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public PublicSoldier.InteractStoryEventOfPersonalitySelectResp getMutableStoryEventOfPersonalitySelectResp(
+        ) {
+      bitField0_ |= 0x00000800;
+      return storyEventOfPersonalitySelectResp;
+    }
+
+    /**
+     * <code>optional .InteractStoryEventOfPersonalitySelectResp StoryEventOfPersonalitySelectResp = 14;</code>
+     * @param value the storyEventOfPersonalitySelectResp to set
+     * @return this
+     */
+    public SoldierInteractResp setStoryEventOfPersonalitySelectResp(
+        final PublicSoldier.InteractStoryEventOfPersonalitySelectResp value) {
+      bitField0_ |= 0x00000800;
+      storyEventOfPersonalitySelectResp.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional .Nil NilResp = 16;</code>
+     * @return whether the nilResp field is set
+     */
+    public boolean hasNilResp() {
+      return (bitField0_ & 0x00001000) != 0;
+    }
+
+    /**
+     * <code>optional .Nil NilResp = 16;</code>
      * @return this
      */
     public SoldierInteractResp clearNilResp() {
-      bitField0_ &= ~0x00000200;
+      bitField0_ &= ~0x00001000;
       nilResp.clear();
       return this;
     }
 
     /**
-     * <code>optional .Nil NilResp = 14;</code>
+     * <code>optional .Nil NilResp = 16;</code>
      *
      * This method returns the internal storage object without modifying any has state.
      * The returned object should not be modified and be treated as read-only.
@@ -1812,7 +2313,7 @@ public final class SoldierInteract {
     }
 
     /**
-     * <code>optional .Nil NilResp = 14;</code>
+     * <code>optional .Nil NilResp = 16;</code>
      *
      * This method returns the internal storage object and sets the corresponding
      * has state. The returned object will become part of this message and its
@@ -1821,55 +2322,55 @@ public final class SoldierInteract {
      * @return internal storage object for modifications
      */
     public Public.Nil getMutableNilResp() {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00001000;
       return nilResp;
     }
 
     /**
-     * <code>optional .Nil NilResp = 14;</code>
+     * <code>optional .Nil NilResp = 16;</code>
      * @param value the nilResp to set
      * @return this
      */
     public SoldierInteractResp setNilResp(final Public.Nil value) {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00001000;
       nilResp.copyFrom(value);
       return this;
     }
 
     /**
-     * <code>optional .SoldierSettleDataResp Settle = 15;</code>
-     * @return whether the settle field is set
+     * <code>optional .InteractStoryEventOfCostlySelectResp StoryEventOfCostlySelectResp = 17;</code>
+     * @return whether the storyEventOfCostlySelectResp field is set
      */
-    public boolean hasSettle() {
-      return (bitField0_ & 0x00000400) != 0;
+    public boolean hasStoryEventOfCostlySelectResp() {
+      return (bitField0_ & 0x00002000) != 0;
     }
 
     /**
-     * <code>optional .SoldierSettleDataResp Settle = 15;</code>
+     * <code>optional .InteractStoryEventOfCostlySelectResp StoryEventOfCostlySelectResp = 17;</code>
      * @return this
      */
-    public SoldierInteractResp clearSettle() {
-      bitField0_ &= ~0x00000400;
-      settle.clear();
+    public SoldierInteractResp clearStoryEventOfCostlySelectResp() {
+      bitField0_ &= ~0x00002000;
+      storyEventOfCostlySelectResp.clear();
       return this;
     }
 
     /**
-     * <code>optional .SoldierSettleDataResp Settle = 15;</code>
+     * <code>optional .InteractStoryEventOfCostlySelectResp StoryEventOfCostlySelectResp = 17;</code>
      *
      * This method returns the internal storage object without modifying any has state.
      * The returned object should not be modified and be treated as read-only.
      *
-     * Use {@link #getMutableSettle()} if you want to modify it.
+     * Use {@link #getMutableStoryEventOfCostlySelectResp()} if you want to modify it.
      *
      * @return internal storage object for reading
      */
-    public PublicSoldier.SoldierSettleDataResp getSettle() {
-      return settle;
+    public PublicSoldier.InteractStoryEventOfCostlySelectResp getStoryEventOfCostlySelectResp() {
+      return storyEventOfCostlySelectResp;
     }
 
     /**
-     * <code>optional .SoldierSettleDataResp Settle = 15;</code>
+     * <code>optional .InteractStoryEventOfCostlySelectResp StoryEventOfCostlySelectResp = 17;</code>
      *
      * This method returns the internal storage object and sets the corresponding
      * has state. The returned object will become part of this message and its
@@ -1877,19 +2378,21 @@ public final class SoldierInteract {
      *
      * @return internal storage object for modifications
      */
-    public PublicSoldier.SoldierSettleDataResp getMutableSettle() {
-      bitField0_ |= 0x00000400;
-      return settle;
+    public PublicSoldier.InteractStoryEventOfCostlySelectResp getMutableStoryEventOfCostlySelectResp(
+        ) {
+      bitField0_ |= 0x00002000;
+      return storyEventOfCostlySelectResp;
     }
 
     /**
-     * <code>optional .SoldierSettleDataResp Settle = 15;</code>
-     * @param value the settle to set
+     * <code>optional .InteractStoryEventOfCostlySelectResp StoryEventOfCostlySelectResp = 17;</code>
+     * @param value the storyEventOfCostlySelectResp to set
      * @return this
      */
-    public SoldierInteractResp setSettle(final PublicSoldier.SoldierSettleDataResp value) {
-      bitField0_ |= 0x00000400;
-      settle.copyFrom(value);
+    public SoldierInteractResp setStoryEventOfCostlySelectResp(
+        final PublicSoldier.InteractStoryEventOfCostlySelectResp value) {
+      bitField0_ |= 0x00002000;
+      storyEventOfCostlySelectResp.copyFrom(value);
       return this;
     }
 
@@ -1898,7 +2401,7 @@ public final class SoldierInteract {
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000800) != 0;
+      return (bitField0_ & 0x00004000) != 0;
     }
 
     /**
@@ -1906,7 +2409,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractResp clearNextPackage() {
-      bitField0_ &= ~0x00000800;
+      bitField0_ &= ~0x00004000;
       nextPackage.clear();
       return this;
     }
@@ -1935,7 +2438,7 @@ public final class SoldierInteract {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000800;
+      bitField0_ |= 0x00004000;
       return nextPackage;
     }
 
@@ -1945,7 +2448,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractResp addNextPackage(final byte value) {
-      bitField0_ |= 0x00000800;
+      bitField0_ |= 0x00004000;
       nextPackage.add(value);
       return this;
     }
@@ -1956,7 +2459,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractResp addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000800;
+      bitField0_ |= 0x00004000;
       nextPackage.addAll(values);
       return this;
     }
@@ -1967,7 +2470,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractResp setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000800;
+      bitField0_ |= 0x00004000;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -1977,7 +2480,7 @@ public final class SoldierInteract {
      * @return whether the cases field is set
      */
     public boolean hasCases() {
-      return (bitField0_ & 0x00001000) != 0;
+      return (bitField0_ & 0x00008000) != 0;
     }
 
     /**
@@ -1985,7 +2488,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractResp clearCases() {
-      bitField0_ &= ~0x00001000;
+      bitField0_ &= ~0x00008000;
       cases.clear();
       return this;
     }
@@ -2014,7 +2517,7 @@ public final class SoldierInteract {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<PublicSoldier.SoldierCase> getMutableCases() {
-      bitField0_ |= 0x00001000;
+      bitField0_ |= 0x00008000;
       return cases;
     }
 
@@ -2024,7 +2527,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractResp addCases(final PublicSoldier.SoldierCase value) {
-      bitField0_ |= 0x00001000;
+      bitField0_ |= 0x00008000;
       cases.add(value);
       return this;
     }
@@ -2035,7 +2538,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractResp addAllCases(final PublicSoldier.SoldierCase... values) {
-      bitField0_ |= 0x00001000;
+      bitField0_ |= 0x00008000;
       cases.addAll(values);
       return this;
     }
@@ -2045,7 +2548,7 @@ public final class SoldierInteract {
      * @return whether the effects field is set
      */
     public boolean hasEffects() {
-      return (bitField0_ & 0x00002000) != 0;
+      return (bitField0_ & 0x00010000) != 0;
     }
 
     /**
@@ -2053,7 +2556,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractResp clearEffects() {
-      bitField0_ &= ~0x00002000;
+      bitField0_ &= ~0x00010000;
       effects.clear();
       return this;
     }
@@ -2082,7 +2585,7 @@ public final class SoldierInteract {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<PublicSoldier.SoldierEffect> getMutableEffects() {
-      bitField0_ |= 0x00002000;
+      bitField0_ |= 0x00010000;
       return effects;
     }
 
@@ -2092,7 +2595,7 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractResp addEffects(final PublicSoldier.SoldierEffect value) {
-      bitField0_ |= 0x00002000;
+      bitField0_ |= 0x00010000;
       effects.add(value);
       return this;
     }
@@ -2103,8 +2606,76 @@ public final class SoldierInteract {
      * @return this
      */
     public SoldierInteractResp addAllEffects(final PublicSoldier.SoldierEffect... values) {
-      bitField0_ |= 0x00002000;
+      bitField0_ |= 0x00010000;
       effects.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .SoldierBuffProgress Progress = 15;</code>
+     * @return whether the progress field is set
+     */
+    public boolean hasProgress() {
+      return (bitField0_ & 0x00020000) != 0;
+    }
+
+    /**
+     * <code>repeated .SoldierBuffProgress Progress = 15;</code>
+     * @return this
+     */
+    public SoldierInteractResp clearProgress() {
+      bitField0_ &= ~0x00020000;
+      progress.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .SoldierBuffProgress Progress = 15;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableProgress()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<PublicSoldier.SoldierBuffProgress> getProgress() {
+      return progress;
+    }
+
+    /**
+     * <code>repeated .SoldierBuffProgress Progress = 15;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<PublicSoldier.SoldierBuffProgress> getMutableProgress() {
+      bitField0_ |= 0x00020000;
+      return progress;
+    }
+
+    /**
+     * <code>repeated .SoldierBuffProgress Progress = 15;</code>
+     * @param value the progress to add
+     * @return this
+     */
+    public SoldierInteractResp addProgress(final PublicSoldier.SoldierBuffProgress value) {
+      bitField0_ |= 0x00020000;
+      progress.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .SoldierBuffProgress Progress = 15;</code>
+     * @param values the progress to add
+     * @return this
+     */
+    public SoldierInteractResp addAllProgress(final PublicSoldier.SoldierBuffProgress... values) {
+      bitField0_ |= 0x00020000;
+      progress.addAll(values);
       return this;
     }
 
@@ -2117,16 +2688,20 @@ public final class SoldierInteract {
         change.copyFrom(other.change);
         node.copyFrom(other.node);
         syncData.copyFrom(other.syncData);
+        settle.copyFrom(other.settle);
         shopResp.copyFrom(other.shopResp);
         battleResp.copyFrom(other.battleResp);
         selectResp.copyFrom(other.selectResp);
-        eventSettlementOfDisputeResp.copyFrom(other.eventSettlementOfDisputeResp);
         eventSettlementOfDisputeBattleResp.copyFrom(other.eventSettlementOfDisputeBattleResp);
+        checkStageSettleResp.copyFrom(other.checkStageSettleResp);
+        deploySyncResp.copyFrom(other.deploySyncResp);
+        storyEventOfPersonalitySelectResp.copyFrom(other.storyEventOfPersonalitySelectResp);
         nilResp.copyFrom(other.nilResp);
-        settle.copyFrom(other.settle);
+        storyEventOfCostlySelectResp.copyFrom(other.storyEventOfCostlySelectResp);
         nextPackage.copyFrom(other.nextPackage);
         cases.copyFrom(other.cases);
         effects.copyFrom(other.effects);
+        progress.copyFrom(other.progress);
       }
       return this;
     }
@@ -2149,6 +2724,9 @@ public final class SoldierInteract {
       if (other.hasSyncData()) {
         getMutableSyncData().mergeFrom(other.syncData);
       }
+      if (other.hasSettle()) {
+        getMutableSettle().mergeFrom(other.settle);
+      }
       if (other.hasShopResp()) {
         getMutableShopResp().mergeFrom(other.shopResp);
       }
@@ -2158,17 +2736,23 @@ public final class SoldierInteract {
       if (other.hasSelectResp()) {
         getMutableSelectResp().mergeFrom(other.selectResp);
       }
-      if (other.hasEventSettlementOfDisputeResp()) {
-        getMutableEventSettlementOfDisputeResp().mergeFrom(other.eventSettlementOfDisputeResp);
-      }
       if (other.hasEventSettlementOfDisputeBattleResp()) {
         getMutableEventSettlementOfDisputeBattleResp().mergeFrom(other.eventSettlementOfDisputeBattleResp);
+      }
+      if (other.hasCheckStageSettleResp()) {
+        getMutableCheckStageSettleResp().mergeFrom(other.checkStageSettleResp);
+      }
+      if (other.hasDeploySyncResp()) {
+        getMutableDeploySyncResp().mergeFrom(other.deploySyncResp);
+      }
+      if (other.hasStoryEventOfPersonalitySelectResp()) {
+        getMutableStoryEventOfPersonalitySelectResp().mergeFrom(other.storyEventOfPersonalitySelectResp);
       }
       if (other.hasNilResp()) {
         getMutableNilResp().mergeFrom(other.nilResp);
       }
-      if (other.hasSettle()) {
-        getMutableSettle().mergeFrom(other.settle);
+      if (other.hasStoryEventOfCostlySelectResp()) {
+        getMutableStoryEventOfCostlySelectResp().mergeFrom(other.storyEventOfCostlySelectResp);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -2178,6 +2762,9 @@ public final class SoldierInteract {
       }
       if (other.hasEffects()) {
         getMutableEffects().addAll(other.effects);
+      }
+      if (other.hasProgress()) {
+        getMutableProgress().addAll(other.progress);
       }
       return this;
     }
@@ -2193,16 +2780,20 @@ public final class SoldierInteract {
       change.clear();
       node.clear();
       syncData.clear();
+      settle.clear();
       shopResp.clear();
       battleResp.clear();
       selectResp.clear();
-      eventSettlementOfDisputeResp.clear();
       eventSettlementOfDisputeBattleResp.clear();
+      checkStageSettleResp.clear();
+      deploySyncResp.clear();
+      storyEventOfPersonalitySelectResp.clear();
       nilResp.clear();
-      settle.clear();
+      storyEventOfCostlySelectResp.clear();
       nextPackage.clear();
       cases.clear();
       effects.clear();
+      progress.clear();
       return this;
     }
 
@@ -2216,16 +2807,20 @@ public final class SoldierInteract {
       change.clearQuick();
       node.clearQuick();
       syncData.clearQuick();
+      settle.clearQuick();
       shopResp.clearQuick();
       battleResp.clearQuick();
       selectResp.clearQuick();
-      eventSettlementOfDisputeResp.clearQuick();
       eventSettlementOfDisputeBattleResp.clearQuick();
+      checkStageSettleResp.clearQuick();
+      deploySyncResp.clearQuick();
+      storyEventOfPersonalitySelectResp.clearQuick();
       nilResp.clearQuick();
-      settle.clearQuick();
+      storyEventOfCostlySelectResp.clearQuick();
       nextPackage.clear();
       cases.clearQuick();
       effects.clearQuick();
+      progress.clearQuick();
       return this;
     }
 
@@ -2243,16 +2838,20 @@ public final class SoldierInteract {
         && (!hasChange() || change.equals(other.change))
         && (!hasNode() || node.equals(other.node))
         && (!hasSyncData() || syncData.equals(other.syncData))
+        && (!hasSettle() || settle.equals(other.settle))
         && (!hasShopResp() || shopResp.equals(other.shopResp))
         && (!hasBattleResp() || battleResp.equals(other.battleResp))
         && (!hasSelectResp() || selectResp.equals(other.selectResp))
-        && (!hasEventSettlementOfDisputeResp() || eventSettlementOfDisputeResp.equals(other.eventSettlementOfDisputeResp))
         && (!hasEventSettlementOfDisputeBattleResp() || eventSettlementOfDisputeBattleResp.equals(other.eventSettlementOfDisputeBattleResp))
+        && (!hasCheckStageSettleResp() || checkStageSettleResp.equals(other.checkStageSettleResp))
+        && (!hasDeploySyncResp() || deploySyncResp.equals(other.deploySyncResp))
+        && (!hasStoryEventOfPersonalitySelectResp() || storyEventOfPersonalitySelectResp.equals(other.storyEventOfPersonalitySelectResp))
         && (!hasNilResp() || nilResp.equals(other.nilResp))
-        && (!hasSettle() || settle.equals(other.settle))
+        && (!hasStoryEventOfCostlySelectResp() || storyEventOfCostlySelectResp.equals(other.storyEventOfCostlySelectResp))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasCases() || cases.equals(other.cases))
-        && (!hasEffects() || effects.equals(other.effects));
+        && (!hasEffects() || effects.equals(other.effects))
+        && (!hasProgress() || progress.equals(other.progress));
     }
 
     @Override
@@ -2274,47 +2873,65 @@ public final class SoldierInteract {
         output.writeMessageNoTag(syncData);
       }
       if ((bitField0_ & 0x00000010) != 0) {
+        output.writeRawByte((byte) 58);
+        output.writeMessageNoTag(settle);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
         output.writeRawByte((byte) 66);
         output.writeMessageNoTag(shopResp);
       }
-      if ((bitField0_ & 0x00000020) != 0) {
+      if ((bitField0_ & 0x00000040) != 0) {
         output.writeRawByte((byte) 74);
         output.writeMessageNoTag(battleResp);
       }
-      if ((bitField0_ & 0x00000040) != 0) {
+      if ((bitField0_ & 0x00000080) != 0) {
         output.writeRawByte((byte) 82);
         output.writeMessageNoTag(selectResp);
       }
-      if ((bitField0_ & 0x00000080) != 0) {
-        output.writeRawByte((byte) 90);
-        output.writeMessageNoTag(eventSettlementOfDisputeResp);
-      }
       if ((bitField0_ & 0x00000100) != 0) {
-        output.writeRawByte((byte) 98);
+        output.writeRawByte((byte) 90);
         output.writeMessageNoTag(eventSettlementOfDisputeBattleResp);
       }
       if ((bitField0_ & 0x00000200) != 0) {
-        output.writeRawByte((byte) 114);
-        output.writeMessageNoTag(nilResp);
+        output.writeRawByte((byte) 98);
+        output.writeMessageNoTag(checkStageSettleResp);
       }
       if ((bitField0_ & 0x00000400) != 0) {
-        output.writeRawByte((byte) 122);
-        output.writeMessageNoTag(settle);
+        output.writeRawByte((byte) 106);
+        output.writeMessageNoTag(deploySyncResp);
       }
       if ((bitField0_ & 0x00000800) != 0) {
+        output.writeRawByte((byte) 114);
+        output.writeMessageNoTag(storyEventOfPersonalitySelectResp);
+      }
+      if ((bitField0_ & 0x00001000) != 0) {
+        output.writeRawLittleEndian16((short) 386);
+        output.writeMessageNoTag(nilResp);
+      }
+      if ((bitField0_ & 0x00002000) != 0) {
+        output.writeRawLittleEndian16((short) 394);
+        output.writeMessageNoTag(storyEventOfCostlySelectResp);
+      }
+      if ((bitField0_ & 0x00004000) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
-      if ((bitField0_ & 0x00001000) != 0) {
+      if ((bitField0_ & 0x00008000) != 0) {
         for (int i = 0; i < cases.length(); i++) {
           output.writeRawByte((byte) 18);
           output.writeMessageNoTag(cases.get(i));
         }
       }
-      if ((bitField0_ & 0x00002000) != 0) {
+      if ((bitField0_ & 0x00010000) != 0) {
         for (int i = 0; i < effects.length(); i++) {
           output.writeRawByte((byte) 50);
           output.writeMessageNoTag(effects.get(i));
+        }
+      }
+      if ((bitField0_ & 0x00020000) != 0) {
+        for (int i = 0; i < progress.length(); i++) {
+          output.writeRawByte((byte) 122);
+          output.writeMessageNoTag(progress.get(i));
         }
       }
     }
@@ -2335,34 +2952,46 @@ public final class SoldierInteract {
         size += 1 + ProtoSink.computeMessageSizeNoTag(syncData);
       }
       if ((bitField0_ & 0x00000010) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(shopResp);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(settle);
       }
       if ((bitField0_ & 0x00000020) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(battleResp);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(shopResp);
       }
       if ((bitField0_ & 0x00000040) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(selectResp);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(battleResp);
       }
       if ((bitField0_ & 0x00000080) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(eventSettlementOfDisputeResp);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(selectResp);
       }
       if ((bitField0_ & 0x00000100) != 0) {
         size += 1 + ProtoSink.computeMessageSizeNoTag(eventSettlementOfDisputeBattleResp);
       }
       if ((bitField0_ & 0x00000200) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(nilResp);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(checkStageSettleResp);
       }
       if ((bitField0_ & 0x00000400) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(settle);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(deploySyncResp);
       }
       if ((bitField0_ & 0x00000800) != 0) {
-        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(storyEventOfPersonalitySelectResp);
       }
       if ((bitField0_ & 0x00001000) != 0) {
-        size += (1 * cases.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(cases);
+        size += 2 + ProtoSink.computeMessageSizeNoTag(nilResp);
       }
       if ((bitField0_ & 0x00002000) != 0) {
+        size += 2 + ProtoSink.computeMessageSizeNoTag(storyEventOfCostlySelectResp);
+      }
+      if ((bitField0_ & 0x00004000) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00008000) != 0) {
+        size += (1 * cases.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(cases);
+      }
+      if ((bitField0_ & 0x00010000) != 0) {
         size += (1 * effects.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(effects);
+      }
+      if ((bitField0_ & 0x00020000) != 0) {
+        size += (1 * progress.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(progress);
       }
       return size;
     }
@@ -2406,6 +3035,15 @@ public final class SoldierInteract {
             input.readMessage(syncData);
             bitField0_ |= 0x00000008;
             tag = input.readTag();
+            if (tag != 58) {
+              break;
+            }
+          }
+          case 58: {
+            // settle
+            input.readMessage(settle);
+            bitField0_ |= 0x00000010;
+            tag = input.readTag();
             if (tag != 66) {
               break;
             }
@@ -2413,7 +3051,7 @@ public final class SoldierInteract {
           case 66: {
             // shopResp
             input.readMessage(shopResp);
-            bitField0_ |= 0x00000010;
+            bitField0_ |= 0x00000020;
             tag = input.readTag();
             if (tag != 74) {
               break;
@@ -2422,7 +3060,7 @@ public final class SoldierInteract {
           case 74: {
             // battleResp
             input.readMessage(battleResp);
-            bitField0_ |= 0x00000020;
+            bitField0_ |= 0x00000040;
             tag = input.readTag();
             if (tag != 82) {
               break;
@@ -2431,43 +3069,61 @@ public final class SoldierInteract {
           case 82: {
             // selectResp
             input.readMessage(selectResp);
-            bitField0_ |= 0x00000040;
+            bitField0_ |= 0x00000080;
             tag = input.readTag();
             if (tag != 90) {
               break;
             }
           }
           case 90: {
-            // eventSettlementOfDisputeResp
-            input.readMessage(eventSettlementOfDisputeResp);
-            bitField0_ |= 0x00000080;
+            // eventSettlementOfDisputeBattleResp
+            input.readMessage(eventSettlementOfDisputeBattleResp);
+            bitField0_ |= 0x00000100;
             tag = input.readTag();
             if (tag != 98) {
               break;
             }
           }
           case 98: {
-            // eventSettlementOfDisputeBattleResp
-            input.readMessage(eventSettlementOfDisputeBattleResp);
-            bitField0_ |= 0x00000100;
+            // checkStageSettleResp
+            input.readMessage(checkStageSettleResp);
+            bitField0_ |= 0x00000200;
+            tag = input.readTag();
+            if (tag != 106) {
+              break;
+            }
+          }
+          case 106: {
+            // deploySyncResp
+            input.readMessage(deploySyncResp);
+            bitField0_ |= 0x00000400;
             tag = input.readTag();
             if (tag != 114) {
               break;
             }
           }
           case 114: {
-            // nilResp
-            input.readMessage(nilResp);
-            bitField0_ |= 0x00000200;
+            // storyEventOfPersonalitySelectResp
+            input.readMessage(storyEventOfPersonalitySelectResp);
+            bitField0_ |= 0x00000800;
             tag = input.readTag();
-            if (tag != 122) {
+            if (tag != 130) {
               break;
             }
           }
-          case 122: {
-            // settle
-            input.readMessage(settle);
-            bitField0_ |= 0x00000400;
+          case 130: {
+            // nilResp
+            input.readMessage(nilResp);
+            bitField0_ |= 0x00001000;
+            tag = input.readTag();
+            if (tag != 138) {
+              break;
+            }
+          }
+          case 138: {
+            // storyEventOfCostlySelectResp
+            input.readMessage(storyEventOfCostlySelectResp);
+            bitField0_ |= 0x00002000;
             tag = input.readTag();
             if (tag != 16378) {
               break;
@@ -2476,7 +3132,7 @@ public final class SoldierInteract {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000800;
+            bitField0_ |= 0x00004000;
             tag = input.readTag();
             if (tag != 18) {
               break;
@@ -2485,7 +3141,7 @@ public final class SoldierInteract {
           case 18: {
             // cases
             tag = input.readRepeatedMessage(cases, tag);
-            bitField0_ |= 0x00001000;
+            bitField0_ |= 0x00008000;
             if (tag != 50) {
               break;
             }
@@ -2493,7 +3149,15 @@ public final class SoldierInteract {
           case 50: {
             // effects
             tag = input.readRepeatedMessage(effects, tag);
-            bitField0_ |= 0x00002000;
+            bitField0_ |= 0x00010000;
+            if (tag != 122) {
+              break;
+            }
+          }
+          case 122: {
+            // progress
+            tag = input.readRepeatedMessage(progress, tag);
+            bitField0_ |= 0x00020000;
             if (tag != 0) {
               break;
             }
@@ -2528,34 +3192,46 @@ public final class SoldierInteract {
         output.writeMessage(FieldNames.syncData, syncData);
       }
       if ((bitField0_ & 0x00000010) != 0) {
-        output.writeMessage(FieldNames.shopResp, shopResp);
+        output.writeMessage(FieldNames.settle, settle);
       }
       if ((bitField0_ & 0x00000020) != 0) {
-        output.writeMessage(FieldNames.battleResp, battleResp);
+        output.writeMessage(FieldNames.shopResp, shopResp);
       }
       if ((bitField0_ & 0x00000040) != 0) {
-        output.writeMessage(FieldNames.selectResp, selectResp);
+        output.writeMessage(FieldNames.battleResp, battleResp);
       }
       if ((bitField0_ & 0x00000080) != 0) {
-        output.writeMessage(FieldNames.eventSettlementOfDisputeResp, eventSettlementOfDisputeResp);
+        output.writeMessage(FieldNames.selectResp, selectResp);
       }
       if ((bitField0_ & 0x00000100) != 0) {
         output.writeMessage(FieldNames.eventSettlementOfDisputeBattleResp, eventSettlementOfDisputeBattleResp);
       }
       if ((bitField0_ & 0x00000200) != 0) {
-        output.writeMessage(FieldNames.nilResp, nilResp);
+        output.writeMessage(FieldNames.checkStageSettleResp, checkStageSettleResp);
       }
       if ((bitField0_ & 0x00000400) != 0) {
-        output.writeMessage(FieldNames.settle, settle);
+        output.writeMessage(FieldNames.deploySyncResp, deploySyncResp);
       }
       if ((bitField0_ & 0x00000800) != 0) {
-        output.writeBytes(FieldNames.nextPackage, nextPackage);
+        output.writeMessage(FieldNames.storyEventOfPersonalitySelectResp, storyEventOfPersonalitySelectResp);
       }
       if ((bitField0_ & 0x00001000) != 0) {
-        output.writeRepeatedMessage(FieldNames.cases, cases);
+        output.writeMessage(FieldNames.nilResp, nilResp);
       }
       if ((bitField0_ & 0x00002000) != 0) {
+        output.writeMessage(FieldNames.storyEventOfCostlySelectResp, storyEventOfCostlySelectResp);
+      }
+      if ((bitField0_ & 0x00004000) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00008000) != 0) {
+        output.writeRepeatedMessage(FieldNames.cases, cases);
+      }
+      if ((bitField0_ & 0x00010000) != 0) {
         output.writeRepeatedMessage(FieldNames.effects, effects);
+      }
+      if ((bitField0_ & 0x00020000) != 0) {
+        output.writeRepeatedMessage(FieldNames.progress, progress);
       }
       output.endObject();
     }
@@ -2611,11 +3287,22 @@ public final class SoldierInteract {
             }
             break;
           }
+          case -1821901461: {
+            if (input.isAtField(FieldNames.settle)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(settle);
+                bitField0_ |= 0x00000010;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -280714234: {
             if (input.isAtField(FieldNames.shopResp)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(shopResp);
-                bitField0_ |= 0x00000010;
+                bitField0_ |= 0x00000020;
               }
             } else {
               input.skipUnknownField();
@@ -2626,7 +3313,7 @@ public final class SoldierInteract {
             if (input.isAtField(FieldNames.battleResp)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(battleResp);
-                bitField0_ |= 0x00000020;
+                bitField0_ |= 0x00000040;
               }
             } else {
               input.skipUnknownField();
@@ -2637,17 +3324,6 @@ public final class SoldierInteract {
             if (input.isAtField(FieldNames.selectResp)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(selectResp);
-                bitField0_ |= 0x00000040;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
-          case -458021414: {
-            if (input.isAtField(FieldNames.eventSettlementOfDisputeResp)) {
-              if (!input.trySkipNullValue()) {
-                input.readMessage(eventSettlementOfDisputeResp);
                 bitField0_ |= 0x00000080;
               }
             } else {
@@ -2666,10 +3342,10 @@ public final class SoldierInteract {
             }
             break;
           }
-          case -680812191: {
-            if (input.isAtField(FieldNames.nilResp)) {
+          case 1609700177: {
+            if (input.isAtField(FieldNames.checkStageSettleResp)) {
               if (!input.trySkipNullValue()) {
-                input.readMessage(nilResp);
+                input.readMessage(checkStageSettleResp);
                 bitField0_ |= 0x00000200;
               }
             } else {
@@ -2677,11 +3353,44 @@ public final class SoldierInteract {
             }
             break;
           }
-          case -1821901461: {
-            if (input.isAtField(FieldNames.settle)) {
+          case -1222512846: {
+            if (input.isAtField(FieldNames.deploySyncResp)) {
               if (!input.trySkipNullValue()) {
-                input.readMessage(settle);
+                input.readMessage(deploySyncResp);
                 bitField0_ |= 0x00000400;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 678268382: {
+            if (input.isAtField(FieldNames.storyEventOfPersonalitySelectResp)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(storyEventOfPersonalitySelectResp);
+                bitField0_ |= 0x00000800;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -680812191: {
+            if (input.isAtField(FieldNames.nilResp)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(nilResp);
+                bitField0_ |= 0x00001000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1891657662: {
+            if (input.isAtField(FieldNames.storyEventOfCostlySelectResp)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(storyEventOfCostlySelectResp);
+                bitField0_ |= 0x00002000;
               }
             } else {
               input.skipUnknownField();
@@ -2692,7 +3401,7 @@ public final class SoldierInteract {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000800;
+                bitField0_ |= 0x00004000;
               }
             } else {
               input.skipUnknownField();
@@ -2703,7 +3412,7 @@ public final class SoldierInteract {
             if (input.isAtField(FieldNames.cases)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(cases);
-                bitField0_ |= 0x00001000;
+                bitField0_ |= 0x00008000;
               }
             } else {
               input.skipUnknownField();
@@ -2714,7 +3423,18 @@ public final class SoldierInteract {
             if (input.isAtField(FieldNames.effects)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(effects);
-                bitField0_ |= 0x00002000;
+                bitField0_ |= 0x00010000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -936434099: {
+            if (input.isAtField(FieldNames.progress)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(progress);
+                bitField0_ |= 0x00020000;
               }
             } else {
               input.skipUnknownField();
@@ -2782,25 +3502,33 @@ public final class SoldierInteract {
 
       static final FieldName syncData = FieldName.forField("SyncData");
 
+      static final FieldName settle = FieldName.forField("Settle");
+
       static final FieldName shopResp = FieldName.forField("ShopResp");
 
       static final FieldName battleResp = FieldName.forField("BattleResp");
 
       static final FieldName selectResp = FieldName.forField("SelectResp");
 
-      static final FieldName eventSettlementOfDisputeResp = FieldName.forField("EventSettlementOfDisputeResp");
-
       static final FieldName eventSettlementOfDisputeBattleResp = FieldName.forField("EventSettlementOfDisputeBattleResp");
+
+      static final FieldName checkStageSettleResp = FieldName.forField("CheckStageSettleResp");
+
+      static final FieldName deploySyncResp = FieldName.forField("DeploySyncResp");
+
+      static final FieldName storyEventOfPersonalitySelectResp = FieldName.forField("StoryEventOfPersonalitySelectResp");
 
       static final FieldName nilResp = FieldName.forField("NilResp");
 
-      static final FieldName settle = FieldName.forField("Settle");
+      static final FieldName storyEventOfCostlySelectResp = FieldName.forField("StoryEventOfCostlySelectResp");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
       static final FieldName cases = FieldName.forField("Cases");
 
       static final FieldName effects = FieldName.forField("Effects");
+
+      static final FieldName progress = FieldName.forField("Progress");
     }
   }
 }

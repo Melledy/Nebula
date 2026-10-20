@@ -30,11 +30,6 @@ public final class TraceHuntApply {
     private long ownerUID;
 
     /**
-     * <code>optional uint64 BuildID = 3;</code>
-     */
-    private long buildID;
-
-    /**
      * <code>optional uint32 BossID = 2;</code>
      */
     private int bossID;
@@ -43,6 +38,11 @@ public final class TraceHuntApply {
      * <code>optional uint32 Difficulty = 5;</code>
      */
     private int difficulty;
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     */
+    private final Public.UseBuild build = Public.UseBuild.newInstance();
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
@@ -134,48 +134,11 @@ public final class TraceHuntApply {
     }
 
     /**
-     * <code>optional uint64 BuildID = 3;</code>
-     * @return whether the buildID field is set
-     */
-    public boolean hasBuildID() {
-      return (bitField0_ & 0x00000004) != 0;
-    }
-
-    /**
-     * <code>optional uint64 BuildID = 3;</code>
-     * @return this
-     */
-    public TraceHuntApplyReq clearBuildID() {
-      bitField0_ &= ~0x00000004;
-      buildID = 0L;
-      return this;
-    }
-
-    /**
-     * <code>optional uint64 BuildID = 3;</code>
-     * @return the buildID
-     */
-    public long getBuildID() {
-      return buildID;
-    }
-
-    /**
-     * <code>optional uint64 BuildID = 3;</code>
-     * @param value the buildID to set
-     * @return this
-     */
-    public TraceHuntApplyReq setBuildID(final long value) {
-      bitField0_ |= 0x00000004;
-      buildID = value;
-      return this;
-    }
-
-    /**
      * <code>optional uint32 BossID = 2;</code>
      * @return whether the bossID field is set
      */
     public boolean hasBossID() {
-      return (bitField0_ & 0x00000008) != 0;
+      return (bitField0_ & 0x00000004) != 0;
     }
 
     /**
@@ -183,7 +146,7 @@ public final class TraceHuntApply {
      * @return this
      */
     public TraceHuntApplyReq clearBossID() {
-      bitField0_ &= ~0x00000008;
+      bitField0_ &= ~0x00000004;
       bossID = 0;
       return this;
     }
@@ -202,7 +165,7 @@ public final class TraceHuntApply {
      * @return this
      */
     public TraceHuntApplyReq setBossID(final int value) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000004;
       bossID = value;
       return this;
     }
@@ -212,7 +175,7 @@ public final class TraceHuntApply {
      * @return whether the difficulty field is set
      */
     public boolean hasDifficulty() {
-      return (bitField0_ & 0x00000010) != 0;
+      return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
@@ -220,7 +183,7 @@ public final class TraceHuntApply {
      * @return this
      */
     public TraceHuntApplyReq clearDifficulty() {
-      bitField0_ &= ~0x00000010;
+      bitField0_ &= ~0x00000008;
       difficulty = 0;
       return this;
     }
@@ -239,8 +202,65 @@ public final class TraceHuntApply {
      * @return this
      */
     public TraceHuntApplyReq setDifficulty(final int value) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000008;
       difficulty = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @return whether the build field is set
+     */
+    public boolean hasBuild() {
+      return (bitField0_ & 0x00000010) != 0;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @return this
+     */
+    public TraceHuntApplyReq clearBuild() {
+      bitField0_ &= ~0x00000010;
+      build.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBuild()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.UseBuild getBuild() {
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.UseBuild getMutableBuild() {
+      bitField0_ |= 0x00000010;
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @param value the build to set
+     * @return this
+     */
+    public TraceHuntApplyReq setBuild(final Public.UseBuild value) {
+      bitField0_ |= 0x00000010;
+      build.copyFrom(value);
       return this;
     }
 
@@ -330,9 +350,9 @@ public final class TraceHuntApply {
         bitField0_ = other.bitField0_;
         bossCreateTime = other.bossCreateTime;
         ownerUID = other.ownerUID;
-        buildID = other.buildID;
         bossID = other.bossID;
         difficulty = other.difficulty;
+        build.copyFrom(other.build);
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -350,14 +370,14 @@ public final class TraceHuntApply {
       if (other.hasOwnerUID()) {
         setOwnerUID(other.ownerUID);
       }
-      if (other.hasBuildID()) {
-        setBuildID(other.buildID);
-      }
       if (other.hasBossID()) {
         setBossID(other.bossID);
       }
       if (other.hasDifficulty()) {
         setDifficulty(other.difficulty);
+      }
+      if (other.hasBuild()) {
+        getMutableBuild().mergeFrom(other.build);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -374,9 +394,9 @@ public final class TraceHuntApply {
       bitField0_ = 0;
       bossCreateTime = 0L;
       ownerUID = 0L;
-      buildID = 0L;
       bossID = 0;
       difficulty = 0;
+      build.clear();
       nextPackage.clear();
       return this;
     }
@@ -388,6 +408,7 @@ public final class TraceHuntApply {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      build.clearQuick();
       nextPackage.clear();
       return this;
     }
@@ -404,9 +425,9 @@ public final class TraceHuntApply {
       return bitField0_ == other.bitField0_
         && (!hasBossCreateTime() || bossCreateTime == other.bossCreateTime)
         && (!hasOwnerUID() || ownerUID == other.ownerUID)
-        && (!hasBuildID() || buildID == other.buildID)
         && (!hasBossID() || bossID == other.bossID)
         && (!hasDifficulty() || difficulty == other.difficulty)
+        && (!hasBuild() || build.equals(other.build))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
@@ -421,16 +442,16 @@ public final class TraceHuntApply {
         output.writeUInt64NoTag(ownerUID);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        output.writeRawByte((byte) 24);
-        output.writeUInt64NoTag(buildID);
-      }
-      if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawByte((byte) 16);
         output.writeUInt32NoTag(bossID);
       }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawByte((byte) 40);
         output.writeUInt32NoTag(difficulty);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeRawByte((byte) 26);
+        output.writeMessageNoTag(build);
       }
       if ((bitField0_ & 0x00000020) != 0) {
         output.writeRawLittleEndian16((short) 32762);
@@ -448,13 +469,13 @@ public final class TraceHuntApply {
         size += 1 + ProtoSink.computeUInt64SizeNoTag(ownerUID);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildID);
-      }
-      if ((bitField0_ & 0x00000008) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(bossID);
       }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000008) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(difficulty);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(build);
       }
       if ((bitField0_ & 0x00000020) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
@@ -483,15 +504,6 @@ public final class TraceHuntApply {
             ownerUID = input.readUInt64();
             bitField0_ |= 0x00000002;
             tag = input.readTag();
-            if (tag != 24) {
-              break;
-            }
-          }
-          case 24: {
-            // buildID
-            buildID = input.readUInt64();
-            bitField0_ |= 0x00000004;
-            tag = input.readTag();
             if (tag != 16) {
               break;
             }
@@ -499,7 +511,7 @@ public final class TraceHuntApply {
           case 16: {
             // bossID
             bossID = input.readUInt32();
-            bitField0_ |= 0x00000008;
+            bitField0_ |= 0x00000004;
             tag = input.readTag();
             if (tag != 40) {
               break;
@@ -508,6 +520,15 @@ public final class TraceHuntApply {
           case 40: {
             // difficulty
             difficulty = input.readUInt32();
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
+            if (tag != 26) {
+              break;
+            }
+          }
+          case 26: {
+            // build
+            input.readMessage(build);
             bitField0_ |= 0x00000010;
             tag = input.readTag();
             if (tag != 16378) {
@@ -547,13 +568,13 @@ public final class TraceHuntApply {
         output.writeUInt64(FieldNames.ownerUID, ownerUID);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        output.writeUInt64(FieldNames.buildID, buildID);
-      }
-      if ((bitField0_ & 0x00000008) != 0) {
         output.writeUInt32(FieldNames.bossID, bossID);
       }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeUInt32(FieldNames.difficulty, difficulty);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeMessage(FieldNames.build, build);
       }
       if ((bitField0_ & 0x00000020) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
@@ -590,22 +611,11 @@ public final class TraceHuntApply {
             }
             break;
           }
-          case 1895597033: {
-            if (input.isAtField(FieldNames.buildID)) {
-              if (!input.trySkipNullValue()) {
-                buildID = input.readUInt64();
-                bitField0_ |= 0x00000004;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
           case 1995573608: {
             if (input.isAtField(FieldNames.bossID)) {
               if (!input.trySkipNullValue()) {
                 bossID = input.readUInt32();
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000004;
               }
             } else {
               input.skipUnknownField();
@@ -616,6 +626,17 @@ public final class TraceHuntApply {
             if (input.isAtField(FieldNames.difficulty)) {
               if (!input.trySkipNullValue()) {
                 difficulty = input.readUInt32();
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 64542286: {
+            if (input.isAtField(FieldNames.build)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(build);
                 bitField0_ |= 0x00000010;
               }
             } else {
@@ -691,11 +712,11 @@ public final class TraceHuntApply {
 
       static final FieldName ownerUID = FieldName.forField("OwnerUID");
 
-      static final FieldName buildID = FieldName.forField("BuildID");
-
       static final FieldName bossID = FieldName.forField("BossID");
 
       static final FieldName difficulty = FieldName.forField("Difficulty");
+
+      static final FieldName build = FieldName.forField("Build");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }

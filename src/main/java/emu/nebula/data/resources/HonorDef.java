@@ -62,6 +62,10 @@ public class HonorDef extends BaseDef {
                 // Levels
                 this.valid = true;
             }
+            case 5 -> {
+                // Dorm
+                this.valid = true;
+            }
             default -> {
                 // Unknown honor type
                 Nebula.getLogger().warn("Honor " + this.getId() + " has an unknown type (" + this.getType() + ")");

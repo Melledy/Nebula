@@ -20,14 +20,14 @@ public final class WeekBossApply {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint64 BuildId = 2;</code>
-     */
-    private long buildId;
-
-    /**
      * <code>optional uint32 Id = 1;</code>
      */
     private int id;
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     */
+    private final Public.UseBuild build = Public.UseBuild.newInstance();
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
@@ -45,48 +45,11 @@ public final class WeekBossApply {
     }
 
     /**
-     * <code>optional uint64 BuildId = 2;</code>
-     * @return whether the buildId field is set
-     */
-    public boolean hasBuildId() {
-      return (bitField0_ & 0x00000001) != 0;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 2;</code>
-     * @return this
-     */
-    public WeekBossApplyReq clearBuildId() {
-      bitField0_ &= ~0x00000001;
-      buildId = 0L;
-      return this;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 2;</code>
-     * @return the buildId
-     */
-    public long getBuildId() {
-      return buildId;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 2;</code>
-     * @param value the buildId to set
-     * @return this
-     */
-    public WeekBossApplyReq setBuildId(final long value) {
-      bitField0_ |= 0x00000001;
-      buildId = value;
-      return this;
-    }
-
-    /**
      * <code>optional uint32 Id = 1;</code>
      * @return whether the id field is set
      */
     public boolean hasId() {
-      return (bitField0_ & 0x00000002) != 0;
+      return (bitField0_ & 0x00000001) != 0;
     }
 
     /**
@@ -94,7 +57,7 @@ public final class WeekBossApply {
      * @return this
      */
     public WeekBossApplyReq clearId() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000001;
       id = 0;
       return this;
     }
@@ -113,8 +76,65 @@ public final class WeekBossApply {
      * @return this
      */
     public WeekBossApplyReq setId(final int value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000001;
       id = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     * @return whether the build field is set
+     */
+    public boolean hasBuild() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     * @return this
+     */
+    public WeekBossApplyReq clearBuild() {
+      bitField0_ &= ~0x00000002;
+      build.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBuild()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.UseBuild getBuild() {
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.UseBuild getMutableBuild() {
+      bitField0_ |= 0x00000002;
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     * @param value the build to set
+     * @return this
+     */
+    public WeekBossApplyReq setBuild(final Public.UseBuild value) {
+      bitField0_ |= 0x00000002;
+      build.copyFrom(value);
       return this;
     }
 
@@ -202,8 +222,8 @@ public final class WeekBossApply {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
-        buildId = other.buildId;
         id = other.id;
+        build.copyFrom(other.build);
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -215,11 +235,11 @@ public final class WeekBossApply {
         return this;
       }
       cachedSize = -1;
-      if (other.hasBuildId()) {
-        setBuildId(other.buildId);
-      }
       if (other.hasId()) {
         setId(other.id);
+      }
+      if (other.hasBuild()) {
+        getMutableBuild().mergeFrom(other.build);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -234,8 +254,8 @@ public final class WeekBossApply {
       }
       cachedSize = -1;
       bitField0_ = 0;
-      buildId = 0L;
       id = 0;
+      build.clear();
       nextPackage.clear();
       return this;
     }
@@ -247,6 +267,7 @@ public final class WeekBossApply {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      build.clearQuick();
       nextPackage.clear();
       return this;
     }
@@ -261,20 +282,20 @@ public final class WeekBossApply {
       }
       WeekBossApplyReq other = (WeekBossApplyReq) o;
       return bitField0_ == other.bitField0_
-        && (!hasBuildId() || buildId == other.buildId)
         && (!hasId() || id == other.id)
+        && (!hasBuild() || build.equals(other.build))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 16);
-        output.writeUInt64NoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 8);
         output.writeUInt32NoTag(id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 18);
+        output.writeMessageNoTag(build);
       }
       if ((bitField0_ & 0x00000004) != 0) {
         output.writeRawLittleEndian16((short) 32762);
@@ -286,10 +307,10 @@ public final class WeekBossApply {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(id);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(id);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(build);
       }
       if ((bitField0_ & 0x00000004) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
@@ -304,18 +325,18 @@ public final class WeekBossApply {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 16: {
-            // buildId
-            buildId = input.readUInt64();
-            bitField0_ |= 0x00000001;
-            tag = input.readTag();
-            if (tag != 8) {
-              break;
-            }
-          }
           case 8: {
             // id
             id = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 18) {
+              break;
+            }
+          }
+          case 18: {
+            // build
+            input.readMessage(build);
             bitField0_ |= 0x00000002;
             tag = input.readTag();
             if (tag != 16378) {
@@ -349,10 +370,10 @@ public final class WeekBossApply {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt64(FieldNames.buildId, buildId);
+        output.writeUInt32(FieldNames.id, id);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeUInt32(FieldNames.id, id);
+        output.writeMessage(FieldNames.build, build);
       }
       if ((bitField0_ & 0x00000004) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
@@ -367,10 +388,10 @@ public final class WeekBossApply {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
-          case 1895597065: {
-            if (input.isAtField(FieldNames.buildId)) {
+          case 2363: {
+            if (input.isAtField(FieldNames.id)) {
               if (!input.trySkipNullValue()) {
-                buildId = input.readUInt64();
+                id = input.readUInt32();
                 bitField0_ |= 0x00000001;
               }
             } else {
@@ -378,10 +399,10 @@ public final class WeekBossApply {
             }
             break;
           }
-          case 2363: {
-            if (input.isAtField(FieldNames.id)) {
+          case 64542286: {
+            if (input.isAtField(FieldNames.build)) {
               if (!input.trySkipNullValue()) {
-                id = input.readUInt32();
+                input.readMessage(build);
                 bitField0_ |= 0x00000002;
               }
             } else {
@@ -453,9 +474,9 @@ public final class WeekBossApply {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
-      static final FieldName buildId = FieldName.forField("BuildId");
-
       static final FieldName id = FieldName.forField("Id");
+
+      static final FieldName build = FieldName.forField("Build");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }

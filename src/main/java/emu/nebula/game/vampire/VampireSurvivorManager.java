@@ -10,10 +10,15 @@ import emu.nebula.game.player.Player;
 import emu.nebula.game.player.PlayerManager;
 import emu.nebula.game.player.PlayerProgress;
 import emu.nebula.net.NetMsgId;
+import emu.nebula.proto.Public.UseBuild;
 import emu.nebula.proto.VampireTalentDetail.VampireTalentDetailResp;
 import emu.nebula.util.Bitset;
+
+import it.unimi.dsi.fastutil.longs.LongArrayList;
+
 import lombok.Getter;
-import us.hebi.quickbuf.RepeatedLong;
+
+import us.hebi.quickbuf.RepeatedMessage;
 
 @Getter
 public class VampireSurvivorManager extends PlayerManager {
@@ -104,7 +109,7 @@ public class VampireSurvivorManager extends PlayerManager {
         Nebula.getGameDatabase().update(this.getProgress(), this.getPlayerUid(), "vampireTalents", this.getTalents());
     }
     
-    public VampireSurvivorGame apply(int levelId, RepeatedLong builds) {
+    public VampireSurvivorGame apply(int levelId, RepeatedMessage<UseBuild> builds) {
         // Get data
         var data = GameData.getVampireSurvivorDataTable().get(levelId);
         if (data == null) {
@@ -121,16 +126,23 @@ public class VampireSurvivorManager extends PlayerManager {
             return null;
         }
         
+        // Create build ids
+        var buildIds = new LongArrayList();
+        
         // Make sure our builds exist
-        for (long buildId : builds) {
+        for (var build : builds) {
+            long buildId = build.getBuildId();
             boolean hasBuild = this.getPlayer().getStarTowerManager().hasBuild(buildId);
+            
             if (hasBuild == false) {
                 return null;
             }
+            
+            buildIds.add(buildId);
         }
         
         // Create game
-        this.game = new VampireSurvivorGame(this, data, builds.toArray());
+        this.game = new VampireSurvivorGame(this, data, buildIds.toLongArray());
         
         // Success
         return this.game;

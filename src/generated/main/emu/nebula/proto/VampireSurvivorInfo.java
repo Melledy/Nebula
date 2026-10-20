@@ -938,11 +938,6 @@ public final class VampireSurvivorInfo {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint64 BuildId = 2;</code>
-     */
-    private long buildId;
-
-    /**
      * <code>optional uint32 SceneType = 1;</code>
      */
     private int sceneType;
@@ -951,6 +946,11 @@ public final class VampireSurvivorInfo {
      * <code>optional uint32 Time = 4;</code>
      */
     private int time;
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     */
+    private final Public.UseBuild build = Public.UseBuild.newInstance();
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
@@ -973,48 +973,11 @@ public final class VampireSurvivorInfo {
     }
 
     /**
-     * <code>optional uint64 BuildId = 2;</code>
-     * @return whether the buildId field is set
-     */
-    public boolean hasBuildId() {
-      return (bitField0_ & 0x00000001) != 0;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 2;</code>
-     * @return this
-     */
-    public VampireSceneInfo clearBuildId() {
-      bitField0_ &= ~0x00000001;
-      buildId = 0L;
-      return this;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 2;</code>
-     * @return the buildId
-     */
-    public long getBuildId() {
-      return buildId;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 2;</code>
-     * @param value the buildId to set
-     * @return this
-     */
-    public VampireSceneInfo setBuildId(final long value) {
-      bitField0_ |= 0x00000001;
-      buildId = value;
-      return this;
-    }
-
-    /**
      * <code>optional uint32 SceneType = 1;</code>
      * @return whether the sceneType field is set
      */
     public boolean hasSceneType() {
-      return (bitField0_ & 0x00000002) != 0;
+      return (bitField0_ & 0x00000001) != 0;
     }
 
     /**
@@ -1022,7 +985,7 @@ public final class VampireSurvivorInfo {
      * @return this
      */
     public VampireSceneInfo clearSceneType() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000001;
       sceneType = 0;
       return this;
     }
@@ -1041,7 +1004,7 @@ public final class VampireSurvivorInfo {
      * @return this
      */
     public VampireSceneInfo setSceneType(final int value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000001;
       sceneType = value;
       return this;
     }
@@ -1051,7 +1014,7 @@ public final class VampireSurvivorInfo {
      * @return whether the time field is set
      */
     public boolean hasTime() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000002) != 0;
     }
 
     /**
@@ -1059,7 +1022,7 @@ public final class VampireSurvivorInfo {
      * @return this
      */
     public VampireSceneInfo clearTime() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000002;
       time = 0;
       return this;
     }
@@ -1078,8 +1041,65 @@ public final class VampireSurvivorInfo {
      * @return this
      */
     public VampireSceneInfo setTime(final int value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       time = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     * @return whether the build field is set
+     */
+    public boolean hasBuild() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     * @return this
+     */
+    public VampireSceneInfo clearBuild() {
+      bitField0_ &= ~0x00000004;
+      build.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBuild()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.UseBuild getBuild() {
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.UseBuild getMutableBuild() {
+      bitField0_ |= 0x00000004;
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     * @param value the build to set
+     * @return this
+     */
+    public VampireSceneInfo setBuild(final Public.UseBuild value) {
+      bitField0_ |= 0x00000004;
+      build.copyFrom(value);
       return this;
     }
 
@@ -1235,9 +1255,9 @@ public final class VampireSurvivorInfo {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
-        buildId = other.buildId;
         sceneType = other.sceneType;
         time = other.time;
+        build.copyFrom(other.build);
         nextPackage.copyFrom(other.nextPackage);
         killCount.copyFrom(other.killCount);
       }
@@ -1250,14 +1270,14 @@ public final class VampireSurvivorInfo {
         return this;
       }
       cachedSize = -1;
-      if (other.hasBuildId()) {
-        setBuildId(other.buildId);
-      }
       if (other.hasSceneType()) {
         setSceneType(other.sceneType);
       }
       if (other.hasTime()) {
         setTime(other.time);
+      }
+      if (other.hasBuild()) {
+        getMutableBuild().mergeFrom(other.build);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -1275,9 +1295,9 @@ public final class VampireSurvivorInfo {
       }
       cachedSize = -1;
       bitField0_ = 0;
-      buildId = 0L;
       sceneType = 0;
       time = 0;
+      build.clear();
       nextPackage.clear();
       killCount.clear();
       return this;
@@ -1290,6 +1310,7 @@ public final class VampireSurvivorInfo {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      build.clearQuick();
       nextPackage.clear();
       killCount.clear();
       return this;
@@ -1305,9 +1326,9 @@ public final class VampireSurvivorInfo {
       }
       VampireSceneInfo other = (VampireSceneInfo) o;
       return bitField0_ == other.bitField0_
-        && (!hasBuildId() || buildId == other.buildId)
         && (!hasSceneType() || sceneType == other.sceneType)
         && (!hasTime() || time == other.time)
+        && (!hasBuild() || build.equals(other.build))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasKillCount() || killCount.equals(other.killCount));
     }
@@ -1315,16 +1336,16 @@ public final class VampireSurvivorInfo {
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 16);
-        output.writeUInt64NoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 8);
         output.writeUInt32NoTag(sceneType);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 32);
         output.writeUInt32NoTag(time);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 18);
+        output.writeMessageNoTag(build);
       }
       if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawLittleEndian16((short) 32762);
@@ -1342,13 +1363,13 @@ public final class VampireSurvivorInfo {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(sceneType);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(time);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(build);
       }
       if ((bitField0_ & 0x00000008) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
@@ -1366,19 +1387,10 @@ public final class VampireSurvivorInfo {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 16: {
-            // buildId
-            buildId = input.readUInt64();
-            bitField0_ |= 0x00000001;
-            tag = input.readTag();
-            if (tag != 8) {
-              break;
-            }
-          }
           case 8: {
             // sceneType
             sceneType = input.readUInt32();
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000001;
             tag = input.readTag();
             if (tag != 32) {
               break;
@@ -1387,6 +1399,15 @@ public final class VampireSurvivorInfo {
           case 32: {
             // time
             time = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 18) {
+              break;
+            }
+          }
+          case 18: {
+            // build
+            input.readMessage(build);
             bitField0_ |= 0x00000004;
             tag = input.readTag();
             if (tag != 16378) {
@@ -1435,13 +1456,13 @@ public final class VampireSurvivorInfo {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt64(FieldNames.buildId, buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.sceneType, sceneType);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.time, time);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeMessage(FieldNames.build, build);
       }
       if ((bitField0_ & 0x00000008) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
@@ -1459,22 +1480,11 @@ public final class VampireSurvivorInfo {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
-          case 1895597065: {
-            if (input.isAtField(FieldNames.buildId)) {
-              if (!input.trySkipNullValue()) {
-                buildId = input.readUInt64();
-                bitField0_ |= 0x00000001;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
           case -561637946: {
             if (input.isAtField(FieldNames.sceneType)) {
               if (!input.trySkipNullValue()) {
                 sceneType = input.readUInt32();
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000001;
               }
             } else {
               input.skipUnknownField();
@@ -1485,6 +1495,17 @@ public final class VampireSurvivorInfo {
             if (input.isAtField(FieldNames.time)) {
               if (!input.trySkipNullValue()) {
                 time = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 64542286: {
+            if (input.isAtField(FieldNames.build)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(build);
                 bitField0_ |= 0x00000004;
               }
             } else {
@@ -1567,11 +1588,11 @@ public final class VampireSurvivorInfo {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
-      static final FieldName buildId = FieldName.forField("BuildId");
-
       static final FieldName sceneType = FieldName.forField("SceneType");
 
       static final FieldName time = FieldName.forField("Time");
+
+      static final FieldName build = FieldName.forField("Build");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 

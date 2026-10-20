@@ -15168,6 +15168,11 @@ public final class PublicStarTower {
     private boolean reRoll;
 
     /**
+     * <code>optional bool Auto = 3;</code>
+     */
+    private boolean auto;
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -15257,11 +15262,48 @@ public final class PublicStarTower {
     }
 
     /**
+     * <code>optional bool Auto = 3;</code>
+     * @return whether the auto field is set
+     */
+    public boolean hasAuto() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional bool Auto = 3;</code>
+     * @return this
+     */
+    public InteractHawkerReq clearAuto() {
+      bitField0_ &= ~0x00000004;
+      auto = false;
+      return this;
+    }
+
+    /**
+     * <code>optional bool Auto = 3;</code>
+     * @return the auto
+     */
+    public boolean getAuto() {
+      return auto;
+    }
+
+    /**
+     * <code>optional bool Auto = 3;</code>
+     * @param value the auto to set
+     * @return this
+     */
+    public InteractHawkerReq setAuto(final boolean value) {
+      bitField0_ |= 0x00000004;
+      auto = value;
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
@@ -15269,7 +15311,7 @@ public final class PublicStarTower {
      * @return this
      */
     public InteractHawkerReq clearNextPackage() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000008;
       nextPackage.clear();
       return this;
     }
@@ -15298,7 +15340,7 @@ public final class PublicStarTower {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       return nextPackage;
     }
 
@@ -15308,7 +15350,7 @@ public final class PublicStarTower {
      * @return this
      */
     public InteractHawkerReq addNextPackage(final byte value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       nextPackage.add(value);
       return this;
     }
@@ -15319,7 +15361,7 @@ public final class PublicStarTower {
      * @return this
      */
     public InteractHawkerReq addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       nextPackage.addAll(values);
       return this;
     }
@@ -15330,7 +15372,7 @@ public final class PublicStarTower {
      * @return this
      */
     public InteractHawkerReq setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -15342,6 +15384,7 @@ public final class PublicStarTower {
         bitField0_ = other.bitField0_;
         sid = other.sid;
         reRoll = other.reRoll;
+        auto = other.auto;
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -15359,6 +15402,9 @@ public final class PublicStarTower {
       if (other.hasReRoll()) {
         setReRoll(other.reRoll);
       }
+      if (other.hasAuto()) {
+        setAuto(other.auto);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -15374,6 +15420,7 @@ public final class PublicStarTower {
       bitField0_ = 0;
       sid = 0;
       reRoll = false;
+      auto = false;
       nextPackage.clear();
       return this;
     }
@@ -15401,6 +15448,7 @@ public final class PublicStarTower {
       return bitField0_ == other.bitField0_
         && (!hasSid() || sid == other.sid)
         && (!hasReRoll() || reRoll == other.reRoll)
+        && (!hasAuto() || auto == other.auto)
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
@@ -15415,6 +15463,10 @@ public final class PublicStarTower {
         output.writeBoolNoTag(reRoll);
       }
       if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeBoolNoTag(auto);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
@@ -15430,6 +15482,9 @@ public final class PublicStarTower {
         size += 2;
       }
       if ((bitField0_ & 0x00000004) != 0) {
+        size += 2;
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       return size;
@@ -15456,6 +15511,15 @@ public final class PublicStarTower {
             reRoll = input.readBool();
             bitField0_ |= 0x00000002;
             tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
+            // auto
+            auto = input.readBool();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -15463,7 +15527,7 @@ public final class PublicStarTower {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000008;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -15493,6 +15557,9 @@ public final class PublicStarTower {
         output.writeBool(FieldNames.reRoll, reRoll);
       }
       if ((bitField0_ & 0x00000004) != 0) {
+        output.writeBool(FieldNames.auto, auto);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       output.endObject();
@@ -15527,11 +15594,22 @@ public final class PublicStarTower {
             }
             break;
           }
+          case 2052559: {
+            if (input.isAtField(FieldNames.auto)) {
+              if (!input.trySkipNullValue()) {
+                auto = input.readBool();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -15594,6 +15672,8 @@ public final class PublicStarTower {
       static final FieldName sid = FieldName.forField("Sid");
 
       static final FieldName reRoll = FieldName.forField("ReRoll");
+
+      static final FieldName auto = FieldName.forField("Auto");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }
@@ -21158,6 +21238,11 @@ public final class PublicStarTower {
     private boolean reRoll;
 
     /**
+     * <code>optional bool Auto = 3;</code>
+     */
+    private boolean auto;
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -21247,11 +21332,48 @@ public final class PublicStarTower {
     }
 
     /**
+     * <code>optional bool Auto = 3;</code>
+     * @return whether the auto field is set
+     */
+    public boolean hasAuto() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional bool Auto = 3;</code>
+     * @return this
+     */
+    public InteractSelectReq clearAuto() {
+      bitField0_ &= ~0x00000004;
+      auto = false;
+      return this;
+    }
+
+    /**
+     * <code>optional bool Auto = 3;</code>
+     * @return the auto
+     */
+    public boolean getAuto() {
+      return auto;
+    }
+
+    /**
+     * <code>optional bool Auto = 3;</code>
+     * @param value the auto to set
+     * @return this
+     */
+    public InteractSelectReq setAuto(final boolean value) {
+      bitField0_ |= 0x00000004;
+      auto = value;
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
@@ -21259,7 +21381,7 @@ public final class PublicStarTower {
      * @return this
      */
     public InteractSelectReq clearNextPackage() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000008;
       nextPackage.clear();
       return this;
     }
@@ -21288,7 +21410,7 @@ public final class PublicStarTower {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       return nextPackage;
     }
 
@@ -21298,7 +21420,7 @@ public final class PublicStarTower {
      * @return this
      */
     public InteractSelectReq addNextPackage(final byte value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       nextPackage.add(value);
       return this;
     }
@@ -21309,7 +21431,7 @@ public final class PublicStarTower {
      * @return this
      */
     public InteractSelectReq addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       nextPackage.addAll(values);
       return this;
     }
@@ -21320,7 +21442,7 @@ public final class PublicStarTower {
      * @return this
      */
     public InteractSelectReq setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -21332,6 +21454,7 @@ public final class PublicStarTower {
         bitField0_ = other.bitField0_;
         index = other.index;
         reRoll = other.reRoll;
+        auto = other.auto;
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -21349,6 +21472,9 @@ public final class PublicStarTower {
       if (other.hasReRoll()) {
         setReRoll(other.reRoll);
       }
+      if (other.hasAuto()) {
+        setAuto(other.auto);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -21364,6 +21490,7 @@ public final class PublicStarTower {
       bitField0_ = 0;
       index = 0;
       reRoll = false;
+      auto = false;
       nextPackage.clear();
       return this;
     }
@@ -21391,6 +21518,7 @@ public final class PublicStarTower {
       return bitField0_ == other.bitField0_
         && (!hasIndex() || index == other.index)
         && (!hasReRoll() || reRoll == other.reRoll)
+        && (!hasAuto() || auto == other.auto)
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
@@ -21405,6 +21533,10 @@ public final class PublicStarTower {
         output.writeBoolNoTag(reRoll);
       }
       if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeBoolNoTag(auto);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
@@ -21420,6 +21552,9 @@ public final class PublicStarTower {
         size += 2;
       }
       if ((bitField0_ & 0x00000004) != 0) {
+        size += 2;
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       return size;
@@ -21446,6 +21581,15 @@ public final class PublicStarTower {
             reRoll = input.readBool();
             bitField0_ |= 0x00000002;
             tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
+            // auto
+            auto = input.readBool();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -21453,7 +21597,7 @@ public final class PublicStarTower {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000008;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -21483,6 +21627,9 @@ public final class PublicStarTower {
         output.writeBool(FieldNames.reRoll, reRoll);
       }
       if ((bitField0_ & 0x00000004) != 0) {
+        output.writeBool(FieldNames.auto, auto);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       output.endObject();
@@ -21517,11 +21664,22 @@ public final class PublicStarTower {
             }
             break;
           }
+          case 2052559: {
+            if (input.isAtField(FieldNames.auto)) {
+              if (!input.trySkipNullValue()) {
+                auto = input.readBool();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -21584,6 +21742,8 @@ public final class PublicStarTower {
       static final FieldName index = FieldName.forField("Index");
 
       static final FieldName reRoll = FieldName.forField("ReRoll");
+
+      static final FieldName auto = FieldName.forField("Auto");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }
@@ -29807,6 +29967,11 @@ public final class PublicStarTower {
     private static final long serialVersionUID = 0L;
 
     /**
+     * <code>optional uint32 ModifierState = 4;</code>
+     */
+    private int modifierState;
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -29837,11 +30002,48 @@ public final class PublicStarTower {
     }
 
     /**
+     * <code>optional uint32 ModifierState = 4;</code>
+     * @return whether the modifierState field is set
+     */
+    public boolean hasModifierState() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 ModifierState = 4;</code>
+     * @return this
+     */
+    public StarTowerBuildDetail clearModifierState() {
+      bitField0_ &= ~0x00000001;
+      modifierState = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 ModifierState = 4;</code>
+     * @return the modifierState
+     */
+    public int getModifierState() {
+      return modifierState;
+    }
+
+    /**
+     * <code>optional uint32 ModifierState = 4;</code>
+     * @param value the modifierState to set
+     * @return this
+     */
+    public StarTowerBuildDetail setModifierState(final int value) {
+      bitField0_ |= 0x00000001;
+      modifierState = value;
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000001) != 0;
+      return (bitField0_ & 0x00000002) != 0;
     }
 
     /**
@@ -29849,7 +30051,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerBuildDetail clearNextPackage() {
-      bitField0_ &= ~0x00000001;
+      bitField0_ &= ~0x00000002;
       nextPackage.clear();
       return this;
     }
@@ -29878,7 +30080,7 @@ public final class PublicStarTower {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000001;
+      bitField0_ |= 0x00000002;
       return nextPackage;
     }
 
@@ -29888,7 +30090,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerBuildDetail addNextPackage(final byte value) {
-      bitField0_ |= 0x00000001;
+      bitField0_ |= 0x00000002;
       nextPackage.add(value);
       return this;
     }
@@ -29899,7 +30101,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerBuildDetail addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000001;
+      bitField0_ |= 0x00000002;
       nextPackage.addAll(values);
       return this;
     }
@@ -29910,7 +30112,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerBuildDetail setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000001;
+      bitField0_ |= 0x00000002;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -29920,7 +30122,7 @@ public final class PublicStarTower {
      * @return whether the activeSecondaryIds field is set
      */
     public boolean hasActiveSecondaryIds() {
-      return (bitField0_ & 0x00000002) != 0;
+      return (bitField0_ & 0x00000004) != 0;
     }
 
     /**
@@ -29928,7 +30130,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerBuildDetail clearActiveSecondaryIds() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000004;
       activeSecondaryIds.clear();
       return this;
     }
@@ -29957,7 +30159,7 @@ public final class PublicStarTower {
      * @return internal storage object for modifications
      */
     public RepeatedInt getMutableActiveSecondaryIds() {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000004;
       return activeSecondaryIds;
     }
 
@@ -29967,7 +30169,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerBuildDetail addActiveSecondaryIds(final int value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000004;
       activeSecondaryIds.add(value);
       return this;
     }
@@ -29978,7 +30180,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerBuildDetail addAllActiveSecondaryIds(final int... values) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000004;
       activeSecondaryIds.addAll(values);
       return this;
     }
@@ -29988,7 +30190,7 @@ public final class PublicStarTower {
      * @return whether the potentials field is set
      */
     public boolean hasPotentials() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
@@ -29996,7 +30198,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerBuildDetail clearPotentials() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000008;
       potentials.clear();
       return this;
     }
@@ -30025,7 +30227,7 @@ public final class PublicStarTower {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<BuildPotential> getMutablePotentials() {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       return potentials;
     }
 
@@ -30035,7 +30237,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerBuildDetail addPotentials(final BuildPotential value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       potentials.add(value);
       return this;
     }
@@ -30046,7 +30248,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerBuildDetail addAllPotentials(final BuildPotential... values) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       potentials.addAll(values);
       return this;
     }
@@ -30056,7 +30258,7 @@ public final class PublicStarTower {
      * @return whether the subNoteSkills field is set
      */
     public boolean hasSubNoteSkills() {
-      return (bitField0_ & 0x00000008) != 0;
+      return (bitField0_ & 0x00000010) != 0;
     }
 
     /**
@@ -30064,7 +30266,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerBuildDetail clearSubNoteSkills() {
-      bitField0_ &= ~0x00000008;
+      bitField0_ &= ~0x00000010;
       subNoteSkills.clear();
       return this;
     }
@@ -30093,7 +30295,7 @@ public final class PublicStarTower {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<Public.ItemTpl> getMutableSubNoteSkills() {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       return subNoteSkills;
     }
 
@@ -30103,7 +30305,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerBuildDetail addSubNoteSkills(final Public.ItemTpl value) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       subNoteSkills.add(value);
       return this;
     }
@@ -30114,7 +30316,7 @@ public final class PublicStarTower {
      * @return this
      */
     public StarTowerBuildDetail addAllSubNoteSkills(final Public.ItemTpl... values) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       subNoteSkills.addAll(values);
       return this;
     }
@@ -30124,6 +30326,7 @@ public final class PublicStarTower {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
+        modifierState = other.modifierState;
         nextPackage.copyFrom(other.nextPackage);
         activeSecondaryIds.copyFrom(other.activeSecondaryIds);
         potentials.copyFrom(other.potentials);
@@ -30138,6 +30341,9 @@ public final class PublicStarTower {
         return this;
       }
       cachedSize = -1;
+      if (other.hasModifierState()) {
+        setModifierState(other.modifierState);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -30160,6 +30366,7 @@ public final class PublicStarTower {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      modifierState = 0;
       nextPackage.clear();
       activeSecondaryIds.clear();
       potentials.clear();
@@ -30191,6 +30398,7 @@ public final class PublicStarTower {
       }
       StarTowerBuildDetail other = (StarTowerBuildDetail) o;
       return bitField0_ == other.bitField0_
+        && (!hasModifierState() || modifierState == other.modifierState)
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasActiveSecondaryIds() || activeSecondaryIds.equals(other.activeSecondaryIds))
         && (!hasPotentials() || potentials.equals(other.potentials))
@@ -30200,22 +30408,26 @@ public final class PublicStarTower {
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 32);
+        output.writeUInt32NoTag(modifierState);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
-      if ((bitField0_ & 0x00000002) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         for (int i = 0; i < activeSecondaryIds.length(); i++) {
           output.writeRawByte((byte) 24);
           output.writeUInt32NoTag(activeSecondaryIds.array()[i]);
         }
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000008) != 0) {
         for (int i = 0; i < potentials.length(); i++) {
           output.writeRawByte((byte) 10);
           output.writeMessageNoTag(potentials.get(i));
         }
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000010) != 0) {
         for (int i = 0; i < subNoteSkills.length(); i++) {
           output.writeRawByte((byte) 18);
           output.writeMessageNoTag(subNoteSkills.get(i));
@@ -30227,15 +30439,18 @@ public final class PublicStarTower {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(modifierState);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        size += (1 * activeSecondaryIds.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(activeSecondaryIds);
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        size += (1 * potentials.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(potentials);
+        size += (1 * activeSecondaryIds.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(activeSecondaryIds);
       }
       if ((bitField0_ & 0x00000008) != 0) {
+        size += (1 * potentials.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(potentials);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
         size += (1 * subNoteSkills.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(subNoteSkills);
       }
       return size;
@@ -30248,10 +30463,19 @@ public final class PublicStarTower {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
+          case 32: {
+            // modifierState
+            modifierState = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000001;
+            bitField0_ |= 0x00000002;
             tag = input.readTag();
             if (tag != 26) {
               break;
@@ -30260,7 +30484,7 @@ public final class PublicStarTower {
           case 26: {
             // activeSecondaryIds [packed=true]
             input.readPackedUInt32(activeSecondaryIds, tag);
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000004;
             tag = input.readTag();
             if (tag != 10) {
               break;
@@ -30269,7 +30493,7 @@ public final class PublicStarTower {
           case 10: {
             // potentials
             tag = input.readRepeatedMessage(potentials, tag);
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000008;
             if (tag != 18) {
               break;
             }
@@ -30277,7 +30501,7 @@ public final class PublicStarTower {
           case 18: {
             // subNoteSkills
             tag = input.readRepeatedMessage(subNoteSkills, tag);
-            bitField0_ |= 0x00000008;
+            bitField0_ |= 0x00000010;
             if (tag != 0) {
               break;
             }
@@ -30295,7 +30519,7 @@ public final class PublicStarTower {
           case 24: {
             // activeSecondaryIds [packed=false]
             tag = input.readRepeatedUInt32(activeSecondaryIds, tag);
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000004;
             break;
           }
         }
@@ -30306,15 +30530,18 @@ public final class PublicStarTower {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeBytes(FieldNames.nextPackage, nextPackage);
+        output.writeUInt32(FieldNames.modifierState, modifierState);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeRepeatedUInt32(FieldNames.activeSecondaryIds, activeSecondaryIds);
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        output.writeRepeatedMessage(FieldNames.potentials, potentials);
+        output.writeRepeatedUInt32(FieldNames.activeSecondaryIds, activeSecondaryIds);
       }
       if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRepeatedMessage(FieldNames.potentials, potentials);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
         output.writeRepeatedMessage(FieldNames.subNoteSkills, subNoteSkills);
       }
       output.endObject();
@@ -30327,11 +30554,22 @@ public final class PublicStarTower {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
+          case -1012256806: {
+            if (input.isAtField(FieldNames.modifierState)) {
+              if (!input.trySkipNullValue()) {
+                modifierState = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000001;
+                bitField0_ |= 0x00000002;
               }
             } else {
               input.skipUnknownField();
@@ -30342,7 +30580,7 @@ public final class PublicStarTower {
             if (input.isAtField(FieldNames.activeSecondaryIds)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedUInt32(activeSecondaryIds);
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000004;
               }
             } else {
               input.skipUnknownField();
@@ -30353,7 +30591,7 @@ public final class PublicStarTower {
             if (input.isAtField(FieldNames.potentials)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(potentials);
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -30364,7 +30602,7 @@ public final class PublicStarTower {
             if (input.isAtField(FieldNames.subNoteSkills)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(subNoteSkills);
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000010;
               }
             } else {
               input.skipUnknownField();
@@ -30424,6 +30662,8 @@ public final class PublicStarTower {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
+      static final FieldName modifierState = FieldName.forField("ModifierState");
+
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
       static final FieldName activeSecondaryIds = FieldName.forField("ActiveSecondaryIds");

@@ -23,7 +23,7 @@ public class HandlerActivityStoryApplyReq extends NetHandler {
         }
         
         // Apply
-        boolean success = activity.apply(req.getStoryId(), req.getBuildId());
+        boolean success = activity.apply(req.getStoryId(), req.getBuild().getBuildId());
 
         if (success == false) {
             return session.encodeMsg(NetMsgId.activity_story_apply_failed_ack);

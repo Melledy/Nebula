@@ -18,6 +18,7 @@ import emu.nebula.game.player.PlayerChangeInfo;
 import emu.nebula.game.player.PlayerManager;
 import emu.nebula.net.NetMsgId;
 import emu.nebula.proto.Public.TraceHuntItem;
+import emu.nebula.proto.Public.UseBuild;
 import emu.nebula.proto.TraceHuntInfoOuterClass.TraceHuntInfo;
 import emu.nebula.util.Utils;
 import lombok.Getter;
@@ -503,7 +504,7 @@ public class TraceHuntManager extends PlayerManager implements GameDatabaseObjec
                 .setExp(this.getExp())
                 .setBossID(this.getBossId())
                 .setBossCreateTime(this.getBossCreateTime())
-                .setBuildID(this.getBuildId())
+                .setBuild(UseBuild.newInstance().setBuildId(this.getBuildId()).setTypeValue(1))
                 .setTraceProgress(this.getTraceProgress())
                 .setHuntProgress(this.getHuntProgress())
                 .setSelfHuntTimes(this.getHuntCount());

@@ -26,11 +26,6 @@ public final class TraceHuntInfoOuterClass {
     private long bossCreateTime;
 
     /**
-     * <code>optional uint64 BuildID = 9;</code>
-     */
-    private long buildID;
-
-    /**
      * <code>optional uint32 ControlID = 1;</code>
      */
     private int controlID;
@@ -64,6 +59,11 @@ public final class TraceHuntInfoOuterClass {
      * <code>optional uint32 SelfHuntTimes = 8;</code>
      */
     private int selfHuntTimes;
+
+    /**
+     * <code>optional .UseBuild Build = 9;</code>
+     */
+    private final Public.UseBuild build = Public.UseBuild.newInstance();
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
@@ -133,48 +133,11 @@ public final class TraceHuntInfoOuterClass {
     }
 
     /**
-     * <code>optional uint64 BuildID = 9;</code>
-     * @return whether the buildID field is set
-     */
-    public boolean hasBuildID() {
-      return (bitField0_ & 0x00000002) != 0;
-    }
-
-    /**
-     * <code>optional uint64 BuildID = 9;</code>
-     * @return this
-     */
-    public TraceHuntInfo clearBuildID() {
-      bitField0_ &= ~0x00000002;
-      buildID = 0L;
-      return this;
-    }
-
-    /**
-     * <code>optional uint64 BuildID = 9;</code>
-     * @return the buildID
-     */
-    public long getBuildID() {
-      return buildID;
-    }
-
-    /**
-     * <code>optional uint64 BuildID = 9;</code>
-     * @param value the buildID to set
-     * @return this
-     */
-    public TraceHuntInfo setBuildID(final long value) {
-      bitField0_ |= 0x00000002;
-      buildID = value;
-      return this;
-    }
-
-    /**
      * <code>optional uint32 ControlID = 1;</code>
      * @return whether the controlID field is set
      */
     public boolean hasControlID() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000002) != 0;
     }
 
     /**
@@ -182,7 +145,7 @@ public final class TraceHuntInfoOuterClass {
      * @return this
      */
     public TraceHuntInfo clearControlID() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000002;
       controlID = 0;
       return this;
     }
@@ -201,7 +164,7 @@ public final class TraceHuntInfoOuterClass {
      * @return this
      */
     public TraceHuntInfo setControlID(final int value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       controlID = value;
       return this;
     }
@@ -211,7 +174,7 @@ public final class TraceHuntInfoOuterClass {
      * @return whether the level field is set
      */
     public boolean hasLevel() {
-      return (bitField0_ & 0x00000008) != 0;
+      return (bitField0_ & 0x00000004) != 0;
     }
 
     /**
@@ -219,7 +182,7 @@ public final class TraceHuntInfoOuterClass {
      * @return this
      */
     public TraceHuntInfo clearLevel() {
-      bitField0_ &= ~0x00000008;
+      bitField0_ &= ~0x00000004;
       level = 0;
       return this;
     }
@@ -238,7 +201,7 @@ public final class TraceHuntInfoOuterClass {
      * @return this
      */
     public TraceHuntInfo setLevel(final int value) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000004;
       level = value;
       return this;
     }
@@ -248,7 +211,7 @@ public final class TraceHuntInfoOuterClass {
      * @return whether the exp field is set
      */
     public boolean hasExp() {
-      return (bitField0_ & 0x00000010) != 0;
+      return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
@@ -256,7 +219,7 @@ public final class TraceHuntInfoOuterClass {
      * @return this
      */
     public TraceHuntInfo clearExp() {
-      bitField0_ &= ~0x00000010;
+      bitField0_ &= ~0x00000008;
       exp = 0;
       return this;
     }
@@ -275,7 +238,7 @@ public final class TraceHuntInfoOuterClass {
      * @return this
      */
     public TraceHuntInfo setExp(final int value) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000008;
       exp = value;
       return this;
     }
@@ -285,7 +248,7 @@ public final class TraceHuntInfoOuterClass {
      * @return whether the bossID field is set
      */
     public boolean hasBossID() {
-      return (bitField0_ & 0x00000020) != 0;
+      return (bitField0_ & 0x00000010) != 0;
     }
 
     /**
@@ -293,7 +256,7 @@ public final class TraceHuntInfoOuterClass {
      * @return this
      */
     public TraceHuntInfo clearBossID() {
-      bitField0_ &= ~0x00000020;
+      bitField0_ &= ~0x00000010;
       bossID = 0;
       return this;
     }
@@ -312,7 +275,7 @@ public final class TraceHuntInfoOuterClass {
      * @return this
      */
     public TraceHuntInfo setBossID(final int value) {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000010;
       bossID = value;
       return this;
     }
@@ -322,7 +285,7 @@ public final class TraceHuntInfoOuterClass {
      * @return whether the traceProgress field is set
      */
     public boolean hasTraceProgress() {
-      return (bitField0_ & 0x00000040) != 0;
+      return (bitField0_ & 0x00000020) != 0;
     }
 
     /**
@@ -330,7 +293,7 @@ public final class TraceHuntInfoOuterClass {
      * @return this
      */
     public TraceHuntInfo clearTraceProgress() {
-      bitField0_ &= ~0x00000040;
+      bitField0_ &= ~0x00000020;
       traceProgress = 0;
       return this;
     }
@@ -349,7 +312,7 @@ public final class TraceHuntInfoOuterClass {
      * @return this
      */
     public TraceHuntInfo setTraceProgress(final int value) {
-      bitField0_ |= 0x00000040;
+      bitField0_ |= 0x00000020;
       traceProgress = value;
       return this;
     }
@@ -359,7 +322,7 @@ public final class TraceHuntInfoOuterClass {
      * @return whether the huntProgress field is set
      */
     public boolean hasHuntProgress() {
-      return (bitField0_ & 0x00000080) != 0;
+      return (bitField0_ & 0x00000040) != 0;
     }
 
     /**
@@ -367,7 +330,7 @@ public final class TraceHuntInfoOuterClass {
      * @return this
      */
     public TraceHuntInfo clearHuntProgress() {
-      bitField0_ &= ~0x00000080;
+      bitField0_ &= ~0x00000040;
       huntProgress = 0;
       return this;
     }
@@ -386,7 +349,7 @@ public final class TraceHuntInfoOuterClass {
      * @return this
      */
     public TraceHuntInfo setHuntProgress(final int value) {
-      bitField0_ |= 0x00000080;
+      bitField0_ |= 0x00000040;
       huntProgress = value;
       return this;
     }
@@ -396,7 +359,7 @@ public final class TraceHuntInfoOuterClass {
      * @return whether the selfHuntTimes field is set
      */
     public boolean hasSelfHuntTimes() {
-      return (bitField0_ & 0x00000100) != 0;
+      return (bitField0_ & 0x00000080) != 0;
     }
 
     /**
@@ -404,7 +367,7 @@ public final class TraceHuntInfoOuterClass {
      * @return this
      */
     public TraceHuntInfo clearSelfHuntTimes() {
-      bitField0_ &= ~0x00000100;
+      bitField0_ &= ~0x00000080;
       selfHuntTimes = 0;
       return this;
     }
@@ -423,8 +386,65 @@ public final class TraceHuntInfoOuterClass {
      * @return this
      */
     public TraceHuntInfo setSelfHuntTimes(final int value) {
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000080;
       selfHuntTimes = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 9;</code>
+     * @return whether the build field is set
+     */
+    public boolean hasBuild() {
+      return (bitField0_ & 0x00000100) != 0;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 9;</code>
+     * @return this
+     */
+    public TraceHuntInfo clearBuild() {
+      bitField0_ &= ~0x00000100;
+      build.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 9;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBuild()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public Public.UseBuild getBuild() {
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 9;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public Public.UseBuild getMutableBuild() {
+      bitField0_ |= 0x00000100;
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 9;</code>
+     * @param value the build to set
+     * @return this
+     */
+    public TraceHuntInfo setBuild(final Public.UseBuild value) {
+      bitField0_ |= 0x00000100;
+      build.copyFrom(value);
       return this;
     }
 
@@ -717,7 +737,6 @@ public final class TraceHuntInfoOuterClass {
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
         bossCreateTime = other.bossCreateTime;
-        buildID = other.buildID;
         controlID = other.controlID;
         level = other.level;
         exp = other.exp;
@@ -725,6 +744,7 @@ public final class TraceHuntInfoOuterClass {
         traceProgress = other.traceProgress;
         huntProgress = other.huntProgress;
         selfHuntTimes = other.selfHuntTimes;
+        build.copyFrom(other.build);
         nextPackage.copyFrom(other.nextPackage);
         bossCollections.copyFrom(other.bossCollections);
         traceLog.copyFrom(other.traceLog);
@@ -741,9 +761,6 @@ public final class TraceHuntInfoOuterClass {
       cachedSize = -1;
       if (other.hasBossCreateTime()) {
         setBossCreateTime(other.bossCreateTime);
-      }
-      if (other.hasBuildID()) {
-        setBuildID(other.buildID);
       }
       if (other.hasControlID()) {
         setControlID(other.controlID);
@@ -765,6 +782,9 @@ public final class TraceHuntInfoOuterClass {
       }
       if (other.hasSelfHuntTimes()) {
         setSelfHuntTimes(other.selfHuntTimes);
+      }
+      if (other.hasBuild()) {
+        getMutableBuild().mergeFrom(other.build);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -789,7 +809,6 @@ public final class TraceHuntInfoOuterClass {
       cachedSize = -1;
       bitField0_ = 0;
       bossCreateTime = 0L;
-      buildID = 0L;
       controlID = 0;
       level = 0;
       exp = 0;
@@ -797,6 +816,7 @@ public final class TraceHuntInfoOuterClass {
       traceProgress = 0;
       huntProgress = 0;
       selfHuntTimes = 0;
+      build.clear();
       nextPackage.clear();
       bossCollections.clear();
       traceLog.clear();
@@ -811,6 +831,7 @@ public final class TraceHuntInfoOuterClass {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      build.clearQuick();
       nextPackage.clear();
       bossCollections.clearQuick();
       traceLog.clearQuick();
@@ -829,7 +850,6 @@ public final class TraceHuntInfoOuterClass {
       TraceHuntInfo other = (TraceHuntInfo) o;
       return bitField0_ == other.bitField0_
         && (!hasBossCreateTime() || bossCreateTime == other.bossCreateTime)
-        && (!hasBuildID() || buildID == other.buildID)
         && (!hasControlID() || controlID == other.controlID)
         && (!hasLevel() || level == other.level)
         && (!hasExp() || exp == other.exp)
@@ -837,6 +857,7 @@ public final class TraceHuntInfoOuterClass {
         && (!hasTraceProgress() || traceProgress == other.traceProgress)
         && (!hasHuntProgress() || huntProgress == other.huntProgress)
         && (!hasSelfHuntTimes() || selfHuntTimes == other.selfHuntTimes)
+        && (!hasBuild() || build.equals(other.build))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasBossCollections() || bossCollections.equals(other.bossCollections))
         && (!hasTraceLog() || traceLog.equals(other.traceLog))
@@ -850,36 +871,36 @@ public final class TraceHuntInfoOuterClass {
         output.writeInt64NoTag(bossCreateTime);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeRawByte((byte) 72);
-        output.writeUInt64NoTag(buildID);
-      }
-      if ((bitField0_ & 0x00000004) != 0) {
         output.writeRawByte((byte) 8);
         output.writeUInt32NoTag(controlID);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         output.writeRawByte((byte) 16);
         output.writeUInt32NoTag(level);
       }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawByte((byte) 24);
         output.writeUInt32NoTag(exp);
       }
-      if ((bitField0_ & 0x00000020) != 0) {
+      if ((bitField0_ & 0x00000010) != 0) {
         output.writeRawByte((byte) 32);
         output.writeUInt32NoTag(bossID);
       }
-      if ((bitField0_ & 0x00000040) != 0) {
+      if ((bitField0_ & 0x00000020) != 0) {
         output.writeRawByte((byte) 40);
         output.writeUInt32NoTag(traceProgress);
       }
-      if ((bitField0_ & 0x00000080) != 0) {
+      if ((bitField0_ & 0x00000040) != 0) {
         output.writeRawByte((byte) 48);
         output.writeUInt32NoTag(huntProgress);
       }
-      if ((bitField0_ & 0x00000100) != 0) {
+      if ((bitField0_ & 0x00000080) != 0) {
         output.writeRawByte((byte) 64);
         output.writeUInt32NoTag(selfHuntTimes);
+      }
+      if ((bitField0_ & 0x00000100) != 0) {
+        output.writeRawByte((byte) 74);
+        output.writeMessageNoTag(build);
       }
       if ((bitField0_ & 0x00000200) != 0) {
         output.writeRawLittleEndian16((short) 32762);
@@ -912,28 +933,28 @@ public final class TraceHuntInfoOuterClass {
         size += 1 + ProtoSink.computeInt64SizeNoTag(bossCreateTime);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildID);
-      }
-      if ((bitField0_ & 0x00000004) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(controlID);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(level);
       }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000008) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(exp);
       }
-      if ((bitField0_ & 0x00000020) != 0) {
+      if ((bitField0_ & 0x00000010) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(bossID);
       }
-      if ((bitField0_ & 0x00000040) != 0) {
+      if ((bitField0_ & 0x00000020) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(traceProgress);
       }
-      if ((bitField0_ & 0x00000080) != 0) {
+      if ((bitField0_ & 0x00000040) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(huntProgress);
       }
-      if ((bitField0_ & 0x00000100) != 0) {
+      if ((bitField0_ & 0x00000080) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(selfHuntTimes);
+      }
+      if ((bitField0_ & 0x00000100) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(build);
       }
       if ((bitField0_ & 0x00000200) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
@@ -962,15 +983,6 @@ public final class TraceHuntInfoOuterClass {
             bossCreateTime = input.readInt64();
             bitField0_ |= 0x00000001;
             tag = input.readTag();
-            if (tag != 72) {
-              break;
-            }
-          }
-          case 72: {
-            // buildID
-            buildID = input.readUInt64();
-            bitField0_ |= 0x00000002;
-            tag = input.readTag();
             if (tag != 8) {
               break;
             }
@@ -978,7 +990,7 @@ public final class TraceHuntInfoOuterClass {
           case 8: {
             // controlID
             controlID = input.readUInt32();
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000002;
             tag = input.readTag();
             if (tag != 16) {
               break;
@@ -987,7 +999,7 @@ public final class TraceHuntInfoOuterClass {
           case 16: {
             // level
             level = input.readUInt32();
-            bitField0_ |= 0x00000008;
+            bitField0_ |= 0x00000004;
             tag = input.readTag();
             if (tag != 24) {
               break;
@@ -996,7 +1008,7 @@ public final class TraceHuntInfoOuterClass {
           case 24: {
             // exp
             exp = input.readUInt32();
-            bitField0_ |= 0x00000010;
+            bitField0_ |= 0x00000008;
             tag = input.readTag();
             if (tag != 32) {
               break;
@@ -1005,7 +1017,7 @@ public final class TraceHuntInfoOuterClass {
           case 32: {
             // bossID
             bossID = input.readUInt32();
-            bitField0_ |= 0x00000020;
+            bitField0_ |= 0x00000010;
             tag = input.readTag();
             if (tag != 40) {
               break;
@@ -1014,7 +1026,7 @@ public final class TraceHuntInfoOuterClass {
           case 40: {
             // traceProgress
             traceProgress = input.readUInt32();
-            bitField0_ |= 0x00000040;
+            bitField0_ |= 0x00000020;
             tag = input.readTag();
             if (tag != 48) {
               break;
@@ -1023,7 +1035,7 @@ public final class TraceHuntInfoOuterClass {
           case 48: {
             // huntProgress
             huntProgress = input.readUInt32();
-            bitField0_ |= 0x00000080;
+            bitField0_ |= 0x00000040;
             tag = input.readTag();
             if (tag != 64) {
               break;
@@ -1032,6 +1044,15 @@ public final class TraceHuntInfoOuterClass {
           case 64: {
             // selfHuntTimes
             selfHuntTimes = input.readUInt32();
+            bitField0_ |= 0x00000080;
+            tag = input.readTag();
+            if (tag != 74) {
+              break;
+            }
+          }
+          case 74: {
+            // build
+            input.readMessage(build);
             bitField0_ |= 0x00000100;
             tag = input.readTag();
             if (tag != 16378) {
@@ -1092,28 +1113,28 @@ public final class TraceHuntInfoOuterClass {
         output.writeInt64(FieldNames.bossCreateTime, bossCreateTime);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeUInt64(FieldNames.buildID, buildID);
-      }
-      if ((bitField0_ & 0x00000004) != 0) {
         output.writeUInt32(FieldNames.controlID, controlID);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         output.writeUInt32(FieldNames.level, level);
       }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeUInt32(FieldNames.exp, exp);
       }
-      if ((bitField0_ & 0x00000020) != 0) {
+      if ((bitField0_ & 0x00000010) != 0) {
         output.writeUInt32(FieldNames.bossID, bossID);
       }
-      if ((bitField0_ & 0x00000040) != 0) {
+      if ((bitField0_ & 0x00000020) != 0) {
         output.writeUInt32(FieldNames.traceProgress, traceProgress);
       }
-      if ((bitField0_ & 0x00000080) != 0) {
+      if ((bitField0_ & 0x00000040) != 0) {
         output.writeUInt32(FieldNames.huntProgress, huntProgress);
       }
-      if ((bitField0_ & 0x00000100) != 0) {
+      if ((bitField0_ & 0x00000080) != 0) {
         output.writeUInt32(FieldNames.selfHuntTimes, selfHuntTimes);
+      }
+      if ((bitField0_ & 0x00000100) != 0) {
+        output.writeMessage(FieldNames.build, build);
       }
       if ((bitField0_ & 0x00000200) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
@@ -1148,22 +1169,11 @@ public final class TraceHuntInfoOuterClass {
             }
             break;
           }
-          case 1895597033: {
-            if (input.isAtField(FieldNames.buildID)) {
-              if (!input.trySkipNullValue()) {
-                buildID = input.readUInt64();
-                bitField0_ |= 0x00000002;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
           case 1608887064: {
             if (input.isAtField(FieldNames.controlID)) {
               if (!input.trySkipNullValue()) {
                 controlID = input.readUInt32();
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000002;
               }
             } else {
               input.skipUnknownField();
@@ -1174,7 +1184,7 @@ public final class TraceHuntInfoOuterClass {
             if (input.isAtField(FieldNames.level)) {
               if (!input.trySkipNullValue()) {
                 level = input.readUInt32();
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000004;
               }
             } else {
               input.skipUnknownField();
@@ -1185,7 +1195,7 @@ public final class TraceHuntInfoOuterClass {
             if (input.isAtField(FieldNames.exp)) {
               if (!input.trySkipNullValue()) {
                 exp = input.readUInt32();
-                bitField0_ |= 0x00000010;
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -1196,7 +1206,7 @@ public final class TraceHuntInfoOuterClass {
             if (input.isAtField(FieldNames.bossID)) {
               if (!input.trySkipNullValue()) {
                 bossID = input.readUInt32();
-                bitField0_ |= 0x00000020;
+                bitField0_ |= 0x00000010;
               }
             } else {
               input.skipUnknownField();
@@ -1207,7 +1217,7 @@ public final class TraceHuntInfoOuterClass {
             if (input.isAtField(FieldNames.traceProgress)) {
               if (!input.trySkipNullValue()) {
                 traceProgress = input.readUInt32();
-                bitField0_ |= 0x00000040;
+                bitField0_ |= 0x00000020;
               }
             } else {
               input.skipUnknownField();
@@ -1218,7 +1228,7 @@ public final class TraceHuntInfoOuterClass {
             if (input.isAtField(FieldNames.huntProgress)) {
               if (!input.trySkipNullValue()) {
                 huntProgress = input.readUInt32();
-                bitField0_ |= 0x00000080;
+                bitField0_ |= 0x00000040;
               }
             } else {
               input.skipUnknownField();
@@ -1229,6 +1239,17 @@ public final class TraceHuntInfoOuterClass {
             if (input.isAtField(FieldNames.selfHuntTimes)) {
               if (!input.trySkipNullValue()) {
                 selfHuntTimes = input.readUInt32();
+                bitField0_ |= 0x00000080;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 64542286: {
+            if (input.isAtField(FieldNames.build)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(build);
                 bitField0_ |= 0x00000100;
               }
             } else {
@@ -1334,8 +1355,6 @@ public final class TraceHuntInfoOuterClass {
     static class FieldNames {
       static final FieldName bossCreateTime = FieldName.forField("BossCreateTime");
 
-      static final FieldName buildID = FieldName.forField("BuildID");
-
       static final FieldName controlID = FieldName.forField("ControlID");
 
       static final FieldName level = FieldName.forField("Level");
@@ -1349,6 +1368,8 @@ public final class TraceHuntInfoOuterClass {
       static final FieldName huntProgress = FieldName.forField("HuntProgress");
 
       static final FieldName selfHuntTimes = FieldName.forField("SelfHuntTimes");
+
+      static final FieldName build = FieldName.forField("Build");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 

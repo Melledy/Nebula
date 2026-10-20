@@ -97,7 +97,17 @@ public final class Public {
     /**
      * <code>Assist = 14;</code>
      */
-    Assist("Assist", 14);
+    Assist("Assist", 14),
+
+    /**
+     * <code>Dorm = 15;</code>
+     */
+    Dorm("Dorm", 15),
+
+    /**
+     * <code>GuideMission = 16;</code>
+     */
+    GuideMission("GuideMission", 16);
 
     /**
      * <code>UnknownQuest = 0;</code>
@@ -174,6 +184,16 @@ public final class Public {
      */
     public static final int Assist_VALUE = 14;
 
+    /**
+     * <code>Dorm = 15;</code>
+     */
+    public static final int Dorm_VALUE = 15;
+
+    /**
+     * <code>GuideMission = 16;</code>
+     */
+    public static final int GuideMission_VALUE = 16;
+
     private final java.lang.String name;
 
     private final int number;
@@ -227,7 +247,7 @@ public final class Public {
     enum QuestTypeConverter implements ProtoEnum.EnumConverter<QuestType> {
       INSTANCE;
 
-      private static final QuestType[] lookup = new QuestType[15];
+      private static final QuestType[] lookup = new QuestType[17];
 
       static {
         lookup[0] = UnknownQuest;
@@ -245,6 +265,8 @@ public final class Public {
         lookup[12] = TowerEvent;
         lookup[13] = Weekly;
         lookup[14] = Assist;
+        lookup[15] = Dorm;
+        lookup[16] = GuideMission;
       }
 
       @Override
@@ -258,6 +280,12 @@ public final class Public {
       @Override
       public final QuestType forName(final CharSequence value) {
         switch (value.length()) {
+          case 4: {
+            if (ProtoUtil.isEqual("Dorm", value)) {
+              return Dorm;
+            }
+            break;
+          }
           case 5: {
             if (ProtoUtil.isEqual("Daily", value)) {
               return Daily;
@@ -304,6 +332,9 @@ public final class Public {
             if (ProtoUtil.isEqual("TravelerDuel", value)) {
               return TravelerDuel;
             }
+            if (ProtoUtil.isEqual("GuideMission", value)) {
+              return GuideMission;
+            }
             break;
           }
           case 15: {
@@ -329,6 +360,357 @@ public final class Public {
               return VampireSurvivorSeason;
             }
             break;
+          }
+        }
+        return null;
+      }
+    }
+  }
+
+  /**
+   * Protobuf enum {@code ActivityReturneeType}
+   */
+  public enum ActivityReturneeType implements ProtoEnum<ActivityReturneeType> {
+    /**
+     * <code>ActivityReturneeAllType = 0;</code>
+     */
+    ActivityReturneeAllType("ActivityReturneeAllType", 0),
+
+    /**
+     * <code>ActivityReturneeReunionType = 1;</code>
+     */
+    ActivityReturneeReunionType("ActivityReturneeReunionType", 1),
+
+    /**
+     * <code>ActivityReturnLoginType = 2;</code>
+     */
+    ActivityReturnLoginType("ActivityReturnLoginType", 2),
+
+    /**
+     * <code>ActivityReturneeQuestType = 3;</code>
+     */
+    ActivityReturneeQuestType("ActivityReturneeQuestType", 3),
+
+    /**
+     * <code>ActivityReturneeDoubleType = 4;</code>
+     */
+    ActivityReturneeDoubleType("ActivityReturneeDoubleType", 4),
+
+    /**
+     * <code>ActivityReturneeMallType = 5;</code>
+     */
+    ActivityReturneeMallType("ActivityReturneeMallType", 5),
+
+    /**
+     * <code>ActivityReturneeBDType = 6;</code>
+     */
+    ActivityReturneeBDType("ActivityReturneeBDType", 6),
+
+    /**
+     * <code>ActivityReturneeAvgType = 7;</code>
+     */
+    ActivityReturneeAvgType("ActivityReturneeAvgType", 7),
+
+    /**
+     * <code>ActivityReturneeQuestPointType = 8;</code>
+     */
+    ActivityReturneeQuestPointType("ActivityReturneeQuestPointType", 8);
+
+    /**
+     * <code>ActivityReturneeAllType = 0;</code>
+     */
+    public static final int ActivityReturneeAllType_VALUE = 0;
+
+    /**
+     * <code>ActivityReturneeReunionType = 1;</code>
+     */
+    public static final int ActivityReturneeReunionType_VALUE = 1;
+
+    /**
+     * <code>ActivityReturnLoginType = 2;</code>
+     */
+    public static final int ActivityReturnLoginType_VALUE = 2;
+
+    /**
+     * <code>ActivityReturneeQuestType = 3;</code>
+     */
+    public static final int ActivityReturneeQuestType_VALUE = 3;
+
+    /**
+     * <code>ActivityReturneeDoubleType = 4;</code>
+     */
+    public static final int ActivityReturneeDoubleType_VALUE = 4;
+
+    /**
+     * <code>ActivityReturneeMallType = 5;</code>
+     */
+    public static final int ActivityReturneeMallType_VALUE = 5;
+
+    /**
+     * <code>ActivityReturneeBDType = 6;</code>
+     */
+    public static final int ActivityReturneeBDType_VALUE = 6;
+
+    /**
+     * <code>ActivityReturneeAvgType = 7;</code>
+     */
+    public static final int ActivityReturneeAvgType_VALUE = 7;
+
+    /**
+     * <code>ActivityReturneeQuestPointType = 8;</code>
+     */
+    public static final int ActivityReturneeQuestPointType_VALUE = 8;
+
+    private final java.lang.String name;
+
+    private final int number;
+
+    private ActivityReturneeType(java.lang.String name, int number) {
+      this.name = name;
+      this.number = number;
+    }
+
+    /**
+     * @return the string representation of enum entry
+     */
+    @Override
+    public java.lang.String getName() {
+      return name;
+    }
+
+    /**
+     * @return the numeric wire value of this enum entry
+     */
+    @Override
+    public int getNumber() {
+      return number;
+    }
+
+    /**
+     * @return a converter that maps between this enum's numeric and text representations
+     */
+    public static ProtoEnum.EnumConverter<ActivityReturneeType> converter() {
+      return ActivityReturneeTypeConverter.INSTANCE;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value, or null if unknown.
+     */
+    public static ActivityReturneeType forNumber(int value) {
+      return ActivityReturneeTypeConverter.INSTANCE.forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @param other Fallback value in case the value is not known.
+     * @return The enum associated with the given numeric wire value, or the fallback value if unknown.
+     */
+    public static ActivityReturneeType forNumberOr(int number, ActivityReturneeType other) {
+      ActivityReturneeType value = forNumber(number);
+      return value == null ? other : value;
+    }
+
+    enum ActivityReturneeTypeConverter implements ProtoEnum.EnumConverter<ActivityReturneeType> {
+      INSTANCE;
+
+      private static final ActivityReturneeType[] lookup = new ActivityReturneeType[9];
+
+      static {
+        lookup[0] = ActivityReturneeAllType;
+        lookup[1] = ActivityReturneeReunionType;
+        lookup[2] = ActivityReturnLoginType;
+        lookup[3] = ActivityReturneeQuestType;
+        lookup[4] = ActivityReturneeDoubleType;
+        lookup[5] = ActivityReturneeMallType;
+        lookup[6] = ActivityReturneeBDType;
+        lookup[7] = ActivityReturneeAvgType;
+        lookup[8] = ActivityReturneeQuestPointType;
+      }
+
+      @Override
+      public final ActivityReturneeType forNumber(final int value) {
+        if (value >= 0 && value < lookup.length) {
+          return lookup[value];
+        }
+        return null;
+      }
+
+      @Override
+      public final ActivityReturneeType forName(final CharSequence value) {
+        switch (value.length()) {
+          case 22: {
+            if (ProtoUtil.isEqual("ActivityReturneeBDType", value)) {
+              return ActivityReturneeBDType;
+            }
+            break;
+          }
+          case 23: {
+            if (ProtoUtil.isEqual("ActivityReturneeAllType", value)) {
+              return ActivityReturneeAllType;
+            }
+            if (ProtoUtil.isEqual("ActivityReturnLoginType", value)) {
+              return ActivityReturnLoginType;
+            }
+            if (ProtoUtil.isEqual("ActivityReturneeAvgType", value)) {
+              return ActivityReturneeAvgType;
+            }
+            break;
+          }
+          case 24: {
+            if (ProtoUtil.isEqual("ActivityReturneeMallType", value)) {
+              return ActivityReturneeMallType;
+            }
+            break;
+          }
+          case 25: {
+            if (ProtoUtil.isEqual("ActivityReturneeQuestType", value)) {
+              return ActivityReturneeQuestType;
+            }
+            break;
+          }
+          case 26: {
+            if (ProtoUtil.isEqual("ActivityReturneeDoubleType", value)) {
+              return ActivityReturneeDoubleType;
+            }
+            break;
+          }
+          case 27: {
+            if (ProtoUtil.isEqual("ActivityReturneeReunionType", value)) {
+              return ActivityReturneeReunionType;
+            }
+            break;
+          }
+          case 30: {
+            if (ProtoUtil.isEqual("ActivityReturneeQuestPointType", value)) {
+              return ActivityReturneeQuestPointType;
+            }
+            break;
+          }
+        }
+        return null;
+      }
+    }
+  }
+
+  /**
+   * Protobuf enum {@code BuildType}
+   */
+  public enum BuildType implements ProtoEnum<BuildType> {
+    /**
+     * <code>Default = 0;</code>
+     */
+    Default("Default", 0),
+
+    /**
+     * <code>Formal = 1;</code>
+     */
+    Formal("Formal", 1),
+
+    /**
+     * <code>Trial = 2;</code>
+     */
+    Trial("Trial", 2);
+
+    /**
+     * <code>Default = 0;</code>
+     */
+    public static final int Default_VALUE = 0;
+
+    /**
+     * <code>Formal = 1;</code>
+     */
+    public static final int Formal_VALUE = 1;
+
+    /**
+     * <code>Trial = 2;</code>
+     */
+    public static final int Trial_VALUE = 2;
+
+    private final java.lang.String name;
+
+    private final int number;
+
+    private BuildType(java.lang.String name, int number) {
+      this.name = name;
+      this.number = number;
+    }
+
+    /**
+     * @return the string representation of enum entry
+     */
+    @Override
+    public java.lang.String getName() {
+      return name;
+    }
+
+    /**
+     * @return the numeric wire value of this enum entry
+     */
+    @Override
+    public int getNumber() {
+      return number;
+    }
+
+    /**
+     * @return a converter that maps between this enum's numeric and text representations
+     */
+    public static ProtoEnum.EnumConverter<BuildType> converter() {
+      return BuildTypeConverter.INSTANCE;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value, or null if unknown.
+     */
+    public static BuildType forNumber(int value) {
+      return BuildTypeConverter.INSTANCE.forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @param other Fallback value in case the value is not known.
+     * @return The enum associated with the given numeric wire value, or the fallback value if unknown.
+     */
+    public static BuildType forNumberOr(int number, BuildType other) {
+      BuildType value = forNumber(number);
+      return value == null ? other : value;
+    }
+
+    enum BuildTypeConverter implements ProtoEnum.EnumConverter<BuildType> {
+      INSTANCE;
+
+      private static final BuildType[] lookup = new BuildType[3];
+
+      static {
+        lookup[0] = Default;
+        lookup[1] = Formal;
+        lookup[2] = Trial;
+      }
+
+      @Override
+      public final BuildType forNumber(final int value) {
+        if (value >= 0 && value < lookup.length) {
+          return lookup[value];
+        }
+        return null;
+      }
+
+      @Override
+      public final BuildType forName(final CharSequence value) {
+        if (value.length() == 5) {
+          if (ProtoUtil.isEqual("Trial", value)) {
+            return Trial;
+          }
+        }
+        if (value.length() == 6) {
+          if (ProtoUtil.isEqual("Formal", value)) {
+            return Formal;
+          }
+        }
+        if (value.length() == 7) {
+          if (ProtoUtil.isEqual("Default", value)) {
+            return Default;
           }
         }
         return null;
@@ -1721,6 +2103,413 @@ public final class Public {
       static final FieldName value_ = FieldName.forField("Value");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code UI32s}
+   */
+  public static final class UI32s extends ProtoMessage<UI32s> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>repeated uint32 Values = 1;</code>
+     */
+    private final RepeatedInt values_ = RepeatedInt.newEmptyInstance();
+
+    private UI32s() {
+    }
+
+    /**
+     * @return a new empty instance of {@code UI32s}
+     */
+    public static UI32s newInstance() {
+      return new UI32s();
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public UI32s clearNextPackage() {
+      bitField0_ &= ~0x00000001;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000001;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public UI32s addNextPackage(final byte value) {
+      bitField0_ |= 0x00000001;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public UI32s addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000001;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public UI32s setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000001;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 Values = 1;</code>
+     * @return whether the values_ field is set
+     */
+    public boolean hasValues() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>repeated uint32 Values = 1;</code>
+     * @return this
+     */
+    public UI32s clearValues() {
+      bitField0_ &= ~0x00000002;
+      values_.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 Values = 1;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableValues()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedInt getValues() {
+      return values_;
+    }
+
+    /**
+     * <code>repeated uint32 Values = 1;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedInt getMutableValues() {
+      bitField0_ |= 0x00000002;
+      return values_;
+    }
+
+    /**
+     * <code>repeated uint32 Values = 1;</code>
+     * @param value the values_ to add
+     * @return this
+     */
+    public UI32s addValues(final int value) {
+      bitField0_ |= 0x00000002;
+      values_.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 Values = 1;</code>
+     * @param values the values_ to add
+     * @return this
+     */
+    public UI32s addAllValues(final int... values) {
+      bitField0_ |= 0x00000002;
+      values_.addAll(values);
+      return this;
+    }
+
+    @Override
+    public UI32s copyFrom(final UI32s other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        nextPackage.copyFrom(other.nextPackage);
+        values_.copyFrom(other.values_);
+      }
+      return this;
+    }
+
+    @Override
+    public UI32s mergeFrom(final UI32s other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasValues()) {
+        getMutableValues().addAll(other.values_);
+      }
+      return this;
+    }
+
+    @Override
+    public UI32s clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      values_.clear();
+      return this;
+    }
+
+    @Override
+    public UI32s clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      values_.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof UI32s)) {
+        return false;
+      }
+      UI32s other = (UI32s) o;
+      return bitField0_ == other.bitField0_
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasValues() || values_.equals(other.values_));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        for (int i = 0; i < values_.length(); i++) {
+          output.writeRawByte((byte) 8);
+          output.writeUInt32NoTag(values_.array()[i]);
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += (1 * values_.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(values_);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public UI32s mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 10) {
+              break;
+            }
+          }
+          case 10: {
+            // values_ [packed=true]
+            input.readPackedUInt32(values_, tag);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+          case 8: {
+            // values_ [packed=false]
+            tag = input.readRepeatedUInt32(values_, tag);
+            bitField0_ |= 0x00000002;
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRepeatedUInt32(FieldNames.values_, values_);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public UI32s mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1739945662: {
+            if (input.isAtField(FieldNames.values_)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedUInt32(values_);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public UI32s clone() {
+      return new UI32s().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static UI32s parseFrom(final byte[] data) throws InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new UI32s(), data).checkInitialized();
+    }
+
+    public static UI32s parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new UI32s(), input).checkInitialized();
+    }
+
+    public static UI32s parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new UI32s(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating UI32s messages
+     */
+    public static MessageFactory<UI32s> getFactory() {
+      return UI32sFactory.INSTANCE;
+    }
+
+    private enum UI32sFactory implements MessageFactory<UI32s> {
+      INSTANCE;
+
+      @Override
+      public UI32s create() {
+        return UI32s.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName values_ = FieldName.forField("Values");
     }
   }
 
@@ -19848,6 +20637,1094 @@ public final class Public {
   }
 
   /**
+   * Protobuf type {@code ActivityReturneeState}
+   */
+  public static final class ActivityReturneeState extends ProtoMessage<ActivityReturneeState> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional .ActivityReturneeType Type = 1;</code>
+     */
+    private int type;
+
+    /**
+     * <code>optional bool State = 2;</code>
+     */
+    private boolean state;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private ActivityReturneeState() {
+    }
+
+    /**
+     * @return a new empty instance of {@code ActivityReturneeState}
+     */
+    public static ActivityReturneeState newInstance() {
+      return new ActivityReturneeState();
+    }
+
+    /**
+     * <code>optional .ActivityReturneeType Type = 1;</code>
+     * @return whether the type field is set
+     */
+    public boolean hasType() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional .ActivityReturneeType Type = 1;</code>
+     * @return this
+     */
+    public ActivityReturneeState clearType() {
+      bitField0_ &= ~0x00000001;
+      type = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityReturneeType Type = 1;</code>
+     * @return the type
+     */
+    public ActivityReturneeType getType() {
+      return ActivityReturneeType.forNumber(type);
+    }
+
+    /**
+     * Gets the value of the internal enum store. The result is
+     * equivalent to {@link ActivityReturneeState#getType()}.getNumber().
+     *
+     * @return numeric wire representation
+     */
+    public int getTypeValue() {
+      return type;
+    }
+
+    /**
+     * Sets the value of the internal enum store. This does not
+     * do any validity checks, so be sure to use appropriate value
+     * constants from {@link ActivityReturneeType}. Setting an invalid value
+     * can cause {@link ActivityReturneeState#getType()} to return null
+     *
+     * @param value the numeric wire value to set
+     * @return this
+     */
+    public ActivityReturneeState setTypeValue(final int value) {
+      bitField0_ |= 0x00000001;
+      type = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .ActivityReturneeType Type = 1;</code>
+     * @param value the type to set
+     * @return this
+     */
+    public ActivityReturneeState setType(final ActivityReturneeType value) {
+      bitField0_ |= 0x00000001;
+      type = value.getNumber();
+      return this;
+    }
+
+    /**
+     * <code>optional bool State = 2;</code>
+     * @return whether the state field is set
+     */
+    public boolean hasState() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional bool State = 2;</code>
+     * @return this
+     */
+    public ActivityReturneeState clearState() {
+      bitField0_ &= ~0x00000002;
+      state = false;
+      return this;
+    }
+
+    /**
+     * <code>optional bool State = 2;</code>
+     * @return the state
+     */
+    public boolean getState() {
+      return state;
+    }
+
+    /**
+     * <code>optional bool State = 2;</code>
+     * @param value the state to set
+     * @return this
+     */
+    public ActivityReturneeState setState(final boolean value) {
+      bitField0_ |= 0x00000002;
+      state = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public ActivityReturneeState clearNextPackage() {
+      bitField0_ &= ~0x00000004;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000004;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public ActivityReturneeState addNextPackage(final byte value) {
+      bitField0_ |= 0x00000004;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public ActivityReturneeState addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public ActivityReturneeState setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public ActivityReturneeState copyFrom(final ActivityReturneeState other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        type = other.type;
+        state = other.state;
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityReturneeState mergeFrom(final ActivityReturneeState other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasType()) {
+        setTypeValue(other.type);
+      }
+      if (other.hasState()) {
+        setState(other.state);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityReturneeState clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      type = 0;
+      state = false;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public ActivityReturneeState clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof ActivityReturneeState)) {
+        return false;
+      }
+      ActivityReturneeState other = (ActivityReturneeState) o;
+      return bitField0_ == other.bitField0_
+        && (!hasType() || type == other.type)
+        && (!hasState() || state == other.state)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeEnumNoTag(type);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeBoolNoTag(state);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeEnumSizeNoTag(type);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 2;
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public ActivityReturneeState mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // type
+            final int value = input.readInt32();
+            if (ActivityReturneeType.forNumber(value) != null) {
+              type = value;
+              bitField0_ |= 0x00000001;
+            }
+            tag = input.readTag();
+            if (tag != 16) {
+              break;
+            }
+          }
+          case 16: {
+            // state
+            state = input.readBool();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeEnum(FieldNames.type, type, ActivityReturneeType.converter());
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeBool(FieldNames.state, state);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public ActivityReturneeState mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 2622298: {
+            if (input.isAtField(FieldNames.type)) {
+              if (!input.trySkipNullValue()) {
+                final ActivityReturneeType value = input.readEnum(ActivityReturneeType.converter());
+                if (value != null) {
+                  type = value.getNumber();
+                  bitField0_ |= 0x00000001;
+                } else {
+                  input.skipUnknownEnumValue();
+                }
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 80204913: {
+            if (input.isAtField(FieldNames.state)) {
+              if (!input.trySkipNullValue()) {
+                state = input.readBool();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public ActivityReturneeState clone() {
+      return new ActivityReturneeState().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static ActivityReturneeState parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new ActivityReturneeState(), data).checkInitialized();
+    }
+
+    public static ActivityReturneeState parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityReturneeState(), input).checkInitialized();
+    }
+
+    public static ActivityReturneeState parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityReturneeState(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating ActivityReturneeState messages
+     */
+    public static MessageFactory<ActivityReturneeState> getFactory() {
+      return ActivityReturneeStateFactory.INSTANCE;
+    }
+
+    private enum ActivityReturneeStateFactory implements MessageFactory<ActivityReturneeState> {
+      INSTANCE;
+
+      @Override
+      public ActivityReturneeState create() {
+        return ActivityReturneeState.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName type = FieldName.forField("Type");
+
+      static final FieldName state = FieldName.forField("State");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code SoldierState}
+   */
+  public static final class SoldierState extends ProtoMessage<SoldierState> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 CurGradeChallengeId = 1;</code>
+     */
+    private int curGradeChallengeId;
+
+    /**
+     * <code>optional uint32 Stage = 2;</code>
+     */
+    private int stage;
+
+    /**
+     * <code>optional uint32 NodeIndex = 3;</code>
+     */
+    private int nodeIndex;
+
+    /**
+     * <code>optional uint32 CurSeasonId = 4;</code>
+     */
+    private int curSeasonId;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private SoldierState() {
+    }
+
+    /**
+     * @return a new empty instance of {@code SoldierState}
+     */
+    public static SoldierState newInstance() {
+      return new SoldierState();
+    }
+
+    /**
+     * <code>optional uint32 CurGradeChallengeId = 1;</code>
+     * @return whether the curGradeChallengeId field is set
+     */
+    public boolean hasCurGradeChallengeId() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 CurGradeChallengeId = 1;</code>
+     * @return this
+     */
+    public SoldierState clearCurGradeChallengeId() {
+      bitField0_ &= ~0x00000001;
+      curGradeChallengeId = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 CurGradeChallengeId = 1;</code>
+     * @return the curGradeChallengeId
+     */
+    public int getCurGradeChallengeId() {
+      return curGradeChallengeId;
+    }
+
+    /**
+     * <code>optional uint32 CurGradeChallengeId = 1;</code>
+     * @param value the curGradeChallengeId to set
+     * @return this
+     */
+    public SoldierState setCurGradeChallengeId(final int value) {
+      bitField0_ |= 0x00000001;
+      curGradeChallengeId = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Stage = 2;</code>
+     * @return whether the stage field is set
+     */
+    public boolean hasStage() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Stage = 2;</code>
+     * @return this
+     */
+    public SoldierState clearStage() {
+      bitField0_ &= ~0x00000002;
+      stage = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Stage = 2;</code>
+     * @return the stage
+     */
+    public int getStage() {
+      return stage;
+    }
+
+    /**
+     * <code>optional uint32 Stage = 2;</code>
+     * @param value the stage to set
+     * @return this
+     */
+    public SoldierState setStage(final int value) {
+      bitField0_ |= 0x00000002;
+      stage = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 NodeIndex = 3;</code>
+     * @return whether the nodeIndex field is set
+     */
+    public boolean hasNodeIndex() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional uint32 NodeIndex = 3;</code>
+     * @return this
+     */
+    public SoldierState clearNodeIndex() {
+      bitField0_ &= ~0x00000004;
+      nodeIndex = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 NodeIndex = 3;</code>
+     * @return the nodeIndex
+     */
+    public int getNodeIndex() {
+      return nodeIndex;
+    }
+
+    /**
+     * <code>optional uint32 NodeIndex = 3;</code>
+     * @param value the nodeIndex to set
+     * @return this
+     */
+    public SoldierState setNodeIndex(final int value) {
+      bitField0_ |= 0x00000004;
+      nodeIndex = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 CurSeasonId = 4;</code>
+     * @return whether the curSeasonId field is set
+     */
+    public boolean hasCurSeasonId() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional uint32 CurSeasonId = 4;</code>
+     * @return this
+     */
+    public SoldierState clearCurSeasonId() {
+      bitField0_ &= ~0x00000008;
+      curSeasonId = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 CurSeasonId = 4;</code>
+     * @return the curSeasonId
+     */
+    public int getCurSeasonId() {
+      return curSeasonId;
+    }
+
+    /**
+     * <code>optional uint32 CurSeasonId = 4;</code>
+     * @param value the curSeasonId to set
+     * @return this
+     */
+    public SoldierState setCurSeasonId(final int value) {
+      bitField0_ |= 0x00000008;
+      curSeasonId = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000010) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public SoldierState clearNextPackage() {
+      bitField0_ &= ~0x00000010;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000010;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public SoldierState addNextPackage(final byte value) {
+      bitField0_ |= 0x00000010;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public SoldierState addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000010;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public SoldierState setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000010;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public SoldierState copyFrom(final SoldierState other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        curGradeChallengeId = other.curGradeChallengeId;
+        stage = other.stage;
+        nodeIndex = other.nodeIndex;
+        curSeasonId = other.curSeasonId;
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public SoldierState mergeFrom(final SoldierState other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasCurGradeChallengeId()) {
+        setCurGradeChallengeId(other.curGradeChallengeId);
+      }
+      if (other.hasStage()) {
+        setStage(other.stage);
+      }
+      if (other.hasNodeIndex()) {
+        setNodeIndex(other.nodeIndex);
+      }
+      if (other.hasCurSeasonId()) {
+        setCurSeasonId(other.curSeasonId);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public SoldierState clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      curGradeChallengeId = 0;
+      stage = 0;
+      nodeIndex = 0;
+      curSeasonId = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public SoldierState clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof SoldierState)) {
+        return false;
+      }
+      SoldierState other = (SoldierState) o;
+      return bitField0_ == other.bitField0_
+        && (!hasCurGradeChallengeId() || curGradeChallengeId == other.curGradeChallengeId)
+        && (!hasStage() || stage == other.stage)
+        && (!hasNodeIndex() || nodeIndex == other.nodeIndex)
+        && (!hasCurSeasonId() || curSeasonId == other.curSeasonId)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(curGradeChallengeId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeUInt32NoTag(stage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeUInt32NoTag(nodeIndex);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawByte((byte) 32);
+        output.writeUInt32NoTag(curSeasonId);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(curGradeChallengeId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(stage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(nodeIndex);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(curSeasonId);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public SoldierState mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // curGradeChallengeId
+            curGradeChallengeId = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16) {
+              break;
+            }
+          }
+          case 16: {
+            // stage
+            stage = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
+            // nodeIndex
+            nodeIndex = input.readUInt32();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 32) {
+              break;
+            }
+          }
+          case 32: {
+            // curSeasonId
+            curSeasonId = input.readUInt32();
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000010;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.curGradeChallengeId, curGradeChallengeId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeUInt32(FieldNames.stage, stage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeUInt32(FieldNames.nodeIndex, nodeIndex);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeUInt32(FieldNames.curSeasonId, curSeasonId);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public SoldierState mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 750219975: {
+            if (input.isAtField(FieldNames.curGradeChallengeId)) {
+              if (!input.trySkipNullValue()) {
+                curGradeChallengeId = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 80204510: {
+            if (input.isAtField(FieldNames.stage)) {
+              if (!input.trySkipNullValue()) {
+                stage = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1845683248: {
+            if (input.isAtField(FieldNames.nodeIndex)) {
+              if (!input.trySkipNullValue()) {
+                nodeIndex = input.readUInt32();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -590703202: {
+            if (input.isAtField(FieldNames.curSeasonId)) {
+              if (!input.trySkipNullValue()) {
+                curSeasonId = input.readUInt32();
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000010;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public SoldierState clone() {
+      return new SoldierState().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static SoldierState parseFrom(final byte[] data) throws InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new SoldierState(), data).checkInitialized();
+    }
+
+    public static SoldierState parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new SoldierState(), input).checkInitialized();
+    }
+
+    public static SoldierState parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new SoldierState(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating SoldierState messages
+     */
+    public static MessageFactory<SoldierState> getFactory() {
+      return SoldierStateFactory.INSTANCE;
+    }
+
+    private enum SoldierStateFactory implements MessageFactory<SoldierState> {
+      INSTANCE;
+
+      @Override
+      public SoldierState create() {
+        return SoldierState.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName curGradeChallengeId = FieldName.forField("CurGradeChallengeId");
+
+      static final FieldName stage = FieldName.forField("Stage");
+
+      static final FieldName nodeIndex = FieldName.forField("NodeIndex");
+
+      static final FieldName curSeasonId = FieldName.forField("CurSeasonId");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
    * Protobuf type {@code StateInfo}
    */
   public static final class StateInfo extends ProtoMessage<StateInfo> implements Cloneable {
@@ -19867,6 +21744,11 @@ public final class Public {
      * <code>optional uint32 VampireSurvivorId = 11;</code>
      */
     private int vampireSurvivorId;
+
+    /**
+     * <code>optional uint32 DormStateFlag = 25;</code>
+     */
+    private int dormStateFlag;
 
     /**
      * <code>optional bool Friend = 3;</code>
@@ -19909,6 +21791,11 @@ public final class Public {
     private final MallPackageState mallPackage = MallPackageState.newInstance();
 
     /**
+     * <code>optional .SoldierState Soldier = 12;</code>
+     */
+    private final SoldierState soldier = SoldierState.newInstance();
+
+    /**
      * <code>optional .AchievementState Achievement = 15;</code>
      */
     private final AchievementState achievement = AchievementState.newInstance();
@@ -19939,6 +21826,11 @@ public final class Public {
     private final TraceHuntState traceHunt = TraceHuntState.newInstance();
 
     /**
+     * <code>optional .GuideMissionState GuideMission = 26;</code>
+     */
+    private final GuideMissionState guideMission = GuideMissionState.newInstance();
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -19957,6 +21849,11 @@ public final class Public {
      * <code>repeated .ActivityState Activities = 21;</code>
      */
     private final RepeatedMessage<ActivityState> activities = RepeatedMessage.newEmptyInstance(ActivityState.getFactory());
+
+    /**
+     * <code>repeated .ActivityReturneeState ActivityReturnees = 24;</code>
+     */
+    private final RepeatedMessage<ActivityReturneeState> activityReturnees = RepeatedMessage.newEmptyInstance(ActivityReturneeState.getFactory());
 
     private StateInfo() {
     }
@@ -20080,11 +21977,48 @@ public final class Public {
     }
 
     /**
+     * <code>optional uint32 DormStateFlag = 25;</code>
+     * @return whether the dormStateFlag field is set
+     */
+    public boolean hasDormStateFlag() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional uint32 DormStateFlag = 25;</code>
+     * @return this
+     */
+    public StateInfo clearDormStateFlag() {
+      bitField0_ &= ~0x00000008;
+      dormStateFlag = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 DormStateFlag = 25;</code>
+     * @return the dormStateFlag
+     */
+    public int getDormStateFlag() {
+      return dormStateFlag;
+    }
+
+    /**
+     * <code>optional uint32 DormStateFlag = 25;</code>
+     * @param value the dormStateFlag to set
+     * @return this
+     */
+    public StateInfo setDormStateFlag(final int value) {
+      bitField0_ |= 0x00000008;
+      dormStateFlag = value;
+      return this;
+    }
+
+    /**
      * <code>optional bool Friend = 3;</code>
      * @return whether the friend field is set
      */
     public boolean hasFriend() {
-      return (bitField0_ & 0x00000008) != 0;
+      return (bitField0_ & 0x00000010) != 0;
     }
 
     /**
@@ -20092,7 +22026,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearFriend() {
-      bitField0_ &= ~0x00000008;
+      bitField0_ &= ~0x00000010;
       friend = false;
       return this;
     }
@@ -20111,7 +22045,7 @@ public final class Public {
      * @return this
      */
     public StateInfo setFriend(final boolean value) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       friend = value;
       return this;
     }
@@ -20121,7 +22055,7 @@ public final class Public {
      * @return whether the npcAffinityReward field is set
      */
     public boolean hasNpcAffinityReward() {
-      return (bitField0_ & 0x00000010) != 0;
+      return (bitField0_ & 0x00000020) != 0;
     }
 
     /**
@@ -20129,7 +22063,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearNpcAffinityReward() {
-      bitField0_ &= ~0x00000010;
+      bitField0_ &= ~0x00000020;
       npcAffinityReward = false;
       return this;
     }
@@ -20148,7 +22082,7 @@ public final class Public {
      * @return this
      */
     public StateInfo setNpcAffinityReward(final boolean value) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       npcAffinityReward = value;
       return this;
     }
@@ -20158,7 +22092,7 @@ public final class Public {
      * @return whether the storySet field is set
      */
     public boolean hasStorySet() {
-      return (bitField0_ & 0x00000020) != 0;
+      return (bitField0_ & 0x00000040) != 0;
     }
 
     /**
@@ -20166,7 +22100,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearStorySet() {
-      bitField0_ &= ~0x00000020;
+      bitField0_ &= ~0x00000040;
       storySet = false;
       return this;
     }
@@ -20185,7 +22119,7 @@ public final class Public {
      * @return this
      */
     public StateInfo setStorySet(final boolean value) {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000040;
       storySet = value;
       return this;
     }
@@ -20195,7 +22129,7 @@ public final class Public {
      * @return whether the mail field is set
      */
     public boolean hasMail() {
-      return (bitField0_ & 0x00000040) != 0;
+      return (bitField0_ & 0x00000080) != 0;
     }
 
     /**
@@ -20203,7 +22137,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearMail() {
-      bitField0_ &= ~0x00000040;
+      bitField0_ &= ~0x00000080;
       mail.clear();
       return this;
     }
@@ -20232,7 +22166,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public MailState getMutableMail() {
-      bitField0_ |= 0x00000040;
+      bitField0_ |= 0x00000080;
       return mail;
     }
 
@@ -20242,7 +22176,7 @@ public final class Public {
      * @return this
      */
     public StateInfo setMail(final MailState value) {
-      bitField0_ |= 0x00000040;
+      bitField0_ |= 0x00000080;
       mail.copyFrom(value);
       return this;
     }
@@ -20252,7 +22186,7 @@ public final class Public {
      * @return whether the battlePass field is set
      */
     public boolean hasBattlePass() {
-      return (bitField0_ & 0x00000080) != 0;
+      return (bitField0_ & 0x00000100) != 0;
     }
 
     /**
@@ -20260,7 +22194,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearBattlePass() {
-      bitField0_ &= ~0x00000080;
+      bitField0_ &= ~0x00000100;
       battlePass.clear();
       return this;
     }
@@ -20289,7 +22223,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public BattlePassState getMutableBattlePass() {
-      bitField0_ |= 0x00000080;
+      bitField0_ |= 0x00000100;
       return battlePass;
     }
 
@@ -20299,7 +22233,7 @@ public final class Public {
      * @return this
      */
     public StateInfo setBattlePass(final BattlePassState value) {
-      bitField0_ |= 0x00000080;
+      bitField0_ |= 0x00000100;
       battlePass.copyFrom(value);
       return this;
     }
@@ -20309,7 +22243,7 @@ public final class Public {
      * @return whether the worldClassReward field is set
      */
     public boolean hasWorldClassReward() {
-      return (bitField0_ & 0x00000100) != 0;
+      return (bitField0_ & 0x00000200) != 0;
     }
 
     /**
@@ -20317,7 +22251,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearWorldClassReward() {
-      bitField0_ &= ~0x00000100;
+      bitField0_ &= ~0x00000200;
       worldClassReward.clear();
       return this;
     }
@@ -20346,7 +22280,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public WorldClassRewardState getMutableWorldClassReward() {
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000200;
       return worldClassReward;
     }
 
@@ -20356,7 +22290,7 @@ public final class Public {
      * @return this
      */
     public StateInfo setWorldClassReward(final WorldClassRewardState value) {
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000200;
       worldClassReward.copyFrom(value);
       return this;
     }
@@ -20366,7 +22300,7 @@ public final class Public {
      * @return whether the friendEnergy field is set
      */
     public boolean hasFriendEnergy() {
-      return (bitField0_ & 0x00000200) != 0;
+      return (bitField0_ & 0x00000400) != 0;
     }
 
     /**
@@ -20374,7 +22308,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearFriendEnergy() {
-      bitField0_ &= ~0x00000200;
+      bitField0_ &= ~0x00000400;
       friendEnergy.clear();
       return this;
     }
@@ -20403,7 +22337,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public FriendEnergyState getMutableFriendEnergy() {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000400;
       return friendEnergy;
     }
 
@@ -20413,7 +22347,7 @@ public final class Public {
      * @return this
      */
     public StateInfo setFriendEnergy(final FriendEnergyState value) {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000400;
       friendEnergy.copyFrom(value);
       return this;
     }
@@ -20423,7 +22357,7 @@ public final class Public {
      * @return whether the mallPackage field is set
      */
     public boolean hasMallPackage() {
-      return (bitField0_ & 0x00000400) != 0;
+      return (bitField0_ & 0x00000800) != 0;
     }
 
     /**
@@ -20431,7 +22365,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearMallPackage() {
-      bitField0_ &= ~0x00000400;
+      bitField0_ &= ~0x00000800;
       mallPackage.clear();
       return this;
     }
@@ -20460,7 +22394,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public MallPackageState getMutableMallPackage() {
-      bitField0_ |= 0x00000400;
+      bitField0_ |= 0x00000800;
       return mallPackage;
     }
 
@@ -20470,8 +22404,65 @@ public final class Public {
      * @return this
      */
     public StateInfo setMallPackage(final MallPackageState value) {
-      bitField0_ |= 0x00000400;
+      bitField0_ |= 0x00000800;
       mallPackage.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional .SoldierState Soldier = 12;</code>
+     * @return whether the soldier field is set
+     */
+    public boolean hasSoldier() {
+      return (bitField0_ & 0x00001000) != 0;
+    }
+
+    /**
+     * <code>optional .SoldierState Soldier = 12;</code>
+     * @return this
+     */
+    public StateInfo clearSoldier() {
+      bitField0_ &= ~0x00001000;
+      soldier.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .SoldierState Soldier = 12;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableSoldier()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public SoldierState getSoldier() {
+      return soldier;
+    }
+
+    /**
+     * <code>optional .SoldierState Soldier = 12;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public SoldierState getMutableSoldier() {
+      bitField0_ |= 0x00001000;
+      return soldier;
+    }
+
+    /**
+     * <code>optional .SoldierState Soldier = 12;</code>
+     * @param value the soldier to set
+     * @return this
+     */
+    public StateInfo setSoldier(final SoldierState value) {
+      bitField0_ |= 0x00001000;
+      soldier.copyFrom(value);
       return this;
     }
 
@@ -20480,7 +22471,7 @@ public final class Public {
      * @return whether the achievement field is set
      */
     public boolean hasAchievement() {
-      return (bitField0_ & 0x00000800) != 0;
+      return (bitField0_ & 0x00002000) != 0;
     }
 
     /**
@@ -20488,7 +22479,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearAchievement() {
-      bitField0_ &= ~0x00000800;
+      bitField0_ &= ~0x00002000;
       achievement.clear();
       return this;
     }
@@ -20517,7 +22508,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public AchievementState getMutableAchievement() {
-      bitField0_ |= 0x00000800;
+      bitField0_ |= 0x00002000;
       return achievement;
     }
 
@@ -20527,7 +22518,7 @@ public final class Public {
      * @return this
      */
     public StateInfo setAchievement(final AchievementState value) {
-      bitField0_ |= 0x00000800;
+      bitField0_ |= 0x00002000;
       achievement.copyFrom(value);
       return this;
     }
@@ -20537,7 +22528,7 @@ public final class Public {
      * @return whether the travelerDuelQuest field is set
      */
     public boolean hasTravelerDuelQuest() {
-      return (bitField0_ & 0x00001000) != 0;
+      return (bitField0_ & 0x00004000) != 0;
     }
 
     /**
@@ -20545,7 +22536,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearTravelerDuelQuest() {
-      bitField0_ &= ~0x00001000;
+      bitField0_ &= ~0x00004000;
       travelerDuelQuest.clear();
       return this;
     }
@@ -20574,7 +22565,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public QuestState getMutableTravelerDuelQuest() {
-      bitField0_ |= 0x00001000;
+      bitField0_ |= 0x00004000;
       return travelerDuelQuest;
     }
 
@@ -20584,7 +22575,7 @@ public final class Public {
      * @return this
      */
     public StateInfo setTravelerDuelQuest(final QuestState value) {
-      bitField0_ |= 0x00001000;
+      bitField0_ |= 0x00004000;
       travelerDuelQuest.copyFrom(value);
       return this;
     }
@@ -20594,7 +22585,7 @@ public final class Public {
      * @return whether the starTower field is set
      */
     public boolean hasStarTower() {
-      return (bitField0_ & 0x00002000) != 0;
+      return (bitField0_ & 0x00008000) != 0;
     }
 
     /**
@@ -20602,7 +22593,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearStarTower() {
-      bitField0_ &= ~0x00002000;
+      bitField0_ &= ~0x00008000;
       starTower.clear();
       return this;
     }
@@ -20631,7 +22622,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public StarTowerState getMutableStarTower() {
-      bitField0_ |= 0x00002000;
+      bitField0_ |= 0x00008000;
       return starTower;
     }
 
@@ -20641,7 +22632,7 @@ public final class Public {
      * @return this
      */
     public StateInfo setStarTower(final StarTowerState value) {
-      bitField0_ |= 0x00002000;
+      bitField0_ |= 0x00008000;
       starTower.copyFrom(value);
       return this;
     }
@@ -20651,7 +22642,7 @@ public final class Public {
      * @return whether the starTowerBook field is set
      */
     public boolean hasStarTowerBook() {
-      return (bitField0_ & 0x00004000) != 0;
+      return (bitField0_ & 0x00010000) != 0;
     }
 
     /**
@@ -20659,7 +22650,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearStarTowerBook() {
-      bitField0_ &= ~0x00004000;
+      bitField0_ &= ~0x00010000;
       starTowerBook.clear();
       return this;
     }
@@ -20688,7 +22679,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public StarTowerBookState getMutableStarTowerBook() {
-      bitField0_ |= 0x00004000;
+      bitField0_ |= 0x00010000;
       return starTowerBook;
     }
 
@@ -20698,7 +22689,7 @@ public final class Public {
      * @return this
      */
     public StateInfo setStarTowerBook(final StarTowerBookState value) {
-      bitField0_ |= 0x00004000;
+      bitField0_ |= 0x00010000;
       starTowerBook.copyFrom(value);
       return this;
     }
@@ -20708,7 +22699,7 @@ public final class Public {
      * @return whether the scoreBoss field is set
      */
     public boolean hasScoreBoss() {
-      return (bitField0_ & 0x00008000) != 0;
+      return (bitField0_ & 0x00020000) != 0;
     }
 
     /**
@@ -20716,7 +22707,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearScoreBoss() {
-      bitField0_ &= ~0x00008000;
+      bitField0_ &= ~0x00020000;
       scoreBoss.clear();
       return this;
     }
@@ -20745,7 +22736,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public ScoreBossState getMutableScoreBoss() {
-      bitField0_ |= 0x00008000;
+      bitField0_ |= 0x00020000;
       return scoreBoss;
     }
 
@@ -20755,7 +22746,7 @@ public final class Public {
      * @return this
      */
     public StateInfo setScoreBoss(final ScoreBossState value) {
-      bitField0_ |= 0x00008000;
+      bitField0_ |= 0x00020000;
       scoreBoss.copyFrom(value);
       return this;
     }
@@ -20765,7 +22756,7 @@ public final class Public {
      * @return whether the traceHunt field is set
      */
     public boolean hasTraceHunt() {
-      return (bitField0_ & 0x00010000) != 0;
+      return (bitField0_ & 0x00040000) != 0;
     }
 
     /**
@@ -20773,7 +22764,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearTraceHunt() {
-      bitField0_ &= ~0x00010000;
+      bitField0_ &= ~0x00040000;
       traceHunt.clear();
       return this;
     }
@@ -20802,7 +22793,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public TraceHuntState getMutableTraceHunt() {
-      bitField0_ |= 0x00010000;
+      bitField0_ |= 0x00040000;
       return traceHunt;
     }
 
@@ -20812,8 +22803,65 @@ public final class Public {
      * @return this
      */
     public StateInfo setTraceHunt(final TraceHuntState value) {
-      bitField0_ |= 0x00010000;
+      bitField0_ |= 0x00040000;
       traceHunt.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional .GuideMissionState GuideMission = 26;</code>
+     * @return whether the guideMission field is set
+     */
+    public boolean hasGuideMission() {
+      return (bitField0_ & 0x00080000) != 0;
+    }
+
+    /**
+     * <code>optional .GuideMissionState GuideMission = 26;</code>
+     * @return this
+     */
+    public StateInfo clearGuideMission() {
+      bitField0_ &= ~0x00080000;
+      guideMission.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .GuideMissionState GuideMission = 26;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableGuideMission()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public GuideMissionState getGuideMission() {
+      return guideMission;
+    }
+
+    /**
+     * <code>optional .GuideMissionState GuideMission = 26;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public GuideMissionState getMutableGuideMission() {
+      bitField0_ |= 0x00080000;
+      return guideMission;
+    }
+
+    /**
+     * <code>optional .GuideMissionState GuideMission = 26;</code>
+     * @param value the guideMission to set
+     * @return this
+     */
+    public StateInfo setGuideMission(final GuideMissionState value) {
+      bitField0_ |= 0x00080000;
+      guideMission.copyFrom(value);
       return this;
     }
 
@@ -20822,7 +22870,7 @@ public final class Public {
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00020000) != 0;
+      return (bitField0_ & 0x00100000) != 0;
     }
 
     /**
@@ -20830,7 +22878,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearNextPackage() {
-      bitField0_ &= ~0x00020000;
+      bitField0_ &= ~0x00100000;
       nextPackage.clear();
       return this;
     }
@@ -20859,7 +22907,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00020000;
+      bitField0_ |= 0x00100000;
       return nextPackage;
     }
 
@@ -20869,7 +22917,7 @@ public final class Public {
      * @return this
      */
     public StateInfo addNextPackage(final byte value) {
-      bitField0_ |= 0x00020000;
+      bitField0_ |= 0x00100000;
       nextPackage.add(value);
       return this;
     }
@@ -20880,7 +22928,7 @@ public final class Public {
      * @return this
      */
     public StateInfo addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00020000;
+      bitField0_ |= 0x00100000;
       nextPackage.addAll(values);
       return this;
     }
@@ -20891,7 +22939,7 @@ public final class Public {
      * @return this
      */
     public StateInfo setNextPackage(final byte... values) {
-      bitField0_ |= 0x00020000;
+      bitField0_ |= 0x00100000;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -20901,7 +22949,7 @@ public final class Public {
      * @return whether the charAdvanceRewards field is set
      */
     public boolean hasCharAdvanceRewards() {
-      return (bitField0_ & 0x00040000) != 0;
+      return (bitField0_ & 0x00200000) != 0;
     }
 
     /**
@@ -20909,7 +22957,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearCharAdvanceRewards() {
-      bitField0_ &= ~0x00040000;
+      bitField0_ &= ~0x00200000;
       charAdvanceRewards.clear();
       return this;
     }
@@ -20938,7 +22986,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<CharAdvanceRewardState> getMutableCharAdvanceRewards() {
-      bitField0_ |= 0x00040000;
+      bitField0_ |= 0x00200000;
       return charAdvanceRewards;
     }
 
@@ -20948,7 +22996,7 @@ public final class Public {
      * @return this
      */
     public StateInfo addCharAdvanceRewards(final CharAdvanceRewardState value) {
-      bitField0_ |= 0x00040000;
+      bitField0_ |= 0x00200000;
       charAdvanceRewards.add(value);
       return this;
     }
@@ -20959,7 +23007,7 @@ public final class Public {
      * @return this
      */
     public StateInfo addAllCharAdvanceRewards(final CharAdvanceRewardState... values) {
-      bitField0_ |= 0x00040000;
+      bitField0_ |= 0x00200000;
       charAdvanceRewards.addAll(values);
       return this;
     }
@@ -20969,7 +23017,7 @@ public final class Public {
      * @return whether the charAffinityRewards field is set
      */
     public boolean hasCharAffinityRewards() {
-      return (bitField0_ & 0x00080000) != 0;
+      return (bitField0_ & 0x00400000) != 0;
     }
 
     /**
@@ -20977,7 +23025,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearCharAffinityRewards() {
-      bitField0_ &= ~0x00080000;
+      bitField0_ &= ~0x00400000;
       charAffinityRewards.clear();
       return this;
     }
@@ -21006,7 +23054,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<CharAffinityRewardState> getMutableCharAffinityRewards() {
-      bitField0_ |= 0x00080000;
+      bitField0_ |= 0x00400000;
       return charAffinityRewards;
     }
 
@@ -21016,7 +23064,7 @@ public final class Public {
      * @return this
      */
     public StateInfo addCharAffinityRewards(final CharAffinityRewardState value) {
-      bitField0_ |= 0x00080000;
+      bitField0_ |= 0x00400000;
       charAffinityRewards.add(value);
       return this;
     }
@@ -21027,7 +23075,7 @@ public final class Public {
      * @return this
      */
     public StateInfo addAllCharAffinityRewards(final CharAffinityRewardState... values) {
-      bitField0_ |= 0x00080000;
+      bitField0_ |= 0x00400000;
       charAffinityRewards.addAll(values);
       return this;
     }
@@ -21037,7 +23085,7 @@ public final class Public {
      * @return whether the activities field is set
      */
     public boolean hasActivities() {
-      return (bitField0_ & 0x00100000) != 0;
+      return (bitField0_ & 0x00800000) != 0;
     }
 
     /**
@@ -21045,7 +23093,7 @@ public final class Public {
      * @return this
      */
     public StateInfo clearActivities() {
-      bitField0_ &= ~0x00100000;
+      bitField0_ &= ~0x00800000;
       activities.clear();
       return this;
     }
@@ -21074,7 +23122,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<ActivityState> getMutableActivities() {
-      bitField0_ |= 0x00100000;
+      bitField0_ |= 0x00800000;
       return activities;
     }
 
@@ -21084,7 +23132,7 @@ public final class Public {
      * @return this
      */
     public StateInfo addActivities(final ActivityState value) {
-      bitField0_ |= 0x00100000;
+      bitField0_ |= 0x00800000;
       activities.add(value);
       return this;
     }
@@ -21095,8 +23143,76 @@ public final class Public {
      * @return this
      */
     public StateInfo addAllActivities(final ActivityState... values) {
-      bitField0_ |= 0x00100000;
+      bitField0_ |= 0x00800000;
       activities.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityReturneeState ActivityReturnees = 24;</code>
+     * @return whether the activityReturnees field is set
+     */
+    public boolean hasActivityReturnees() {
+      return (bitField0_ & 0x01000000) != 0;
+    }
+
+    /**
+     * <code>repeated .ActivityReturneeState ActivityReturnees = 24;</code>
+     * @return this
+     */
+    public StateInfo clearActivityReturnees() {
+      bitField0_ &= ~0x01000000;
+      activityReturnees.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityReturneeState ActivityReturnees = 24;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableActivityReturnees()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<ActivityReturneeState> getActivityReturnees() {
+      return activityReturnees;
+    }
+
+    /**
+     * <code>repeated .ActivityReturneeState ActivityReturnees = 24;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<ActivityReturneeState> getMutableActivityReturnees() {
+      bitField0_ |= 0x01000000;
+      return activityReturnees;
+    }
+
+    /**
+     * <code>repeated .ActivityReturneeState ActivityReturnees = 24;</code>
+     * @param value the activityReturnees to add
+     * @return this
+     */
+    public StateInfo addActivityReturnees(final ActivityReturneeState value) {
+      bitField0_ |= 0x01000000;
+      activityReturnees.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityReturneeState ActivityReturnees = 24;</code>
+     * @param values the activityReturnees to add
+     * @return this
+     */
+    public StateInfo addAllActivityReturnees(final ActivityReturneeState... values) {
+      bitField0_ |= 0x01000000;
+      activityReturnees.addAll(values);
       return this;
     }
 
@@ -21108,6 +23224,7 @@ public final class Public {
         travelerDuelIdleReward = other.travelerDuelIdleReward;
         infinityTower = other.infinityTower;
         vampireSurvivorId = other.vampireSurvivorId;
+        dormStateFlag = other.dormStateFlag;
         friend = other.friend;
         npcAffinityReward = other.npcAffinityReward;
         storySet = other.storySet;
@@ -21116,16 +23233,19 @@ public final class Public {
         worldClassReward.copyFrom(other.worldClassReward);
         friendEnergy.copyFrom(other.friendEnergy);
         mallPackage.copyFrom(other.mallPackage);
+        soldier.copyFrom(other.soldier);
         achievement.copyFrom(other.achievement);
         travelerDuelQuest.copyFrom(other.travelerDuelQuest);
         starTower.copyFrom(other.starTower);
         starTowerBook.copyFrom(other.starTowerBook);
         scoreBoss.copyFrom(other.scoreBoss);
         traceHunt.copyFrom(other.traceHunt);
+        guideMission.copyFrom(other.guideMission);
         nextPackage.copyFrom(other.nextPackage);
         charAdvanceRewards.copyFrom(other.charAdvanceRewards);
         charAffinityRewards.copyFrom(other.charAffinityRewards);
         activities.copyFrom(other.activities);
+        activityReturnees.copyFrom(other.activityReturnees);
       }
       return this;
     }
@@ -21144,6 +23264,9 @@ public final class Public {
       }
       if (other.hasVampireSurvivorId()) {
         setVampireSurvivorId(other.vampireSurvivorId);
+      }
+      if (other.hasDormStateFlag()) {
+        setDormStateFlag(other.dormStateFlag);
       }
       if (other.hasFriend()) {
         setFriend(other.friend);
@@ -21169,6 +23292,9 @@ public final class Public {
       if (other.hasMallPackage()) {
         getMutableMallPackage().mergeFrom(other.mallPackage);
       }
+      if (other.hasSoldier()) {
+        getMutableSoldier().mergeFrom(other.soldier);
+      }
       if (other.hasAchievement()) {
         getMutableAchievement().mergeFrom(other.achievement);
       }
@@ -21187,6 +23313,9 @@ public final class Public {
       if (other.hasTraceHunt()) {
         getMutableTraceHunt().mergeFrom(other.traceHunt);
       }
+      if (other.hasGuideMission()) {
+        getMutableGuideMission().mergeFrom(other.guideMission);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -21198,6 +23327,9 @@ public final class Public {
       }
       if (other.hasActivities()) {
         getMutableActivities().addAll(other.activities);
+      }
+      if (other.hasActivityReturnees()) {
+        getMutableActivityReturnees().addAll(other.activityReturnees);
       }
       return this;
     }
@@ -21212,6 +23344,7 @@ public final class Public {
       travelerDuelIdleReward = 0L;
       infinityTower = 0;
       vampireSurvivorId = 0;
+      dormStateFlag = 0;
       friend = false;
       npcAffinityReward = false;
       storySet = false;
@@ -21220,16 +23353,19 @@ public final class Public {
       worldClassReward.clear();
       friendEnergy.clear();
       mallPackage.clear();
+      soldier.clear();
       achievement.clear();
       travelerDuelQuest.clear();
       starTower.clear();
       starTowerBook.clear();
       scoreBoss.clear();
       traceHunt.clear();
+      guideMission.clear();
       nextPackage.clear();
       charAdvanceRewards.clear();
       charAffinityRewards.clear();
       activities.clear();
+      activityReturnees.clear();
       return this;
     }
 
@@ -21245,16 +23381,19 @@ public final class Public {
       worldClassReward.clearQuick();
       friendEnergy.clearQuick();
       mallPackage.clearQuick();
+      soldier.clearQuick();
       achievement.clearQuick();
       travelerDuelQuest.clearQuick();
       starTower.clearQuick();
       starTowerBook.clearQuick();
       scoreBoss.clearQuick();
       traceHunt.clearQuick();
+      guideMission.clearQuick();
       nextPackage.clear();
       charAdvanceRewards.clearQuick();
       charAffinityRewards.clearQuick();
       activities.clearQuick();
+      activityReturnees.clearQuick();
       return this;
     }
 
@@ -21271,6 +23410,7 @@ public final class Public {
         && (!hasTravelerDuelIdleReward() || travelerDuelIdleReward == other.travelerDuelIdleReward)
         && (!hasInfinityTower() || infinityTower == other.infinityTower)
         && (!hasVampireSurvivorId() || vampireSurvivorId == other.vampireSurvivorId)
+        && (!hasDormStateFlag() || dormStateFlag == other.dormStateFlag)
         && (!hasFriend() || friend == other.friend)
         && (!hasNpcAffinityReward() || npcAffinityReward == other.npcAffinityReward)
         && (!hasStorySet() || storySet == other.storySet)
@@ -21279,16 +23419,19 @@ public final class Public {
         && (!hasWorldClassReward() || worldClassReward.equals(other.worldClassReward))
         && (!hasFriendEnergy() || friendEnergy.equals(other.friendEnergy))
         && (!hasMallPackage() || mallPackage.equals(other.mallPackage))
+        && (!hasSoldier() || soldier.equals(other.soldier))
         && (!hasAchievement() || achievement.equals(other.achievement))
         && (!hasTravelerDuelQuest() || travelerDuelQuest.equals(other.travelerDuelQuest))
         && (!hasStarTower() || starTower.equals(other.starTower))
         && (!hasStarTowerBook() || starTowerBook.equals(other.starTowerBook))
         && (!hasScoreBoss() || scoreBoss.equals(other.scoreBoss))
         && (!hasTraceHunt() || traceHunt.equals(other.traceHunt))
+        && (!hasGuideMission() || guideMission.equals(other.guideMission))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasCharAdvanceRewards() || charAdvanceRewards.equals(other.charAdvanceRewards))
         && (!hasCharAffinityRewards() || charAffinityRewards.equals(other.charAffinityRewards))
-        && (!hasActivities() || activities.equals(other.activities));
+        && (!hasActivities() || activities.equals(other.activities))
+        && (!hasActivityReturnees() || activityReturnees.equals(other.activityReturnees));
     }
 
     @Override
@@ -21306,81 +23449,99 @@ public final class Public {
         output.writeUInt32NoTag(vampireSurvivorId);
       }
       if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawLittleEndian16((short) 456);
+        output.writeUInt32NoTag(dormStateFlag);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
         output.writeRawByte((byte) 24);
         output.writeBoolNoTag(friend);
       }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000020) != 0) {
         output.writeRawByte((byte) 72);
         output.writeBoolNoTag(npcAffinityReward);
       }
-      if ((bitField0_ & 0x00000020) != 0) {
+      if ((bitField0_ & 0x00000040) != 0) {
         output.writeRawLittleEndian16((short) 432);
         output.writeBoolNoTag(storySet);
       }
-      if ((bitField0_ & 0x00000040) != 0) {
+      if ((bitField0_ & 0x00000080) != 0) {
         output.writeRawByte((byte) 10);
         output.writeMessageNoTag(mail);
       }
-      if ((bitField0_ & 0x00000080) != 0) {
+      if ((bitField0_ & 0x00000100) != 0) {
         output.writeRawByte((byte) 34);
         output.writeMessageNoTag(battlePass);
       }
-      if ((bitField0_ & 0x00000100) != 0) {
+      if ((bitField0_ & 0x00000200) != 0) {
         output.writeRawByte((byte) 42);
         output.writeMessageNoTag(worldClassReward);
       }
-      if ((bitField0_ & 0x00000200) != 0) {
+      if ((bitField0_ & 0x00000400) != 0) {
         output.writeRawByte((byte) 58);
         output.writeMessageNoTag(friendEnergy);
       }
-      if ((bitField0_ & 0x00000400) != 0) {
+      if ((bitField0_ & 0x00000800) != 0) {
         output.writeRawByte((byte) 82);
         output.writeMessageNoTag(mallPackage);
       }
-      if ((bitField0_ & 0x00000800) != 0) {
+      if ((bitField0_ & 0x00001000) != 0) {
+        output.writeRawByte((byte) 98);
+        output.writeMessageNoTag(soldier);
+      }
+      if ((bitField0_ & 0x00002000) != 0) {
         output.writeRawByte((byte) 122);
         output.writeMessageNoTag(achievement);
       }
-      if ((bitField0_ & 0x00001000) != 0) {
+      if ((bitField0_ & 0x00004000) != 0) {
         output.writeRawLittleEndian16((short) 386);
         output.writeMessageNoTag(travelerDuelQuest);
       }
-      if ((bitField0_ & 0x00002000) != 0) {
+      if ((bitField0_ & 0x00008000) != 0) {
         output.writeRawLittleEndian16((short) 402);
         output.writeMessageNoTag(starTower);
       }
-      if ((bitField0_ & 0x00004000) != 0) {
+      if ((bitField0_ & 0x00010000) != 0) {
         output.writeRawLittleEndian16((short) 410);
         output.writeMessageNoTag(starTowerBook);
       }
-      if ((bitField0_ & 0x00008000) != 0) {
+      if ((bitField0_ & 0x00020000) != 0) {
         output.writeRawLittleEndian16((short) 418);
         output.writeMessageNoTag(scoreBoss);
       }
-      if ((bitField0_ & 0x00010000) != 0) {
+      if ((bitField0_ & 0x00040000) != 0) {
         output.writeRawLittleEndian16((short) 442);
         output.writeMessageNoTag(traceHunt);
       }
-      if ((bitField0_ & 0x00020000) != 0) {
+      if ((bitField0_ & 0x00080000) != 0) {
+        output.writeRawLittleEndian16((short) 466);
+        output.writeMessageNoTag(guideMission);
+      }
+      if ((bitField0_ & 0x00100000) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
-      if ((bitField0_ & 0x00040000) != 0) {
+      if ((bitField0_ & 0x00200000) != 0) {
         for (int i = 0; i < charAdvanceRewards.length(); i++) {
           output.writeRawByte((byte) 50);
           output.writeMessageNoTag(charAdvanceRewards.get(i));
         }
       }
-      if ((bitField0_ & 0x00080000) != 0) {
+      if ((bitField0_ & 0x00400000) != 0) {
         for (int i = 0; i < charAffinityRewards.length(); i++) {
           output.writeRawByte((byte) 66);
           output.writeMessageNoTag(charAffinityRewards.get(i));
         }
       }
-      if ((bitField0_ & 0x00100000) != 0) {
+      if ((bitField0_ & 0x00800000) != 0) {
         for (int i = 0; i < activities.length(); i++) {
           output.writeRawLittleEndian16((short) 426);
           output.writeMessageNoTag(activities.get(i));
+        }
+      }
+      if ((bitField0_ & 0x01000000) != 0) {
+        for (int i = 0; i < activityReturnees.length(); i++) {
+          output.writeRawLittleEndian16((short) 450);
+          output.writeMessageNoTag(activityReturnees.get(i));
         }
       }
     }
@@ -21398,58 +23559,70 @@ public final class Public {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(vampireSurvivorId);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        size += 2;
+        size += 2 + ProtoSink.computeUInt32SizeNoTag(dormStateFlag);
       }
       if ((bitField0_ & 0x00000010) != 0) {
         size += 2;
       }
       if ((bitField0_ & 0x00000020) != 0) {
-        size += 3;
+        size += 2;
       }
       if ((bitField0_ & 0x00000040) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(mail);
+        size += 3;
       }
       if ((bitField0_ & 0x00000080) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(battlePass);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(mail);
       }
       if ((bitField0_ & 0x00000100) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(worldClassReward);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(battlePass);
       }
       if ((bitField0_ & 0x00000200) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(friendEnergy);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(worldClassReward);
       }
       if ((bitField0_ & 0x00000400) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(mallPackage);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(friendEnergy);
       }
       if ((bitField0_ & 0x00000800) != 0) {
-        size += 1 + ProtoSink.computeMessageSizeNoTag(achievement);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(mallPackage);
       }
       if ((bitField0_ & 0x00001000) != 0) {
-        size += 2 + ProtoSink.computeMessageSizeNoTag(travelerDuelQuest);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(soldier);
       }
       if ((bitField0_ & 0x00002000) != 0) {
-        size += 2 + ProtoSink.computeMessageSizeNoTag(starTower);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(achievement);
       }
       if ((bitField0_ & 0x00004000) != 0) {
-        size += 2 + ProtoSink.computeMessageSizeNoTag(starTowerBook);
+        size += 2 + ProtoSink.computeMessageSizeNoTag(travelerDuelQuest);
       }
       if ((bitField0_ & 0x00008000) != 0) {
-        size += 2 + ProtoSink.computeMessageSizeNoTag(scoreBoss);
+        size += 2 + ProtoSink.computeMessageSizeNoTag(starTower);
       }
       if ((bitField0_ & 0x00010000) != 0) {
-        size += 2 + ProtoSink.computeMessageSizeNoTag(traceHunt);
+        size += 2 + ProtoSink.computeMessageSizeNoTag(starTowerBook);
       }
       if ((bitField0_ & 0x00020000) != 0) {
-        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+        size += 2 + ProtoSink.computeMessageSizeNoTag(scoreBoss);
       }
       if ((bitField0_ & 0x00040000) != 0) {
-        size += (1 * charAdvanceRewards.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(charAdvanceRewards);
+        size += 2 + ProtoSink.computeMessageSizeNoTag(traceHunt);
       }
       if ((bitField0_ & 0x00080000) != 0) {
-        size += (1 * charAffinityRewards.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(charAffinityRewards);
+        size += 2 + ProtoSink.computeMessageSizeNoTag(guideMission);
       }
       if ((bitField0_ & 0x00100000) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00200000) != 0) {
+        size += (1 * charAdvanceRewards.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(charAdvanceRewards);
+      }
+      if ((bitField0_ & 0x00400000) != 0) {
+        size += (1 * charAffinityRewards.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(charAffinityRewards);
+      }
+      if ((bitField0_ & 0x00800000) != 0) {
         size += (2 * activities.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(activities);
+      }
+      if ((bitField0_ & 0x01000000) != 0) {
+        size += (2 * activityReturnees.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(activityReturnees);
       }
       return size;
     }
@@ -21484,6 +23657,15 @@ public final class Public {
             vampireSurvivorId = input.readUInt32();
             bitField0_ |= 0x00000004;
             tag = input.readTag();
+            if (tag != 200) {
+              break;
+            }
+          }
+          case 200: {
+            // dormStateFlag
+            dormStateFlag = input.readUInt32();
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
             if (tag != 24) {
               break;
             }
@@ -21491,7 +23673,7 @@ public final class Public {
           case 24: {
             // friend
             friend = input.readBool();
-            bitField0_ |= 0x00000008;
+            bitField0_ |= 0x00000010;
             tag = input.readTag();
             if (tag != 72) {
               break;
@@ -21500,7 +23682,7 @@ public final class Public {
           case 72: {
             // npcAffinityReward
             npcAffinityReward = input.readBool();
-            bitField0_ |= 0x00000010;
+            bitField0_ |= 0x00000020;
             tag = input.readTag();
             if (tag != 176) {
               break;
@@ -21509,7 +23691,7 @@ public final class Public {
           case 176: {
             // storySet
             storySet = input.readBool();
-            bitField0_ |= 0x00000020;
+            bitField0_ |= 0x00000040;
             tag = input.readTag();
             if (tag != 10) {
               break;
@@ -21518,7 +23700,7 @@ public final class Public {
           case 10: {
             // mail
             input.readMessage(mail);
-            bitField0_ |= 0x00000040;
+            bitField0_ |= 0x00000080;
             tag = input.readTag();
             if (tag != 34) {
               break;
@@ -21527,7 +23709,7 @@ public final class Public {
           case 34: {
             // battlePass
             input.readMessage(battlePass);
-            bitField0_ |= 0x00000080;
+            bitField0_ |= 0x00000100;
             tag = input.readTag();
             if (tag != 42) {
               break;
@@ -21536,7 +23718,7 @@ public final class Public {
           case 42: {
             // worldClassReward
             input.readMessage(worldClassReward);
-            bitField0_ |= 0x00000100;
+            bitField0_ |= 0x00000200;
             tag = input.readTag();
             if (tag != 58) {
               break;
@@ -21545,7 +23727,7 @@ public final class Public {
           case 58: {
             // friendEnergy
             input.readMessage(friendEnergy);
-            bitField0_ |= 0x00000200;
+            bitField0_ |= 0x00000400;
             tag = input.readTag();
             if (tag != 82) {
               break;
@@ -21554,7 +23736,16 @@ public final class Public {
           case 82: {
             // mallPackage
             input.readMessage(mallPackage);
-            bitField0_ |= 0x00000400;
+            bitField0_ |= 0x00000800;
+            tag = input.readTag();
+            if (tag != 98) {
+              break;
+            }
+          }
+          case 98: {
+            // soldier
+            input.readMessage(soldier);
+            bitField0_ |= 0x00001000;
             tag = input.readTag();
             if (tag != 122) {
               break;
@@ -21563,7 +23754,7 @@ public final class Public {
           case 122: {
             // achievement
             input.readMessage(achievement);
-            bitField0_ |= 0x00000800;
+            bitField0_ |= 0x00002000;
             tag = input.readTag();
             if (tag != 130) {
               break;
@@ -21572,7 +23763,7 @@ public final class Public {
           case 130: {
             // travelerDuelQuest
             input.readMessage(travelerDuelQuest);
-            bitField0_ |= 0x00001000;
+            bitField0_ |= 0x00004000;
             tag = input.readTag();
             if (tag != 146) {
               break;
@@ -21581,7 +23772,7 @@ public final class Public {
           case 146: {
             // starTower
             input.readMessage(starTower);
-            bitField0_ |= 0x00002000;
+            bitField0_ |= 0x00008000;
             tag = input.readTag();
             if (tag != 154) {
               break;
@@ -21590,7 +23781,7 @@ public final class Public {
           case 154: {
             // starTowerBook
             input.readMessage(starTowerBook);
-            bitField0_ |= 0x00004000;
+            bitField0_ |= 0x00010000;
             tag = input.readTag();
             if (tag != 162) {
               break;
@@ -21599,7 +23790,7 @@ public final class Public {
           case 162: {
             // scoreBoss
             input.readMessage(scoreBoss);
-            bitField0_ |= 0x00008000;
+            bitField0_ |= 0x00020000;
             tag = input.readTag();
             if (tag != 186) {
               break;
@@ -21608,7 +23799,16 @@ public final class Public {
           case 186: {
             // traceHunt
             input.readMessage(traceHunt);
-            bitField0_ |= 0x00010000;
+            bitField0_ |= 0x00040000;
+            tag = input.readTag();
+            if (tag != 210) {
+              break;
+            }
+          }
+          case 210: {
+            // guideMission
+            input.readMessage(guideMission);
+            bitField0_ |= 0x00080000;
             tag = input.readTag();
             if (tag != 16378) {
               break;
@@ -21617,7 +23817,7 @@ public final class Public {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00020000;
+            bitField0_ |= 0x00100000;
             tag = input.readTag();
             if (tag != 50) {
               break;
@@ -21626,7 +23826,7 @@ public final class Public {
           case 50: {
             // charAdvanceRewards
             tag = input.readRepeatedMessage(charAdvanceRewards, tag);
-            bitField0_ |= 0x00040000;
+            bitField0_ |= 0x00200000;
             if (tag != 66) {
               break;
             }
@@ -21634,7 +23834,7 @@ public final class Public {
           case 66: {
             // charAffinityRewards
             tag = input.readRepeatedMessage(charAffinityRewards, tag);
-            bitField0_ |= 0x00080000;
+            bitField0_ |= 0x00400000;
             if (tag != 170) {
               break;
             }
@@ -21642,7 +23842,15 @@ public final class Public {
           case 170: {
             // activities
             tag = input.readRepeatedMessage(activities, tag);
-            bitField0_ |= 0x00100000;
+            bitField0_ |= 0x00800000;
+            if (tag != 194) {
+              break;
+            }
+          }
+          case 194: {
+            // activityReturnees
+            tag = input.readRepeatedMessage(activityReturnees, tag);
+            bitField0_ |= 0x01000000;
             if (tag != 0) {
               break;
             }
@@ -21674,58 +23882,70 @@ public final class Public {
         output.writeUInt32(FieldNames.vampireSurvivorId, vampireSurvivorId);
       }
       if ((bitField0_ & 0x00000008) != 0) {
-        output.writeBool(FieldNames.friend, friend);
+        output.writeUInt32(FieldNames.dormStateFlag, dormStateFlag);
       }
       if ((bitField0_ & 0x00000010) != 0) {
-        output.writeBool(FieldNames.npcAffinityReward, npcAffinityReward);
+        output.writeBool(FieldNames.friend, friend);
       }
       if ((bitField0_ & 0x00000020) != 0) {
-        output.writeBool(FieldNames.storySet, storySet);
+        output.writeBool(FieldNames.npcAffinityReward, npcAffinityReward);
       }
       if ((bitField0_ & 0x00000040) != 0) {
-        output.writeMessage(FieldNames.mail, mail);
+        output.writeBool(FieldNames.storySet, storySet);
       }
       if ((bitField0_ & 0x00000080) != 0) {
-        output.writeMessage(FieldNames.battlePass, battlePass);
+        output.writeMessage(FieldNames.mail, mail);
       }
       if ((bitField0_ & 0x00000100) != 0) {
-        output.writeMessage(FieldNames.worldClassReward, worldClassReward);
+        output.writeMessage(FieldNames.battlePass, battlePass);
       }
       if ((bitField0_ & 0x00000200) != 0) {
-        output.writeMessage(FieldNames.friendEnergy, friendEnergy);
+        output.writeMessage(FieldNames.worldClassReward, worldClassReward);
       }
       if ((bitField0_ & 0x00000400) != 0) {
-        output.writeMessage(FieldNames.mallPackage, mallPackage);
+        output.writeMessage(FieldNames.friendEnergy, friendEnergy);
       }
       if ((bitField0_ & 0x00000800) != 0) {
-        output.writeMessage(FieldNames.achievement, achievement);
+        output.writeMessage(FieldNames.mallPackage, mallPackage);
       }
       if ((bitField0_ & 0x00001000) != 0) {
-        output.writeMessage(FieldNames.travelerDuelQuest, travelerDuelQuest);
+        output.writeMessage(FieldNames.soldier, soldier);
       }
       if ((bitField0_ & 0x00002000) != 0) {
-        output.writeMessage(FieldNames.starTower, starTower);
+        output.writeMessage(FieldNames.achievement, achievement);
       }
       if ((bitField0_ & 0x00004000) != 0) {
-        output.writeMessage(FieldNames.starTowerBook, starTowerBook);
+        output.writeMessage(FieldNames.travelerDuelQuest, travelerDuelQuest);
       }
       if ((bitField0_ & 0x00008000) != 0) {
-        output.writeMessage(FieldNames.scoreBoss, scoreBoss);
+        output.writeMessage(FieldNames.starTower, starTower);
       }
       if ((bitField0_ & 0x00010000) != 0) {
-        output.writeMessage(FieldNames.traceHunt, traceHunt);
+        output.writeMessage(FieldNames.starTowerBook, starTowerBook);
       }
       if ((bitField0_ & 0x00020000) != 0) {
-        output.writeBytes(FieldNames.nextPackage, nextPackage);
+        output.writeMessage(FieldNames.scoreBoss, scoreBoss);
       }
       if ((bitField0_ & 0x00040000) != 0) {
-        output.writeRepeatedMessage(FieldNames.charAdvanceRewards, charAdvanceRewards);
+        output.writeMessage(FieldNames.traceHunt, traceHunt);
       }
       if ((bitField0_ & 0x00080000) != 0) {
-        output.writeRepeatedMessage(FieldNames.charAffinityRewards, charAffinityRewards);
+        output.writeMessage(FieldNames.guideMission, guideMission);
       }
       if ((bitField0_ & 0x00100000) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00200000) != 0) {
+        output.writeRepeatedMessage(FieldNames.charAdvanceRewards, charAdvanceRewards);
+      }
+      if ((bitField0_ & 0x00400000) != 0) {
+        output.writeRepeatedMessage(FieldNames.charAffinityRewards, charAffinityRewards);
+      }
+      if ((bitField0_ & 0x00800000) != 0) {
         output.writeRepeatedMessage(FieldNames.activities, activities);
+      }
+      if ((bitField0_ & 0x01000000) != 0) {
+        output.writeRepeatedMessage(FieldNames.activityReturnees, activityReturnees);
       }
       output.endObject();
     }
@@ -21770,11 +23990,22 @@ public final class Public {
             }
             break;
           }
+          case -49751529: {
+            if (input.isAtField(FieldNames.dormStateFlag)) {
+              if (!input.trySkipNullValue()) {
+                dormStateFlag = input.readUInt32();
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case 2112550590: {
             if (input.isAtField(FieldNames.friend)) {
               if (!input.trySkipNullValue()) {
                 friend = input.readBool();
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000010;
               }
             } else {
               input.skipUnknownField();
@@ -21785,7 +24016,7 @@ public final class Public {
             if (input.isAtField(FieldNames.npcAffinityReward)) {
               if (!input.trySkipNullValue()) {
                 npcAffinityReward = input.readBool();
-                bitField0_ |= 0x00000010;
+                bitField0_ |= 0x00000020;
               }
             } else {
               input.skipUnknownField();
@@ -21796,7 +24027,7 @@ public final class Public {
             if (input.isAtField(FieldNames.storySet)) {
               if (!input.trySkipNullValue()) {
                 storySet = input.readBool();
-                bitField0_ |= 0x00000020;
+                bitField0_ |= 0x00000040;
               }
             } else {
               input.skipUnknownField();
@@ -21807,7 +24038,7 @@ public final class Public {
             if (input.isAtField(FieldNames.mail)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(mail);
-                bitField0_ |= 0x00000040;
+                bitField0_ |= 0x00000080;
               }
             } else {
               input.skipUnknownField();
@@ -21818,7 +24049,7 @@ public final class Public {
             if (input.isAtField(FieldNames.battlePass)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(battlePass);
-                bitField0_ |= 0x00000080;
+                bitField0_ |= 0x00000100;
               }
             } else {
               input.skipUnknownField();
@@ -21829,7 +24060,7 @@ public final class Public {
             if (input.isAtField(FieldNames.worldClassReward)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(worldClassReward);
-                bitField0_ |= 0x00000100;
+                bitField0_ |= 0x00000200;
               }
             } else {
               input.skipUnknownField();
@@ -21840,7 +24071,7 @@ public final class Public {
             if (input.isAtField(FieldNames.friendEnergy)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(friendEnergy);
-                bitField0_ |= 0x00000200;
+                bitField0_ |= 0x00000400;
               }
             } else {
               input.skipUnknownField();
@@ -21851,7 +24082,18 @@ public final class Public {
             if (input.isAtField(FieldNames.mallPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(mallPackage);
-                bitField0_ |= 0x00000400;
+                bitField0_ |= 0x00000800;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -365946526: {
+            if (input.isAtField(FieldNames.soldier)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(soldier);
+                bitField0_ |= 0x00001000;
               }
             } else {
               input.skipUnknownField();
@@ -21862,7 +24104,7 @@ public final class Public {
             if (input.isAtField(FieldNames.achievement)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(achievement);
-                bitField0_ |= 0x00000800;
+                bitField0_ |= 0x00002000;
               }
             } else {
               input.skipUnknownField();
@@ -21873,7 +24115,7 @@ public final class Public {
             if (input.isAtField(FieldNames.travelerDuelQuest)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(travelerDuelQuest);
-                bitField0_ |= 0x00001000;
+                bitField0_ |= 0x00004000;
               }
             } else {
               input.skipUnknownField();
@@ -21884,7 +24126,7 @@ public final class Public {
             if (input.isAtField(FieldNames.starTower)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(starTower);
-                bitField0_ |= 0x00002000;
+                bitField0_ |= 0x00008000;
               }
             } else {
               input.skipUnknownField();
@@ -21895,7 +24137,7 @@ public final class Public {
             if (input.isAtField(FieldNames.starTowerBook)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(starTowerBook);
-                bitField0_ |= 0x00004000;
+                bitField0_ |= 0x00010000;
               }
             } else {
               input.skipUnknownField();
@@ -21906,7 +24148,7 @@ public final class Public {
             if (input.isAtField(FieldNames.scoreBoss)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(scoreBoss);
-                bitField0_ |= 0x00008000;
+                bitField0_ |= 0x00020000;
               }
             } else {
               input.skipUnknownField();
@@ -21917,7 +24159,18 @@ public final class Public {
             if (input.isAtField(FieldNames.traceHunt)) {
               if (!input.trySkipNullValue()) {
                 input.readMessage(traceHunt);
-                bitField0_ |= 0x00010000;
+                bitField0_ |= 0x00040000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -361554160: {
+            if (input.isAtField(FieldNames.guideMission)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(guideMission);
+                bitField0_ |= 0x00080000;
               }
             } else {
               input.skipUnknownField();
@@ -21928,7 +24181,7 @@ public final class Public {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00020000;
+                bitField0_ |= 0x00100000;
               }
             } else {
               input.skipUnknownField();
@@ -21939,7 +24192,7 @@ public final class Public {
             if (input.isAtField(FieldNames.charAdvanceRewards)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(charAdvanceRewards);
-                bitField0_ |= 0x00040000;
+                bitField0_ |= 0x00200000;
               }
             } else {
               input.skipUnknownField();
@@ -21950,7 +24203,7 @@ public final class Public {
             if (input.isAtField(FieldNames.charAffinityRewards)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(charAffinityRewards);
-                bitField0_ |= 0x00080000;
+                bitField0_ |= 0x00400000;
               }
             } else {
               input.skipUnknownField();
@@ -21961,7 +24214,18 @@ public final class Public {
             if (input.isAtField(FieldNames.activities)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(activities);
-                bitField0_ |= 0x00100000;
+                bitField0_ |= 0x00800000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 1488808500: {
+            if (input.isAtField(FieldNames.activityReturnees)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(activityReturnees);
+                bitField0_ |= 0x01000000;
               }
             } else {
               input.skipUnknownField();
@@ -22026,6 +24290,8 @@ public final class Public {
 
       static final FieldName vampireSurvivorId = FieldName.forField("VampireSurvivorId");
 
+      static final FieldName dormStateFlag = FieldName.forField("DormStateFlag");
+
       static final FieldName friend = FieldName.forField("Friend");
 
       static final FieldName npcAffinityReward = FieldName.forField("NpcAffinityReward");
@@ -22042,6 +24308,8 @@ public final class Public {
 
       static final FieldName mallPackage = FieldName.forField("MallPackage");
 
+      static final FieldName soldier = FieldName.forField("Soldier");
+
       static final FieldName achievement = FieldName.forField("Achievement");
 
       static final FieldName travelerDuelQuest = FieldName.forField("TravelerDuelQuest");
@@ -22054,6 +24322,8 @@ public final class Public {
 
       static final FieldName traceHunt = FieldName.forField("TraceHunt");
 
+      static final FieldName guideMission = FieldName.forField("GuideMission");
+
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
       static final FieldName charAdvanceRewards = FieldName.forField("CharAdvanceRewards");
@@ -22061,6 +24331,8 @@ public final class Public {
       static final FieldName charAffinityRewards = FieldName.forField("CharAffinityRewards");
 
       static final FieldName activities = FieldName.forField("Activities");
+
+      static final FieldName activityReturnees = FieldName.forField("ActivityReturnees");
     }
   }
 
@@ -30107,6 +32379,533 @@ public final class Public {
   }
 
   /**
+   * Protobuf type {@code DormItem}
+   */
+  public static final class DormItem extends ProtoMessage<DormItem> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional int32 Qty = 2;</code>
+     */
+    private int qty;
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     */
+    private int tid;
+
+    /**
+     * <code>optional bool IsFirst = 3;</code>
+     */
+    private boolean isFirst;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private DormItem() {
+    }
+
+    /**
+     * @return a new empty instance of {@code DormItem}
+     */
+    public static DormItem newInstance() {
+      return new DormItem();
+    }
+
+    /**
+     * <code>optional int32 Qty = 2;</code>
+     * @return whether the qty field is set
+     */
+    public boolean hasQty() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional int32 Qty = 2;</code>
+     * @return this
+     */
+    public DormItem clearQty() {
+      bitField0_ &= ~0x00000001;
+      qty = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional int32 Qty = 2;</code>
+     * @return the qty
+     */
+    public int getQty() {
+      return qty;
+    }
+
+    /**
+     * <code>optional int32 Qty = 2;</code>
+     * @param value the qty to set
+     * @return this
+     */
+    public DormItem setQty(final int value) {
+      bitField0_ |= 0x00000001;
+      qty = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     * @return whether the tid field is set
+     */
+    public boolean hasTid() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     * @return this
+     */
+    public DormItem clearTid() {
+      bitField0_ &= ~0x00000002;
+      tid = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     * @return the tid
+     */
+    public int getTid() {
+      return tid;
+    }
+
+    /**
+     * <code>optional uint32 Tid = 1;</code>
+     * @param value the tid to set
+     * @return this
+     */
+    public DormItem setTid(final int value) {
+      bitField0_ |= 0x00000002;
+      tid = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bool IsFirst = 3;</code>
+     * @return whether the isFirst field is set
+     */
+    public boolean hasIsFirst() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional bool IsFirst = 3;</code>
+     * @return this
+     */
+    public DormItem clearIsFirst() {
+      bitField0_ &= ~0x00000004;
+      isFirst = false;
+      return this;
+    }
+
+    /**
+     * <code>optional bool IsFirst = 3;</code>
+     * @return the isFirst
+     */
+    public boolean getIsFirst() {
+      return isFirst;
+    }
+
+    /**
+     * <code>optional bool IsFirst = 3;</code>
+     * @param value the isFirst to set
+     * @return this
+     */
+    public DormItem setIsFirst(final boolean value) {
+      bitField0_ |= 0x00000004;
+      isFirst = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public DormItem clearNextPackage() {
+      bitField0_ &= ~0x00000008;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000008;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public DormItem addNextPackage(final byte value) {
+      bitField0_ |= 0x00000008;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public DormItem addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000008;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public DormItem setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000008;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public DormItem copyFrom(final DormItem other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        qty = other.qty;
+        tid = other.tid;
+        isFirst = other.isFirst;
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public DormItem mergeFrom(final DormItem other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasQty()) {
+        setQty(other.qty);
+      }
+      if (other.hasTid()) {
+        setTid(other.tid);
+      }
+      if (other.hasIsFirst()) {
+        setIsFirst(other.isFirst);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public DormItem clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      qty = 0;
+      tid = 0;
+      isFirst = false;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public DormItem clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof DormItem)) {
+        return false;
+      }
+      DormItem other = (DormItem) o;
+      return bitField0_ == other.bitField0_
+        && (!hasQty() || qty == other.qty)
+        && (!hasTid() || tid == other.tid)
+        && (!hasIsFirst() || isFirst == other.isFirst)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeInt32NoTag(qty);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(tid);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeBoolNoTag(isFirst);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeInt32SizeNoTag(qty);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(tid);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 2;
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public DormItem mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 16: {
+            // qty
+            qty = input.readInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 8) {
+              break;
+            }
+          }
+          case 8: {
+            // tid
+            tid = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
+            // isFirst
+            isFirst = input.readBool();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeInt32(FieldNames.qty, qty);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeUInt32(FieldNames.tid, tid);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeBool(FieldNames.isFirst, isFirst);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public DormItem mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 81558: {
+            if (input.isAtField(FieldNames.qty)) {
+              if (!input.trySkipNullValue()) {
+                qty = input.readInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 84079: {
+            if (input.isAtField(FieldNames.tid)) {
+              if (!input.trySkipNullValue()) {
+                tid = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -571467898: {
+            if (input.isAtField(FieldNames.isFirst)) {
+              if (!input.trySkipNullValue()) {
+                isFirst = input.readBool();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public DormItem clone() {
+      return new DormItem().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static DormItem parseFrom(final byte[] data) throws InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new DormItem(), data).checkInitialized();
+    }
+
+    public static DormItem parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new DormItem(), input).checkInitialized();
+    }
+
+    public static DormItem parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new DormItem(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating DormItem messages
+     */
+    public static MessageFactory<DormItem> getFactory() {
+      return DormItemFactory.INSTANCE;
+    }
+
+    private enum DormItemFactory implements MessageFactory<DormItem> {
+      INSTANCE;
+
+      @Override
+      public DormItem create() {
+        return DormItem.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName qty = FieldName.forField("Qty");
+
+      static final FieldName tid = FieldName.forField("Tid");
+
+      static final FieldName isFirst = FieldName.forField("IsFirst");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
    * Protobuf type {@code AcqInfo}
    */
   public static final class AcqInfo extends ProtoMessage<AcqInfo> implements Cloneable {
@@ -34576,9 +37375,9 @@ public final class Public {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint64 BuildId = 3;</code>
+     * <code>optional .UseBuild Build = 3;</code>
      */
-    private long buildId;
+    private final UseBuild build = UseBuild.newInstance();
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
@@ -34606,39 +37405,59 @@ public final class Public {
     }
 
     /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @return whether the buildId field is set
+     * <code>optional .UseBuild Build = 3;</code>
+     * @return whether the build field is set
      */
-    public boolean hasBuildId() {
+    public boolean hasBuild() {
       return (bitField0_ & 0x00000001) != 0;
     }
 
     /**
-     * <code>optional uint64 BuildId = 3;</code>
+     * <code>optional .UseBuild Build = 3;</code>
      * @return this
      */
-    public StoryInfo clearBuildId() {
+    public StoryInfo clearBuild() {
       bitField0_ &= ~0x00000001;
-      buildId = 0L;
+      build.clear();
       return this;
     }
 
     /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @return the buildId
+     * <code>optional .UseBuild Build = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBuild()} if you want to modify it.
+     *
+     * @return internal storage object for reading
      */
-    public long getBuildId() {
-      return buildId;
+    public UseBuild getBuild() {
+      return build;
     }
 
     /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @param value the buildId to set
+     * <code>optional .UseBuild Build = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public UseBuild getMutableBuild() {
+      bitField0_ |= 0x00000001;
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @param value the build to set
      * @return this
      */
-    public StoryInfo setBuildId(final long value) {
+    public StoryInfo setBuild(final UseBuild value) {
       bitField0_ |= 0x00000001;
-      buildId = value;
+      build.copyFrom(value);
       return this;
     }
 
@@ -34862,7 +37681,7 @@ public final class Public {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
-        buildId = other.buildId;
+        build.copyFrom(other.build);
         nextPackage.copyFrom(other.nextPackage);
         evidences.copyFrom(other.evidences);
         stories.copyFrom(other.stories);
@@ -34876,8 +37695,8 @@ public final class Public {
         return this;
       }
       cachedSize = -1;
-      if (other.hasBuildId()) {
-        setBuildId(other.buildId);
+      if (other.hasBuild()) {
+        getMutableBuild().mergeFrom(other.build);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -34898,7 +37717,7 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
-      buildId = 0L;
+      build.clear();
       nextPackage.clear();
       evidences.clear();
       stories.clear();
@@ -34912,6 +37731,7 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      build.clearQuick();
       nextPackage.clear();
       evidences.clear();
       stories.clearQuick();
@@ -34928,7 +37748,7 @@ public final class Public {
       }
       StoryInfo other = (StoryInfo) o;
       return bitField0_ == other.bitField0_
-        && (!hasBuildId() || buildId == other.buildId)
+        && (!hasBuild() || build.equals(other.build))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasEvidences() || evidences.equals(other.evidences))
         && (!hasStories() || stories.equals(other.stories));
@@ -34937,8 +37757,8 @@ public final class Public {
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 24);
-        output.writeUInt64NoTag(buildId);
+        output.writeRawByte((byte) 26);
+        output.writeMessageNoTag(build);
       }
       if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawLittleEndian16((short) 32762);
@@ -34962,7 +37782,7 @@ public final class Public {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(build);
       }
       if ((bitField0_ & 0x00000002) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
@@ -34983,9 +37803,9 @@ public final class Public {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 24: {
-            // buildId
-            buildId = input.readUInt64();
+          case 26: {
+            // build
+            input.readMessage(build);
             bitField0_ |= 0x00000001;
             tag = input.readTag();
             if (tag != 16378) {
@@ -35042,7 +37862,7 @@ public final class Public {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt64(FieldNames.buildId, buildId);
+        output.writeMessage(FieldNames.build, build);
       }
       if ((bitField0_ & 0x00000002) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
@@ -35063,10 +37883,10 @@ public final class Public {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
-          case 1895597065: {
-            if (input.isAtField(FieldNames.buildId)) {
+          case 64542286: {
+            if (input.isAtField(FieldNames.build)) {
               if (!input.trySkipNullValue()) {
-                buildId = input.readUInt64();
+                input.readMessage(build);
                 bitField0_ |= 0x00000001;
               }
             } else {
@@ -35159,7 +37979,7 @@ public final class Public {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
-      static final FieldName buildId = FieldName.forField("BuildId");
+      static final FieldName build = FieldName.forField("Build");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
@@ -37520,11 +40340,6 @@ public final class Public {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint64 BuildId = 5;</code>
-     */
-    private long buildId;
-
-    /**
      * <code>optional uint32 Id = 1;</code>
      */
     private int id;
@@ -37545,6 +40360,11 @@ public final class Public {
     private boolean threeStar;
 
     /**
+     * <code>optional .UseBuild Build = 5;</code>
+     */
+    private final UseBuild build = UseBuild.newInstance();
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -37560,48 +40380,11 @@ public final class Public {
     }
 
     /**
-     * <code>optional uint64 BuildId = 5;</code>
-     * @return whether the buildId field is set
-     */
-    public boolean hasBuildId() {
-      return (bitField0_ & 0x00000001) != 0;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 5;</code>
-     * @return this
-     */
-    public RegionBossLevel clearBuildId() {
-      bitField0_ &= ~0x00000001;
-      buildId = 0L;
-      return this;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 5;</code>
-     * @return the buildId
-     */
-    public long getBuildId() {
-      return buildId;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 5;</code>
-     * @param value the buildId to set
-     * @return this
-     */
-    public RegionBossLevel setBuildId(final long value) {
-      bitField0_ |= 0x00000001;
-      buildId = value;
-      return this;
-    }
-
-    /**
      * <code>optional uint32 Id = 1;</code>
      * @return whether the id field is set
      */
     public boolean hasId() {
-      return (bitField0_ & 0x00000002) != 0;
+      return (bitField0_ & 0x00000001) != 0;
     }
 
     /**
@@ -37609,7 +40392,7 @@ public final class Public {
      * @return this
      */
     public RegionBossLevel clearId() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000001;
       id = 0;
       return this;
     }
@@ -37628,7 +40411,7 @@ public final class Public {
      * @return this
      */
     public RegionBossLevel setId(final int value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000001;
       id = value;
       return this;
     }
@@ -37638,7 +40421,7 @@ public final class Public {
      * @return whether the star field is set
      */
     public boolean hasStar() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000002) != 0;
     }
 
     /**
@@ -37646,7 +40429,7 @@ public final class Public {
      * @return this
      */
     public RegionBossLevel clearStar() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000002;
       star = 0;
       return this;
     }
@@ -37665,7 +40448,7 @@ public final class Public {
      * @return this
      */
     public RegionBossLevel setStar(final int value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       star = value;
       return this;
     }
@@ -37675,7 +40458,7 @@ public final class Public {
      * @return whether the first field is set
      */
     public boolean hasFirst() {
-      return (bitField0_ & 0x00000008) != 0;
+      return (bitField0_ & 0x00000004) != 0;
     }
 
     /**
@@ -37683,7 +40466,7 @@ public final class Public {
      * @return this
      */
     public RegionBossLevel clearFirst() {
-      bitField0_ &= ~0x00000008;
+      bitField0_ &= ~0x00000004;
       first = false;
       return this;
     }
@@ -37702,7 +40485,7 @@ public final class Public {
      * @return this
      */
     public RegionBossLevel setFirst(final boolean value) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000004;
       first = value;
       return this;
     }
@@ -37712,7 +40495,7 @@ public final class Public {
      * @return whether the threeStar field is set
      */
     public boolean hasThreeStar() {
-      return (bitField0_ & 0x00000010) != 0;
+      return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
@@ -37720,7 +40503,7 @@ public final class Public {
      * @return this
      */
     public RegionBossLevel clearThreeStar() {
-      bitField0_ &= ~0x00000010;
+      bitField0_ &= ~0x00000008;
       threeStar = false;
       return this;
     }
@@ -37739,8 +40522,65 @@ public final class Public {
      * @return this
      */
     public RegionBossLevel setThreeStar(final boolean value) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000008;
       threeStar = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 5;</code>
+     * @return whether the build field is set
+     */
+    public boolean hasBuild() {
+      return (bitField0_ & 0x00000010) != 0;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 5;</code>
+     * @return this
+     */
+    public RegionBossLevel clearBuild() {
+      bitField0_ &= ~0x00000010;
+      build.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 5;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBuild()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public UseBuild getBuild() {
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 5;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public UseBuild getMutableBuild() {
+      bitField0_ |= 0x00000010;
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 5;</code>
+     * @param value the build to set
+     * @return this
+     */
+    public RegionBossLevel setBuild(final UseBuild value) {
+      bitField0_ |= 0x00000010;
+      build.copyFrom(value);
       return this;
     }
 
@@ -37828,11 +40668,11 @@ public final class Public {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
-        buildId = other.buildId;
         id = other.id;
         star = other.star;
         first = other.first;
         threeStar = other.threeStar;
+        build.copyFrom(other.build);
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -37844,9 +40684,6 @@ public final class Public {
         return this;
       }
       cachedSize = -1;
-      if (other.hasBuildId()) {
-        setBuildId(other.buildId);
-      }
       if (other.hasId()) {
         setId(other.id);
       }
@@ -37858,6 +40695,9 @@ public final class Public {
       }
       if (other.hasThreeStar()) {
         setThreeStar(other.threeStar);
+      }
+      if (other.hasBuild()) {
+        getMutableBuild().mergeFrom(other.build);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -37872,11 +40712,11 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
-      buildId = 0L;
       id = 0;
       star = 0;
       first = false;
       threeStar = false;
+      build.clear();
       nextPackage.clear();
       return this;
     }
@@ -37888,6 +40728,7 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      build.clearQuick();
       nextPackage.clear();
       return this;
     }
@@ -37902,35 +40743,35 @@ public final class Public {
       }
       RegionBossLevel other = (RegionBossLevel) o;
       return bitField0_ == other.bitField0_
-        && (!hasBuildId() || buildId == other.buildId)
         && (!hasId() || id == other.id)
         && (!hasStar() || star == other.star)
         && (!hasFirst() || first == other.first)
         && (!hasThreeStar() || threeStar == other.threeStar)
+        && (!hasBuild() || build.equals(other.build))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 40);
-        output.writeUInt64NoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 8);
         output.writeUInt32NoTag(id);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 16);
         output.writeUInt32NoTag(star);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         output.writeRawByte((byte) 24);
         output.writeBoolNoTag(first);
       }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawByte((byte) 32);
         output.writeBoolNoTag(threeStar);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeRawByte((byte) 42);
+        output.writeMessageNoTag(build);
       }
       if ((bitField0_ & 0x00000020) != 0) {
         output.writeRawLittleEndian16((short) 32762);
@@ -37942,19 +40783,19 @@ public final class Public {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(id);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(star);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 2;
       }
       if ((bitField0_ & 0x00000008) != 0) {
         size += 2;
       }
       if ((bitField0_ & 0x00000010) != 0) {
-        size += 2;
+        size += 1 + ProtoSink.computeMessageSizeNoTag(build);
       }
       if ((bitField0_ & 0x00000020) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
@@ -37969,19 +40810,10 @@ public final class Public {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 40: {
-            // buildId
-            buildId = input.readUInt64();
-            bitField0_ |= 0x00000001;
-            tag = input.readTag();
-            if (tag != 8) {
-              break;
-            }
-          }
           case 8: {
             // id
             id = input.readUInt32();
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000001;
             tag = input.readTag();
             if (tag != 16) {
               break;
@@ -37990,7 +40822,7 @@ public final class Public {
           case 16: {
             // star
             star = input.readUInt32();
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000002;
             tag = input.readTag();
             if (tag != 24) {
               break;
@@ -37999,7 +40831,7 @@ public final class Public {
           case 24: {
             // first
             first = input.readBool();
-            bitField0_ |= 0x00000008;
+            bitField0_ |= 0x00000004;
             tag = input.readTag();
             if (tag != 32) {
               break;
@@ -38008,6 +40840,15 @@ public final class Public {
           case 32: {
             // threeStar
             threeStar = input.readBool();
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
+            if (tag != 42) {
+              break;
+            }
+          }
+          case 42: {
+            // build
+            input.readMessage(build);
             bitField0_ |= 0x00000010;
             tag = input.readTag();
             if (tag != 16378) {
@@ -38041,19 +40882,19 @@ public final class Public {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt64(FieldNames.buildId, buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.id, id);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.star, star);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         output.writeBool(FieldNames.first, first);
       }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeBool(FieldNames.threeStar, threeStar);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeMessage(FieldNames.build, build);
       }
       if ((bitField0_ & 0x00000020) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
@@ -38068,22 +40909,11 @@ public final class Public {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
-          case 1895597065: {
-            if (input.isAtField(FieldNames.buildId)) {
-              if (!input.trySkipNullValue()) {
-                buildId = input.readUInt64();
-                bitField0_ |= 0x00000001;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
           case 2363: {
             if (input.isAtField(FieldNames.id)) {
               if (!input.trySkipNullValue()) {
                 id = input.readUInt32();
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000001;
               }
             } else {
               input.skipUnknownField();
@@ -38094,7 +40924,7 @@ public final class Public {
             if (input.isAtField(FieldNames.star)) {
               if (!input.trySkipNullValue()) {
                 star = input.readUInt32();
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000002;
               }
             } else {
               input.skipUnknownField();
@@ -38105,7 +40935,7 @@ public final class Public {
             if (input.isAtField(FieldNames.first)) {
               if (!input.trySkipNullValue()) {
                 first = input.readBool();
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000004;
               }
             } else {
               input.skipUnknownField();
@@ -38116,6 +40946,17 @@ public final class Public {
             if (input.isAtField(FieldNames.threeStar)) {
               if (!input.trySkipNullValue()) {
                 threeStar = input.readBool();
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 64542286: {
+            if (input.isAtField(FieldNames.build)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(build);
                 bitField0_ |= 0x00000010;
               }
             } else {
@@ -38187,8 +41028,6 @@ public final class Public {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
-      static final FieldName buildId = FieldName.forField("BuildId");
-
       static final FieldName id = FieldName.forField("Id");
 
       static final FieldName star = FieldName.forField("Star");
@@ -38196,6 +41035,8 @@ public final class Public {
       static final FieldName first = FieldName.forField("First");
 
       static final FieldName threeStar = FieldName.forField("ThreeStar");
+
+      static final FieldName build = FieldName.forField("Build");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }
@@ -38241,6 +41082,16 @@ public final class Public {
      * <code>optional uint32 TitleSuffix = 8;</code>
      */
     private int titleSuffix;
+
+    /**
+     * <code>optional uint32 DormLikeNum = 17;</code>
+     */
+    private int dormLikeNum;
+
+    /**
+     * <code>optional .DormOutInfo DormOutInfo = 16;</code>
+     */
+    private final DormOutInfo dormOutInfo = DormOutInfo.newInstance();
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
@@ -38537,11 +41388,105 @@ public final class Public {
     }
 
     /**
+     * <code>optional uint32 DormLikeNum = 17;</code>
+     * @return whether the dormLikeNum field is set
+     */
+    public boolean hasDormLikeNum() {
+      return (bitField0_ & 0x00000080) != 0;
+    }
+
+    /**
+     * <code>optional uint32 DormLikeNum = 17;</code>
+     * @return this
+     */
+    public Friend clearDormLikeNum() {
+      bitField0_ &= ~0x00000080;
+      dormLikeNum = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 DormLikeNum = 17;</code>
+     * @return the dormLikeNum
+     */
+    public int getDormLikeNum() {
+      return dormLikeNum;
+    }
+
+    /**
+     * <code>optional uint32 DormLikeNum = 17;</code>
+     * @param value the dormLikeNum to set
+     * @return this
+     */
+    public Friend setDormLikeNum(final int value) {
+      bitField0_ |= 0x00000080;
+      dormLikeNum = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .DormOutInfo DormOutInfo = 16;</code>
+     * @return whether the dormOutInfo field is set
+     */
+    public boolean hasDormOutInfo() {
+      return (bitField0_ & 0x00000100) != 0;
+    }
+
+    /**
+     * <code>optional .DormOutInfo DormOutInfo = 16;</code>
+     * @return this
+     */
+    public Friend clearDormOutInfo() {
+      bitField0_ &= ~0x00000100;
+      dormOutInfo.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .DormOutInfo DormOutInfo = 16;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableDormOutInfo()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public DormOutInfo getDormOutInfo() {
+      return dormOutInfo;
+    }
+
+    /**
+     * <code>optional .DormOutInfo DormOutInfo = 16;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public DormOutInfo getMutableDormOutInfo() {
+      bitField0_ |= 0x00000100;
+      return dormOutInfo;
+    }
+
+    /**
+     * <code>optional .DormOutInfo DormOutInfo = 16;</code>
+     * @param value the dormOutInfo to set
+     * @return this
+     */
+    public Friend setDormOutInfo(final DormOutInfo value) {
+      bitField0_ |= 0x00000100;
+      dormOutInfo.copyFrom(value);
+      return this;
+    }
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      * @return whether the nextPackage field is set
      */
     public boolean hasNextPackage() {
-      return (bitField0_ & 0x00000080) != 0;
+      return (bitField0_ & 0x00000200) != 0;
     }
 
     /**
@@ -38549,7 +41494,7 @@ public final class Public {
      * @return this
      */
     public Friend clearNextPackage() {
-      bitField0_ &= ~0x00000080;
+      bitField0_ &= ~0x00000200;
       nextPackage.clear();
       return this;
     }
@@ -38578,7 +41523,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public RepeatedByte getMutableNextPackage() {
-      bitField0_ |= 0x00000080;
+      bitField0_ |= 0x00000200;
       return nextPackage;
     }
 
@@ -38588,7 +41533,7 @@ public final class Public {
      * @return this
      */
     public Friend addNextPackage(final byte value) {
-      bitField0_ |= 0x00000080;
+      bitField0_ |= 0x00000200;
       nextPackage.add(value);
       return this;
     }
@@ -38599,7 +41544,7 @@ public final class Public {
      * @return this
      */
     public Friend addAllNextPackage(final byte... values) {
-      bitField0_ |= 0x00000080;
+      bitField0_ |= 0x00000200;
       nextPackage.addAll(values);
       return this;
     }
@@ -38610,7 +41555,7 @@ public final class Public {
      * @return this
      */
     public Friend setNextPackage(final byte... values) {
-      bitField0_ |= 0x00000080;
+      bitField0_ |= 0x00000200;
       nextPackage.copyFrom(values);
       return this;
     }
@@ -38620,7 +41565,7 @@ public final class Public {
      * @return whether the nickName field is set
      */
     public boolean hasNickName() {
-      return (bitField0_ & 0x00000100) != 0;
+      return (bitField0_ & 0x00000400) != 0;
     }
 
     /**
@@ -38628,7 +41573,7 @@ public final class Public {
      * @return this
      */
     public Friend clearNickName() {
-      bitField0_ &= ~0x00000100;
+      bitField0_ &= ~0x00000400;
       nickName.clear();
       return this;
     }
@@ -38654,7 +41599,7 @@ public final class Public {
      * @return internal {@code Utf8String} representation of nickName for modifications
      */
     public Utf8String getMutableNickNameBytes() {
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000400;
       return this.nickName;
     }
 
@@ -38664,7 +41609,7 @@ public final class Public {
      * @return this
      */
     public Friend setNickName(final CharSequence value) {
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000400;
       nickName.copyFrom(value);
       return this;
     }
@@ -38675,7 +41620,7 @@ public final class Public {
      * @return this
      */
     public Friend setNickName(final Utf8String value) {
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000400;
       nickName.copyFrom(value);
       return this;
     }
@@ -38685,7 +41630,7 @@ public final class Public {
      * @return whether the signature field is set
      */
     public boolean hasSignature() {
-      return (bitField0_ & 0x00000200) != 0;
+      return (bitField0_ & 0x00000800) != 0;
     }
 
     /**
@@ -38693,7 +41638,7 @@ public final class Public {
      * @return this
      */
     public Friend clearSignature() {
-      bitField0_ &= ~0x00000200;
+      bitField0_ &= ~0x00000800;
       signature.clear();
       return this;
     }
@@ -38719,7 +41664,7 @@ public final class Public {
      * @return internal {@code Utf8String} representation of signature for modifications
      */
     public Utf8String getMutableSignatureBytes() {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000800;
       return this.signature;
     }
 
@@ -38729,7 +41674,7 @@ public final class Public {
      * @return this
      */
     public Friend setSignature(final CharSequence value) {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000800;
       signature.copyFrom(value);
       return this;
     }
@@ -38740,7 +41685,7 @@ public final class Public {
      * @return this
      */
     public Friend setSignature(final Utf8String value) {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000800;
       signature.copyFrom(value);
       return this;
     }
@@ -38750,7 +41695,7 @@ public final class Public {
      * @return whether the charShows field is set
      */
     public boolean hasCharShows() {
-      return (bitField0_ & 0x00000400) != 0;
+      return (bitField0_ & 0x00001000) != 0;
     }
 
     /**
@@ -38758,7 +41703,7 @@ public final class Public {
      * @return this
      */
     public Friend clearCharShows() {
-      bitField0_ &= ~0x00000400;
+      bitField0_ &= ~0x00001000;
       charShows.clear();
       return this;
     }
@@ -38787,7 +41732,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<CharShow> getMutableCharShows() {
-      bitField0_ |= 0x00000400;
+      bitField0_ |= 0x00001000;
       return charShows;
     }
 
@@ -38797,7 +41742,7 @@ public final class Public {
      * @return this
      */
     public Friend addCharShows(final CharShow value) {
-      bitField0_ |= 0x00000400;
+      bitField0_ |= 0x00001000;
       charShows.add(value);
       return this;
     }
@@ -38808,7 +41753,7 @@ public final class Public {
      * @return this
      */
     public Friend addAllCharShows(final CharShow... values) {
-      bitField0_ |= 0x00000400;
+      bitField0_ |= 0x00001000;
       charShows.addAll(values);
       return this;
     }
@@ -38818,7 +41763,7 @@ public final class Public {
      * @return whether the honors field is set
      */
     public boolean hasHonors() {
-      return (bitField0_ & 0x00000800) != 0;
+      return (bitField0_ & 0x00002000) != 0;
     }
 
     /**
@@ -38826,7 +41771,7 @@ public final class Public {
      * @return this
      */
     public Friend clearHonors() {
-      bitField0_ &= ~0x00000800;
+      bitField0_ &= ~0x00002000;
       honors.clear();
       return this;
     }
@@ -38855,7 +41800,7 @@ public final class Public {
      * @return internal storage object for modifications
      */
     public RepeatedMessage<HonorInfo> getMutableHonors() {
-      bitField0_ |= 0x00000800;
+      bitField0_ |= 0x00002000;
       return honors;
     }
 
@@ -38865,7 +41810,7 @@ public final class Public {
      * @return this
      */
     public Friend addHonors(final HonorInfo value) {
-      bitField0_ |= 0x00000800;
+      bitField0_ |= 0x00002000;
       honors.add(value);
       return this;
     }
@@ -38876,7 +41821,7 @@ public final class Public {
      * @return this
      */
     public Friend addAllHonors(final HonorInfo... values) {
-      bitField0_ |= 0x00000800;
+      bitField0_ |= 0x00002000;
       honors.addAll(values);
       return this;
     }
@@ -38893,6 +41838,8 @@ public final class Public {
         worldClass = other.worldClass;
         titlePrefix = other.titlePrefix;
         titleSuffix = other.titleSuffix;
+        dormLikeNum = other.dormLikeNum;
+        dormOutInfo.copyFrom(other.dormOutInfo);
         nextPackage.copyFrom(other.nextPackage);
         nickName.copyFrom(other.nickName);
         signature.copyFrom(other.signature);
@@ -38929,6 +41876,12 @@ public final class Public {
       if (other.hasTitleSuffix()) {
         setTitleSuffix(other.titleSuffix);
       }
+      if (other.hasDormLikeNum()) {
+        setDormLikeNum(other.dormLikeNum);
+      }
+      if (other.hasDormOutInfo()) {
+        getMutableDormOutInfo().mergeFrom(other.dormOutInfo);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -38961,6 +41914,8 @@ public final class Public {
       worldClass = 0;
       titlePrefix = 0;
       titleSuffix = 0;
+      dormLikeNum = 0;
+      dormOutInfo.clear();
       nextPackage.clear();
       nickName.clear();
       signature.clear();
@@ -38976,6 +41931,7 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      dormOutInfo.clearQuick();
       nextPackage.clear();
       nickName.clear();
       signature.clear();
@@ -39001,6 +41957,8 @@ public final class Public {
         && (!hasWorldClass() || worldClass == other.worldClass)
         && (!hasTitlePrefix() || titlePrefix == other.titlePrefix)
         && (!hasTitleSuffix() || titleSuffix == other.titleSuffix)
+        && (!hasDormLikeNum() || dormLikeNum == other.dormLikeNum)
+        && (!hasDormOutInfo() || dormOutInfo.equals(other.dormOutInfo))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasNickName() || nickName.equals(other.nickName))
         && (!hasSignature() || signature.equals(other.signature))
@@ -39039,24 +41997,32 @@ public final class Public {
         output.writeUInt32NoTag(titleSuffix);
       }
       if ((bitField0_ & 0x00000080) != 0) {
+        output.writeRawLittleEndian16((short) 392);
+        output.writeUInt32NoTag(dormLikeNum);
+      }
+      if ((bitField0_ & 0x00000100) != 0) {
+        output.writeRawLittleEndian16((short) 386);
+        output.writeMessageNoTag(dormOutInfo);
+      }
+      if ((bitField0_ & 0x00000200) != 0) {
         output.writeRawLittleEndian16((short) 32762);
         output.writeBytesNoTag(nextPackage);
       }
-      if ((bitField0_ & 0x00000100) != 0) {
+      if ((bitField0_ & 0x00000400) != 0) {
         output.writeRawByte((byte) 18);
         output.writeStringNoTag(nickName);
       }
-      if ((bitField0_ & 0x00000200) != 0) {
+      if ((bitField0_ & 0x00000800) != 0) {
         output.writeRawByte((byte) 74);
         output.writeStringNoTag(signature);
       }
-      if ((bitField0_ & 0x00000400) != 0) {
+      if ((bitField0_ & 0x00001000) != 0) {
         for (int i = 0; i < charShows.length(); i++) {
           output.writeRawByte((byte) 82);
           output.writeMessageNoTag(charShows.get(i));
         }
       }
-      if ((bitField0_ & 0x00000800) != 0) {
+      if ((bitField0_ & 0x00002000) != 0) {
         for (int i = 0; i < honors.length(); i++) {
           output.writeRawByte((byte) 122);
           output.writeMessageNoTag(honors.get(i));
@@ -39089,18 +42055,24 @@ public final class Public {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(titleSuffix);
       }
       if ((bitField0_ & 0x00000080) != 0) {
-        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+        size += 2 + ProtoSink.computeUInt32SizeNoTag(dormLikeNum);
       }
       if ((bitField0_ & 0x00000100) != 0) {
-        size += 1 + ProtoSink.computeStringSizeNoTag(nickName);
+        size += 2 + ProtoSink.computeMessageSizeNoTag(dormOutInfo);
       }
       if ((bitField0_ & 0x00000200) != 0) {
-        size += 1 + ProtoSink.computeStringSizeNoTag(signature);
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
       }
       if ((bitField0_ & 0x00000400) != 0) {
-        size += (1 * charShows.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(charShows);
+        size += 1 + ProtoSink.computeStringSizeNoTag(nickName);
       }
       if ((bitField0_ & 0x00000800) != 0) {
+        size += 1 + ProtoSink.computeStringSizeNoTag(signature);
+      }
+      if ((bitField0_ & 0x00001000) != 0) {
+        size += (1 * charShows.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(charShows);
+      }
+      if ((bitField0_ & 0x00002000) != 0) {
         size += (1 * honors.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(honors);
       }
       return size;
@@ -39172,6 +42144,24 @@ public final class Public {
             titleSuffix = input.readUInt32();
             bitField0_ |= 0x00000040;
             tag = input.readTag();
+            if (tag != 136) {
+              break;
+            }
+          }
+          case 136: {
+            // dormLikeNum
+            dormLikeNum = input.readUInt32();
+            bitField0_ |= 0x00000080;
+            tag = input.readTag();
+            if (tag != 130) {
+              break;
+            }
+          }
+          case 130: {
+            // dormOutInfo
+            input.readMessage(dormOutInfo);
+            bitField0_ |= 0x00000100;
+            tag = input.readTag();
             if (tag != 16378) {
               break;
             }
@@ -39179,7 +42169,7 @@ public final class Public {
           case 16378: {
             // nextPackage
             input.readBytes(nextPackage);
-            bitField0_ |= 0x00000080;
+            bitField0_ |= 0x00000200;
             tag = input.readTag();
             if (tag != 18) {
               break;
@@ -39188,7 +42178,7 @@ public final class Public {
           case 18: {
             // nickName
             input.readString(nickName);
-            bitField0_ |= 0x00000100;
+            bitField0_ |= 0x00000400;
             tag = input.readTag();
             if (tag != 74) {
               break;
@@ -39197,7 +42187,7 @@ public final class Public {
           case 74: {
             // signature
             input.readString(signature);
-            bitField0_ |= 0x00000200;
+            bitField0_ |= 0x00000800;
             tag = input.readTag();
             if (tag != 82) {
               break;
@@ -39206,7 +42196,7 @@ public final class Public {
           case 82: {
             // charShows
             tag = input.readRepeatedMessage(charShows, tag);
-            bitField0_ |= 0x00000400;
+            bitField0_ |= 0x00001000;
             if (tag != 122) {
               break;
             }
@@ -39214,7 +42204,7 @@ public final class Public {
           case 122: {
             // honors
             tag = input.readRepeatedMessage(honors, tag);
-            bitField0_ |= 0x00000800;
+            bitField0_ |= 0x00002000;
             if (tag != 0) {
               break;
             }
@@ -39258,18 +42248,24 @@ public final class Public {
         output.writeUInt32(FieldNames.titleSuffix, titleSuffix);
       }
       if ((bitField0_ & 0x00000080) != 0) {
-        output.writeBytes(FieldNames.nextPackage, nextPackage);
+        output.writeUInt32(FieldNames.dormLikeNum, dormLikeNum);
       }
       if ((bitField0_ & 0x00000100) != 0) {
-        output.writeString(FieldNames.nickName, nickName);
+        output.writeMessage(FieldNames.dormOutInfo, dormOutInfo);
       }
       if ((bitField0_ & 0x00000200) != 0) {
-        output.writeString(FieldNames.signature, signature);
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
       }
       if ((bitField0_ & 0x00000400) != 0) {
-        output.writeRepeatedMessage(FieldNames.charShows, charShows);
+        output.writeString(FieldNames.nickName, nickName);
       }
       if ((bitField0_ & 0x00000800) != 0) {
+        output.writeString(FieldNames.signature, signature);
+      }
+      if ((bitField0_ & 0x00001000) != 0) {
+        output.writeRepeatedMessage(FieldNames.charShows, charShows);
+      }
+      if ((bitField0_ & 0x00002000) != 0) {
         output.writeRepeatedMessage(FieldNames.honors, honors);
       }
       output.endObject();
@@ -39359,11 +42355,33 @@ public final class Public {
             }
             break;
           }
+          case 663384425: {
+            if (input.isAtField(FieldNames.dormLikeNum)) {
+              if (!input.trySkipNullValue()) {
+                dormLikeNum = input.readUInt32();
+                bitField0_ |= 0x00000080;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -618014186: {
+            if (input.isAtField(FieldNames.dormOutInfo)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(dormOutInfo);
+                bitField0_ |= 0x00000100;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
           case -2082324045: {
             if (input.isAtField(FieldNames.nextPackage)) {
               if (!input.trySkipNullValue()) {
                 input.readBytes(nextPackage);
-                bitField0_ |= 0x00000080;
+                bitField0_ |= 0x00000200;
               }
             } else {
               input.skipUnknownField();
@@ -39374,7 +42392,7 @@ public final class Public {
             if (input.isAtField(FieldNames.nickName)) {
               if (!input.trySkipNullValue()) {
                 input.readString(nickName);
-                bitField0_ |= 0x00000100;
+                bitField0_ |= 0x00000400;
               }
             } else {
               input.skipUnknownField();
@@ -39385,7 +42403,7 @@ public final class Public {
             if (input.isAtField(FieldNames.signature)) {
               if (!input.trySkipNullValue()) {
                 input.readString(signature);
-                bitField0_ |= 0x00000200;
+                bitField0_ |= 0x00000800;
               }
             } else {
               input.skipUnknownField();
@@ -39396,7 +42414,7 @@ public final class Public {
             if (input.isAtField(FieldNames.charShows)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(charShows);
-                bitField0_ |= 0x00000400;
+                bitField0_ |= 0x00001000;
               }
             } else {
               input.skipUnknownField();
@@ -39407,7 +42425,7 @@ public final class Public {
             if (input.isAtField(FieldNames.honors)) {
               if (!input.trySkipNullValue()) {
                 input.readRepeatedMessage(honors);
-                bitField0_ |= 0x00000800;
+                bitField0_ |= 0x00002000;
               }
             } else {
               input.skipUnknownField();
@@ -39479,6 +42497,10 @@ public final class Public {
       static final FieldName titlePrefix = FieldName.forField("TitlePrefix");
 
       static final FieldName titleSuffix = FieldName.forField("TitleSuffix");
+
+      static final FieldName dormLikeNum = FieldName.forField("DormLikeNum");
+
+      static final FieldName dormOutInfo = FieldName.forField("DormOutInfo");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
@@ -42999,11 +46021,6 @@ public final class Public {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint64 BuildId = 15;</code>
-     */
-    private long buildId;
-
-    /**
      * <code>optional uint32 Id = 1;</code>
      */
     private int id;
@@ -43012,6 +46029,11 @@ public final class Public {
      * <code>optional uint32 Star = 2;</code>
      */
     private int star;
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     */
+    private final UseBuild build = UseBuild.newInstance();
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
@@ -43029,48 +46051,11 @@ public final class Public {
     }
 
     /**
-     * <code>optional uint64 BuildId = 15;</code>
-     * @return whether the buildId field is set
-     */
-    public boolean hasBuildId() {
-      return (bitField0_ & 0x00000001) != 0;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 15;</code>
-     * @return this
-     */
-    public DailyInstance clearBuildId() {
-      bitField0_ &= ~0x00000001;
-      buildId = 0L;
-      return this;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 15;</code>
-     * @return the buildId
-     */
-    public long getBuildId() {
-      return buildId;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 15;</code>
-     * @param value the buildId to set
-     * @return this
-     */
-    public DailyInstance setBuildId(final long value) {
-      bitField0_ |= 0x00000001;
-      buildId = value;
-      return this;
-    }
-
-    /**
      * <code>optional uint32 Id = 1;</code>
      * @return whether the id field is set
      */
     public boolean hasId() {
-      return (bitField0_ & 0x00000002) != 0;
+      return (bitField0_ & 0x00000001) != 0;
     }
 
     /**
@@ -43078,7 +46063,7 @@ public final class Public {
      * @return this
      */
     public DailyInstance clearId() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000001;
       id = 0;
       return this;
     }
@@ -43097,7 +46082,7 @@ public final class Public {
      * @return this
      */
     public DailyInstance setId(final int value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000001;
       id = value;
       return this;
     }
@@ -43107,7 +46092,7 @@ public final class Public {
      * @return whether the star field is set
      */
     public boolean hasStar() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000002) != 0;
     }
 
     /**
@@ -43115,7 +46100,7 @@ public final class Public {
      * @return this
      */
     public DailyInstance clearStar() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000002;
       star = 0;
       return this;
     }
@@ -43134,8 +46119,65 @@ public final class Public {
      * @return this
      */
     public DailyInstance setStar(final int value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       star = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @return whether the build field is set
+     */
+    public boolean hasBuild() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @return this
+     */
+    public DailyInstance clearBuild() {
+      bitField0_ &= ~0x00000004;
+      build.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBuild()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public UseBuild getBuild() {
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public UseBuild getMutableBuild() {
+      bitField0_ |= 0x00000004;
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @param value the build to set
+     * @return this
+     */
+    public DailyInstance setBuild(final UseBuild value) {
+      bitField0_ |= 0x00000004;
+      build.copyFrom(value);
       return this;
     }
 
@@ -43223,9 +46265,9 @@ public final class Public {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
-        buildId = other.buildId;
         id = other.id;
         star = other.star;
+        build.copyFrom(other.build);
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -43237,14 +46279,14 @@ public final class Public {
         return this;
       }
       cachedSize = -1;
-      if (other.hasBuildId()) {
-        setBuildId(other.buildId);
-      }
       if (other.hasId()) {
         setId(other.id);
       }
       if (other.hasStar()) {
         setStar(other.star);
+      }
+      if (other.hasBuild()) {
+        getMutableBuild().mergeFrom(other.build);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -43259,9 +46301,9 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
-      buildId = 0L;
       id = 0;
       star = 0;
+      build.clear();
       nextPackage.clear();
       return this;
     }
@@ -43273,6 +46315,7 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      build.clearQuick();
       nextPackage.clear();
       return this;
     }
@@ -43287,25 +46330,25 @@ public final class Public {
       }
       DailyInstance other = (DailyInstance) o;
       return bitField0_ == other.bitField0_
-        && (!hasBuildId() || buildId == other.buildId)
         && (!hasId() || id == other.id)
         && (!hasStar() || star == other.star)
+        && (!hasBuild() || build.equals(other.build))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 120);
-        output.writeUInt64NoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 8);
         output.writeUInt32NoTag(id);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 16);
         output.writeUInt32NoTag(star);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 26);
+        output.writeMessageNoTag(build);
       }
       if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawLittleEndian16((short) 32762);
@@ -43317,13 +46360,13 @@ public final class Public {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(id);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(star);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(build);
       }
       if ((bitField0_ & 0x00000008) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
@@ -43338,19 +46381,10 @@ public final class Public {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 120: {
-            // buildId
-            buildId = input.readUInt64();
-            bitField0_ |= 0x00000001;
-            tag = input.readTag();
-            if (tag != 8) {
-              break;
-            }
-          }
           case 8: {
             // id
             id = input.readUInt32();
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000001;
             tag = input.readTag();
             if (tag != 16) {
               break;
@@ -43359,6 +46393,15 @@ public final class Public {
           case 16: {
             // star
             star = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 26) {
+              break;
+            }
+          }
+          case 26: {
+            // build
+            input.readMessage(build);
             bitField0_ |= 0x00000004;
             tag = input.readTag();
             if (tag != 16378) {
@@ -43392,13 +46435,13 @@ public final class Public {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt64(FieldNames.buildId, buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.id, id);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.star, star);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeMessage(FieldNames.build, build);
       }
       if ((bitField0_ & 0x00000008) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
@@ -43413,22 +46456,11 @@ public final class Public {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
-          case 1895597065: {
-            if (input.isAtField(FieldNames.buildId)) {
-              if (!input.trySkipNullValue()) {
-                buildId = input.readUInt64();
-                bitField0_ |= 0x00000001;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
           case 2363: {
             if (input.isAtField(FieldNames.id)) {
               if (!input.trySkipNullValue()) {
                 id = input.readUInt32();
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000001;
               }
             } else {
               input.skipUnknownField();
@@ -43439,6 +46471,17 @@ public final class Public {
             if (input.isAtField(FieldNames.star)) {
               if (!input.trySkipNullValue()) {
                 star = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 64542286: {
+            if (input.isAtField(FieldNames.build)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(build);
                 bitField0_ |= 0x00000004;
               }
             } else {
@@ -43509,11 +46552,11 @@ public final class Public {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
-      static final FieldName buildId = FieldName.forField("BuildId");
-
       static final FieldName id = FieldName.forField("Id");
 
       static final FieldName star = FieldName.forField("Star");
+
+      static final FieldName build = FieldName.forField("Build");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }
@@ -50776,11 +53819,6 @@ public final class Public {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint64 BuildId = 3;</code>
-     */
-    private long buildId;
-
-    /**
      * <code>optional uint32 Id = 1;</code>
      */
     private int id;
@@ -50789,6 +53827,11 @@ public final class Public {
      * <code>optional uint32 Star = 2;</code>
      */
     private int star;
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     */
+    private final UseBuild build = UseBuild.newInstance();
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
@@ -50806,48 +53849,11 @@ public final class Public {
     }
 
     /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @return whether the buildId field is set
-     */
-    public boolean hasBuildId() {
-      return (bitField0_ & 0x00000001) != 0;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @return this
-     */
-    public ActivityLevel clearBuildId() {
-      bitField0_ &= ~0x00000001;
-      buildId = 0L;
-      return this;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @return the buildId
-     */
-    public long getBuildId() {
-      return buildId;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @param value the buildId to set
-     * @return this
-     */
-    public ActivityLevel setBuildId(final long value) {
-      bitField0_ |= 0x00000001;
-      buildId = value;
-      return this;
-    }
-
-    /**
      * <code>optional uint32 Id = 1;</code>
      * @return whether the id field is set
      */
     public boolean hasId() {
-      return (bitField0_ & 0x00000002) != 0;
+      return (bitField0_ & 0x00000001) != 0;
     }
 
     /**
@@ -50855,7 +53861,7 @@ public final class Public {
      * @return this
      */
     public ActivityLevel clearId() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000001;
       id = 0;
       return this;
     }
@@ -50874,7 +53880,7 @@ public final class Public {
      * @return this
      */
     public ActivityLevel setId(final int value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000001;
       id = value;
       return this;
     }
@@ -50884,7 +53890,7 @@ public final class Public {
      * @return whether the star field is set
      */
     public boolean hasStar() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000002) != 0;
     }
 
     /**
@@ -50892,7 +53898,7 @@ public final class Public {
      * @return this
      */
     public ActivityLevel clearStar() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000002;
       star = 0;
       return this;
     }
@@ -50911,8 +53917,65 @@ public final class Public {
      * @return this
      */
     public ActivityLevel setStar(final int value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       star = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @return whether the build field is set
+     */
+    public boolean hasBuild() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @return this
+     */
+    public ActivityLevel clearBuild() {
+      bitField0_ &= ~0x00000004;
+      build.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBuild()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public UseBuild getBuild() {
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public UseBuild getMutableBuild() {
+      bitField0_ |= 0x00000004;
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @param value the build to set
+     * @return this
+     */
+    public ActivityLevel setBuild(final UseBuild value) {
+      bitField0_ |= 0x00000004;
+      build.copyFrom(value);
       return this;
     }
 
@@ -51000,9 +54063,9 @@ public final class Public {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
-        buildId = other.buildId;
         id = other.id;
         star = other.star;
+        build.copyFrom(other.build);
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -51014,14 +54077,14 @@ public final class Public {
         return this;
       }
       cachedSize = -1;
-      if (other.hasBuildId()) {
-        setBuildId(other.buildId);
-      }
       if (other.hasId()) {
         setId(other.id);
       }
       if (other.hasStar()) {
         setStar(other.star);
+      }
+      if (other.hasBuild()) {
+        getMutableBuild().mergeFrom(other.build);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -51036,9 +54099,9 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
-      buildId = 0L;
       id = 0;
       star = 0;
+      build.clear();
       nextPackage.clear();
       return this;
     }
@@ -51050,6 +54113,7 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      build.clearQuick();
       nextPackage.clear();
       return this;
     }
@@ -51064,25 +54128,25 @@ public final class Public {
       }
       ActivityLevel other = (ActivityLevel) o;
       return bitField0_ == other.bitField0_
-        && (!hasBuildId() || buildId == other.buildId)
         && (!hasId() || id == other.id)
         && (!hasStar() || star == other.star)
+        && (!hasBuild() || build.equals(other.build))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 24);
-        output.writeUInt64NoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 8);
         output.writeUInt32NoTag(id);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 16);
         output.writeUInt32NoTag(star);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 26);
+        output.writeMessageNoTag(build);
       }
       if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawLittleEndian16((short) 32762);
@@ -51094,13 +54158,13 @@ public final class Public {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(id);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(star);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(build);
       }
       if ((bitField0_ & 0x00000008) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
@@ -51115,19 +54179,10 @@ public final class Public {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 24: {
-            // buildId
-            buildId = input.readUInt64();
-            bitField0_ |= 0x00000001;
-            tag = input.readTag();
-            if (tag != 8) {
-              break;
-            }
-          }
           case 8: {
             // id
             id = input.readUInt32();
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000001;
             tag = input.readTag();
             if (tag != 16) {
               break;
@@ -51136,6 +54191,15 @@ public final class Public {
           case 16: {
             // star
             star = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 26) {
+              break;
+            }
+          }
+          case 26: {
+            // build
+            input.readMessage(build);
             bitField0_ |= 0x00000004;
             tag = input.readTag();
             if (tag != 16378) {
@@ -51169,13 +54233,13 @@ public final class Public {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt64(FieldNames.buildId, buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.id, id);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.star, star);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeMessage(FieldNames.build, build);
       }
       if ((bitField0_ & 0x00000008) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
@@ -51190,22 +54254,11 @@ public final class Public {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
-          case 1895597065: {
-            if (input.isAtField(FieldNames.buildId)) {
-              if (!input.trySkipNullValue()) {
-                buildId = input.readUInt64();
-                bitField0_ |= 0x00000001;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
           case 2363: {
             if (input.isAtField(FieldNames.id)) {
               if (!input.trySkipNullValue()) {
                 id = input.readUInt32();
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000001;
               }
             } else {
               input.skipUnknownField();
@@ -51216,6 +54269,17 @@ public final class Public {
             if (input.isAtField(FieldNames.star)) {
               if (!input.trySkipNullValue()) {
                 star = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 64542286: {
+            if (input.isAtField(FieldNames.build)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(build);
                 bitField0_ |= 0x00000004;
               }
             } else {
@@ -51286,11 +54350,11 @@ public final class Public {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
-      static final FieldName buildId = FieldName.forField("BuildId");
-
       static final FieldName id = FieldName.forField("Id");
 
       static final FieldName star = FieldName.forField("Star");
+
+      static final FieldName build = FieldName.forField("Build");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }
@@ -66727,11 +69791,6 @@ public final class Public {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint64 BuildId = 5;</code>
-     */
-    private long buildId;
-
-    /**
      * <code>optional uint32 Id = 1;</code>
      */
     private int id;
@@ -66752,6 +69811,11 @@ public final class Public {
     private boolean threeStar;
 
     /**
+     * <code>optional .UseBuild Build = 5;</code>
+     */
+    private final UseBuild build = UseBuild.newInstance();
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -66767,48 +69831,11 @@ public final class Public {
     }
 
     /**
-     * <code>optional uint64 BuildId = 5;</code>
-     * @return whether the buildId field is set
-     */
-    public boolean hasBuildId() {
-      return (bitField0_ & 0x00000001) != 0;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 5;</code>
-     * @return this
-     */
-    public SkillInstance clearBuildId() {
-      bitField0_ &= ~0x00000001;
-      buildId = 0L;
-      return this;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 5;</code>
-     * @return the buildId
-     */
-    public long getBuildId() {
-      return buildId;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 5;</code>
-     * @param value the buildId to set
-     * @return this
-     */
-    public SkillInstance setBuildId(final long value) {
-      bitField0_ |= 0x00000001;
-      buildId = value;
-      return this;
-    }
-
-    /**
      * <code>optional uint32 Id = 1;</code>
      * @return whether the id field is set
      */
     public boolean hasId() {
-      return (bitField0_ & 0x00000002) != 0;
+      return (bitField0_ & 0x00000001) != 0;
     }
 
     /**
@@ -66816,7 +69843,7 @@ public final class Public {
      * @return this
      */
     public SkillInstance clearId() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000001;
       id = 0;
       return this;
     }
@@ -66835,7 +69862,7 @@ public final class Public {
      * @return this
      */
     public SkillInstance setId(final int value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000001;
       id = value;
       return this;
     }
@@ -66845,7 +69872,7 @@ public final class Public {
      * @return whether the star field is set
      */
     public boolean hasStar() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000002) != 0;
     }
 
     /**
@@ -66853,7 +69880,7 @@ public final class Public {
      * @return this
      */
     public SkillInstance clearStar() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000002;
       star = 0;
       return this;
     }
@@ -66872,7 +69899,7 @@ public final class Public {
      * @return this
      */
     public SkillInstance setStar(final int value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       star = value;
       return this;
     }
@@ -66882,7 +69909,7 @@ public final class Public {
      * @return whether the first field is set
      */
     public boolean hasFirst() {
-      return (bitField0_ & 0x00000008) != 0;
+      return (bitField0_ & 0x00000004) != 0;
     }
 
     /**
@@ -66890,7 +69917,7 @@ public final class Public {
      * @return this
      */
     public SkillInstance clearFirst() {
-      bitField0_ &= ~0x00000008;
+      bitField0_ &= ~0x00000004;
       first = false;
       return this;
     }
@@ -66909,7 +69936,7 @@ public final class Public {
      * @return this
      */
     public SkillInstance setFirst(final boolean value) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000004;
       first = value;
       return this;
     }
@@ -66919,7 +69946,7 @@ public final class Public {
      * @return whether the threeStar field is set
      */
     public boolean hasThreeStar() {
-      return (bitField0_ & 0x00000010) != 0;
+      return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
@@ -66927,7 +69954,7 @@ public final class Public {
      * @return this
      */
     public SkillInstance clearThreeStar() {
-      bitField0_ &= ~0x00000010;
+      bitField0_ &= ~0x00000008;
       threeStar = false;
       return this;
     }
@@ -66946,8 +69973,65 @@ public final class Public {
      * @return this
      */
     public SkillInstance setThreeStar(final boolean value) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000008;
       threeStar = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 5;</code>
+     * @return whether the build field is set
+     */
+    public boolean hasBuild() {
+      return (bitField0_ & 0x00000010) != 0;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 5;</code>
+     * @return this
+     */
+    public SkillInstance clearBuild() {
+      bitField0_ &= ~0x00000010;
+      build.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 5;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBuild()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public UseBuild getBuild() {
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 5;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public UseBuild getMutableBuild() {
+      bitField0_ |= 0x00000010;
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 5;</code>
+     * @param value the build to set
+     * @return this
+     */
+    public SkillInstance setBuild(final UseBuild value) {
+      bitField0_ |= 0x00000010;
+      build.copyFrom(value);
       return this;
     }
 
@@ -67035,11 +70119,11 @@ public final class Public {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
-        buildId = other.buildId;
         id = other.id;
         star = other.star;
         first = other.first;
         threeStar = other.threeStar;
+        build.copyFrom(other.build);
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -67051,9 +70135,6 @@ public final class Public {
         return this;
       }
       cachedSize = -1;
-      if (other.hasBuildId()) {
-        setBuildId(other.buildId);
-      }
       if (other.hasId()) {
         setId(other.id);
       }
@@ -67065,6 +70146,9 @@ public final class Public {
       }
       if (other.hasThreeStar()) {
         setThreeStar(other.threeStar);
+      }
+      if (other.hasBuild()) {
+        getMutableBuild().mergeFrom(other.build);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -67079,11 +70163,11 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
-      buildId = 0L;
       id = 0;
       star = 0;
       first = false;
       threeStar = false;
+      build.clear();
       nextPackage.clear();
       return this;
     }
@@ -67095,6 +70179,7 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      build.clearQuick();
       nextPackage.clear();
       return this;
     }
@@ -67109,35 +70194,35 @@ public final class Public {
       }
       SkillInstance other = (SkillInstance) o;
       return bitField0_ == other.bitField0_
-        && (!hasBuildId() || buildId == other.buildId)
         && (!hasId() || id == other.id)
         && (!hasStar() || star == other.star)
         && (!hasFirst() || first == other.first)
         && (!hasThreeStar() || threeStar == other.threeStar)
+        && (!hasBuild() || build.equals(other.build))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 40);
-        output.writeUInt64NoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 8);
         output.writeUInt32NoTag(id);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 16);
         output.writeUInt32NoTag(star);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         output.writeRawByte((byte) 24);
         output.writeBoolNoTag(first);
       }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawByte((byte) 32);
         output.writeBoolNoTag(threeStar);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeRawByte((byte) 42);
+        output.writeMessageNoTag(build);
       }
       if ((bitField0_ & 0x00000020) != 0) {
         output.writeRawLittleEndian16((short) 32762);
@@ -67149,19 +70234,19 @@ public final class Public {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(id);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(star);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 2;
       }
       if ((bitField0_ & 0x00000008) != 0) {
         size += 2;
       }
       if ((bitField0_ & 0x00000010) != 0) {
-        size += 2;
+        size += 1 + ProtoSink.computeMessageSizeNoTag(build);
       }
       if ((bitField0_ & 0x00000020) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
@@ -67176,19 +70261,10 @@ public final class Public {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 40: {
-            // buildId
-            buildId = input.readUInt64();
-            bitField0_ |= 0x00000001;
-            tag = input.readTag();
-            if (tag != 8) {
-              break;
-            }
-          }
           case 8: {
             // id
             id = input.readUInt32();
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000001;
             tag = input.readTag();
             if (tag != 16) {
               break;
@@ -67197,7 +70273,7 @@ public final class Public {
           case 16: {
             // star
             star = input.readUInt32();
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000002;
             tag = input.readTag();
             if (tag != 24) {
               break;
@@ -67206,7 +70282,7 @@ public final class Public {
           case 24: {
             // first
             first = input.readBool();
-            bitField0_ |= 0x00000008;
+            bitField0_ |= 0x00000004;
             tag = input.readTag();
             if (tag != 32) {
               break;
@@ -67215,6 +70291,15 @@ public final class Public {
           case 32: {
             // threeStar
             threeStar = input.readBool();
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
+            if (tag != 42) {
+              break;
+            }
+          }
+          case 42: {
+            // build
+            input.readMessage(build);
             bitField0_ |= 0x00000010;
             tag = input.readTag();
             if (tag != 16378) {
@@ -67248,19 +70333,19 @@ public final class Public {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt64(FieldNames.buildId, buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.id, id);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.star, star);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         output.writeBool(FieldNames.first, first);
       }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeBool(FieldNames.threeStar, threeStar);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeMessage(FieldNames.build, build);
       }
       if ((bitField0_ & 0x00000020) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
@@ -67275,22 +70360,11 @@ public final class Public {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
-          case 1895597065: {
-            if (input.isAtField(FieldNames.buildId)) {
-              if (!input.trySkipNullValue()) {
-                buildId = input.readUInt64();
-                bitField0_ |= 0x00000001;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
           case 2363: {
             if (input.isAtField(FieldNames.id)) {
               if (!input.trySkipNullValue()) {
                 id = input.readUInt32();
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000001;
               }
             } else {
               input.skipUnknownField();
@@ -67301,7 +70375,7 @@ public final class Public {
             if (input.isAtField(FieldNames.star)) {
               if (!input.trySkipNullValue()) {
                 star = input.readUInt32();
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000002;
               }
             } else {
               input.skipUnknownField();
@@ -67312,7 +70386,7 @@ public final class Public {
             if (input.isAtField(FieldNames.first)) {
               if (!input.trySkipNullValue()) {
                 first = input.readBool();
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000004;
               }
             } else {
               input.skipUnknownField();
@@ -67323,6 +70397,17 @@ public final class Public {
             if (input.isAtField(FieldNames.threeStar)) {
               if (!input.trySkipNullValue()) {
                 threeStar = input.readBool();
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 64542286: {
+            if (input.isAtField(FieldNames.build)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(build);
                 bitField0_ |= 0x00000010;
               }
             } else {
@@ -67393,8 +70478,6 @@ public final class Public {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
-      static final FieldName buildId = FieldName.forField("BuildId");
-
       static final FieldName id = FieldName.forField("Id");
 
       static final FieldName star = FieldName.forField("Star");
@@ -67402,6 +70485,8 @@ public final class Public {
       static final FieldName first = FieldName.forField("First");
 
       static final FieldName threeStar = FieldName.forField("ThreeStar");
+
+      static final FieldName build = FieldName.forField("Build");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }
@@ -67412,11 +70497,6 @@ public final class Public {
    */
   public static final class WeekBossLevel extends ProtoMessage<WeekBossLevel> implements Cloneable {
     private static final long serialVersionUID = 0L;
-
-    /**
-     * <code>optional uint64 BuildId = 3;</code>
-     */
-    private long buildId;
 
     /**
      * <code>optional uint32 Id = 1;</code>
@@ -67434,6 +70514,11 @@ public final class Public {
     private boolean first;
 
     /**
+     * <code>optional .UseBuild Build = 3;</code>
+     */
+    private final UseBuild build = UseBuild.newInstance();
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -67449,48 +70534,11 @@ public final class Public {
     }
 
     /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @return whether the buildId field is set
-     */
-    public boolean hasBuildId() {
-      return (bitField0_ & 0x00000001) != 0;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @return this
-     */
-    public WeekBossLevel clearBuildId() {
-      bitField0_ &= ~0x00000001;
-      buildId = 0L;
-      return this;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @return the buildId
-     */
-    public long getBuildId() {
-      return buildId;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 3;</code>
-     * @param value the buildId to set
-     * @return this
-     */
-    public WeekBossLevel setBuildId(final long value) {
-      bitField0_ |= 0x00000001;
-      buildId = value;
-      return this;
-    }
-
-    /**
      * <code>optional uint32 Id = 1;</code>
      * @return whether the id field is set
      */
     public boolean hasId() {
-      return (bitField0_ & 0x00000002) != 0;
+      return (bitField0_ & 0x00000001) != 0;
     }
 
     /**
@@ -67498,7 +70546,7 @@ public final class Public {
      * @return this
      */
     public WeekBossLevel clearId() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000001;
       id = 0;
       return this;
     }
@@ -67517,7 +70565,7 @@ public final class Public {
      * @return this
      */
     public WeekBossLevel setId(final int value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000001;
       id = value;
       return this;
     }
@@ -67527,7 +70575,7 @@ public final class Public {
      * @return whether the time field is set
      */
     public boolean hasTime() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000002) != 0;
     }
 
     /**
@@ -67535,7 +70583,7 @@ public final class Public {
      * @return this
      */
     public WeekBossLevel clearTime() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000002;
       time = 0;
       return this;
     }
@@ -67554,7 +70602,7 @@ public final class Public {
      * @return this
      */
     public WeekBossLevel setTime(final int value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       time = value;
       return this;
     }
@@ -67564,7 +70612,7 @@ public final class Public {
      * @return whether the first field is set
      */
     public boolean hasFirst() {
-      return (bitField0_ & 0x00000008) != 0;
+      return (bitField0_ & 0x00000004) != 0;
     }
 
     /**
@@ -67572,7 +70620,7 @@ public final class Public {
      * @return this
      */
     public WeekBossLevel clearFirst() {
-      bitField0_ &= ~0x00000008;
+      bitField0_ &= ~0x00000004;
       first = false;
       return this;
     }
@@ -67591,8 +70639,65 @@ public final class Public {
      * @return this
      */
     public WeekBossLevel setFirst(final boolean value) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000004;
       first = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @return whether the build field is set
+     */
+    public boolean hasBuild() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @return this
+     */
+    public WeekBossLevel clearBuild() {
+      bitField0_ &= ~0x00000008;
+      build.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBuild()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public UseBuild getBuild() {
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public UseBuild getMutableBuild() {
+      bitField0_ |= 0x00000008;
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 3;</code>
+     * @param value the build to set
+     * @return this
+     */
+    public WeekBossLevel setBuild(final UseBuild value) {
+      bitField0_ |= 0x00000008;
+      build.copyFrom(value);
       return this;
     }
 
@@ -67680,10 +70785,10 @@ public final class Public {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
-        buildId = other.buildId;
         id = other.id;
         time = other.time;
         first = other.first;
+        build.copyFrom(other.build);
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -67695,9 +70800,6 @@ public final class Public {
         return this;
       }
       cachedSize = -1;
-      if (other.hasBuildId()) {
-        setBuildId(other.buildId);
-      }
       if (other.hasId()) {
         setId(other.id);
       }
@@ -67706,6 +70808,9 @@ public final class Public {
       }
       if (other.hasFirst()) {
         setFirst(other.first);
+      }
+      if (other.hasBuild()) {
+        getMutableBuild().mergeFrom(other.build);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -67720,10 +70825,10 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
-      buildId = 0L;
       id = 0;
       time = 0;
       first = false;
+      build.clear();
       nextPackage.clear();
       return this;
     }
@@ -67735,6 +70840,7 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      build.clearQuick();
       nextPackage.clear();
       return this;
     }
@@ -67749,30 +70855,30 @@ public final class Public {
       }
       WeekBossLevel other = (WeekBossLevel) o;
       return bitField0_ == other.bitField0_
-        && (!hasBuildId() || buildId == other.buildId)
         && (!hasId() || id == other.id)
         && (!hasTime() || time == other.time)
         && (!hasFirst() || first == other.first)
+        && (!hasBuild() || build.equals(other.build))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 24);
-        output.writeUInt64NoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 8);
         output.writeUInt32NoTag(id);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 16);
         output.writeUInt32NoTag(time);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         output.writeRawByte((byte) 32);
         output.writeBoolNoTag(first);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawByte((byte) 26);
+        output.writeMessageNoTag(build);
       }
       if ((bitField0_ & 0x00000010) != 0) {
         output.writeRawLittleEndian16((short) 32762);
@@ -67784,16 +70890,16 @@ public final class Public {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(id);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(time);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         size += 2;
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(build);
       }
       if ((bitField0_ & 0x00000010) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
@@ -67808,19 +70914,10 @@ public final class Public {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 24: {
-            // buildId
-            buildId = input.readUInt64();
-            bitField0_ |= 0x00000001;
-            tag = input.readTag();
-            if (tag != 8) {
-              break;
-            }
-          }
           case 8: {
             // id
             id = input.readUInt32();
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000001;
             tag = input.readTag();
             if (tag != 16) {
               break;
@@ -67829,7 +70926,7 @@ public final class Public {
           case 16: {
             // time
             time = input.readUInt32();
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000002;
             tag = input.readTag();
             if (tag != 32) {
               break;
@@ -67838,6 +70935,15 @@ public final class Public {
           case 32: {
             // first
             first = input.readBool();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 26) {
+              break;
+            }
+          }
+          case 26: {
+            // build
+            input.readMessage(build);
             bitField0_ |= 0x00000008;
             tag = input.readTag();
             if (tag != 16378) {
@@ -67871,16 +70977,16 @@ public final class Public {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt64(FieldNames.buildId, buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.id, id);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.time, time);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         output.writeBool(FieldNames.first, first);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeMessage(FieldNames.build, build);
       }
       if ((bitField0_ & 0x00000010) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
@@ -67895,22 +71001,11 @@ public final class Public {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
-          case 1895597065: {
-            if (input.isAtField(FieldNames.buildId)) {
-              if (!input.trySkipNullValue()) {
-                buildId = input.readUInt64();
-                bitField0_ |= 0x00000001;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
           case 2363: {
             if (input.isAtField(FieldNames.id)) {
               if (!input.trySkipNullValue()) {
                 id = input.readUInt32();
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000001;
               }
             } else {
               input.skipUnknownField();
@@ -67921,7 +71016,7 @@ public final class Public {
             if (input.isAtField(FieldNames.time)) {
               if (!input.trySkipNullValue()) {
                 time = input.readUInt32();
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000002;
               }
             } else {
               input.skipUnknownField();
@@ -67932,6 +71027,17 @@ public final class Public {
             if (input.isAtField(FieldNames.first)) {
               if (!input.trySkipNullValue()) {
                 first = input.readBool();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 64542286: {
+            if (input.isAtField(FieldNames.build)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(build);
                 bitField0_ |= 0x00000008;
               }
             } else {
@@ -68002,13 +71108,13 @@ public final class Public {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
-      static final FieldName buildId = FieldName.forField("BuildId");
-
       static final FieldName id = FieldName.forField("Id");
 
       static final FieldName time = FieldName.forField("Time");
 
       static final FieldName first = FieldName.forField("First");
+
+      static final FieldName build = FieldName.forField("Build");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }
@@ -68956,11 +72062,6 @@ public final class Public {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint64 BuildId = 5;</code>
-     */
-    private long buildId;
-
-    /**
      * <code>optional uint32 Id = 1;</code>
      */
     private int id;
@@ -68986,6 +72087,11 @@ public final class Public {
     private boolean threeStar;
 
     /**
+     * <code>optional .UseBuild Build = 5;</code>
+     */
+    private final UseBuild build = UseBuild.newInstance();
+
+    /**
      * <code>optional bytes NextPackage = 2047;</code>
      */
     private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
@@ -69001,48 +72107,11 @@ public final class Public {
     }
 
     /**
-     * <code>optional uint64 BuildId = 5;</code>
-     * @return whether the buildId field is set
-     */
-    public boolean hasBuildId() {
-      return (bitField0_ & 0x00000001) != 0;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 5;</code>
-     * @return this
-     */
-    public CharGemInstance clearBuildId() {
-      bitField0_ &= ~0x00000001;
-      buildId = 0L;
-      return this;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 5;</code>
-     * @return the buildId
-     */
-    public long getBuildId() {
-      return buildId;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 5;</code>
-     * @param value the buildId to set
-     * @return this
-     */
-    public CharGemInstance setBuildId(final long value) {
-      bitField0_ |= 0x00000001;
-      buildId = value;
-      return this;
-    }
-
-    /**
      * <code>optional uint32 Id = 1;</code>
      * @return whether the id field is set
      */
     public boolean hasId() {
-      return (bitField0_ & 0x00000002) != 0;
+      return (bitField0_ & 0x00000001) != 0;
     }
 
     /**
@@ -69050,7 +72119,7 @@ public final class Public {
      * @return this
      */
     public CharGemInstance clearId() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000001;
       id = 0;
       return this;
     }
@@ -69069,7 +72138,7 @@ public final class Public {
      * @return this
      */
     public CharGemInstance setId(final int value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000001;
       id = value;
       return this;
     }
@@ -69079,7 +72148,7 @@ public final class Public {
      * @return whether the star field is set
      */
     public boolean hasStar() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000002) != 0;
     }
 
     /**
@@ -69087,7 +72156,7 @@ public final class Public {
      * @return this
      */
     public CharGemInstance clearStar() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000002;
       star = 0;
       return this;
     }
@@ -69106,7 +72175,7 @@ public final class Public {
      * @return this
      */
     public CharGemInstance setStar(final int value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       star = value;
       return this;
     }
@@ -69116,7 +72185,7 @@ public final class Public {
      * @return whether the rewardType field is set
      */
     public boolean hasRewardType() {
-      return (bitField0_ & 0x00000008) != 0;
+      return (bitField0_ & 0x00000004) != 0;
     }
 
     /**
@@ -69124,7 +72193,7 @@ public final class Public {
      * @return this
      */
     public CharGemInstance clearRewardType() {
-      bitField0_ &= ~0x00000008;
+      bitField0_ &= ~0x00000004;
       rewardType = 0;
       return this;
     }
@@ -69143,7 +72212,7 @@ public final class Public {
      * @return this
      */
     public CharGemInstance setRewardType(final int value) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000004;
       rewardType = value;
       return this;
     }
@@ -69153,7 +72222,7 @@ public final class Public {
      * @return whether the first field is set
      */
     public boolean hasFirst() {
-      return (bitField0_ & 0x00000010) != 0;
+      return (bitField0_ & 0x00000008) != 0;
     }
 
     /**
@@ -69161,7 +72230,7 @@ public final class Public {
      * @return this
      */
     public CharGemInstance clearFirst() {
-      bitField0_ &= ~0x00000010;
+      bitField0_ &= ~0x00000008;
       first = false;
       return this;
     }
@@ -69180,7 +72249,7 @@ public final class Public {
      * @return this
      */
     public CharGemInstance setFirst(final boolean value) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000008;
       first = value;
       return this;
     }
@@ -69190,7 +72259,7 @@ public final class Public {
      * @return whether the threeStar field is set
      */
     public boolean hasThreeStar() {
-      return (bitField0_ & 0x00000020) != 0;
+      return (bitField0_ & 0x00000010) != 0;
     }
 
     /**
@@ -69198,7 +72267,7 @@ public final class Public {
      * @return this
      */
     public CharGemInstance clearThreeStar() {
-      bitField0_ &= ~0x00000020;
+      bitField0_ &= ~0x00000010;
       threeStar = false;
       return this;
     }
@@ -69217,8 +72286,65 @@ public final class Public {
      * @return this
      */
     public CharGemInstance setThreeStar(final boolean value) {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000010;
       threeStar = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 5;</code>
+     * @return whether the build field is set
+     */
+    public boolean hasBuild() {
+      return (bitField0_ & 0x00000020) != 0;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 5;</code>
+     * @return this
+     */
+    public CharGemInstance clearBuild() {
+      bitField0_ &= ~0x00000020;
+      build.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 5;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBuild()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public UseBuild getBuild() {
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 5;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public UseBuild getMutableBuild() {
+      bitField0_ |= 0x00000020;
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 5;</code>
+     * @param value the build to set
+     * @return this
+     */
+    public CharGemInstance setBuild(final UseBuild value) {
+      bitField0_ |= 0x00000020;
+      build.copyFrom(value);
       return this;
     }
 
@@ -69306,12 +72432,12 @@ public final class Public {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
-        buildId = other.buildId;
         id = other.id;
         star = other.star;
         rewardType = other.rewardType;
         first = other.first;
         threeStar = other.threeStar;
+        build.copyFrom(other.build);
         nextPackage.copyFrom(other.nextPackage);
       }
       return this;
@@ -69323,9 +72449,6 @@ public final class Public {
         return this;
       }
       cachedSize = -1;
-      if (other.hasBuildId()) {
-        setBuildId(other.buildId);
-      }
       if (other.hasId()) {
         setId(other.id);
       }
@@ -69341,6 +72464,9 @@ public final class Public {
       if (other.hasThreeStar()) {
         setThreeStar(other.threeStar);
       }
+      if (other.hasBuild()) {
+        getMutableBuild().mergeFrom(other.build);
+      }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
       }
@@ -69354,12 +72480,12 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
-      buildId = 0L;
       id = 0;
       star = 0;
       rewardType = 0;
       first = false;
       threeStar = false;
+      build.clear();
       nextPackage.clear();
       return this;
     }
@@ -69371,6 +72497,7 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      build.clearQuick();
       nextPackage.clear();
       return this;
     }
@@ -69385,40 +72512,40 @@ public final class Public {
       }
       CharGemInstance other = (CharGemInstance) o;
       return bitField0_ == other.bitField0_
-        && (!hasBuildId() || buildId == other.buildId)
         && (!hasId() || id == other.id)
         && (!hasStar() || star == other.star)
         && (!hasRewardType() || rewardType == other.rewardType)
         && (!hasFirst() || first == other.first)
         && (!hasThreeStar() || threeStar == other.threeStar)
+        && (!hasBuild() || build.equals(other.build))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
     }
 
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 40);
-        output.writeUInt64NoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 8);
         output.writeUInt32NoTag(id);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 16);
         output.writeUInt32NoTag(star);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         output.writeRawByte((byte) 48);
         output.writeUInt32NoTag(rewardType);
       }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeRawByte((byte) 24);
         output.writeBoolNoTag(first);
       }
-      if ((bitField0_ & 0x00000020) != 0) {
+      if ((bitField0_ & 0x00000010) != 0) {
         output.writeRawByte((byte) 32);
         output.writeBoolNoTag(threeStar);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        output.writeRawByte((byte) 42);
+        output.writeMessageNoTag(build);
       }
       if ((bitField0_ & 0x00000040) != 0) {
         output.writeRawLittleEndian16((short) 32762);
@@ -69430,22 +72557,22 @@ public final class Public {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(id);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(star);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(rewardType);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += 2;
       }
       if ((bitField0_ & 0x00000010) != 0) {
         size += 2;
       }
       if ((bitField0_ & 0x00000020) != 0) {
-        size += 2;
+        size += 1 + ProtoSink.computeMessageSizeNoTag(build);
       }
       if ((bitField0_ & 0x00000040) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
@@ -69460,19 +72587,10 @@ public final class Public {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 40: {
-            // buildId
-            buildId = input.readUInt64();
-            bitField0_ |= 0x00000001;
-            tag = input.readTag();
-            if (tag != 8) {
-              break;
-            }
-          }
           case 8: {
             // id
             id = input.readUInt32();
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000001;
             tag = input.readTag();
             if (tag != 16) {
               break;
@@ -69481,7 +72599,7 @@ public final class Public {
           case 16: {
             // star
             star = input.readUInt32();
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000002;
             tag = input.readTag();
             if (tag != 48) {
               break;
@@ -69490,7 +72608,7 @@ public final class Public {
           case 48: {
             // rewardType
             rewardType = input.readUInt32();
-            bitField0_ |= 0x00000008;
+            bitField0_ |= 0x00000004;
             tag = input.readTag();
             if (tag != 24) {
               break;
@@ -69499,7 +72617,7 @@ public final class Public {
           case 24: {
             // first
             first = input.readBool();
-            bitField0_ |= 0x00000010;
+            bitField0_ |= 0x00000008;
             tag = input.readTag();
             if (tag != 32) {
               break;
@@ -69508,6 +72626,15 @@ public final class Public {
           case 32: {
             // threeStar
             threeStar = input.readBool();
+            bitField0_ |= 0x00000010;
+            tag = input.readTag();
+            if (tag != 42) {
+              break;
+            }
+          }
+          case 42: {
+            // build
+            input.readMessage(build);
             bitField0_ |= 0x00000020;
             tag = input.readTag();
             if (tag != 16378) {
@@ -69541,22 +72668,22 @@ public final class Public {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt64(FieldNames.buildId, buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.id, id);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.star, star);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         output.writeUInt32(FieldNames.rewardType, rewardType);
       }
-      if ((bitField0_ & 0x00000010) != 0) {
+      if ((bitField0_ & 0x00000008) != 0) {
         output.writeBool(FieldNames.first, first);
       }
-      if ((bitField0_ & 0x00000020) != 0) {
+      if ((bitField0_ & 0x00000010) != 0) {
         output.writeBool(FieldNames.threeStar, threeStar);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        output.writeMessage(FieldNames.build, build);
       }
       if ((bitField0_ & 0x00000040) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
@@ -69571,22 +72698,11 @@ public final class Public {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
-          case 1895597065: {
-            if (input.isAtField(FieldNames.buildId)) {
-              if (!input.trySkipNullValue()) {
-                buildId = input.readUInt64();
-                bitField0_ |= 0x00000001;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
           case 2363: {
             if (input.isAtField(FieldNames.id)) {
               if (!input.trySkipNullValue()) {
                 id = input.readUInt32();
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000001;
               }
             } else {
               input.skipUnknownField();
@@ -69597,7 +72713,7 @@ public final class Public {
             if (input.isAtField(FieldNames.star)) {
               if (!input.trySkipNullValue()) {
                 star = input.readUInt32();
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000002;
               }
             } else {
               input.skipUnknownField();
@@ -69608,7 +72724,7 @@ public final class Public {
             if (input.isAtField(FieldNames.rewardType)) {
               if (!input.trySkipNullValue()) {
                 rewardType = input.readUInt32();
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000004;
               }
             } else {
               input.skipUnknownField();
@@ -69619,7 +72735,7 @@ public final class Public {
             if (input.isAtField(FieldNames.first)) {
               if (!input.trySkipNullValue()) {
                 first = input.readBool();
-                bitField0_ |= 0x00000010;
+                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -69630,6 +72746,17 @@ public final class Public {
             if (input.isAtField(FieldNames.threeStar)) {
               if (!input.trySkipNullValue()) {
                 threeStar = input.readBool();
+                bitField0_ |= 0x00000010;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 64542286: {
+            if (input.isAtField(FieldNames.build)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(build);
                 bitField0_ |= 0x00000020;
               }
             } else {
@@ -69701,8 +72828,6 @@ public final class Public {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
-      static final FieldName buildId = FieldName.forField("BuildId");
-
       static final FieldName id = FieldName.forField("Id");
 
       static final FieldName star = FieldName.forField("Star");
@@ -69712,6 +72837,8 @@ public final class Public {
       static final FieldName first = FieldName.forField("First");
 
       static final FieldName threeStar = FieldName.forField("ThreeStar");
+
+      static final FieldName build = FieldName.forField("Build");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
     }
@@ -77220,11 +80347,6 @@ public final class Public {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint64 BuildId = 4;</code>
-     */
-    private long buildId;
-
-    /**
      * <code>optional uint32 DayNum = 1;</code>
      */
     private int dayNum;
@@ -77238,6 +80360,11 @@ public final class Public {
      * <code>optional uint32 Exp = 3;</code>
      */
     private int exp;
+
+    /**
+     * <code>optional .UseBuild Build = 4;</code>
+     */
+    private final UseBuild build = UseBuild.newInstance();
 
     /**
      * <code>optional .TrekkerVersusShow Show = 5;</code>
@@ -77280,48 +80407,11 @@ public final class Public {
     }
 
     /**
-     * <code>optional uint64 BuildId = 4;</code>
-     * @return whether the buildId field is set
-     */
-    public boolean hasBuildId() {
-      return (bitField0_ & 0x00000001) != 0;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 4;</code>
-     * @return this
-     */
-    public ActivityTrekkerVersus clearBuildId() {
-      bitField0_ &= ~0x00000001;
-      buildId = 0L;
-      return this;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 4;</code>
-     * @return the buildId
-     */
-    public long getBuildId() {
-      return buildId;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 4;</code>
-     * @param value the buildId to set
-     * @return this
-     */
-    public ActivityTrekkerVersus setBuildId(final long value) {
-      bitField0_ |= 0x00000001;
-      buildId = value;
-      return this;
-    }
-
-    /**
      * <code>optional uint32 DayNum = 1;</code>
      * @return whether the dayNum field is set
      */
     public boolean hasDayNum() {
-      return (bitField0_ & 0x00000002) != 0;
+      return (bitField0_ & 0x00000001) != 0;
     }
 
     /**
@@ -77329,7 +80419,7 @@ public final class Public {
      * @return this
      */
     public ActivityTrekkerVersus clearDayNum() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000001;
       dayNum = 0;
       return this;
     }
@@ -77348,7 +80438,7 @@ public final class Public {
      * @return this
      */
     public ActivityTrekkerVersus setDayNum(final int value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000001;
       dayNum = value;
       return this;
     }
@@ -77358,7 +80448,7 @@ public final class Public {
      * @return whether the level field is set
      */
     public boolean hasLevel() {
-      return (bitField0_ & 0x00000004) != 0;
+      return (bitField0_ & 0x00000002) != 0;
     }
 
     /**
@@ -77366,7 +80456,7 @@ public final class Public {
      * @return this
      */
     public ActivityTrekkerVersus clearLevel() {
-      bitField0_ &= ~0x00000004;
+      bitField0_ &= ~0x00000002;
       level = 0;
       return this;
     }
@@ -77385,7 +80475,7 @@ public final class Public {
      * @return this
      */
     public ActivityTrekkerVersus setLevel(final int value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       level = value;
       return this;
     }
@@ -77395,7 +80485,7 @@ public final class Public {
      * @return whether the exp field is set
      */
     public boolean hasExp() {
-      return (bitField0_ & 0x00000008) != 0;
+      return (bitField0_ & 0x00000004) != 0;
     }
 
     /**
@@ -77403,7 +80493,7 @@ public final class Public {
      * @return this
      */
     public ActivityTrekkerVersus clearExp() {
-      bitField0_ &= ~0x00000008;
+      bitField0_ &= ~0x00000004;
       exp = 0;
       return this;
     }
@@ -77422,8 +80512,65 @@ public final class Public {
      * @return this
      */
     public ActivityTrekkerVersus setExp(final int value) {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000004;
       exp = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 4;</code>
+     * @return whether the build field is set
+     */
+    public boolean hasBuild() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 4;</code>
+     * @return this
+     */
+    public ActivityTrekkerVersus clearBuild() {
+      bitField0_ &= ~0x00000008;
+      build.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 4;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBuild()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public UseBuild getBuild() {
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 4;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public UseBuild getMutableBuild() {
+      bitField0_ |= 0x00000008;
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 4;</code>
+     * @param value the build to set
+     * @return this
+     */
+    public ActivityTrekkerVersus setBuild(final UseBuild value) {
+      bitField0_ |= 0x00000008;
+      build.copyFrom(value);
       return this;
     }
 
@@ -77840,10 +80987,10 @@ public final class Public {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
-        buildId = other.buildId;
         dayNum = other.dayNum;
         level = other.level;
         exp = other.exp;
+        build.copyFrom(other.build);
         show.copyFrom(other.show);
         nextPackage.copyFrom(other.nextPackage);
         hotValueRewardIds.copyFrom(other.hotValueRewardIds);
@@ -77860,9 +81007,6 @@ public final class Public {
         return this;
       }
       cachedSize = -1;
-      if (other.hasBuildId()) {
-        setBuildId(other.buildId);
-      }
       if (other.hasDayNum()) {
         setDayNum(other.dayNum);
       }
@@ -77871,6 +81015,9 @@ public final class Public {
       }
       if (other.hasExp()) {
         setExp(other.exp);
+      }
+      if (other.hasBuild()) {
+        getMutableBuild().mergeFrom(other.build);
       }
       if (other.hasShow()) {
         getMutableShow().mergeFrom(other.show);
@@ -77900,10 +81047,10 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
-      buildId = 0L;
       dayNum = 0;
       level = 0;
       exp = 0;
+      build.clear();
       show.clear();
       nextPackage.clear();
       hotValueRewardIds.clear();
@@ -77920,6 +81067,7 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      build.clearQuick();
       show.clearQuick();
       nextPackage.clear();
       hotValueRewardIds.clear();
@@ -77939,10 +81087,10 @@ public final class Public {
       }
       ActivityTrekkerVersus other = (ActivityTrekkerVersus) o;
       return bitField0_ == other.bitField0_
-        && (!hasBuildId() || buildId == other.buildId)
         && (!hasDayNum() || dayNum == other.dayNum)
         && (!hasLevel() || level == other.level)
         && (!hasExp() || exp == other.exp)
+        && (!hasBuild() || build.equals(other.build))
         && (!hasShow() || show.equals(other.show))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasHotValueRewardIds() || hotValueRewardIds.equals(other.hotValueRewardIds))
@@ -77954,20 +81102,20 @@ public final class Public {
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 32);
-        output.writeUInt64NoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 8);
         output.writeUInt32NoTag(dayNum);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 16);
         output.writeUInt32NoTag(level);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         output.writeRawByte((byte) 24);
         output.writeUInt32NoTag(exp);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawByte((byte) 34);
+        output.writeMessageNoTag(build);
       }
       if ((bitField0_ & 0x00000010) != 0) {
         output.writeRawByte((byte) 42);
@@ -78007,16 +81155,16 @@ public final class Public {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(dayNum);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(level);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(exp);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(build);
       }
       if ((bitField0_ & 0x00000010) != 0) {
         size += 1 + ProtoSink.computeMessageSizeNoTag(show);
@@ -78046,19 +81194,10 @@ public final class Public {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 32: {
-            // buildId
-            buildId = input.readUInt64();
-            bitField0_ |= 0x00000001;
-            tag = input.readTag();
-            if (tag != 8) {
-              break;
-            }
-          }
           case 8: {
             // dayNum
             dayNum = input.readUInt32();
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000001;
             tag = input.readTag();
             if (tag != 16) {
               break;
@@ -78067,7 +81206,7 @@ public final class Public {
           case 16: {
             // level
             level = input.readUInt32();
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000002;
             tag = input.readTag();
             if (tag != 24) {
               break;
@@ -78076,6 +81215,15 @@ public final class Public {
           case 24: {
             // exp
             exp = input.readUInt32();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 34) {
+              break;
+            }
+          }
+          case 34: {
+            // build
+            input.readMessage(build);
             bitField0_ |= 0x00000008;
             tag = input.readTag();
             if (tag != 42) {
@@ -78164,16 +81312,16 @@ public final class Public {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt64(FieldNames.buildId, buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.dayNum, dayNum);
       }
-      if ((bitField0_ & 0x00000004) != 0) {
+      if ((bitField0_ & 0x00000002) != 0) {
         output.writeUInt32(FieldNames.level, level);
       }
-      if ((bitField0_ & 0x00000008) != 0) {
+      if ((bitField0_ & 0x00000004) != 0) {
         output.writeUInt32(FieldNames.exp, exp);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeMessage(FieldNames.build, build);
       }
       if ((bitField0_ & 0x00000010) != 0) {
         output.writeMessage(FieldNames.show, show);
@@ -78203,22 +81351,11 @@ public final class Public {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
-          case 1895597065: {
-            if (input.isAtField(FieldNames.buildId)) {
-              if (!input.trySkipNullValue()) {
-                buildId = input.readUInt64();
-                bitField0_ |= 0x00000001;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
           case 2040047210: {
             if (input.isAtField(FieldNames.dayNum)) {
               if (!input.trySkipNullValue()) {
                 dayNum = input.readUInt32();
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000001;
               }
             } else {
               input.skipUnknownField();
@@ -78229,7 +81366,7 @@ public final class Public {
             if (input.isAtField(FieldNames.level)) {
               if (!input.trySkipNullValue()) {
                 level = input.readUInt32();
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000002;
               }
             } else {
               input.skipUnknownField();
@@ -78240,6 +81377,17 @@ public final class Public {
             if (input.isAtField(FieldNames.exp)) {
               if (!input.trySkipNullValue()) {
                 exp = input.readUInt32();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 64542286: {
+            if (input.isAtField(FieldNames.build)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(build);
                 bitField0_ |= 0x00000008;
               }
             } else {
@@ -78771,13 +81919,13 @@ public final class Public {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
-      static final FieldName buildId = FieldName.forField("BuildId");
-
       static final FieldName dayNum = FieldName.forField("DayNum");
 
       static final FieldName level = FieldName.forField("Level");
 
       static final FieldName exp = FieldName.forField("Exp");
+
+      static final FieldName build = FieldName.forField("Build");
 
       static final FieldName show = FieldName.forField("Show");
 
@@ -79841,9 +82989,9 @@ public final class Public {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint64 BuildId = 2;</code>
+     * <code>optional .UseBuild Build = 2;</code>
      */
-    private long buildId;
+    private final UseBuild build = UseBuild.newInstance();
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
@@ -79871,39 +83019,59 @@ public final class Public {
     }
 
     /**
-     * <code>optional uint64 BuildId = 2;</code>
-     * @return whether the buildId field is set
+     * <code>optional .UseBuild Build = 2;</code>
+     * @return whether the build field is set
      */
-    public boolean hasBuildId() {
+    public boolean hasBuild() {
       return (bitField0_ & 0x00000001) != 0;
     }
 
     /**
-     * <code>optional uint64 BuildId = 2;</code>
+     * <code>optional .UseBuild Build = 2;</code>
      * @return this
      */
-    public ActivityStoryChapter clearBuildId() {
+    public ActivityStoryChapter clearBuild() {
       bitField0_ &= ~0x00000001;
-      buildId = 0L;
+      build.clear();
       return this;
     }
 
     /**
-     * <code>optional uint64 BuildId = 2;</code>
-     * @return the buildId
+     * <code>optional .UseBuild Build = 2;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBuild()} if you want to modify it.
+     *
+     * @return internal storage object for reading
      */
-    public long getBuildId() {
-      return buildId;
+    public UseBuild getBuild() {
+      return build;
     }
 
     /**
-     * <code>optional uint64 BuildId = 2;</code>
-     * @param value the buildId to set
+     * <code>optional .UseBuild Build = 2;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public UseBuild getMutableBuild() {
+      bitField0_ |= 0x00000001;
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     * @param value the build to set
      * @return this
      */
-    public ActivityStoryChapter setBuildId(final long value) {
+    public ActivityStoryChapter setBuild(final UseBuild value) {
       bitField0_ |= 0x00000001;
-      buildId = value;
+      build.copyFrom(value);
       return this;
     }
 
@@ -80127,7 +83295,7 @@ public final class Public {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
-        buildId = other.buildId;
+        build.copyFrom(other.build);
         nextPackage.copyFrom(other.nextPackage);
         evidences.copyFrom(other.evidences);
         stories.copyFrom(other.stories);
@@ -80141,8 +83309,8 @@ public final class Public {
         return this;
       }
       cachedSize = -1;
-      if (other.hasBuildId()) {
-        setBuildId(other.buildId);
+      if (other.hasBuild()) {
+        getMutableBuild().mergeFrom(other.build);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -80163,7 +83331,7 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
-      buildId = 0L;
+      build.clear();
       nextPackage.clear();
       evidences.clear();
       stories.clear();
@@ -80177,6 +83345,7 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      build.clearQuick();
       nextPackage.clear();
       evidences.clear();
       stories.clearQuick();
@@ -80193,7 +83362,7 @@ public final class Public {
       }
       ActivityStoryChapter other = (ActivityStoryChapter) o;
       return bitField0_ == other.bitField0_
-        && (!hasBuildId() || buildId == other.buildId)
+        && (!hasBuild() || build.equals(other.build))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasEvidences() || evidences.equals(other.evidences))
         && (!hasStories() || stories.equals(other.stories));
@@ -80202,8 +83371,8 @@ public final class Public {
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 16);
-        output.writeUInt64NoTag(buildId);
+        output.writeRawByte((byte) 18);
+        output.writeMessageNoTag(build);
       }
       if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawLittleEndian16((short) 32762);
@@ -80227,7 +83396,7 @@ public final class Public {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(build);
       }
       if ((bitField0_ & 0x00000002) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
@@ -80248,9 +83417,9 @@ public final class Public {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 16: {
-            // buildId
-            buildId = input.readUInt64();
+          case 18: {
+            // build
+            input.readMessage(build);
             bitField0_ |= 0x00000001;
             tag = input.readTag();
             if (tag != 16378) {
@@ -80307,7 +83476,7 @@ public final class Public {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt64(FieldNames.buildId, buildId);
+        output.writeMessage(FieldNames.build, build);
       }
       if ((bitField0_ & 0x00000002) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
@@ -80328,10 +83497,10 @@ public final class Public {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
-          case 1895597065: {
-            if (input.isAtField(FieldNames.buildId)) {
+          case 64542286: {
+            if (input.isAtField(FieldNames.build)) {
               if (!input.trySkipNullValue()) {
-                buildId = input.readUInt64();
+                input.readMessage(build);
                 bitField0_ |= 0x00000001;
               }
             } else {
@@ -80425,7 +83594,7 @@ public final class Public {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
-      static final FieldName buildId = FieldName.forField("BuildId");
+      static final FieldName build = FieldName.forField("Build");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
@@ -86522,14 +89691,14 @@ public final class Public {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint64 BuildId = 2;</code>
-     */
-    private long buildId;
-
-    /**
      * <code>optional uint32 ChapterId = 1;</code>
      */
     private int chapterId;
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     */
+    private final UseBuild build = UseBuild.newInstance();
 
     /**
      * <code>optional bytes NextPackage = 2047;</code>
@@ -86557,48 +89726,11 @@ public final class Public {
     }
 
     /**
-     * <code>optional uint64 BuildId = 2;</code>
-     * @return whether the buildId field is set
-     */
-    public boolean hasBuildId() {
-      return (bitField0_ & 0x00000001) != 0;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 2;</code>
-     * @return this
-     */
-    public ActivityHistoryStoryChapter clearBuildId() {
-      bitField0_ &= ~0x00000001;
-      buildId = 0L;
-      return this;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 2;</code>
-     * @return the buildId
-     */
-    public long getBuildId() {
-      return buildId;
-    }
-
-    /**
-     * <code>optional uint64 BuildId = 2;</code>
-     * @param value the buildId to set
-     * @return this
-     */
-    public ActivityHistoryStoryChapter setBuildId(final long value) {
-      bitField0_ |= 0x00000001;
-      buildId = value;
-      return this;
-    }
-
-    /**
      * <code>optional uint32 ChapterId = 1;</code>
      * @return whether the chapterId field is set
      */
     public boolean hasChapterId() {
-      return (bitField0_ & 0x00000002) != 0;
+      return (bitField0_ & 0x00000001) != 0;
     }
 
     /**
@@ -86606,7 +89738,7 @@ public final class Public {
      * @return this
      */
     public ActivityHistoryStoryChapter clearChapterId() {
-      bitField0_ &= ~0x00000002;
+      bitField0_ &= ~0x00000001;
       chapterId = 0;
       return this;
     }
@@ -86625,8 +89757,65 @@ public final class Public {
      * @return this
      */
     public ActivityHistoryStoryChapter setChapterId(final int value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000001;
       chapterId = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     * @return whether the build field is set
+     */
+    public boolean hasBuild() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     * @return this
+     */
+    public ActivityHistoryStoryChapter clearBuild() {
+      bitField0_ &= ~0x00000002;
+      build.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableBuild()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public UseBuild getBuild() {
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public UseBuild getMutableBuild() {
+      bitField0_ |= 0x00000002;
+      return build;
+    }
+
+    /**
+     * <code>optional .UseBuild Build = 2;</code>
+     * @param value the build to set
+     * @return this
+     */
+    public ActivityHistoryStoryChapter setBuild(final UseBuild value) {
+      bitField0_ |= 0x00000002;
+      build.copyFrom(value);
       return this;
     }
 
@@ -86850,8 +90039,8 @@ public final class Public {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
-        buildId = other.buildId;
         chapterId = other.chapterId;
+        build.copyFrom(other.build);
         nextPackage.copyFrom(other.nextPackage);
         evidences.copyFrom(other.evidences);
         stories.copyFrom(other.stories);
@@ -86865,11 +90054,11 @@ public final class Public {
         return this;
       }
       cachedSize = -1;
-      if (other.hasBuildId()) {
-        setBuildId(other.buildId);
-      }
       if (other.hasChapterId()) {
         setChapterId(other.chapterId);
+      }
+      if (other.hasBuild()) {
+        getMutableBuild().mergeFrom(other.build);
       }
       if (other.hasNextPackage()) {
         getMutableNextPackage().copyFrom(other.nextPackage);
@@ -86890,8 +90079,8 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
-      buildId = 0L;
       chapterId = 0;
+      build.clear();
       nextPackage.clear();
       evidences.clear();
       stories.clear();
@@ -86905,6 +90094,7 @@ public final class Public {
       }
       cachedSize = -1;
       bitField0_ = 0;
+      build.clearQuick();
       nextPackage.clear();
       evidences.clear();
       stories.clearQuick();
@@ -86921,8 +90111,8 @@ public final class Public {
       }
       ActivityHistoryStoryChapter other = (ActivityHistoryStoryChapter) o;
       return bitField0_ == other.bitField0_
-        && (!hasBuildId() || buildId == other.buildId)
         && (!hasChapterId() || chapterId == other.chapterId)
+        && (!hasBuild() || build.equals(other.build))
         && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
         && (!hasEvidences() || evidences.equals(other.evidences))
         && (!hasStories() || stories.equals(other.stories));
@@ -86931,12 +90121,12 @@ public final class Public {
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 16);
-        output.writeUInt64NoTag(buildId);
-      }
-      if ((bitField0_ & 0x00000002) != 0) {
         output.writeRawByte((byte) 8);
         output.writeUInt32NoTag(chapterId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 18);
+        output.writeMessageNoTag(build);
       }
       if ((bitField0_ & 0x00000004) != 0) {
         output.writeRawLittleEndian16((short) 32762);
@@ -86960,10 +90150,10 @@ public final class Public {
     protected int computeSerializedSize() {
       int size = 0;
       if ((bitField0_ & 0x00000001) != 0) {
-        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(chapterId);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(chapterId);
+        size += 1 + ProtoSink.computeMessageSizeNoTag(build);
       }
       if ((bitField0_ & 0x00000004) != 0) {
         size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
@@ -86984,18 +90174,18 @@ public final class Public {
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 16: {
-            // buildId
-            buildId = input.readUInt64();
-            bitField0_ |= 0x00000001;
-            tag = input.readTag();
-            if (tag != 8) {
-              break;
-            }
-          }
           case 8: {
             // chapterId
             chapterId = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 18) {
+              break;
+            }
+          }
+          case 18: {
+            // build
+            input.readMessage(build);
             bitField0_ |= 0x00000002;
             tag = input.readTag();
             if (tag != 16378) {
@@ -87052,10 +90242,10 @@ public final class Public {
     public void writeTo(final JsonSink output) throws IOException {
       output.beginObject();
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeUInt64(FieldNames.buildId, buildId);
+        output.writeUInt32(FieldNames.chapterId, chapterId);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeUInt32(FieldNames.chapterId, chapterId);
+        output.writeMessage(FieldNames.build, build);
       }
       if ((bitField0_ & 0x00000004) != 0) {
         output.writeBytes(FieldNames.nextPackage, nextPackage);
@@ -87076,10 +90266,10 @@ public final class Public {
       }
       while (!input.isAtEnd()) {
         switch (input.readFieldHash()) {
-          case 1895597065: {
-            if (input.isAtField(FieldNames.buildId)) {
+          case -766458328: {
+            if (input.isAtField(FieldNames.chapterId)) {
               if (!input.trySkipNullValue()) {
-                buildId = input.readUInt64();
+                chapterId = input.readUInt32();
                 bitField0_ |= 0x00000001;
               }
             } else {
@@ -87087,10 +90277,10 @@ public final class Public {
             }
             break;
           }
-          case -766458328: {
-            if (input.isAtField(FieldNames.chapterId)) {
+          case 64542286: {
+            if (input.isAtField(FieldNames.build)) {
               if (!input.trySkipNullValue()) {
-                chapterId = input.readUInt32();
+                input.readMessage(build);
                 bitField0_ |= 0x00000002;
               }
             } else {
@@ -87185,9 +90375,9 @@ public final class Public {
      * Contains name constants used for serializing JSON
      */
     static class FieldNames {
-      static final FieldName buildId = FieldName.forField("BuildId");
-
       static final FieldName chapterId = FieldName.forField("ChapterId");
+
+      static final FieldName build = FieldName.forField("Build");
 
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
@@ -92753,6 +95943,6949 @@ public final class Public {
       static final FieldName nextPackage = FieldName.forField("NextPackage");
 
       static final FieldName quests = FieldName.forField("Quests");
+    }
+  }
+
+  /**
+   * Protobuf type {@code ActivityMathParkourLevel}
+   */
+  public static final class ActivityMathParkourLevel extends ProtoMessage<ActivityMathParkourLevel> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 LevelId = 1;</code>
+     */
+    private int levelId;
+
+    /**
+     * <code>optional uint32 Score = 2;</code>
+     */
+    private int score;
+
+    /**
+     * <code>optional uint32 Star = 3;</code>
+     */
+    private int star;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private ActivityMathParkourLevel() {
+    }
+
+    /**
+     * @return a new empty instance of {@code ActivityMathParkourLevel}
+     */
+    public static ActivityMathParkourLevel newInstance() {
+      return new ActivityMathParkourLevel();
+    }
+
+    /**
+     * <code>optional uint32 LevelId = 1;</code>
+     * @return whether the levelId field is set
+     */
+    public boolean hasLevelId() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 LevelId = 1;</code>
+     * @return this
+     */
+    public ActivityMathParkourLevel clearLevelId() {
+      bitField0_ &= ~0x00000001;
+      levelId = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 LevelId = 1;</code>
+     * @return the levelId
+     */
+    public int getLevelId() {
+      return levelId;
+    }
+
+    /**
+     * <code>optional uint32 LevelId = 1;</code>
+     * @param value the levelId to set
+     * @return this
+     */
+    public ActivityMathParkourLevel setLevelId(final int value) {
+      bitField0_ |= 0x00000001;
+      levelId = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Score = 2;</code>
+     * @return whether the score field is set
+     */
+    public boolean hasScore() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Score = 2;</code>
+     * @return this
+     */
+    public ActivityMathParkourLevel clearScore() {
+      bitField0_ &= ~0x00000002;
+      score = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Score = 2;</code>
+     * @return the score
+     */
+    public int getScore() {
+      return score;
+    }
+
+    /**
+     * <code>optional uint32 Score = 2;</code>
+     * @param value the score to set
+     * @return this
+     */
+    public ActivityMathParkourLevel setScore(final int value) {
+      bitField0_ |= 0x00000002;
+      score = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Star = 3;</code>
+     * @return whether the star field is set
+     */
+    public boolean hasStar() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Star = 3;</code>
+     * @return this
+     */
+    public ActivityMathParkourLevel clearStar() {
+      bitField0_ &= ~0x00000004;
+      star = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Star = 3;</code>
+     * @return the star
+     */
+    public int getStar() {
+      return star;
+    }
+
+    /**
+     * <code>optional uint32 Star = 3;</code>
+     * @param value the star to set
+     * @return this
+     */
+    public ActivityMathParkourLevel setStar(final int value) {
+      bitField0_ |= 0x00000004;
+      star = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public ActivityMathParkourLevel clearNextPackage() {
+      bitField0_ &= ~0x00000008;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000008;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public ActivityMathParkourLevel addNextPackage(final byte value) {
+      bitField0_ |= 0x00000008;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public ActivityMathParkourLevel addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000008;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public ActivityMathParkourLevel setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000008;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public ActivityMathParkourLevel copyFrom(final ActivityMathParkourLevel other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        levelId = other.levelId;
+        score = other.score;
+        star = other.star;
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityMathParkourLevel mergeFrom(final ActivityMathParkourLevel other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasLevelId()) {
+        setLevelId(other.levelId);
+      }
+      if (other.hasScore()) {
+        setScore(other.score);
+      }
+      if (other.hasStar()) {
+        setStar(other.star);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityMathParkourLevel clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      levelId = 0;
+      score = 0;
+      star = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public ActivityMathParkourLevel clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof ActivityMathParkourLevel)) {
+        return false;
+      }
+      ActivityMathParkourLevel other = (ActivityMathParkourLevel) o;
+      return bitField0_ == other.bitField0_
+        && (!hasLevelId() || levelId == other.levelId)
+        && (!hasScore() || score == other.score)
+        && (!hasStar() || star == other.star)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(levelId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeUInt32NoTag(score);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeUInt32NoTag(star);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(levelId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(score);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(star);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public ActivityMathParkourLevel mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // levelId
+            levelId = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16) {
+              break;
+            }
+          }
+          case 16: {
+            // score
+            score = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
+            // star
+            star = input.readUInt32();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.levelId, levelId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeUInt32(FieldNames.score, score);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeUInt32(FieldNames.star, star);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public ActivityMathParkourLevel mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 1734437791: {
+            if (input.isAtField(FieldNames.levelId)) {
+              if (!input.trySkipNullValue()) {
+                levelId = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 79711858: {
+            if (input.isAtField(FieldNames.score)) {
+              if (!input.trySkipNullValue()) {
+                score = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 2587250: {
+            if (input.isAtField(FieldNames.star)) {
+              if (!input.trySkipNullValue()) {
+                star = input.readUInt32();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public ActivityMathParkourLevel clone() {
+      return new ActivityMathParkourLevel().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static ActivityMathParkourLevel parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new ActivityMathParkourLevel(), data).checkInitialized();
+    }
+
+    public static ActivityMathParkourLevel parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityMathParkourLevel(), input).checkInitialized();
+    }
+
+    public static ActivityMathParkourLevel parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityMathParkourLevel(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating ActivityMathParkourLevel messages
+     */
+    public static MessageFactory<ActivityMathParkourLevel> getFactory() {
+      return ActivityMathParkourLevelFactory.INSTANCE;
+    }
+
+    private enum ActivityMathParkourLevelFactory implements MessageFactory<ActivityMathParkourLevel> {
+      INSTANCE;
+
+      @Override
+      public ActivityMathParkourLevel create() {
+        return ActivityMathParkourLevel.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName levelId = FieldName.forField("LevelId");
+
+      static final FieldName score = FieldName.forField("Score");
+
+      static final FieldName star = FieldName.forField("Star");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code ActivityMathParkour}
+   */
+  public static final class ActivityMathParkour extends ProtoMessage<ActivityMathParkour> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     */
+    private int activityId;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>repeated .ActivityMathParkourLevel Levels = 2;</code>
+     */
+    private final RepeatedMessage<ActivityMathParkourLevel> levels = RepeatedMessage.newEmptyInstance(ActivityMathParkourLevel.getFactory());
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     */
+    private final RepeatedMessage<ActivityQuest> quests = RepeatedMessage.newEmptyInstance(ActivityQuest.getFactory());
+
+    private ActivityMathParkour() {
+    }
+
+    /**
+     * @return a new empty instance of {@code ActivityMathParkour}
+     */
+    public static ActivityMathParkour newInstance() {
+      return new ActivityMathParkour();
+    }
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     * @return whether the activityId field is set
+     */
+    public boolean hasActivityId() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     * @return this
+     */
+    public ActivityMathParkour clearActivityId() {
+      bitField0_ &= ~0x00000001;
+      activityId = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     * @return the activityId
+     */
+    public int getActivityId() {
+      return activityId;
+    }
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     * @param value the activityId to set
+     * @return this
+     */
+    public ActivityMathParkour setActivityId(final int value) {
+      bitField0_ |= 0x00000001;
+      activityId = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public ActivityMathParkour clearNextPackage() {
+      bitField0_ &= ~0x00000002;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000002;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public ActivityMathParkour addNextPackage(final byte value) {
+      bitField0_ |= 0x00000002;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public ActivityMathParkour addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public ActivityMathParkour setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityMathParkourLevel Levels = 2;</code>
+     * @return whether the levels field is set
+     */
+    public boolean hasLevels() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>repeated .ActivityMathParkourLevel Levels = 2;</code>
+     * @return this
+     */
+    public ActivityMathParkour clearLevels() {
+      bitField0_ &= ~0x00000004;
+      levels.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityMathParkourLevel Levels = 2;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableLevels()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<ActivityMathParkourLevel> getLevels() {
+      return levels;
+    }
+
+    /**
+     * <code>repeated .ActivityMathParkourLevel Levels = 2;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<ActivityMathParkourLevel> getMutableLevels() {
+      bitField0_ |= 0x00000004;
+      return levels;
+    }
+
+    /**
+     * <code>repeated .ActivityMathParkourLevel Levels = 2;</code>
+     * @param value the levels to add
+     * @return this
+     */
+    public ActivityMathParkour addLevels(final ActivityMathParkourLevel value) {
+      bitField0_ |= 0x00000004;
+      levels.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityMathParkourLevel Levels = 2;</code>
+     * @param values the levels to add
+     * @return this
+     */
+    public ActivityMathParkour addAllLevels(final ActivityMathParkourLevel... values) {
+      bitField0_ |= 0x00000004;
+      levels.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * @return whether the quests field is set
+     */
+    public boolean hasQuests() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * @return this
+     */
+    public ActivityMathParkour clearQuests() {
+      bitField0_ &= ~0x00000008;
+      quests.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableQuests()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<ActivityQuest> getQuests() {
+      return quests;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<ActivityQuest> getMutableQuests() {
+      bitField0_ |= 0x00000008;
+      return quests;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * @param value the quests to add
+     * @return this
+     */
+    public ActivityMathParkour addQuests(final ActivityQuest value) {
+      bitField0_ |= 0x00000008;
+      quests.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .ActivityQuest Quests = 3;</code>
+     * @param values the quests to add
+     * @return this
+     */
+    public ActivityMathParkour addAllQuests(final ActivityQuest... values) {
+      bitField0_ |= 0x00000008;
+      quests.addAll(values);
+      return this;
+    }
+
+    @Override
+    public ActivityMathParkour copyFrom(final ActivityMathParkour other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        activityId = other.activityId;
+        nextPackage.copyFrom(other.nextPackage);
+        levels.copyFrom(other.levels);
+        quests.copyFrom(other.quests);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityMathParkour mergeFrom(final ActivityMathParkour other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasActivityId()) {
+        setActivityId(other.activityId);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasLevels()) {
+        getMutableLevels().addAll(other.levels);
+      }
+      if (other.hasQuests()) {
+        getMutableQuests().addAll(other.quests);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityMathParkour clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      activityId = 0;
+      nextPackage.clear();
+      levels.clear();
+      quests.clear();
+      return this;
+    }
+
+    @Override
+    public ActivityMathParkour clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      levels.clearQuick();
+      quests.clearQuick();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof ActivityMathParkour)) {
+        return false;
+      }
+      ActivityMathParkour other = (ActivityMathParkour) o;
+      return bitField0_ == other.bitField0_
+        && (!hasActivityId() || activityId == other.activityId)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasLevels() || levels.equals(other.levels))
+        && (!hasQuests() || quests.equals(other.quests));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(activityId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        for (int i = 0; i < levels.length(); i++) {
+          output.writeRawByte((byte) 18);
+          output.writeMessageNoTag(levels.get(i));
+        }
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        for (int i = 0; i < quests.length(); i++) {
+          output.writeRawByte((byte) 26);
+          output.writeMessageNoTag(quests.get(i));
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(activityId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += (1 * levels.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(levels);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += (1 * quests.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(quests);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public ActivityMathParkour mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // activityId
+            activityId = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 18) {
+              break;
+            }
+          }
+          case 18: {
+            // levels
+            tag = input.readRepeatedMessage(levels, tag);
+            bitField0_ |= 0x00000004;
+            if (tag != 26) {
+              break;
+            }
+          }
+          case 26: {
+            // quests
+            tag = input.readRepeatedMessage(quests, tag);
+            bitField0_ |= 0x00000008;
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.activityId, activityId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRepeatedMessage(FieldNames.levels, levels);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRepeatedMessage(FieldNames.quests, quests);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public ActivityMathParkour mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case -252882774: {
+            if (input.isAtField(FieldNames.activityId)) {
+              if (!input.trySkipNullValue()) {
+                activityId = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2022260337: {
+            if (input.isAtField(FieldNames.levels)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(levels);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1864830991: {
+            if (input.isAtField(FieldNames.quests)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(quests);
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public ActivityMathParkour clone() {
+      return new ActivityMathParkour().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static ActivityMathParkour parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new ActivityMathParkour(), data).checkInitialized();
+    }
+
+    public static ActivityMathParkour parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityMathParkour(), input).checkInitialized();
+    }
+
+    public static ActivityMathParkour parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityMathParkour(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating ActivityMathParkour messages
+     */
+    public static MessageFactory<ActivityMathParkour> getFactory() {
+      return ActivityMathParkourFactory.INSTANCE;
+    }
+
+    private enum ActivityMathParkourFactory implements MessageFactory<ActivityMathParkour> {
+      INSTANCE;
+
+      @Override
+      public ActivityMathParkour create() {
+        return ActivityMathParkour.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName activityId = FieldName.forField("ActivityId");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName levels = FieldName.forField("Levels");
+
+      static final FieldName quests = FieldName.forField("Quests");
+    }
+  }
+
+  /**
+   * Protobuf type {@code ActivityMathParkourLevelSettleSucceed}
+   */
+  public static final class ActivityMathParkourLevelSettleSucceed extends ProtoMessage<ActivityMathParkourLevelSettleSucceed> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional bool Passed = 2;</code>
+     */
+    private boolean passed;
+
+    /**
+     * <code>optional .ChangeInfo Change = 1;</code>
+     */
+    private final ChangeInfo change = ChangeInfo.newInstance();
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private ActivityMathParkourLevelSettleSucceed() {
+    }
+
+    /**
+     * @return a new empty instance of {@code ActivityMathParkourLevelSettleSucceed}
+     */
+    public static ActivityMathParkourLevelSettleSucceed newInstance() {
+      return new ActivityMathParkourLevelSettleSucceed();
+    }
+
+    /**
+     * <code>optional bool Passed = 2;</code>
+     * @return whether the passed field is set
+     */
+    public boolean hasPassed() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional bool Passed = 2;</code>
+     * @return this
+     */
+    public ActivityMathParkourLevelSettleSucceed clearPassed() {
+      bitField0_ &= ~0x00000001;
+      passed = false;
+      return this;
+    }
+
+    /**
+     * <code>optional bool Passed = 2;</code>
+     * @return the passed
+     */
+    public boolean getPassed() {
+      return passed;
+    }
+
+    /**
+     * <code>optional bool Passed = 2;</code>
+     * @param value the passed to set
+     * @return this
+     */
+    public ActivityMathParkourLevelSettleSucceed setPassed(final boolean value) {
+      bitField0_ |= 0x00000001;
+      passed = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .ChangeInfo Change = 1;</code>
+     * @return whether the change field is set
+     */
+    public boolean hasChange() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional .ChangeInfo Change = 1;</code>
+     * @return this
+     */
+    public ActivityMathParkourLevelSettleSucceed clearChange() {
+      bitField0_ &= ~0x00000002;
+      change.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .ChangeInfo Change = 1;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableChange()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public ChangeInfo getChange() {
+      return change;
+    }
+
+    /**
+     * <code>optional .ChangeInfo Change = 1;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public ChangeInfo getMutableChange() {
+      bitField0_ |= 0x00000002;
+      return change;
+    }
+
+    /**
+     * <code>optional .ChangeInfo Change = 1;</code>
+     * @param value the change to set
+     * @return this
+     */
+    public ActivityMathParkourLevelSettleSucceed setChange(final ChangeInfo value) {
+      bitField0_ |= 0x00000002;
+      change.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public ActivityMathParkourLevelSettleSucceed clearNextPackage() {
+      bitField0_ &= ~0x00000004;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000004;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public ActivityMathParkourLevelSettleSucceed addNextPackage(final byte value) {
+      bitField0_ |= 0x00000004;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public ActivityMathParkourLevelSettleSucceed addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public ActivityMathParkourLevelSettleSucceed setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public ActivityMathParkourLevelSettleSucceed copyFrom(
+        final ActivityMathParkourLevelSettleSucceed other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        passed = other.passed;
+        change.copyFrom(other.change);
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityMathParkourLevelSettleSucceed mergeFrom(
+        final ActivityMathParkourLevelSettleSucceed other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasPassed()) {
+        setPassed(other.passed);
+      }
+      if (other.hasChange()) {
+        getMutableChange().mergeFrom(other.change);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityMathParkourLevelSettleSucceed clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      passed = false;
+      change.clear();
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public ActivityMathParkourLevelSettleSucceed clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      change.clearQuick();
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof ActivityMathParkourLevelSettleSucceed)) {
+        return false;
+      }
+      ActivityMathParkourLevelSettleSucceed other = (ActivityMathParkourLevelSettleSucceed) o;
+      return bitField0_ == other.bitField0_
+        && (!hasPassed() || passed == other.passed)
+        && (!hasChange() || change.equals(other.change))
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeBoolNoTag(passed);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 10);
+        output.writeMessageNoTag(change);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 2;
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(change);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public ActivityMathParkourLevelSettleSucceed mergeFrom(final ProtoSource input) throws
+        IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 16: {
+            // passed
+            passed = input.readBool();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 10) {
+              break;
+            }
+          }
+          case 10: {
+            // change
+            input.readMessage(change);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeBool(FieldNames.passed, passed);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeMessage(FieldNames.change, change);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public ActivityMathParkourLevelSettleSucceed mergeFrom(final JsonSource input) throws
+        IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case -1911513968: {
+            if (input.isAtField(FieldNames.passed)) {
+              if (!input.trySkipNullValue()) {
+                passed = input.readBool();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 2017198032: {
+            if (input.isAtField(FieldNames.change)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(change);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public ActivityMathParkourLevelSettleSucceed clone() {
+      return new ActivityMathParkourLevelSettleSucceed().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static ActivityMathParkourLevelSettleSucceed parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new ActivityMathParkourLevelSettleSucceed(), data).checkInitialized();
+    }
+
+    public static ActivityMathParkourLevelSettleSucceed parseFrom(final ProtoSource input) throws
+        IOException {
+      return ProtoMessage.mergeFrom(new ActivityMathParkourLevelSettleSucceed(), input).checkInitialized();
+    }
+
+    public static ActivityMathParkourLevelSettleSucceed parseFrom(final JsonSource input) throws
+        IOException {
+      return ProtoMessage.mergeFrom(new ActivityMathParkourLevelSettleSucceed(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating ActivityMathParkourLevelSettleSucceed messages
+     */
+    public static MessageFactory<ActivityMathParkourLevelSettleSucceed> getFactory() {
+      return ActivityMathParkourLevelSettleSucceedFactory.INSTANCE;
+    }
+
+    private enum ActivityMathParkourLevelSettleSucceedFactory implements MessageFactory<ActivityMathParkourLevelSettleSucceed> {
+      INSTANCE;
+
+      @Override
+      public ActivityMathParkourLevelSettleSucceed create() {
+        return ActivityMathParkourLevelSettleSucceed.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName passed = FieldName.forField("Passed");
+
+      static final FieldName change = FieldName.forField("Change");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code UseBuild}
+   */
+  public static final class UseBuild extends ProtoMessage<UseBuild> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint64 BuildId = 2;</code>
+     */
+    private long buildId;
+
+    /**
+     * <code>optional .BuildType Type = 1;</code>
+     */
+    private int type;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private UseBuild() {
+    }
+
+    /**
+     * @return a new empty instance of {@code UseBuild}
+     */
+    public static UseBuild newInstance() {
+      return new UseBuild();
+    }
+
+    /**
+     * <code>optional uint64 BuildId = 2;</code>
+     * @return whether the buildId field is set
+     */
+    public boolean hasBuildId() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint64 BuildId = 2;</code>
+     * @return this
+     */
+    public UseBuild clearBuildId() {
+      bitField0_ &= ~0x00000001;
+      buildId = 0L;
+      return this;
+    }
+
+    /**
+     * <code>optional uint64 BuildId = 2;</code>
+     * @return the buildId
+     */
+    public long getBuildId() {
+      return buildId;
+    }
+
+    /**
+     * <code>optional uint64 BuildId = 2;</code>
+     * @param value the buildId to set
+     * @return this
+     */
+    public UseBuild setBuildId(final long value) {
+      bitField0_ |= 0x00000001;
+      buildId = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .BuildType Type = 1;</code>
+     * @return whether the type field is set
+     */
+    public boolean hasType() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional .BuildType Type = 1;</code>
+     * @return this
+     */
+    public UseBuild clearType() {
+      bitField0_ &= ~0x00000002;
+      type = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional .BuildType Type = 1;</code>
+     * @return the type
+     */
+    public BuildType getType() {
+      return BuildType.forNumber(type);
+    }
+
+    /**
+     * Gets the value of the internal enum store. The result is
+     * equivalent to {@link UseBuild#getType()}.getNumber().
+     *
+     * @return numeric wire representation
+     */
+    public int getTypeValue() {
+      return type;
+    }
+
+    /**
+     * Sets the value of the internal enum store. This does not
+     * do any validity checks, so be sure to use appropriate value
+     * constants from {@link BuildType}. Setting an invalid value
+     * can cause {@link UseBuild#getType()} to return null
+     *
+     * @param value the numeric wire value to set
+     * @return this
+     */
+    public UseBuild setTypeValue(final int value) {
+      bitField0_ |= 0x00000002;
+      type = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .BuildType Type = 1;</code>
+     * @param value the type to set
+     * @return this
+     */
+    public UseBuild setType(final BuildType value) {
+      bitField0_ |= 0x00000002;
+      type = value.getNumber();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public UseBuild clearNextPackage() {
+      bitField0_ &= ~0x00000004;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000004;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public UseBuild addNextPackage(final byte value) {
+      bitField0_ |= 0x00000004;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public UseBuild addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public UseBuild setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public UseBuild copyFrom(final UseBuild other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        buildId = other.buildId;
+        type = other.type;
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public UseBuild mergeFrom(final UseBuild other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasBuildId()) {
+        setBuildId(other.buildId);
+      }
+      if (other.hasType()) {
+        setTypeValue(other.type);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public UseBuild clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      buildId = 0L;
+      type = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public UseBuild clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof UseBuild)) {
+        return false;
+      }
+      UseBuild other = (UseBuild) o;
+      return bitField0_ == other.bitField0_
+        && (!hasBuildId() || buildId == other.buildId)
+        && (!hasType() || type == other.type)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeUInt64NoTag(buildId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeEnumNoTag(type);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt64SizeNoTag(buildId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeEnumSizeNoTag(type);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public UseBuild mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 16: {
+            // buildId
+            buildId = input.readUInt64();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 8) {
+              break;
+            }
+          }
+          case 8: {
+            // type
+            final int value = input.readInt32();
+            if (BuildType.forNumber(value) != null) {
+              type = value;
+              bitField0_ |= 0x00000002;
+            }
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt64(FieldNames.buildId, buildId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeEnum(FieldNames.type, type, BuildType.converter());
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public UseBuild mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 1895597065: {
+            if (input.isAtField(FieldNames.buildId)) {
+              if (!input.trySkipNullValue()) {
+                buildId = input.readUInt64();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 2622298: {
+            if (input.isAtField(FieldNames.type)) {
+              if (!input.trySkipNullValue()) {
+                final BuildType value = input.readEnum(BuildType.converter());
+                if (value != null) {
+                  type = value.getNumber();
+                  bitField0_ |= 0x00000002;
+                } else {
+                  input.skipUnknownEnumValue();
+                }
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public UseBuild clone() {
+      return new UseBuild().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static UseBuild parseFrom(final byte[] data) throws InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new UseBuild(), data).checkInitialized();
+    }
+
+    public static UseBuild parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new UseBuild(), input).checkInitialized();
+    }
+
+    public static UseBuild parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new UseBuild(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating UseBuild messages
+     */
+    public static MessageFactory<UseBuild> getFactory() {
+      return UseBuildFactory.INSTANCE;
+    }
+
+    private enum UseBuildFactory implements MessageFactory<UseBuild> {
+      INSTANCE;
+
+      @Override
+      public UseBuild create() {
+        return UseBuild.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName buildId = FieldName.forField("BuildId");
+
+      static final FieldName type = FieldName.forField("Type");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code GuideMissionState}
+   */
+  public static final class GuideMissionState extends ProtoMessage<GuideMissionState> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional bool New = 1;</code>
+     */
+    private boolean new_;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private GuideMissionState() {
+    }
+
+    /**
+     * @return a new empty instance of {@code GuideMissionState}
+     */
+    public static GuideMissionState newInstance() {
+      return new GuideMissionState();
+    }
+
+    /**
+     * <code>optional bool New = 1;</code>
+     * @return whether the new_ field is set
+     */
+    public boolean hasNew() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional bool New = 1;</code>
+     * @return this
+     */
+    public GuideMissionState clearNew() {
+      bitField0_ &= ~0x00000001;
+      new_ = false;
+      return this;
+    }
+
+    /**
+     * <code>optional bool New = 1;</code>
+     * @return the new_
+     */
+    public boolean getNew() {
+      return new_;
+    }
+
+    /**
+     * <code>optional bool New = 1;</code>
+     * @param value the new_ to set
+     * @return this
+     */
+    public GuideMissionState setNew(final boolean value) {
+      bitField0_ |= 0x00000001;
+      new_ = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public GuideMissionState clearNextPackage() {
+      bitField0_ &= ~0x00000002;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000002;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public GuideMissionState addNextPackage(final byte value) {
+      bitField0_ |= 0x00000002;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public GuideMissionState addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public GuideMissionState setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public GuideMissionState copyFrom(final GuideMissionState other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        new_ = other.new_;
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public GuideMissionState mergeFrom(final GuideMissionState other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasNew()) {
+        setNew(other.new_);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public GuideMissionState clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      new_ = false;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public GuideMissionState clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof GuideMissionState)) {
+        return false;
+      }
+      GuideMissionState other = (GuideMissionState) o;
+      return bitField0_ == other.bitField0_
+        && (!hasNew() || new_ == other.new_)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeBoolNoTag(new_);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 2;
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public GuideMissionState mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // new_
+            new_ = input.readBool();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeBool(FieldNames.new_, new_);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public GuideMissionState mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 78208: {
+            if (input.isAtField(FieldNames.new_)) {
+              if (!input.trySkipNullValue()) {
+                new_ = input.readBool();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public GuideMissionState clone() {
+      return new GuideMissionState().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static GuideMissionState parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new GuideMissionState(), data).checkInitialized();
+    }
+
+    public static GuideMissionState parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new GuideMissionState(), input).checkInitialized();
+    }
+
+    public static GuideMissionState parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new GuideMissionState(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating GuideMissionState messages
+     */
+    public static MessageFactory<GuideMissionState> getFactory() {
+      return GuideMissionStateFactory.INSTANCE;
+    }
+
+    private enum GuideMissionStateFactory implements MessageFactory<GuideMissionState> {
+      INSTANCE;
+
+      @Override
+      public GuideMissionState create() {
+        return GuideMissionState.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName new_ = FieldName.forField("New");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code ActivityMailBind}
+   */
+  public static final class ActivityMailBind extends ProtoMessage<ActivityMailBind> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional bool Bind = 1;</code>
+     */
+    private boolean bind;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private ActivityMailBind() {
+    }
+
+    /**
+     * @return a new empty instance of {@code ActivityMailBind}
+     */
+    public static ActivityMailBind newInstance() {
+      return new ActivityMailBind();
+    }
+
+    /**
+     * <code>optional bool Bind = 1;</code>
+     * @return whether the bind field is set
+     */
+    public boolean hasBind() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional bool Bind = 1;</code>
+     * @return this
+     */
+    public ActivityMailBind clearBind() {
+      bitField0_ &= ~0x00000001;
+      bind = false;
+      return this;
+    }
+
+    /**
+     * <code>optional bool Bind = 1;</code>
+     * @return the bind
+     */
+    public boolean getBind() {
+      return bind;
+    }
+
+    /**
+     * <code>optional bool Bind = 1;</code>
+     * @param value the bind to set
+     * @return this
+     */
+    public ActivityMailBind setBind(final boolean value) {
+      bitField0_ |= 0x00000001;
+      bind = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public ActivityMailBind clearNextPackage() {
+      bitField0_ &= ~0x00000002;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000002;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public ActivityMailBind addNextPackage(final byte value) {
+      bitField0_ |= 0x00000002;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public ActivityMailBind addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public ActivityMailBind setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public ActivityMailBind copyFrom(final ActivityMailBind other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        bind = other.bind;
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityMailBind mergeFrom(final ActivityMailBind other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasBind()) {
+        setBind(other.bind);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityMailBind clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      bind = false;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public ActivityMailBind clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof ActivityMailBind)) {
+        return false;
+      }
+      ActivityMailBind other = (ActivityMailBind) o;
+      return bitField0_ == other.bitField0_
+        && (!hasBind() || bind == other.bind)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeBoolNoTag(bind);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 2;
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public ActivityMailBind mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // bind
+            bind = input.readBool();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeBool(FieldNames.bind, bind);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public ActivityMailBind mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 2070621: {
+            if (input.isAtField(FieldNames.bind)) {
+              if (!input.trySkipNullValue()) {
+                bind = input.readBool();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public ActivityMailBind clone() {
+      return new ActivityMailBind().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static ActivityMailBind parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new ActivityMailBind(), data).checkInitialized();
+    }
+
+    public static ActivityMailBind parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityMailBind(), input).checkInitialized();
+    }
+
+    public static ActivityMailBind parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityMailBind(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating ActivityMailBind messages
+     */
+    public static MessageFactory<ActivityMailBind> getFactory() {
+      return ActivityMailBindFactory.INSTANCE;
+    }
+
+    private enum ActivityMailBindFactory implements MessageFactory<ActivityMailBind> {
+      INSTANCE;
+
+      @Override
+      public ActivityMailBind create() {
+        return ActivityMailBind.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName bind = FieldName.forField("Bind");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code ActivityMallLogin}
+   */
+  public static final class ActivityMallLogin extends ProtoMessage<ActivityMallLogin> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     */
+    private int activityId;
+
+    /**
+     * <code>optional uint32 Received = 3;</code>
+     */
+    private int received;
+
+    /**
+     * <code>optional uint32 LoginDays = 4;</code>
+     */
+    private int loginDays;
+
+    /**
+     * <code>optional bool active = 2;</code>
+     */
+    private boolean active;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private ActivityMallLogin() {
+    }
+
+    /**
+     * @return a new empty instance of {@code ActivityMallLogin}
+     */
+    public static ActivityMallLogin newInstance() {
+      return new ActivityMallLogin();
+    }
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     * @return whether the activityId field is set
+     */
+    public boolean hasActivityId() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     * @return this
+     */
+    public ActivityMallLogin clearActivityId() {
+      bitField0_ &= ~0x00000001;
+      activityId = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     * @return the activityId
+     */
+    public int getActivityId() {
+      return activityId;
+    }
+
+    /**
+     * <code>optional uint32 ActivityId = 1;</code>
+     * @param value the activityId to set
+     * @return this
+     */
+    public ActivityMallLogin setActivityId(final int value) {
+      bitField0_ |= 0x00000001;
+      activityId = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Received = 3;</code>
+     * @return whether the received field is set
+     */
+    public boolean hasReceived() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Received = 3;</code>
+     * @return this
+     */
+    public ActivityMallLogin clearReceived() {
+      bitField0_ &= ~0x00000002;
+      received = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Received = 3;</code>
+     * @return the received
+     */
+    public int getReceived() {
+      return received;
+    }
+
+    /**
+     * <code>optional uint32 Received = 3;</code>
+     * @param value the received to set
+     * @return this
+     */
+    public ActivityMallLogin setReceived(final int value) {
+      bitField0_ |= 0x00000002;
+      received = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 LoginDays = 4;</code>
+     * @return whether the loginDays field is set
+     */
+    public boolean hasLoginDays() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional uint32 LoginDays = 4;</code>
+     * @return this
+     */
+    public ActivityMallLogin clearLoginDays() {
+      bitField0_ &= ~0x00000004;
+      loginDays = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 LoginDays = 4;</code>
+     * @return the loginDays
+     */
+    public int getLoginDays() {
+      return loginDays;
+    }
+
+    /**
+     * <code>optional uint32 LoginDays = 4;</code>
+     * @param value the loginDays to set
+     * @return this
+     */
+    public ActivityMallLogin setLoginDays(final int value) {
+      bitField0_ |= 0x00000004;
+      loginDays = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bool active = 2;</code>
+     * @return whether the active field is set
+     */
+    public boolean hasActive() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional bool active = 2;</code>
+     * @return this
+     */
+    public ActivityMallLogin clearActive() {
+      bitField0_ &= ~0x00000008;
+      active = false;
+      return this;
+    }
+
+    /**
+     * <code>optional bool active = 2;</code>
+     * @return the active
+     */
+    public boolean getActive() {
+      return active;
+    }
+
+    /**
+     * <code>optional bool active = 2;</code>
+     * @param value the active to set
+     * @return this
+     */
+    public ActivityMallLogin setActive(final boolean value) {
+      bitField0_ |= 0x00000008;
+      active = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000010) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public ActivityMallLogin clearNextPackage() {
+      bitField0_ &= ~0x00000010;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000010;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public ActivityMallLogin addNextPackage(final byte value) {
+      bitField0_ |= 0x00000010;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public ActivityMallLogin addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000010;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public ActivityMallLogin setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000010;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public ActivityMallLogin copyFrom(final ActivityMallLogin other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        activityId = other.activityId;
+        received = other.received;
+        loginDays = other.loginDays;
+        active = other.active;
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityMallLogin mergeFrom(final ActivityMallLogin other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasActivityId()) {
+        setActivityId(other.activityId);
+      }
+      if (other.hasReceived()) {
+        setReceived(other.received);
+      }
+      if (other.hasLoginDays()) {
+        setLoginDays(other.loginDays);
+      }
+      if (other.hasActive()) {
+        setActive(other.active);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public ActivityMallLogin clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      activityId = 0;
+      received = 0;
+      loginDays = 0;
+      active = false;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public ActivityMallLogin clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof ActivityMallLogin)) {
+        return false;
+      }
+      ActivityMallLogin other = (ActivityMallLogin) o;
+      return bitField0_ == other.bitField0_
+        && (!hasActivityId() || activityId == other.activityId)
+        && (!hasReceived() || received == other.received)
+        && (!hasLoginDays() || loginDays == other.loginDays)
+        && (!hasActive() || active == other.active)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(activityId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeUInt32NoTag(received);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 32);
+        output.writeUInt32NoTag(loginDays);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeBoolNoTag(active);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(activityId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(received);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(loginDays);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += 2;
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public ActivityMallLogin mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // activityId
+            activityId = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
+            // received
+            received = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 32) {
+              break;
+            }
+          }
+          case 32: {
+            // loginDays
+            loginDays = input.readUInt32();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 16) {
+              break;
+            }
+          }
+          case 16: {
+            // active
+            active = input.readBool();
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000010;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.activityId, activityId);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeUInt32(FieldNames.received, received);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeUInt32(FieldNames.loginDays, loginDays);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeBool(FieldNames.active, active);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public ActivityMallLogin mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case -252882774: {
+            if (input.isAtField(FieldNames.activityId)) {
+              if (!input.trySkipNullValue()) {
+                activityId = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -744075775: {
+            if (input.isAtField(FieldNames.received)) {
+              if (!input.trySkipNullValue()) {
+                received = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 284202816: {
+            if (input.isAtField(FieldNames.loginDays)) {
+              if (!input.trySkipNullValue()) {
+                loginDays = input.readUInt32();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1422950650: {
+            if (input.isAtField(FieldNames.active)) {
+              if (!input.trySkipNullValue()) {
+                active = input.readBool();
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000010;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public ActivityMallLogin clone() {
+      return new ActivityMallLogin().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static ActivityMallLogin parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new ActivityMallLogin(), data).checkInitialized();
+    }
+
+    public static ActivityMallLogin parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityMallLogin(), input).checkInitialized();
+    }
+
+    public static ActivityMallLogin parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new ActivityMallLogin(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating ActivityMallLogin messages
+     */
+    public static MessageFactory<ActivityMallLogin> getFactory() {
+      return ActivityMallLoginFactory.INSTANCE;
+    }
+
+    private enum ActivityMallLoginFactory implements MessageFactory<ActivityMallLogin> {
+      INSTANCE;
+
+      @Override
+      public ActivityMallLogin create() {
+        return ActivityMallLogin.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName activityId = FieldName.forField("ActivityId");
+
+      static final FieldName received = FieldName.forField("Received");
+
+      static final FieldName loginDays = FieldName.forField("LoginDays");
+
+      static final FieldName active = FieldName.forField("active");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code TowerVitaOption}
+   */
+  public static final class TowerVitaOption extends ProtoMessage<TowerVitaOption> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     */
+    private int id;
+
+    /**
+     * <code>optional uint32 Integer = 3;</code>
+     */
+    private int integer;
+
+    /**
+     * <code>optional bool Boolean = 2;</code>
+     */
+    private boolean boolean_;
+
+    /**
+     * <code>optional .UI32s List = 4;</code>
+     */
+    private final UI32s list = UI32s.newInstance();
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private TowerVitaOption() {
+    }
+
+    /**
+     * @return a new empty instance of {@code TowerVitaOption}
+     */
+    public static TowerVitaOption newInstance() {
+      return new TowerVitaOption();
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @return whether the id field is set
+     */
+    public boolean hasId() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @return this
+     */
+    public TowerVitaOption clearId() {
+      bitField0_ &= ~0x00000001;
+      id = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @return the id
+     */
+    public int getId() {
+      return id;
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @param value the id to set
+     * @return this
+     */
+    public TowerVitaOption setId(final int value) {
+      bitField0_ |= 0x00000001;
+      id = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Integer = 3;</code>
+     * @return whether the integer field is set
+     */
+    public boolean hasInteger() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Integer = 3;</code>
+     * @return this
+     */
+    public TowerVitaOption clearInteger() {
+      bitField0_ &= ~0x00000002;
+      integer = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Integer = 3;</code>
+     * @return the integer
+     */
+    public int getInteger() {
+      return integer;
+    }
+
+    /**
+     * <code>optional uint32 Integer = 3;</code>
+     * @param value the integer to set
+     * @return this
+     */
+    public TowerVitaOption setInteger(final int value) {
+      bitField0_ |= 0x00000002;
+      integer = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bool Boolean = 2;</code>
+     * @return whether the boolean_ field is set
+     */
+    public boolean hasBoolean() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional bool Boolean = 2;</code>
+     * @return this
+     */
+    public TowerVitaOption clearBoolean() {
+      bitField0_ &= ~0x00000004;
+      boolean_ = false;
+      return this;
+    }
+
+    /**
+     * <code>optional bool Boolean = 2;</code>
+     * @return the boolean_
+     */
+    public boolean getBoolean() {
+      return boolean_;
+    }
+
+    /**
+     * <code>optional bool Boolean = 2;</code>
+     * @param value the boolean_ to set
+     * @return this
+     */
+    public TowerVitaOption setBoolean(final boolean value) {
+      bitField0_ |= 0x00000004;
+      boolean_ = value;
+      return this;
+    }
+
+    /**
+     * <code>optional .UI32s List = 4;</code>
+     * @return whether the list field is set
+     */
+    public boolean hasList() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional .UI32s List = 4;</code>
+     * @return this
+     */
+    public TowerVitaOption clearList() {
+      bitField0_ &= ~0x00000008;
+      list.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional .UI32s List = 4;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableList()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public UI32s getList() {
+      return list;
+    }
+
+    /**
+     * <code>optional .UI32s List = 4;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public UI32s getMutableList() {
+      bitField0_ |= 0x00000008;
+      return list;
+    }
+
+    /**
+     * <code>optional .UI32s List = 4;</code>
+     * @param value the list to set
+     * @return this
+     */
+    public TowerVitaOption setList(final UI32s value) {
+      bitField0_ |= 0x00000008;
+      list.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000010) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public TowerVitaOption clearNextPackage() {
+      bitField0_ &= ~0x00000010;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000010;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public TowerVitaOption addNextPackage(final byte value) {
+      bitField0_ |= 0x00000010;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public TowerVitaOption addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000010;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public TowerVitaOption setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000010;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public TowerVitaOption copyFrom(final TowerVitaOption other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        id = other.id;
+        integer = other.integer;
+        boolean_ = other.boolean_;
+        list.copyFrom(other.list);
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public TowerVitaOption mergeFrom(final TowerVitaOption other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasId()) {
+        setId(other.id);
+      }
+      if (other.hasInteger()) {
+        setInteger(other.integer);
+      }
+      if (other.hasBoolean()) {
+        setBoolean(other.boolean_);
+      }
+      if (other.hasList()) {
+        getMutableList().mergeFrom(other.list);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public TowerVitaOption clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      id = 0;
+      integer = 0;
+      boolean_ = false;
+      list.clear();
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public TowerVitaOption clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      list.clearQuick();
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof TowerVitaOption)) {
+        return false;
+      }
+      TowerVitaOption other = (TowerVitaOption) o;
+      return bitField0_ == other.bitField0_
+        && (!hasId() || id == other.id)
+        && (!hasInteger() || integer == other.integer)
+        && (!hasBoolean() || boolean_ == other.boolean_)
+        && (!hasList() || list.equals(other.list))
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeUInt32NoTag(integer);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeBoolNoTag(boolean_);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawByte((byte) 34);
+        output.writeMessageNoTag(list);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(integer);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 2;
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += 1 + ProtoSink.computeMessageSizeNoTag(list);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public TowerVitaOption mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // id
+            id = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
+            // integer
+            integer = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 16) {
+              break;
+            }
+          }
+          case 16: {
+            // boolean_
+            boolean_ = input.readBool();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 34) {
+              break;
+            }
+          }
+          case 34: {
+            // list
+            input.readMessage(list);
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000010;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.id, id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeUInt32(FieldNames.integer, integer);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeBool(FieldNames.boolean_, boolean_);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeMessage(FieldNames.list, list);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public TowerVitaOption mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 2363: {
+            if (input.isAtField(FieldNames.id)) {
+              if (!input.trySkipNullValue()) {
+                id = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -672261858: {
+            if (input.isAtField(FieldNames.integer)) {
+              if (!input.trySkipNullValue()) {
+                integer = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 1729365000: {
+            if (input.isAtField(FieldNames.boolean_)) {
+              if (!input.trySkipNullValue()) {
+                boolean_ = input.readBool();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 2368702: {
+            if (input.isAtField(FieldNames.list)) {
+              if (!input.trySkipNullValue()) {
+                input.readMessage(list);
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000010;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public TowerVitaOption clone() {
+      return new TowerVitaOption().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static TowerVitaOption parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new TowerVitaOption(), data).checkInitialized();
+    }
+
+    public static TowerVitaOption parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new TowerVitaOption(), input).checkInitialized();
+    }
+
+    public static TowerVitaOption parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new TowerVitaOption(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating TowerVitaOption messages
+     */
+    public static MessageFactory<TowerVitaOption> getFactory() {
+      return TowerVitaOptionFactory.INSTANCE;
+    }
+
+    private enum TowerVitaOptionFactory implements MessageFactory<TowerVitaOption> {
+      INSTANCE;
+
+      @Override
+      public TowerVitaOption create() {
+        return TowerVitaOption.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName id = FieldName.forField("Id");
+
+      static final FieldName integer = FieldName.forField("Integer");
+
+      static final FieldName boolean_ = FieldName.forField("Boolean");
+
+      static final FieldName list = FieldName.forField("List");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code TowerVitaProject}
+   */
+  public static final class TowerVitaProject extends ProtoMessage<TowerVitaProject> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     */
+    private int id;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>optional string Name = 2;</code>
+     */
+    private final Utf8String name = Utf8String.newEmptyInstance();
+
+    /**
+     * <code>repeated .TowerVitaOption Options = 3;</code>
+     */
+    private final RepeatedMessage<TowerVitaOption> options = RepeatedMessage.newEmptyInstance(TowerVitaOption.getFactory());
+
+    private TowerVitaProject() {
+    }
+
+    /**
+     * @return a new empty instance of {@code TowerVitaProject}
+     */
+    public static TowerVitaProject newInstance() {
+      return new TowerVitaProject();
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @return whether the id field is set
+     */
+    public boolean hasId() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @return this
+     */
+    public TowerVitaProject clearId() {
+      bitField0_ &= ~0x00000001;
+      id = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @return the id
+     */
+    public int getId() {
+      return id;
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @param value the id to set
+     * @return this
+     */
+    public TowerVitaProject setId(final int value) {
+      bitField0_ |= 0x00000001;
+      id = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public TowerVitaProject clearNextPackage() {
+      bitField0_ &= ~0x00000002;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000002;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public TowerVitaProject addNextPackage(final byte value) {
+      bitField0_ |= 0x00000002;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public TowerVitaProject addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public TowerVitaProject setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>optional string Name = 2;</code>
+     * @return whether the name field is set
+     */
+    public boolean hasName() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional string Name = 2;</code>
+     * @return this
+     */
+    public TowerVitaProject clearName() {
+      bitField0_ &= ~0x00000004;
+      name.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional string Name = 2;</code>
+     * @return the name
+     */
+    public java.lang.String getName() {
+      return name.getString();
+    }
+
+    /**
+     * <code>optional string Name = 2;</code>
+     * @return internal {@code Utf8String} representation of name for reading
+     */
+    public Utf8String getNameBytes() {
+      return this.name;
+    }
+
+    /**
+     * <code>optional string Name = 2;</code>
+     * @return internal {@code Utf8String} representation of name for modifications
+     */
+    public Utf8String getMutableNameBytes() {
+      bitField0_ |= 0x00000004;
+      return this.name;
+    }
+
+    /**
+     * <code>optional string Name = 2;</code>
+     * @param value the name to set
+     * @return this
+     */
+    public TowerVitaProject setName(final CharSequence value) {
+      bitField0_ |= 0x00000004;
+      name.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional string Name = 2;</code>
+     * @param value the name to set
+     * @return this
+     */
+    public TowerVitaProject setName(final Utf8String value) {
+      bitField0_ |= 0x00000004;
+      name.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .TowerVitaOption Options = 3;</code>
+     * @return whether the options field is set
+     */
+    public boolean hasOptions() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>repeated .TowerVitaOption Options = 3;</code>
+     * @return this
+     */
+    public TowerVitaProject clearOptions() {
+      bitField0_ &= ~0x00000008;
+      options.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .TowerVitaOption Options = 3;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableOptions()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<TowerVitaOption> getOptions() {
+      return options;
+    }
+
+    /**
+     * <code>repeated .TowerVitaOption Options = 3;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<TowerVitaOption> getMutableOptions() {
+      bitField0_ |= 0x00000008;
+      return options;
+    }
+
+    /**
+     * <code>repeated .TowerVitaOption Options = 3;</code>
+     * @param value the options to add
+     * @return this
+     */
+    public TowerVitaProject addOptions(final TowerVitaOption value) {
+      bitField0_ |= 0x00000008;
+      options.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .TowerVitaOption Options = 3;</code>
+     * @param values the options to add
+     * @return this
+     */
+    public TowerVitaProject addAllOptions(final TowerVitaOption... values) {
+      bitField0_ |= 0x00000008;
+      options.addAll(values);
+      return this;
+    }
+
+    @Override
+    public TowerVitaProject copyFrom(final TowerVitaProject other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        id = other.id;
+        nextPackage.copyFrom(other.nextPackage);
+        name.copyFrom(other.name);
+        options.copyFrom(other.options);
+      }
+      return this;
+    }
+
+    @Override
+    public TowerVitaProject mergeFrom(final TowerVitaProject other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasId()) {
+        setId(other.id);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasName()) {
+        getMutableNameBytes().copyFrom(other.name);
+      }
+      if (other.hasOptions()) {
+        getMutableOptions().addAll(other.options);
+      }
+      return this;
+    }
+
+    @Override
+    public TowerVitaProject clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      id = 0;
+      nextPackage.clear();
+      name.clear();
+      options.clear();
+      return this;
+    }
+
+    @Override
+    public TowerVitaProject clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      name.clear();
+      options.clearQuick();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof TowerVitaProject)) {
+        return false;
+      }
+      TowerVitaProject other = (TowerVitaProject) o;
+      return bitField0_ == other.bitField0_
+        && (!hasId() || id == other.id)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasName() || name.equals(other.name))
+        && (!hasOptions() || options.equals(other.options));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 18);
+        output.writeStringNoTag(name);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        for (int i = 0; i < options.length(); i++) {
+          output.writeRawByte((byte) 26);
+          output.writeMessageNoTag(options.get(i));
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeStringSizeNoTag(name);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += (1 * options.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(options);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public TowerVitaProject mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // id
+            id = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 18) {
+              break;
+            }
+          }
+          case 18: {
+            // name
+            input.readString(name);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 26) {
+              break;
+            }
+          }
+          case 26: {
+            // options
+            tag = input.readRepeatedMessage(options, tag);
+            bitField0_ |= 0x00000008;
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.id, id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeString(FieldNames.name, name);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRepeatedMessage(FieldNames.options, options);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public TowerVitaProject mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 2363: {
+            if (input.isAtField(FieldNames.id)) {
+              if (!input.trySkipNullValue()) {
+                id = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 2420395: {
+            if (input.isAtField(FieldNames.name)) {
+              if (!input.trySkipNullValue()) {
+                input.readString(name);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 415178366: {
+            if (input.isAtField(FieldNames.options)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(options);
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public TowerVitaProject clone() {
+      return new TowerVitaProject().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static TowerVitaProject parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new TowerVitaProject(), data).checkInitialized();
+    }
+
+    public static TowerVitaProject parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new TowerVitaProject(), input).checkInitialized();
+    }
+
+    public static TowerVitaProject parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new TowerVitaProject(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating TowerVitaProject messages
+     */
+    public static MessageFactory<TowerVitaProject> getFactory() {
+      return TowerVitaProjectFactory.INSTANCE;
+    }
+
+    private enum TowerVitaProjectFactory implements MessageFactory<TowerVitaProject> {
+      INSTANCE;
+
+      @Override
+      public TowerVitaProject create() {
+        return TowerVitaProject.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName id = FieldName.forField("Id");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName name = FieldName.forField("Name");
+
+      static final FieldName options = FieldName.forField("Options");
+    }
+  }
+
+  /**
+   * Protobuf type {@code SoldierBattleReportChess}
+   */
+  public static final class SoldierBattleReportChess extends ProtoMessage<SoldierBattleReportChess> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     */
+    private int id;
+
+    /**
+     * <code>optional uint32 Star = 2;</code>
+     */
+    private int star;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    private SoldierBattleReportChess() {
+    }
+
+    /**
+     * @return a new empty instance of {@code SoldierBattleReportChess}
+     */
+    public static SoldierBattleReportChess newInstance() {
+      return new SoldierBattleReportChess();
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @return whether the id field is set
+     */
+    public boolean hasId() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @return this
+     */
+    public SoldierBattleReportChess clearId() {
+      bitField0_ &= ~0x00000001;
+      id = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @return the id
+     */
+    public int getId() {
+      return id;
+    }
+
+    /**
+     * <code>optional uint32 Id = 1;</code>
+     * @param value the id to set
+     * @return this
+     */
+    public SoldierBattleReportChess setId(final int value) {
+      bitField0_ |= 0x00000001;
+      id = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Star = 2;</code>
+     * @return whether the star field is set
+     */
+    public boolean hasStar() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Star = 2;</code>
+     * @return this
+     */
+    public SoldierBattleReportChess clearStar() {
+      bitField0_ &= ~0x00000002;
+      star = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Star = 2;</code>
+     * @return the star
+     */
+    public int getStar() {
+      return star;
+    }
+
+    /**
+     * <code>optional uint32 Star = 2;</code>
+     * @param value the star to set
+     * @return this
+     */
+    public SoldierBattleReportChess setStar(final int value) {
+      bitField0_ |= 0x00000002;
+      star = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public SoldierBattleReportChess clearNextPackage() {
+      bitField0_ &= ~0x00000004;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000004;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public SoldierBattleReportChess addNextPackage(final byte value) {
+      bitField0_ |= 0x00000004;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public SoldierBattleReportChess addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public SoldierBattleReportChess setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000004;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    @Override
+    public SoldierBattleReportChess copyFrom(final SoldierBattleReportChess other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        id = other.id;
+        star = other.star;
+        nextPackage.copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public SoldierBattleReportChess mergeFrom(final SoldierBattleReportChess other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasId()) {
+        setId(other.id);
+      }
+      if (other.hasStar()) {
+        setStar(other.star);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      return this;
+    }
+
+    @Override
+    public SoldierBattleReportChess clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      id = 0;
+      star = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public SoldierBattleReportChess clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof SoldierBattleReportChess)) {
+        return false;
+      }
+      SoldierBattleReportChess other = (SoldierBattleReportChess) o;
+      return bitField0_ == other.bitField0_
+        && (!hasId() || id == other.id)
+        && (!hasStar() || star == other.star)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 8);
+        output.writeUInt32NoTag(id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeUInt32NoTag(star);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(star);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public SoldierBattleReportChess mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 8: {
+            // id
+            id = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16) {
+              break;
+            }
+          }
+          case 16: {
+            // star
+            star = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.id, id);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeUInt32(FieldNames.star, star);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public SoldierBattleReportChess mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 2363: {
+            if (input.isAtField(FieldNames.id)) {
+              if (!input.trySkipNullValue()) {
+                id = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 2587250: {
+            if (input.isAtField(FieldNames.star)) {
+              if (!input.trySkipNullValue()) {
+                star = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public SoldierBattleReportChess clone() {
+      return new SoldierBattleReportChess().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static SoldierBattleReportChess parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new SoldierBattleReportChess(), data).checkInitialized();
+    }
+
+    public static SoldierBattleReportChess parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new SoldierBattleReportChess(), input).checkInitialized();
+    }
+
+    public static SoldierBattleReportChess parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new SoldierBattleReportChess(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating SoldierBattleReportChess messages
+     */
+    public static MessageFactory<SoldierBattleReportChess> getFactory() {
+      return SoldierBattleReportChessFactory.INSTANCE;
+    }
+
+    private enum SoldierBattleReportChessFactory implements MessageFactory<SoldierBattleReportChess> {
+      INSTANCE;
+
+      @Override
+      public SoldierBattleReportChess create() {
+        return SoldierBattleReportChess.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName id = FieldName.forField("Id");
+
+      static final FieldName star = FieldName.forField("Star");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+    }
+  }
+
+  /**
+   * Protobuf type {@code SoldierBattleReport}
+   */
+  public static final class SoldierBattleReport extends ProtoMessage<SoldierBattleReport> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint64 Time = 12;</code>
+     */
+    private long time;
+
+    /**
+     * <code>optional uint32 GradeChallengeId = 2;</code>
+     */
+    private int gradeChallengeId;
+
+    /**
+     * <code>optional uint32 BossAbilityId = 3;</code>
+     */
+    private int bossAbilityId;
+
+    /**
+     * <code>optional uint32 NodeIndex = 4;</code>
+     */
+    private int nodeIndex;
+
+    /**
+     * <code>optional uint32 RemainingHP = 5;</code>
+     */
+    private int remainingHP;
+
+    /**
+     * <code>optional uint32 TotalCoin = 6;</code>
+     */
+    private int totalCoin;
+
+    /**
+     * <code>optional uint32 Score = 10;</code>
+     */
+    private int score;
+
+    /**
+     * <code>optional bool Result = 9;</code>
+     */
+    private boolean result;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>optional string ReportId = 1;</code>
+     */
+    private final Utf8String reportId = Utf8String.newEmptyInstance();
+
+    /**
+     * <code>optional string Version = 11;</code>
+     */
+    private final Utf8String version = Utf8String.newEmptyInstance();
+
+    /**
+     * <code>repeated uint32 CardIds = 7;</code>
+     */
+    private final RepeatedInt cardIds = RepeatedInt.newEmptyInstance();
+
+    /**
+     * <code>repeated .SoldierBattleReportChess Chess = 8;</code>
+     */
+    private final RepeatedMessage<SoldierBattleReportChess> chess = RepeatedMessage.newEmptyInstance(SoldierBattleReportChess.getFactory());
+
+    private SoldierBattleReport() {
+    }
+
+    /**
+     * @return a new empty instance of {@code SoldierBattleReport}
+     */
+    public static SoldierBattleReport newInstance() {
+      return new SoldierBattleReport();
+    }
+
+    /**
+     * <code>optional uint64 Time = 12;</code>
+     * @return whether the time field is set
+     */
+    public boolean hasTime() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint64 Time = 12;</code>
+     * @return this
+     */
+    public SoldierBattleReport clearTime() {
+      bitField0_ &= ~0x00000001;
+      time = 0L;
+      return this;
+    }
+
+    /**
+     * <code>optional uint64 Time = 12;</code>
+     * @return the time
+     */
+    public long getTime() {
+      return time;
+    }
+
+    /**
+     * <code>optional uint64 Time = 12;</code>
+     * @param value the time to set
+     * @return this
+     */
+    public SoldierBattleReport setTime(final long value) {
+      bitField0_ |= 0x00000001;
+      time = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 GradeChallengeId = 2;</code>
+     * @return whether the gradeChallengeId field is set
+     */
+    public boolean hasGradeChallengeId() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional uint32 GradeChallengeId = 2;</code>
+     * @return this
+     */
+    public SoldierBattleReport clearGradeChallengeId() {
+      bitField0_ &= ~0x00000002;
+      gradeChallengeId = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 GradeChallengeId = 2;</code>
+     * @return the gradeChallengeId
+     */
+    public int getGradeChallengeId() {
+      return gradeChallengeId;
+    }
+
+    /**
+     * <code>optional uint32 GradeChallengeId = 2;</code>
+     * @param value the gradeChallengeId to set
+     * @return this
+     */
+    public SoldierBattleReport setGradeChallengeId(final int value) {
+      bitField0_ |= 0x00000002;
+      gradeChallengeId = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 BossAbilityId = 3;</code>
+     * @return whether the bossAbilityId field is set
+     */
+    public boolean hasBossAbilityId() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional uint32 BossAbilityId = 3;</code>
+     * @return this
+     */
+    public SoldierBattleReport clearBossAbilityId() {
+      bitField0_ &= ~0x00000004;
+      bossAbilityId = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 BossAbilityId = 3;</code>
+     * @return the bossAbilityId
+     */
+    public int getBossAbilityId() {
+      return bossAbilityId;
+    }
+
+    /**
+     * <code>optional uint32 BossAbilityId = 3;</code>
+     * @param value the bossAbilityId to set
+     * @return this
+     */
+    public SoldierBattleReport setBossAbilityId(final int value) {
+      bitField0_ |= 0x00000004;
+      bossAbilityId = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 NodeIndex = 4;</code>
+     * @return whether the nodeIndex field is set
+     */
+    public boolean hasNodeIndex() {
+      return (bitField0_ & 0x00000008) != 0;
+    }
+
+    /**
+     * <code>optional uint32 NodeIndex = 4;</code>
+     * @return this
+     */
+    public SoldierBattleReport clearNodeIndex() {
+      bitField0_ &= ~0x00000008;
+      nodeIndex = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 NodeIndex = 4;</code>
+     * @return the nodeIndex
+     */
+    public int getNodeIndex() {
+      return nodeIndex;
+    }
+
+    /**
+     * <code>optional uint32 NodeIndex = 4;</code>
+     * @param value the nodeIndex to set
+     * @return this
+     */
+    public SoldierBattleReport setNodeIndex(final int value) {
+      bitField0_ |= 0x00000008;
+      nodeIndex = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 RemainingHP = 5;</code>
+     * @return whether the remainingHP field is set
+     */
+    public boolean hasRemainingHP() {
+      return (bitField0_ & 0x00000010) != 0;
+    }
+
+    /**
+     * <code>optional uint32 RemainingHP = 5;</code>
+     * @return this
+     */
+    public SoldierBattleReport clearRemainingHP() {
+      bitField0_ &= ~0x00000010;
+      remainingHP = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 RemainingHP = 5;</code>
+     * @return the remainingHP
+     */
+    public int getRemainingHP() {
+      return remainingHP;
+    }
+
+    /**
+     * <code>optional uint32 RemainingHP = 5;</code>
+     * @param value the remainingHP to set
+     * @return this
+     */
+    public SoldierBattleReport setRemainingHP(final int value) {
+      bitField0_ |= 0x00000010;
+      remainingHP = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 TotalCoin = 6;</code>
+     * @return whether the totalCoin field is set
+     */
+    public boolean hasTotalCoin() {
+      return (bitField0_ & 0x00000020) != 0;
+    }
+
+    /**
+     * <code>optional uint32 TotalCoin = 6;</code>
+     * @return this
+     */
+    public SoldierBattleReport clearTotalCoin() {
+      bitField0_ &= ~0x00000020;
+      totalCoin = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 TotalCoin = 6;</code>
+     * @return the totalCoin
+     */
+    public int getTotalCoin() {
+      return totalCoin;
+    }
+
+    /**
+     * <code>optional uint32 TotalCoin = 6;</code>
+     * @param value the totalCoin to set
+     * @return this
+     */
+    public SoldierBattleReport setTotalCoin(final int value) {
+      bitField0_ |= 0x00000020;
+      totalCoin = value;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Score = 10;</code>
+     * @return whether the score field is set
+     */
+    public boolean hasScore() {
+      return (bitField0_ & 0x00000040) != 0;
+    }
+
+    /**
+     * <code>optional uint32 Score = 10;</code>
+     * @return this
+     */
+    public SoldierBattleReport clearScore() {
+      bitField0_ &= ~0x00000040;
+      score = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 Score = 10;</code>
+     * @return the score
+     */
+    public int getScore() {
+      return score;
+    }
+
+    /**
+     * <code>optional uint32 Score = 10;</code>
+     * @param value the score to set
+     * @return this
+     */
+    public SoldierBattleReport setScore(final int value) {
+      bitField0_ |= 0x00000040;
+      score = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bool Result = 9;</code>
+     * @return whether the result field is set
+     */
+    public boolean hasResult() {
+      return (bitField0_ & 0x00000080) != 0;
+    }
+
+    /**
+     * <code>optional bool Result = 9;</code>
+     * @return this
+     */
+    public SoldierBattleReport clearResult() {
+      bitField0_ &= ~0x00000080;
+      result = false;
+      return this;
+    }
+
+    /**
+     * <code>optional bool Result = 9;</code>
+     * @return the result
+     */
+    public boolean getResult() {
+      return result;
+    }
+
+    /**
+     * <code>optional bool Result = 9;</code>
+     * @param value the result to set
+     * @return this
+     */
+    public SoldierBattleReport setResult(final boolean value) {
+      bitField0_ |= 0x00000080;
+      result = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000100) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public SoldierBattleReport clearNextPackage() {
+      bitField0_ &= ~0x00000100;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000100;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public SoldierBattleReport addNextPackage(final byte value) {
+      bitField0_ |= 0x00000100;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public SoldierBattleReport addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000100;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public SoldierBattleReport setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000100;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>optional string ReportId = 1;</code>
+     * @return whether the reportId field is set
+     */
+    public boolean hasReportId() {
+      return (bitField0_ & 0x00000200) != 0;
+    }
+
+    /**
+     * <code>optional string ReportId = 1;</code>
+     * @return this
+     */
+    public SoldierBattleReport clearReportId() {
+      bitField0_ &= ~0x00000200;
+      reportId.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional string ReportId = 1;</code>
+     * @return the reportId
+     */
+    public java.lang.String getReportId() {
+      return reportId.getString();
+    }
+
+    /**
+     * <code>optional string ReportId = 1;</code>
+     * @return internal {@code Utf8String} representation of reportId for reading
+     */
+    public Utf8String getReportIdBytes() {
+      return this.reportId;
+    }
+
+    /**
+     * <code>optional string ReportId = 1;</code>
+     * @return internal {@code Utf8String} representation of reportId for modifications
+     */
+    public Utf8String getMutableReportIdBytes() {
+      bitField0_ |= 0x00000200;
+      return this.reportId;
+    }
+
+    /**
+     * <code>optional string ReportId = 1;</code>
+     * @param value the reportId to set
+     * @return this
+     */
+    public SoldierBattleReport setReportId(final CharSequence value) {
+      bitField0_ |= 0x00000200;
+      reportId.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional string ReportId = 1;</code>
+     * @param value the reportId to set
+     * @return this
+     */
+    public SoldierBattleReport setReportId(final Utf8String value) {
+      bitField0_ |= 0x00000200;
+      reportId.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional string Version = 11;</code>
+     * @return whether the version field is set
+     */
+    public boolean hasVersion() {
+      return (bitField0_ & 0x00000400) != 0;
+    }
+
+    /**
+     * <code>optional string Version = 11;</code>
+     * @return this
+     */
+    public SoldierBattleReport clearVersion() {
+      bitField0_ &= ~0x00000400;
+      version.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional string Version = 11;</code>
+     * @return the version
+     */
+    public java.lang.String getVersion() {
+      return version.getString();
+    }
+
+    /**
+     * <code>optional string Version = 11;</code>
+     * @return internal {@code Utf8String} representation of version for reading
+     */
+    public Utf8String getVersionBytes() {
+      return this.version;
+    }
+
+    /**
+     * <code>optional string Version = 11;</code>
+     * @return internal {@code Utf8String} representation of version for modifications
+     */
+    public Utf8String getMutableVersionBytes() {
+      bitField0_ |= 0x00000400;
+      return this.version;
+    }
+
+    /**
+     * <code>optional string Version = 11;</code>
+     * @param value the version to set
+     * @return this
+     */
+    public SoldierBattleReport setVersion(final CharSequence value) {
+      bitField0_ |= 0x00000400;
+      version.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional string Version = 11;</code>
+     * @param value the version to set
+     * @return this
+     */
+    public SoldierBattleReport setVersion(final Utf8String value) {
+      bitField0_ |= 0x00000400;
+      version.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 CardIds = 7;</code>
+     * @return whether the cardIds field is set
+     */
+    public boolean hasCardIds() {
+      return (bitField0_ & 0x00000800) != 0;
+    }
+
+    /**
+     * <code>repeated uint32 CardIds = 7;</code>
+     * @return this
+     */
+    public SoldierBattleReport clearCardIds() {
+      bitField0_ &= ~0x00000800;
+      cardIds.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 CardIds = 7;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableCardIds()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedInt getCardIds() {
+      return cardIds;
+    }
+
+    /**
+     * <code>repeated uint32 CardIds = 7;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedInt getMutableCardIds() {
+      bitField0_ |= 0x00000800;
+      return cardIds;
+    }
+
+    /**
+     * <code>repeated uint32 CardIds = 7;</code>
+     * @param value the cardIds to add
+     * @return this
+     */
+    public SoldierBattleReport addCardIds(final int value) {
+      bitField0_ |= 0x00000800;
+      cardIds.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated uint32 CardIds = 7;</code>
+     * @param values the cardIds to add
+     * @return this
+     */
+    public SoldierBattleReport addAllCardIds(final int... values) {
+      bitField0_ |= 0x00000800;
+      cardIds.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>repeated .SoldierBattleReportChess Chess = 8;</code>
+     * @return whether the chess field is set
+     */
+    public boolean hasChess() {
+      return (bitField0_ & 0x00001000) != 0;
+    }
+
+    /**
+     * <code>repeated .SoldierBattleReportChess Chess = 8;</code>
+     * @return this
+     */
+    public SoldierBattleReport clearChess() {
+      bitField0_ &= ~0x00001000;
+      chess.clear();
+      return this;
+    }
+
+    /**
+     * <code>repeated .SoldierBattleReportChess Chess = 8;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableChess()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedMessage<SoldierBattleReportChess> getChess() {
+      return chess;
+    }
+
+    /**
+     * <code>repeated .SoldierBattleReportChess Chess = 8;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedMessage<SoldierBattleReportChess> getMutableChess() {
+      bitField0_ |= 0x00001000;
+      return chess;
+    }
+
+    /**
+     * <code>repeated .SoldierBattleReportChess Chess = 8;</code>
+     * @param value the chess to add
+     * @return this
+     */
+    public SoldierBattleReport addChess(final SoldierBattleReportChess value) {
+      bitField0_ |= 0x00001000;
+      chess.add(value);
+      return this;
+    }
+
+    /**
+     * <code>repeated .SoldierBattleReportChess Chess = 8;</code>
+     * @param values the chess to add
+     * @return this
+     */
+    public SoldierBattleReport addAllChess(final SoldierBattleReportChess... values) {
+      bitField0_ |= 0x00001000;
+      chess.addAll(values);
+      return this;
+    }
+
+    @Override
+    public SoldierBattleReport copyFrom(final SoldierBattleReport other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        time = other.time;
+        gradeChallengeId = other.gradeChallengeId;
+        bossAbilityId = other.bossAbilityId;
+        nodeIndex = other.nodeIndex;
+        remainingHP = other.remainingHP;
+        totalCoin = other.totalCoin;
+        score = other.score;
+        result = other.result;
+        nextPackage.copyFrom(other.nextPackage);
+        reportId.copyFrom(other.reportId);
+        version.copyFrom(other.version);
+        cardIds.copyFrom(other.cardIds);
+        chess.copyFrom(other.chess);
+      }
+      return this;
+    }
+
+    @Override
+    public SoldierBattleReport mergeFrom(final SoldierBattleReport other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasTime()) {
+        setTime(other.time);
+      }
+      if (other.hasGradeChallengeId()) {
+        setGradeChallengeId(other.gradeChallengeId);
+      }
+      if (other.hasBossAbilityId()) {
+        setBossAbilityId(other.bossAbilityId);
+      }
+      if (other.hasNodeIndex()) {
+        setNodeIndex(other.nodeIndex);
+      }
+      if (other.hasRemainingHP()) {
+        setRemainingHP(other.remainingHP);
+      }
+      if (other.hasTotalCoin()) {
+        setTotalCoin(other.totalCoin);
+      }
+      if (other.hasScore()) {
+        setScore(other.score);
+      }
+      if (other.hasResult()) {
+        setResult(other.result);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasReportId()) {
+        getMutableReportIdBytes().copyFrom(other.reportId);
+      }
+      if (other.hasVersion()) {
+        getMutableVersionBytes().copyFrom(other.version);
+      }
+      if (other.hasCardIds()) {
+        getMutableCardIds().addAll(other.cardIds);
+      }
+      if (other.hasChess()) {
+        getMutableChess().addAll(other.chess);
+      }
+      return this;
+    }
+
+    @Override
+    public SoldierBattleReport clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      time = 0L;
+      gradeChallengeId = 0;
+      bossAbilityId = 0;
+      nodeIndex = 0;
+      remainingHP = 0;
+      totalCoin = 0;
+      score = 0;
+      result = false;
+      nextPackage.clear();
+      reportId.clear();
+      version.clear();
+      cardIds.clear();
+      chess.clear();
+      return this;
+    }
+
+    @Override
+    public SoldierBattleReport clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      reportId.clear();
+      version.clear();
+      cardIds.clear();
+      chess.clearQuick();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof SoldierBattleReport)) {
+        return false;
+      }
+      SoldierBattleReport other = (SoldierBattleReport) o;
+      return bitField0_ == other.bitField0_
+        && (!hasTime() || time == other.time)
+        && (!hasGradeChallengeId() || gradeChallengeId == other.gradeChallengeId)
+        && (!hasBossAbilityId() || bossAbilityId == other.bossAbilityId)
+        && (!hasNodeIndex() || nodeIndex == other.nodeIndex)
+        && (!hasRemainingHP() || remainingHP == other.remainingHP)
+        && (!hasTotalCoin() || totalCoin == other.totalCoin)
+        && (!hasScore() || score == other.score)
+        && (!hasResult() || result == other.result)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasReportId() || reportId.equals(other.reportId))
+        && (!hasVersion() || version.equals(other.version))
+        && (!hasCardIds() || cardIds.equals(other.cardIds))
+        && (!hasChess() || chess.equals(other.chess));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 96);
+        output.writeUInt64NoTag(time);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeUInt32NoTag(gradeChallengeId);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 24);
+        output.writeUInt32NoTag(bossAbilityId);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeRawByte((byte) 32);
+        output.writeUInt32NoTag(nodeIndex);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeRawByte((byte) 40);
+        output.writeUInt32NoTag(remainingHP);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        output.writeRawByte((byte) 48);
+        output.writeUInt32NoTag(totalCoin);
+      }
+      if ((bitField0_ & 0x00000040) != 0) {
+        output.writeRawByte((byte) 80);
+        output.writeUInt32NoTag(score);
+      }
+      if ((bitField0_ & 0x00000080) != 0) {
+        output.writeRawByte((byte) 72);
+        output.writeBoolNoTag(result);
+      }
+      if ((bitField0_ & 0x00000100) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000200) != 0) {
+        output.writeRawByte((byte) 10);
+        output.writeStringNoTag(reportId);
+      }
+      if ((bitField0_ & 0x00000400) != 0) {
+        output.writeRawByte((byte) 90);
+        output.writeStringNoTag(version);
+      }
+      if ((bitField0_ & 0x00000800) != 0) {
+        for (int i = 0; i < cardIds.length(); i++) {
+          output.writeRawByte((byte) 56);
+          output.writeUInt32NoTag(cardIds.array()[i]);
+        }
+      }
+      if ((bitField0_ & 0x00001000) != 0) {
+        for (int i = 0; i < chess.length(); i++) {
+          output.writeRawByte((byte) 66);
+          output.writeMessageNoTag(chess.get(i));
+        }
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt64SizeNoTag(time);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(gradeChallengeId);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(bossAbilityId);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(nodeIndex);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(remainingHP);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(totalCoin);
+      }
+      if ((bitField0_ & 0x00000040) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(score);
+      }
+      if ((bitField0_ & 0x00000080) != 0) {
+        size += 2;
+      }
+      if ((bitField0_ & 0x00000100) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000200) != 0) {
+        size += 1 + ProtoSink.computeStringSizeNoTag(reportId);
+      }
+      if ((bitField0_ & 0x00000400) != 0) {
+        size += 1 + ProtoSink.computeStringSizeNoTag(version);
+      }
+      if ((bitField0_ & 0x00000800) != 0) {
+        size += (1 * cardIds.length()) + ProtoSink.computeRepeatedUInt32SizeNoTag(cardIds);
+      }
+      if ((bitField0_ & 0x00001000) != 0) {
+        size += (1 * chess.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(chess);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public SoldierBattleReport mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 96: {
+            // time
+            time = input.readUInt64();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16) {
+              break;
+            }
+          }
+          case 16: {
+            // gradeChallengeId
+            gradeChallengeId = input.readUInt32();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
+            // bossAbilityId
+            bossAbilityId = input.readUInt32();
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 32) {
+              break;
+            }
+          }
+          case 32: {
+            // nodeIndex
+            nodeIndex = input.readUInt32();
+            bitField0_ |= 0x00000008;
+            tag = input.readTag();
+            if (tag != 40) {
+              break;
+            }
+          }
+          case 40: {
+            // remainingHP
+            remainingHP = input.readUInt32();
+            bitField0_ |= 0x00000010;
+            tag = input.readTag();
+            if (tag != 48) {
+              break;
+            }
+          }
+          case 48: {
+            // totalCoin
+            totalCoin = input.readUInt32();
+            bitField0_ |= 0x00000020;
+            tag = input.readTag();
+            if (tag != 80) {
+              break;
+            }
+          }
+          case 80: {
+            // score
+            score = input.readUInt32();
+            bitField0_ |= 0x00000040;
+            tag = input.readTag();
+            if (tag != 72) {
+              break;
+            }
+          }
+          case 72: {
+            // result
+            result = input.readBool();
+            bitField0_ |= 0x00000080;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000100;
+            tag = input.readTag();
+            if (tag != 10) {
+              break;
+            }
+          }
+          case 10: {
+            // reportId
+            input.readString(reportId);
+            bitField0_ |= 0x00000200;
+            tag = input.readTag();
+            if (tag != 90) {
+              break;
+            }
+          }
+          case 90: {
+            // version
+            input.readString(version);
+            bitField0_ |= 0x00000400;
+            tag = input.readTag();
+            if (tag != 58) {
+              break;
+            }
+          }
+          case 58: {
+            // cardIds [packed=true]
+            input.readPackedUInt32(cardIds, tag);
+            bitField0_ |= 0x00000800;
+            tag = input.readTag();
+            if (tag != 66) {
+              break;
+            }
+          }
+          case 66: {
+            // chess
+            tag = input.readRepeatedMessage(chess, tag);
+            bitField0_ |= 0x00001000;
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+          case 56: {
+            // cardIds [packed=false]
+            tag = input.readRepeatedUInt32(cardIds, tag);
+            bitField0_ |= 0x00000800;
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt64(FieldNames.time, time);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeUInt32(FieldNames.gradeChallengeId, gradeChallengeId);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeUInt32(FieldNames.bossAbilityId, bossAbilityId);
+      }
+      if ((bitField0_ & 0x00000008) != 0) {
+        output.writeUInt32(FieldNames.nodeIndex, nodeIndex);
+      }
+      if ((bitField0_ & 0x00000010) != 0) {
+        output.writeUInt32(FieldNames.remainingHP, remainingHP);
+      }
+      if ((bitField0_ & 0x00000020) != 0) {
+        output.writeUInt32(FieldNames.totalCoin, totalCoin);
+      }
+      if ((bitField0_ & 0x00000040) != 0) {
+        output.writeUInt32(FieldNames.score, score);
+      }
+      if ((bitField0_ & 0x00000080) != 0) {
+        output.writeBool(FieldNames.result, result);
+      }
+      if ((bitField0_ & 0x00000100) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000200) != 0) {
+        output.writeString(FieldNames.reportId, reportId);
+      }
+      if ((bitField0_ & 0x00000400) != 0) {
+        output.writeString(FieldNames.version, version);
+      }
+      if ((bitField0_ & 0x00000800) != 0) {
+        output.writeRepeatedUInt32(FieldNames.cardIds, cardIds);
+      }
+      if ((bitField0_ & 0x00001000) != 0) {
+        output.writeRepeatedMessage(FieldNames.chess, chess);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public SoldierBattleReport mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 2606829: {
+            if (input.isAtField(FieldNames.time)) {
+              if (!input.trySkipNullValue()) {
+                time = input.readUInt64();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1764841305: {
+            if (input.isAtField(FieldNames.gradeChallengeId)) {
+              if (!input.trySkipNullValue()) {
+                gradeChallengeId = input.readUInt32();
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 1305721560: {
+            if (input.isAtField(FieldNames.bossAbilityId)) {
+              if (!input.trySkipNullValue()) {
+                bossAbilityId = input.readUInt32();
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1845683248: {
+            if (input.isAtField(FieldNames.nodeIndex)) {
+              if (!input.trySkipNullValue()) {
+                nodeIndex = input.readUInt32();
+                bitField0_ |= 0x00000008;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 63879518: {
+            if (input.isAtField(FieldNames.remainingHP)) {
+              if (!input.trySkipNullValue()) {
+                remainingHP = input.readUInt32();
+                bitField0_ |= 0x00000010;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 1426185173: {
+            if (input.isAtField(FieldNames.totalCoin)) {
+              if (!input.trySkipNullValue()) {
+                totalCoin = input.readUInt32();
+                bitField0_ |= 0x00000020;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 79711858: {
+            if (input.isAtField(FieldNames.score)) {
+              if (!input.trySkipNullValue()) {
+                score = input.readUInt32();
+                bitField0_ |= 0x00000040;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -1850559427: {
+            if (input.isAtField(FieldNames.result)) {
+              if (!input.trySkipNullValue()) {
+                result = input.readBool();
+                bitField0_ |= 0x00000080;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000100;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -362396273: {
+            if (input.isAtField(FieldNames.reportId)) {
+              if (!input.trySkipNullValue()) {
+                input.readString(reportId);
+                bitField0_ |= 0x00000200;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 2016261304: {
+            if (input.isAtField(FieldNames.version)) {
+              if (!input.trySkipNullValue()) {
+                input.readString(version);
+                bitField0_ |= 0x00000400;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2076401304: {
+            if (input.isAtField(FieldNames.cardIds)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedUInt32(cardIds);
+                bitField0_ |= 0x00000800;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 65074912: {
+            if (input.isAtField(FieldNames.chess)) {
+              if (!input.trySkipNullValue()) {
+                input.readRepeatedMessage(chess);
+                bitField0_ |= 0x00001000;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public SoldierBattleReport clone() {
+      return new SoldierBattleReport().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static SoldierBattleReport parseFrom(final byte[] data) throws
+        InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new SoldierBattleReport(), data).checkInitialized();
+    }
+
+    public static SoldierBattleReport parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new SoldierBattleReport(), input).checkInitialized();
+    }
+
+    public static SoldierBattleReport parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new SoldierBattleReport(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating SoldierBattleReport messages
+     */
+    public static MessageFactory<SoldierBattleReport> getFactory() {
+      return SoldierBattleReportFactory.INSTANCE;
+    }
+
+    private enum SoldierBattleReportFactory implements MessageFactory<SoldierBattleReport> {
+      INSTANCE;
+
+      @Override
+      public SoldierBattleReport create() {
+        return SoldierBattleReport.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName time = FieldName.forField("Time");
+
+      static final FieldName gradeChallengeId = FieldName.forField("GradeChallengeId");
+
+      static final FieldName bossAbilityId = FieldName.forField("BossAbilityId");
+
+      static final FieldName nodeIndex = FieldName.forField("NodeIndex");
+
+      static final FieldName remainingHP = FieldName.forField("RemainingHP");
+
+      static final FieldName totalCoin = FieldName.forField("TotalCoin");
+
+      static final FieldName score = FieldName.forField("Score");
+
+      static final FieldName result = FieldName.forField("Result");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName reportId = FieldName.forField("ReportId");
+
+      static final FieldName version = FieldName.forField("Version");
+
+      static final FieldName cardIds = FieldName.forField("CardIds");
+
+      static final FieldName chess = FieldName.forField("Chess");
+    }
+  }
+
+  /**
+   * Protobuf type {@code DormOutInfo}
+   */
+  public static final class DormOutInfo extends ProtoMessage<DormOutInfo> implements Cloneable {
+    private static final long serialVersionUID = 0L;
+
+    /**
+     * <code>optional uint32 CollectionValue = 2;</code>
+     */
+    private int collectionValue;
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     */
+    private final RepeatedByte nextPackage = RepeatedByte.newEmptyInstance();
+
+    /**
+     * <code>optional string DormName = 1;</code>
+     */
+    private final Utf8String dormName = Utf8String.newEmptyInstance();
+
+    private DormOutInfo() {
+    }
+
+    /**
+     * @return a new empty instance of {@code DormOutInfo}
+     */
+    public static DormOutInfo newInstance() {
+      return new DormOutInfo();
+    }
+
+    /**
+     * <code>optional uint32 CollectionValue = 2;</code>
+     * @return whether the collectionValue field is set
+     */
+    public boolean hasCollectionValue() {
+      return (bitField0_ & 0x00000001) != 0;
+    }
+
+    /**
+     * <code>optional uint32 CollectionValue = 2;</code>
+     * @return this
+     */
+    public DormOutInfo clearCollectionValue() {
+      bitField0_ &= ~0x00000001;
+      collectionValue = 0;
+      return this;
+    }
+
+    /**
+     * <code>optional uint32 CollectionValue = 2;</code>
+     * @return the collectionValue
+     */
+    public int getCollectionValue() {
+      return collectionValue;
+    }
+
+    /**
+     * <code>optional uint32 CollectionValue = 2;</code>
+     * @param value the collectionValue to set
+     * @return this
+     */
+    public DormOutInfo setCollectionValue(final int value) {
+      bitField0_ |= 0x00000001;
+      collectionValue = value;
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return whether the nextPackage field is set
+     */
+    public boolean hasNextPackage() {
+      return (bitField0_ & 0x00000002) != 0;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @return this
+     */
+    public DormOutInfo clearNextPackage() {
+      bitField0_ &= ~0x00000002;
+      nextPackage.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object without modifying any has state.
+     * The returned object should not be modified and be treated as read-only.
+     *
+     * Use {@link #getMutableNextPackage()} if you want to modify it.
+     *
+     * @return internal storage object for reading
+     */
+    public RepeatedByte getNextPackage() {
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     *
+     * This method returns the internal storage object and sets the corresponding
+     * has state. The returned object will become part of this message and its
+     * contents may be modified as long as the has state is not cleared.
+     *
+     * @return internal storage object for modifications
+     */
+    public RepeatedByte getMutableNextPackage() {
+      bitField0_ |= 0x00000002;
+      return nextPackage;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param value the nextPackage to add
+     * @return this
+     */
+    public DormOutInfo addNextPackage(final byte value) {
+      bitField0_ |= 0x00000002;
+      nextPackage.add(value);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to add
+     * @return this
+     */
+    public DormOutInfo addAllNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.addAll(values);
+      return this;
+    }
+
+    /**
+     * <code>optional bytes NextPackage = 2047;</code>
+     * @param values the nextPackage to set
+     * @return this
+     */
+    public DormOutInfo setNextPackage(final byte... values) {
+      bitField0_ |= 0x00000002;
+      nextPackage.copyFrom(values);
+      return this;
+    }
+
+    /**
+     * <code>optional string DormName = 1;</code>
+     * @return whether the dormName field is set
+     */
+    public boolean hasDormName() {
+      return (bitField0_ & 0x00000004) != 0;
+    }
+
+    /**
+     * <code>optional string DormName = 1;</code>
+     * @return this
+     */
+    public DormOutInfo clearDormName() {
+      bitField0_ &= ~0x00000004;
+      dormName.clear();
+      return this;
+    }
+
+    /**
+     * <code>optional string DormName = 1;</code>
+     * @return the dormName
+     */
+    public java.lang.String getDormName() {
+      return dormName.getString();
+    }
+
+    /**
+     * <code>optional string DormName = 1;</code>
+     * @return internal {@code Utf8String} representation of dormName for reading
+     */
+    public Utf8String getDormNameBytes() {
+      return this.dormName;
+    }
+
+    /**
+     * <code>optional string DormName = 1;</code>
+     * @return internal {@code Utf8String} representation of dormName for modifications
+     */
+    public Utf8String getMutableDormNameBytes() {
+      bitField0_ |= 0x00000004;
+      return this.dormName;
+    }
+
+    /**
+     * <code>optional string DormName = 1;</code>
+     * @param value the dormName to set
+     * @return this
+     */
+    public DormOutInfo setDormName(final CharSequence value) {
+      bitField0_ |= 0x00000004;
+      dormName.copyFrom(value);
+      return this;
+    }
+
+    /**
+     * <code>optional string DormName = 1;</code>
+     * @param value the dormName to set
+     * @return this
+     */
+    public DormOutInfo setDormName(final Utf8String value) {
+      bitField0_ |= 0x00000004;
+      dormName.copyFrom(value);
+      return this;
+    }
+
+    @Override
+    public DormOutInfo copyFrom(final DormOutInfo other) {
+      cachedSize = other.cachedSize;
+      if ((bitField0_ | other.bitField0_) != 0) {
+        bitField0_ = other.bitField0_;
+        collectionValue = other.collectionValue;
+        nextPackage.copyFrom(other.nextPackage);
+        dormName.copyFrom(other.dormName);
+      }
+      return this;
+    }
+
+    @Override
+    public DormOutInfo mergeFrom(final DormOutInfo other) {
+      if (other.isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      if (other.hasCollectionValue()) {
+        setCollectionValue(other.collectionValue);
+      }
+      if (other.hasNextPackage()) {
+        getMutableNextPackage().copyFrom(other.nextPackage);
+      }
+      if (other.hasDormName()) {
+        getMutableDormNameBytes().copyFrom(other.dormName);
+      }
+      return this;
+    }
+
+    @Override
+    public DormOutInfo clear() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      collectionValue = 0;
+      nextPackage.clear();
+      dormName.clear();
+      return this;
+    }
+
+    @Override
+    public DormOutInfo clearQuick() {
+      if (isEmpty()) {
+        return this;
+      }
+      cachedSize = -1;
+      bitField0_ = 0;
+      nextPackage.clear();
+      dormName.clear();
+      return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == this) {
+        return true;
+      }
+      if (!(o instanceof DormOutInfo)) {
+        return false;
+      }
+      DormOutInfo other = (DormOutInfo) o;
+      return bitField0_ == other.bitField0_
+        && (!hasCollectionValue() || collectionValue == other.collectionValue)
+        && (!hasNextPackage() || nextPackage.equals(other.nextPackage))
+        && (!hasDormName() || dormName.equals(other.dormName));
+    }
+
+    @Override
+    public void writeTo(final ProtoSink output) throws IOException {
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeRawByte((byte) 16);
+        output.writeUInt32NoTag(collectionValue);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeRawLittleEndian16((short) 32762);
+        output.writeBytesNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeRawByte((byte) 10);
+        output.writeStringNoTag(dormName);
+      }
+    }
+
+    @Override
+    protected int computeSerializedSize() {
+      int size = 0;
+      if ((bitField0_ & 0x00000001) != 0) {
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(collectionValue);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        size += 2 + ProtoSink.computeBytesSizeNoTag(nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        size += 1 + ProtoSink.computeStringSizeNoTag(dormName);
+      }
+      return size;
+    }
+
+    @Override
+    @SuppressWarnings("fallthrough")
+    public DormOutInfo mergeFrom(final ProtoSource input) throws IOException {
+      // Enabled Fall-Through Optimization (QuickBuffers)
+      int tag = input.readTag();
+      while (true) {
+        switch (tag) {
+          case 16: {
+            // collectionValue
+            collectionValue = input.readUInt32();
+            bitField0_ |= 0x00000001;
+            tag = input.readTag();
+            if (tag != 16378) {
+              break;
+            }
+          }
+          case 16378: {
+            // nextPackage
+            input.readBytes(nextPackage);
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 10) {
+              break;
+            }
+          }
+          case 10: {
+            // dormName
+            input.readString(dormName);
+            bitField0_ |= 0x00000004;
+            tag = input.readTag();
+            if (tag != 0) {
+              break;
+            }
+          }
+          case 0: {
+            return this;
+          }
+          default: {
+            if (!input.skipField(tag)) {
+              return this;
+            }
+            tag = input.readTag();
+            break;
+          }
+        }
+      }
+    }
+
+    @Override
+    public void writeTo(final JsonSink output) throws IOException {
+      output.beginObject();
+      if ((bitField0_ & 0x00000001) != 0) {
+        output.writeUInt32(FieldNames.collectionValue, collectionValue);
+      }
+      if ((bitField0_ & 0x00000002) != 0) {
+        output.writeBytes(FieldNames.nextPackage, nextPackage);
+      }
+      if ((bitField0_ & 0x00000004) != 0) {
+        output.writeString(FieldNames.dormName, dormName);
+      }
+      output.endObject();
+    }
+
+    @Override
+    public DormOutInfo mergeFrom(final JsonSource input) throws IOException {
+      if (!input.beginObject()) {
+        return this;
+      }
+      while (!input.isAtEnd()) {
+        switch (input.readFieldHash()) {
+          case 54598995: {
+            if (input.isAtField(FieldNames.collectionValue)) {
+              if (!input.trySkipNullValue()) {
+                collectionValue = input.readUInt32();
+                bitField0_ |= 0x00000001;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case -2082324045: {
+            if (input.isAtField(FieldNames.nextPackage)) {
+              if (!input.trySkipNullValue()) {
+                input.readBytes(nextPackage);
+                bitField0_ |= 0x00000002;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          case 1347486673: {
+            if (input.isAtField(FieldNames.dormName)) {
+              if (!input.trySkipNullValue()) {
+                input.readString(dormName);
+                bitField0_ |= 0x00000004;
+              }
+            } else {
+              input.skipUnknownField();
+            }
+            break;
+          }
+          default: {
+            input.skipUnknownField();
+            break;
+          }
+        }
+      }
+      input.endObject();
+      return this;
+    }
+
+    @Override
+    public DormOutInfo clone() {
+      return new DormOutInfo().copyFrom(this);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return ((bitField0_) == 0);
+    }
+
+    public static DormOutInfo parseFrom(final byte[] data) throws InvalidProtocolBufferException {
+      return ProtoMessage.mergeFrom(new DormOutInfo(), data).checkInitialized();
+    }
+
+    public static DormOutInfo parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new DormOutInfo(), input).checkInitialized();
+    }
+
+    public static DormOutInfo parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new DormOutInfo(), input).checkInitialized();
+    }
+
+    /**
+     * @return factory for creating DormOutInfo messages
+     */
+    public static MessageFactory<DormOutInfo> getFactory() {
+      return DormOutInfoFactory.INSTANCE;
+    }
+
+    private enum DormOutInfoFactory implements MessageFactory<DormOutInfo> {
+      INSTANCE;
+
+      @Override
+      public DormOutInfo create() {
+        return DormOutInfo.newInstance();
+      }
+    }
+
+    /**
+     * Contains name constants used for serializing JSON
+     */
+    static class FieldNames {
+      static final FieldName collectionValue = FieldName.forField("CollectionValue");
+
+      static final FieldName nextPackage = FieldName.forField("NextPackage");
+
+      static final FieldName dormName = FieldName.forField("DormName");
     }
   }
 }

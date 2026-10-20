@@ -6,7 +6,7 @@ import emu.nebula.game.inventory.ItemAcquireMap;
 import emu.nebula.game.player.Player;
 import emu.nebula.game.player.PlayerChangeInfo;
 import emu.nebula.proto.GachaNewbieInfoOuterClass.GachaNewbieInfo;
-import emu.nebula.proto.GachaNewbieInfoOuterClass.UI32s;
+import emu.nebula.proto.Public.UI32s;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 
 import java.util.ArrayList;

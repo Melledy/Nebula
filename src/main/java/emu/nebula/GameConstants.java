@@ -7,7 +7,7 @@ import emu.nebula.game.inventory.ItemParamMap;
 import emu.nebula.util.WeightedList;
 
 public class GameConstants {
-    public static final String VERSION = "1.16.0";
+    public static final String VERSION = "2.0.0";
     public static int DATA_VERSION = 0;
     
     public static final ZoneId UTC_ZONE = ZoneId.of("UTC");
@@ -17,6 +17,7 @@ public class GameConstants {
     public static final int INTRO_GUIDE_ID = 1;
     public static final int DEFAULT_HONOR_ID = 111001;
 
+    // Item ids
     public static final int GOLD_ITEM_ID = 1;
     public static final int STELLANITE_DUST_ITEM_ID = 2;
     public static final int PAID_STELLANITE_LUMINA_ITEM_ID = 3;
@@ -26,9 +27,11 @@ public class GameConstants {
     public static final int WEEKLY_ENTRY_ITEM_ID = 28;
     public static final int JOINT_DRILL_TICKET_ID = 36;
     
+    // Energy
     public static final int MAX_ENERGY = 240;
     public static final int ENERGY_REGEN_TIME = 360; // Timeunit = Seconds
     
+    // Characters
     public static final int CHARACTER_MAX_GEMS_PER_SLOT = 4;
     public static final int CHARACTER_MAX_GEM_PRESETS = 3;
     public static final int CHARACTER_MAX_GEM_SLOTS = 3;
@@ -40,22 +43,26 @@ public class GameConstants {
     
     public static final int AFFINITY_HONOR_UNLOCK_LEVEL = 10;
     
+    // Client limits
     public static final int MAX_FORMATIONS = 6;
     public static final int MAX_SHOWCASE_IDS = 5;
     public static final int MAX_BUILDS = 100;
     public static final int MAX_PRESETS = 50;
-    
-    public static final int BATTLE_PASS_ID = 1; // Default battle pass
-    public static final int BATTLE_PASS_UNLOCK_LEVEL = 3;
-    
+
     public static final int MAX_FRIENDSHIPS = 50;
     public static final int MAX_PENDING_FRIENDSHIPS = 30;
     
+    // Battle Pass
+    public static final int BATTLE_PASS_ID = 1; // Default battle pass
+    public static final int BATTLE_PASS_UNLOCK_LEVEL = 3;
+    
+    // Star Tower (Monolith)
     public static final int TOWER_COIN_ITEM_ID = 11;
     public static final int[] TOWER_EVENTS_IDS = new int[] {
         101, 102, 104, 105, 106, 107, 108, 114, 115, 116, 126, 127, 128
     };
     
+    // Trace Hunt
     public static final int TRACE_HUNT_TOKEN_ID = 37;
     public static final int TRACE_HUNT_REQUEST_ITEM_ID = 38;
     public static final int TRACE_HUNT_PERMIT_ITEM_ID = 39;
@@ -65,6 +72,7 @@ public class GameConstants {
     public static final int TRACE_HUNT_MAX_TRACE_PROGRESS = 10_000;
     public static final int TRACE_HUNT_MAX_HUNT_PROGRESS = 10_000;
     
+    // Etc
     public static final int REFRESH_TYPE_DAILY = 1;
     public static final int REFRESH_TYPE_WEEKLY = 2;
     public static final int REFRESH_TYPE_MONTHLY = 3;
@@ -83,7 +91,6 @@ public class GameConstants {
     public static final int UNLIMITED_STOCK = Integer.MAX_VALUE;
     
     // Daily gifts (Custom)
-    
     public static final WeightedList<ItemParam> DAILY_SHOP_GIFTS = new WeightedList<>();
     public static final WeightedList<ItemParamMap> DAILY_MALL_GIFTS = new WeightedList<>();
     
