@@ -21,12 +21,14 @@ Latest nightly compiled server jar: [Nightly](https://nightly.link/Melledy/Nebul
 - Commissions
 - Heartlink
 - Achievements
+- Tower (dorm system)
 - Monoliths
 - Bounty Trials
 - Menance Arena
 - Proving Grounds
 - Catacylsm Survivor (talents not fully working)
 - Boss Blitz
+- Shadow Siege
 - Events (Only tower defense and trials. Other events may work)
 
 ### Supported regions

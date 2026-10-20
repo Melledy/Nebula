@@ -16,6 +16,7 @@ import emu.nebula.game.agent.AgentManager;
 import emu.nebula.game.battlepass.BattlePass;
 import emu.nebula.game.character.GameCharacter;
 import emu.nebula.game.character.GameDisc;
+import emu.nebula.game.dorm.DormManager;
 import emu.nebula.game.formation.FormationManager;
 import emu.nebula.game.friends.Friendship;
 import emu.nebula.game.gacha.GachaManager;
@@ -187,6 +188,7 @@ public class PlayerModule extends GameContextModule {
         datastore.getCollection(TraceHuntManager.class).deleteOne(idFilter);
         datastore.getCollection(AchievementManager.class).deleteOne(idFilter);
         datastore.getCollection(ActivityManager.class).deleteOne(idFilter);
+        datastore.getCollection(DormManager.class).deleteOne(idFilter);
         
         datastore.getCollection(BattlePass.class).deleteOne(idFilter);
         datastore.getCollection(ScoreBossRankEntry.class).deleteOne(idFilter);

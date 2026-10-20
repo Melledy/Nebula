@@ -17,6 +17,7 @@ import emu.nebula.game.agent.AgentManager;
 import emu.nebula.game.battlepass.BattlePassManager;
 import emu.nebula.game.character.CharacterStorage;
 import emu.nebula.game.dating.DatingManager;
+import emu.nebula.game.dorm.DormManager;
 import emu.nebula.game.formation.FormationManager;
 import emu.nebula.game.friends.FriendList;
 import emu.nebula.game.gacha.GachaManager;
@@ -113,6 +114,7 @@ public class Player implements GameDatabaseObject {
     private transient AgentManager agentManager;
     private transient TraceHuntManager traceHuntManager;
     private transient ActivityManager activityManager;
+    private transient DormManager dormManager;
     
     // Extra
     private transient Stack<NetMsgPacket> nextPackages;
@@ -733,6 +735,9 @@ public class Player implements GameDatabaseObject {
         // Reset daily trace hunt items
         this.getTraceHuntManager().resetDailyQuota();
         
+        // Reset dorm dailies
+        this.getDormManager().resetDailies();
+        
         // Check to reset weeklies
         if (resetWeekly) {
             // Add weekly boss entry item
@@ -780,7 +785,7 @@ public class Player implements GameDatabaseObject {
     
     // Login
     
-    private <T extends PlayerManager> T loadManagerFromDatabase(Class<T> cls) {
+    public <T extends PlayerManager> T loadManagerFromDatabase(Class<T> cls) {
         var manager = Nebula.getGameDatabase().getObjectByField(cls, "_id", this.getUid());
         
         if (manager != null) {
@@ -824,6 +829,7 @@ public class Player implements GameDatabaseObject {
         this.agentManager = this.loadManagerFromDatabase(AgentManager.class);
         this.traceHuntManager = this.loadManagerFromDatabase(TraceHuntManager.class);
         this.activityManager = this.loadManagerFromDatabase(ActivityManager.class);
+        this.dormManager = this.loadManagerFromDatabase(DormManager.class);
         
         // Database fixes
         if (this.showChars == null) {
@@ -1105,6 +1111,11 @@ public class Player implements GameDatabaseObject {
         if (this.getAchievementManager().isQueueSave()) {
             this.getAchievementManager().save();
         }
+        
+        // Check if we need save dorm data
+        if (this.getDormManager().isQueueSave()) {
+            this.getDormManager().save();
+        }
     }
     
     /**
@@ -1146,7 +1157,8 @@ public class Player implements GameDatabaseObject {
                 .setDailyShopRewardStatus(this.getQuestManager().hasDailyShopReward())
                 .setDailyMallRewardStatus(this.getQuestManager().hasDailyMallReward())
                 .setMusicInfo(this.getMusic())
-                .setAchievements(new byte[64]);
+                .setAchievements(new byte[64])
+                .setDorm(this.getDormManager().getDormHotProto());
         
         var acc = proto.getMutableAcc()
             .setNickName(this.getName())
@@ -1262,6 +1274,7 @@ public class Player implements GameDatabaseObject {
         state.getMutableScoreBoss();
         state.getMutableCharAffinityRewards();
         state.getMutableTraceHunt().setBossRewardCanReceive(this.getTraceHuntManager().isHuntComplete());
+        state.setDormStateFlag(this.getDormManager().getState());
         
         // Star tower potential book state
         var book = state.getMutableStarTowerBook();

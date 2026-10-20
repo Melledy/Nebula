@@ -71,6 +71,25 @@ public class GameConstants {
     public static final int[] TRACE_HUNT_TRACE_IDS = {21, 22, 23, 31, 41};
     public static final int TRACE_HUNT_MAX_TRACE_PROGRESS = 10_000;
     public static final int TRACE_HUNT_MAX_HUNT_PROGRESS = 10_000;
+
+    // Dorm
+    public static final int DORM_MAX_PRESET_NUM = 20;
+    public static final int DORM_DEFAULT_PRESET_NUM = 10;
+    public static final int DORM_MAX_ROOM_NUM = 4;
+    public static final int DORM_INVITATION_ROLE_NORMAL_NUM = 3;
+    public static final int DORM_INVITATION_ROLE_RAND_NUM = 1;
+    public static final int DORM_ROLE_INTERACTION_MAX_NUM = 5;
+    public static final int DORM_ROLE_INTERACTION_DROP_ID = 4002;
+    public static final int DORM_ROLE_FAVORABILITY = 300;
+    public static final int DORM_ROLE_AFFINITY_GIFT_MAX_NUM = 5;
+    public static final int DORM_ROLE_AFFINITY_GIFT_DAILY_NUM = 1;
+    public static final int DORM_NAME_RESET_TIME_LIMIT = 604_800;
+    public static final int DORM_LIKE_LIMIT = 3;
+    public static final int DORM_BLOCKS_CONVERT_PROP = 1;
+    public static final int DORM_DEFAULT_ROOM_ID = 701001;
+    public static final int DORM_JADE_ITEM_ID = 2;
+    public static final int DORM_FURNITURE_COIN_ITEM_ID = 701;
+    public static final int DORM_MAX_NAME_LENGTH = 20;
     
     // Etc
     public static final int REFRESH_TYPE_DAILY = 1;

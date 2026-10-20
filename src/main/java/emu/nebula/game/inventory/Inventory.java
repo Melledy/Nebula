@@ -459,6 +459,43 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
                     change.add(proto);
                 }
             }
+            case DormFurniture -> {
+                // Do not allow removing dorm furniture
+                if (amount <= 0) {
+                    break;
+                }
+                
+                // Dorm furniture sets/kits contain their furniture in UseArgs.
+                // Unpack them instead of adding the set itself to the bag.
+                if (data.getUseParams() != null && !data.getUseParams().isEmpty()) {
+                    // Add items from the set
+                    for (var entry : data.getUseParams()) {
+                        this.addItem(entry.getIntKey(), entry.getIntValue() * amount, change);
+                    }
+                    
+                    // End early
+                    break;
+                }
+                
+                if (data.getItemSubType() == ItemSubType.DormRoom) {
+                    // Unlock dorm rooms when the room item is acquired.
+                    this.getPlayer().getDormManager().unlockRoom(id, change);
+                } else if (data.getItemSubType() == ItemSubType.DormFurniture) {
+                    // Add furniture to the dorm furniture collection
+                    var dormManager = this.getPlayer().getDormManager();
+                    boolean isFirst = dormManager.getFurnitureCount(id) <= 0;
+                    
+                    dormManager.addFurniture(id, amount);
+                    
+                    // Add to change info (to notify the game client)
+                    var proto = DormItem.newInstance()
+                            .setTid(id)
+                            .setQty(amount)
+                            .setIsFirst(isFirst);
+                    
+                    change.add(proto);
+                }
+            }
             case Disc -> {
                 // Cannot remove discs
                 if (amount <= 0) break;

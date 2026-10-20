@@ -146,6 +146,21 @@ public class GameData {
     @Getter private static DataTable<TraceHuntLevelDef> TraceHuntLevelDataTable = new DataTable<>();
     @Getter private static DataTable<TraceHuntSelfHuntExtraCostDef> TraceHuntSelfHuntExtraCostDataTable = new DataTable<>();
     
+    // ===== Dorm =====
+    @Getter private static DataTable<DormRoomDef> DormRoomDataTable = new DataTable<>();
+    @Getter private static DataTable<DormFurnitureDef> DormFurnitureDataTable = new DataTable<>();
+    @Getter private static DataTable<DormLayoutRewardDef> DormLayoutRewardDataTable = new DataTable<>();
+    @Getter private static DataTable<DormRoomLayoutDef> DormRoomLayoutDataTable = new DataTable<>();
+    @Getter private static DataTable<DormRewardDef> DormRewardDataTable = new DataTable<>();
+    @Getter private static DataTable<DormAchievementDef> DormAchievementDataTable = new DataTable<>();
+    @Getter private static DataTable<DormHonorTitleDef> DormHonorTitleDataTable = new DataTable<>();
+    @Getter private static DataTable<DormRoleDef> DormRoleDataTable = new DataTable<>();
+    @Getter private static DataTable<DormRoleSkinDef> DormRoleSkinDataTable = new DataTable<>();
+    @Getter private static DataTable<DormInteractiveDef> DormInteractiveDataTable = new DataTable<>();
+    @Getter private static DataTable<DormQuestDef> DormQuestDataTable = new DataTable<>();
+    @Getter private static DataTable<DormQuestGroupDef> DormQuestGroupDataTable = new DataTable<>();
+    @Getter private static DataTable<DormRoomSceneDef> DormRoomSceneDataTable = new DataTable<>();
+
     // ===== Misc =====
     @Getter private static DataTable<WorldClassDef> WorldClassDataTable = new DataTable<>();
     @Getter private static DataTable<GuideGroupDef> GuideGroupDataTable = new DataTable<>();
