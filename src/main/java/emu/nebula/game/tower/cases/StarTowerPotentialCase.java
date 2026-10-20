@@ -3,7 +3,7 @@ package emu.nebula.game.tower.cases;
 import java.util.List;
 
 import emu.nebula.GameConstants;
-import emu.nebula.game.achievement.AchievementCondition;
+import emu.nebula.game.quest.QuestCondition;
 import emu.nebula.game.tower.StarTowerGame;
 import emu.nebula.game.tower.StarTowerPotentialInfo;
 import emu.nebula.proto.PublicStarTower.StarTowerRoomCase;
@@ -118,8 +118,8 @@ public class StarTowerPotentialCase extends StarTowerBaseCase {
         
         rsp.setChange(change.toProto());
         
-        // Achievement
-        this.getGame().getAchievementManager().trigger(AchievementCondition.TowerSpecificPotentialReRollTotal, 1);
+        // Achievement + Star Tower quests
+        this.getGame().getPlayer().trigger(QuestCondition.TowerSpecificPotentialReRollTotal, 1);
     }
     
     private void select(int index, StarTowerInteractResp rsp) {
@@ -152,12 +152,12 @@ public class StarTowerPotentialCase extends StarTowerBaseCase {
             return;
         }
         
-        if (this.getGame().getPotentials().containsKey(charId)) {
+        if (this.getGame().getPotentials().containsKey(potential.getId())) {
             // Enhancing potentials
-            this.getGame().getAchievementManager().trigger(AchievementCondition.TowerSpecificPotentialLuckyTotal, 1);
+            this.getGame().getPlayer().trigger(QuestCondition.TowerSpecificPotentialLuckyTotal, 1);
         } else {
             // Adding new potential
-            this.getGame().getAchievementManager().trigger(AchievementCondition.TowerSpecificPotentialBonusTotal, 1);
+            this.getGame().getPlayer().trigger(QuestCondition.TowerSpecificPotentialBonusTotal, 1);
         }
     }
     

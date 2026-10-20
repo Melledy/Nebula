@@ -9,6 +9,7 @@ import lombok.Getter;
 public class StarTowerBuildRankDef extends BaseDef {
     private int Id;
     private int MinGrade;
+    private int Level;
     private int Rarity;
     
     @Override

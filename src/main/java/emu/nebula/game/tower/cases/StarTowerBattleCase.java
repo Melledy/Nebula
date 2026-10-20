@@ -4,6 +4,7 @@ import emu.nebula.GameConstants;
 import emu.nebula.data.GameData;
 import emu.nebula.game.inventory.ItemParamMap;
 import emu.nebula.game.player.PlayerChangeInfo;
+import emu.nebula.game.quest.QuestCondition;
 import emu.nebula.game.tower.room.RoomType;
 import emu.nebula.proto.PublicStarTower.StarTowerRoomCase;
 import emu.nebula.proto.StarTowerInteract.StarTowerInteractReq;
@@ -162,6 +163,9 @@ public class StarTowerBattleCase extends StarTowerBaseCase {
         // Bonus sub note chance (Note of Surprise)
         if (Utils.randomChance(this.getModifiers().getBonusSubNoteChance())) {
             subNotes += this.getModifiers().getBonusSubNotes();
+            
+            // Star Tower quests
+            this.getGame().getPlayer().trigger(QuestCondition.TowerSpecificNoteActivateTotal, 1);
         }
         
         // Regular sub note drops

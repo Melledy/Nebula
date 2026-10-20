@@ -21,7 +21,7 @@ Latest nightly compiled server jar: [Nightly](https://nightly.link/Melledy/Nebul
 - Commissions
 - Heartlink
 - Achievements
-- Monoliths (research quests not implemented)
+- Monoliths
 - Bounty Trials
 - Menance Arena
 - Proving Grounds

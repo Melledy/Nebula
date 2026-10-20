@@ -4,7 +4,6 @@ import emu.nebula.data.custom.CharGemAttrGroupDef;
 import emu.nebula.data.resources.*;
 import lombok.Getter;
 
-@SuppressWarnings("unused")
 public class GameData {
     // ===== Characters =====
     @Getter private static DataTable<CharacterDef> CharacterDataTable = new DataTable<>();
@@ -117,6 +116,7 @@ public class GameData {
     @Getter private static DataTable<StarTowerFloorExpDef> StarTowerFloorExpDataTable = new DataTable<>();
     @Getter private static DataTable<StarTowerTeamExpDef> StarTowerTeamExpDataTable = new DataTable<>();
     @Getter private static DataTable<StarTowerEventDef> StarTowerEventDataTable = new DataTable<>();
+    @Getter private static DataTable<StarTowerQuestDef> StarTowerQuestDataTable = new DataTable<>();
     @Getter private static DataTable<StarTowerBuildRankDef> StarTowerBuildRankDataTable = new DataTable<>();
     @Getter private static DataTable<StarTowerBookPotentialRewardDef> StarTowerBookPotentialRewardDataTable = new DataTable<>();
     @Getter private static DataTable<SubNoteSkillPromoteGroupDef> SubNoteSkillPromoteGroupDataTable = new DataTable<>();

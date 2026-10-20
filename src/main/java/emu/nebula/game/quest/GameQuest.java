@@ -65,6 +65,62 @@ public class GameQuest {
         return 0;
     }
 
+    /**
+     * Refreshes condition data from a resource definition while preserving progress.
+     */
+    public boolean refreshData(QuestData data) {
+        int oldCond = this.cond;
+        int oldMax = this.maxProgress;
+        int oldParam = this.param;
+        
+        this.cond = data.getCompleteCond();
+        
+        int[] params = data.getCompleteCondParams();
+        this.maxProgress = params.length > 0 ? params[0] : 0;
+        this.param = params.length > 1 ? params[1] : 0;
+        
+        return oldCond != this.cond || oldMax != this.maxProgress || oldParam != this.param;
+    }
+    
+    /**
+     * Adds progress without applying condition/param checks.
+     * Used by quest systems that perform their own matching.
+     */
+    public boolean addProgress(int progress) {
+        if (this.isComplete() || progress <= 0) {
+            return false;
+        }
+        
+        int newProgress = Math.min(this.curProgress + progress, this.maxProgress);
+        
+        if (newProgress == this.curProgress) {
+            return false;
+        }
+        
+        this.curProgress = newProgress;
+        
+        return true;
+    }
+    
+    /**
+     * Directly sets quest progress
+     */
+    public boolean setProgress(int progress) {
+        if (this.isComplete() || progress < 0) {
+            return false;
+        }
+        
+        int newProgress = Math.min(progress, this.maxProgress);
+        
+        if (newProgress == this.curProgress) {
+            return false;
+        }
+        
+        this.curProgress = newProgress;
+        
+        return true;
+    }
+    
     public boolean trigger(int condition, int progress, int param1, int param2) {
         // Sanity check
         if (this.isComplete()) {

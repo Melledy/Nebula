@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import emu.nebula.GameConstants;
-import emu.nebula.game.achievement.AchievementCondition;
 import emu.nebula.game.player.PlayerChangeInfo;
+import emu.nebula.game.quest.QuestCondition;
 import emu.nebula.game.tower.StarTowerShopGoods;
 import emu.nebula.proto.PublicStarTower.HawkerCaseData;
 import emu.nebula.proto.PublicStarTower.HawkerGoods;
@@ -176,8 +176,8 @@ public class StarTowerHawkerCase extends StarTowerBaseCase {
         // Set change info
         rsp.setChange(change.toProto());
         
-        // Achievement
-        this.getGame().getAchievementManager().trigger(AchievementCondition.TowerSpecificShopReRollTotal, 1);
+        // Achievement + Star Tower quests
+        this.getGame().getPlayer().trigger(QuestCondition.TowerSpecificShopReRollTotal, 1);
     }
     
     private void buy(int sid, StarTowerInteractResp rsp) {
@@ -214,11 +214,11 @@ public class StarTowerHawkerCase extends StarTowerBaseCase {
         // Remove coins
         this.getGame().addItem(GameConstants.TOWER_COIN_ITEM_ID, -price, change);
         
-        // Achievements
-        this.getGame().getAchievementManager().trigger(AchievementCondition.TowerSpecificDifficultyShopBuyTimes, 1);
+        // Achievement + Star Tower quests
+        this.getGame().getPlayer().trigger(QuestCondition.TowerSpecificDifficultyShopBuyTimes, 1);
         
         if (goods.hasDiscount()) {
-            this.getGame().getAchievementManager().trigger(AchievementCondition.TowerSpecificShopBuyDiscountTotal, 1);
+            this.getGame().getPlayer().trigger(QuestCondition.TowerSpecificShopBuyDiscountTotal, 1);
         }
         
         // Set change info

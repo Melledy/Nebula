@@ -1,0 +1,515 @@
+[
+  {
+    "Id": 100,
+    "CompleteCond": 515,
+    "Aim": 1,
+    "Param1": 10101,
+    "ParamCond1": 0,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 200,
+    "CompleteCond": 515,
+    "Aim": 1,
+    "Param1": 10301,
+    "ParamCond1": 0,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 300,
+    "CompleteCond": 527,
+    "Aim": 2,
+    "Param1": 10601,
+    "ParamCond1": 0,
+    "Param2": 10602,
+    "ParamCond2": 0
+  },
+  {
+    "Id": 400,
+    "CompleteCond": 515,
+    "Aim": 1,
+    "Param1": 10901,
+    "ParamCond1": 0,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 500,
+    "CompleteCond": 527,
+    "Aim": 2,
+    "Param1": 20301,
+    "ParamCond1": 0,
+    "Param2": 20302,
+    "ParamCond2": 0
+  },
+  {
+    "Id": 600,
+    "CompleteCond": 515,
+    "Aim": 1,
+    "Param1": 20601,
+    "ParamCond1": 0,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 700,
+    "CompleteCond": 527,
+    "Aim": 2,
+    "Param1": 20901,
+    "ParamCond1": 0,
+    "Param2": 20902,
+    "ParamCond2": 0
+  },
+  {
+    "Id": 800,
+    "CompleteCond": 515,
+    "Aim": 1,
+    "Param1": 30301,
+    "ParamCond1": 0,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 900,
+    "CompleteCond": 515,
+    "Aim": 1,
+    "Param1": 30601,
+    "ParamCond1": 0,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 1000,
+    "CompleteCond": 515,
+    "Aim": 1,
+    "Param1": 30901,
+    "ParamCond1": 0,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 1100,
+    "CompleteCond": 515,
+    "Aim": 1,
+    "Param1": 40401,
+    "ParamCond1": 0,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 101,
+    "CompleteCond": 510,
+    "Aim": 1,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 102,
+    "CompleteCond": 506,
+    "Aim": 1,
+    "Param1": 2,
+    "ParamCond1": 0,
+    "Param2": 1,
+    "ParamCond2": 4
+  },
+  {
+    "Id": 103,
+    "CompleteCond": 506,
+    "Aim": 1,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 2,
+    "ParamCond2": 4
+  },
+  {
+    "Id": 201,
+    "CompleteCond": 506,
+    "Aim": 2,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 2,
+    "ParamCond2": 4
+  },
+  {
+    "Id": 202,
+    "CompleteCond": 514,
+    "Aim": 10,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 203,
+    "CompleteCond": 513,
+    "Aim": 30,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 301,
+    "CompleteCond": 504,
+    "Aim": 1,
+    "Param1": 5,
+    "ParamCond1": 4,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 302,
+    "CompleteCond": 513,
+    "Aim": 80,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 303,
+    "CompleteCond": 517,
+    "Aim": 10,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 401,
+    "CompleteCond": 506,
+    "Aim": 1,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 3,
+    "ParamCond2": 4
+  },
+  {
+    "Id": 402,
+    "CompleteCond": 514,
+    "Aim": 20,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 403,
+    "CompleteCond": 522,
+    "Aim": 6,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 501,
+    "CompleteCond": 535,
+    "Aim": 8,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 502,
+    "CompleteCond": 504,
+    "Aim": 1,
+    "Param1": 10,
+    "ParamCond1": 4,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 503,
+    "CompleteCond": 513,
+    "Aim": 150,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 504,
+    "CompleteCond": 536,
+    "Aim": 10,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 505,
+    "CompleteCond": 517,
+    "Aim": 20,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 601,
+    "CompleteCond": 506,
+    "Aim": 1,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 4,
+    "ParamCond2": 4
+  },
+  {
+    "Id": 602,
+    "CompleteCond": 514,
+    "Aim": 50,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 603,
+    "CompleteCond": 522,
+    "Aim": 20,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 605,
+    "CompleteCond": 531,
+    "Aim": 3,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 701,
+    "CompleteCond": 533,
+    "Aim": 3,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 702,
+    "CompleteCond": 504,
+    "Aim": 1,
+    "Param1": 20,
+    "ParamCond1": 4,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 703,
+    "CompleteCond": 513,
+    "Aim": 500,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 704,
+    "CompleteCond": 536,
+    "Aim": 25,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 705,
+    "CompleteCond": 517,
+    "Aim": 30,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 801,
+    "CompleteCond": 506,
+    "Aim": 5,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 4,
+    "ParamCond2": 4
+  },
+  {
+    "Id": 802,
+    "CompleteCond": 514,
+    "Aim": 100,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 803,
+    "CompleteCond": 522,
+    "Aim": 80,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 804,
+    "CompleteCond": 529,
+    "Aim": 20,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 901,
+    "CompleteCond": 506,
+    "Aim": 2,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 5,
+    "ParamCond2": 4
+  },
+  {
+    "Id": 902,
+    "CompleteCond": 504,
+    "Aim": 1,
+    "Param1": 25,
+    "ParamCond1": 4,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 903,
+    "CompleteCond": 513,
+    "Aim": 2000,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 904,
+    "CompleteCond": 536,
+    "Aim": 50,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 905,
+    "CompleteCond": 517,
+    "Aim": 40,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 906,
+    "CompleteCond": 530,
+    "Aim": 10,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 1001,
+    "CompleteCond": 506,
+    "Aim": 2,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 6,
+    "ParamCond2": 4
+  },
+  {
+    "Id": 1002,
+    "CompleteCond": 514,
+    "Aim": 200,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 1003,
+    "CompleteCond": 522,
+    "Aim": 150,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 1004,
+    "CompleteCond": 533,
+    "Aim": 10,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 1005,
+    "CompleteCond": 534,
+    "Aim": 5,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 1101,
+    "CompleteCond": 506,
+    "Aim": 3,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 8,
+    "ParamCond2": 4
+  },
+  {
+    "Id": 1102,
+    "CompleteCond": 513,
+    "Aim": 3000,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 1103,
+    "CompleteCond": 504,
+    "Aim": 1,
+    "Param1": 31,
+    "ParamCond1": 4,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 1104,
+    "CompleteCond": 536,
+    "Aim": 80,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  },
+  {
+    "Id": 1105,
+    "CompleteCond": 533,
+    "Aim": 30,
+    "Param1": 0,
+    "ParamCond1": 1,
+    "Param2": 0,
+    "ParamCond2": 1
+  }
+]

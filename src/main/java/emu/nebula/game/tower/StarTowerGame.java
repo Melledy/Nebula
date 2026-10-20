@@ -19,6 +19,7 @@ import emu.nebula.game.formation.Formation;
 import emu.nebula.game.inventory.ItemParamMap;
 import emu.nebula.game.player.Player;
 import emu.nebula.game.player.PlayerChangeInfo;
+import emu.nebula.game.quest.QuestCondition;
 import emu.nebula.game.tower.cases.StarTowerBaseCase;
 import emu.nebula.game.tower.cases.StarTowerDoorCase;
 import emu.nebula.game.tower.cases.StarTowerHawkerCase;
@@ -463,9 +464,11 @@ public class StarTowerGame {
                 // Add to new infos
                 this.getNewInfos().add(id, count);
                 
-                // Achievment
+                // Achievement + Star Tower quests (Musical Notes).
+                // The quest treats param1 as a wildcard, so passing the item id keeps
+                // the per-note achievements working while counting every sub-note.
                 if (count > 0) {
-                    this.getAchievementManager().trigger(AchievementCondition.TowerItemsGet, count, id, 0);
+                    this.getPlayer().trigger(QuestCondition.TowerItemsGet, count, id);
                 }
             }
             case Res -> {
@@ -866,15 +869,7 @@ public class StarTowerGame {
             int tickets = this.getModifiers().calculateTickets();
             rewards.add(12, tickets);
             
-            // (Custom) Add research materials since tower quests are not implemented yet
-            int research = 50 + (Utils.randomRange(this.getDifficulty() - 1, this.getDifficulty() * 2) * 10);
-            rewards.add(51, research);
-            
-            // Add to inventory
-            var change = this.getPlayer().getInventory().addItem(51, research);
-            
             // Set proto data
-            settle.setChange(change.toProto());
             rewards.toItemTemplateStream().forEach(settle::addTowerRewards);
             
             // Save tower tickets
@@ -920,10 +915,10 @@ public class StarTowerGame {
         // Set new secondary skills
         this.secondarySkills = newSecondarySkills;
         
-        // Achievement trigger
+        // Achievement + Star Tower quests
         if (newSecondaryCount > 0) {
-            this.getAchievementManager().trigger(
-                AchievementCondition.TowerSpecificSecondarySkillActivateTotal,
+            this.getPlayer().trigger(
+                QuestCondition.TowerSpecificSecondarySkillActivateTotal,
                 newSecondaryCount
             );
         }

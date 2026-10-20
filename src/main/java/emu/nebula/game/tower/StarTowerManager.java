@@ -102,6 +102,10 @@ public class StarTowerManager extends PlayerManager {
             this.getProgress().getStarTowerGrowth()
         );
         
+        // Star Tower quests
+        this.getPlayer().trigger(QuestCondition.TowerGrowthSpecificNote, 1, data.getId());
+        this.getPlayer().trigger(QuestCondition.TowerGrowthWithSpecificNote, 1, data.getId());
+        
         // Remove items
         return getPlayer().getInventory().removeItem(data.getItemId1(), data.getItemQty1());
     }
@@ -147,6 +151,14 @@ public class StarTowerManager extends PlayerManager {
                 "starTowerGrowth",
                 this.getProgress().getStarTowerGrowth()
             );
+            
+            // Star Tower quests
+            for (int i = 0; i < unlocked.size(); i++) {
+                int nodeId = unlocked.getInt(i);
+                
+                this.getPlayer().trigger(QuestCondition.TowerGrowthSpecificNote, 1, nodeId);
+                this.getPlayer().trigger(QuestCondition.TowerGrowthWithSpecificNote, 1, nodeId);
+            }
         }
         
         // Set unlocked list
@@ -188,6 +200,17 @@ public class StarTowerManager extends PlayerManager {
                 AchievementCondition.TowerBuildSpecificScoreWithTotal,
                 1,
                 rank.getRarity(),
+                0
+            );
+            
+            // Star Tower quests use the record's rating level, not its rarity.
+            // NOTE: This must stay on the quest manager directly. Condition 504 is also
+            // used by the build-rarity achievements (param1 = rarity), so routing this
+            // through Player::trigger would feed them the level instead of the rarity.
+            this.getPlayer().getQuestManager().trigger(
+                QuestCondition.TowerBuildSpecificScoreWithTotal.getValue(),
+                1,
+                rank.getLevel(),
                 0
             );
         }
@@ -415,6 +438,7 @@ public class StarTowerManager extends PlayerManager {
         
         // Trigger quest
         this.getPlayer().trigger(QuestCondition.TowerEnterFloor, 1);
+        this.getPlayer().trigger(QuestCondition.TowerEnterTotal, 1);
         
         // Success
         return change.setExtraData(this.game);
@@ -438,6 +462,18 @@ public class StarTowerManager extends PlayerManager {
         if (victory) {
             // Add star tower history
             this.getPlayer().getProgress().addStarTowerLog(game.getId());
+            
+            // Star Tower quests (group + difficulty)
+            // NOTE: This must stay on the quest manager directly. Condition 506 is also
+            // used by the "Monolith Conqueror" achievements, but they interpret the
+            // params as (difficulty, 0) instead of (groupId, difficulty), so routing
+            // this through Player::trigger would corrupt them.
+            this.getPlayer().getQuestManager().trigger(
+                QuestCondition.TowerClearSpecificGroupIdAndDifficulty.getValue(),
+                1,
+                game.getData().getGroupId(),
+                game.getDifficulty()
+            );
             
             // Achievement conditions
             var achievements = this.getPlayer().getAchievementManager();

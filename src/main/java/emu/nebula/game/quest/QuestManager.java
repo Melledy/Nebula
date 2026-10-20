@@ -60,6 +60,8 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
         this.list = new HashMap<>();
         this.levelRewards = new Bitset();
         
+        this.initStarTowerQuests();
+        
         this.resetDailyQuests(true);
         
         this.save();
@@ -71,7 +73,34 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
     }
     
     public synchronized GameQuest addQuest(GameQuest quest) {
+        // Add to quest list
         this.list.put(quest.getKey(), quest);
+        
+        // Star Tower growth-node quests can complete retroactively if the player
+        // already unlocked the required node(s) before the quest was added
+        if (quest.getType() == QuestType.Tower) {
+            var data = GameData.getStarTowerQuestDataTable().get(quest.getId());
+            int cond = data != null ? data.getCompleteCond() : 0;
+            
+            if (cond == QuestCondition.TowerGrowthSpecificNote.getValue() || cond == QuestCondition.TowerGrowthWithSpecificNote.getValue()) {
+                var manager = this.getPlayer().getStarTowerManager();
+                int progress = 0;
+                
+                if (data.getParam1() != 0 && manager.hasGrowthNode(data.getParam1())) {
+                    progress++;
+                }
+                
+                if (data.getParam2() != 0 && manager.hasGrowthNode(data.getParam2())) {
+                    progress++;
+                }
+                
+                if (progress > 0) {
+                    quest.setProgress(progress);
+                }
+            }
+        }
+        
+        // Return quest
         return quest;
     }
     
@@ -146,12 +175,37 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
             // Get quest from entry
             var quest = entry.getValue();
             
-            // Try to trigger quest
-            boolean result = quest.trigger(condition, progress, param1, param2);
-            
-            // Skip if quest progress wasn't changed
-            if (!result) {
+            // Skip completed quests
+            if (quest.isComplete()) {
                 continue;
+            }
+            
+            // Star Tower quests use their own generated params and matching rules
+            // TODO clean this code up to look nice
+            if (quest.getType() == QuestType.Tower) {
+                // Get quest data
+                var data = GameData.getStarTowerQuestDataTable().get(quest.getId());
+                if (data == null || data.getCompleteCond() != condition) {
+                    continue;
+                }
+                
+                // Check params
+                if (!StarTowerQuestHelper.matches(data, param1, param2)) {
+                    continue;
+                }
+                
+                // Add progress
+                if (!quest.addProgress(progress)) {
+                    continue;
+                }
+            } else {
+                // Now we try to trigger regular daily/weekly quests
+                boolean result = quest.trigger(condition, progress, param1, param2);
+                
+                // Skip if quest progress wasn't changed
+                if (!result) {
+                    continue;
+                }
             }
             
             // Sync quest with player client
@@ -174,6 +228,132 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
             NetMsgId.quest_change_notify, 
             quest.toProto()
         );
+    }
+    
+    // Star Tower quests
+    
+    /**
+     * Adds all currently unlocked Star Tower quests.
+     * Returns true if any quest was added or refreshed.
+     */
+    public synchronized boolean initStarTowerQuests() {
+        boolean changed = false;
+        
+        for (var data : GameData.getStarTowerQuestDataTable()) {
+            // Only add quests whose prerequisites have been claimed
+            if (!StarTowerQuestHelper.isUnlocked(this, data)) {
+                continue;
+            }
+            
+            // Get existing quest
+            var quest = this.getList().get(data.getQuestKey());
+            
+            if (quest == null) {
+                this.addQuest(new GameQuest(data));
+                changed = true;
+            } else if (quest.refreshData(data)) {
+                changed = true;
+            }
+        }
+        
+        return changed;
+    }
+    
+    /**
+     * Adds quests that became available after a prerequisite was claimed.
+     */
+    public synchronized void unlockStarTowerQuests() {
+        boolean changed = false;
+        
+        for (var data : GameData.getStarTowerQuestDataTable()) {
+            // Skip quests that already exist
+            if (this.getList().containsKey(data.getQuestKey())) {
+                continue;
+            }
+            
+            // Only add quests whose prerequisites have been claimed
+            if (!StarTowerQuestHelper.isUnlocked(this, data)) {
+                continue;
+            }
+            
+            // Add quest and sync it with the client
+            var quest = this.addQuest(new GameQuest(data));
+            
+            // Syncs quest with client
+            this.syncQuest(quest);
+            
+            // Set changed flag
+            changed = true;
+        }
+        
+        // Persist new quests
+        if (changed) {
+            this.save();
+        }
+    }
+    
+    public synchronized PlayerChangeInfo receiveStarTowerQuestReward(int questId) {
+        // Get received quests
+        var claimList = new ArrayList<GameQuest>();
+        
+        if (questId > 0) {
+            // Claim specific quest
+            var quest = this.getQuest(QuestType.Tower, questId);
+            
+            if (quest != null && quest.canClaim()) {
+                claimList.add(quest);
+            }
+        } else {
+            // Claim all
+            for (var quest : this.getQuests()) {
+                if (quest.getType() != QuestType.Tower) {
+                    continue;
+                }
+                
+                if (!quest.canClaim()) {
+                    continue;
+                }
+                
+                claimList.add(quest);
+            }
+        }
+        
+        // Sanity check
+        if (claimList.isEmpty()) {
+            return null;
+        }
+        
+        // Create change info
+        var change = new PlayerChangeInfo();
+        
+        // Claim
+        for (var quest : claimList) {
+            // Get data
+            var data = GameData.getStarTowerQuestDataTable().get(quest.getId());
+            
+            if (data != null) {
+                // Add rewards
+                if (data.getReward1() > 0 && data.getRewardQty1() > 0) {
+                    this.getPlayer().getInventory().addItem(data.getReward1(), data.getRewardQty1(), change);
+                }
+                
+                if (data.getReward2() > 0 && data.getRewardQty2() > 0) {
+                    this.getPlayer().getInventory().addItem(data.getReward2(), data.getRewardQty2(), change);
+                }
+            }
+            
+            // Set claimed
+            quest.setClaimed(true);
+            
+            // Update in database
+            Nebula.getGameDatabase().update(this, this.getUid(), "list." + quest.getKey(), quest);
+        }
+        
+        // Unlock newly available quests
+        this.unlockStarTowerQuests();
+        
+        // Success
+        return change.setSuccess(true);
     }
     
     // Daily quests
@@ -525,11 +705,23 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
         
         // Fix quest lists
         if (this.getList() == null) {
+            // Create quest list
             this.list = new HashMap<>();
+            
+            // Add missing Star Tower quests and refresh their condition data
+            // We do not need to save here because QuestManager::resetDailyQuests will save to the database
+            this.initStarTowerQuests();
+            
+            // Reset daily quests
             this.resetDailyQuests(true);
             
             // QuestManager::resetDailyQuests will save to the database, so we dont need to set the shouldSave flag
             shouldSave = false;
+        } else {
+            // Add missing Star Tower quests and refresh their condition data
+            if (this.initStarTowerQuests()) {
+                shouldSave = true;
+            } 
         }
         
         // Save to database
