@@ -107,6 +107,7 @@ public class GameData {
     @Getter private static DataTable<RegionBossLevelDef> RegionBossLevelDataTable = new DataTable<>();
     @Getter private static DataTable<SkillInstanceDef> SkillInstanceDataTable = new DataTable<>();
     @Getter private static DataTable<CharGemInstanceDef> CharGemInstanceDataTable = new DataTable<>();
+    @Getter private static DataTable<CharGemInstanceRewardGroupDef> CharGemInstanceRewardGroupDataTable = new DataTable<>();
     @Getter private static DataTable<WeekBossLevelDef> WeekBossLevelDataTable = new DataTable<>();
     
     // ===== Star Tower =====

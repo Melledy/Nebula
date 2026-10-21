@@ -20,8 +20,13 @@ public class HandlerCharGemInstanceApplyReq extends NetHandler {
             return session.encodeMsg(NetMsgId.char_gem_instance_apply_failed_ack);
         }
         
+        // Check reward group
+        if (data.getDropId() > 0 && data.getRewardGroup(req.getRewardType()) == null) {
+            return session.encodeMsg(NetMsgId.char_gem_instance_apply_failed_ack);
+        }
+        
         // Set player instance id
-        session.getPlayer().getInstanceManager().setCurInstanceId(req.getId());
+        session.getPlayer().getInstanceManager().setCurInstanceId(req.getId(), req.getRewardType());
         
         // Send response
         return session.encodeMsg(NetMsgId.char_gem_instance_apply_succeed_ack);

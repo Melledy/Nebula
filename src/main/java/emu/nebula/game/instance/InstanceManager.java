@@ -84,19 +84,12 @@ public class InstanceManager extends PlayerManager {
             return null;
         }
         
-        // Check if we have 3 starred this instance
+        // Get star count of our best run
         int stars = log.get(data.getId());
         
-        if (rewardType > 0) {
-            // Daily instance
-            if (stars != 7) {
-                return null;
-            }
-        } else {
-            // Other instances
-            if (stars != 3) {
-                return null;
-            }
+        // Check if we have 3 starred this instance
+        if (stars != data.getMaxStar()) {
+            return null;
         }
         
         // Check energy cost

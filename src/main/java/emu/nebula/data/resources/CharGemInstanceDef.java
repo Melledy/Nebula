@@ -1,6 +1,7 @@
 package emu.nebula.data.resources;
 
 import emu.nebula.data.BaseDef;
+import emu.nebula.data.GameData;
 import emu.nebula.data.ResourceType;
 import emu.nebula.game.instance.InstanceData;
 import emu.nebula.game.inventory.ItemRewardList;
@@ -17,6 +18,7 @@ public class CharGemInstanceDef extends BaseDef implements InstanceData {
     private int PreLevelStar;
     private int NeedWorldClass;
     private int EnergyConsume;
+    private int DropId;
     private String BaseAwardPreview;
     
     private transient ItemRewardList firstRewards;
@@ -57,6 +59,38 @@ public class CharGemInstanceDef extends BaseDef implements InstanceData {
             } else {
                 this.rewards.add(reward);
             }
+        }
+    }
+    
+    public CharGemInstanceRewardGroupDef getRewardGroup(int rewardType) {
+        // Instances without a drop id don't have selectable rewards
+        if (this.DropId <= 0) {
+            return null;
+        }
+        
+        int groupId = this.getDropId() + rewardType;
+        return GameData.getCharGemInstanceRewardGroupDataTable().get(groupId);
+    }
+    
+    @Override
+    public ItemRewardList getFirstRewards(int rewardType) {
+        var data = this.getRewardGroup(rewardType);
+        
+        if (data != null) {
+            return data.getFirstRewards();
+        } else {
+            return this.firstRewards;
+        }
+    }
+    
+    @Override
+    public ItemRewardList getRewards(int rewardType) {
+        var data = this.getRewardGroup(rewardType);
+        
+        if (data != null) {
+            return data.getRewards();
+        } else {
+            return this.rewards;
         }
     }
 }

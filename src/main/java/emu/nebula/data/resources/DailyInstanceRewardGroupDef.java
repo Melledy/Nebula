@@ -15,6 +15,7 @@ public class DailyInstanceRewardGroupDef extends BaseDef {
     private int DailyRewardType;
     private String BaseAwardPreview;
     
+    // Parsed rewards
     private transient ItemRewardList firstRewards;
     private transient ItemRewardList rewards;
     

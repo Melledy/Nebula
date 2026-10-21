@@ -28,12 +28,17 @@ public class HandlerCharGemInstanceSweepReq extends NetHandler {
             return session.encodeMsg(NetMsgId.char_gem_instance_sweep_failed_ack);
         }
         
+        // Check reward group
+        if (data.getDropId() > 0 && data.getRewardGroup(req.getRewardType()) == null) {
+            return session.encodeMsg(NetMsgId.char_gem_instance_sweep_failed_ack);
+        }
+        
         // Sweep
         var change = session.getPlayer().getInstanceManager().sweepInstance(
                 data,
                 QuestCondition.CharGemInstanceClearTotal,
                 session.getPlayer().getProgress().getCharGemLog(),
-                0,
+                req.getRewardType(),
                 req.getTimes()
         );
         

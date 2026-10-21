@@ -27,6 +27,12 @@ public class DailyInstanceDef extends BaseDef implements InstanceData {
         return OneStarEnergyConsume;
     }
     
+    @Override
+    public int getMaxStar() {
+        // Daily instance stars are saved as a bitmask (1 + 2 + 4)
+        return 7;
+    }
+    
     public DailyInstanceRewardGroupDef getRewardGroup(int rewardType) {
         int groupId = this.getAwardDropId() + rewardType;
         return GameData.getDailyInstanceRewardGroupDataTable().get(groupId);

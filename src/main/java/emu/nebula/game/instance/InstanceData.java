@@ -11,6 +11,14 @@ public interface InstanceData {
     
     public int getEnergyConsume();
     
+    /**
+     * Gets the highest star value that can be saved for this instance
+     * @return the max star value
+     */
+    public default int getMaxStar() {
+        return 3;
+    }
+    
     // Item rewards
     
     public ItemRewardList getFirstRewards();
