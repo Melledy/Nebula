@@ -7,7 +7,7 @@ import emu.nebula.command.CommandHandler;
 
 import java.util.Random;
 
-@Command(label = "remote", permission = "player.remote", requireTarget = true, desc = "!remote = Creates a player token for remote api usage")
+@Command(label = "remote", permission = "player.remote", requireTarget = true, desc = "!remote = Generates a remote API token for the targeted player, or clears it if remote services are disabled on the server.")
 public class RemoteKeyCommand implements CommandHandler {
     private final String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 

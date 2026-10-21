@@ -16,7 +16,7 @@ import emu.nebula.command.CommandHandler;
         aliases = {"d"}, 
         permission = "player.character", 
         requireTarget = true, 
-        desc = "!d [all | {discId}] lv(level) a(ascension) c(crescendo level)"
+        desc = "!disc [all | disc ids...] lv(level) a(ascension) c(crescendo level) = Changes the targeted player's discs. Multiple disc ids can be given, and 'all' applies the changes to every owned disc."
 )
 public class DiscCommand implements CommandHandler {
 

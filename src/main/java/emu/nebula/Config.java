@@ -158,8 +158,8 @@ public class Config {
 
     @Getter
     public static class RemoteCommand {
-        public boolean useRemoteServices = false;
-        public String serverAdminKey = "HJHASDPIIQWEASDHHAN";
+        public boolean useRemoteServices = false; // Turned off by default
+        public String serverAdminKey = "HJHASDPIIQWEASDHHAN"; // Please change the admin key before turning it on
     }
 
     @Getter

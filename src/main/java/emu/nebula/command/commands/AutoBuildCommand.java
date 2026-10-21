@@ -21,7 +21,7 @@ import it.unimi.dsi.fastutil.ints.IntArrayList;
     aliases = {"ab"}, 
     permission = "player.build", 
     requireTarget = true,
-    desc = "!autobuild [character/disc/potential/melody ids...] lv[target record level] s[target record score] = Generates a record for the player with the target score/record level"
+    desc = "!autobuild [character/disc/potential/sub-note skill ids...] lv(record level) s(record score) [-nn] [-np] = Generates a record for the targeted player, auto-filling random characters, discs, potentials, and sub-note skills to reach the target record level (default 40) or score. -nn skips sub-note skills and -np skips potentials."
 )
 public class AutoBuildCommand implements CommandHandler {
     private static final int[] COMMON_SUB_NOTE_SKILLS = new int[] {

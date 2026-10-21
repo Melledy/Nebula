@@ -21,7 +21,7 @@ import lombok.Getter;
     aliases = {"b", "record", "r"}, 
     permission = "player.build", 
     requireTarget = true,
-    desc = "!build [char ids...] [disc ids...] [potential ids...] [melody ids...]"
+    desc = "!build [character ids...] [disc ids...] [potential ids...] [sub-note skill ids...] = Creates a record for the targeted player. Requires exactly 3 characters and 3-6 discs. Potential levels can be set with id:level, and a preset code can be used instead of item ids."
 )
 public class BuildCommand implements CommandHandler {
 

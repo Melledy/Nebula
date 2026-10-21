@@ -5,7 +5,7 @@ import emu.nebula.command.Command;
 import emu.nebula.command.CommandArgs;
 import emu.nebula.command.CommandHandler;
 
-@Command(label = "reload", permission = "admin.reload", desc = "!reload = Reloads the server config.")
+@Command(label = "reload", permission = "admin.reload", desc = "!reload = Reloads the server config and the game patch list.")
 public class ReloadCommand implements CommandHandler {
 
     @Override

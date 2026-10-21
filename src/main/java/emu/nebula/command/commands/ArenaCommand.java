@@ -8,7 +8,13 @@ import emu.nebula.data.GameData;
 import emu.nebula.data.resources.InfinityTowerLevelDef;
 import emu.nebula.util.Utils;
 
-@Command(label = "arena", aliases = {"setarena"}, permission = "player.arena", requireTarget = false, desc = "!arena [element] [floor] [level] [@id] | !arena clear = Set menace arena progress")
+@Command(
+        label = "arena",
+        aliases = {"setarena"},
+        permission = "player.arena",
+        requireTarget = false,
+        desc = "!arena [element] [floor] [level] [@uid] | !arena clear = Sets the Menace Arena floor and level for the targeted player, or clears their progress. Elements: generic, ignis, ventus, lux, aqua, terra, umbra (or 1-7). Run without args to view progress. Requires a relog."
+)
 public class ArenaCommand implements CommandHandler {
     private static final String RELOG_HINT = " Restart the game to see the change.";
 

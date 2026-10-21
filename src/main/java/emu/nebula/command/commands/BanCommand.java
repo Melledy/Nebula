@@ -12,13 +12,11 @@ import java.util.Locale;
 @Command(label = "ban",
         permission = "admin.ban",
         desc = """
-                !ban {all | ip | uid} [player uid | ip] (end timestamp) (reason) - Ban a player\
-                
-                - all mode bans both the player object and their IP address by UID, so the next parameter should be UID instead of IP
-                - ip mode can only ban IP addresses, so the next parameter should be an IP
-                - uid mode can only ban UIDs, so the next parameter should be a UID
-                - If you don't fill in the end timestamp, it will be permanently banned by default\
-                """)
+                !ban {all | ip | uid} [player uid | ip] (end timestamp in ms) (reason) = Bans a player or IP address.
+                - all bans both the player and their IP by UID, so use a UID as the second argument
+                - uid bans only the UID, so use a UID as the second argument
+                - ip bans only the IP address, so use an IP as the second argument
+                - Omit the end timestamp for a permanent ban""")
 public class BanCommand implements CommandHandler {
 
     @Override

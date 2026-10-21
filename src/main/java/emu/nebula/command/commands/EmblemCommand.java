@@ -17,7 +17,7 @@ import emu.nebula.data.GameData;
         aliases = {"e", "gem"}, 
         permission = "player.emblem", 
         requireTarget = true,
-        desc = "!emblem [characterId] [emblem slot] [attribute value ids....]"
+        desc = "!emblem [character id] [emblem slot] [attribute value id 1] [attribute value id 2] [attribute value id 3] [attribute value id 4] = Sets the four attribute values of an emblem in the targeted player's character emblem slot, creating or replacing the gem as needed."
 )
 public class EmblemCommand implements CommandHandler {
 

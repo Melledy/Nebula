@@ -163,6 +163,15 @@ public class GameSession {
 
     // Packet encoding helper functions
 
+    /**
+     * Encodes a message to be sent to the client, using the given proto as its payload.
+     * <p>
+     * Any pending next packages for the player are chained onto the proto before encoding.
+     *
+     * @param msgId the message id to encode
+     * @param proto the proto message to send as the payload
+     * @return the encoded packet (as a byte array)
+     */
     @SneakyThrows
     public byte[] encodeMsg(int msgId, ProtoMessage<?> proto) {
         // Check if we have any packages to send to the client
@@ -176,10 +185,18 @@ public class GameSession {
             }
         }
 
-        // Encode to message like normal
+        // Encodes a message with the proto as it's payload
         return PacketHelper.encodeMsg(msgId, proto);
     }
 
+    /**
+     * Encodes a message with no payload to be sent to the client.
+     * <p>
+     * If the player has pending next packages, a {@link Nil} proto is created to carry them.
+     *
+     * @param msgId the message id to encode
+     * @return the encoded packet (as a byte array)
+     */
     public byte[] encodeMsg(int msgId) {
         // Check if we have any packages to send to the client
         if (this.getPlayer() != null) {
@@ -196,7 +213,7 @@ public class GameSession {
             }
         }
 
-        // Encode simple message
+        // Encodes the message
         return PacketHelper.encodeMsg(msgId);
     }
 

@@ -12,7 +12,7 @@ import emu.nebula.command.CommandHandler;
         aliases = {"g", "item"}, 
         permission = "player.give", 
         requireTarget = true, 
-        desc = "!give [item id] x(amount). Gives the targeted player an item."
+        desc = "!give [item ids...] x(amount) = Sends the targeted player the specified items through the mail. Defaults to 1 of each item."
 )
 public class GiveCommand implements CommandHandler {
 

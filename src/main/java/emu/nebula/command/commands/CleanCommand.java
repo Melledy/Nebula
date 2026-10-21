@@ -18,7 +18,7 @@ import java.util.HashSet;
         aliases = {"cl", "clear"},
         permission = "player.inventory",
         requireTarget = true,
-        desc = "!clean [all | {id} ...] [items|resources] = Removes items/resources from the targeted player."
+        desc = "!clean [all | item ids...] [items | resources] = Removes items and/or resources from the targeted player. Use 'all' to remove everything, or add 'items' or 'resources' to limit the cleanup to one type."
 )
 public class CleanCommand implements CommandHandler {
 

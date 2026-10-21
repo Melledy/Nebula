@@ -17,7 +17,7 @@ import emu.nebula.command.CommandHandler;
         aliases = {"c", "char"}, 
         permission = "player.character", 
         requireTarget = true,
-        desc = "!c [all | {characterId}] lv(level) a(ascension) s(skill level) t(talent level) f(affinity level)"
+        desc = "!char [all | character ids...] lv(level) a(ascension) s(skill level) t(talent level) f(affinity level) = Changes the targeted player's characters. Multiple character ids can be given, and 'all' applies the changes to every owned character."
 )
 public class CharacterCommand implements CommandHandler {
 

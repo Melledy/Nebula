@@ -8,7 +8,7 @@ import emu.nebula.net.NetMsgId;
 import emu.nebula.proto.NotifyGm.GmWorldClass;
 import emu.nebula.util.Utils;
 
-@Command(label = "setlevel", aliases = {"level", "l"}, permission = "player.level", requireTarget = true, desc = "!level [level] = Set's the targeted player's level")
+@Command(label = "setlevel", aliases = {"level", "l"}, permission = "player.level", requireTarget = true, desc = "!level [level] = Sets the targeted player's level.")
 public class LevelCommand implements CommandHandler {
 
     @Override

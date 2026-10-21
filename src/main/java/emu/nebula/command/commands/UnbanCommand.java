@@ -10,12 +10,10 @@ import emu.nebula.game.player.Player;
 import java.util.Locale;
 
 @Command(label = "unban", permission = "admin.ban", desc = """
-        !unban {all | ip | uid} [player uid | ip]\
-        
-        - all mode unbans both the player object and their IP address by UID, so the next parameter should be UID instead of IP
-        - ip mode can only unban IP addresses, so the next parameter should be an IP
-        - uid mode can only unban UIDs, so the next parameter should be a UID\
-        """)
+        !unban {all | ip | uid} [player uid | ip] = Unbans a player or IP address.
+        - all unbans both the player and their IP by UID, so use a UID as the second argument
+        - uid unbans only the UID, so use a UID as the second argument
+        - ip unbans only the IP address, so use an IP as the second argument""")
 public class UnbanCommand implements CommandHandler {
 
     @Override

@@ -9,7 +9,7 @@ import emu.nebula.command.CommandHandler;
 import java.io.File;
 import java.lang.management.ManagementFactory;
 
-@Command(label = "status", permission = "admin.status", desc = "!status = Displays server runtime status.")
+@Command(label = "status", permission = "admin.status", desc = "!status [@id] = Displays server runtime status, including uptime, CPU, memory, disk, and player count. Add @UID to verify that a player is online.")
 public class StatusCommand implements CommandHandler {
 
     @Override

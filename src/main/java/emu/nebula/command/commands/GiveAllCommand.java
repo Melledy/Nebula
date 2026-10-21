@@ -20,7 +20,7 @@ import emu.nebula.proto.Public.Item;
         aliases = {"ga"}, 
         permission = "player.give", 
         requireTarget = true, 
-        desc = "!ga [characters | discs | materials] lv(level) t(talent/crescendo level) s(skill level). Gives the targeted player items."
+        desc = "!giveall [materials | discs | characters | skins] lv(level) a(ascension) s(skill level) t(talent/crescendo level) = Gives the targeted player all materials, discs, characters, or paid skins. The level, ascension, skill, and talent values are applied to newly added characters and discs."
 )
 public class GiveAllCommand implements CommandHandler {
     private static Set<ItemSubType> MATERIAL_ITEM_SUBTYPES = Set.of(

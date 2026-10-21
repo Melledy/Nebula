@@ -37,7 +37,9 @@ Nebula supports the global PC client by default. If you want to switch regions, 
 
 Current supported regions (PC): `GLOBAL`, `KR`, `JP`, `TW`, `CN`
 
-You may need to change the data version when switching regions. The `customDataVersion` field should match the the data version of your client, which is usually the last number of your client's version string (top left of your login screen). Example: 1.0.0.42 = data version 42.
+### Updating
+
+You may need to change the data version when switching regions OR if your game updates. The `customDataVersion` field in the config should match the data version of your client, which is usually the last number of your client's version string (top left of your login screen). Example: 1.0.0.42 = data version 42.
 
 # Running the server and client
 
@@ -101,19 +103,29 @@ class Handlers
 5. Login with your account email, the code field is ignored by the server and can be set to anything.
 
 ### Server commands
-Server commands need to be run in the server console OR in the signature edit menu of your profile.
 
-```
-!account {create | delete} [email] (reserved player uid) = Creates or deletes an account.
-!battlepass [free | premium] lv(level) = Modifies the targeted player's battle pass
-!char [all | {characterId}] lv(level) a(ascension) s(skill level) t(talent level) f(affinity level) = Changes the properties of the targeted characters.
-!clean [all | {id} ...] [items|resources] = Removes items/resources from the targeted player.
-!disc [all | {discId}] lv(level) a(ascension) c(crescendo level) = Changes the properties of the targeted discs.
-!give [item id] x[amount] = Gives the targeted player an item through the mail.
-!giveall [characters | discs | materials] = Gives the targeted player items.
-!help = Displays a list of available commands. (Very spammy in-game)
-!level (level) = Sets the player level
-!mail "subject" "body" [itemId xQty | itemId:qty ...] = Sends the targeted player a system mail.
-!reload = Reloads the server config.
-!remote = Creates a player token for remote api usage
-```
+Server commands can be run from the server console or from the signature edit menu of your profile. You can prefix a command with either `!` or `/`.
+
+Commands that modify a player need a target: run them in-game, or append `@<uid>` to target a player from the console.
+
+| Command | Aliases | Description |
+| --- | --- | --- |
+| `!account` | | Create an account (optionally reserving a player UID), delete an account, or list all accounts.<br>`!account create <email> [reserved uid]`<br>`!account delete <email>`<br>`!account list` |
+| `!arena` | `setarena` | Set the Menace Arena floor and level for a player, or clear their progress. Run without arguments to view progress. Requires a relog.<br>`!arena <element> <floor> <level> [@uid]`<br>`!arena clear`<br>Elements: `generic`, `ignis`, `ventus`, `lux`, `aqua`, `terra`, `umbra` (or `1`-`7`). |
+| `!autobuild` | `ab` | Generate a record for a player, auto-filling characters, discs, potentials, and sub-note skills to reach a target record level or score. Uses record level 40 if none is given.<br>`!autobuild [ids...] lv(level) s(score) [-nn] [-np]`<br>`-nn` skips sub-note skills and `-np` skips potentials. |
+| `!ban` | | Ban a player or IP address.<br>`!ban {all \| ip \| uid} <uid \| ip> [end timestamp] [reason]`<br>`all` bans both the UID and its IP, `uid` only the UID, and `ip` only the IP. The end timestamp is in milliseconds; omit it for a permanent ban. |
+| `!battlepass` | `bp` | Set a player's battle pass mode and level (maximum level 50).<br>`!battlepass [free \| premium] lv(level)` |
+| `!build` | `b`, `record`, `r` | Create a record from item IDs. Requires exactly 3 characters and 3-6 discs; potential levels can be set with `id:level`, and a preset code can be used instead of IDs.<br>`!build [character ids...] [disc ids...] [potential ids...] [sub-note skill ids...]` |
+| `!character` | `c`, `char` | Change a character's level, ascension, skill, talent, and affinity.<br>`!character [all \| character ids...] lv(level) a(ascension) s(skill level) t(talent level) f(affinity level)`<br>`all` applies the changes to every owned character. |
+| `!clean` | `cl`, `clear` | Remove items and/or resources from a player.<br>`!clean [all \| item ids...] [items \| resources]`<br>`all` removes everything; `items` or `resources` limits the cleanup to one type. |
+| `!disc` | `d` | Change a disc's level, ascension, and crescendo level.<br>`!disc [all \| disc ids...] lv(level) a(ascension) c(crescendo level)`<br>`all` applies the changes to every owned disc. |
+| `!emblem` | `e`, `gem` | Set the four attributes of an emblem in a character's emblem slot, creating or replacing the gem as needed.<br>`!emblem <character id> <emblem slot> <attr id> <attr id> <attr id> <attr id>` |
+| `!give` | `g`, `item` | Send items to a player through the mail.<br>`!give <item ids...> x(amount)`<br>Defaults to 1 of each item. |
+| `!giveall` | `ga` | Give a player all materials, discs, characters, or paid skins.<br>`!giveall [materials \| discs \| characters \| skins] lv(level) a(ascension) s(skill level) t(talent/crescendo level)`<br>Property values are applied to newly added characters and discs. |
+| `!help` | | List every command available to you.<br>`!help`<br>This is very spammy in-game. |
+| `!level` | `setlevel`, `l` | Set a player's level.<br>`!level <level>` |
+| `!mail` | `m` | Send a system mail with optional attachments. The subject and body must be wrapped in quotes.<br>`!mail "subject" "body" [itemId xQty \| itemId:qty ...]` |
+| `!reload` | | Reload the server config and the game patch list.<br>`!reload` |
+| `!remote` | | Generate a remote API token for a player, or clear it when remote services are disabled.<br>`!remote` |
+| `!status` | | Show server runtime status: uptime, CPU, memory, disk, and player count.<br>`!status [@uid]`<br>Add `@uid` to verify that a player is online. |
+| `!unban` | | Unban a player or IP address.<br>`!unban {all \| ip \| uid} <uid \| ip>`<br>`all` unbans both the UID and its IP, `uid` only the UID, and `ip` only the IP. |
