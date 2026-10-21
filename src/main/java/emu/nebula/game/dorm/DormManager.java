@@ -685,18 +685,18 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
         
         var inventory = this.getPlayer().getInventory();
         
-        if (inventory.getItemCount(GameConstants.DORM_JADE_ITEM_ID) < count) {
+        if (inventory.getItemCount(GameConstants.STELLANITE_DUST_ITEM_ID) < count) {
             return null;
         }
         
         var change = new PlayerChangeInfo();
         
-        // Remove jade and add furniture coins
-        inventory.removeItem(GameConstants.DORM_JADE_ITEM_ID, count, change);
+        // Remove stellanite dust and add furniture coins
+        inventory.removeItem(GameConstants.STELLANITE_DUST_ITEM_ID, count, change);
         inventory.addItem(
-                GameConstants.DORM_FURNITURE_COIN_ITEM_ID,
-                count * GameConstants.DORM_BLOCKS_CONVERT_PROP,
-                change
+            GameConstants.DORM_FURNITURE_COIN_ID,
+            count * GameConstants.DORM_BLOCKS_CONVERT_PROP,
+            change
         );
         
         return change;
@@ -721,7 +721,7 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
         return result;
     }
 
-    public boolean isLayoutRewardClaimable(int layoutId) {
+    public boolean isLayoutRewardClaimable(ItemParamMap totalFurniture, int layoutId) {
         var data = GameData.getDormLayoutRewardDataTable().get(layoutId);
         if (data == null || data.getRewardId1() <= 0 || data.getQty1() <= 0) {
             return false;
@@ -741,7 +741,8 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
                 }
             }
 
-            if (this.getFurnitureCount(layout.getFurnitureId()) < required) {
+            int owned = totalFurniture.get(layout.getFurnitureId());
+            if (owned < required) {
                 return false;
             }
         }
@@ -750,18 +751,48 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
     }
 
     public synchronized PlayerChangeInfo receiveLayoutRewards(int[] layoutIds) {
+        // Init variables
         var change = new PlayerChangeInfo();
         var rewards = new ItemParamMap();
         boolean received = false;
+        
+        // Get total furniture, including the ones in rooms
+        var totalFurniture = new ItemParamMap();
 
+        // Adds furniture from our collection
+        totalFurniture.putAll(this.getFurnitureCollection());
+        
+        // Adds the furniture currently placed in rooms
+        for (var room : this.getRooms().values()) {
+            if (room.getFurnitureList() == null) {
+                continue;
+            }
+
+            for (var furniture : room.getFurnitureList()) {
+                totalFurniture.add(furniture.getFurnitureId(), 1);
+            }
+        }
+
+        // Check if we can recieve layouts
         for (int layoutId : layoutIds) {
-            if (this.receivedLayoutRewardIds.contains(layoutId) || !this.isLayoutRewardClaimable(layoutId)) {
+            if (this.receivedLayoutRewardIds.contains(layoutId)) {
+                continue;
+            }
+            
+            if (!this.isLayoutRewardClaimable(totalFurniture, layoutId)) {
                 continue;
             }
 
             var data = GameData.getDormLayoutRewardDataTable().get(layoutId);
+            if (data == null) continue;
+            
+            // Add rewards
             rewards.add(data.getRewardId1(), data.getQty1());
+            
+            // Add to received layout ids
             this.receivedLayoutRewardIds.add(layoutId);
+            
+            // Set recieved flag
             received = true;
         }
 
@@ -769,10 +800,14 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
             return null;
         }
 
+        // Add rewards and trigger quest
         this.getPlayer().getInventory().addItems(rewards, change);
         this.getPlayer().trigger(QuestCondition.DormRewardReceive, 1);
+        
+        // Queue a save call for the dorm
         this.queueSave = true;
 
+        // Success
         return change;
     }
 

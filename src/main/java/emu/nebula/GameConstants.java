@@ -26,6 +26,7 @@ public class GameConstants {
     public static final int EXP_ITEM_ID = 21;
     public static final int WEEKLY_ENTRY_ITEM_ID = 28;
     public static final int JOINT_DRILL_TICKET_ID = 36;
+    public static final int DORM_FURNITURE_COIN_ID = 701;
     
     // Energy
     public static final int MAX_ENERGY = 240;
@@ -87,8 +88,6 @@ public class GameConstants {
     public static final int DORM_LIKE_LIMIT = 3;
     public static final int DORM_BLOCKS_CONVERT_PROP = 1;
     public static final int DORM_DEFAULT_ROOM_ID = 701001;
-    public static final int DORM_JADE_ITEM_ID = 2;
-    public static final int DORM_FURNITURE_COIN_ITEM_ID = 701;
     public static final int DORM_MAX_NAME_LENGTH = 20;
     
     // Etc
