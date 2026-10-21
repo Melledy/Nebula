@@ -752,7 +752,6 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
 
     public synchronized PlayerChangeInfo receiveLayoutRewards(int[] layoutIds) {
         // Init variables
-        var change = new PlayerChangeInfo();
         var rewards = new ItemParamMap();
         boolean received = false;
         
@@ -800,20 +799,18 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
             return null;
         }
 
-        // Add rewards and trigger quest
-        this.getPlayer().getInventory().addItems(rewards, change);
-        this.getPlayer().trigger(QuestCondition.DormRewardReceive, 1);
-        
         // Queue a save call for the dorm
         this.queueSave = true;
-
-        // Success
-        return change;
+        
+        // Add rewards
+        return this.getPlayer().getInventory().addItems(rewards);
     }
 
     public synchronized PlayerChangeInfo receiveRewards(int[] rewardIds) {
-        var change = new PlayerChangeInfo();
+        // Init variables
         var unlocked = this.getUnlockedRoomIds();
+        var rewards = new ItemParamMap();
+        
         boolean received = false;
 
         for (int rewardId : rewardIds) {
@@ -826,24 +823,37 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
                 continue;
             }
 
+            // Get random drop
             int itemId = DropPkgDef.getRandomDrop(data.getDropId());
             if (itemId <= 0) {
                 continue;
             }
 
-            this.getPlayer().getInventory().addItem(itemId, 1, change);
+            // Add rewards
+            rewards.add(itemId, 1);
+            
+            // Add to received reward ids
             this.receivedRewardIds.add(rewardId);
+            
+            // Set recieved flag
             received = true;
         }
 
         if (!received) {
             return null;
         }
+        
+        // Add energy soda
+        rewards.add(81002, 1);
 
-        this.getPlayer().trigger(QuestCondition.DormDailyReceiveReward, 1);
+        // Queue a save call for the dorm
         this.queueSave = true;
-
-        return change;
+        
+        // Trigger quest
+        this.getPlayer().trigger(QuestCondition.DormDailyReceiveReward, 1);
+        
+        // Add rewards
+        return this.getPlayer().getInventory().addItems(rewards);
     }
 
     public int getCollectionValue() {
