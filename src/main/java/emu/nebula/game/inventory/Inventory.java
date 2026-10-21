@@ -366,10 +366,19 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
                 if (amount > 0) {
                     // Add resource
                     newAmount = Utils.safeAdd(oldAmount, amount);
+                    
+                    // Limits
+                    if (id == GameConstants.VITA_ENERGY_ITEM_ID) {
+                        newAmount = Math.min(newAmount, GameConstants.VITA_ENERGY_MAX);
+                    }
+                    
+                    // Get diff
                     diff = newAmount - oldAmount;
                     
                     // Set
-                    this.resources.put(id, newAmount);
+                    if (diff != 0) {
+                        this.resources.put(id, newAmount);
+                    }
                 } else {
                     // Remove resource
                     newAmount = Utils.safeSubtract(oldAmount, Math.abs(amount));

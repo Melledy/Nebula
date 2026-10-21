@@ -120,6 +120,7 @@ public class GameData {
     @Getter private static DataTable<StarTowerQuestDef> StarTowerQuestDataTable = new DataTable<>();
     @Getter private static DataTable<StarTowerBuildRankDef> StarTowerBuildRankDataTable = new DataTable<>();
     @Getter private static DataTable<StarTowerBookPotentialRewardDef> StarTowerBookPotentialRewardDataTable = new DataTable<>();
+    @Getter private static DataTable<TowerVitaOptionDef> TowerVitaOptionDataTable = new DataTable<>();
     @Getter private static DataTable<SubNoteSkillPromoteGroupDef> SubNoteSkillPromoteGroupDataTable = new DataTable<>();
     
     @Getter private static DataTable<PotentialDef> PotentialDataTable = new DataTable<>();

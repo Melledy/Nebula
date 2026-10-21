@@ -10,6 +10,7 @@ import emu.nebula.Nebula;
 import emu.nebula.data.GameData;
 import emu.nebula.data.resources.InfinityTowerLevelDef;
 import emu.nebula.database.GameDatabaseObject;
+import emu.nebula.game.tower.StarTowerVitaData;
 import emu.nebula.game.tutorial.TutorialLevelLog;
 import emu.nebula.game.vampire.VampireSurvivorLog;
 import emu.nebula.proto.PlayerData.PlayerInfo;
@@ -36,6 +37,7 @@ public class PlayerProgress extends PlayerManager implements GameDatabaseObject 
     private IntSet starTowerLog;
     private int[] starTowerGrowth;
     private int towerTickets;
+    private StarTowerVitaData towerVitaData;
     
     // Instances
     private Int2IntMap dailyInstanceLog;
@@ -90,6 +92,9 @@ public class PlayerProgress extends PlayerManager implements GameDatabaseObject 
         
         // Tutorials
         this.tutorialLog = new HashMap<>();
+        
+        // Star Tower Vita
+        this.towerVitaData = new StarTowerVitaData(this);
         
         // Save to database
         this.save();
@@ -326,6 +331,14 @@ public class PlayerProgress extends PlayerManager implements GameDatabaseObject 
         if (this.infinityTowerLog == null) {
             this.infinityTowerLog = new Int2IntOpenHashMap();
             shouldSave = true;
+        }
+        
+        // Set star tower vita data
+        if (this.towerVitaData == null) {
+            this.towerVitaData = new StarTowerVitaData(this);
+            shouldSave = true;
+        } else {
+            this.towerVitaData.setPlayerProgress(this);
         }
         
         // Carry over infinity tower progress

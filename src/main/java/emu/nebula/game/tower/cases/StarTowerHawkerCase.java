@@ -142,6 +142,12 @@ public class StarTowerHawkerCase extends StarTowerBaseCase {
             this.buy(hawker.getSid(), rsp);
         }
         
+        // Auto mode consumes vita energy
+        if (hawker.getAuto()) {
+            var change = this.getPlayer().getInventory().removeItem(GameConstants.VITA_ENERGY_ITEM_ID, GameConstants.VITA_ENERGY_COST);
+            rsp.setChange(change.toProto());
+        }
+        
         // Success
         return rsp;
     }

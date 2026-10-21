@@ -53,6 +53,11 @@ public class StarTowerNpcEventCase extends StarTowerBaseCase {
         return CaseType.NpcEvent;
     }
     
+    @Override
+    public boolean removeAfterInteract() {
+        return this.completed;
+    }
+    
     public int getOption(int index) {
         if (index < 0 || index >= this.getOptions().size()) {
             return 0;
@@ -68,15 +73,18 @@ public class StarTowerNpcEventCase extends StarTowerBaseCase {
             return rsp;
         }
         
+        // Get select request
+        var select = req.getSelectReq();
+        
         // Get option from selection index
-        int option = this.getOption(req.getSelectReq().getIndex());
+        int option = this.getOption(select.getIndex());
         
         // Get select response proto
         var selectRsp = rsp.getMutableSelectResp();
         var success = selectRsp.getMutableResp();
         var change = new PlayerChangeInfo();
         
-        // Completed event flag
+        // Pre set completed event flag to true
         boolean completed = true;
         
         // Handle option id
@@ -246,6 +254,11 @@ public class StarTowerNpcEventCase extends StarTowerBaseCase {
             default -> {
                 // Ignored
             }
+        }
+        
+        // Auto mode consumes vita energy
+        if (select.getAuto()) {
+            this.getPlayer().getInventory().removeItem(GameConstants.VITA_ENERGY_ITEM_ID, GameConstants.VITA_ENERGY_COST, change);
         }
         
         // Set change info

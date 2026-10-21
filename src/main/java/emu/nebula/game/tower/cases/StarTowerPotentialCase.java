@@ -66,15 +66,15 @@ public class StarTowerPotentialCase extends StarTowerBaseCase {
         
         // Handle select option
         if (select.hasReRoll()) {
-            this.reroll(rsp);
+            this.reroll(select.getAuto(), rsp);
         } else {
-            this.select(select.getIndex(), rsp);
+            this.select(select.getIndex(), select.getAuto(), rsp);
         }
         
         return rsp;
     }
     
-    private void reroll(StarTowerInteractResp rsp) {
+    private void reroll(boolean auto, StarTowerInteractResp rsp) {
         // Check if we can reroll
         if (!this.canReroll()) {
             return;
@@ -116,13 +116,19 @@ public class StarTowerPotentialCase extends StarTowerBaseCase {
         // Subtract coins
         var change = this.getGame().addItem(GameConstants.TOWER_COIN_ITEM_ID, -price);
         
+        // Auto mode consumes vita energy
+        if (auto) {
+            this.getPlayer().getInventory().removeItem(GameConstants.VITA_ENERGY_ITEM_ID, GameConstants.VITA_ENERGY_COST, change);
+        }
+        
+        // Set change proto in response
         rsp.setChange(change.toProto());
         
         // Achievement + Star Tower quests
         this.getGame().getPlayer().trigger(QuestCondition.TowerSpecificPotentialReRollTotal, 1);
     }
     
-    private void select(int index, StarTowerInteractResp rsp) {
+    private void select(int index, boolean auto, StarTowerInteractResp rsp) {
         // Get selected potential
         var potential = this.selectId(index);
         if (potential == null) {
@@ -135,7 +141,12 @@ public class StarTowerPotentialCase extends StarTowerBaseCase {
         // Add potential
         var change = this.getGame().addItem(potential.getId(), potential.getLevel());
         
-        // Set change
+        // Auto mode consumes vita energy
+        if (auto) {
+            this.getPlayer().getInventory().removeItem(GameConstants.VITA_ENERGY_ITEM_ID, GameConstants.VITA_ENERGY_COST, change);
+        }
+        
+        // Set change proto in response
         rsp.setChange(change.toProto());
         
         // Handle pending potential selectors

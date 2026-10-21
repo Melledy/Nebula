@@ -11,9 +11,18 @@ public class HandlerTowerVitaProjectListReq extends NetHandler {
 
     @Override
     public byte[] handle(GameSession session, byte[] message) throws Exception {
+        // Get manager
+        var manager = session.getPlayer().getStarTowerManager();
+
         // Build response
-        var rsp = TowerVitaProjectListResp.newInstance();
-        
+        var rsp = TowerVitaProjectListResp.newInstance()
+                .setUseId(manager.getVitaData().getSelectedProjectId());
+
+        // Add projects
+        for (var project : manager.getVitaProjects()) {
+            rsp.addProjects(project.toProto());
+        }
+
         // Encode and send
         return session.encodeMsg(NetMsgId.tower_vita_project_list_succeed_ack, rsp);
     }

@@ -49,6 +49,7 @@ public class GameConstants {
     public static final int MAX_SHOWCASE_IDS = 5;
     public static final int MAX_BUILDS = 100;
     public static final int MAX_PRESETS = 50;
+    public static final int MAX_VITA_PROJECTS = 5;
 
     public static final int MAX_FRIENDSHIPS = 50;
     public static final int MAX_PENDING_FRIENDSHIPS = 30;
@@ -62,6 +63,14 @@ public class GameConstants {
     public static final int[] TOWER_EVENTS_IDS = new int[] {
         101, 102, 104, 105, 106, 107, 108, 114, 115, 116, 126, 127, 128
     };
+
+    // Star Tower Vita (auto decision)
+    public static final int VITA_ENERGY_ITEM_ID = 42;
+    public static final int VITA_ENERGY_MAX = 10_000;
+    public static final int VITA_ENERGY_PURCHASE_CURRENCY_ID = STELLANITE_DUST_ITEM_ID;
+    public static final int VITA_ENERGY_PURCHASE_PRICE = 10;
+    public static final int VITA_ENERGY_PURCHASE_VALUE = 3_000;
+    public static final int VITA_ENERGY_COST = 15;
     
     // Trace Hunt
     public static final int TRACE_HUNT_TOKEN_ID = 37;

@@ -1,6 +1,8 @@
 package emu.nebula.game.tower;
 
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 
 import emu.nebula.GameConstants;
 import emu.nebula.Nebula;
@@ -13,6 +15,7 @@ import emu.nebula.game.player.PlayerChangeInfo;
 import emu.nebula.game.player.PlayerManager;
 import emu.nebula.game.player.PlayerProgress;
 import emu.nebula.game.quest.QuestCondition;
+import emu.nebula.proto.Public.TowerVitaProject;
 import emu.nebula.proto.PublicStarTower.StarTowerBookCharPotential;
 import emu.nebula.proto.StarTowerApply.StarTowerApplyReq;
 
@@ -370,6 +373,96 @@ public class StarTowerManager extends PlayerManager {
         
         // Delete from database
         removed.delete();
+        
+        // Success
+        return true;
+    }
+    
+    // Vita projects (auto decision plans)
+    
+    public StarTowerVitaData getVitaData() {
+        return this.getProgress().getTowerVitaData();
+    }
+    
+    public List<StarTowerVitaProject> getVitaProjects() {
+        return this.getVitaData().getProjects().values().stream()
+                .sorted(Comparator.comparingInt(StarTowerVitaProject::getId))
+                .toList();
+    }
+    
+    public StarTowerVitaProject getVitaProject(int id) {
+        return this.getVitaData().getProject(id);
+    }
+    
+    public StarTowerVitaProject updateVitaProject(TowerVitaProject proto) {
+        // Sanity check
+        if (proto == null || proto.getId() < 1 || proto.getId() > GameConstants.MAX_VITA_PROJECTS) {
+            return null;
+        }
+        
+        // Get or create the project
+        var data = this.getVitaData();
+        var project = data.getProject(proto.getId());
+        
+        if (project == null) {
+            project = new StarTowerVitaProject(proto.getId());
+        }
+        
+        // Update name
+        if (proto.hasName()) {
+            project.setName(proto.getName());
+        }
+        
+        // The client only sends options that differ from the defaults, so replace the whole list
+        project.getOptions().clear();
+        
+        for (var optionProto : proto.getOptions()) {
+            var option = StarTowerVitaOption.fromProto(optionProto);
+            
+            if (option != null) {
+                project.putOption(option);
+            }
+        }
+        
+        // Save project to database
+        data.putProject(project);
+        
+        // Success
+        return project;
+    }
+    
+    public StarTowerVitaProject renameVitaProject(int id, String name) {
+        // Sanity check
+        if (id < 1 || id > GameConstants.MAX_VITA_PROJECTS) {
+            return null;
+        }
+        
+        // Get or create the project
+        var data = this.getVitaData();
+        var project = data.getProject(id);
+        
+        if (project == null) {
+            project = new StarTowerVitaProject(id);
+        }
+        
+        // Update name
+        project.setName(name);
+        
+        // Save project to database
+        data.putProject(project);
+        
+        // Success
+        return project;
+    }
+    
+    public boolean selectVitaProject(int id) {
+        // Sanity check
+        if (id < 1 || id > GameConstants.MAX_VITA_PROJECTS) {
+            return false;
+        }
+        
+        // Save selection to database
+        this.getVitaData().setSelectedProjectId(id);
         
         // Success
         return true;
