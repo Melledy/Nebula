@@ -805,7 +805,7 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
             return null;
         }
 
-        this.getPlayer().trigger(QuestCondition.DormRewardReceive, 1);
+        this.getPlayer().trigger(QuestCondition.DormDailyReceiveReward, 1);
         this.queueSave = true;
 
         return change;
