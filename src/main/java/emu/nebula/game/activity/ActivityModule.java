@@ -122,6 +122,12 @@ public class ActivityModule extends GameContextModule {
         
         // Trekker versus (broken)
         //this.activities.add(600001);
+        
+        // 1st anniversary
+        this.activities.add(301051);
+        this.activities.add(301052);
+        this.activities.add(301053);
+        this.activities.add(302001);
     }
     
 }

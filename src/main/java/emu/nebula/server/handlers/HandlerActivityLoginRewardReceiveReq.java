@@ -15,8 +15,12 @@ public class HandlerActivityLoginRewardReceiveReq extends NetHandler {
         // Parse request
         var req = UI32.parseFrom(message);
         
+        // Get activity id from request
+        int activityId = req.getValue();
+        
         // Get activity
-        var activity = session.getPlayer().getActivityManager().getActivity(LoginRewardActivity.class, req.getValue());
+        // Note: Sign-in activities are handled by the same request as the login reward activities
+        var activity = session.getPlayer().getActivityManager().getActivity(LoginRewardActivity.class, activityId);
         
         if (activity == null) {
             return session.encodeMsg(NetMsgId.activity_login_reward_receive_failed_ack);

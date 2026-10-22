@@ -863,6 +863,9 @@ public class Player implements GameDatabaseObject {
         // See if we need to reset dailies
         this.checkResetDailies();
         
+        // Update the activities (login rewards, sign-ins, etc)
+        this.getActivityManager().onLogin();
+        
         // Try to update trace hunt control
         if (this.getTraceHuntManager().updateControl()) {
             this.getTraceHuntManager().save();

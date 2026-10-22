@@ -29,7 +29,7 @@ public class LoginRewardActivity extends GameActivity {
         super(manager, data);
     }
     
-    public PlayerChangeInfo claim() {
+    public synchronized PlayerChangeInfo claim() {
         // Create change info
         var change = new PlayerChangeInfo();
         
@@ -64,7 +64,7 @@ public class LoginRewardActivity extends GameActivity {
     }
     
     @Override
-    public void onLogin() {
+    public synchronized void onLogin() {
         // Check if epoch day has changed
         if (this.getPlayer().getLastEpochDay() <= this.lastEpochDay || this.isComplete()) {
             return;
