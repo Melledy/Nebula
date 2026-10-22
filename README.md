@@ -39,7 +39,9 @@ Current supported regions (PC): `GLOBAL`, `KR`, `JP`, `TW`, `CN`
 
 ### Updating
 
-You may need to change the data version when switching regions OR if your game updates. The `customDataVersion` field in the config should match the data version of your client, which is usually the last number of your client's version string (top left of your login screen). Example: 1.0.0.42 = data version 42.
+You may need to change the data version when switching regions OR if your game client updates. The `customDataVersion` field in the config should match the data version of your client, which is usually the last number of your client's version string (top left of your login screen). Example: 1.0.0.42 = data version 42.
+
+If you get an error downloading the server resource list in your game client, you also need to change the data version.
 
 # Running the server and client
 
