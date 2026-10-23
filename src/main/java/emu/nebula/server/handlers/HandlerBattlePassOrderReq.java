@@ -15,9 +15,10 @@ public class HandlerBattlePassOrderReq extends NetHandler {
     public byte[] handle(GameSession session, byte[] message) throws Exception {
         // Parse request
         var req = BattlePassOrderReq.parseFrom(message);
+        
         // Validate mode (1 = Premium, 2 = Luxury)
         int requestedMode = req.getMode();
-        if (!session.getPlayer().isBattlePassUnlocked() || requestedMode < 1 || requestedMode > 2) {
+        if (!session.getPlayer().getBattlePassManager().isUnlocked() || requestedMode < 1 || requestedMode > 2) {
             return session.encodeMsg(NetMsgId.battle_pass_order_failed_ack);
         }
         

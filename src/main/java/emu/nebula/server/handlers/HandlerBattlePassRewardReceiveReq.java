@@ -13,7 +13,7 @@ public class HandlerBattlePassRewardReceiveReq extends NetHandler {
 
     @Override
     public byte[] handle(GameSession session, byte[] message) throws Exception {
-        if (!session.getPlayer().isBattlePassUnlocked()) {
+        if (!session.getPlayer().getBattlePassManager().isUnlocked()) {
             return session.encodeMsg(NetMsgId.battle_pass_reward_receive_failed_ack);
         }
 
@@ -44,7 +44,7 @@ public class HandlerBattlePassRewardReceiveReq extends NetHandler {
                 .setPremiumReward(battlePass.getPremiumReward().toByteArray())
                 .setChange(change.toProto());
 
-        session.getPlayer().queueBattlePassStateNotify();
+        session.getPlayer().getBattlePassManager().updateState();
         
         // Encode and send
         return session.encodeMsg(NetMsgId.battle_pass_reward_receive_succeed_ack, rsp);

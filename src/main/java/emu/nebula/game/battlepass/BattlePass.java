@@ -2,6 +2,7 @@ package emu.nebula.game.battlepass;
 
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
+
 import emu.nebula.GameConstants;
 import emu.nebula.Nebula;
 import emu.nebula.data.GameData;
@@ -16,6 +17,7 @@ import emu.nebula.game.quest.QuestType;
 import emu.nebula.net.NetMsgId;
 import emu.nebula.proto.BattlePassInfoOuterClass.BattlePassInfo;
 import emu.nebula.util.Bitset;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -134,7 +136,7 @@ public class BattlePass implements GameDatabaseObject {
      * Check claimable tasks to show battle pass red dot.
      */
     public synchronized boolean hasClaimableQuest() {
-        if (!this.getPlayer().isBattlePassUnlocked()) {
+        if (!this.getManager().isUnlocked()) {
             return false;
         }
 
@@ -157,7 +159,7 @@ public class BattlePass implements GameDatabaseObject {
      * reward lane item for the player's current level/mode.
      */
     public synchronized boolean hasClaimableReward() {
-        if (!this.getPlayer().isBattlePassUnlocked()) {
+        if (!this.getManager().isUnlocked()) {
             return false;
         }
 
@@ -238,7 +240,7 @@ public class BattlePass implements GameDatabaseObject {
      * Update this quest on the player client
      */
     private void syncQuest(GameQuest quest) {
-        if (!getPlayer().hasSession() || !getPlayer().isBattlePassUnlocked()) {
+        if (!getPlayer().hasSession() || !getManager().isUnlocked()) {
             return;
         }
         
@@ -399,13 +401,72 @@ public class BattlePass implements GameDatabaseObject {
         // Add rewards
         return getPlayer().getInventory().addItems(rewards);
     }
+    
+    public PlayerChangeInfo buyLevels(int levels) {
+        // Sanity check
+        if (levels < 1) {
+            return null;
+        }
+        
+        // Setup
+        int costItemId = 2; // Gems
+        int currentLevel = this.getLevel();
+        int totalGemCost = 0;
+        int totalExp = 0;
+        int affordableLevels = 0;
+        
+        var inventory = getPlayer().getInventory();
+        
+        // Calculate total cost and exp for the levels we can afford
+        for (int i = 1; i <= levels; i++) {
+            // Get level data
+            var data = GameData.getBattlePassLevelDataTable().get(currentLevel + i);
+            
+            // Stop if max level reached
+            if (data == null) {
+                break;
+            }
+            
+            // Stop if not enough gems for this level
+            int cost = data.getQty();
+            if (inventory.getResourceCount(costItemId) < totalGemCost + cost) {
+                break;
+            }
+            
+            totalGemCost += cost;
+            totalExp += data.getExp();
+            affordableLevels++;
+        }
+        
+        // Make sure we can buy at least one level
+        if (affordableLevels == 0) {
+            return null;
+        }
+        
+        // Prepare change info
+        var change = new PlayerChangeInfo();
+        
+        // Deduct gems
+        if (totalGemCost > 0) {
+            change.add(inventory.addItem(costItemId, -totalGemCost));
+        }
+        
+        // Add all exp at once
+        this.addExp(totalExp);
+        
+        // Save to database
+        this.save();
+        
+        // Success
+        return change;
+    }
 
     // Proto
     
     public BattlePassInfo toProto() {
         // Return a locked/empty snapshot until the battle pass feature is unlocked,
         // so the client cannot derive local quest or reward red dots from battle pass data.
-        if (!this.getPlayer().isBattlePassUnlocked()) {
+        if (!this.getManager().isUnlocked()) {
             return BattlePassInfo.newInstance()
                     .setId(0)
                     .setLevel(0)

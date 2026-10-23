@@ -4,6 +4,7 @@ import dev.morphia.annotations.AlsoLoad;
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
 import dev.morphia.annotations.Indexed;
+
 import emu.nebula.GameConstants;
 import emu.nebula.Nebula;
 import emu.nebula.data.GameData;
@@ -40,12 +41,13 @@ import emu.nebula.proto.Notify.SigninRewardUpdate;
 import emu.nebula.proto.PlayerData.DictionaryEntry;
 import emu.nebula.proto.PlayerData.DictionaryTab;
 import emu.nebula.proto.PlayerData.PlayerInfo;
-import emu.nebula.proto.Public;
 import emu.nebula.proto.Public.*;
 import emu.nebula.util.ResetCycle;
 import emu.nebula.util.Utils;
 import emu.nebula.util.ints.String2IntMap;
+
 import lombok.Getter;
+
 import us.hebi.quickbuf.ProtoMessage;
 import us.hebi.quickbuf.RepeatedInt;
 
@@ -231,7 +233,7 @@ public class Player implements GameDatabaseObject {
         this.trigger(AchievementCondition.WorldClassSpecific, this.getLevel());
 
         if (oldLevel != this.level) {
-            this.queueBattlePassUnlockNotify(oldLevel);
+            this.getBattlePassManager().queueUnlockNotify(oldLevel);
         }
     }
     
@@ -556,7 +558,8 @@ public class Player implements GameDatabaseObject {
             // Trigger achievement
             this.trigger(AchievementCondition.WorldClassSpecific, this.getLevel());
 
-            this.queueBattlePassUnlockNotify(oldLevel);
+            // Send battle pass unlock notify packet
+            this.getBattlePassManager().queueUnlockNotify(oldLevel);
         }
         
         // Calculate changes
@@ -759,6 +762,10 @@ public class Player implements GameDatabaseObject {
         }
     }
     
+    private long getLastResetDayTimeSeconds() {
+        return Utils.getResetTimeSecondsByEpochDay(this.getLastEpochDay());
+    }
+    
     // Trigger quests + achievements
     
     public void trigger(int condition, int progress, int param1, int param2) {
@@ -879,6 +886,8 @@ public class Player implements GameDatabaseObject {
         Nebula.getGameDatabase().update(this, this.getUid(), "lastLogin", this.getLastLogin());
     }
 
+    // Mall
+    
     /**
      * Returns whether the player currently has at least one purchasable
      * free mall package (`CurrencyType = 3`) for the mall entrance red dot.
@@ -907,42 +916,8 @@ public class Player implements GameDatabaseObject {
                 MallPackageState.newInstance().setNew(this.hasAvailableFreeMallPackage())
         );
     }
-
-    public void queueBattlePassStateNotify() {
-        this.addNextPackage(
-                NetMsgId.battle_pass_state_notify,
-                this.buildBattlePassStateProto()
-        );
-    }
-
-    /**
-     * Pushes a full battle-pass snapshot for clients that only refresh their
-     * local battle-pass cache/red dots from the page-info payload.
-     */
-    public void queueBattlePassInfoNotify() {
-        this.addNextPackage(
-                NetMsgId.battle_pass_info_succeed_ack,
-                this.getBattlePassManager().getBattlePass().toProto()
-        );
-    }
-
-    /**
-     * Battle-pass unlock is a special case: clients need the full page snapshot
-     * to initialize local battle-pass cache and refresh the main-entry red dot.
-     */
-    private void queueBattlePassUnlockNotify(int oldLevel) {
-        if (oldLevel < GameConstants.BATTLE_PASS_UNLOCK_LEVEL && this.isBattlePassUnlocked()) {
-            this.queueBattlePassInfoNotify();
-        }
-    }
-
-    private Public.BattlePassState buildBattlePassStateProto() {
-        int state = this.isBattlePassUnlocked()
-                ? this.getBattlePassManager().getBattlePass().getClientState()
-                : 0;
-
-        return Public.BattlePassState.newInstance().setState(state);
-    }
+    
+    // Monthly Card
 
     /**
      * Returns the number of future game days still covered after the current game day.
@@ -1088,10 +1063,6 @@ public class Player implements GameDatabaseObject {
         for (var entry : this.monthlyCardExpireDays.object2IntEntrySet()) {
             this.grantMonthlyCardReward(entry.getKey(), notifyOnly);
         }
-    }
-
-    private long getLastResetDayTimeSeconds() {
-        return Utils.getResetTimeSecondsByEpochDay(this.getLastEpochDay());
     }
     
     // Next packages
@@ -1263,7 +1234,7 @@ public class Player implements GameDatabaseObject {
         
         // Keep BattlePass state container present for client-side login cache flow.
         // Some clients assume State.BattlePass exists during player_data bootstrap.
-        state.setBattlePass(this.buildBattlePassStateProto());
+        state.setBattlePass(this.getBattlePassManager().getStateProto());
 
         state.getMutableAchievement()
             .setNew(this.getAchievementManager().hasNewAchievements());
@@ -1413,10 +1384,6 @@ public class Player implements GameDatabaseObject {
                 .setIsPrimary(true);
         
         return proto;
-    }
-
-    public boolean isBattlePassUnlocked() {
-        return this.getLevel() >= GameConstants.BATTLE_PASS_UNLOCK_LEVEL;
     }
 
 }

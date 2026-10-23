@@ -51,6 +51,8 @@ public class GameConstants {
     public static final int MAX_PRESETS = 50;
     public static final int MAX_VITA_PROJECTS = 5;
 
+    public static final int MAX_GACHA_HISTORY_SAVE_RETRIES = 2;
+    
     public static final int MAX_FRIENDSHIPS = 50;
     public static final int MAX_PENDING_FRIENDSHIPS = 30;
     

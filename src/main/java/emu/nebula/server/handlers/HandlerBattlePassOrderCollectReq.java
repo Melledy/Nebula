@@ -1,6 +1,7 @@
 package emu.nebula.server.handlers;
 
 import emu.nebula.Nebula;
+import emu.nebula.game.mall.MallOrderCollectResult;
 import emu.nebula.net.NetHandler;
 import emu.nebula.net.NetMsgId;
 import emu.nebula.proto.BattlePassOrderCollect.BattlePassOrderCollectResp;
@@ -13,7 +14,8 @@ public class HandlerBattlePassOrderCollectReq extends NetHandler {
 
     @Override
     public byte[] handle(GameSession session, byte[] message) throws Exception {
-        if (!session.getPlayer().isBattlePassUnlocked()) {
+        // Sanity check to make sure battlepass is unlocked
+        if (!session.getPlayer().getBattlePassManager().isUnlocked()) {
             return session.encodeMsg(NetMsgId.battle_pass_order_collect_failed_ack);
         }
 
@@ -26,7 +28,7 @@ public class HandlerBattlePassOrderCollectReq extends NetHandler {
             if (!battlePass.isPremium()) {
                 return session.encodeMsg(NetMsgId.battle_pass_order_collect_failed_ack);
             }
-            collectResult = emu.nebula.game.mall.MallOrderCollectResult.empty();
+            collectResult = MallOrderCollectResult.empty();
         }
 
         // Build collect response

@@ -2,6 +2,7 @@ package emu.nebula.game.gacha;
 
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
+import emu.nebula.GameConstants;
 import emu.nebula.Nebula;
 import emu.nebula.data.resources.GachaDef;
 import emu.nebula.data.resources.GachaNewbieDef;
@@ -19,19 +20,20 @@ import java.util.Set;
 @Getter
 @Entity(value = "gacha", useDiscriminator = false)
 public class GachaManager extends PlayerManager implements GameDatabaseObject {
-    private static final String PATH_BANNERS = "banners.";
-    private static final String PATH_PITY_STATES = "pityStates.";
-    private static final String PATH_NEWBIE_STATES = "newbieStates.";
-    private static final int HISTORY_SAVE_RETRIES = 2;
-
     @Id
     private int uid;
 
     private Map<Integer, GachaBannerInfo> banners = new HashMap<>();
     private Map<Integer, GachaPityState> pityStates = new HashMap<>();
     private Map<Integer, NewbieGachaState> newbieStates = new HashMap<>();
+    
+    // Not saved to the database
     private transient Set<Integer> lockedNewbieObtainIds = new HashSet<>();
 
+    private static final String PATH_BANNERS = "banners.";
+    private static final String PATH_PITY_STATES = "pityStates.";
+    private static final String PATH_NEWBIE_STATES = "newbieStates.";
+    
     @Deprecated // Morphia only
     public GachaManager() {
         
@@ -91,7 +93,7 @@ public class GachaManager extends PlayerManager implements GameDatabaseObject {
 
         var log = new GachaHistoryLog(this.getPlayerUid(), storageId, gachaId, results);
         Exception lastError = null;
-        for (int attempt = 1; attempt <= HISTORY_SAVE_RETRIES + 1; attempt++) {
+        for (int attempt = 1; attempt <= GameConstants.MAX_GACHA_HISTORY_SAVE_RETRIES + 1; attempt++) {
             try {
                 Nebula.getGameDatabase().save(log);
                 return;
