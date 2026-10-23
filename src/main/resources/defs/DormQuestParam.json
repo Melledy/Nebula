@@ -1,0 +1,87 @@
+[
+  {
+    "Id": 500010,
+    "CompleteCond": 163,
+    "CondParams": [1, 701001]
+  },
+  {
+    "Id": 500011,
+    "CompleteCond": 164,
+    "CondParams": [1, 700003]
+  },
+  {
+    "Id": 500012,
+    "CompleteCond": 171,
+    "CondParams": [1]
+  },
+  {
+    "Id": 500013,
+    "CompleteCond": 165,
+    "CondParams": [1]
+  },
+  {
+    "Id": 500014,
+    "CompleteCond": 177,
+    "CondParams": [1, 701001]
+  },
+  {
+    "Id": 500015,
+    "CompleteCond": 166,
+    "CondParams": [8]
+  },
+  {
+    "Id": 500016,
+    "CompleteCond": 164,
+    "CondParams": [1, 700001]
+  },
+  {
+    "Id": 500017,
+    "CompleteCond": 171,
+    "CondParams": [3]
+  },
+  {
+    "Id": 500018,
+    "CompleteCond": 165,
+    "CondParams": [5]
+  },
+  {
+    "Id": 500019,
+    "CompleteCond": 177,
+    "CondParams": [1, 701001]
+  },
+  {
+    "Id": 500020,
+    "CompleteCond": 166,
+    "CondParams": [15]
+  },
+  {
+    "Id": 500021,
+    "CompleteCond": 163,
+    "CondParams": [1, 701002]
+  },
+  {
+    "Id": 500022,
+    "CompleteCond": 164,
+    "CondParams": [1, 700002]
+  },
+  {
+    "Id": 500023,
+    "CompleteCond": 171,
+    "CondParams": [7]
+  },
+  {
+    "Id": 500024,
+    "CompleteCond": 165,
+    "CondParams": [15]
+  },
+  {
+    "Id": 500025,
+    "CompleteCond": 177,
+    "CondParams": [1, 701002]
+  },
+  {
+    "Id": 500026,
+    "CompleteCond": 166,
+    "CondParams": [30]
+  }
+]

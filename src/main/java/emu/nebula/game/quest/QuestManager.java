@@ -219,7 +219,7 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
     /**
      * Update this quest on the player client
      */
-    private void syncQuest(GameQuest quest) {
+    public void syncQuest(GameQuest quest) {
         if (!getPlayer().hasSession()) {
             return;
         }
@@ -333,13 +333,7 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
             
             if (data != null) {
                 // Add rewards
-                if (data.getReward1() > 0 && data.getRewardQty1() > 0) {
-                    this.getPlayer().getInventory().addItem(data.getReward1(), data.getRewardQty1(), change);
-                }
-                
-                if (data.getReward2() > 0 && data.getRewardQty2() > 0) {
-                    this.getPlayer().getInventory().addItem(data.getReward2(), data.getRewardQty2(), change);
-                }
+                this.getPlayer().getInventory().addItems(data.getRewards(), change);
             }
             
             // Set claimed
@@ -728,6 +722,13 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
         if (shouldSave) {
             this.save();
         }
+    }
+    
+    /**
+     * Persists a single quest to the database
+     */
+    public void saveQuest(GameQuest quest) {
+        Nebula.getGameDatabase().update(this, this.getUid(), "list." + quest.getKey(), quest);
     }
     
     // Serialization

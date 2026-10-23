@@ -17,4 +17,5 @@ public class QuestType {
     public static final int TowerEvent = 12;
     public static final int Weekly = 13;
     public static final int Assist = 14;
+    public static final int Dorm = 15;
 }

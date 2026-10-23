@@ -11,6 +11,7 @@ import dev.morphia.annotations.Id;
 import emu.nebula.GameConstants;
 import emu.nebula.Nebula;
 import emu.nebula.data.GameData;
+import emu.nebula.data.resources.DormQuestDef;
 import emu.nebula.data.resources.DormRoomDef;
 import emu.nebula.data.resources.DropPkgDef;
 import emu.nebula.database.GameDatabaseObject;
@@ -19,7 +20,9 @@ import emu.nebula.game.inventory.ItemParamMap;
 import emu.nebula.game.player.Player;
 import emu.nebula.game.player.PlayerChangeInfo;
 import emu.nebula.game.player.PlayerManager;
+import emu.nebula.game.quest.GameQuest;
 import emu.nebula.game.quest.QuestCondition;
+import emu.nebula.game.quest.QuestType;
 import emu.nebula.net.NetMsgId;
 import emu.nebula.proto.DormInfo.DormInfoListResp;
 import emu.nebula.proto.Public;
@@ -74,6 +77,12 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
     private Int2IntMap dailyAffinityGiftCounts;
     private int dailyAffinityGiftTotal;
 
+    // Quests
+    private int questGroup;
+    private int questGroupState;
+    private int interactionTotal;
+    private int rewardClaimTotal;
+
     private transient boolean queueSave;
 
     @Deprecated // Morphia only
@@ -98,6 +107,9 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
         this.dailyAffinityGiftCounts = new Int2IntOpenHashMap();
         this.lastResetDay = Utils.getResetEpochDay();
 
+        // Add the quests of the first dorm quest group
+        this.initQuests();
+
         this.save();
     }
     
@@ -120,6 +132,7 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
         this.dailyAffinityGiftCounts.clear();
         this.dailyAffinityGiftTotal = 0;
         this.dayVisitNum = 0;
+        this.receivedRewardIds.clear();
         this.lastResetDay = currentDay;
         this.queueSave = true;
     }
@@ -184,7 +197,7 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
         this.getOrCreateRoom(roomId);
 
         if (change != null) {
-            this.getPlayer().trigger(QuestCondition.DormUnlockRoom, 1);
+            this.getPlayer().trigger(QuestCondition.DormUnlockRoom, 1, roomId);
 
             if (this.getPlayer().hasSession()) {
                 var proto = DormRoomUnlock.newInstance()
@@ -204,8 +217,15 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
      * Adds furniture to the collection
      */
     public synchronized void addFurniture(int id, int amount) {
-        this.furnitureCollection.put(id, this.furnitureCollection.get(id) + amount);
+        int oldCount = this.furnitureCollection.get(id);
+
+        this.furnitureCollection.put(id, oldCount + amount);
         this.queueSave = true;
+
+        // New furniture types count towards collection quests
+        if (oldCount <= 0 && amount > 0) {
+            this.getPlayer().trigger(QuestCondition.DormFurnitureCollect, 1);
+        }
     }
     
     /**
@@ -291,8 +311,16 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
             room.setFurnitureList(new ArrayList<>(furnitureList));
             this.queueSave = true;
 
-            this.getPlayer().trigger(QuestCondition.DormPlaceFurniture, furnitureList.size());
-            this.getPlayer().trigger(QuestCondition.DormSaveRoom, 1);
+            // Trigger furniture quests for each different furniture that is placed
+            var placedFurniture = new IntOpenHashSet();
+
+            for (var furniture : furnitureList) {
+                if (placedFurniture.add(furniture.getFurnitureId())) {
+                    this.getPlayer().trigger(QuestCondition.DormPlaceFurniture, 1, furniture.getFurnitureId());
+                }
+            }
+
+            this.getPlayer().trigger(QuestCondition.DormSaveRoom, 1, roomId);
 
             return 0L;
         }
@@ -551,6 +579,11 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
         }
 
         this.addInteractionRole(roleId);
+
+        // Track total interactions for quests
+        this.interactionTotal++;
+        this.queueSave = true;
+
         this.getPlayer().trigger(QuestCondition.DormRoleInteractionReward, 1);
 
         return dropItemId;
@@ -848,7 +881,10 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
 
         // Queue a save call for the dorm
         this.queueSave = true;
-        
+
+        // Track the total amount of claimed dorm daily gifts for quests
+        this.rewardClaimTotal++;
+
         // Trigger quest
         this.getPlayer().trigger(QuestCondition.DormDailyReceiveReward, 1);
         
@@ -934,6 +970,312 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
         return proto;
     }
 
+    // Quests
+
+    /**
+     * Initializes the dorm quest group state and adds the quests of the current
+     * group. Also used to add quests for players that don't have them yet.
+     * 
+     * @return true if the dorm quest state changed
+     */
+    public synchronized boolean initQuests() {
+        var player = this.getPlayer();
+
+        if (player == null || player.getQuestManager() == null) {
+            return false;
+        }
+
+        boolean changed = false;
+
+        // Start the first group for players that haven't started the quest chain
+        if (this.questGroup <= 0 && this.questGroupState == 0) {
+            int firstGroupId = this.getFirstQuestGroupId();
+
+            if (firstGroupId <= 0) {
+                return false;
+            }
+
+            this.questGroup = firstGroupId;
+            this.questGroupState = 0;
+            changed = true;
+        }
+
+        // Add the quests of the current group
+        if (this.questGroup > 0 && this.addQuestGroup(this.questGroup)) {
+            changed = true;
+        }
+
+        return changed;
+    }
+
+    /**
+     * Adds the quests of the given group to the quest manager.
+     * 
+     * @return true if any quest was added
+     */
+    private synchronized boolean addQuestGroup(int groupId) {
+        var questManager = this.getPlayer().getQuestManager();
+        boolean changed = false;
+
+        for (var data : GameData.getDormQuestDataTable()) {
+            if (data.getDormQuestGroup() != groupId) {
+                continue;
+            }
+
+            // Skip quests that already exist
+            if (questManager.getQuest(QuestType.Dorm, data.getId()) != null) {
+                continue;
+            }
+
+            // Add the quest
+            var quest = questManager.addQuest(new GameQuest(data));
+
+            // Initialize the progress from the current dorm state
+            int progress = this.getQuestProgress(data);
+            if (progress > 0) {
+                quest.setProgress(progress);
+            }
+
+            // Sync the quest with the client
+            questManager.syncQuest(quest);
+
+            changed = true;
+        }
+
+        if (changed) {
+            questManager.save();
+            this.queueSave = true;
+        }
+
+        return changed;
+    }
+
+    /**
+     * Returns the initial progress of a dorm quest based on the current dorm
+     * state. Dorm quest goals are absolute totals, so quests that are added later
+     * start with the progress the player has already made.
+     */
+    private int getQuestProgress(DormQuestDef data) {
+        int[] params = data.getCompleteCondParams();
+        int goal = params.length > 0 ? Math.max(params[0], 0) : 0;
+        int param = params.length > 1 ? params[1] : 0;
+        int cond = data.getCompleteCond();
+
+        if (cond == QuestCondition.DormUnlockRoom.getValue()) {
+            return this.isRoomUnlocked(param) ? goal : 0;
+        }
+
+        if (cond == QuestCondition.DormPlaceFurniture.getValue()) {
+            return this.isFurniturePlaced(param) ? goal : 0;
+        }
+
+        if (cond == QuestCondition.DormFurnitureCollect.getValue()) {
+            return Math.min(this.getDistinctFurnitureCount(), goal);
+        }
+
+        if (cond == QuestCondition.DormRoleInteractionReward.getValue()) {
+            return Math.min(this.interactionTotal, goal);
+        }
+
+        if (cond == QuestCondition.DormDailyReceiveReward.getValue()) {
+            return Math.min(this.rewardClaimTotal, goal);
+        }
+
+        return 0;
+    }
+
+    /**
+     * Returns the amount of different furniture types the player has collected.
+     */
+    public int getDistinctFurnitureCount() {
+        int count = 0;
+
+        for (var entry : this.furnitureCollection.int2IntEntrySet()) {
+            if (entry.getIntValue() > 0) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    /**
+     * Returns true if the given furniture is placed in one of the player's rooms.
+     */
+    public boolean isFurniturePlaced(int furnitureId) {
+        if (furnitureId <= 0 || this.rooms == null) {
+            return false;
+        }
+
+        for (var room : this.rooms.values()) {
+            if (room.getFurnitureList() == null) {
+                continue;
+            }
+
+            for (var furniture : room.getFurnitureList()) {
+                if (furniture.getFurnitureId() == furnitureId) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Returns the id of the first dorm quest group.
+     */
+    private int getFirstQuestGroupId() {
+        int firstId = 0;
+
+        for (var group : GameData.getDormQuestGroupDataTable()) {
+            // The first group has no prerequisite group
+            if (group.getPreGroup() != 0) {
+                continue;
+            }
+
+            if (firstId == 0 || group.getId() < firstId) {
+                firstId = group.getId();
+            }
+        }
+
+        return firstId;
+    }
+
+    /**
+     * Returns the id of the quest group that follows the given group.
+     */
+    private int getNextQuestGroupId(int groupId) {
+        int nextId = 0;
+
+        for (var group : GameData.getDormQuestGroupDataTable()) {
+            if (group.getPreGroup() != groupId) {
+                continue;
+            }
+
+            if (nextId == 0 || group.getId() < nextId) {
+                nextId = group.getId();
+            }
+        }
+
+        return nextId;
+    }
+
+    /**
+     * Receives dorm quest or quest group rewards.
+     * 
+     * @param type 0 = quest, 1 = quest group
+     * @param id the quest id, or 0 to claim all claimable quests; the group id for group rewards
+     * @return the reward changes, or null if nothing was claimed
+     */
+    public synchronized PlayerChangeInfo receiveQuestRewards(int type, int id) {
+        if (type == 1) {
+            return this.receiveQuestGroupReward(id);
+        }
+
+        return this.receiveQuestReward(id);
+    }
+
+    private synchronized PlayerChangeInfo receiveQuestReward(int questId) {
+        var questManager = this.getPlayer().getQuestManager();
+        var claimList = new ArrayList<DormQuestDef>();
+
+        if (questId > 0) {
+            // Claim a specific quest
+            var data = GameData.getDormQuestDataTable().get(questId);
+
+            if (data != null && data.getDormQuestGroup() == this.questGroup) {
+                var quest = questManager.getQuest(QuestType.Dorm, questId);
+
+                if (quest != null && quest.canClaim()) {
+                    claimList.add(data);
+                }
+            }
+        } else {
+            // Claim all claimable quests of the current group
+            for (var data : GameData.getDormQuestDataTable()) {
+                if (data.getDormQuestGroup() != this.questGroup) {
+                    continue;
+                }
+
+                var quest = questManager.getQuest(QuestType.Dorm, data.getId());
+
+                if (quest != null && quest.canClaim()) {
+                    claimList.add(data);
+                }
+            }
+        }
+
+        if (claimList.isEmpty()) {
+            return null;
+        }
+
+        // Add rewards
+        var rewards = new ItemParamMap();
+
+        for (var data : claimList) {
+            var quest = questManager.getQuest(QuestType.Dorm, data.getId());
+
+            // Add rewards
+            rewards.add(data.getRewards());
+
+            // Mark the quest as claimed
+            quest.setClaimed(true);
+            questManager.saveQuest(quest);
+            questManager.syncQuest(quest);
+        }
+
+        return this.getPlayer().getInventory().addItems(rewards);
+    }
+
+    private synchronized PlayerChangeInfo receiveQuestGroupReward(int groupId) {
+        // Only the current group's reward can be received
+        if (groupId <= 0 || groupId != this.questGroup || this.questGroupState != 0) {
+            return null;
+        }
+
+        var groupData = GameData.getDormQuestGroupDataTable().get(groupId);
+        if (groupData == null) {
+            return null;
+        }
+
+        // Make sure all quests of the group have been claimed
+        var questManager = this.getPlayer().getQuestManager();
+
+        for (var data : GameData.getDormQuestDataTable()) {
+            if (data.getDormQuestGroup() != groupId) {
+                continue;
+            }
+
+            var quest = questManager.getQuest(QuestType.Dorm, data.getId());
+
+            if (quest == null || !quest.isClaimed()) {
+                return null;
+            }
+        }
+
+        // Add rewards
+        var rewards = groupData.getRewards();
+
+        // Advance to the next quest group
+        int nextGroupId = this.getNextQuestGroupId(groupId);
+
+        if (nextGroupId > 0) {
+            this.questGroup = nextGroupId;
+            this.questGroupState = 0;
+
+            this.addQuestGroup(nextGroupId);
+        } else {
+            // All dorm quest groups have been completed
+            this.questGroup = 0;
+            this.questGroupState = 1;
+        }
+
+        this.queueSave = true;
+
+        return this.getPlayer().getInventory().addItems(rewards);
+    }
+
     // Social
 
     public boolean hasLikedFriend(int uid) {
@@ -993,7 +1335,11 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
                 .setDayVisitNum(this.dayVisitNum)
                 .setVisitTotalNum(this.visitTotalNum)
                 .setRestNameTime(this.dormNameRestTime)
-                .setTaskGroup(Public.UI32V.newInstance().setValue(0).setVersion(0));
+                .setTaskGroup(
+                        Public.UI32V.newInstance()
+                                .setValue(this.questGroupState)
+                                .setVersion(this.questGroup)
+                );
 
         var rewardIds = new ArrayList<>(this.getClaimableRewardIds());
         rewardIds.sort(Integer::compareTo);
@@ -1036,6 +1382,14 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
     }
     
     // Database
+    
+    @Override
+    public void onLoad() {
+        // Add any missing dorm quests
+        if (this.initQuests()) {
+            this.save();
+        }
+    }
 
     @Override
     public void save() {

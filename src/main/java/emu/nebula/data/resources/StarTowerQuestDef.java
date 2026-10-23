@@ -3,6 +3,7 @@ package emu.nebula.data.resources;
 import emu.nebula.data.BaseDef;
 import emu.nebula.data.ResourceType;
 import emu.nebula.data.custom.StarTowerQuestParamDef;
+import emu.nebula.game.inventory.ItemParamMap;
 import emu.nebula.game.quest.QuestData;
 import emu.nebula.game.quest.QuestType;
 import lombok.Getter;
@@ -20,6 +21,9 @@ public class StarTowerQuestDef extends BaseDef implements QuestData {
     private int RewardQty1;
     private int Reward2;
     private int RewardQty2;
+    
+    // Cached rewards
+    private transient ItemParamMap rewards;
     
     // Custom params (loaded from defs/StarTowerQuestParam.json)
     private transient int completeCond;
@@ -73,6 +77,17 @@ public class StarTowerQuestDef extends BaseDef implements QuestData {
         // Quests without prerequisites have no array in the data file
         if (this.PreTowerQuestIds == null) {
             this.PreTowerQuestIds = new int[0];
+        }
+        
+        // Cache rewards into an item param map
+        this.rewards = new ItemParamMap();
+        
+        if (this.Reward1 > 0) {
+            this.rewards.add(this.Reward1, this.RewardQty1);
+        }
+        
+        if (this.Reward2 > 0) {
+            this.rewards.add(this.Reward2, this.RewardQty2);
         }
     }
 }
