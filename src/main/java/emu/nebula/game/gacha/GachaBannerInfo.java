@@ -5,6 +5,7 @@ import dev.morphia.annotations.Entity;
 import emu.nebula.data.GameData;
 import emu.nebula.data.resources.GachaDef;
 import emu.nebula.proto.GachaInformation.GachaInfo;
+import emu.nebula.util.Bitset;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +19,7 @@ public class GachaBannerInfo {
     private int total;
     private boolean usedFirstTen;
     private boolean usedGuarantee;
+    private Bitset rewards;
     
     @Deprecated //Morphia only
     public GachaBannerInfo() {
@@ -26,6 +28,14 @@ public class GachaBannerInfo {
     
     public GachaBannerInfo(GachaDef data) {
         this.id = data.getId();
+    }
+
+    public Bitset getRewards() {
+        if (this.rewards == null) {
+            this.rewards = new Bitset();
+        }
+        
+        return this.rewards;
     }
 
     public GachaBannerDraft copyForSpin() {
@@ -67,7 +77,8 @@ public class GachaBannerInfo {
                 .setAMissTimes(missTimesA)
                 .setAupGuaranteeTimes(aupGuaranteeTimes)
                 .setReveFirstTenReward(!showFirstTenBonusHintText)
-                .setRecvGuaranteeReward(this.isUsedGuarantee());
+                .setRecvGuaranteeReward(this.isUsedGuarantee())
+                .setRewardsRecords(this.getRewards().toByteArray());
     }
 
     public record GachaBannerDraft(

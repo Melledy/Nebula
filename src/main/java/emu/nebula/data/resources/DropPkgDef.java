@@ -1,6 +1,7 @@
 package emu.nebula.data.resources;
 
 import emu.nebula.data.BaseDef;
+import emu.nebula.data.GameData;
 import emu.nebula.data.ResourceType;
 import emu.nebula.util.Utils;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -30,6 +31,14 @@ public class DropPkgDef extends BaseDef {
     
     public static int getRandomDrop(int packageId) {
         var packageList = PACKAGES.get(packageId);
+        
+        if (packageList == null) {
+            // Try and get package id from drop data
+            var dropData = GameData.getDropDataTable().get(packageId);
+            if (dropData != null) {
+                packageList = PACKAGES.get(dropData.getPkgId());
+            }
+        }
         
         if (packageList == null) {
             return 0;

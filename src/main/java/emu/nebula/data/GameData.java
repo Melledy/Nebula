@@ -49,8 +49,9 @@ public class GameData {
     @Getter private static DataTable<ItemDef> ItemDataTable = new DataTable<>();
     @Getter private static DataTable<ProductionDef> ProductionDataTable = new DataTable<>();
     @Getter private static DataTable<PlayerHeadDef> PlayerHeadDataTable = new DataTable<>();
-    @Getter private static DataTable<TitleDef> titleDataTable = new DataTable<>();
-    @Getter private static DataTable<HonorDef> honorDataTable = new DataTable<>();
+    @Getter private static DataTable<TitleDef> TitleDataTable = new DataTable<>();
+    @Getter private static DataTable<HonorDef> HonorDataTable = new DataTable<>();
+    @Getter private static DataTable<DropDef> DropDataTable = new DataTable<>();
     
     // ===== Shops =====
     @Getter private static DataTable<MallMonthlyCardDef> MallMonthlyCardDataTable = new DataTable<>();
@@ -80,6 +81,7 @@ public class GameData {
     @Getter private static DataTable<GachaATypeProbDef> GachaATypeProbDataTable = new DataTable<>();
     @Getter private static DataTable<GachaDef> GachaDataTable = new DataTable<>();
     @Getter private static DataTable<GachaNewbieDef> GachaNewbieDataTable = new DataTable<>();
+    @Getter private static DataTable<GachaRewardDef> GachaRewardDataTable = new DataTable<>();
     @Getter private static DataTable<GachaStorageDef> GachaStorageDataTable = new DataTable<>();
     @Getter private static DataTable<GachaTypeDef> GachaTypeDataTable = new DataTable<>();
     

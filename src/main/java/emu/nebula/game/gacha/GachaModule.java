@@ -35,6 +35,7 @@ public class GachaModule extends GameContextModule {
         var storage = data.getStorageData();
 
         var manager = player.getGachaManager();
+        
         synchronized (manager) {
             var info = manager.getBannerInfo(data);
             var pityState = manager.getPityState(data.getStorageId());
@@ -55,6 +56,7 @@ public class GachaModule extends GameContextModule {
 
     public PlayerChangeInfo recvGuarantee(Player player, int bannerId) {
         var manager = player.getGachaManager();
+        
         synchronized (manager) {
             var info = manager.findBannerInfo(bannerId);
             if (info == null) {
@@ -79,8 +81,51 @@ public class GachaModule extends GameContextModule {
             }
             info.setUsedGuarantee(true);
 
+            // Save to database
             manager.saveBanner(info);
+            
+            // Complete
             return player.getInventory().addItem(data.getGuaranteeTid(), data.getGuaranteeQty());
+        }
+    }
+
+    public PlayerChangeInfo recvReward(Player player, int rewardId) {
+        // Get reward data
+        var rewardData = GameData.getGachaRewardDataTable().get(rewardId);
+        if (rewardData == null) {
+            return null;
+        }
+
+        // Get banner data
+        var data = GameData.getGachaDataTable().get(rewardData.getGachaId());
+        if (data == null || !data.isActiveAt(Nebula.getCurrentServerTime())) {
+            return null;
+        }
+
+        var manager = player.getGachaManager();
+        
+        synchronized (manager) {
+            // Get banner info
+            var info = manager.getBannerInfo(data);
+
+            // Make sure the reward is unlocked
+            if (info.getTotal() < rewardData.getNum()) {
+                return null;
+            }
+
+            // Make sure we haven't already claimed the reward
+            if (info.getRewards().isSet(rewardData.getIndex())) {
+                return null;
+            }
+
+            // Set claimed
+            info.getRewards().setBit(rewardData.getIndex());
+
+            // Save to database
+            manager.saveBanner(info);
+            
+            // Complete
+            return player.getInventory().addItem(rewardData.getTid(), rewardData.getQty());
         }
     }
 
