@@ -71,6 +71,7 @@ public class StarTowerGame {
     private int teamExp;
     private int nextLevelExp;
     private int charHp;
+    private int npcInteractions;
     private int battleTime;
     private int[] charIds;
     private int[] discIds;
@@ -84,6 +85,9 @@ public class StarTowerGame {
     private ItemParamMap res;
     private ItemParamMap potentials;
     private IntSet secondarySkills;
+    
+    // NPC
+    private ItemParamMap npcAffinity;
     
     // Modifiers
     private StarTowerModifiers modifiers;
@@ -166,6 +170,9 @@ public class StarTowerGame {
         
         // Temp data to cache for rare potential count
         this.rarePotentialCount = new ItemParamMap();
+        
+        // Cached npc affinity map
+        this.npcAffinity = new ItemParamMap();
         
         // Enter first room
         this.enterNextRoom();
@@ -256,6 +263,15 @@ public class StarTowerGame {
     
     public int getRandomCharId() {
         return Utils.randomElement(this.getCharIds());
+    }
+    
+    public StarTowerNpcData getNpc(int npcId) {
+        return getPlayer().getProgress().getStarTowerNpcById(npcId);
+    }
+
+    public void onNpcAffinityIncrease(int npcId, int increase) {
+        this.npcInteractions++;
+        this.npcAffinity.add(npcId, increase);
     }
     
     public void setHp(int hp) {
@@ -855,7 +871,8 @@ public class StarTowerGame {
         // Settle info
         var settle = rsp.getMutableSettle()
                 .setTotalTime(this.getBattleTime())
-                .setBuild(this.getBuild().toProto());
+                .setBuild(this.getBuild().toProto())
+                .addAllReward(this.getNpcAffinityRewards());
         
         // Set empty change info
         settle.getMutableChange();
@@ -933,7 +950,7 @@ public class StarTowerGame {
             .setId(this.getId())
             .setCharHp(this.getCharHp())
             .setTeamLevel(this.getTeamLevel())
-            .setNPCInteractions(0)
+            .setNPCInteractions(this.getNpcInteractions())
             .setTotalTime(this.getBattleTime())
             .setBuildId(this.getBuildId());
         
@@ -993,6 +1010,27 @@ public class StarTowerGame {
         }
         
         return proto;
+    }
+    
+    public NPCAffinityLevelReward[] getNpcAffinityRewards() {
+        var list = new ArrayList<NPCAffinityLevelReward>();
+        
+        for (var entry : this.npcAffinity) {
+            int npcId = entry.getIntKey();
+            int increase = entry.getIntValue();
+            var npc = this.getNpc(npcId);
+            
+            var reward = NPCAffinityLevelReward.newInstance();
+            
+            reward.getMutableChange()
+                .setNPCId(npcId)
+                .setAffinity(npc.getAffinity())
+                .setIncrease(increase);
+            
+            list.add(reward);
+        }
+        
+        return list.toArray(new NPCAffinityLevelReward[list.size()]);
     }
 
 }

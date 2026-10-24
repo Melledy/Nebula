@@ -6,6 +6,7 @@ import emu.nebula.GameConstants;
 import emu.nebula.data.resources.StarTowerEventDef;
 import emu.nebula.game.achievement.AchievementCondition;
 import emu.nebula.game.player.PlayerChangeInfo;
+import emu.nebula.proto.PublicStarTower.NPCAffinityChange;
 import emu.nebula.proto.PublicStarTower.NPCAffinityInfo;
 import emu.nebula.proto.PublicStarTower.StarTowerRoomCase;
 import emu.nebula.proto.StarTowerInteract.StarTowerInteractReq;
@@ -268,9 +269,25 @@ public class StarTowerNpcEventCase extends StarTowerBaseCase {
         success.setOptionsResult(completed);
         this.completed = completed;
         
-        // Achievment
         if (completed) {
+            // Trigger achievement
             this.getGame().getAchievementManager().trigger(AchievementCondition.TowerEventTimes, 1);
+        
+            // Add npc affinity if the option succeeded
+            // We skip the weekly limit on this server
+            var npc = this.getGame().getNpc(npcId);
+            int affinityIncrease = npc.addAffinity(100);
+            
+            // Increment star tower's tracked npc interactions
+            this.getGame().onNpcAffinityIncrease(npcId, affinityIncrease);
+            
+            // Create affinity proto
+            var affinityInfo = NPCAffinityChange.newInstance()
+                    .setNPCId(npc.getId())
+                    .setAffinity(npc.getAffinity())
+                    .setIncrease(affinityIncrease);
+            
+            success.addAffinityChange(affinityInfo);
         }
         
         // Complete
@@ -331,9 +348,11 @@ public class StarTowerNpcEventCase extends StarTowerBaseCase {
     
     @Override
     public void encodeProto(StarTowerRoomCase proto) {
+        var npc = this.getGame().getNpc(npcId);
+        
         var info = NPCAffinityInfo.newInstance()
             .setNPCId(this.getNpcId())
-            .setAffinity(0);
+            .setAffinity(npc.getAffinity());
         
         proto.getMutableSelectOptionsEventCase()
             .setEvtId(this.getEventId())

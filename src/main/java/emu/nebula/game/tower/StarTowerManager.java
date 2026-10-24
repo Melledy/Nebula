@@ -1,5 +1,6 @@
 package emu.nebula.game.tower;
 
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -168,6 +169,42 @@ public class StarTowerManager extends PlayerManager {
         change.setExtraData(unlocked);
         
         // Return change
+        return change;
+    }
+    
+    // NPC affinities
+    
+    public Collection<StarTowerNpcData> getNpcAffinities() {
+        return this.getProgress().getTowerNpcs().values();
+    }
+    
+    public PlayerChangeInfo receiveNpcAffinityPlotReward(int plotId) {
+        // Get plot data
+        var plot = GameData.getNpcAffinityPlotDataTable().get(plotId);
+        if (plot == null) {
+            return null;
+        }
+        
+        // Get npc
+        var npc = this.getProgress().getStarTowerNpcById(plot.getNPCId());
+        
+        // Check if the plot can be claimed
+        if (npc.getLevel() < plot.getAffinityLevel() || npc.hasPlot(plotId)) {
+            return null;
+        }
+        
+        // Sanity check item
+        if (GameData.getItemDataTable().get(plot.getItemId()) == null) {
+            return null;
+        }
+        
+        // Add reward
+        var change = this.getPlayer().getInventory().addItem(plot.getItemId(), plot.getItemQty());
+        
+        // Mark plot as received
+        npc.addPlot(plotId);
+        
+        // Success
         return change;
     }
     
@@ -567,6 +604,11 @@ public class StarTowerManager extends PlayerManager {
                 game.getData().getGroupId(),
                 game.getDifficulty()
             );
+            
+            // Star Tower book event quests (anecdotes)
+            for (int charId : game.getCharIds()) {
+                this.getPlayer().trigger(QuestCondition.CharacterPassedWithSpecificTowerAndCount, 1, charId);
+            }
             
             // Achievement conditions
             var achievements = this.getPlayer().getAchievementManager();

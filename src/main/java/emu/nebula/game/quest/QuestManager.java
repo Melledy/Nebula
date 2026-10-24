@@ -10,6 +10,7 @@ import dev.morphia.annotations.Id;
 import emu.nebula.GameConstants;
 import emu.nebula.Nebula;
 import emu.nebula.data.GameData;
+import emu.nebula.data.resources.StarTowerBookEventRewardDef;
 import emu.nebula.data.resources.WorldClassDef;
 import emu.nebula.database.GameDatabaseObject;
 import emu.nebula.game.inventory.ItemParamMap;
@@ -61,6 +62,7 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
         this.levelRewards = new Bitset();
         
         this.initStarTowerQuests();
+        this.initStarTowerBookEventQuests();
         
         this.resetDailyQuests(true);
         
@@ -97,6 +99,8 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
                 if (progress > 0) {
                     quest.setProgress(progress);
                 }
+            } else if (cond == QuestCondition.TowerBookWithSpecificEvent.getValue()) {
+                this.syncStarTowerBookEventCountQuest(quest);
             }
         }
         
@@ -249,9 +253,14 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
             var quest = this.getList().get(data.getQuestKey());
             
             if (quest == null) {
-                this.addQuest(new GameQuest(data));
+                quest = this.addQuest(new GameQuest(data));
                 changed = true;
             } else if (quest.refreshData(data)) {
+                changed = true;
+            }
+            
+            // Book collection quests can complete retroactively
+            if (this.syncStarTowerBookEventCountQuest(quest)) {
                 changed = true;
             }
         }
@@ -290,6 +299,155 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
         if (changed) {
             this.save();
         }
+    }
+    
+    // Star Tower book events (anecdotes)
+    
+    /**
+     * Returns the total number of anecdotes the player has collected.
+     */
+    public synchronized int getClaimedStarTowerBookEventCount() {
+        int count = 0;
+        
+        for (var quest : this.getQuests()) {
+            if (quest.getType() == QuestType.TowerEvent && quest.isClaimed()) {
+                count++;
+            }
+        }
+        
+        return count;
+    }
+    
+    /**
+     * Syncs the progress of Star Tower book collection quests.
+     */
+    private boolean syncStarTowerBookEventCountQuest(GameQuest quest) {
+        if (quest.getCond() != QuestCondition.TowerBookWithSpecificEvent.getValue()) {
+            return false;
+        }
+        
+        int progress = Math.min(this.getClaimedStarTowerBookEventCount(), quest.getMaxProgress());
+        
+        if (progress <= quest.getCurProgress()) {
+            return false;
+        }
+        
+        return quest.setProgress(progress);
+    }
+    
+    /**
+     * Adds all Star Tower book event rewards as quests.
+     * Returns true if any quest was added or refreshed.
+     */
+    public synchronized boolean initStarTowerBookEventQuests() {
+        boolean changed = false;
+        
+        for (var data : GameData.getStarTowerBookEventRewardDataTable()) {
+            // Get existing quest
+            var quest = this.getList().get(data.getQuestKey());
+            
+            if (quest == null) {
+                quest = this.addQuest(new GameQuest(data));
+                changed = true;
+            } else if (quest.refreshData(data)) {
+                changed = true;
+            }
+            
+            // NPC affinity quests can complete retroactively
+            if (this.syncStarTowerBookEventQuest(quest, data)) {
+                changed = true;
+            }
+        }
+        
+        return changed;
+    }
+    
+    /**
+     * Syncs progress for book event quests that can be completed retroactively.
+     */
+    private boolean syncStarTowerBookEventQuest(GameQuest quest, StarTowerBookEventRewardDef data) {
+        if (data.getCompleteCond() != QuestCondition.NpcAffinityWithSpecificLevel.getValue()) {
+            return false;
+        }
+        
+        var npc = this.getPlayer().getProgress().getTowerNpcs().get(quest.getParam());
+        
+        if (npc == null) {
+            return false;
+        }
+        
+        int progress = Math.min(npc.getLevel(), quest.getMaxProgress());
+        
+        if (progress <= quest.getCurProgress()) {
+            return false;
+        }
+        
+        return quest.setProgress(progress);
+    }
+    
+    public synchronized PlayerChangeInfo receiveStarTowerBookEventReward(int questId) {
+        // Get received quests
+        var claimList = new ArrayList<GameQuest>();
+        
+        if (questId > 0) {
+            // Claim specific quest
+            var quest = this.getQuest(QuestType.TowerEvent, questId);
+            
+            if (quest != null && quest.canClaim()) {
+                claimList.add(quest);
+            }
+        } else {
+            // Claim all
+            for (var quest : this.getQuests()) {
+                if (quest.getType() != QuestType.TowerEvent) {
+                    continue;
+                }
+                
+                if (!quest.canClaim()) {
+                    continue;
+                }
+                
+                claimList.add(quest);
+            }
+        }
+        
+        // Sanity check
+        if (claimList.isEmpty()) {
+            return null;
+        }
+        
+        // Create change info
+        var change = new PlayerChangeInfo();
+        var received = new IntArrayList();
+        
+        // Claim
+        for (var quest : claimList) {
+            // Get data
+            var data = GameData.getStarTowerBookEventRewardDataTable().get(quest.getId());
+            
+            if (data != null) {
+                // Add reward
+                this.getPlayer().getInventory().addItem(data.getItemId(), data.getItemQty(), change);
+            }
+            
+            // Set claimed
+            quest.setClaimed(true);
+            
+            // Add received id
+            received.add(quest.getId());
+            
+            // Update in database
+            this.saveQuest(quest);
+        }
+        
+        // Update Star Tower book collection quests
+        this.trigger(QuestCondition.TowerBookWithSpecificEvent.getValue(), claimList.size(), 0, 0);
+        
+        // Set received ids as extra data
+        change.setExtraData(received);
+        
+        // Success
+        return change.setSuccess(true);
     }
     
     public synchronized PlayerChangeInfo receiveStarTowerQuestReward(int questId) {
@@ -340,7 +498,7 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
             quest.setClaimed(true);
             
             // Update in database
-            Nebula.getGameDatabase().update(this, this.getUid(), "list." + quest.getKey(), quest);
+            this.saveQuest(quest);
         }
         
         // Unlock newly available quests
@@ -420,7 +578,7 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
             quest.setClaimed(true);
             
             // Update in database
-            Nebula.getGameDatabase().update(this, this.getUid(), "list." + quest.getKey(), quest);
+            this.saveQuest(quest);
         }
         
         // Trigger quest
@@ -541,7 +699,7 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
             quest.setClaimed(true);
             
             // Update in database
-            Nebula.getGameDatabase().update(this, this.getUid(), "list." + quest.getKey(), quest);
+            this.saveQuest(quest);
         }
         
         // Trigger quest
@@ -705,6 +863,7 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
             // Add missing Star Tower quests and refresh their condition data
             // We do not need to save here because QuestManager::resetDailyQuests will save to the database
             this.initStarTowerQuests();
+            this.initStarTowerBookEventQuests();
             
             // Reset daily quests
             this.resetDailyQuests(true);
@@ -713,9 +872,15 @@ public class QuestManager extends PlayerManager implements GameDatabaseObject {
             shouldSave = false;
         } else {
             // Add missing Star Tower quests and refresh their condition data
-            if (this.initStarTowerQuests()) {
+            boolean changed = this.initStarTowerQuests();
+            
+            if (this.initStarTowerBookEventQuests()) {
+                changed = true;
+            }
+            
+            if (changed) {
                 shouldSave = true;
-            } 
+            }
         }
         
         // Save to database

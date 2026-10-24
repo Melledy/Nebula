@@ -123,6 +123,7 @@ public class GameData {
     @Getter private static DataTable<StarTowerQuestDef> StarTowerQuestDataTable = new DataTable<>();
     @Getter private static DataTable<StarTowerBuildRankDef> StarTowerBuildRankDataTable = new DataTable<>();
     @Getter private static DataTable<StarTowerBookPotentialRewardDef> StarTowerBookPotentialRewardDataTable = new DataTable<>();
+    @Getter private static DataTable<StarTowerBookEventRewardDef> StarTowerBookEventRewardDataTable = new DataTable<>();
     @Getter private static DataTable<TowerVitaOptionDef> TowerVitaOptionDataTable = new DataTable<>();
     @Getter private static DataTable<SubNoteSkillPromoteGroupDef> SubNoteSkillPromoteGroupDataTable = new DataTable<>();
     
@@ -133,6 +134,11 @@ public class GameData {
     @Getter private static DataTable<StarTowerBookFateCardQuestDef> StarTowerBookFateCardQuestDataTable = new DataTable<>();
     @Getter private static DataTable<StarTowerBookFateCardDef> StarTowerBookFateCardDataTable = new DataTable<>();
     @Getter private static DataTable<FateCardDef> FateCardDataTable = new DataTable<>();
+    
+    // Star Tower: NPC affinity
+    @Getter private static DataTable<StarTowerNpcDef> StarTowerNpcDataTable = new DataTable<>();
+    @Getter private static DataTable<NpcAffinityGroupDef> NpcAffinityGroupDataTable = new DataTable<>();
+    @Getter private static DataTable<NpcAffinityPlotDef> NpcAffinityPlotDataTable = new DataTable<>();
 
     // ===== Infinity Tower =====
     @Getter private static DataTable<InfinityTowerLevelDef> InfinityTowerLevelDataTable = new DataTable<>();

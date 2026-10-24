@@ -6,10 +6,12 @@ import java.util.Map;
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
 import dev.morphia.annotations.PostLoad;
+
 import emu.nebula.Nebula;
 import emu.nebula.data.GameData;
 import emu.nebula.data.resources.InfinityTowerLevelDef;
 import emu.nebula.database.GameDatabaseObject;
+import emu.nebula.game.tower.StarTowerNpcData;
 import emu.nebula.game.tower.StarTowerVitaData;
 import emu.nebula.game.tutorial.TutorialLevelLog;
 import emu.nebula.game.vampire.VampireSurvivorLog;
@@ -21,10 +23,12 @@ import emu.nebula.proto.Public.SkillInstance;
 import emu.nebula.proto.Public.VampireSurvivorLevel;
 import emu.nebula.proto.Public.WeekBossLevel;
 import emu.nebula.util.Bitset;
+
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
+
 import lombok.Getter;
 
 @Getter
@@ -38,6 +42,7 @@ public class PlayerProgress extends PlayerManager implements GameDatabaseObject 
     private int[] starTowerGrowth;
     private int towerTickets;
     private StarTowerVitaData towerVitaData;
+    private Map<Integer, StarTowerNpcData> towerNpcs;
     
     // Instances
     private Int2IntMap dailyInstanceLog;
@@ -96,6 +101,9 @@ public class PlayerProgress extends PlayerManager implements GameDatabaseObject 
         // Star Tower Vita
         this.towerVitaData = new StarTowerVitaData(this);
         
+        // Star Tower NPCs
+        this.towerNpcs = new HashMap<>();
+        
         // Save to database
         this.save();
     }
@@ -128,6 +136,17 @@ public class PlayerProgress extends PlayerManager implements GameDatabaseObject 
         
         // Success
         return true;
+    }
+
+    public StarTowerNpcData getStarTowerNpcById(int npcId) {
+        var npc = this.getTowerNpcs().get(npcId);
+        
+        if (npc == null) {
+            npc = new StarTowerNpcData(this.getPlayer(), npcId);
+            this.getTowerNpcs().put(npcId, npc);
+        }
+        
+        return npc;
     }
     
     /**
@@ -341,6 +360,12 @@ public class PlayerProgress extends PlayerManager implements GameDatabaseObject 
             this.towerVitaData.setPlayerProgress(this);
         }
         
+        // Set star tower npc data
+        if (this.towerNpcs == null) {
+            this.towerNpcs = new HashMap<>();
+            shouldSave = true;
+        }
+        
         // Carry over infinity tower progress
         if (this.infinityArenaLog != null) {
             for (int levelId : this.infinityArenaLog.values()) {
@@ -364,6 +389,15 @@ public class PlayerProgress extends PlayerManager implements GameDatabaseObject 
         // Update in database if anything changed
         if (shouldSave) {
             this.save();
+        }
+    }
+    
+    @Override
+    public void onLoad() {
+        // Set player for all npcs
+        // This needs to be in onLoad because that is when PlayerProgress's player field is set
+        for (var npc : this.towerNpcs.values()) {
+            npc.setPlayer(this.getPlayer());
         }
     }
 }
