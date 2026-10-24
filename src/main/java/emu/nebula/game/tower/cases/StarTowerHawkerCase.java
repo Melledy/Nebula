@@ -136,23 +136,17 @@ public class StarTowerHawkerCase extends StarTowerBaseCase {
         
         if (hawker.hasReRoll()) {
             // Refresh shop items
-            this.refresh(rsp);
+            this.refresh(hawker.getAuto(), rsp);
         } else if (hawker.hasSid()) {
             // Buy shop items
-            this.buy(hawker.getSid(), rsp);
-        }
-        
-        // Auto mode consumes vita energy
-        if (hawker.getAuto()) {
-            var change = this.getPlayer().getInventory().removeItem(GameConstants.VITA_ENERGY_ITEM_ID, GameConstants.VITA_ENERGY_COST);
-            rsp.setChange(change.toProto());
+            this.buy(hawker.getSid(), hawker.getAuto(), rsp);
         }
         
         // Success
         return rsp;
     }
     
-    private void refresh(StarTowerInteractResp rsp) {
+    private void refresh(boolean auto, StarTowerInteractResp rsp) {
         // Check if we can refresh
         if (this.getModifiers().getShopRerollCount() <= 0) {
             return;
@@ -179,6 +173,11 @@ public class StarTowerHawkerCase extends StarTowerBaseCase {
         // Remove coins
         var change = this.getGame().addItem(GameConstants.TOWER_COIN_ITEM_ID, -price);
         
+        // Auto mode consumes vita energy
+        if (auto) {
+            this.getPlayer().getInventory().removeItem(GameConstants.VITA_ENERGY_ITEM_ID, GameConstants.VITA_ENERGY_COST, change);
+        }
+        
         // Set change info
         rsp.setChange(change.toProto());
         
@@ -186,7 +185,7 @@ public class StarTowerHawkerCase extends StarTowerBaseCase {
         this.getGame().getPlayer().trigger(QuestCondition.TowerSpecificShopReRollTotal, 1);
     }
     
-    private void buy(int sid, StarTowerInteractResp rsp) {
+    private void buy(int sid, boolean auto, StarTowerInteractResp rsp) {
         // Get goods
         var goods = this.getGoods().get(sid);
         if (goods == null) {
@@ -225,6 +224,11 @@ public class StarTowerHawkerCase extends StarTowerBaseCase {
         
         if (goods.hasDiscount()) {
             this.getGame().getPlayer().trigger(QuestCondition.TowerSpecificShopBuyDiscountTotal, 1);
+        }
+        
+        // Auto mode consumes vita energy
+        if (auto) {
+            this.getPlayer().getInventory().removeItem(GameConstants.VITA_ENERGY_ITEM_ID, GameConstants.VITA_ENERGY_COST, change);
         }
         
         // Set change info
