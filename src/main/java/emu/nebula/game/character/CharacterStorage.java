@@ -18,6 +18,7 @@ import emu.nebula.game.player.PlayerChangeInfo;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -183,6 +184,39 @@ public class CharacterStorage extends PlayerManager {
                 element
             );
         }
+    }
+    
+    public PlayerChangeInfo claimAllPotentialBookRewards() {
+        var rewards = new ItemParamMap();
+        var received = new IntArrayList();
+        
+        // Collect rewards for every owned character
+        for (var character : this.getCharacterCollection()) {
+            var characterReceived = new IntArrayList();
+            var characterRewards = character.collectPotentialBookRewards(characterReceived);
+            
+            if (characterRewards.isEmpty()) {
+                continue;
+            }
+            
+            rewards.add(characterRewards);
+            received.addAll(characterReceived);
+            
+            // Save to db
+            character.save();
+        }
+        
+        // Sanity check
+        if (rewards.isEmpty()) {
+            return null;
+        }
+        
+        // Add all rewards at once so the change info only contains one entry per item
+        var change = this.getPlayer().getInventory().addItems(rewards);
+        change.setExtraData(received);
+        
+        // Success
+        return change.setSuccess(true);
     }
     
     // Discs

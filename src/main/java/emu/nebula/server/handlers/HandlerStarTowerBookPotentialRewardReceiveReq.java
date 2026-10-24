@@ -1,5 +1,6 @@
 package emu.nebula.server.handlers;
 
+import emu.nebula.game.player.PlayerChangeInfo;
 import emu.nebula.net.NetHandler;
 import emu.nebula.net.NetMsgId;
 import emu.nebula.proto.Public.UI32;
@@ -13,16 +14,26 @@ public class HandlerStarTowerBookPotentialRewardReceiveReq extends NetHandler {
 
     @Override
     public byte[] handle(GameSession session, byte[] message) throws Exception {
-        // Parse character id
+        // Parse character id, 0 means claim for all characters
         var req = UI32.parseFrom(message);
-        var character = session.getPlayer().getCharacters().getCharacterById(req.getValue());
+        int charId = req.getValue();
         
-        if (character == null) {
-            return session.encodeMsg(NetMsgId.star_tower_book_potential_reward_receive_failed_ack);
+        PlayerChangeInfo change;
+        
+        if (charId > 0) {
+            // Get character
+            var character = session.getPlayer().getCharacters().getCharacterById(charId);
+            
+            if (character == null) {
+                return session.encodeMsg(NetMsgId.star_tower_book_potential_reward_receive_failed_ack);
+            }
+            
+            // Claim rewards
+            change = character.claimPotentialBookRewards();
+        } else {
+            // Claim rewards for all characters
+            change = session.getPlayer().getCharacters().claimAllPotentialBookRewards();
         }
-        
-        // Claim rewards
-        var change = character.claimPotentialBookRewards();
         
         if (change == null) {
             return session.encodeMsg(NetMsgId.star_tower_book_potential_reward_receive_failed_ack);

@@ -42,6 +42,7 @@ import emu.nebula.util.ints.CustomIntArray;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
 import lombok.Getter;
@@ -1003,9 +1004,13 @@ public class GameCharacter implements GameDatabaseObject {
         return this.receivedPotentialRewards;
     }
     
-    public PlayerChangeInfo claimPotentialBookRewards() {
+    /**
+     * Marks this character's claimable potential book rewards as received.
+     * @param receivedIds List to add the claimed reward ids to
+     * @return The claimed rewards
+     */
+    protected ItemParamMap collectPotentialBookRewards(IntList receivedIds) {
         var rewards = new ItemParamMap();
-        var received = new IntArrayList();
         int potentials = this.getTotalSeenPotentials();
         
         for (var reward : this.getData().getPotentialBookRewards().values()) {
@@ -1015,15 +1020,26 @@ public class GameCharacter implements GameDatabaseObject {
             }
             
             // Check if we meet criteria for claiming the reward
-            if (potentials >= reward.getRequiredPotentials()) {
-                // Mark as received
-                this.getReceivedPotentialRewards().add(reward.getId());
-                
-                // Add to lists
-                received.add(reward.getId());
-                rewards.add(reward.getItemId(), reward.getItemQty());
+            if (potentials < reward.getRequiredPotentials()) {
+                continue;
             }
+            
+            // Mark as received
+            this.getReceivedPotentialRewards().add(reward.getId());
+            
+            // Add to rewards
+            rewards.add(reward.getItemId(), reward.getItemQty());
+            
+            // Mark as received
+            receivedIds.add(reward.getId());
         }
+        
+        return rewards;
+    }
+    
+    public PlayerChangeInfo claimPotentialBookRewards() {
+        var received = new IntArrayList();
+        var rewards = this.collectPotentialBookRewards(received);
         
         if (rewards.isEmpty()) {
             return null;
