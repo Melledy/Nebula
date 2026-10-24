@@ -284,6 +284,14 @@ public class Inventory extends PlayerManager implements GameDatabaseObject {
             return false;
         }
         
+        // Get honor data
+        var honor = GameData.getHonorDataTable().get(id);
+        
+        // Skip character honor as those are tied to characters
+        if (honor == null || honor.isCharacterHonor()) {
+            return false;
+        }
+        
         // Add
         this.getHonorList().add(id);
         

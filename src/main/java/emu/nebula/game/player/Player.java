@@ -854,6 +854,21 @@ public class Player implements GameDatabaseObject {
             Nebula.getGameDatabase().update(this, this.getUid(), "monthlyCardLastRewardDays", this.monthlyCardLastRewardDays);
         }
         
+        // Players should not have character honor titles in their honor list
+        for (int id : this.getInventory().getHonorList()) {
+            boolean honorChanged = false;
+            var honor = GameData.getHonorDataTable().get(id);
+            
+            if (honor == null || honor.isCharacterHonor()) {
+                this.getInventory().getHonorList().remove(id);
+                honorChanged = true;
+            }
+            
+            if (honorChanged) {
+                Nebula.getGameDatabase().update(this.getInventory(), this.getUid(), "honorList", this.getInventory().getHonorList());
+            }
+        }
+        
         // Init activities
         this.getActivityManager().init();
         
