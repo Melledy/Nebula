@@ -718,7 +718,7 @@ public class DormManager extends PlayerManager implements GameDatabaseObject {
         
         var inventory = this.getPlayer().getInventory();
         
-        if (inventory.getItemCount(GameConstants.STELLANITE_DUST_ITEM_ID) < count) {
+        if (!inventory.hasItem(GameConstants.STELLANITE_DUST_ITEM_ID, count)) {
             return null;
         }
         
