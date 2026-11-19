@@ -4,6 +4,8 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.List;
 
+import org.bouncycastle.util.encoders.Base64;
+
 import emu.nebula.Nebula;
 import emu.nebula.data.GameData;
 import emu.nebula.data.resources.AffinityLevelDef;
@@ -11,10 +13,12 @@ import emu.nebula.game.character.GameCharacter;
 import emu.nebula.game.character.GameDisc;
 import emu.nebula.game.player.Player;
 import emu.nebula.util.Utils;
+
 import it.unimi.dsi.fastutil.ints.Int2IntLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
+
 import lombok.Getter;
 
 @Getter
@@ -249,7 +253,7 @@ public class CommandArgs {
         var items = new Int2IntLinkedOpenHashMap();
         
         // Decode preset data from base64
-        byte[] data = Utils.base64Decode(code);
+        byte[] data = Base64.decode(code);
         
         var preset = ByteBuffer.wrap(data);
         preset.order(ByteOrder.BIG_ENDIAN);

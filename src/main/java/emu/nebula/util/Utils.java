@@ -11,7 +11,6 @@ import java.net.ServerSocket;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Base64;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -278,24 +277,6 @@ public class Utils {
         }
 
         return intArray;
-    }
-
-    /**
-     * Base64 encodes a given byte array.
-     * @param toEncode An array of bytes.
-     * @return A base64 encoded string.
-     */
-    public static String base64Encode(byte[] toEncode) {
-        return Base64.getEncoder().encodeToString(toEncode);
-    }
-
-    /**
-     * Base64 decodes a given string.
-     * @param toDecode A base64 encoded string.
-     * @return An array of bytes.
-     */
-    public static byte[] base64Decode(String toDecode) {
-        return Base64.getDecoder().decode(toDecode);
     }
 
     /**
